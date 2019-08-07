@@ -11,8 +11,10 @@
  - Alice uses https://doctorChat.example to chat with her doctor
     - DoctorChat wants to create chat related data specifically about medical information
     - DoctorChat wants to ensure Alice has given explicit consent to view the chats that it created before other apps can view this data
- - Alice uses https://edit.o.team to edit her raw RDF
-    - OEdit wants to be able to read and write to all files on a user’s Pod
+ - Alice uses https://edit.o.team to edit her raw RDF for all files
+    - OEdit wants to be able to read and write to a file at a specific location
+ - Alice uses https://admin.example to edit her raw RDF for all files
+    - Admin wants to be able to read and write to all files on a user’s Pod
  - Alice uses https://decentPhotos.example to view her photos and her friend Bob’s photos
     - Decent photos wants to read to all photos on Alice’s Pod
     - Wants to read all photos on Bob’s Pod that Alice has access to
