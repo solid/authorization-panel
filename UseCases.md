@@ -1,0 +1,43 @@
+# Application Authorization Use Cases
+
+ - Alice uses https://simplegame.example to play a singleplayer game
+    - Simplegame only needs some file somewhere that it can write its own configuration to. It does not care where it is
+    - Simpleapp will also need to access this file again even if it’s being used on another machine
+ - Alice uses https://chat.o.team to chat with her friends
+    - OChat wants to gain access to all chat related data
+    - Wants access to chat related data that was created after it asked for permission to read them
+    - Wants to be alerted when new chat related data has been added to the Pod
+    - Wants to create chat related data
+ - Alice uses https://doctorChat.example to chat with her doctor
+    - DoctorChat wants to create chat related data specifically about medical information
+    - DoctorChat wants to ensure Alice has given explicit consent to view the chats that it created before other apps can view this data
+ - Alice uses https://edit.o.team to edit her raw RDF
+    - OEdit wants to be able to read and write to a file at a specific location
+ - Alice uses https://admin.example to control her pod
+    - Admin wants to be able to read and write to all files on a user’s Pod
+ - Alice uses https://decentPhotos.example to view her photos and her friend Bob’s photos
+    - Decent photos wants to read to all photos on Alice’s Pod
+    - Wants to read all photos on Bob’s Pod that Alice has access to
+ - Alice uses https://photoOrganizer.example to organize the photos on her Pod
+    - PhotoOrganizer wants to read and write only photos
+    - Wants to understand the folder structure of the Pod
+    - Wants to modify the folder structure of the Pod
+ - Alice uses FaceDetectionCronJob to crawl over her photos and Bob’s photos at night and produce facial recognition data
+    - FaceDetectionCronJob is not an application and will need access to photos even when Alice is not actively using it
+    - Wants to have read access to Alice’s photos
+    - Wants to know where it should put its facial detection data
+    - Wants to have read access to Bob’s photos that Alice has access to
+ - Alice accidentally uses https://evilfitbit.example to track her fitness data
+    - Evilfitbit will try to do everything to get Alice’s financial data while pretending to just track her fitness data (This should not be allowed)
+ - Alice uses https://financeTracker.example to view her current finances
+    - financeTracker wants to be able to read Alice’s Financial data
+    - financeTracker wants to be able to keep a backup of Alice’s data
+    - Alice wants to ensure that financeTracker isn’t legally allowed to save the data it receives
+ - Alice uses https://favoriteRestaurants.example to track the restaurants she likes
+    - Favorite Restaurants wants to read and write data about restaurants and to get the Alice’s location
+    - Alice only wants to allow Favorite Restaurants to read and write restaurant data but not to get her location
+ - Alice uses https://blogs.example to read and write blogs
+    - Blogs wants to be able to read public blog information and to write blog data to Alice’s Pod
+    - Blogs wants to read data about Alice’s interests
+    - Alice does not want Blogs to get data about her interests
+    - Blogs continually asks Alice to grant it access to her interests and Alice is annoyed with the incessant asking
