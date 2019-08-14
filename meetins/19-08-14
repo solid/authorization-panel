@@ -1,0 +1,44 @@
+# App Authorization 8/14
+
+## Michael Thornburgh's Proposal
+https://github.com/solid/app-authorization-panel/issues/12
+
+ - Use case: A pod owner wants to control the apps that they use to access their data, but there's nothing stopping this method from being used in the general use case
+ - Solution is per resource server because the app you're using, you and the resource server are the only ones that should know about the interaction
+ - General Philosophy: The resource server should decide whether to grant access to a particular resource (not the trusted apps in the profile or the scopes in the IDP)
+ - Trusted apps are very coarse. And we can create scopes for everything, but that's difficult
+ - Every resource server should have its own class of ideas about what it's allowed to access
+
+ - Q: if applicataion wants to request resource about chats and succesfully goes through that flow. what if application doesn't know where the chats are? (RECORD NEEDS CORRECTION)
+     - That's a general discoverability problem. Data interop panel?
+ - What you're proposing is a way for an app to say "I want rights on these things" if they've encountered a 401. That seems very useful.
+     - The protocol is even more general. It's saying "I would like to ask for additional privlidges relative to the request I made." It doesn't just need to be for a file. The resource server could return "Here are all the possible permissions you could have"
+ - Q: What identity can access a resource? I organize a b-day party and create a chat room on my RS and create a group and give them append access. I understand I can set applications that can be used. What about these 10 other people? There's no other restriction of the apps that they can use. How would this behave?
+     - That would depend on how you configure the server yourself. Maybe you put a specific rule in the .acl with the app that you should use. 
+ - What if they want to specify the apps they want to use themselves?
+     - Then you could put that information where w people can see it. We'd have to define how trusted apps work which would be "yes" or "no" for any permission globally for that app. In general people would want to air on the side of privacy and not publish that.
+ - Henry: I'm still happy with this way.
+ - Henry: I have prototype where one can have acl on acl, so acl gets treated as any other resource.
+ - Dmitri: I understand it as a way to escalate permissions (request additional permission). Shouldn't we talk how app gets restricted peremission by default? As an chat app I want to request RS to have persmission to manage chats.
+ - Are we focusing on this out of order? It's a way for an app to request additional permission. But should we talk about how an app gets denied permission and we're waving over the data discovery aspect. If I'm a chat app I want to request a 
+- Jackson: We should know the discovery pattern first before trying to solve app authorization problem
+- Michiel: I went into this panel thinking the app would use an ontology to request access to a thing. But I like Michael's proposal. Because it puts the power on the Pod server. I still think that it's easier to Pod servers to get good at communicating what scopes it has than for apps to get good at it.
+- Dmitri: How would the app know how to request a friend's phone number in the the first place?
+    - Michiel: Currently that's foaf links in your profile. It's from some links somewhere. That's for the interop panel
+- Dmitri: I want to remind people of how this works in mobile dev. The operating system defines the broad types like contacts and photos. Not having to say "What is a contact" would leave it more open.
+- Elf: I think we need to work more with specific use cases and see how those proposals fit. At this moment we need to leave it to the person to decide the application we're using. There must be some kind of secure way that a resource server can check an app is allowed but if I'm feeling comfortable about an app, I should have fewer hurtles to allow it. I don't think it's one size fits all.
+- Jackson: Do we want to suggest discovery pattern ourself and propose it to interop-panel? I think now would be good time to make that decision. IMO we should think of some form of discovery inside of app authorization.
+- Michiel: We should define a standard for what happens after discovery.
+- Dmitri: we should work with data interop panel, but i also see it as core part of app authorization - what kind of things app will ask permission for. We can ask for some 'path' or something we find in type index
+- Henry: I would like to propose seeing how far one can go with an access control list. How would you do this completely to get any kind of access control using OWL reasoners.
+
+
+## Project Teams
+ - Access Scope Proposal - Jackson, Dmitri
+     - Intuitive scopes: a single resource, or a container
+     - Proposed scopes to investigate: types / shapes / collections
+ - Privilege Request Protocol - Michael, Michiel
+ - WAC mechanism to switch between 404 and 403 - Dmitri
+ - acl:origin * for resources that Alice has shared with Bob - Michiel
+ - non-public acl:trustedApp - Pavlik, Michiel
+     - Consider if we still need a trustedApp mechanism, if we have scopes / finger grained requests?
