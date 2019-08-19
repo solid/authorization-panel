@@ -75,13 +75,13 @@ header of the original denied request. The link relation is *TBD*, but for
 now let us use `x-permission-request` as a placeholder pending an agreeable
 identifier. The link target URI is opaque to the client, need not be for the
 same origin as the original denied request, **SHOULD** be unguessable, and
-**SHOULD** only be valid for a limited time.  The privilege request endpoint
-**MUST** be able to sufficiently identify the client solely by this URI, for
-example by the URI comprising a key to a database record, or by comprising a
-signed serialization of relevant information about the client.  The `Link`
-header **SHOULD** include an `expires_in` parameter giving the number of
-seconds after the `Date` of this response at which the privilege request URI
-will no longer be valid.
+**SHOULD** only be valid for a limited time and a single use.  The privilege
+request endpoint **MUST** be able to sufficiently identify the client solely
+by this URI, for example by the URI comprising a key to a database record,
+or by comprising a signed serialization of relevant information about the
+client.  The `Link` header **SHOULD** include an `expires_in` parameter giving
+the number of seconds after the `Date` of this response at which the privilege
+request URI will no longer be valid.
 
 A request for additional privilege **SHALL** be made by HTTP `POST` to the
 privilege request URI. The endpoint **MUST NOT** require any special credentials,
