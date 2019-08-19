@@ -40,7 +40,7 @@ appear in all capitals, as shown here.
 
 Operation
 ---------
-The following is a typical exchange according to this protocol.
+The following is a typical exchange according to this protocol:
 
 1. The client attempts access to a resource.
 2. The server determines the client has insufficient privilege and denies the
@@ -71,22 +71,22 @@ requests might still be denied, potentially restarting this process.
 Syntax
 ------
 The link to the privilege request endpoint is in an HTTP `Link` response
-header of the original denied request. The link relation is *TBD*, but for
+header of the original denied transaction. The link relation is *TBD*, but for
 now let us use `x-permission-request` as a placeholder pending an agreeable
 identifier. The link target URI is opaque to the client, need not be for the
-same origin as the original denied request, **SHOULD** be unguessable, and
-**SHOULD** only be valid for a limited time and a single use.  The privilege
-request endpoint **MUST** be able to sufficiently identify the client solely
-by this URI, for example by the URI comprising a key to a database record,
-or by comprising a signed serialization of relevant information about the
-client.  The `Link` header **SHOULD** include an `expires_in` parameter giving
-the number of seconds after the `Date` of this response at which the privilege
-request URI will no longer be valid.
+same origin as the original denied request, **SHOULD** be unguessable and
+unforgeable, and **SHOULD** only be valid for a limited time and a single
+use.  The privilege request endpoint **MUST** be able to sufficiently identify
+the client solely by this URI, for example by the URI comprising a key to a
+database record, or by comprising a signed serialization of relevant information
+about the client.  The `Link` header **SHOULD** include an `expires_in`
+parameter giving the number of seconds after the `Date` of this response at
+which the privilege request URI will no longer be valid.
 
 A request for additional privilege **SHALL** be made by HTTP `POST` to the
 privilege request URI. The endpoint **MUST NOT** require any special credentials,
 including any authentication or authorization credentials included with the
-original request -- that is, the URI itself is a sufficient [capability][]
+original request; that is, the URI itself is a sufficient [capability][]
 for this specific request.
 
 The request body of the `POST` to the privilege request endpoint, if present,
@@ -104,10 +104,10 @@ A successful response **MAY** include a response body. If included, the
 response body **MUST** be in `application/json` format encoding a JSON
 object. The following object key is defined:
 
-* *Key TBD* (**OPTIONAL**): a URI [template][RFC6570] string for a web-based
+* *Key TBD* (**OPTIONAL**): a [Level 1 URI template][RFC6570] string for a web-based
   permission management interface. For now let us use `x-permission-management-page`
   as a placeholder key pending an agreeable identifier.  If followed by the
-  client, the URI **SHOULD** be opened in the user's trusted web browser, not
+  client, the URI **SHOULD** be opened in the user's trusted web browser, and not
   in a frame. The web-based permission management interface **SHOULD** use
   frame-busting techniques and **SHOULD** take care to defeat cross-site
   request forgery, click-jacking, and similar attacks.  The URI can include
@@ -116,8 +116,6 @@ object. The following object key is defined:
   * `redirect_uri` (**RECOMMENDED**): A target to resume the client application.
     The `redirect_uri` can include state information, for example in a fragment
     identifier, to aid resumption of the client.
-
-  Unrecognized template variables **SHOULD** be left blank.
 
 Unrecognized response object keys **MUST** be ignored.  A possible future
 extension could include an indication that the completion webhook was recognized
@@ -142,7 +140,7 @@ The client attempts an authenticated access to a resource:
 The server determines the client has insufficient privilege (for example, the
 app the user is using isn't allowed). The server supports requesting additional
 privilege and determines it is appropriate to allow the client to do so (for
-example, because the authenticated user is the owner).
+example, because the authenticated user is the owner):
 
     ←
     HTTP/2 403 Forbidden
