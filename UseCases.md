@@ -1,5 +1,7 @@
 # Application Authorization Use Cases
 
+![ecosystem diagram](https://raw.githubusercontent.com/solid/app-authorization-panel/master/images/app-auth-uc.png)
+
  - Alice uses https://simplegame.example to play a singleplayer game
     - Simplegame only needs some file somewhere that it can write its own configuration to. It does not care where it is
     - Simpleapp will also need to access this file again even if it’s being used on another machine
@@ -8,6 +10,13 @@
     - Wants access to chat related data that was created after it asked for permission to read them
     - Wants to be alerted when new chat related data has been added to the Pod
     - Wants to create chat related data
+- Alice uses iSay deployed on https://isay.alice.example/ to participate in discussion boards
+  - She wants to trust iSay to access any discussion boards, including
+    - Discussions on https://alice.example/
+    - Discussions on https://acme.example/
+    - Discussion on https://yoyodyne.example/
+  - She wants to receive push notifications on devices she uses when someone replies to discussion she participates in - iSay inculdes a remote client component which provides that feature.
+  - Alice, ACME and Yoyodyne want to allow each person with access to discussion boards on their resource servers to decide which applications they trust to participate in those discussions. 
  - Alice uses https://doctorChat.example to chat with her doctor
     - DoctorChat wants to create chat related data specifically about medical information
     - DoctorChat wants to ensure Alice has given explicit consent to view the chats that it created before other apps can view this data
