@@ -16,7 +16,8 @@
     - Discussions on https://acme.example/
     - Discussion on https://yoyodyne.example/
   - She wants to receive push notifications on devices she uses when someone replies to discussion she participates in - iSay inculdes a remote client component which provides that feature.
-  - Alice, ACME and Yoyodyne want to allow each person with access to discussion boards on their resource servers to decide which applications they trust to participate in those discussions. 
+  - Alice, ACME and Yoyodyne want to allow each person with access to discussion boards on their resource servers to decide which applications they trust to participate in those discussions.
+  - Alice only wants to allow iSay to access discussions to avoid other apps (eg. games) she tries to have any way of posting spam messges in any of those discussions
  - Alice uses https://doctorChat.example to chat with her doctor
     - DoctorChat wants to create chat related data specifically about medical information
     - DoctorChat wants to ensure Alice has given explicit consent to view the chats that it created before other apps can view this data
