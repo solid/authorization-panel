@@ -1,17 +1,50 @@
 HTTP Privilege Request Protocol
 ===============================
 
+Abstract
+--------
+This memo specifies a protocol between an HTTP client and server for the
+client to request additional privilege when denied access to a resource by
+the server for insufficient privilege.
+
 Introduction
 ------------
-This memo specifies a protocol between an HTTP client and server for the
-client to request additional access privilege when denied access to a resource
-by the server for insufficient privilege.
+An HTTP client, for example a software application running in a web browser,
+can attempt to access a resource on an HTTP server. The server might restrict
+access to the resource according to one or more required access privileges,
+for example with an Access Control List.
 
+The client might not possess sufficient privilege according to the server,
+so the server might deny the requested access. For example, the client's user
+may not have endorsed the software application with the server for the requested
+mode of access for a class of resources.
+
+In some cases, the server might determine it's appropriate to allow the client
+to request additional privilege, so that a future request to access the
+resource might be approved. To continue the above example, the server might
+allow users to endorse a software application for one or more modes of access
+to one or more classes of resources. The client can choose whether to request
+additional privilege, if allowed.
+
+The server might provide a browser-based permission management interface for
+processing requests for additional privilege. The server might determine it's
+appropriate to allow the client to launch this interface for its user, for
+example because the server only allows its owner to process these requests
+and the server determined the client's user is the owner. The client can
+choose whether to launch this interface, if available.
+
+This memo specifies a protocol that the client can use to request additional
+privilege when the server denies access to a resource for insufficient
+privilege.
+
+Scope
+-----
 The client will typically use some form of authentication when communicating
 with the server. The method and semantics of authentication are beyond the
 scope of this memo. Methods could include, but are not limited to, use of the
 HTTP `Authorization` header using a scheme supported by the server such as
-`Bearer`, or a TLS client certificate.
+`Bearer`, or a TLS client certificate, to establish an identity of the client's
+user.
 
 A client may comprise a software application component that is identified in
 some way to the server. The method by which a software application is identified
@@ -22,8 +55,8 @@ associated in some way with the `Bearer` token.
 The method by which a server determines whether an HTTP client has sufficient
 privilege to access the requested resource is beyond the scope of this memo.
 Methods could include, but are not limited to, determining whether the
-authenticated identity is a member of a configured role group, or whether the
-user associated with the authenticated identity has endorsed the identified
+authenticated identity is a member of a configured role or group, or whether
+the user associated with the authenticated identity has endorsed the identified
 software application currently being used for the access attempted.
 
 The method by which a server determines whether it's appropriate to allow the
@@ -32,6 +65,8 @@ Methods could include, but are not limited to, determining whether the
 authenticated identity is the controller of the resource, or is the owner of
 the server.
 
+Terminology
+-----------
 The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL
 NOT**", "**SHOULD**", "**SHOULD NOT**", "**RECOMMENDED**", "**NOT RECOMMENDED**",
 "**MAY**", and "**OPTIONAL**" in this document are to be interpreted as
@@ -54,13 +89,13 @@ The following is a typical exchange according to this protocol:
    queues the request, returning an HTTP `202 Accepted` response.
 
 The privilege management system might (but is not required to) provide a
-web-based permission management interface, and in some circumstances it might
-be appropriate to allow the client's user to access this interface. The
-privilege request endpoint **MAY** include in its response a URI [template][RFC6570]
-to access this interface, to which the client can redirect the user's trusted
-web browser. The interface URI template **SHOULD** include a `redirect_uri`
-variable so that the interface can eventually redirect back to the client
-application on completion of the management activity.
+browser-based permission management interface, and in some circumstances it
+might be appropriate to allow the client's user to access this interface. The
+privilege request endpoint **MAY** include in its response a [Level 1 URI
+template][RFC6570] to access this interface, to which the client can redirect
+the user's trusted web browser. The interface URI template **SHOULD** include
+a `redirect_uri` variable so that the interface can eventually redirect back
+to the client application on completion of the management activity.
 
 On completion of the management activity (for example, but not limited to,
 in a permission management interface if provided, or offline by whatever means
@@ -70,18 +105,23 @@ requests might still be denied, potentially restarting this process.
 
 Syntax
 ------
-The link to the privilege request endpoint is in an HTTP `Link` response
-header of the original denied transaction. The link relation is *TBD*, but for
-now let us use `x-permission-request` as a placeholder pending an agreeable
-identifier. The link target URI is opaque to the client, need not be for the
-same origin as the original denied request, **SHOULD** be unguessable and
-unforgeable, and **SHOULD** only be valid for a limited time and a single
-use.  The privilege request endpoint **MUST** be able to sufficiently identify
-the client solely by this URI, for example by the URI comprising a key to a
-database record, or by comprising a signed serialization of relevant information
-about the client.  The `Link` header **SHOULD** include an `expires_in`
-parameter giving the number of seconds after the `Date` of this response at
-which the privilege request URI will no longer be valid.
+Note: When supporting browser-based applictations, servers **SHOULD** take
+care to include necessary [Cross-Origin Resource Sharing (CORS)][CORS] response
+headers.
+
+The link to the privilege request endpoint is in an [HTTP `Link`][RFC8288]
+response header of the original denied transaction. The link relation is
+*TBD*, but for now let us use `x-permission-request` as a placeholder pending
+an agreeable identifier. The link target URI is opaque to the client, need
+not be for the same origin as the original denied request, **SHOULD** be
+unguessable and unforgeable, and **SHOULD** only be valid for a limited time
+and a single use.  The privilege request endpoint **MUST** be able to
+sufficiently identify the client solely by this URI, for example by the URI
+comprising a key to a database record, or by comprising a signed serialization
+of relevant information about the client.  This link **SHOULD** include an
+`expires_in` [target attribute][RFC8288§2.2] giving the number of seconds
+after the `Date` of this response at which the privilege request URI will no
+longer be valid.
 
 A request for additional privilege **SHALL** be made by HTTP `POST` to the
 privilege request URI. The endpoint **MUST NOT** require any special credentials,
@@ -104,11 +144,11 @@ A successful response **MAY** include a response body. If included, the
 response body **MUST** be in `application/json` format encoding a JSON
 object. The following object key is defined:
 
-* *Key TBD* (**OPTIONAL**): a [Level 1 URI template][RFC6570] string for a web-based
+* *Key TBD* (**OPTIONAL**): a [Level 1 URI template][RFC6570] string for a browser-based
   permission management interface. For now let us use `x-permission-management-page`
   as a placeholder key pending an agreeable identifier.  If followed by the
   client, the URI **SHOULD** be opened in the user's trusted web browser, and not
-  in a frame. The web-based permission management interface **SHOULD** use
+  in a frame. The browser-based permission management interface **SHOULD** use
   frame-busting techniques and **SHOULD** take care to defeat cross-site
   request forgery, click-jacking, and similar attacks.  The URI can include
   the following template variable:
@@ -128,6 +168,7 @@ Example Interaction
 -------------------
 This is a concrete, annotated example interaction according to this protocol.
 *N.B.* the `x-permission-*` identifiers are placeholders pending agreeable names.
+[CORS][] headers are shown.
 
 The client attempts an authenticated access to a resource:
 
@@ -163,7 +204,7 @@ to the `x-permission-request` URI (without credentials):
     Content-type: application/x-www-form-urlencoded
 
 The server accepts and queues the request for additional privilege. Additionally,
-this server provides a web-based interface for managing requests for additional
+this server provides a browser-based interface for managing requests for additional
 privilege, and determines it's appropriate to give the client application a
 link to the interface (for example, because the authenticated user to which
 the permission request [capability][] was given is the owner):
@@ -179,7 +220,7 @@ the permission request [capability][] was given is the owner):
         "x-permission-management-page": "https://alice.example/auth/permission-queue?r=07FE5FA4-A3F1-4F83-A6E4-41220A538BDB&redirect_uri={redirect_uri}"
     }
     
-The client application determines to present the web-based server management
+The client application determines to present the browser-based server management
 interface to the user. The client opens
 `https://alice.example/auth/permission-queue?r=07FE5FA4-A3F1-4F83-A6E4-41220A538BDB&redirect_uri=https://other.example/app/page.html%23state%3D3SNflxua6WiOgQmp1YSSg5dPNOpEG0nubd3p3NthHuJb`,
 which is the `x-permission-management-page` URI with a *`redirect_uri`*
@@ -201,8 +242,11 @@ resources might not have been granted during the management activity, so the
 entire process might play out again.
 
 
+  [CORS]:             https://www.w3.org/TR/cors/
   [RFC2119]:          https://tools.ietf.org/html/rfc2119
   [RFC6570]:          https://tools.ietf.org/html/rfc6570
   [RFC8174]:          https://tools.ietf.org/html/rfc8174
+  [RFC8288]:          https://tools.ietf.org/html/rfc8288
+  [RFC8288§2.2]:      https://tools.ietf.org/html/rfc8288#section-2.2
   [capability]:       https://en.wikipedia.org/wiki/Capability-based_security
   [webhook]:          https://en.wikipedia.org/wiki/Webhook
