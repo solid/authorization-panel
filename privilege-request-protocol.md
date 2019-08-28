@@ -105,7 +105,7 @@ requests might still be denied, potentially restarting this process.
 
 Syntax
 ------
-Note: When supporting browser-based applictations, servers **SHOULD** take
+Note: When supporting browser-based applications, servers **SHOULD** take
 care to include necessary [Cross-Origin Resource Sharing (CORS)][CORS] response
 headers.
 
