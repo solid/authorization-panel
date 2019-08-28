@@ -1,3 +1,6 @@
+DRAFT PROPOSAL
+==============
+
 HTTP Privilege Request Protocol
 ===============================
 
@@ -240,6 +243,12 @@ back to the app:
 The client application can now resume. Sufficient privilege to access desired
 resources might not have been granted during the management activity, so the
 entire process might play out again.
+
+TODO
+====
+* `x-permission-request` link relation needs a more real name.
+* `x-permission-management-page` response JSON key needs a more real name.
+* Add more explanatory use cases and examples.
 
 
   [CORS]:             https://www.w3.org/TR/cors/
