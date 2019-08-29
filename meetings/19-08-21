@@ -1,0 +1,50 @@
+# Meeting 8/21
+
+## Expand Use Cases
+ - Elf's proposed expanded use case: https://github.com/solid/app-authorization-panel/pull/23/files?short_path=c126a68#diff-c126a682f5ed99f4fe4811c5c52819d2
+ - All the use cases we write should be for multiple resource servers
+ - This new use case includes remote clients
+ - TODO: go through the use cases a clarify the resource server being used.
+ - JaMichael: We might want to consider HIPPA when dealing with medical information
+     - Dmitri: hosting data on a users file might help
+     - Justin: We're working out the restrictions on the medical case and haven't hit anything that's unsurmountable
+ - Henry: Tying Authentication and Authorization together https://github.com/solid/app-authorization-panel/issues/22
+     - How does the app select the authentication method that would allow it access (read/write) to a resource? 
+     - How do you allow this to be made fluid using policies?
+
+## Discovery / App Authorization
+- Justin: Authorization isn't just about making a system that can be granular. It's about making it usable to average people.
+- You should be able to phrase a prompt in one question or they're not going to allow anything, or they'll allow everything.
+- It becomes difficult to organize when you have folders in many locations.
+- The mechanism we're using for data discovery on the pod goes hand in hand with authorization.
+- Jackson: I wan't to talk about discovery and 'folder structure'. I there were existing 'abstract folders and files'. I want to say, here's the shape, give me everything that conformst to that shape. If I request it I can get rejection and all the options I need.
+    - Elf: You could use triple patterns to ask for all triples that match a certain type.
+    - Justin: Elf's right. You can't rely on any consistency of container structure.
+    - Justin: though you can rely on the user organizing it based on some context they understand. 
+    - An "abstract resource" is not different than a query to ask to a certain type.
+- Dmitri: We agree this is a UI problem. The back end can have anrinumber of solutions. We can put in a lot of flexibility for different UIs because this is a hard UI problem
+- Dmitri: The user has an amorphous data graph with different ways of slicing. Apps need the ability to ask permission.
+- Dmitri: Other projects have solved this by defining an apps space that's already given. There are defined collections. And then each app can propose a collection other apps can get. Apps divide data into realms like "home / work" and projects and tags.
+- Data Interop Panel: 3:30 - 4:30 eastern time every Monday
+
+
+## Privilege Request Protocol
+ - Michiel: Put some comments about CORS headers and about how does the app know if access has been granted.
+     - Michael: You would hope that there are the CORS headers to get the link header.
+ - How does Michael's scheme and what Discovery work together
+     - There could be a base where you can always request permission to a specific resource by trying them out.
+     - Even if you don't know how to say "music playlist" you can just ask for a specific file.
+     - It's a plan B for if you don't know how to describe an access
+ - Michael: If there are roles associated with a file it will tell you the permssions that you can request to get access to the file.
+ - When you do a POST to the permission request, one response could be a webhook.
+ - Justin: I like the privilege request because one the the valuable things is that you're following your nose accross a graph and that's difficult if you keep hitting permission boundaries.
+     - Michael: A practical user interface could solve that problem
+
+## Trusted App
+ - https://github.com/solid/app-authorization-panel/issues/21
+ - Dmitri: A lot of the discussion with Trusted apps comes down to we want to restrict the apps that people are using, but should we be able to restrict the apps that other people can use?
+ - Michael: When you try to restrict the apps people can use is that others can lie about what apps they're using. Trying to restrict the apps that are being used is futile.
+ - Justin: Understand the different scenarios: you can authenticate a single person, or restrict what people are allowed to use. But maybe I want to give special restrictions for the things I'm using.
+ - Henry: You can put down restrictions, but it's so much more useful when we can share.
+
+## (if time) Hidden resources, and 404s vs 403s
