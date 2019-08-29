@@ -72,7 +72,7 @@ only these examples.
   return the user to the application immediately on the request being completed
   by an administrator.
 * An RS might not allow, or even support, a request for additional privilege.
-* A RS might not provide a browser-based management interface at all. Permission
+* An RS might not provide a browser-based management interface at all. Permission
   requests could be sent to an administrator via email or chat, or entered
   into an issue or ticket tracking system, or another kind of work queue.
   Administrators might manage permissions by using command-line tools or
