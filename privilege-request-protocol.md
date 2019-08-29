@@ -40,6 +40,45 @@ This memo specifies a protocol that the client can use to request additional
 privilege when the server denies access to a resource for insufficient
 privilege.
 
+Envisioned Use Cases
+--------------------
+The protocol described in this memo was designed with at least the following
+cases in mind. It's not the intent of this section to limit the protocol to
+only these examples.
+
+* A Resource Server (RS) could allow its owner to grant access to different
+  classes of resources depending on what application the owner uses.
+* An RS could allow any visitor to grant access for herself to different
+  classes of resources depending on what application she uses, independent
+  of other visitors or the applications they use.
+* A browser-based permission management interface might only be available to
+  the RS's owner, or only to a resource's controllers, or to all visitors.
+  The availablility of the interface might depend on the scope of additional
+  privilege required, or RS capability, or configuration.
+* An RS could allow a visitor to request access to a resource for which the
+  visitor currently has no permission at all.
+  - The visitor might be a non-person automatic software agent (bot).
+  - Processing the request could involve updating Access Control resources
+    or adding the visitor to one or more groups or lists.
+  - The request might require approval of the resource's controller(s) or
+    an administrator (especially for a bot), or be by a multiphase approval
+    process.
+  - The request might be approved as a result of the person-visitor accepting
+    a Terms of Use, or purchasing a right-to-access, or entering an out-of-band
+    verification code, or solving a CAPTCHA, in the browser-based management
+    interface.
+* For privilege requests that require external approval, the browser-based
+  permission management interface might be a status or hold screen that could
+  return the user to the application immediately on the request being completed
+  by an administrator.
+* An RS might not allow, or even support, a request for additional privilege.
+* A RS might not provide a browser-based management interface at all. Permission
+  requests could be sent to an administrator via email or chat, or entered
+  into an issue or ticket tracking system, or another kind of work queue.
+  Administrators might manage permissions by using command-line tools or
+  editing configuration files by hand.
+* Any request for additional privilege could be denied or ignored.
+
 Scope
 -----
 The client will typically use some form of authentication when communicating
@@ -246,9 +285,9 @@ entire process might play out again.
 
 TODO
 ====
-* `x-permission-request` link relation needs a more real name.
-* `x-permission-management-page` response JSON key needs a more real name.
-* Add more explanatory use cases and examples.
+* `x-permission-request` link relation needs a real URI.
+* `x-permission-management-page` response JSON key needs a real name.
+* Add more examples illustrating different use cases.
 
 
   [CORS]:             https://www.w3.org/TR/cors/
