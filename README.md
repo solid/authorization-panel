@@ -23,3 +23,4 @@ A successful spec will satisfy the following requirements:
  - Access to specific types of data should extend to new resources that contain that data
  - Access to specific types of data should not expose other data that was not requested
  - Data should have different levels of requirements for user's conciousness in consent
+ - Information about Clients (apps) to which users have granted access and what specific access they have delegated should not be made available to Resource Servers that do not enforce relevant access restrictions on those Clients.
