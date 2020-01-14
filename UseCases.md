@@ -51,3 +51,16 @@
     - Blogs wants to read data about Alice’s interests
     - Alice does not want Blogs to get data about her interests
     - Blogs continually asks Alice to grant it access to her interests and Alice is annoyed with the incessant asking
+ - Alice uses, is developing, or is testing an app deployed to http://localhost:8080
+    - Note that Alice's Identity Provider can't reach Alice's `localhost:8080`
+    - Note that Alice's Pod can't reach Alice's `localhost:8080`
+ - Alice uses an app deployed behind a NAT or firewall (while her browser is also behind the same NAT or firewall) that accesses resources outside the NAT or firewall; for example, Alice uses https://coolcode.int.enterprise.example to edit code stored in Customer Bob's Pod
+    - *CoolCode* is deployed behind Enterprise.Example's company firewall and is not dereferenceable from the outside, for example because
+      - *CoolCode* is proprietary to Enterprise.Example; or
+      - *CoolCode* is a commercial product that is deployed on-premises at Enterprise.Example's datacenter
+    - Note that Alice's Identity Provider can't reach https://coolcode.int.enterprise.example
+    - Note that Customer Bob's Pod can't reach https://coolcode.int.enterprise.example
+ - Alice uses https://photoOrganizer.example to organize photos on her company's private storage server https://storage.private.enterprise.example
+    - `storage.private.enterprise.example`'s TLS certificate is signed by Enterprise.Example's private Certificate Authority
+    - Alice's web browser is configured to trust Enterprise.Example's private Certificate Authority
+    - `storage.private.enterprise.example` is reachable from the public Internet, so Alice's Identity Provider and *photoOrganizer* could reach it; however, neither is configured to trust Enterprise.Example's private Certificate Authority

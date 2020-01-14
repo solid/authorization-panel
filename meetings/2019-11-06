@@ -1,0 +1,67 @@
+# 2019-11-06  Authorization and Access Control Panel
+
+## Present
+
+* @jaxoncreed
+* @justinwb
+* @elf-pavlik
+* @zenomt
+* @dmitrizagidulin
+* @justinwb
+
+## Agenda Items
+
+### Report from Data Interop Panel
+ - Justin: Applications have to know how to find data that's relevant to them and how to write it. Broke it down into a few units:
+     - Data discovery: How you find the things in the pod. Type indexes that scale and are secure. Also footprints that tell apps here's where to put certain data
+     - Data Validation: Shape validation to be sure that data isn't corrupted.
+     - Portability: Someone needs to be able to take data with them. I should be able to import data into a new pod and everything will work. Includes both specific data and metadata around it.
+ - ...: It's pretty hard to come up with an organizing model to put data in a Solid Pod without discussing authorization at the same time.
+ - ...: Authorization must be intuitive to people. Really you want to be asked what you're giving access to, not where. So, we need to come up with a method for organizing data discovering and writing it which is in line with creating data boundaries that are intuitive.
+ - Michael: Questions: you talked about security and privacy. Curious if in the model you're considering can App A discover if you're using App B?
+     - Justin: Yes we're considering that problem. When you go through the process of determining where in your pod you have data, you don't want to expose other kinds of data you have. We want to avoid Data Leakage. The Indexes themselves need to have the same set of data boundaries that you would put around the data itself
+ - Michael: Second, when you're talking about data portability, any absolute URIs pointing to data could be broken
+     - Justin: Great question. The best I can do is a theory I wrote down. It would be extremely complicated and unreasonable to expect that a Pod Provider that you moved from is going to maintain redirects, but we could establish a protocol that says, "If an application is looking for data in a solid pod associated with a specific entity and they're gettign 404s, they could look into the identity of the resource owner and applications can looks for a fallback" That's the best I can come up with
+     - Michael: I feel like this is going to be a complicated problem, one big use case is deep linking to resources that you don't know the owner
+     - Justin: One more extreme thing is we are going to create a publish subscribe mechanism to Pod servers. If you could emit a migration event that others could subscribe to and do updates for anything pertaining to that, that's more flexible. We may have some kind of public message bus system to handle this. The minimum we're doing with portability is being able to extract data and put it in another pod.
+     - Elf: We could use custom domains
+     - Justin: That's the perfect world solution. But, not everyone has money for custom domains and can manage it.
+ - Henry: We might need to add something to LDP to allow for data moving. But on data security, I have recently come up with a solution to the issue of giving an app some information but not expose it. So you want something that can access everything that can be queried against but, it won't give access to an app
+     - Justin: We're going shapes heavy for modeling data, because that is a fairly natural way to describe the data. An app will have an url that gives info on the app. Some of that information is going to be "this is the kind of data I know how to work with" The user armed with that URL and some application that the user trusts, they can look up an know what the app wants, and then make some decisions.
+     - Henry: We have been looking at a proposal called the launcher app which is a secure app that you trust and has full rights to your pod. The browser would be able to determine where the data is without exposing that to the app.
+     - Justin: Yeah I think you'll need that.
+ - Justin: The one thing I can commit is that next wednesday we'll have some documentation and a paper prototype for you all. It will just be a baseline that we can start working with.
+
+### [App tags #48](https://github.com/solid/authorization-and-access-control-panel/issues/48)
+ - Michael: We've discussed tags before, and in the issue I addressed a few things Jackson brought up.
+     - You can now set a default tag map for an app (app tag document) if it doesn't have one that the origin is talking to. But no wildcards are allowed for the default origin
+     - Tag mode: the user instead of assigning tags for an app at the origin and then it's up to the resource owner to divy up tags. Instead the resource owner might tag resources and then the user can assign tags only for specific permission modes.
+ - Elf: I think that using IRIs denoting a shape seems incompatible with having some kind of regular expressions. IRIs should be opaque. I would like to understand the use cases for wildcards.
+     - Michael: The original idea of having opaque strings is borrowed from AWS's access control system. I'm imagining that if we were to use URIs as tags, you probably wouldn't wildcard on them. The organizing structure probably would be origin, path, and hash. But I also imagine that wildcarding may not be used. But, I left it in there mostly for generality.
+     - Henry: You could use regex for authorizing whole areas of the URL space. I found it quite useful because you could have acls on containers and sub-containers. So, it makes a lot of sense on the path area. There is a spec called Powder that standardizes how to do regex on urls and it has an ontology. A subclass is really just wildcarding. 
+     - Michael: No one is required to use wildcarding. And one of the better uses for wildcarding is that it allows for multi-dimensional slicing in an easy way. That is potentially a powerful organizing and permission slicing capability.
+     - Elf: The tags Chat.Read, Photos.*, Books.Read all seems to be about access control which we already have. We already have some concepts represented as access mode. So maybe we can have a construct that says "conforms to this shape and has this access mode" So that would be preferable to smushing concepts together.
+     - Michael (from chat): later in the issue i revised how you would use tags, tags would not be like Chat.Read, but maybe Chat.Public.
+
+### [Allow apps to request permissions, and explain why #31](https://github.com/solid/authorization-and-access-control-panel/issues/31)
+
+(Dmitri: I propose we postpone the "request permission" item till later calls. We need to settle on app identifiers and metadata before getting to them asking permission.)
+
+ - Elf: apps need to have a way to access something specific. Apps need to have a way to request access to specific data. You could have a common repository of shapes so that an app knows what kind of data it's working with.
+ - 
+
+#### Apps having Control Access (and Read on Contacts and Write on Notifications) vs. dedicated Sharing App
+
+### [Alternative Authentication Flow #49](https://github.com/solid/authorization-and-access-control-panel/issues/49)
+
+### Continuing Discussion of App Metadata (App Profile)
+
+See previous notes:
+https://hackmd.io/K2_a0OBRSMKcNhVQwaJ85g#App-Metadata-Object-App-Manifest
+and
+https://hackmd.io/K2_a0OBRSMKcNhVQwaJ85g#App-Metadata-Requirements
+
+- Initially termed "App Profile", but we have two fundamentally different use cases that it needs to serve, and likely will require two different profiles.
+- 1) "Source" metadata (aids user in deciding whether to use the app). Analogous to an app store entry or NPM package page. App homepage / developer / app rating is relevant here.
+- 2) Instance metadata (registry entry). Used for app authorization/authentication flows. (Now that the user has decided to use the app, how do we communicate that the app asking for permission is the same app that the user has decided on.) `redirect_uri` is relevant here.
+
