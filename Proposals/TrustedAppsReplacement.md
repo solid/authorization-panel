@@ -222,7 +222,7 @@ Alice tells badguys.com her WebId and it is fetched. Below is Alice's WebId:
 
 :me
     a schem:Person, n0:Person;
-    solid:oidcIssuer: <https://idp.com>,
+    solid:oidcIssuer <https://idp.com>,
                       <https://otheridp.com>.
 ```
 The important thing to note here is the `solid:oidcIssuer` that links a variable number of issuers to Alice. All these issuers are trusted by Alice, but may not be trusted by other parties. In the case that a party does not trust one issuer, Alice should use a different one.
