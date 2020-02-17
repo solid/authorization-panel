@@ -108,7 +108,7 @@ Let us assume that the goal is now to block the bad actors from all files tagged
 
 #### As a Whitelist
 
-In these examples, we ban the apps at `https://moralapp.com/card#i` and `https://goodguys.org/card#i` or any token created by `https://trustworthyidp.com` from being able to `read` `https://mypod.com/meetings/meeting1.ttl`
+In these examples, we allow the apps at `https://moralapp.com/card#i` and `https://goodguys.org/card#i` or any token created by `https://trustworthyidp.com` to `read` `https://mypod.com/meetings/meeting1.ttl`. All other clients and idps are banned.
 
 *TuringAC*
 ```javascript
