@@ -142,9 +142,9 @@ In these examples, we ban the apps at `https://moralapp.com/card#i` and `https:/
     acl:agentClass      acl:AuthenticatedAgent;
     acl:bannedClient  acl:AuthenticatedAgent; # Ban all agents be default
     acl:bannedIDP       "*"^^xsd:string;
-    acl:allowedClient <https://evilapp.com/card#i>,
-                        <https://badguys.org/card#i>;
-    acl:allowedIDP      <https://shadyidp.com>.
+    acl:allowedClient <https://moralapp.com/card#i>,
+                        <https://goodguys.org/card#i>;
+    acl:allowedIDP      <https://trustworthyidp.com>.
 ```
 
 *ShapeAC*
@@ -160,9 +160,9 @@ Let us assume that the goal is now to only allow the good actors to access all f
     acl:agentClass      acl:AuthenticatedAgent;
     acl:bannedClient    acl:AuthenticatedAgent; # Ban all agents be default
     acl:bannedIDP       "*"^^xsd:string;
-    acl:allowedClient   <https://evilapp.com/card#i>,
-                        <https://badguys.org/card#i>;
-    acl:allowedIDP      <https://shadyidp.com>.
+    acl:allowedClient   <https://moralapp.com/card#i>,
+                        <https://goodguys.org/card#i>;
+    acl:allowedIDP      <https://trustworthyidp.com>.
 ```
 
 *TagAC*
@@ -178,9 +178,9 @@ Let us assume that the goal is now to only allow the good actors to access all f
     acl:agentClass      acl:AuthenticatedAgent;
     acl:bannedClient    acl:AuthenticatedAgent; # Ban all agents be default
     acl:bannedIDP       "*"^^xsd:string;
-    acl:allowedClient   <https://evilapp.com/card#i>,
-                        <https://badguys.org/card#i>;
-    acl:allowedIDP      <https://shadyidp.com>.
+    acl:allowedClient   <https://moralapp.com/card#i>,
+                        <https://goodguys.org/card#i>;
+    acl:allowedIDP      <https://trustworthyidp.com>.
 ```
 
 
