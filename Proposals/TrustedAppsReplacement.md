@@ -1,6 +1,8 @@
 # Trusted Apps Replacement
 
-This proposed replacement for trusted apps details splitting it into two kinds "Client Constraints," which allows **app users** to control what an app has access to and "Signatory Control," which allows **resource owners** to control what someone has access to based on the app and identity provider (signatory) sending the token.
+This proposed replacement for trusted apps details splitting it into two kinds:
+ - "Client Constraints," which allows **app users** to control what an app has access to
+ - "Signatory Control," which allows **resource owners** to control what someone has access to based on the app and identity provider (signatory) sending the token.
 
 ## Terminology
  - Client User: The individual using an client
