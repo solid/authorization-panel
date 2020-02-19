@@ -1,8 +1,8 @@
 # Trusted Apps Replacement
 
 This proposed replacement for trusted apps details splitting it into two kinds:
- - "Client Constraints," which allows **app users** to control what an app has access to
  - "Signatory Control," which allows **resource owners** to control what someone has access to based on the app and identity provider (signatory) sending the token.
+ - "Client Constraints," which allows **app users** to control what an app has access to
 
 ## Terminology
  - Client User: The individual using an client
@@ -18,11 +18,6 @@ For each item detailed here, I provide a few examples on how each could be repre
  - TuringAC: A hypothetical new access control system that would a Turing-Complete language (I use JavaScript for the examples but it could be anything) language to define access control rules. The need for it was proposed [here](https://github.com/solid/data-interoperability-panel/issues/34). TuringAC is not fully thought out, it is simply here as an example.
  - ShapeAC: A hypothetical new shape based access control system that would use shapes to define what an agent has access to based on the shape of the data.
  - TagAC: A hypotetical new access control system (defined by Michael Thornburgh [here](https://github.com/solid/authorization-and-access-control-panel/issues/48)) that relies on tagging resources to define the agents who have access.
-
-## App Constraints
-
-// TO BE COMPLETED.
-// In my opinion, this is actually the most important section of this proposal, but we're still working through a few things conceptually.
 
 ## Signatory Control
 
@@ -395,3 +390,8 @@ The pod applies the extracted credentials against the access control rules. In t
 
 ##### 11. Returns Result
 The server return the result. In this case a 403 is provided denoting the forbidden nature of the request.
+
+## App Constraints
+
+// TO BE COMPLETED.
+// In my opinion, this is actually the most important section of this proposal, but we're still working through a few things conceptually.
