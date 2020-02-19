@@ -36,6 +36,8 @@ Signatory Control should be used under the caution that there is no way to fully
 
 Because blanket restrictions on resources from the signatory perspective should be discouraged in most cases, by default, resource owners are allowed to set a blacklist of signatories. However, the rules can be changed into a whitelist if a resource owner desires.
 
+TODO/NOTE: As per Tim's request, all acl based rules should be modified to have unique RDF types such that any subset of triples on the new type will not communicate a less secure access control rule.
+
 #### As a Blacklist
 
 In these examples, we ban the apps at `https://evilapp.com/card#i` and `https://badguys.org/card#i` or any token created by `https://shadyidp.com` from being able to `read` `https://mypod.com/meetings/meeting1.ttl`
