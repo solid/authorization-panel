@@ -293,7 +293,7 @@ header: {
 }
 body: {
   htu: 'https://idp.com/authorize',
-  method: 'get',
+  htm: 'get',
   jti: 'ajkdsfhjauilewhdjknf3uoej', // Some random identifier
   iat: 1581946330
   exp: 1581950000
@@ -355,7 +355,7 @@ header: {
 }
 body: {
   htu: 'https://bobpod.com/resource',
-  method: 'get',
+  html: 'get',
   jti: 'ajkdsfhjauilewhdjknf3uoej', // Some random identifier
   iat: 1581946330
   exp: 1581950000
@@ -370,7 +370,7 @@ dpop: ey... <-- The generated DPoP token
 ```
 
 ##### 3. Checks pop_token audience
-If the `method` or `htu` does not match the method and url of the request, the server must reject.
+If the `htm` or `htu` does not match the method and url of the request, the server must reject.
 
 ##### 4. Checks client signature
 If the dpop token does not have a matchign signature with jwk inside the auth token, the server must reject.
