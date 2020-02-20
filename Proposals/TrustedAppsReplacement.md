@@ -1,7 +1,7 @@
 # Trusted Apps Replacement
 
 This proposed replacement for trusted apps details splitting it into two kinds:
- - "Signatory Control," which allows **resource owners** to control what someone has access to based on the app and identity provider (signatory) sending the token.
+ - "Signatory Control," which allows **resource owners** to control what some authorized agent (person or organizatin) has access to based on the app, bot and/or identity provider (signatory) sending the token.
  - "Client Constraints," which allows **app users** to control what an app has access to
 
 ## Terminology
@@ -277,7 +277,7 @@ GET https://idp.com/authorize?
   dpop=ey..........
   clientid=https://badguys.com/card#i
 ```
-The main addition to the current dpop flow here is that an additional field called `clientid`. This is where the app's webid should be included.
+The main addition to the [current dpop flow](https://tools.ietf.org/html/draft-fett-oauth-dpop-03) here is that an additional field called `clientid`. This is where the app's webid should be included.
 
 When decrypted, the dpop token looks like:
 ```json
@@ -350,7 +350,7 @@ header: {
 }
 body: {
   htu: 'https://bobpod.com/resource',
-  html: 'get',
+  htm: 'get',
   jti: 'ajkdsfhjauilewhdjknf3uoej', // Some random identifier
   iat: 1581946330
   exp: 1581950000
