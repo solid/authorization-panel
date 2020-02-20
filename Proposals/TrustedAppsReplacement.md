@@ -191,7 +191,7 @@ Again, it is important to stress that a resource server can ensure that a token 
 
 In the following scenario, Alice is going to go to `https://badguys.com` not knowing that it's a malicious site. Bob, however, does know about badguys, and has set up access control rules to prevent badguys from being able to take his data.
 
-This deviates from the current dpop flow in the following ways:
+This deviates from the [current dpop flow](https://tools.ietf.org/html/draft-fett-oauth-dpop-03) in the following ways:
 
 AUTHORIZATION
  - In step 7, an additional field is provided that defines the webid of the app
