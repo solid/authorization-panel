@@ -35,8 +35,8 @@ deployment, and security considerations and circumstances of servers aren't
 universal, and WAC is not a universal solution to the access control problem,
 WAC is therefore not required-to-implement for a server to be *Solid-compliant*.
 
-The HTTP `Link` header link relation `rel=`, if present, **MUST** refer to
-an access control resource conforming to WAC.
+The HTTP `Link` header link relation `rel="acl"`, if present, **MUST** refer
+to an access control resource conforming to WAC.
 
 Discussion
 ----------
