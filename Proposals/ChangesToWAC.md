@@ -297,7 +297,7 @@ The predicates `acl:app` and `acl:tag`, and their usage and semantics, are
 
 
 
-  [TagProposal]: https://github.com/zenomt/authorization-and-access-control-panel/blob/master/Proposals/ReplaceTrustedAppsWithTags.md
+  [TagProposal]: ReplaceTrustedAppsWithTags.md
   [WAC]:         https://github.com/solid/web-access-control-spec
   [RFC2119]:     https://tools.ietf.org/html/rfc2119
   [RFC8174]:     https://tools.ietf.org/html/rfc8174
