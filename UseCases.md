@@ -15,7 +15,7 @@
     - Simplegame only needs some file somewhere that it can write its own configuration to. It does not care where it is
     - Simpleapp will also need to access this file again even if it’s being used on another machine
 
-* [An app can request access to a specific resource](#an-app-can-request-access-to-a-specific-resource)
+>* [An app can request access to a specific resource](#an-app-can-request-access-to-a-specific-resource)
 
 ### Chat with friends
  - Alice uses https://chat.o.team to chat with her friends
@@ -24,7 +24,7 @@
     - Wants to be alerted when new chat related data has been added to the Pod
     - Wants to create chat related data
 
-* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
+>* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
 
 
 ### Chat with doctor
@@ -33,7 +33,7 @@
     - DoctorChat wants to create chat related data specifically about medical information
     - DoctorChat wants to ensure Alice has given explicit consent to view the chats that it created before other apps can view this data
 
-* [It should be possible for an agent with Control access to block/allow certain apps from accessing a specific resource as any agent](#it-should-be-possible-for-an-agent-with-control-access-to-blockallow-certain-apps-from-accessing-a-specific-resource-as-any-agent)
+>* [It should be possible for an agent with Control access to block/allow certain apps from accessing a specific resource as any agent](#it-should-be-possible-for-an-agent-with-control-access-to-blockallow-certain-apps-from-accessing-a-specific-resource-as-any-agent)
 
 ### Discussion boards
 
@@ -46,20 +46,21 @@
   - Alice, ACME and Yoyodyne want to allow each person with access to discussion boards on their resource servers to decide which applications they trust to participate in those discussions.
   - Alice only wants to allow iSay to access discussions to avoid other apps (eg. games) she tries to have any way of posting spam messges in any of those discussions
 
-* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
+>* [The system is not abusable](#the-system-is-not-abusable)
+>* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
 
 ### RDF editor
 
  - Alice uses https://edit.o.team to edit her raw RDF
     - OEdit wants to be able to read and write to a file at a specific location
 
-* [An app can request access to a specific resource](#an-app-can-request-access-to-a-specific-resource)
+>* [An app can request access to a specific resource](#an-app-can-request-access-to-a-specific-resource)
 
 ### Pod administration
  - Alice uses https://admin.example to control her pod
     - Admin wants to be able to read and write to all files on a user’s Pod
 
-* [An app can request access to a specific resource](#an-app-can-request-access-to-a-specific-resource)
+>* [An app can request access to a specific resource](#an-app-can-request-access-to-a-specific-resource)
 
 ### Photos viewer
 
@@ -67,7 +68,7 @@
     - Decent photos wants to read to all photos on Alice’s Pod
     - Wants to read all photos on Bob’s Pod that Alice has access to
 
-* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
+>* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
 
 ### Photos organizer
 
@@ -76,7 +77,7 @@
     - Wants to understand the folder structure of the Pod
     - Wants to modify the folder structure of the Pod
 
-* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
+>* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
 
 ### Photos processing
 
@@ -86,15 +87,15 @@
     - Wants to know where it should put its facial detection data
     - Wants to have read access to Bob’s photos that Alice has access to
 
-* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
-* [Apps can request the ability to write a specific type of data and will be told where it should write it](#apps-can-request-the-ability-to-write-a-specific-type-of-data-and-will-be-told-where-it-should-write-it)
+>* [An app can request access to a specific type of data without knowing the structure of resources on a Pod](#an-app-can-request-access-to-a-specific-type-of-data-without-knowing-the-structure-of-resources-on-a-pod)
+>* [Apps can request the ability to write a specific type of data and will be told where it should write it](#apps-can-request-the-ability-to-write-a-specific-type-of-data-and-will-be-told-where-it-should-write-it)
 
 ### Evil fitness tracker
 
  - Alice accidentally uses https://evilfitbit.example to track her fitness data
     - Evilfitbit will try to do everything to get Alice’s financial data while pretending to just track her fitness data (This should not be allowed)
 
-* [The system is not abusable](#the-system-is-not-abusable)
+>* [The system is not abusable](#the-system-is-not-abusable)
 
 ### Finances tracker
 
