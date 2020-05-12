@@ -7,6 +7,7 @@ Solid Authorization and Access Control Panel.
 
 Meetings of the Authorization and Access Control panel take place at 10AM eastern on Mondays. Meeting details listed below:
 
+```
 https://inrupt.my.webex.com/inrupt.my/j.php?MTID=m131f1588eb27afc298276f1cbf077a79
 Meeting number:
 792 295 998
@@ -15,6 +16,7 @@ More ways to join
 Join by phone
 +1-408-418-9388 United States Toll
 Access code: 792 295 998
+```
 
 ## Success Criteria:
 
