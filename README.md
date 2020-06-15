@@ -5,17 +5,20 @@ Solid Authorization and Access Control Panel.
 
 ## Meetings
 
-Meetings of the Authorization and Access Control panel take place at 10AM eastern on Mondays. Meeting details listed below:
+Meetings of the Authorization panel take place at 10AM EST / 2PM CEST on Wednesdays. Meeting details listed below:
 
 ```
-https://inrupt.my.webex.com/inrupt.my/j.php?MTID=m131f1588eb27afc298276f1cbf077a79
-Meeting number:
-792 295 998
-Password: a9pRfXbZe78
-More ways to join
-Join by phone
-+1-408-418-9388 United States Toll
-Access code: 792 295 998
+https://global.gotomeeting.com/join/544111573
+
+You can also dial in using your phone.
+
+Access Code: 544-111-573
+
+United States (Toll Free): 1 866 899 4679
+Belgium (Toll Free): 0 800 81382
+Mexico (Toll Free): 01 800 112 4376
+Switzerland (Toll Free): 0 800 000 452
+United Kingdom (Toll Free): 0 800 389 5276
 ```
 
 ## Success Criteria:
