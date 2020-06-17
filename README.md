@@ -5,7 +5,7 @@ Solid Authorization and Access Control Panel.
 
 ## Meetings
 
-Meetings of the Authorization panel take place at 10AM EST / 2PM CEST on Wednesdays. Meeting details listed below:
+Meetings of the Authorization panel take place at 10AM EST / 4PM CEST on Wednesdays. Meeting details listed below:
 
 ```
 https://global.gotomeeting.com/join/544111573
