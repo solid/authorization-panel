@@ -1,6 +1,6 @@
 # Application Authorization Use Cases
 
-![ecosystem diagram](https://raw.githubusercontent.com/solid/app-authorization-panel/master/images/app-auth-uc.png)
+![ecosystem diagram](https://raw.githubusercontent.com/solid/app-authorization-panel/master/archive/app-auth-uc.png)
 
  - Alice uses https://simplegame.example to play a singleplayer game
     - Simplegame only needs some file somewhere that it can write its own configuration to. It does not care where it is
