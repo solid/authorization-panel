@@ -12,11 +12,6 @@ Abstract:
   Use Cases and Requirements for Web Access Control.
 </pre>
 
-<!-- For bikeshed style overrides -->
-<style>
-.cr { font-size: 10%; }
-</style>
-
 <div boilerplate="copyright">
 MIT License Copyright 2019 - 2020 W3C Solid Community Group
 </div>
