@@ -1,0 +1,46 @@
+<pre class='metadata'>
+Title: Use Cases and Requirements for Web Access Control
+Shortname: wac-ucr
+Level: 1
+Max ToC Depth: 2
+Status: w3c/ED
+Group: solid-cg
+URL: https://solid.github.io/authorization-panel/wac-ucr/
+Editor: Solid Editorial Team
+Markup Shorthands: markdown yes
+Abstract:
+  Use Cases and Requirements for Web Access Control.
+</pre>
+
+<div boilerplate="copyright">
+MIT License Copyright 2019 - 2020 W3C Solid Community Group
+</div>
+
+Introduction {#intro}
+=====================
+
+Introduction here, with an example of a [=Definition=].
+
+Requirements {#requirements}
+=====================
+
+## Example Category ## {#example-category}
+
+### This is an example requirement ### {#example-requirement}
+
+Some detail on the example requirement.
+
+Assert: Related Use Cases: [[#example-usecase]]
+
+Use Cases {#usecases}
+=====================
+
+## Example Use Case ## {#example-usecase}
+
+This is where we explain the use case.
+
+Definitions {#definitions}
+=====================
+
+A <dfn>Definition</dfn> can be defined here and then referenced throughout
+the rest of the document.
