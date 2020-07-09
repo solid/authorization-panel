@@ -32,6 +32,6 @@ to authorizing access to data in a Solid pod.
 The Authorization Panel is undertaking the following initiatives,
 in priority order:
 
-1. Document use cases and requirements for authorization
+1. Document use cases and requirements for authorization - [Source](https://github.com/solid/authorization-panel/blob/master/proposals/wac-ucr/index.bs) - [Rendered](https://solid.github.io/authorization-panel/wac-ucr/)
 1. Produce normative draft text of the Web Access Control specification
 1. Produce and propose mechanism(s) for client constraints
