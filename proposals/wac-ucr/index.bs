@@ -99,6 +99,23 @@ An <dfn>access mode</dfn> denotes a class of operations that an
 [=authorization subject=] can perform on an [=authorization target=] in an
 [=authorization statement=].
 
+<dfn>Read access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to the ability to read, but not modify, the
+[=authorization target=].
+
+<dfn>Write access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to the ability to create, update, or delete the
+[=authorization target=].
+
+<dfn>Append access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to add data to a resource, but not modify any
+data that already exists.
+[=authorization target=].
+
+<dfn>Control access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to view and modify [=acl resources=] associated
+with an [=authorization target=].
+
 <pre class="biblio">
 {
   "wac": {
