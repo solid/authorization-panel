@@ -72,7 +72,8 @@ interface to make [=resources=] available to [=agents=] and [=applications=],
 with the ability to secure access to those [=resources=]
 through associated [=acl resources=].
 
-A <dfn>resource</dfn> is a set of data identified via a [[URI]].
+A <dfn>resource</dfn> is the target of an HTTP request identified by a [[URI]],
+as defined in [[!RFC7231]].
 
 A <dfn>collection</dfn> is a [=resource=] that is representative of a set
 of other [=resources=], which may include other [=collections=].
