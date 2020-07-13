@@ -2,7 +2,7 @@
 Title: Use Cases and Requirements for Web Access Control
 Shortname: wac-ucr
 Level: 1
-Max ToC Depth: 2
+Max ToC Depth: 3
 Status: w3c/ED
 Group: solid-cg
 URL: https://solid.github.io/authorization-panel/wac-ucr/
@@ -12,17 +12,41 @@ Abstract:
   Use Cases and Requirements for Web Access Control.
 </pre>
 
+<!-- For bikeshed style overrides -->
+<style>
+
+  table.collections thead tr {
+    font-size: 16px;
+  }
+
+  table.collections tbody tr:nth-child(even) {
+    background-color: lightgray;
+    font-size: 12px;
+  }
+
+  table.collections tbody td {
+    font-size: 12px;
+  }
+
+  figcaption {
+    text-align: left;
+  }
+
+}
+
+</style>
+
 <div boilerplate="copyright">
 MIT License Copyright 2019 - 2020 W3C Solid Community Group
 </div>
 
 Introduction {#intro}
-=====================
+================================================================================
 
 Introduction here, with an example of a [=Definition=].
 
 Requirements {#requirements}
-=====================
+================================================================================
 
 ## Example Category ## {#example-category}
 
@@ -30,17 +54,697 @@ Requirements {#requirements}
 
 Some detail on the example requirement.
 
-Assert: Related Use Cases: [[#example-usecase]]
+Assert: Related Use Cases: [[#uc-basic]]
 
 Use Cases {#usecases}
-=====================
+================================================================================
 
-## Example Use Case ## {#example-usecase}
+For the purposes of simplicity, the use cases herein assume that named
+individuals (i.e. Alice, Bob, Carol, etc.) are authenticated and know
+each other's identities, unless explicitly stated otherwise.
 
-This is where we explain the use case.
+## Basic resource access ## {#uc-basic}
+
+Alice has a private draft of her resume stored on the Web at
+`https://alice.example/resume`.
+
+<figure>
+<figcaption>Alice's resume at https://alice.example/resume</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`/resume`</td>
+        <td>Single Resource</td>
+        <td>Alice's curriculum vitae</td>
+      </tr>
+      <tr>
+        <td>`/recommendations`</td>
+        <td>Single Resource</td>
+        <td>Recommendations for Alice</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+### Control access ### {#basic-control}
+
+Alice asks Bob to help make her resume more presentable. Alice must give
+Bob access to do this, because it is private, and Alice is the only one who
+can manage permissions for it.
+
+### Read-write access ### {#basic-write}
+
+Alice gives Bob permission to read and make changes to her resume,
+which he does.
+
+### Read-append access ### {#basic-readappend}
+
+Danielle agrees to give Alice a reference to include on her resume.
+Alice gives Danielle permission to read and add new data to the resume document,
+without the ability to change anything that already exists within it.
+Danielle adds a glowing reference to Alice's resume document.
+
+### Append-only access ### {#basic-appendonly}
+
+Alice has a widget on her resume that allows someone to "recommend" her. The
+user have an authenticated identity, which is added to the `/recommendations`
+resource.
+
+Alice has set the permissions on `/recommendations` so that anyone in her
+group of known contacts has append-only access. Alice plans to make these
+publicly readable later along with her resume.
+
+### Removing access ### {#basic-removing}
+
+Alice removes Bob and Danielle's access, since they've both finished
+contributing.
+
+### Read only access ### {#basic-readonly}
+
+Alice has a job interview with Carol. Alice gives Carol read-only access
+to her resume ahead of the interview.
+
+### Group access ### {#basic-group}
+
+Alice is now interviewing with people from multiple companies, including
+Carol, Oscar, and Frank.
+
+To make it easier to keep track of them all,
+Alice creates a group called `interviewing` and adds Carol, Oscar, and
+Frank to the group.
+
+Alice removes their individual permissions from
+her resume document, and replaces it with the `interviewing` group.
+
+Now she can add new interviewers to this group, and remove them when the
+opportunity is no longer active, which is much more intuitive.
+
+### Public access ### {#basic-public}
+
+Alice decides her resume is ready to share with everyone, so she gives
+read-only access to the public, and posts a link to it on several
+job boards.
+
+## Basic collection access ## {#uc-collections}
+
+Note: These use cases are focused on access to the collection itself. Use
+cases that focus on permissions related to resouces within the collection
+are covered in [[#uc-inheritance]].
+
+Alice has a project portfolio stored on the Web at
+`https://alice.example/portfolio`
+that she is able to furnish materials from as needed as she moves
+through a job interview process.
+
+Her portfolio includes individual documents that she's produced, and
+collections of deliverables from projects that she's worked on.
+
+<figure>
+<figcaption>Contents of Alice's Project Portfolio at
+https://alice.example/portfolio</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`/portfolio/`</td>
+        <td>Collection</td>
+        <td>Individual documents she's produced, and collections
+        of deliverables from projects she's worked on.</td>
+      </tr>
+      <tr>
+        <td>`-- document1`</td>
+        <td>Single Resource</td>
+        <td>Individual document</td>
+      </tr>
+      <tr>
+        <td>`-- document2`</td>
+        <td>Single Resource</td>
+        <td>Individual document</td>
+      </tr>
+      <tr>
+        <td>`-- project1/`</td>
+        <td>Collection</td>
+        <td>Individual document</td>
+      </tr>
+      <tr>
+        <td>`---- documentA`</td>
+        <td>Single Resource</td>
+        <td>Project document</td>
+      </tr>
+      <tr>
+        <td>`---- MovieA`</td>
+        <td>Single Resource</td>
+        <td>Project movie file</td>
+      </tr>
+      <tr>
+        <td>`/opportunities/`</td>
+        <td>Collection</td>
+        <td>Storage for descriptions of various different job opportunities
+        Alice is interested in</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+### Read-only access to a Collection ### {#collection-readonly}
+
+Alice has identified a select group of companies that she'd like to
+interview with for a new job.
+
+Alice has identified several companies that she'd like to work for,
+as well as the specific people to contact at each one; Carol, Oscar,
+and Frank.
+
+Alice sends individual e-mails to Carol, Oscar, and Frank with links to her
+resume and portfolio.
+
+Alice has granted Carol, Oscar, and Frank read access to her resume which
+allows them to read its contents fully.
+
+Alice has also granted them read access to the portfolio resource, which
+is a collection. She only wants them to see detail about the portfolio
+collection itself, and a listing of its contents, but not the contents of
+the resources within it yet.
+
+She wants to know which of them are really interested based on who
+asks her for more access to the portfolio contents.
+
+### Read-write access to a Collection ### {#collection-readwrite}
+
+Alice worked in the past with Milo, and they produced a document
+which she has included in her portfolio; `/portfolio/document1`.
+
+Alice realized that she doesn't have the most up-to-date version of the
+document, and needs Milo to replace it. She gives Milo read access and
+write access to her portfolio collection itself, which allows him to
+see the listing of its contents, as well as add and remove items from it.
+He cannot read the contents of any of the resources in the collection,
+but this is fine, since he knows the name of the resource he's replacing.
+
+Milo deletes `/portfolio/document1`, and replaces it with an updated
+version at `/portfolio/document1`.
+
+### Read-append access to a Collection ### {#collection-readappend}
+
+Alice worked with Bob in the past on a project, and she stored the
+resulting deliverables she had in the `/portfolio/project1` collection.
+She's sure that she's missing some, and that Bob would have the missing
+items.
+
+Alice grants Bob read access and append access to the `project1` collection,
+which allows him to see the list of what is there, and add new items to it.
+He can't see the contents of the items, or remove anything in the list.
+That's fine because he only needs to add the items that aren't included.
+
+### Append-only access to a Collection ### {#collection-appendonly}
+
+Alice realizes it would be helpful if Carol, Oscar, and Frank could
+provide her with job opportunities that they think she would be a fit for
+at their respective organizations.
+
+She provides them with append access to the `/opportunities` collection.
+This allows each of them to add new resources, without the ability to see
+the listing of other resources in the collection, or modify them. This means
+that they can each add descriptions, but none of the others will see them.
+
+### Control access to a Collection ### {#collection-control}
+
+Bob reminds Alice that some of the other people who worked on `project1`
+may also have materials they can add to her portfolio, but needs to
+lookup their information.
+
+Alice trusts Bob with the contents of the `project1` collection, since its
+the output of their shared work. She gives him `control` permission
+so that he can help her invite some of their other past colleagues to
+add resources to it.
+
+## Inheritance ## {#uc-inheritance}
+
+Bob is leading a group of colleagues doing field research. The group
+includes Charles, Felicia, Juan, and Irene.
+
+The group uses a data library for storing their information at
+`https://research.example/library`, which Bob administers. Bob has full
+control over data authorizations.
+
+Bob created an authorization group called `research`, and added Charles,
+Felicia, Juan, and Irene.
+
+<figure>
+<figcaption>Contents of the research group's data library at
+https://research.example/library</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`/data/`</td>
+        <td>Collection</td>
+        <td>Bob's data library related to his research work</td>
+      </tr>
+      <tr>
+        <td>`-- weekly-status/`</td>
+        <td>Collection</td>
+        <td>Bob's notes from weekly status meetings with colleagues</td>
+      </tr>
+      <tr>
+        <td>`---- 12-23-2019.note`</td>
+        <td>Collection</td>
+        <td>Text stored in collection resource, subordinate data
+        and media included in collection</td>
+      </tr>
+      <tr>
+        <td>`------ recording.mp4`</td>
+        <td>Audio/Video</td>
+        <td>Recorded audio/video of web conference meeting</td>
+      </tr>
+      <tr>
+        <td>`---- 12-30-2019.note`</td>
+        <td>Collection</td>
+        <td>Text stored in collection resource, subordinate data
+        and media included in collection</td>
+      </tr>
+      <tr>
+        <td>`------ img1.png`</td>
+        <td>Image</td>
+        <td>Inline picture included in text of note</td>
+      </tr>
+      <tr>
+        <td>`------ img2.png`</td>
+        <td>Image</td>
+        <td>Inline picture included in text of note</td>
+      </tr>
+      <tr>
+        <td>`------ recording.mp4`</td>
+        <td>Audio/Video</td>
+        <td>Recorded audio/video of web conference meeting</td>
+      </tr>
+      <tr>
+        <td>`---- 01-06-2020.note`</td>
+        <td>Collection</td>
+        <td>Text stored in collection resource, subordinate data
+        and media included in collection</td>
+      </tr>
+      <tr>
+        <td>`------ recording.mp4`</td>
+        <td>Audio/Video</td>
+        <td>Recorded audio/video of web conference meeting</td>
+      </tr>
+      <tr>
+        <td>`-- daily-metrics/`</td>
+        <td>Collection</td>
+        <td>Daily device reading for group research</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-01-2020`</td>
+        <td>Single Resource</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-02-2020`</td>
+        <td>Single Resource</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-03-2020`</td>
+        <td>Single Resource</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-04-2020`</td>
+        <td>Single Resource</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-05-2020`</td>
+        <td>Single Resource</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-06-2020`</td>
+        <td>Single Resource</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-07-2020`</td>
+        <td>Single Resource</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`-- daily-analysis/`</td>
+        <td>Collection</td>
+        <td>Daily analysis for group research</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-01-2020`</td>
+        <td>Single Resource</td>
+        <td>Peer reviewed analysis for Jan 1</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-02-2020`</td>
+        <td>Single Resource</td>
+        <td>Peer reviewed analysis for Jan 2</td>
+      </tr>
+      <tr>
+        <td>`---- Jan-03-2020`</td>
+        <td>Single Resource</td>
+        <td>Peer reviewed analysis for Jan 3</td>
+      </tr>
+  </table>
+</figure>
+
+### Read-only access to collection of resources ### {#inheritance-readonly}
+
+Bob has a weekly status meeting with the `research` group.
+
+Bob is a diligent notetaker, which his colleagues appreciate. He's happy
+to share his notes with them, but doesn't want the overhead of granting
+them permissions every week to each newly created note.
+
+Bob stores his notes from the weekly status meeting in the
+`/data/weekly-status` collection.
+
+He grants the `research` group inherited read access
+to the `/data/weekly-status` collection, which means they can read specific
+details about the collection, see a listing of it contents
+(e.g. Bob's notes), and read the contents of each note. This is especially
+important because each Note is actually a collection, capable of storing
+inline data or attachments like pictures and audio/video media.
+
+Because the read access is set at the collection and inherited, it will apply
+to everything already in the collection, as well as anything that will be
+added in the future.
+
+### Read-append access to collection resources ### {#inheritance-readappend}
+
+Every day, someone in the group is responsible for recording data from
+devices in the field, and storing those metrics in `/data/daily-metrics`.
+
+Bob gives the `research` authorization group inherited append access to the
+`/data/daily-metrics` collection. This allows anyone in the group to
+see the contents of the collection, and add readings. They cannot modify
+readings after they are recorded to provide confidence that
+readings are not manipulated after the fact.
+
+### Read-write access to collection resources ### {#inheritance-readwrite}
+
+The members of the `research` group work together on a daily summary where
+they analyze the field readings stored in `/data/daily-summaries`, and
+detail any new, validated, or invalidated hypotheses.
+
+Bob gives the `research` group inherited read access and write access to the
+`/data/daily-summaries` collection. This allows anyone in the group to
+see the contents of the collection and collaborate on a given day's summary,
+updating the contents together until they're satisfied with the results.
+
+### Append-only access to collection resources ### {#inheritance-appendonly}
+
+Bob purchases a new field device that is able to automatically push data
+into daily metric readings in `/data/daily-metrics`.
+
+Bob gives the field device read access on the `/data/daily-metrics` so it
+can access the list of resources inside, and inherited append access to
+`/data/daily-metrics`, which allows it to add to a daily-metric resource if it
+already exists, or create a new one if the `research` group hasn't made
+one for the day yet.
+
+### Control access to collection resources ### {#inheritance-control}
+
+Bob realizes that he needs some help administering the data library. He
+provides Carol with inherited control access to the research data library
+at `/data`, allowing her to manage permissions for all of the resources
+and collections included within it.
+
+### Default permissions on created resources ### {#inheritance-defaultcreated}
+
+Since Bob is granting inherited permissions to the `research` group at
+the collection level for `/data/daily-summaries` and `/data/daily-metrics`
+that include the ability to add resources (write / append), it's important
+that the resources they create have the correct permissions assigned
+automatically, and he needs to be able to ensure this when he
+sets up their access. Otherwise, how can he be sure that the files
+aren't created with access that too liberal (e.g. public access), or too
+narrow to be usable within their context?
+
+Bob prefers that any resources created echo the permissions that whoever
+created that resource had, but in certain circumstances, he'd like to be
+able to specify this in more granular fashion.
+
+### Adding new subjects to inherited permissions ### {#inheritance-adding}
+
+Note: Adding a new authorization subject means we are adding a new person /
+group / application to the collection that isn't already part of an
+inherited rule. Modifying permissions for these kinds of subjects is
+covered in [[#inheritance-modifying]].
+
+Bob has given inherited read-access to the weekly-status collection,
+to the `research` group, outlined in [[#inheritance-readonly]].
+
+Celeste isn't a regular member of the `research` group but happened
+to join a weekly status meeting on December 30th, 2019.
+
+Bob would like to give Celesete inherited read access to **only** the
+Note for the meeting she attended `12-30-2019.note`,
+without affecting the access that he's given to the `research` group,
+who have inherited read access on everything in `/data/weekly-status`, and
+anything that is added to it.
+
+Effective access to `12-30-2019.note` should be that `Celeste` and the
+members of the `research` group have inherited read access. `Celeste` has
+no other access to other resources in the `weekly-status` collection, nor any
+that will be created later. The access for the `research` group doesn't change.
+
+### Modifying inherited permissions for existing subjects ### {#inheritance-modifying}
+
+On the January 6th weekly status meeting, the Bob and the `research` group
+covered a research topic related to a commercial endeavor that Felicia is
+involved in. When Felicia saw this on the agenda, she informed Bob that
+it would be a conflict of interest for her to participate in the discussion.
+To ensure that there would be no semblance of conflict or impropriety,
+Bob and Felicia agreed that he would remove her access to the meetings
+notes for that session at `/data/weekly-status/01-06-2020.note`.
+
+Effective access to `/data/weekly-status/01-06-2020.note` then becomes
+the inherited read access to the `research group` (which Felicia is part of),
+minus Felicia. Felicia continues to have inherited read access to all other
+existing resources in the `/data/weekly-status` collection, and any new
+resources added to it. Access for others in the `research` group (inherited
+read access) is unchanged.
+
+### Forcing inherited permissions ### {#inheritance-forcing}
+
+As the primary administrator of the data library, Bob wants to ensure that
+he maintains ultimate control over the data inside. Even though he's given
+Carol permission to help him administer the system, he wants to ensure
+that she's not able to cut out his access, and that he's always in a position
+to maintain a minimum of read access and control access to all of the resources
+in the data library. This allows him to have visibility into
+ever resource, and change their permissions as needed.
+
+## Conditional access ## {#uc-conditional}
+
+Felicia works for an organization that conducts clinical trials, and
+leads a team that processes and synthesizes incoming data from
+trial participants of the `Acme` trial.
+
+Felicia administers the
+data repository for the `Acme` trial as part of her responsibilities,
+which includes managing authorized access to that data repository for
+her colleagues, and a group of research interns.
+
+<figure>
+<figcaption>Contents of `/measurements` collection</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`/measurements/`</td>
+        <td>Collection</td>
+        <td>Measurements for all trial participants across all trials</td>
+      </tr>
+      <tr>
+        <td>`-- meas-123-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-431-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-974-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-153-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-755-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-644-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-031-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-858-03052020`</td>
+        <td>Single Resource</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- ...`</td>
+        <td>-</td>
+        <td>Collection includes thousands of measurements</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+### Conditional access by time
+
+Erin is a research intern that will be assisting Felicia's team in processing
+and synthesizing data for the `Acme` trial. She will remain on the team
+until the end of her current academic term on June 30th, 2020.
+
+Felicia has granted Erin inherited read access and write access to the
+`/measurements` collection, which contains measurements for all trial
+participants across all trials.
+
+Felicia adds an expiration condition to all of Erin's authorization grants
+on the to allows them to remain valid only through June 30th, 2020.
+
+### Conditional access by tag
+
+As a research intern, Erin is responsible for processing all unprocessed
+measurements for the `Acme` trial in `/measurements`. However, there
+are measurements for other trials in that collection, as well as measurements
+that have already been processed.
+
+* Each measurement in `measurements` is tagged with the trial it belongs to
+* All measurements for the `Acme` trial are tagged with `Acme`
+* When a new measurement is processed, it is tagged as `processed`
+
+Felicia authorizes Erin to have inherited read access and write access to
+`/measurements`, with the condition that the resources must:
+
+* **include** the `Acme` tag
+* **exclude** the `processed` tag
+
+This allows Erin to work with new measurements for the `Acme` trial without
+being exposed to measurements from other trials, or already processed
+measurements from the `Acme` trial.
+
+### Conditional access by filter
+
+Felicia has been able to limit the scope of the resources that Erin
+can access to unprocessed entries for the `Acme` trial, which is all that
+she needs to perform her duties. However, each measurement resource also
+contains PII for the trial participant associated with the measurement.
+Felicia needs to ensure that Erin cannot access that PII.
+
+Felicia authorizes Erin to access a reduced set of fields within the
+measurement resources. When Erin retrieves a measurement record, the
+response will exclude the fields containing PII.
+
+
+## Permissioning Applications ## {#uc-applications}
+
+Issue: write section for permissioning applications.
+
+## Privacy ## {#uc-privacy}
+
+Issue: complete section on privacy
+
+### Limiting access to who else is permitted ### {#uc-whopermitted}
+
+Alice is interviewing for a job with Carol
+
+Alice is also interviewing for a job with Oscar, Carol's direct competitor.
+
+Alice has given Carol and Oscar read access to her resume.
+
+Neither Carol or Oscar would appreciate knowing that Alice is interviewing
+with both of them, so its important they don't know who she has shared
+her resume with, or see the history of changes made by other parties
+that would similarly expose Carol and Oscar.
+
+### Limiting access to historic metadata ### {#uc-historyofchanges}
+
+TBD
+
+### Limiting access to permission conditions ### {#uc-permconditions}
+
+EXAMPLE - Alice doesn't want Bob to know that he only have access to the
+safe for work stuff in her portfolio (i.e. without the nsfw tag)
+
+## Trust ## {#uc-trust}
+
+### Only trust certain issuers of identity ### {#uc-trustedissuers}
+
+Issue: Write cases where the resource controller must trust certain other
+parties like identity providers, or people and the apps they use
+
+## Validation ## {#uc-validation}
+
+Issue: Write section on validation - poorly formed access control rules,
+or illogical access control rules.
+
+## Capabilities ## {#uc-capabilities}
+
+Issue: Add use case on verifiable credentials
+
+Issue: Add use case on arriving with a link
+
 
 Definitions {#definitions}
-=====================
+================================================================================
 
 A <dfn>Definition</dfn> can be defined here and then referenced throughout
 the rest of the document.
