@@ -723,7 +723,7 @@ Oscar has financial data and health data stored at `https://oscar.example/`.
       <tr>
         <td>`/health/`</td>
         <td>Collection</td>
-        <td>Oscar's financial data</td>
+        <td>Oscar's health data</td>
       </tr>
     </tbody>
   </table>
