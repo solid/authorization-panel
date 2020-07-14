@@ -2,7 +2,7 @@
 Title: Use Cases and Requirements for Web Access Control
 Shortname: wac-ucr
 Level: 1
-Max ToC Depth: 3
+Max ToC Depth: 2
 Status: w3c/ED
 Group: solid-cg
 URL: https://solid.github.io/authorization-panel/wac-ucr/
@@ -43,16 +43,19 @@ MIT License Copyright 2019 - 2020 W3C Solid Community Group
 Introduction {#intro}
 ================================================================================
 
-Introduction here, with an example of a [=Definition=].
+The [[#usecases]] in this document represent real-world scenarios that
+Web Access Control can and should support. The [[#requirements]] in this
+document are derived from those use cases, and inform the contents of the
+Web Access Control specification.
 
 Requirements {#requirements}
 ================================================================================
 
+Issue: Populate requirements based on established use cases.
+
 ## Example Category ## {#example-category}
 
 ### This is an example requirement ### {#example-requirement}
-
-Some detail on the example requirement.
 
 Assert: Related Use Cases: [[#uc-basic]]
 
@@ -60,13 +63,15 @@ Use Cases {#usecases}
 ================================================================================
 
 For the purposes of simplicity, the use cases herein assume that named
-individuals (i.e. Alice, Bob, Carol, etc.) are authenticated and know
-each other's identities, unless explicitly stated otherwise.
+individuals (i.e. Alice, Bob, Carol, etc.) are already authenticated, and
+their corresponding identities are known by the resource controller when
+they are granted access.
 
 ## Basic resource access ## {#uc-basic}
 
-Alice has a private draft of her resume stored on the Web at
-`https://alice.example/resume`.
+Alice has a private draft of her resume stored on her resource server at
+`https://alice.example/resume`. Alice is the resource controller
+for that document.
 
 <figure>
 <figcaption>Alice's resume at https://alice.example/resume</figcaption>
