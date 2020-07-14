@@ -844,8 +844,85 @@ Conventional Web Access Control does not satisfy the following use cases:
 Definitions {#definitions}
 ================================================================================
 
-A <dfn>Definition</dfn> can be defined here and then referenced throughout
-the rest of the document.
+All definitions as stated below should be considered in the context of
+Web Access Control, whether explicitly stated or not.
+
+An <dfn>agent</dfn> is a distinct individual, group, organization, or piece
+of software with an [=identity=] that can be strongly authenticated.
+
+An <dfn>identity</dfn> is used to uniquely identify a given [=agent=],
+represented by a unique [[URI]]. Examples of compatible identity systems
+include [[WEBID]] and [[DID]].
+
+An <dfn>authenticated agent</dfn> is an [=agent=] that can prove control
+of a given [=identity=].
+
+An <dfn>application</dfn> is a piece of software that interfaces with a
+[=resource server=], which may operate autonomously as an
+[=authenticated agent=], or in piloted-fashion by another
+[=authenticated agent=].
+
+An <dfn>application identity</dfn> is used to uniquely identify a given
+[=application=], represented by a unique [[URI]].
+
+A <dfn>resource controller</dfn> is an [=agent=] with fully permissioned
+access and control over one or more [=resources=] residing on a
+[=resource server=] on the Web.
+
+A <dfn>resource server</dfn> is a networked system that provides an
+interface to make [=resources=] available to [=agents=] and [=applications=],
+with the ability to secure access to those [=resources=]
+through associated [=acl resources=].
+
+A <dfn>resource</dfn> is the target of an HTTP request identified by a [[URI]],
+as defined in [[!RFC7231]].
+
+A <dfn>collection</dfn> is a [=resource=] that is representative of a set
+of other [=resources=], which may include other [=collections=].
+
+An <dfn>acl resource</dfn> is a [=resource=] that includes one or more
+[=authorization statements=] applied to one or more [=resources=].
+
+An <dfn>authorization statement</dfn> is an expression included in
+an [=acl resource=] that identfies permitted [=access modes=] to
+[=authorization targets=] by [=authorization subjects=].
+
+An <dfn>authorization subject</dfn> identifies the [=agent=] and/or
+[=application=] that a given [=authorization statement=] applies to.
+
+An <dfn>authorization target</dfn> identifies the resources that a given
+[=authorization statement=] applies to.
+
+An <dfn>authorization group</dfn> is a [=resource=] including
+any combination of discrete [=authorization subjects=] and
+[=authorization groups=], which can be included in an
+[=authorization statement=] as an [=authorization subject=].
+
+An <dfn>authorization condition</dfn> provides additional criteria
+to be used in the evaluation of an [=authorization statement=], beyond
+the [=authorization subject=], [=authorization target=], and [=access modes=].
+
+
+An <dfn>access mode</dfn> denotes a class of operations that an
+[=authorization subject=] can perform on an [=authorization target=] in an
+[=authorization statement=].
+
+<dfn>Read access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to the ability to read, but not modify, the
+[=authorization target=].
+
+<dfn>Write access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to the ability to create, update, or delete the
+[=authorization target=].
+
+<dfn>Append access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to add data to a resource, but not modify any
+data that already exists.
+[=authorization target=].
+
+<dfn>Control access</dfn> is an [=access mode=] that allows the
+[=authorization subject=] to view and modify [=acl resources=] associated
+with an [=authorization target=].
 
 <pre class="biblio">
 {
