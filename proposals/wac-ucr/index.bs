@@ -647,7 +647,7 @@ her colleagues, and a group of research interns.
   </table>
 </figure>
 
-### Conditional access by time
+### Conditional access by time ### {#conditional-time}
 
 Erin is a research intern that will be assisting Felicia's team in processing
 and synthesizing data for the `Acme` trial. She will remain on the team
@@ -660,7 +660,7 @@ participants across all trials.
 Felicia adds an expiration condition to all of Erin's authorization grants
 on the to allows them to remain valid only through June 30th, 2020.
 
-### Conditional access by tag
+### Conditional access by tag ### {#conditional-tag}
 
 As a research intern, Erin is responsible for processing all unprocessed
 measurements for the `Acme` trial in `/measurements`. However, there
@@ -681,7 +681,7 @@ This allows Erin to work with new measurements for the `Acme` trial without
 being exposed to measurements from other trials, or already processed
 measurements from the `Acme` trial.
 
-### Conditional access by filter
+### Conditional access by filter ### {#conditional-filter}
 
 Felicia has been able to limit the scope of the resources that Erin
 can access to unprocessed entries for the `Acme` trial, which is all that
@@ -696,55 +696,174 @@ response will exclude the fields containing PII.
 
 ## Permissioning Applications ## {#uc-applications}
 
-Issue: write section for permissioning applications.
+Oscar has financial data and health data stored at `https://oscar.example/`.
+
+* Oscar uses `FinanceApp` to manage his financial data.
+* Oscar uses `HealthApp` to manage his health data.
+
+<figure>
+<figcaption>Contents of Oscar's data store</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`/financial/`</td>
+        <td>Collection</td>
+        <td>Oscar's financial data</td>
+      </tr>
+      <tr>
+        <td>`/health/`</td>
+        <td>Collection</td>
+        <td>Oscar's financial data</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+Notwithstanding his trusted applications that help him manage his data
+and access to it, Oscar wants to explicitly specify that only `FinanceApp`
+can be used with his credentials to access his financial data, and only
+`HealthApp` can be used to access his health data.
 
 ## Privacy ## {#uc-privacy}
 
-Issue: complete section on privacy
-
 ### Limiting access to who else is permitted ### {#uc-whopermitted}
 
-Alice is interviewing for a job with Carol
-
-Alice is also interviewing for a job with Oscar, Carol's direct competitor.
+Alice is interviewing for a job with Carol. Alice is also interviewing for a
+job with Oscar, Carol's direct competitor.
 
 Alice has given Carol and Oscar read access to her resume.
 
 Neither Carol or Oscar would appreciate knowing that Alice is interviewing
-with both of them, so its important they don't know who she has shared
-her resume with, or see the history of changes made by other parties
-that would similarly expose Carol and Oscar.
+with both of them, so it's important neither Carol or Oscar know who
+Alice has shared her resume with, despite having read access to it.
 
-### Limiting access to historic metadata ### {#uc-historyofchanges}
+### Limiting access to other authorization conditions ### {#uc-historyofchanges}
 
-TBD
-
-### Limiting access to permission conditions ### {#uc-permconditions}
-
-EXAMPLE - Alice doesn't want Bob to know that he only have access to the
-safe for work stuff in her portfolio (i.e. without the nsfw tag)
+As an extension of [[#uc-whopermitted]], it is also important to Alice that
+that neither Carol nor Oscar be able to discern other characteristics of
+the authorization rules or conditions associated with them. For example,
+if the data Carol and Oscar saw in the resume was
+[[#conditional-filter|filtered]] to only show a certain subset of her
+background, she wouldn't want them to know that.
 
 ## Trust ## {#uc-trust}
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}
 
-Issue: Write cases where the resource controller must trust certain other
-parties like identity providers, or people and the apps they use
+Carol has a blog, and allows anyone with an authenticated web identity
+(e.g. [[WEBID]], [[DID]]) to comment on her blog posts.
+
+Unfortunately, anyone can setup an identity provider, so Carol would
+like to be able to recognize credentials issued from trustworthy
+identity providers.
 
 ## Validation ## {#uc-validation}
 
-Issue: Write section on validation - poorly formed access control rules,
-or illogical access control rules.
+Juan likes to manage his authorization statements manually. Every
+once in a while, Juan makes a typo, or accidentally saves the resource
+in an incomplete state.
+
+When this happens to Juan on systems where the Web Access Control
+implementation doesn't have proper validation, he often runs into trouble,
+most often by getting locked out of the resource and required administrator
+assistance to recover.
 
 ## Capabilities ## {#uc-capabilities}
 
-Issue: Add use case on verifiable credentials
+### Possession of a verifiable credential ### {#capabilities-vc}
 
-Issue: Add use case on arriving with a link
+Oscar has a medical condition that causes random and very serious
+seizures several times per year. Wherever Oscar is, he needs to be
+rushed immediately to the closest hospital in an ambulance.
 
+Oscar's government has recently rolled out a digital credential system
+for health care professionals, which is like a digital id card for
+doctors and care facilities that can be cryptographically verified.
+
+Oscar has an emergency care record at `https://oscar.example/emergency`, and
+Oscar's authorization system at `https://oscar.example` supports a
+verifiable credential authorization capability.
+
+Oscar has set permissions on `https://oscar.example/emergency` that grants
+someone in possession of a verifiable medical credential to have inherited
+read access to the contents. This gives them just enough background on
+his condition to treat him properly.
+
+### Possession of a link ### {#capabilities-link}
+
+Bob is about to give a confidential presentation to a group of his
+colleagues. His presentation is stored on his private server at
+`https://bob.example/presentation`.
+
+Bob is having trouble hooking his laptop up to the projector, and
+needs to present in just a few minutes. Anne presented before Bob,
+and offers to bring the presentation up for him on her system.
+
+Unfortunately, Anne doesn't have an identity ready to go that he can
+xauthorization. Luckily, his authorization system supports a link-based
+authorization capability.
+
+Bob quickly creates an authorization rule for `https://bob.example/presentation`
+that allows anyone in possession of a specially generated link to access
+the document with read-only permissions. He sets it to
+[[#conditional-time|expire]] in three hours. Bob gives the link to Anne
+and the presentation goes off perfectly.
+
+Conventional WAC Limitations {#limitations}
+================================================================================
+
+Conventional Web Access Control does not satisfy the following use cases:
+
+* [[#inheritance-adding]]
+* [[#inheritance-modifying]]
+* [[#inheritance-forcing]]
+* [[#conditional-time]]
+* [[#conditional-tag]]
+* [[#conditional-filter]]
+* [[#uc-applications]]
+* [[#uc-trustedissuers]]
+* [[#uc-validation]]
+* [[#capabilities-vc]]
+* [[#capabilities-link]]
 
 Definitions {#definitions}
 ================================================================================
 
 A <dfn>Definition</dfn> can be defined here and then referenced throughout
 the rest of the document.
+
+<pre class="biblio">
+{
+  "webid": {
+    "href": "https://www.w3.org/2005/Incubator/webid/spec/identity/",
+    "title": "WebID 1.0",
+    "authors": [
+      "Tim Berners-Lee",
+      "Henry Story",
+      "Andrei Sambra"
+    ]
+  },
+  "did": {
+    "href": "https://www.w3.org/TR/did-core/",
+    "title": "Decentralized Identifiers (DIDs) v1.0",
+    "authors": [
+      "Drummond Reed",
+      "Manu Sporney",
+      "Dave Longley",
+      "Christopher Allen",
+      "Ryan Grant",
+      "Markus Sabadello"
+    ]
+  }
+}
+</pre>
