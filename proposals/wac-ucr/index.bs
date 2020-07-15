@@ -857,6 +857,7 @@ the document with read-only permissions. He sets it to
 [[#conditional-time|expire]] in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.
 
+
 Conventional WAC Limitations {#limitations}
 ================================================================================
 
@@ -874,6 +875,7 @@ Conventional Web Access Control does not satisfy the following use cases:
 * [[#capabilities-vc]]
 * [[#capabilities-link]]
 
+
 Definitions {#definitions}
 ================================================================================
 
@@ -887,7 +889,7 @@ An <dfn>identity</dfn> is used to uniquely identify a given [=agent=],
 represented by a unique [[URI]]. Examples of compatible identity systems
 include [[WEBID]] and [[DID]].
 
-An <dfn>authenticated agent</dfn> is an [=agent=] that can prove control
+An <dfn>authenticated agent</dfn> is an [=agent=] that has proven control
 of a given [=identity=].
 
 An <dfn>application</dfn> is a piece of software that interfaces with a
