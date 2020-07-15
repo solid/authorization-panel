@@ -92,13 +92,13 @@ for that resource.
     </thead>
     <tbody>
       <tr>
-        <td>`/resume`</td>
-        <td>Single Resource</td>
+        <td>`resume`</td>
+        <td>[=Resource=]</td>
         <td>Alice's curriculum vitae</td>
       </tr>
       <tr>
-        <td>`/recommendations`</td>
-        <td>Single Resource</td>
+        <td>`recommendations`</td>
+        <td>[=Resource=]</td>
         <td>Recommendations for Alice</td>
       </tr>
     </tbody>
@@ -145,7 +145,7 @@ cannot see recommendations that have already been added.
 Alice removes Bob and Danielle's access to `resume`, since they've both
 finished contributing to it. They can no longer read or make changes to it.
 
-### Read only access ### {#basic-readonly}
+### Read-only access ### {#basic-readonly}
 
 Alice has a job interview with Carol. Alice gives Carol [=read access=]
 to `resume` ahead of the interview.
@@ -177,21 +177,22 @@ job boards.
 
 ## Basic collection access ## {#uc-collections}
 
-Note: These use cases are focused on access to the collection itself. Use
-cases that focus on permissions related to resouces within the collection
-are covered in [[#uc-inheritance]].
+Note: These use cases are focused on access to a [=collection=]
+itself. Use cases that focus on permissions related to [=resources=] included
+in that [=collection=] are covered in [[#uc-inheritance]].
 
-Alice has a project portfolio stored on the Web at
-`https://alice.example/portfolio`
-that she is able to furnish materials from as needed as she moves
-through a job interview process.
+Alice has a portfolio [=collection=] stored on her [=resource server=] at
+`https://alice.example/portfolio`, which she is the [=resource controller=]
+for. She provides access to the `portfolio`
+to potential employers as she moves through a job interview process.
 
-Her portfolio includes individual documents that she's produced, and
-collections of deliverables from projects that she's worked on.
+The `portfolio` includes [=resources=] representing individual deliverables
+she's produced throughout her career, along with
+[=collections=] of deliverables from larger scale projects that she's worked on.
 
 <figure>
-<figcaption>Contents of Alice's Project Portfolio at
-https://alice.example/portfolio</figcaption>
+<figcaption>Alice's portfolio and opportunities [=collections=] at
+https://alice.example/</figcaption>
   <table class="data collections" align="left">
     <col>
     <col>
@@ -205,39 +206,39 @@ https://alice.example/portfolio</figcaption>
     </thead>
     <tbody>
       <tr>
-        <td>`/portfolio/`</td>
-        <td>Collection</td>
+        <td>`portfolio/`</td>
+        <td>[=Collection=]</td>
         <td>Individual documents she's produced, and collections
         of deliverables from projects she's worked on.</td>
       </tr>
       <tr>
         <td>`-- document1`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual document</td>
       </tr>
       <tr>
         <td>`-- document2`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual document</td>
       </tr>
       <tr>
         <td>`-- project1/`</td>
-        <td>Collection</td>
+        <td>[=Collection=]</td>
         <td>Individual document</td>
       </tr>
       <tr>
         <td>`---- documentA`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Project document</td>
       </tr>
       <tr>
         <td>`---- MovieA`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Project movie file</td>
       </tr>
       <tr>
-        <td>`/opportunities/`</td>
-        <td>Collection</td>
+        <td>`opportunities/`</td>
+        <td>[=Collection=]</td>
         <td>Storage for descriptions of various different job opportunities
         Alice is interested in</td>
       </tr>
@@ -247,53 +248,55 @@ https://alice.example/portfolio</figcaption>
 
 ### Read-only access to a Collection ### {#collection-readonly}
 
-Alice has identified a select group of companies that she'd like to
-interview with for a new job.
-
 Alice has identified several companies that she'd like to work for,
-as well as the specific people to contact at each one; Carol, Oscar,
-and Frank.
+as well as the specific people (Carol, Oscar, and Frank) to contact at
+each one.
 
 Alice sends individual e-mails to Carol, Oscar, and Frank with links to her
-resume and portfolio.
+`resume` and `portfolio`.
 
-Alice has granted Carol, Oscar, and Frank read access to her resume which
+Alice has granted Carol, Oscar, and Frank [=read access=] to her `resume` which
 allows them to read its contents fully.
 
-Alice has also granted them read access to the portfolio resource, which
-is a collection. She only wants them to see detail about the portfolio
-collection itself, and a listing of its contents, but not the contents of
-the resources within it yet.
+Alice has also granted them [=read access=] to the `portfolio` [=collection=].
+She only wants them to see detail about the `portfolio`
+[=collection=] itself, along with a listing of its contents, but not the
+contents of the [=resources=] included in that [=collection=] just yet.
 
-She wants to know which of them are really interested based on who
-asks her for more access to the portfolio contents.
+Alice wants know which of them are really interested based on who
+asks her for more access to the contents of `portfolio`.
 
 ### Read-write access to a Collection ### {#collection-readwrite}
 
-Alice worked in the past with Milo, and they produced a document
-which she has included in her portfolio; `/portfolio/document1`.
+Alice worked with Milo in the past, where they produced a deliverable
+(`document1`) that she has included in her `portfolio` [=collection=].
 
-Alice realized that she doesn't have the most up-to-date version of the
-document, and needs Milo to replace it. She gives Milo read access and
-write access to her portfolio collection itself, which allows him to
-see the listing of its contents, as well as add and remove items from it.
-He cannot read the contents of any of the resources in the collection,
-but this is fine, since he knows the name of the resource he's replacing.
+Alice realized that she doesn't have the most up-to-date version `document1`,
+and needs Milo to replace it. She gives Milo [=read access=] and
+[=write access=] to the `portfolio` [=collection=] itself, which allows him to
+see the listing of its contents, as well as add and remove items from the
+[=collection=].
 
-Milo deletes `/portfolio/document1`, and replaces it with an updated
-version at `/portfolio/document1`.
+He cannot read the contents of any of the [=resources=] included in the
+[=collection=], but this is fine, since he knows the name of the [=resource=]
+he's replacing.
+
+Milo updates the contents of `document1` to the most recent version.
 
 ### Read-append access to a Collection ### {#collection-readappend}
 
-Alice worked with Bob in the past on a project, and she stored the
-resulting deliverables she had in the `/portfolio/project1` collection.
+Alice worked with Bob in the past on a project, and she has included
+the project deliverables she could find in the `project1` [=collection=].
 She's sure that she's missing some, and that Bob would have the missing
 items.
 
-Alice grants Bob read access and append access to the `project1` collection,
-which allows him to see the list of what is there, and add new items to it.
-He can't see the contents of the items, or remove anything in the list.
-That's fine because he only needs to add the items that aren't included.
+Alice grants Bob [=read access=] and [=append access=] to the
+`project1` [=collection=], which allows him to see the list of what is there,
+and add new [=resources=] to it.
+
+He can't see the contents of the [=resources=], or remove anything in the list.
+That's fine because he only needs to add the [=resources=] that aren't
+included.
 
 ### Append-only access to a Collection ### {#collection-appendonly}
 
@@ -301,21 +304,22 @@ Alice realizes it would be helpful if Carol, Oscar, and Frank could
 provide her with job opportunities that they think she would be a fit for
 at their respective organizations.
 
-She provides them with append access to the `/opportunities` collection.
-This allows each of them to add new resources, without the ability to see
-the listing of other resources in the collection, or modify them. This means
-that they can each add descriptions, but none of the others will see them.
+She provides them with [=append access=] to the `opportunities` [=collection=].
+This allows each of them to add new [=resources=] to `opportunities`, without
+the ability to see the listing of other [=resources=] in the [=collection=],
+or modify them. This means
+that they can each add opportunities, but none of the others will see them.
 
 ### Control access to a Collection ### {#collection-control}
 
 Bob reminds Alice that some of the other people who worked on `project1`
-may also have materials they can add to her portfolio, but needs to
+may also have materials they can add to the `portfolio`, but he needs to
 lookup their information.
 
-Alice trusts Bob with the contents of the `project1` collection, since its
-the output of their shared work. She gives him `control` permission
-so that he can help her invite some of their other past colleagues to
-add resources to it.
+Alice trusts Bob with the contents of the `project1` collection, since it's
+the output of their shared work. She gives him [=control access=] to
+`project1` so that he can help her invite other colleagues from the past to
+add [=resources=] to it.
 
 ## Inheritance ## {#uc-inheritance}
 
