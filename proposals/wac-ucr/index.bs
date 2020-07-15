@@ -323,19 +323,19 @@ add [=resources=] to it.
 
 ## Inheritance ## {#uc-inheritance}
 
-Bob is leading a group of colleagues doing field research. The group
+Bob is leading a group of colleagues doing field research. This group
 includes Charles, Felicia, Juan, and Irene.
 
-The group uses a data library for storing their information at
-`https://research.example/library`, which Bob administers. Bob has full
-control over data authorizations.
+The group uses a [=resource server=] for storing their information at
+`https://research.example/`, which Bob administers as the
+[=resource controller=].
 
-Bob created an authorization group called `research`, and added Charles,
-Felicia, Juan, and Irene.
+Bob creates an [=authorization group=] called `research`, and adds Charles,
+Felicia, Juan, and Irene to it.
 
 <figure>
-<figcaption>Contents of the research group's data library at
-https://research.example/library</figcaption>
+<figcaption>Contents of the research group's data store at
+https://research.example/</figcaption>
   <table class="data collections" align="left">
     <col>
     <col>
@@ -349,116 +349,111 @@ https://research.example/library</figcaption>
     </thead>
     <tbody>
       <tr>
-        <td>`/data/`</td>
-        <td>Collection</td>
-        <td>Bob's data library related to his research work</td>
-      </tr>
-      <tr>
-        <td>`-- weekly-status/`</td>
-        <td>Collection</td>
+        <td>`weekly-status/`</td>
+        <td>[=Collection=]</td>
         <td>Bob's notes from weekly status meetings with colleagues</td>
       </tr>
       <tr>
-        <td>`---- 12-23-2019.note`</td>
-        <td>Collection</td>
+        <td>`-- 12-23-2019.note`</td>
+        <td>[=Collection=]</td>
         <td>Text stored in collection resource, subordinate data
         and media included in collection</td>
       </tr>
       <tr>
-        <td>`------ recording.mp4`</td>
-        <td>Audio/Video</td>
+        <td>`---- recording.mp4`</td>
+        <td>Video</td>
         <td>Recorded audio/video of web conference meeting</td>
       </tr>
       <tr>
-        <td>`---- 12-30-2019.note`</td>
-        <td>Collection</td>
+        <td>`-- 12-30-2019.note`</td>
+        <td>[=Collection=]</td>
         <td>Text stored in collection resource, subordinate data
         and media included in collection</td>
       </tr>
       <tr>
-        <td>`------ img1.png`</td>
+        <td>`---- img1.png`</td>
         <td>Image</td>
         <td>Inline picture included in text of note</td>
       </tr>
       <tr>
-        <td>`------ img2.png`</td>
+        <td>`---- img2.png`</td>
         <td>Image</td>
         <td>Inline picture included in text of note</td>
       </tr>
       <tr>
-        <td>`------ recording.mp4`</td>
-        <td>Audio/Video</td>
+        <td>`---- recording.mp4`</td>
+        <td>Video</td>
         <td>Recorded audio/video of web conference meeting</td>
       </tr>
       <tr>
-        <td>`---- 01-06-2020.note`</td>
-        <td>Collection</td>
+        <td>`-- 01-06-2020.note`</td>
+        <td>[=Collection=]</td>
         <td>Text stored in collection resource, subordinate data
         and media included in collection</td>
       </tr>
       <tr>
-        <td>`------ recording.mp4`</td>
-        <td>Audio/Video</td>
+        <td>`---- recording.mp4`</td>
+        <td>Video</td>
         <td>Recorded audio/video of web conference meeting</td>
       </tr>
       <tr>
-        <td>`-- daily-metrics/`</td>
-        <td>Collection</td>
+        <td>`daily-metrics/`</td>
+        <td>[=Collection=]</td>
         <td>Daily device reading for group research</td>
       </tr>
       <tr>
-        <td>`---- Jan-01-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-01-2020`</td>
+        <td>[=Resource=]</td>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`---- Jan-02-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-02-2020`</td>
+        <td>[=Resource=]</td>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`---- Jan-03-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-03-2020`</td>
+        <td>[=Resource=]</td>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`---- Jan-04-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-04-2020`</td>
+        <td>[=Resource=]</td>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`---- Jan-05-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-05-2020`</td>
+        <td>[=Resource=]</td>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`---- Jan-06-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-06-2020`</td>
+        <td>[=Resource=]</td>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`---- Jan-07-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-07-2020`</td>
+        <td>[=Resource=]</td>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`-- daily-analysis/`</td>
+        <td>`daily-analysis/`</td>
         <td>Collection</td>
         <td>Daily analysis for group research</td>
       </tr>
       <tr>
-        <td>`---- Jan-01-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-01-2020`</td>
+        <td>[=Resource=]</td>
         <td>Peer reviewed analysis for Jan 1</td>
       </tr>
       <tr>
-        <td>`---- Jan-02-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-02-2020`</td>
+        <td>[=Resource=]</td>
         <td>Peer reviewed analysis for Jan 2</td>
       </tr>
       <tr>
-        <td>`---- Jan-03-2020`</td>
-        <td>Single Resource</td>
+        <td>`-- Jan-03-2020`</td>
+        <td>[=Resource=]</td>
         <td>Peer reviewed analysis for Jan 3</td>
       </tr>
   </table>
@@ -466,131 +461,150 @@ https://research.example/library</figcaption>
 
 ### Read-only access to collection of resources ### {#inheritance-readonly}
 
-Bob has a weekly status meeting with the `research` group.
+Bob has a weekly status meeting with the members of the `research`
+[=authorization group=].
 
 Bob is a diligent notetaker, which his colleagues appreciate. He's happy
-to share his notes with them, but doesn't want the overhead of granting
+to act as the scribe and post notes after the meeting for sharing
+with his colleagues. However, he doesn't want the overhead of granting
 them permissions every week to each newly created note.
 
 Bob stores his notes from the weekly status meeting in the
-`/data/weekly-status` collection.
+`weekly-status` [=collection=].
 
-He grants the `research` group inherited read access
-to the `/data/weekly-status` collection, which means they can read specific
-details about the collection, see a listing of it contents
-(e.g. Bob's notes), and read the contents of each note. This is especially
-important because each Note is actually a collection, capable of storing
-inline data or attachments like pictures and audio/video media.
+He grants the `research` [=authorization group=] inherited [=read access=]
+to the `weekly-status` [=collection=], which means they can read specific
+details about the [=collection=], see a listing of the resource included
+in it (e.g. Bob's notes), and read the contents of each note. This is especially
+important because in this case each of Bob's notes are actually a
+[=collection=] themselves, capable of storing
+inline data or attachments, like pictures or videos.
 
-Because the read access is set at the collection and inherited, it will apply
-to everything already in the collection, as well as anything that will be
-added in the future.
+Because Bob grants inherited [=read access=] at the `weekly-status`
+[=collection=], it will apply to everything already in the [=collection=],
+as well as anything that will be added in the future.
 
 ### Read-append access to collection resources ### {#inheritance-readappend}
 
 Every day, someone in the group is responsible for recording data from
-devices in the field, and storing those metrics in `/data/daily-metrics`.
+devices in the field, and storing those metrics in `daily-metrics`.
 
-Bob gives the `research` authorization group inherited append access to the
-`/data/daily-metrics` collection. This allows anyone in the group to
-see the contents of the collection, and add readings. They cannot modify
-readings after they are recorded to provide confidence that
-readings are not manipulated after the fact.
+Bob gives the `research` [=authorization group=] inherited [=append access=]
+to the `daily-metrics` [=collection=]. This allows anyone in the
+[=authorization group=] to see the contents of the [=collection=], and
+add new readings. They cannot modify readings after they are recorded. This
+provides confidence that readings are not manipulated after the fact.
 
 ### Read-write access to collection resources ### {#inheritance-readwrite}
 
-The members of the `research` group work together on a daily summary where
-they analyze the field readings stored in `/data/daily-summaries`, and
-detail any new, validated, or invalidated hypotheses.
+The members of the `research` [=authorization group=] collaborate on a
+daily summary, where they analyze the day's field readings stored in
+`daily-summaries`, detailing any new, validated, or invalidated hypotheses.
 
-Bob gives the `research` group inherited read access and write access to the
-`/data/daily-summaries` collection. This allows anyone in the group to
-see the contents of the collection and collaborate on a given day's summary,
-updating the contents together until they're satisfied with the results.
+Bob gives the `research` [=authorization group=] inherited [=read access=]
+and [=write access=] to the `daily-summaries` [=collection=]. This allows
+anyone in the [=authorization group=] to see the contents of the
+[=collection=] and collaborate on a given day's summary. They can
+update the contents together until they're satisfied with the results.
 
 ### Append-only access to collection resources ### {#inheritance-appendonly}
 
-Bob purchases a new field device that is able to automatically push data
-into daily metric readings in `/data/daily-metrics`.
+Bob purchases a new field device that is able to automatically push daily
+metric readings in `daily-metrics`.
 
-Bob gives the field device read access on the `/data/daily-metrics` so it
-can access the list of resources inside, and inherited append access to
-`/data/daily-metrics`, which allows it to add to a daily-metric resource if it
-already exists, or create a new one if the `research` group hasn't made
-one for the day yet.
+Bob gives the new field device [=read access=] on the `daily-metrics`
+[=collection=] so it can access the list of resources inside, and
+inherited [=append=] access to `daily-metrics`, which allows it to add
+to a daily-metric resource if it already exists, or create a new one
+if a member of the `research` [=authorization group=] hasn't made
+one for that day yet.
 
 ### Control access to collection resources ### {#inheritance-control}
 
-Bob realizes that he needs some help administering the data library. He
-provides Carol with inherited control access to the research data library
-at `/data`, allowing her to manage permissions for all of the resources
-and collections included within it.
+Bob realizes that he needs some help administering `https://research.example`.
+He provides Carol with inherited [=read access=] and [=control access=] to
+`https://research.example/`, allowing her to read and manage permissions for
+all of the [=resources=] and [=collections=] included within it.
 
 ### Default permissions on created resources ### {#inheritance-defaultcreated}
 
-Since Bob is granting inherited permissions to the `research` group at
-the collection level for `/data/daily-summaries` and `/data/daily-metrics`
-that include the ability to add resources (write / append), it's important
+Bob is granting inherited permissions to the `research`
+[=authorization group=] at the [=collection=] level for
+`daily-summaries` and `daily-metrics` that include the ability to add
+resources ([=write access=] / [=append access=]).
+
+It's important
 that the resources they create have the correct permissions assigned
 automatically, and he needs to be able to ensure this when he
 sets up their access. Otherwise, how can he be sure that the files
 aren't created with access that too liberal (e.g. public access), or too
 narrow to be usable within their context?
 
-Bob prefers that any resources created echo the permissions that whoever
-created that resource had, but in certain circumstances, he'd like to be
-able to specify this in more granular fashion.
+Bob prefers to specify in granular fashion the default permissions of
+created resources that should be assigned to any [=authorization statements=]
+with [=write access=] or [=append access=] on a given [=collection=].
 
 ### Adding new subjects to inherited permissions ### {#inheritance-adding}
 
-Note: Adding a new authorization subject means we are adding a new person /
+Note: Adding a new [=authorization subject=] means we are adding a new person /
 group / application to the collection that isn't already part of an
-inherited rule. Modifying permissions for these kinds of subjects is
-covered in [[#inheritance-modifying]].
+inherited [=authorization statement=]. Modifying permissions for these
+kinds of [=authorization subjects=] is covered in [[#inheritance-modifying]].
 
-Bob has given inherited read-access to the weekly-status collection,
-to the `research` group, outlined in [[#inheritance-readonly]].
+Bob has given the `research` [=authorization group=] inherited [=read access=]
+to the `weekly-status` [=collection=] (detailed in [[#inheritance-readonly]]).
 
-Celeste isn't a regular member of the `research` group but happened
-to join a weekly status meeting on December 30th, 2019.
+Celeste isn't a regular member of the `research` [=authorization group=],
+but happened to attend the weekly status meeting on December 30th, 2019.
 
-Bob would like to give Celesete inherited read access to **only** the
-Note for the meeting she attended `12-30-2019.note`,
-without affecting the access that he's given to the `research` group,
-who have inherited read access on everything in `/data/weekly-status`, and
-anything that is added to it.
+Bob would like to give Celesete inherited [=read access=] to **only** the
+note for the meeting she attended (`12-30-2019.note`),
+without affecting the access that he's given to the `research`
+[=authorization group=]. `research` has inherited [=read access=] on
+everything in the `weekly-status` [=collection=], and anything that is
+added to it.
 
 Effective access to `12-30-2019.note` should be that `Celeste` and the
-members of the `research` group have inherited read access. `Celeste` has
-no other access to other resources in the `weekly-status` collection, nor any
-that will be created later. The access for the `research` group doesn't change.
+members of the `research` [=authorization group=] have inherited
+[=read access=]. `Celeste` has
+no other access to other resources in the `weekly-status` [=collection=],
+nor any that will be created later. The access for the `research`
+[=authorization group=] doesn't change.
 
 ### Modifying inherited permissions for existing subjects ### {#inheritance-modifying}
 
-On the January 6th weekly status meeting, the Bob and the `research` group
-covered a research topic related to a commercial endeavor that Felicia is
-involved in. When Felicia saw this on the agenda, she informed Bob that
-it would be a conflict of interest for her to participate in the discussion.
-To ensure that there would be no semblance of conflict or impropriety,
-Bob and Felicia agreed that he would remove her access to the meetings
-notes for that session at `/data/weekly-status/01-06-2020.note`.
+On the January 6th weekly status meeting, Bob and the `research`
+[=authorization group=] covered a research topic related to a commercial
+endeavor that Felicia is involved in. When Felicia saw this on the agenda,
+she informed Bob that it would be a conflict of interest for her to
+participate in the discussion.
 
-Effective access to `/data/weekly-status/01-06-2020.note` then becomes
-the inherited read access to the `research group` (which Felicia is part of),
-minus Felicia. Felicia continues to have inherited read access to all other
-existing resources in the `/data/weekly-status` collection, and any new
-resources added to it. Access for others in the `research` group (inherited
-read access) is unchanged.
+To ensure that there would be no semblance of conflict or impropriety,
+Bob and Felicia agreed that he would remove her access to the meeting
+note for that session - `01-06-2020.note`, which is included in the
+`weekly-status` [=collection=].
+
+Effective access to `01-06-2020.note` then becomes
+the inherited [=read access=] to the `research` [=authorization group=]
+(which Felicia is part of), minus Felicia.
+
+Felicia continues to have inherited [=read access=] to all other
+existing resources included in the `weekly-status` collection, and any new
+resources added to it. Inherited [=read access=] for others in the `research`
+[=authorization group=] is unchanged.
 
 ### Forcing inherited permissions ### {#inheritance-forcing}
 
-As the primary administrator of the data library, Bob wants to ensure that
-he maintains ultimate control over the data inside. Even though he's given
-Carol permission to help him administer the system, he wants to ensure
-that she's not able to cut out his access, and that he's always in a position
-to maintain a minimum of read access and control access to all of the resources
-in the data library. This allows him to have visibility into
-ever resource, and change their permissions as needed.
+As the primary administrator and [=resource controller=] of
+`https://resource.example`, Bob wants to ensure that
+he maintains ultimate control over the data inside.
+
+Even though he's given
+Carol permission to help him administer the [=resource server=], he wants
+to ensure that she's not able to cut out his access. He wants
+to always maintain a minimum of [=read access=] and [=control access=] to
+all of the resources in `https://resource.example`. This allows him to have
+visibility into everything, and change their permissions as needed.
 
 ## Conditional access ## {#uc-conditional}
 
