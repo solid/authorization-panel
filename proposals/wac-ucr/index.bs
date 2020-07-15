@@ -568,9 +568,9 @@ without affecting the access that he's given to the `research`
 everything in the `weekly-status` [=collection=], and anything that is
 added to it.
 
-Effective access to `12-30-2019.note` should be that `Celeste` and the
+Effective access to `12-30-2019.note` should be that Celeste and the
 members of the `research` [=authorization group=] have inherited
-[=read access=]. `Celeste` has
+[=read access=]. Celeste has
 no other access to other resources in the `weekly-status` [=collection=],
 nor any that will be created later. The access for the `research`
 [=authorization group=] doesn't change.
@@ -614,12 +614,13 @@ visibility into everything, and change their permissions as needed.
 
 Felicia works for an organization that conducts clinical trials, and
 leads a team that processes and synthesizes incoming data from
-trial participants of the `Acme` trial.
+trial participants, including participants in the `Acme` trial.
 
-Felicia administers the
-data repository for the `Acme` trial as part of her responsibilities,
-which includes managing authorized access to that data repository for
-her colleagues, and a group of research interns.
+The organization uses a [=resource server=] at `https://trials.example`
+as a data repository for all of their clinical trial data.
+Felicia is the [=resource controller=] of `https://trials.example`,
+managing authorized access to it for her colleagues, and a group of research
+interns.
 
 <figure>
 <figcaption>Contents of `/measurements` collection</figcaption>
@@ -637,47 +638,47 @@ her colleagues, and a group of research interns.
     <tbody>
       <tr>
         <td>`/measurements/`</td>
-        <td>Collection</td>
+        <td>[=Collection=]</td>
         <td>Measurements for all trial participants across all trials</td>
       </tr>
       <tr>
         <td>`-- meas-123-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
         <td>`-- meas-431-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
         <td>`-- meas-974-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
         <td>`-- meas-153-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
         <td>`-- meas-755-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
         <td>`-- meas-644-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
         <td>`-- meas-031-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
         <td>`-- meas-858-03052020`</td>
-        <td>Single Resource</td>
+        <td>[=Resource=]</td>
         <td>Individual measurement</td>
       </tr>
       <tr>
@@ -695,29 +696,32 @@ Erin is a research intern that will be assisting Felicia's team in processing
 and synthesizing data for the `Acme` trial. She will remain on the team
 until the end of her current academic term on June 30th, 2020.
 
-Felicia has granted Erin inherited read access and write access to the
-`/measurements` collection, which contains measurements for all trial
-participants across all trials.
+Felicia has granted Erin inherited [=read access=] and [=write access=] to the
+`measurements` [=collection=], which contains measurements for all trial
+participants, across all trials.
 
-Felicia adds an expiration condition to all of Erin's authorization grants
-on the to allows them to remain valid only through June 30th, 2020.
+Felicia adds a time-based [=authorization condition=] for Erin which
+states that her access to `measurements` is only valid through June 30th, 2020.
+
+Erin will have no access to `measurements` after June 30th, 2020.
 
 ### Conditional access by tag ### {#conditional-tag}
 
 As a research intern, Erin is responsible for processing all unprocessed
-measurements for the `Acme` trial in `/measurements`. However, there
-are measurements for other trials in that collection, as well as measurements
-that have already been processed.
+measurements for the `Acme` trial in `measurements`. However, there
+are measurements for other trials in the `measurements` [=collection=],
+as well as measurements that have already been processed.
 
 * Each measurement in `measurements` is tagged with the trial it belongs to
 * All measurements for the `Acme` trial are tagged with `Acme`
 * When a new measurement is processed, it is tagged as `processed`
 
-Felicia authorizes Erin to have inherited read access and write access to
-`/measurements`, with the condition that the resources must:
+Felicia authorizes Erin to have inherited [=read access=] and [=write access=]
+to `measurements`, with an [=authorization condition=] that the [=resources=]
+must:
 
-* **include** the `Acme` tag
-* **exclude** the `processed` tag
+* **include** the `Acme` [=tag=]
+* **exclude** the `processed` [=tag=]
 
 This allows Erin to work with new measurements for the `Acme` trial without
 being exposed to measurements from other trials, or already processed
@@ -725,14 +729,15 @@ measurements from the `Acme` trial.
 
 ### Conditional access by filter ### {#conditional-filter}
 
-Felicia has been able to limit the scope of the resources that Erin
+Felicia has been able to limit the scope of the [=resources=] that Erin
 can access to unprocessed entries for the `Acme` trial, which is all that
-she needs to perform her duties. However, each measurement resource also
-contains PII for the trial participant associated with the measurement.
-Felicia needs to ensure that Erin cannot access that PII.
+she needs to perform her duties. However, each measurement [=resource=] also
+contains personally identifiable information (PII) for the trial participant
+associated with the measurement. Felicia needs to ensure that Erin cannot
+access that PII.
 
 Felicia authorizes Erin to access a reduced set of fields within the
-measurement resources. When Erin retrieves a measurement record, the
+measurement [=resources=]. When Erin retrieves a measurement, the
 response will exclude the fields containing PII.
 
 
@@ -783,26 +788,30 @@ can be used with his credentials to access his financial data, and only
 Alice is interviewing for a job with Carol. Alice is also interviewing for a
 job with Oscar, Carol's direct competitor.
 
-Alice has given Carol and Oscar read access to her resume.
+Alice has given Carol and Oscar [=read access=] to her `resume`.
 
 Neither Carol or Oscar would appreciate knowing that Alice is interviewing
-with both of them, so it's important neither Carol or Oscar know who
-Alice has shared her resume with, despite having read access to it.
+with both of them, so it's important neither Carol or Oscar know any of the
+[=authorization subjects=] Alice has shared her `resume` with,
+despite having [=read access=] to it.
 
 ### Limiting access to other authorization conditions ### {#uc-historyofchanges}
 
 As an extension of [[#uc-whopermitted]], it is also important to Alice that
 that neither Carol nor Oscar be able to discern other characteristics of
-the authorization rules or conditions associated with them. For example,
-if the data Carol and Oscar saw in the resume was
+the [=authorization statements=] or [=authorization conditions=] associated
+with Alice's `resume`.
+
+For example, if the data Carol and Oscar saw in the resume was
 [[#conditional-filter|filtered]] to only show a certain subset of her
-background, she wouldn't want them to know that.
+background, she wouldn't want them to know that they were only seeing
+a filtered view.
 
 ## Trust ## {#uc-trust}
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}
 
-Carol has a blog, and allows anyone with an authenticated web identity
+Carol has a blog, and allows any [=authenticated agent=]
 (e.g. [[WEBID]], [[DID]]) to comment on her blog posts.
 
 Unfortunately, anyone can setup an identity provider, so Carol would
@@ -811,14 +820,14 @@ identity providers.
 
 ## Validation ## {#uc-validation}
 
-Juan likes to manage his authorization statements manually. Every
-once in a while, Juan makes a typo, or accidentally saves the resource
+Juan likes to manage his [=authorization statements=] manually. Every
+once in a while, Juan makes a typo, or accidentally saves the [=acl resource=]
 in an incomplete state.
 
-When this happens to Juan on systems where the Web Access Control
-implementation doesn't have proper validation, he often runs into trouble,
-most often by getting locked out of the resource and required administrator
-assistance to recover.
+Juan runs into trouble on systems where the Web Access Control
+implementation doesn't properly validate,
+most often resulting in Juan getting locked out of the [=resource=] and
+needing administrator assistance to recover.
 
 ## Capabilities ## {#uc-capabilities}
 
@@ -834,30 +843,31 @@ doctors and care facilities that can be cryptographically verified.
 
 Oscar has an emergency care record at `https://oscar.example/emergency`, and
 Oscar's authorization system at `https://oscar.example` supports a
-verifiable credential authorization capability.
+verifiable credential [=authorization capability=].
 
 Oscar has set permissions on `https://oscar.example/emergency` that grants
 someone in possession of a verifiable medical credential to have inherited
-read access to the contents. This gives them just enough background on
+[=read access=] to the contents. This gives them just enough background on
 his condition to treat him properly.
 
 ### Possession of a link ### {#capabilities-link}
 
 Bob is about to give a confidential presentation to a group of his
-colleagues. His presentation is stored on his private server at
+colleagues. His presentation is stored on his personal [=resource server=] at
 `https://bob.example/presentation`.
 
 Bob is having trouble hooking his laptop up to the projector, and
 needs to present in just a few minutes. Anne presented before Bob,
 and offers to bring the presentation up for him on her system.
 
-Unfortunately, Anne doesn't have an identity ready to go that he can
-xauthorization. Luckily, his authorization system supports a link-based
-authorization capability.
+Unfortunately, Anne doesn't have an [=identity=] ready to go that he can
+authorize. Luckily, his authorization system supports a link-based
+[=authorization capability=].
 
-Bob quickly creates an authorization rule for `https://bob.example/presentation`
+Bob quickly creates an [=authorization statement=] for
+`https://bob.example/presentation`
 that allows anyone in possession of a specially generated link to access
-the document with read-only permissions. He sets it to
+the document with [=read access=]. He sets it to
 [[#conditional-time|expire]] in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.
 
@@ -920,6 +930,9 @@ as defined in [[!RFC7231]].
 A <dfn>collection</dfn> is a [=resource=] that is representative of a set
 of other [=resources=], which may include other [=collections=].
 
+A <dfn>tag</dfn> is a type of metadata associated with a [=resource=]
+for classification or identification.
+
 An <dfn>acl resource</dfn> is a [=resource=] that includes one or more
 [=authorization statements=] applied to one or more [=resources=].
 
@@ -929,6 +942,11 @@ an [=acl resource=] that identfies permitted [=access modes=] to
 
 An <dfn>authorization subject</dfn> identifies the [=agent=] and/or
 [=application=] that a given [=authorization statement=] applies to.
+
+An <dfn>authorization capability</dfn> can be used in place of an
+[=authorization subject=] in an [=authorization statement=]. It denotes
+an object the [=agent=] must be in possesion of to satisfy the
+[=authorization statement=].
 
 An <dfn>authorization target</dfn> identifies the resources that a given
 [=authorization statement=] applies to.
