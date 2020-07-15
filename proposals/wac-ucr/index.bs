@@ -2,7 +2,7 @@
 Title: Use Cases and Requirements for Web Access Control
 Shortname: wac-ucr
 Level: 1
-Max ToC Depth: 2
+Max ToC Depth: 3
 Status: w3c/ED
 Group: solid-cg
 URL: https://solid.github.io/authorization-panel/wac-ucr/
@@ -30,6 +30,10 @@ Abstract:
 
   figcaption {
     text-align: left;
+  }
+
+  a[data-link-type=dfn] {
+    color: #000000;
   }
 
 }
@@ -63,18 +67,18 @@ Use Cases {#usecases}
 ================================================================================
 
 For the purposes of simplicity, the use cases herein assume that named
-individuals (i.e. Alice, Bob, Carol, etc.) are already authenticated, and
-their corresponding identities are known by the resource controller when
-they are granted access.
+individuals (i.e. Alice, Bob, Carol, etc.) are already
+[=authenticated agents=], and their corresponding [=identities=] are known
+by the [=resource controller=] when they are granted access.
 
 ## Basic resource access ## {#uc-basic}
 
-Alice has a private draft of her resume stored on her resource server at
-`https://alice.example/resume`. Alice is the resource controller
-for that document.
+Alice has a private draft of her resume stored on her [=resource server=] at
+`https://alice.example/resume`. Alice is the [=resource controller=]
+for that resource.
 
 <figure>
-<figcaption>Alice's resume at https://alice.example/resume</figcaption>
+<figcaption>Alice's resume and recommendations resources at https://alice.example</figcaption>
   <table class="data collections" align="left">
     <col>
     <col>
@@ -104,60 +108,71 @@ for that document.
 ### Control access ### {#basic-control}
 
 Alice asks Bob to help make her resume more presentable. Alice must give
-Bob access to do this, because it is private, and Alice is the only one who
-can manage permissions for it.
+Bob permission to do this, because `resume` is not a public resource, and
+as the [=resource controller=] Alice is the only one who can manage
+permissions for it.
 
 ### Read-write access ### {#basic-write}
 
-Alice gives Bob permission to read and make changes to her resume,
-which he does.
+Alice gives Bob [=read access=] so that he can read the `resume` resource,
+and [=write access=] so that he can make changes to it, which he does.
 
 ### Read-append access ### {#basic-readappend}
 
-Danielle agrees to give Alice a reference to include on her resume.
-Alice gives Danielle permission to read and add new data to the resume document,
-without the ability to change anything that already exists within it.
-Danielle adds a glowing reference to Alice's resume document.
+Danielle agrees to give Alice a personal reference, which Alice will
+include in the references section of `resume`.
+Alice gives Danielle [=read access=] to `resume` for context, and
+[=append access=] so that she can only add new data to `resume`, and
+cannot change any existing data within it. Danielle adds a glowing
+reference for Alice to `resume`.
 
 ### Append-only access ### {#basic-appendonly}
 
-Alice has a widget on her resume that allows someone to "recommend" her. The
-user have an authenticated identity, which is added to the `/recommendations`
-resource.
+Alice is interested in seeing whether any of her other contacts might
+provide good recommendations that she can include as additional references
+or a resume cover letter.
 
-Alice has set the permissions on `/recommendations` so that anyone in her
-group of known contacts has append-only access. Alice plans to make these
-publicly readable later along with her resume.
+She creates a `recommendations` resource, and grants [=append access=] to the
+`contacts` [=authorization group=], which represents every professional
+contact in her virtual rolodex. She sends a mass-mail to `contacts`,
+with a link to an app they can use to submit a recommendation, which will be
+appended to `recommendations`. Since they only have [=append access=],
+and no [=read access=], they can only add to that `recommendations`, they
+cannot see recommendations that have already been added.
 
 ### Removing access ### {#basic-removing}
 
-Alice removes Bob and Danielle's access, since they've both finished
-contributing.
+Alice removes Bob and Danielle's access to `resume`, since they've both
+finished contributing to it. They can no longer read or make changes to it.
 
 ### Read only access ### {#basic-readonly}
 
-Alice has a job interview with Carol. Alice gives Carol read-only access
-to her resume ahead of the interview.
+Alice has a job interview with Carol. Alice gives Carol [=read access=]
+to `resume` ahead of the interview.
 
 ### Group access ### {#basic-group}
 
-Alice is now interviewing with people from multiple companies, including
-Carol, Oscar, and Frank.
+Alice has additional interest, and is now interviewing with people from
+multiple organizations, including Carol, Oscar, and Frank.
 
-To make it easier to keep track of them all,
-Alice creates a group called `interviewing` and adds Carol, Oscar, and
-Frank to the group.
+To make it easier to keep track of everyone,
+Alice creates an `interviewing` [=authorization group=] and adds Carol,
+Oscar, and Frank to it. She grants [=read access=] on `resume` to the
+`interviewing` [=authorization group=].
 
-Alice removes their individual permissions from
-her resume document, and replaces it with the `interviewing` group.
+Alice removes any individual permissions on `resume` that were granted
+to members of the `interviewing` [=authorization group=]
+since they are no longer necessary.
 
-Now she can add new interviewers to this group, and remove them when the
-opportunity is no longer active, which is much more intuitive.
+Now Alice can add new people she's interviewing with to the `interviewing`
+[=authorization group=], and remove them when the
+opportunity is no longer active. This is much more intuitive and
+easy for Alice.
 
 ### Public access ### {#basic-public}
 
-Alice decides her resume is ready to share with everyone, so she gives
-read-only access to the public, and posts a link to it on several
+Alice decides `resume` is ready to share with everyone, so she gives
+[=read access=] to the public (everyone), and shares a link to it on several
 job boards.
 
 ## Basic collection access ## {#uc-collections}
@@ -869,7 +884,7 @@ A <dfn>resource controller</dfn> is an [=agent=] with fully permissioned
 access and control over one or more [=resources=] residing on a
 [=resource server=] on the Web.
 
-A <dfn>resource server</dfn> is a networked system that provides an
+A <dfn>resource server</dfn> is a web server that provides an
 interface to make [=resources=] available to [=agents=] and [=applications=],
 with the ability to secure access to those [=resources=]
 through associated [=acl resources=].
