@@ -56,17 +56,6 @@ Web Access Control specification.
 [Legacy Web Access Control](https://github.com/solid/web-access-control-spec)
 fails to satisfy.
 
-Requirements {#requirements}
-================================================================================
-
-Issue: Populate requirements based on established use cases.
-
-## Example Category ## {#example-category}
-
-### This is an example requirement ### {#example-requirement}
-
-Assert: Related Use Cases: [[#uc-basic]]
-
 Use Cases {#usecases}
 ================================================================================
 
@@ -879,6 +868,16 @@ the document with [=read access=]. He sets it to
 [[#conditional-time|expire]] in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.
 
+Requirements {#requirements}
+================================================================================
+
+Issue: Populate requirements based on established use cases.
+
+## Example Category ## {#example-category}
+
+### This is an example requirement ### {#example-requirement}
+
+Assert: Related Use Cases: [[#uc-basic]]
 
 Limitations of Legacy Web Access Control {#limitations}
 ================================================================================
@@ -898,7 +897,6 @@ does not satisfy the following use cases:
 * [[#uc-validation]]
 * [[#capabilities-vc]]
 * [[#capabilities-link]]
-
 
 Definitions {#definitions}
 ================================================================================
