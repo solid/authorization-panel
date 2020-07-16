@@ -740,46 +740,52 @@ Felicia authorizes Erin to access a reduced set of fields within the
 measurement [=resources=]. When Erin retrieves a measurement, the
 response will exclude the fields containing PII.
 
+### Conditional control boundaries ### {#conditional-control}
 
-## Permissioning Applications ## {#uc-applications}
+Megan works on Felicia's team. Felicia would like Megan to be responsible
+for managing access to trial data for the research interns assigned to
+the `Acme` project. Felicia doesn't want to give Megan more permission than
+she needs to do that work.
 
-Oscar has financial data and health data stored at `https://oscar.example/`.
+Felicia grants Megan inherited [=control access=] to `measurements`,
+with [=authorization conditions=] that stipulate:
 
-* Oscar uses `FinanceApp` to manage his financial data.
-* Oscar uses `HealthApp` to manage his health data.
+* she only has effective [=control access=] of [=resources=] that include
+    the `Acme` [=tag=] within the `measurements` [=collection=].
+* she can only create or change [=authorization statements=] where
+    [=authorization subjects=] are in the `interns` [=authorization group=]
+    within the `measurements` [=collection=].
 
-<figure>
-<figcaption>Contents of Oscar's data store</figcaption>
-  <table class="data collections" align="left">
-    <col>
-    <col>
-    <col>
-    <thead>
-      <tr>
-        <th scope="col">Resource</th>
-        <th scope="col">Type</th>
-        <th scope="col">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>`/financial/`</td>
-        <td>Collection</td>
-        <td>Oscar's financial data</td>
-      </tr>
-      <tr>
-        <td>`/health/`</td>
-        <td>Collection</td>
-        <td>Oscar's health data</td>
-      </tr>
-    </tbody>
-  </table>
-</figure>
+## Permissioning Applications  ## {#uc-applications}
 
-Notwithstanding his trusted applications that help him manage his data
-and access to it, Oscar wants to explicitly specify that only `FinanceApp`
-can be used with his credentials to access his financial data, and only
-`HealthApp` can be used to access his health data.
+Oscar stores all of his data in a private [=resource server=] at
+`https://oscar.example`, which he is the [=resource controller=] of.
+
+He stores a wide spectrum of things, from personal financial data to
+collaborative projects that he works on with his friends and colleagues.
+
+Regardless of the use case, as the [=resource controller=] for
+`https://oscar.example`, any application that
+operates with or on behalf of Oscar's [=identity=] would operate with
+the same unfettered access that Oscar has on `https://oscar.example`.
+
+It is important to Oscar that he can include [=applications=]
+in the [=authorization subjects=] of his [=authorization statements=].
+
+For example, to constrain Oscar's access to `https://oscar.example` to
+only cases where an application he trusts is involved:
+
+* Oscar has [=read access=], [=write access=], and [=control access=] to
+    the `https://oscar.example` **with the** `trusted-applications`
+    [=authorization group=].
+
+Following that, per [[#inheritance-modifying]], he could extend this default
+for the `health` [=collection=] to include `healthapp`:
+
+* Oscar has [=read access=], [=write access=], and [=control access=] to
+    the `health` [=collection=] **with the** `trusted-applications`
+    [=authorization group=] AND `healthapp`.
+
 
 ## Privacy ## {#uc-privacy}
 
@@ -884,6 +890,7 @@ does not satisfy the following use cases:
 * [[#conditional-time]]
 * [[#conditional-tag]]
 * [[#conditional-filter]]
+* [[#conditional-control]]
 * [[#uc-applications]]
 * [[#uc-trustedissuers]]
 * [[#uc-validation]]
