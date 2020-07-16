@@ -752,39 +752,41 @@ with [=authorization conditions=] that stipulate:
 
 * she only has effective [=control access=] of [=resources=] that include
     the `Acme` [=tag=] within the `measurements` [=collection=].
-* she can only create or change [=authorization statements=] where
-    [=authorization subjects=] are in the `interns` [=authorization group=]
-    within the `measurements` [=collection=].
+* she can only create or change [=authorization statements=]
+    targeting the `measurements` [=collection=] where
+    [=authorization subjects=] are [=agents=] included in the `interns`
+    [=authorization group=].
 
 ## Permissioning Applications  ## {#uc-applications}
 
 Oscar stores all of his data in a private [=resource server=] at
-`https://oscar.example`, which he is the [=resource controller=] of.
+`https://oscar.example`, where he is the [=resource controller=].
 
 He stores a wide spectrum of things, from personal financial data to
 collaborative projects that he works on with his friends and colleagues.
 
-Regardless of the use case, as the [=resource controller=] for
+As the [=resource controller=] for
 `https://oscar.example`, any application that
 operates with or on behalf of Oscar's [=identity=] would operate with
-the same unfettered access that Oscar has on `https://oscar.example`.
+the same unfettered access that Oscar enjoys.
 
 It is important to Oscar that he can include [=applications=]
-in the [=authorization subjects=] of his [=authorization statements=].
+in the [=authorization subjects=] of his [=authorization statements=] to limit
+this unfettered access.
 
 For example, to constrain Oscar's access to `https://oscar.example` to
 only cases where an application he trusts is involved:
 
-* Oscar has [=read access=], [=write access=], and [=control access=] to
-    the `https://oscar.example` **with the** `trusted-applications`
-    [=authorization group=].
+* Oscar **with the** `trusted-applications` [=authorization group=] has
+    [=read access=], [=write access=], and [=control access=] to
+    `https://oscar.example`
 
 Following that, per [[#inheritance-modifying]], he could extend this default
 for the `health` [=collection=] to include `healthapp`:
 
-* Oscar has [=read access=], [=write access=], and [=control access=] to
-    the `health` [=collection=] **with the** `trusted-applications`
-    [=authorization group=] AND `healthapp`.
+* Oscar **with the** `trusted-applications` [=authorization group=] AND
+    `healthapp` has [=read access=], [=write access=], and [=control access=]
+    to the `health` [=collection=]
 
 
 ## Privacy ## {#uc-privacy}
