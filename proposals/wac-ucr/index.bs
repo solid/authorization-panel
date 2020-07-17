@@ -507,7 +507,7 @@ metric readings in `daily-metrics`.
 
 Bob gives the new field device [=read access=] on the `daily-metrics`
 [=collection=] so it can access the list of resources inside, and
-inherited [=append=] access to `daily-metrics`, which allows it to add
+inherited [=append access=] access to `daily-metrics`, which allows it to add
 to a daily-metric resource if it already exists, or create a new one
 if a member of the `research` [=authorization group=] hasn't made
 one for that day yet.
@@ -534,15 +534,16 @@ aren't created with access that too liberal (e.g. public access), or too
 narrow to be usable within their context?
 
 Bob prefers to specify in granular fashion the default permissions of
-created resources that should be assigned to any [=authorization statements=]
+created resources that should be assigned to any [=authorizations=]
 with [=write access=] or [=append access=] on a given [=collection=].
 
 ### Adding new subjects to inherited permissions ### {#inheritance-adding}
 
-Note: Adding a new [=authorization subject=] means we are adding a new person /
-group / application to the collection that isn't already part of an
-inherited [=authorization statement=]. Modifying permissions for these
-kinds of [=authorization subjects=] is covered in [[#inheritance-modifying]].
+Note: Adding a new subject means we are adding a new [=agent=],
+[=authorization group=], and/or [=application=]
+to the collection that isn't already part of an
+inherited [=authorization=]. Modifying permissions for those that exist in
+inherited [=authorizations=] is covered in [[#inheritance-modifying]].
 
 Bob has given the `research` [=authorization group=] inherited [=read access=]
 to the `weekly-status` [=collection=] (detailed in [[#inheritance-readonly]]).
@@ -550,7 +551,7 @@ to the `weekly-status` [=collection=] (detailed in [[#inheritance-readonly]]).
 Celeste isn't a regular member of the `research` [=authorization group=],
 but happened to attend the weekly status meeting on December 30th, 2019.
 
-Bob would like to give Celesete inherited [=read access=] to **only** the
+Bob would like to give Celeste inherited [=read access=] to **only** the
 note for the meeting she attended (`12-30-2019.note`),
 without affecting the access that he's given to the `research`
 [=authorization group=]. `research` has inherited [=read access=] on
@@ -689,7 +690,7 @@ Felicia has granted Erin inherited [=read access=] and [=write access=] to the
 `measurements` [=collection=], which contains measurements for all trial
 participants, across all trials.
 
-Felicia adds a time-based [=authorization condition=] for Erin which
+Felicia adds a time-based condition for Erin which
 states that her access to `measurements` is only valid through June 30th, 2020.
 
 Erin will have no access to `measurements` after June 30th, 2020.
@@ -706,7 +707,7 @@ as well as measurements that have already been processed.
 * When a new measurement is processed, it is tagged as `processed`
 
 Felicia authorizes Erin to have inherited [=read access=] and [=write access=]
-to `measurements`, with an [=authorization condition=] that the [=resources=]
+to `measurements`, with a condition that the [=resources=]
 must:
 
 * **include** the `Acme` [=tag=]
@@ -737,14 +738,13 @@ the `Acme` project. Felicia doesn't want to give Megan more permission than
 she needs to do that work.
 
 Felicia grants Megan inherited [=control access=] to `measurements`,
-with [=authorization conditions=] that stipulate:
+with conditions that stipulate:
 
 * she only has effective [=control access=] of [=resources=] that include
     the `Acme` [=tag=] within the `measurements` [=collection=].
-* she can only create or change [=authorization statements=]
+* she can only create or change [=authorizations=]
     targeting the `measurements` [=collection=] where
-    [=authorization subjects=] are [=agents=] included in the `interns`
-    [=authorization group=].
+    [=agents=] are included in the `interns` [=authorization group=].
 
 ## Permissioning Applications  ## {#uc-applications}
 
@@ -760,8 +760,7 @@ operates with or on behalf of Oscar's [=identity=] would operate with
 the same unfettered access that Oscar enjoys.
 
 It is important to Oscar that he can include [=applications=]
-in the [=authorization subjects=] of his [=authorization statements=] to limit
-this unfettered access.
+in his [=authorizations=] to limit this unfettered access.
 
 For example, to constrain Oscar's access to `https://oscar.example` to
 only cases where an application he trusts is involved:
@@ -788,15 +787,14 @@ job with Oscar, Carol's direct competitor.
 Alice has given Carol and Oscar [=read access=] to her `resume`.
 
 Neither Carol or Oscar would appreciate knowing that Alice is interviewing
-with both of them, so it's important neither Carol or Oscar know any of the
-[=authorization subjects=] Alice has shared her `resume` with,
-despite having [=read access=] to it.
+with both of them, so it's important neither Carol or Oscar know who else
+Alice has shared her `resume` with, despite having [=read access=] to it.
 
 ### Limiting access to other authorization conditions ### {#uc-historyofchanges}
 
 As an extension of [[#uc-whopermitted]], it is also important to Alice that
 that neither Carol nor Oscar be able to discern other characteristics of
-the [=authorization statements=] or [=authorization conditions=] associated
+the [=authorizations=] or conditions associated
 with Alice's `resume`.
 
 For example, if the data Carol and Oscar saw in the resume was
@@ -817,8 +815,8 @@ identity providers.
 
 ## Validation ## {#uc-validation}
 
-Juan likes to manage his [=authorization statements=] manually. Every
-once in a while, Juan makes a typo, or accidentally saves the [=acl resource=]
+Juan likes to manage his [=authorizations=] manually. Every
+once in a while, Juan makes a typo, or accidentally saves the [=authorization=]
 in an incomplete state.
 
 Juan runs into trouble on systems where the Web Access Control
@@ -840,7 +838,7 @@ doctors and care facilities that can be cryptographically verified.
 
 Oscar has an emergency care record at `https://oscar.example/emergency`, and
 Oscar's authorization system at `https://oscar.example` supports a
-verifiable credential [=authorization capability=].
+verifiable credential [=capability=].
 
 Oscar has set permissions on `https://oscar.example/emergency` that grants
 someone in possession of a verifiable medical credential to have inherited
@@ -859,9 +857,9 @@ and offers to bring the presentation up for him on her system.
 
 Unfortunately, Anne doesn't have an [=identity=] ready to go that he can
 authorize. Luckily, his authorization system supports a link-based
-[=authorization capability=].
+[=capability=].
 
-Bob quickly creates an [=authorization statement=] for
+Bob quickly creates an [=authorization=] for
 `https://bob.example/presentation`
 that allows anyone in possession of a specially generated link to access
 the document with [=read access=]. He sets it to
@@ -919,9 +917,6 @@ An <dfn>application</dfn> is a piece of software that interfaces with a
 [=authenticated agent=], or in piloted-fashion by another
 [=authenticated agent=].
 
-An <dfn>application identity</dfn> is used to uniquely identify a given
-[=application=], represented by a unique [[URI]].
-
 A <dfn>resource controller</dfn> is an [=agent=] with fully permissioned
 access and control over one or more [=resources=] residing on a
 [=resource server=] on the Web.
@@ -929,7 +924,7 @@ access and control over one or more [=resources=] residing on a
 A <dfn>resource server</dfn> is a web server that provides an
 interface to make [=resources=] available to [=agents=] and [=applications=],
 with the ability to secure access to those [=resources=]
-through associated [=acl resources=].
+through associated [=authorizations=].
 
 A <dfn>resource</dfn> is the target of an HTTP request identified by a [[URI]],
 as defined in [[!RFC7231]].
@@ -940,54 +935,33 @@ of other [=resources=], which may include other [=collections=].
 A <dfn>tag</dfn> is a type of metadata associated with a [=resource=]
 for classification or identification.
 
-An <dfn>acl resource</dfn> is a [=resource=] that includes one or more
-[=authorization statements=] applied to one or more [=resources=].
+An <dfn>authorization</dfn> is a [=resource=] that controls access to
+one or more [=resources=].
 
-An <dfn>authorization statement</dfn> is an expression included in
-an [=acl resource=] that identfies permitted [=access modes=] to
-[=authorization targets=] by [=authorization subjects=].
+An <dfn>authorization group</dfn> is a [=resource=] that represents
+some combination of [=agents=], [=applications=], and [=authorization groups=].
 
-An <dfn>authorization subject</dfn> identifies the [=agent=] and/or
-[=application=] that a given [=authorization statement=] applies to.
-
-An <dfn>authorization capability</dfn> can be used in place of an
-[=authorization subject=] in an [=authorization statement=]. It denotes
-an object the [=agent=] must be in possesion of to satisfy the
-[=authorization statement=].
-
-An <dfn>authorization target</dfn> identifies the resources that a given
-[=authorization statement=] applies to.
-
-An <dfn>authorization group</dfn> is a [=resource=] including
-any combination of discrete [=authorization subjects=] and
-[=authorization groups=], which can be included in an
-[=authorization statement=] as an [=authorization subject=].
-
-An <dfn>authorization condition</dfn> provides additional criteria
-to be used in the evaluation of an [=authorization statement=], beyond
-the [=authorization subject=], [=authorization target=], and [=access modes=].
-
+A <dfn>capability</dfn> is an object an [=agent=] must possess to be
+permitted to access a [=resource=].
 
 An <dfn>access mode</dfn> denotes a class of operations that an
-[=authorization subject=] can perform on an [=authorization target=] in an
-[=authorization statement=].
+[=agent=] and/or [=application=] can perform on one or more [=resources=].
 
-<dfn>Read access</dfn> is an [=access mode=] that allows the
-[=authorization subject=] to the ability to read, but not modify, the
-[=authorization target=].
+<dfn>Read access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] the ability to read, but not modify
+a [=resources=].
 
-<dfn>Write access</dfn> is an [=access mode=] that allows the
-[=authorization subject=] to the ability to create, update, or delete the
-[=authorization target=].
+<dfn>Write access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] the ability to create, update, or delete a
+[=resource=].
 
-<dfn>Append access</dfn> is an [=access mode=] that allows the
-[=authorization subject=] to add data to a resource, but not modify any
-data that already exists.
-[=authorization target=].
+<dfn>Append access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] to add data to a resource, but not modify
+any data that already exists.
 
-<dfn>Control access</dfn> is an [=access mode=] that allows the
-[=authorization subject=] to view and modify [=acl resources=] associated
-with an [=authorization target=].
+<dfn>Control access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] to view and modify [=authorizations=]
+associated with a [=resource=].
 
 <pre class="biblio">
 {
