@@ -2,7 +2,7 @@
 Title: Use Cases and Requirements for Web Access Control
 Shortname: wac-ucr
 Level: 1
-Max ToC Depth: 2
+Max ToC Depth: 3
 Status: w3c/ED
 Group: solid-cg
 URL: https://solid.github.io/authorization-panel/wac-ucr/
@@ -12,35 +12,979 @@ Abstract:
   Use Cases and Requirements for Web Access Control.
 </pre>
 
+<!-- For bikeshed style overrides -->
+<style>
+
+  table.collections thead tr {
+    font-size: 16px;
+  }
+
+  table.collections tbody tr:nth-child(even) {
+    background-color: lightgray;
+    font-size: 12px;
+  }
+
+  table.collections tbody td {
+    font-size: 12px;
+  }
+
+  figcaption {
+    text-align: left;
+  }
+
+  a[data-link-type=dfn] {
+    color: #000000;
+  }
+
+}
+
+</style>
+
 <div boilerplate="copyright">
 MIT License Copyright 2019 - 2020 W3C Solid Community Group
 </div>
 
 Introduction {#intro}
-=====================
+================================================================================
 
-Introduction here, with an example of a [=Definition=].
+The [[#usecases]] in this document represent real-world scenarios that
+Web Access Control can and should support. The [[#requirements]] in this
+document are derived from those use cases, and inform the contents of the
+Web Access Control specification.
+
+[[#limitations]] highlights the [[#usecases]] that
+[Legacy Web Access Control](https://github.com/solid/web-access-control-spec)
+fails to satisfy.
+
+Use Cases {#usecases}
+================================================================================
+
+For the purposes of simplicity, the use cases herein assume that named
+individuals (i.e. Alice, Bob, Carol, etc.) are already
+[=authenticated agents=], and their corresponding [=identities=] are known
+by the [=resource controller=] when they are granted access.
+
+## Basic resource access ## {#uc-basic}
+
+Alice has a private draft of her resume stored on her [=resource server=] at
+`https://alice.example/resume`. Alice is the [=resource controller=]
+for that resource.
+
+<figure>
+<figcaption>Alice's resume and recommendations resources at https://alice.example</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`resume`</td>
+        <td>[=Resource=]</td>
+        <td>Alice's curriculum vitae</td>
+      </tr>
+      <tr>
+        <td>`recommendations`</td>
+        <td>[=Resource=]</td>
+        <td>Recommendations for Alice</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+### Control access ### {#basic-control}
+
+Alice asks Bob to help make her resume more presentable. Alice must give
+Bob permission to do this, because `resume` is not a public resource, and
+as the [=resource controller=] Alice is the only one who can manage
+permissions for it.
+
+### Read-write access ### {#basic-write}
+
+Alice gives Bob [=read access=] so that he can read the `resume` resource,
+and [=write access=] so that he can make changes to it, which he does.
+
+### Read-append access ### {#basic-readappend}
+
+Danielle agrees to give Alice a personal reference, which Alice will
+include in the references section of `resume`.
+Alice gives Danielle [=read access=] to `resume` for context, and
+[=append access=] so that she can only add new data to `resume`, and
+cannot change any existing data within it. Danielle adds a glowing
+reference for Alice to `resume`.
+
+### Append-only access ### {#basic-appendonly}
+
+Alice is interested in seeing whether any of her other contacts might
+provide good recommendations that she can include as additional references
+or a resume cover letter.
+
+She creates a `recommendations` resource, and grants [=append access=] to the
+`contacts` [=authorization group=], which represents every professional
+contact in her virtual rolodex. She sends a mass-mail to `contacts`,
+with a link to an app they can use to submit a recommendation, which will be
+appended to `recommendations`. Since they only have [=append access=],
+and no [=read access=], they can only add to that `recommendations`, they
+cannot see recommendations that have already been added.
+
+### Removing access ### {#basic-removing}
+
+Alice removes Bob and Danielle's access to `resume`, since they've both
+finished contributing to it. They can no longer read or make changes to it.
+
+### Read-only access ### {#basic-readonly}
+
+Alice has a job interview with Carol. Alice gives Carol [=read access=]
+to `resume` ahead of the interview.
+
+### Group access ### {#basic-group}
+
+Alice has additional interest, and is now interviewing with people from
+multiple organizations, including Carol, Oscar, and Frank.
+
+To make it easier to keep track of everyone,
+Alice creates an `interviewing` [=authorization group=] and adds Carol,
+Oscar, and Frank to it. She grants [=read access=] on `resume` to the
+`interviewing` [=authorization group=].
+
+Alice removes any individual permissions on `resume` that were granted
+to members of the `interviewing` [=authorization group=]
+since they are no longer necessary.
+
+Now Alice can add new people she's interviewing with to the `interviewing`
+[=authorization group=], and remove them when the
+opportunity is no longer active. This is much more intuitive and
+easy for Alice.
+
+### Public access ### {#basic-public}
+
+Alice decides `resume` is ready to share with everyone, so she gives
+[=read access=] to the public (everyone), and shares a link to it on several
+job boards.
+
+## Basic collection access ## {#uc-collections}
+
+Note: These use cases are focused on access to a [=collection=]
+itself. Use cases that focus on permissions related to [=resources=] included
+in that [=collection=] are covered in [[#uc-inheritance]].
+
+Alice has a portfolio [=collection=] stored on her [=resource server=] at
+`https://alice.example/portfolio`, which she is the [=resource controller=]
+for. She provides access to the `portfolio`
+to potential employers as she moves through a job interview process.
+
+The `portfolio` includes [=resources=] representing individual deliverables
+she's produced throughout her career, along with
+[=collections=] of deliverables from larger scale projects that she's worked on.
+
+<figure>
+<figcaption>Alice's portfolio and opportunities [=collections=] at
+https://alice.example/</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`portfolio/`</td>
+        <td>[=Collection=]</td>
+        <td>Individual documents she's produced, and collections
+        of deliverables from projects she's worked on.</td>
+      </tr>
+      <tr>
+        <td>`-- document1`</td>
+        <td>[=Resource=]</td>
+        <td>Individual document</td>
+      </tr>
+      <tr>
+        <td>`-- document2`</td>
+        <td>[=Resource=]</td>
+        <td>Individual document</td>
+      </tr>
+      <tr>
+        <td>`-- project1/`</td>
+        <td>[=Collection=]</td>
+        <td>Individual document</td>
+      </tr>
+      <tr>
+        <td>`---- documentA`</td>
+        <td>[=Resource=]</td>
+        <td>Project document</td>
+      </tr>
+      <tr>
+        <td>`---- MovieA`</td>
+        <td>[=Resource=]</td>
+        <td>Project movie file</td>
+      </tr>
+      <tr>
+        <td>`opportunities/`</td>
+        <td>[=Collection=]</td>
+        <td>Storage for descriptions of various different job opportunities
+        Alice is interested in</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+### Read-only access to a Collection ### {#collection-readonly}
+
+Alice has identified several companies that she'd like to work for,
+as well as the specific people (Carol, Oscar, and Frank) to contact at
+each one.
+
+Alice sends individual e-mails to Carol, Oscar, and Frank with links to her
+`resume` and `portfolio`.
+
+Alice has granted Carol, Oscar, and Frank [=read access=] to her `resume` which
+allows them to read its contents fully.
+
+Alice has also granted them [=read access=] to the `portfolio` [=collection=].
+She only wants them to see detail about the `portfolio`
+[=collection=] itself, along with a listing of its contents, but not the
+contents of the [=resources=] included in that [=collection=] just yet.
+
+Alice wants know which of them are really interested based on who
+asks her for more access to the contents of `portfolio`.
+
+### Read-write access to a Collection ### {#collection-readwrite}
+
+Alice worked with Milo in the past, where they produced a deliverable
+(`document1`) that she has included in her `portfolio` [=collection=].
+
+Alice realized that she doesn't have the most up-to-date version `document1`,
+and needs Milo to replace it. She gives Milo [=read access=] and
+[=write access=] to the `portfolio` [=collection=] itself, which allows him to
+see the listing of its contents, as well as add and remove items from the
+[=collection=].
+
+He cannot read the contents of any of the [=resources=] included in the
+[=collection=], but this is fine, since he knows the name of the [=resource=]
+he's replacing.
+
+Milo updates the contents of `document1` to the most recent version.
+
+### Read-append access to a Collection ### {#collection-readappend}
+
+Alice worked with Bob in the past on a project, and she has included
+the project deliverables she could find in the `project1` [=collection=].
+She's sure that she's missing some, and that Bob would have the missing
+items.
+
+Alice grants Bob [=read access=] and [=append access=] to the
+`project1` [=collection=], which allows him to see the list of what is there,
+and add new [=resources=] to it.
+
+He can't see the contents of the [=resources=], or remove anything in the list.
+That's fine because he only needs to add the [=resources=] that aren't
+included.
+
+### Append-only access to a Collection ### {#collection-appendonly}
+
+Alice realizes it would be helpful if Carol, Oscar, and Frank could
+provide her with job opportunities that they think she would be a fit for
+at their respective organizations.
+
+She provides them with [=append access=] to the `opportunities` [=collection=].
+This allows each of them to add new [=resources=] to `opportunities`, without
+the ability to see the listing of other [=resources=] in the [=collection=],
+or modify them. This means
+that they can each add opportunities, but none of the others will see them.
+
+### Control access to a Collection ### {#collection-control}
+
+Bob reminds Alice that some of the other people who worked on `project1`
+may also have materials they can add to the `portfolio`, but he needs to
+lookup their information.
+
+Alice trusts Bob with the contents of the `project1` collection, since it's
+the output of their shared work. She gives him [=control access=] to
+`project1` so that he can help her invite other colleagues from the past to
+add [=resources=] to it.
+
+## Inheritance ## {#uc-inheritance}
+
+Bob is leading a group of colleagues doing field research. This group
+includes Charles, Felicia, Juan, and Irene.
+
+The group uses a [=resource server=] for storing their information at
+`https://research.example/`, which Bob administers as the
+[=resource controller=].
+
+Bob creates an [=authorization group=] called `research`, and adds Charles,
+Felicia, Juan, and Irene to it.
+
+<figure>
+<figcaption>Contents of the research group's data store at
+https://research.example/</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`weekly-status/`</td>
+        <td>[=Collection=]</td>
+        <td>Bob's notes from weekly status meetings with colleagues</td>
+      </tr>
+      <tr>
+        <td>`-- 12-23-2019.note`</td>
+        <td>[=Collection=]</td>
+        <td>Text stored in collection resource, subordinate data
+        and media included in collection</td>
+      </tr>
+      <tr>
+        <td>`---- recording.mp4`</td>
+        <td>Video</td>
+        <td>Recorded audio/video of web conference meeting</td>
+      </tr>
+      <tr>
+        <td>`-- 12-30-2019.note`</td>
+        <td>[=Collection=]</td>
+        <td>Text stored in collection resource, subordinate data
+        and media included in collection</td>
+      </tr>
+      <tr>
+        <td>`---- img1.png`</td>
+        <td>Image</td>
+        <td>Inline picture included in text of note</td>
+      </tr>
+      <tr>
+        <td>`---- img2.png`</td>
+        <td>Image</td>
+        <td>Inline picture included in text of note</td>
+      </tr>
+      <tr>
+        <td>`---- recording.mp4`</td>
+        <td>Video</td>
+        <td>Recorded audio/video of web conference meeting</td>
+      </tr>
+      <tr>
+        <td>`-- 01-06-2020.note`</td>
+        <td>[=Collection=]</td>
+        <td>Text stored in collection resource, subordinate data
+        and media included in collection</td>
+      </tr>
+      <tr>
+        <td>`---- recording.mp4`</td>
+        <td>Video</td>
+        <td>Recorded audio/video of web conference meeting</td>
+      </tr>
+      <tr>
+        <td>`daily-metrics/`</td>
+        <td>[=Collection=]</td>
+        <td>Daily device reading for group research</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-01-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-02-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-03-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-04-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-05-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-06-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-07-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Daily reading</td>
+      </tr>
+      <tr>
+        <td>`daily-analysis/`</td>
+        <td>Collection</td>
+        <td>Daily analysis for group research</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-01-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Peer reviewed analysis for Jan 1</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-02-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Peer reviewed analysis for Jan 2</td>
+      </tr>
+      <tr>
+        <td>`-- Jan-03-2020`</td>
+        <td>[=Resource=]</td>
+        <td>Peer reviewed analysis for Jan 3</td>
+      </tr>
+  </table>
+</figure>
+
+### Read-only access to collection of resources ### {#inheritance-readonly}
+
+Bob has a weekly status meeting with the members of the `research`
+[=authorization group=].
+
+Bob is a diligent notetaker, which his colleagues appreciate. He's happy
+to act as the scribe and post notes after the meeting for sharing
+with his colleagues. However, he doesn't want the overhead of granting
+them permissions every week to each newly created note.
+
+Bob stores his notes from the weekly status meeting in the
+`weekly-status` [=collection=].
+
+He grants the `research` [=authorization group=] inherited [=read access=]
+to the `weekly-status` [=collection=], which means they can read specific
+details about the [=collection=], see a listing of the resource included
+in it (e.g. Bob's notes), and read the contents of each note. This is especially
+important because in this case each of Bob's notes are actually a
+[=collection=] themselves, capable of storing
+inline data or attachments, like pictures or videos.
+
+Because Bob grants inherited [=read access=] at the `weekly-status`
+[=collection=], it will apply to everything already in the [=collection=],
+as well as anything that will be added in the future.
+
+### Read-append access to collection resources ### {#inheritance-readappend}
+
+Every day, someone in the group is responsible for recording data from
+devices in the field, and storing those metrics in `daily-metrics`.
+
+Bob gives the `research` [=authorization group=] inherited [=append access=]
+to the `daily-metrics` [=collection=]. This allows anyone in the
+[=authorization group=] to see the contents of the [=collection=], and
+add new readings. They cannot modify readings after they are recorded. This
+provides confidence that readings are not manipulated after the fact.
+
+### Read-write access to collection resources ### {#inheritance-readwrite}
+
+The members of the `research` [=authorization group=] collaborate on a
+daily summary, where they analyze the day's field readings stored in
+`daily-summaries`, detailing any new, validated, or invalidated hypotheses.
+
+Bob gives the `research` [=authorization group=] inherited [=read access=]
+and [=write access=] to the `daily-summaries` [=collection=]. This allows
+anyone in the [=authorization group=] to see the contents of the
+[=collection=] and collaborate on a given day's summary. They can
+update the contents together until they're satisfied with the results.
+
+### Append-only access to collection resources ### {#inheritance-appendonly}
+
+Bob purchases a new field device that is able to automatically push daily
+metric readings in `daily-metrics`.
+
+Bob gives the new field device [=read access=] on the `daily-metrics`
+[=collection=] so it can access the list of resources inside, and
+inherited [=append access=] access to `daily-metrics`, which allows it to add
+to a daily-metric resource if it already exists, or create a new one
+if a member of the `research` [=authorization group=] hasn't made
+one for that day yet.
+
+### Control access to collection resources ### {#inheritance-control}
+
+Bob realizes that he needs some help administering `https://research.example`.
+He provides Carol with inherited [=read access=] and [=control access=] to
+`https://research.example/`, allowing her to read and manage permissions for
+all of the [=resources=] and [=collections=] included within it.
+
+### Default permissions on created resources ### {#inheritance-defaultcreated}
+
+Bob is granting inherited permissions to the `research`
+[=authorization group=] at the [=collection=] level for
+`daily-summaries` and `daily-metrics` that include the ability to add
+resources ([=write access=] / [=append access=]).
+
+It's important
+that the resources they create have the correct permissions assigned
+automatically, and he needs to be able to ensure this when he
+sets up their access. Otherwise, how can he be sure that the files
+aren't created with access that too liberal (e.g. public access), or too
+narrow to be usable within their context?
+
+Bob prefers to specify in granular fashion the default permissions of
+created resources that should be assigned to any [=authorizations=]
+with [=write access=] or [=append access=] on a given [=collection=].
+
+### Adding new subjects to inherited permissions ### {#inheritance-adding}
+
+Note: Adding a new subject means we are adding a new [=agent=],
+[=authorization group=], and/or [=application=]
+to the collection that isn't already part of an
+inherited [=authorization=]. Modifying permissions for those that exist in
+inherited [=authorizations=] is covered in [[#inheritance-modifying]].
+
+Bob has given the `research` [=authorization group=] inherited [=read access=]
+to the `weekly-status` [=collection=] (detailed in [[#inheritance-readonly]]).
+
+Celeste isn't a regular member of the `research` [=authorization group=],
+but happened to attend the weekly status meeting on December 30th, 2019.
+
+Bob would like to give Celeste inherited [=read access=] to **only** the
+note for the meeting she attended (`12-30-2019.note`),
+without affecting the access that he's given to the `research`
+[=authorization group=]. `research` has inherited [=read access=] on
+everything in the `weekly-status` [=collection=], and anything that is
+added to it.
+
+Effective access to `12-30-2019.note` should be that Celeste and the
+members of the `research` [=authorization group=] have inherited
+[=read access=]. Celeste has
+no other access to other resources in the `weekly-status` [=collection=],
+nor any that will be created later. The access for the `research`
+[=authorization group=] doesn't change.
+
+### Modifying inherited permissions for existing subjects ### {#inheritance-modifying}
+
+On the January 6th weekly status meeting, Bob and the `research`
+[=authorization group=] covered a research topic related to a commercial
+endeavor that Felicia is involved in. When Felicia saw this on the agenda,
+she informed Bob that it would be a conflict of interest for her to
+participate in the discussion.
+
+To ensure that there would be no semblance of conflict or impropriety,
+Bob and Felicia agreed that he would remove her access to the meeting
+note for that session - `01-06-2020.note`, which is included in the
+`weekly-status` [=collection=].
+
+Effective access to `01-06-2020.note` then becomes
+the inherited [=read access=] to the `research` [=authorization group=]
+(which Felicia is part of), minus Felicia.
+
+Felicia continues to have inherited [=read access=] to all other
+existing resources included in the `weekly-status` collection, and any new
+resources added to it. Inherited [=read access=] for others in the `research`
+[=authorization group=] is unchanged.
+
+### Forcing inherited permissions ### {#inheritance-forcing}
+
+As the primary administrator and [=resource controller=] of
+`https://resource.example`, Bob wants to ensure that
+he maintains ultimate control over the data inside.
+
+Even though he's given
+Carol permission to help him administer the [=resource server=], he wants
+to ensure that she's not able to cut out his access. He wants
+to always maintain a minimum of [=read access=] and [=control access=] to
+all of the resources in `https://resource.example`. This allows him to have
+visibility into everything, and change their permissions as needed.
+
+## Conditional access ## {#uc-conditional}
+
+Felicia works for an organization that conducts clinical trials, and
+leads a team that processes and synthesizes incoming data from
+trial participants, including participants in the `Acme` trial.
+
+The organization uses a [=resource server=] at `https://trials.example`
+as a data repository for all of their clinical trial data.
+Felicia is the [=resource controller=] of `https://trials.example`,
+managing authorized access to it for her colleagues, and a group of research
+interns.
+
+<figure>
+<figcaption>Contents of `/measurements` collection</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`/measurements/`</td>
+        <td>[=Collection=]</td>
+        <td>Measurements for all trial participants across all trials</td>
+      </tr>
+      <tr>
+        <td>`-- meas-123-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-431-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-974-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-153-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-755-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-644-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-031-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- meas-858-03052020`</td>
+        <td>[=Resource=]</td>
+        <td>Individual measurement</td>
+      </tr>
+      <tr>
+        <td>`-- ...`</td>
+        <td>-</td>
+        <td>Collection includes thousands of measurements</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+### Conditional access by time ### {#conditional-time}
+
+Erin is a research intern that will be assisting Felicia's team in processing
+and synthesizing data for the `Acme` trial. She will remain on the team
+until the end of her current academic term on June 30th, 2020.
+
+Felicia has granted Erin inherited [=read access=] and [=write access=] to the
+`measurements` [=collection=], which contains measurements for all trial
+participants, across all trials.
+
+Felicia adds a time-based condition for Erin which
+states that her access to `measurements` is only valid through June 30th, 2020.
+
+Erin will have no access to `measurements` after June 30th, 2020.
+
+### Conditional access by tag ### {#conditional-tag}
+
+As a research intern, Erin is responsible for processing all unprocessed
+measurements for the `Acme` trial in `measurements`. However, there
+are measurements for other trials in the `measurements` [=collection=],
+as well as measurements that have already been processed.
+
+* Each measurement in `measurements` is tagged with the trial it belongs to
+* All measurements for the `Acme` trial are tagged with `Acme`
+* When a new measurement is processed, it is tagged as `processed`
+
+Felicia authorizes Erin to have inherited [=read access=] and [=write access=]
+to `measurements`, with a condition that the [=resources=]
+must:
+
+* **include** the `Acme` [=tag=]
+* **exclude** the `processed` [=tag=]
+
+This allows Erin to work with new measurements for the `Acme` trial without
+being exposed to measurements from other trials, or already processed
+measurements from the `Acme` trial.
+
+### Conditional access by filter ### {#conditional-filter}
+
+Felicia has been able to limit the scope of the [=resources=] that Erin
+can access to unprocessed entries for the `Acme` trial, which is all that
+she needs to perform her duties. However, each measurement [=resource=] also
+contains personally identifiable information (PII) for the trial participant
+associated with the measurement. Felicia needs to ensure that Erin cannot
+access that PII.
+
+Felicia authorizes Erin to access a reduced set of fields within the
+measurement [=resources=]. When Erin retrieves a measurement, the
+response will exclude the fields containing PII.
+
+### Conditional control boundaries ### {#conditional-control}
+
+Megan works on Felicia's team. Felicia would like Megan to be responsible
+for managing access to trial data for the research interns assigned to
+the `Acme` project. Felicia doesn't want to give Megan more permission than
+she needs to do that work.
+
+Felicia grants Megan inherited [=control access=] to `measurements`,
+with conditions that stipulate:
+
+* she only has effective [=control access=] of [=resources=] that include
+    the `Acme` [=tag=] within the `measurements` [=collection=].
+* she can only create or change [=authorizations=]
+    targeting the `measurements` [=collection=] where
+    [=agents=] are included in the `interns` [=authorization group=].
+
+## Permissioning Applications  ## {#uc-applications}
+
+Oscar stores all of his data in a private [=resource server=] at
+`https://oscar.example`, where he is the [=resource controller=].
+
+He stores a wide spectrum of things, from personal financial data to
+collaborative projects that he works on with his friends and colleagues.
+
+As the [=resource controller=] for
+`https://oscar.example`, any application that
+operates with or on behalf of Oscar's [=identity=] would operate with
+the same unfettered access that Oscar enjoys.
+
+It is important to Oscar that he can include [=applications=]
+in his [=authorizations=] to limit this unfettered access.
+
+For example, to constrain Oscar's access to `https://oscar.example` to
+only cases where an application he trusts is involved:
+
+* Oscar **with the** `trusted-applications` [=authorization group=] has
+    [=read access=], [=write access=], and [=control access=] to
+    `https://oscar.example`
+
+Following that, per [[#inheritance-modifying]], he could extend this default
+for the `health` [=collection=] to include `healthapp`:
+
+* Oscar **with the** `trusted-applications` [=authorization group=] AND
+    `healthapp` has [=read access=], [=write access=], and [=control access=]
+    to the `health` [=collection=]
+
+
+## Privacy ## {#uc-privacy}
+
+### Limiting access to who else is permitted ### {#uc-whopermitted}
+
+Alice is interviewing for a job with Carol. Alice is also interviewing for a
+job with Oscar, Carol's direct competitor.
+
+Alice has given Carol and Oscar [=read access=] to her `resume`.
+
+Neither Carol or Oscar would appreciate knowing that Alice is interviewing
+with both of them, so it's important neither Carol or Oscar know who else
+Alice has shared her `resume` with, despite having [=read access=] to it.
+
+### Limiting access to other authorization conditions ### {#uc-historyofchanges}
+
+As an extension of [[#uc-whopermitted]], it is also important to Alice that
+that neither Carol nor Oscar be able to discern other characteristics of
+the [=authorizations=] or conditions associated
+with Alice's `resume`.
+
+For example, if the data Carol and Oscar saw in the resume was
+[[#conditional-filter|filtered]] to only show a certain subset of her
+background, she wouldn't want them to know that they were only seeing
+a filtered view.
+
+## Trust ## {#uc-trust}
+
+### Only trust certain issuers of identity ### {#uc-trustedissuers}
+
+Carol has a blog, and allows any [=authenticated agent=]
+(e.g. [[WEBID]], [[DID]]) to comment on her blog posts.
+
+Unfortunately, anyone can setup an identity provider, so Carol would
+like to be able to recognize credentials issued from trustworthy
+identity providers.
+
+## Validation ## {#uc-validation}
+
+Juan likes to manage his [=authorizations=] manually. Every
+once in a while, Juan makes a typo, or accidentally saves the [=authorization=]
+in an incomplete state.
+
+Juan runs into trouble on systems where the Web Access Control
+implementation doesn't properly validate,
+most often resulting in Juan getting locked out of the [=resource=] and
+needing administrator assistance to recover.
+
+## Capabilities ## {#uc-capabilities}
+
+### Possession of a verifiable credential ### {#capabilities-vc}
+
+Oscar has a medical condition that causes random and very serious
+seizures several times per year. Wherever Oscar is, he needs to be
+rushed immediately to the closest hospital in an ambulance.
+
+Oscar's government has recently rolled out a digital credential system
+for health care professionals, which is like a digital id card for
+doctors and care facilities that can be cryptographically verified.
+
+Oscar has an emergency care record at `https://oscar.example/emergency`, and
+Oscar's authorization system at `https://oscar.example` supports a
+verifiable credential [=capability=].
+
+Oscar has set permissions on `https://oscar.example/emergency` that grants
+someone in possession of a verifiable medical credential to have inherited
+[=read access=] to the contents. This gives them just enough background on
+his condition to treat him properly.
+
+### Possession of a link ### {#capabilities-link}
+
+Bob is about to give a confidential presentation to a group of his
+colleagues. His presentation is stored on his personal [=resource server=] at
+`https://bob.example/presentation`.
+
+Bob is having trouble hooking his laptop up to the projector, and
+needs to present in just a few minutes. Anne presented before Bob,
+and offers to bring the presentation up for him on her system.
+
+Unfortunately, Anne doesn't have an [=identity=] ready to go that he can
+authorize. Luckily, his authorization system supports a link-based
+[=capability=].
+
+Bob quickly creates an [=authorization=] for
+`https://bob.example/presentation`
+that allows anyone in possession of a specially generated link to access
+the document with [=read access=]. He sets it to
+[[#conditional-time|expire]] in three hours. Bob gives the link to Anne
+and the presentation goes off perfectly.
 
 Requirements {#requirements}
-=====================
+================================================================================
+
+Issue: Populate requirements based on established use cases.
 
 ## Example Category ## {#example-category}
 
 ### This is an example requirement ### {#example-requirement}
 
-Some detail on the example requirement.
+Assert: Related Use Cases: [[#uc-basic]]
 
-Assert: Related Use Cases: [[#example-usecase]]
+Limitations of Legacy Web Access Control {#limitations}
+================================================================================
 
-Use Cases {#usecases}
-=====================
+[Legacy Web Access Control](https://github.com/solid/web-access-control-spec)
+does not satisfy the following use cases:
 
-## Example Use Case ## {#example-usecase}
-
-This is where we explain the use case.
+* [[#inheritance-adding]]
+* [[#inheritance-modifying]]
+* [[#inheritance-forcing]]
+* [[#conditional-time]]
+* [[#conditional-tag]]
+* [[#conditional-filter]]
+* [[#conditional-control]]
+* [[#uc-applications]]
+* [[#uc-trustedissuers]]
+* [[#uc-validation]]
+* [[#capabilities-vc]]
+* [[#capabilities-link]]
 
 Definitions {#definitions}
-=====================
+================================================================================
 
-A <dfn>Definition</dfn> can be defined here and then referenced throughout
-the rest of the document.
+All definitions as stated below should be considered in the context of
+Web Access Control, whether explicitly stated or not.
+
+An <dfn>agent</dfn> is a distinct individual, group, organization, or piece
+of software with an [=identity=] that can be strongly authenticated.
+
+An <dfn>identity</dfn> is used to uniquely identify a given [=agent=],
+represented by a unique [[URI]]. Examples of compatible identity systems
+include [[WEBID]] and [[DID]].
+
+An <dfn>authenticated agent</dfn> is an [=agent=] that has proven control
+of a given [=identity=].
+
+An <dfn>application</dfn> is a piece of software that interfaces with a
+[=resource server=], which may operate autonomously as an
+[=authenticated agent=], or in piloted-fashion by another
+[=authenticated agent=].
+
+A <dfn>resource controller</dfn> is an [=agent=] with fully permissioned
+access and control over one or more [=resources=] residing on a
+[=resource server=] on the Web.
+
+A <dfn>resource server</dfn> is a web server that provides an
+interface to make [=resources=] available to [=agents=] and [=applications=],
+with the ability to secure access to those [=resources=]
+through associated [=authorizations=].
+
+A <dfn>resource</dfn> is the target of an HTTP request identified by a [[URI]],
+as defined in [[!RFC7231]].
+
+A <dfn>collection</dfn> is a [=resource=] that is representative of a set
+of other [=resources=], which may include other [=collections=].
+
+A <dfn>tag</dfn> is a type of metadata associated with a [=resource=]
+for classification or identification.
+
+An <dfn>authorization</dfn> is a [=resource=] that controls access to
+one or more [=resources=].
+
+An <dfn>authorization group</dfn> is a [=resource=] that represents
+some combination of [=agents=], [=applications=], and [=authorization groups=].
+
+A <dfn>capability</dfn> is an object an [=agent=] must possess to be
+permitted to access a [=resource=].
+
+An <dfn>access mode</dfn> denotes a class of operations that an
+[=agent=] and/or [=application=] can perform on one or more [=resources=].
+
+<dfn>Read access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] the ability to read, but not modify
+a [=resources=].
+
+<dfn>Write access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] the ability to create, update, or delete a
+[=resource=].
+
+<dfn>Append access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] to add data to a resource, but not modify
+any data that already exists.
+
+<dfn>Control access</dfn> is an [=access mode=] that allows
+[=agents=] and/or [=applications=] to view and modify [=authorizations=]
+associated with a [=resource=].
+
+<pre class="biblio">
+{
+  "webid": {
+    "href": "https://www.w3.org/2005/Incubator/webid/spec/identity/",
+    "title": "WebID 1.0",
+    "authors": [
+      "Tim Berners-Lee",
+      "Henry Story",
+      "Andrei Sambra"
+    ]
+  },
+  "did": {
+    "href": "https://www.w3.org/TR/did-core/",
+    "title": "Decentralized Identifiers (DIDs) v1.0",
+    "authors": [
+      "Drummond Reed",
+      "Manu Sporney",
+      "Dave Longley",
+      "Christopher Allen",
+      "Ryan Grant",
+      "Markus Sabadello"
+    ]
+  }
+}
+</pre>
