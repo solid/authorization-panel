@@ -802,6 +802,20 @@ For example, if the data Carol and Oscar saw in the resume was
 background, she wouldn't want them to know that they were only seeing
 a filtered view.
 
+### High Confidentiality Scenario ### {#uc-confidential} 
+
+A service with very high security and confidentiality requirements must publish 
+resources without the URL for each resource leaking information about it's content.
+This service publishes all these resources at a domain with each document named
+by a secure hashing under one root container. Some of these resources at those
+hashes represent containers others normal documents. Only clients who have the
+right access can tell. 
+
+This service would like to be able to use the same tools on those resources
+as it does on its public facing Solid Web site, where it uses nice humanly readable
+names for its resources.
+
+
 ## Trust ## {#uc-trust}
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}
