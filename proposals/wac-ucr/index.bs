@@ -314,6 +314,16 @@ the output of their shared work. She gives him [=control access=] to
 `project1` so that he can help her invite other colleagues from the past to
 add [=resources=] to it.
 
+### Public commenting for extended network ### {#collection-foaf}
+
+Alice has a blog and allows comments on her posts. Ideally, everyone's
+comments would be immediately visible, but she has previously been overwhelmed
+by spammers. So now she would like to try a compromise: allow the posts
+from her extended social network (friend of her friends, colleagues and
+family)  to be immediately visible. Other posts should only be visible and
+editable to those who wrote them. They can then be viewable to the world when
+they get reviewed. 
+
 ## Inheritance ## {#uc-inheritance}
 
 Bob is leading a group of colleagues doing field research. This group
