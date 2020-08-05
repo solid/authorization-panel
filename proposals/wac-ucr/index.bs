@@ -802,6 +802,29 @@ For example, if the data Carol and Oscar saw in the resume was
 background, she wouldn't want them to know that they were only seeing
 a filtered view.
 
+### Minimal Credential Disclosure ### {#uc-minimalcredentials1}
+
+To continue with the  [[#uc-whopermitted]] example, Oscar now wants to
+view Alice's `resume` which is not publically accessible. To gain access,
+he needs to authenticate with the right credentials. Oscar does not want
+to try out each one of his credentials one by one until he gains access,
+as that would both be slow and allow Alice to connect his different personas.
+
+### Minimal Credentials Disclosure in an Open World
+
+Alice enjoys using her Solid Blog reader that automatically discovers the
+blogs of all her family, friends and colleagues as well as allow her to follow 
+the blogs she finds on the internet.
+
+This Blog reader allows her to add comments on any post she finds. Most
+Blogs have restrictions on who can post to avoid spam. Many blogs in Alice's
+network give her direct access, but they don't all know her under the same
+identitfier. Some provide access via social network relationships, such
+as being the friend of a friend of the Blog's author. Alice would like to
+know before she writes a comment if she can use one of her credentials and
+if more than one is applicable to choose the appropriate one. She wants
+to do this without needing to try out each one of her Credentials.
+
 ## Trust ## {#uc-trust}
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}
