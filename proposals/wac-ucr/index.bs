@@ -746,6 +746,17 @@ with conditions that stipulate:
     targeting the `measurements` [=collection=] where
     [=agents=] are included in the `interns` [=authorization group=].
 
+### Conditional access by action ### {#conditional-action}
+
+The University has a widely used blog for discussion with research teams
+across the world. Researchers who post comments often want to correct
+errors after publication. But this feature can lead to misunderstandings
+if edited after someone else has commented on the comment. They institute
+the following policy: their authors can edit comments for a minimum of 5
+minutes and only until these are themselves commented. After that point, the
+post will be in read-only access mode.
+
+
 ## Permissioning Applications  ## {#uc-applications}
 
 Oscar stores all of his data in a private [=resource server=] at
@@ -775,7 +786,6 @@ for the `health` [=collection=] to include `healthapp`:
 * Oscar **with the** `trusted-applications` [=authorization group=] AND
     `healthapp` has [=read access=], [=write access=], and [=control access=]
     to the `health` [=collection=]
-
 
 ## Privacy ## {#uc-privacy}
 
