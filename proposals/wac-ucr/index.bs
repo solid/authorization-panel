@@ -296,7 +296,7 @@ He can't see the contents of the [=resources=], or remove anything in the list.
 That's fine because he only needs to add the [=resources=] that aren't
 included.
 
-### Read-append-delete access to a Collection ### {#collection-readappenddelete}
+### Read-append-write access to a Collection ### {#collection-readappendwrite}
 
 Note: Despite this section's focus on permissions specific to the
 collection resource itself, this use case also incorporates inherited read
@@ -313,7 +313,7 @@ permissions:
 * [=Append access=] to the `comments` [=collection=], which allows them to
     add their own comments, but not change anyone else's including their
     own after the comments have been submitted.
-* Ability to delete any resources in `comments` that they
+* Ability to write (edit or delete) any resources in `comments` that they
     have created themselves, but none created by anyone else.
 
 ### Append-only access to a Collection ### {#collection-appendonly}
@@ -911,6 +911,7 @@ does not satisfy the following use cases:
 * [[#inheritance-adding]]
 * [[#inheritance-modifying]]
 * [[#inheritance-forcing]]
+* [[#collection-readappendwrite]]
 * [[#conditional-time]]
 * [[#conditional-tag]]
 * [[#conditional-filter]]
