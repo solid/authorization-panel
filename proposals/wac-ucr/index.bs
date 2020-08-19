@@ -798,8 +798,9 @@ authentication. She could present one of many verifiable credentials (as per
 a drivers licence, two passports, a proof that she is over 18, a credential
 for her college and her university diploma, three club memberships as well
 as her FBI credential.  The resource only requires proof of being over 18.
-Her client's credential manager should be able to see this and select 
-the credential revealing the least amount of information needed to access the resource.
+Her client's credential manager should see this and select 
+the credential revealing the least amount of information needed to access 
+the resource.
 
 ## Trust ## {#uc-trust}
 
