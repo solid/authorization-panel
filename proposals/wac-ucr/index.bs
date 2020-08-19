@@ -790,40 +790,16 @@ Neither Carol or Oscar would appreciate knowing that Alice is interviewing
 with both of them, so it's important neither Carol or Oscar know who else
 Alice has shared her `resume` with, despite having [=read access=] to it.
 
-### Limiting access to other authorization conditions ### {#uc-historyofchanges}
+### Minimal Credential Disclosure ### {#uc-minimalcredentials}
 
-As an extension of [[#uc-whopermitted]], it is also important to Alice that
-that neither Carol nor Oscar be able to discern other characteristics of
-the [=authorizations=] or conditions associated
-with Alice's `resume`.
-
-For example, if the data Carol and Oscar saw in the resume was
-[[#conditional-filter|filtered]] to only show a certain subset of her
-background, she wouldn't want them to know that they were only seeing
-a filtered view.
-
-### Minimal Credential Disclosure ### {#uc-minimalcredentials1}
-
-To continue with the  [[#uc-whopermitted]] example, Oscar now wants to
-view Alice's `resume` which is not publically accessible. To gain access,
-he needs to authenticate with the right credentials. Oscar does not want
-to try out each one of his credentials one by one until he gains access,
-as that would both be slow and allow Alice to connect his different personas.
-
-### Minimal Credentials Disclosure in an Open World
-
-Alice enjoys using her Solid Blog editor (BlogEd) that automatically discovers the
-blogs of all her family, friends and colleagues as well as allow her to follow 
-the blogs she finds on the internet.
-
-BlogEd allows her to add comments on any post she finds. Most
-blogs have restrictions on who can post to avoid spam. Alice has direct
-access to many of them, but they don't all know her under the same
-identitfier. Some provide access via social network relationships, such
-as being the friend of a friend of the Blog's author. Alice would like to
-know before she writes a comment if she can use one of her credentials and
-if more than one is applicable, to allow her to choose the appropriate one. 
-She wants to do this without needing to try out each one of her Credentials.
+Following a link on a blog post, Alice comes to a resource that requires
+authentication. She could present one of many verifiable credentials (as per 
+[[#capabilities-vc]]): three self-signed WebID credentials, four bank accounts,
+a drivers licence, two passports, a proof that she is over 18, a credential
+for her college and her university diploma, three club memberships as well
+as her FBI credential.  The resource only requires proof of being over 18.
+Her client's credential manager should be able to see this and select 
+the credential revealing the least amount of information needed to access the resource.
 
 ## Trust ## {#uc-trust}
 
