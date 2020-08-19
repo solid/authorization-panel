@@ -129,8 +129,8 @@ She creates a `recommendations` resource, and grants [=append access=] to the
 `contacts` [=authorization group=], which represents every professional
 contact in her virtual rolodex. She sends a mass-mail to `contacts`,
 with a link to an app they can use to submit a recommendation, which will be
-appended to `recommendations`. Since they only have [=append access=],
-and no [=read access=], they can only add to that `recommendations`, they
+appended to `recommendations`. Since they only have [=append access=]
+and not [=read access=], they can add to `recommendations` but they
 cannot see recommendations that have already been added.
 
 ### Removing access ### {#basic-removing}
@@ -235,6 +235,11 @@ https://alice.example/</figcaption>
         <td>Storage for descriptions of various different job opportunities
         Alice is interested in</td>
       </tr>
+      <tr>
+        <td>`comments/`</td>
+        <td>[=Collection=]</td>
+        <td>Storage of comments on Alice's portfolio</td>
+      </tr>
     </tbody>
   </table>
 </figure>
@@ -290,6 +295,26 @@ and add new [=resources=] to it.
 He can't see the contents of the [=resources=], or remove anything in the list.
 That's fine because he only needs to add the [=resources=] that aren't
 included.
+
+### Read-append-write access to a Collection ### {#collection-readappendwrite}
+
+Note: Despite this section's focus on permissions specific to the
+collection resource itself, this use case also incorporates inherited read
+access to better illustrate the scenario.
+
+Over time Alice has asked her colleagues to leave comments on her `portfolio`,
+which are stored in the `comments` [=collection=].
+
+When she asks a colleague to leave a comment, she gives them the following
+permissions:
+
+* Inherited [=read access=] to the `comments` [=collection=]
+    so they can list and read existing comments (including their own).
+* [=Append access=] to the `comments` [=collection=], which allows them to
+    add their own comments, but not change anyone else's including their
+    own after the comments have been submitted.
+* Ability to write (edit or delete) any resources in `comments` that they
+    have created themselves, but none created by anyone else.
 
 ### Append-only access to a Collection ### {#collection-appendonly}
 
@@ -886,6 +911,7 @@ does not satisfy the following use cases:
 * [[#inheritance-adding]]
 * [[#inheritance-modifying]]
 * [[#inheritance-forcing]]
+* [[#collection-readappendwrite]]
 * [[#conditional-time]]
 * [[#conditional-tag]]
 * [[#conditional-filter]]
