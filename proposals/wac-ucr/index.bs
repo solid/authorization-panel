@@ -676,6 +676,16 @@ interns.
         <td>-</td>
         <td>Collection includes thousands of measurements</td>
       </tr>
+      <tr>
+        <td>`/reports/`</td>
+        <td>[=Collection=]</td>
+        <td>Reports prepared for senior team members</td>
+      </tr>
+      <tr>
+        <td>`-- report-1`</td>
+        <td>[=Resource=]</td>
+        <td>Individual report prepared for senior team members</td>
+      </tr>
     </tbody>
   </table>
 </figure>
@@ -716,6 +726,32 @@ must:
 This allows Erin to work with new measurements for the `Acme` trial without
 being exposed to measurements from other trials, or already processed
 measurements from the `Acme` trial.
+
+### Conditional access by relationship ### {#conditional-relationship}
+
+Felicia is responsible for preparing and sharing internal reports for
+senior research team members. These reports include
+direct links to source
+data, including individual measurement [=resources=] in the `measurements`
+[=collection=].
+
+Senior research team members do not have regular access to `measurements`.
+They only access individual [=resources=] in `measurements` that are linked
+through these reports. Each report only links to a small subset of individual
+measurements. Reports are often amended to reference additional measurements
+over time.
+
+When Felicia prepares a new report `/reports/report-1`, she authorizes only
+the senior research team members receiving the report to have
+inherited [=read access=] to
+`measurements`, with a condition that the [=resources=] must:
+
+* **include** a link from `/reports/report-1`
+    with a link type of `hasMeasurement`
+
+This ensures that the senior research team members will be able to read
+measurements referenced by `/reports/report-1`, or any references added to it
+later, but no others.
 
 ### Conditional access by filter ### {#conditional-filter}
 
