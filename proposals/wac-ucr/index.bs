@@ -834,7 +834,7 @@ a UUID naming scheme.
        <tr>
         <td>`aa91d049-9997-48c8-b115-2217c3c9c0d5`</td>
         <td>[=Resource=]</td>
-        <td>Bob's notes for the meeting stored in above collection</td>
+        <td>Agent Alice's notes for the meeting stored in above collection</td>
       </tr>
       <tr>
         <td>`6b063d07-9f25-4692-ba3d-dff02f200028`</td>
@@ -844,7 +844,7 @@ a UUID naming scheme.
      <tr>
         <td>`4376ed72-37d8-4432-8dce-7a796f4bdd66`</td>
         <td>[=Collection=]</td>
-        <td>Collection for online meeting 14 September 2025</td>
+        <td>Collection for 14 September 2025 online meeting</td>
       </tr>
       <tr>
         <td>`796d8d67-3e88-483f-b1c1-d4eba63827e3`</td>
@@ -854,23 +854,23 @@ a UUID naming scheme.
       <tr>
         <td>`b7123ed7-3861-4b37-9b53-cf9bd730fafe`</td>
         <td>[=Collection=]</td>
-        <td>Subcollection of 15 Sept Collection for data dumpts</td>
+        <td>Subcollection of 14 Sept Collection for data dumps</td>
       </tr>
       <tr>
         <td>`2d97f889-8f7d-43fb-83f8-1437b05896ba`</td>
         <td>[=Resource=]</td>
-        <td>Agent Smith's data stored in previous collection</td>
+        <td>Agent Smith's data stored in in `b7123ed7-3861-4b37-9b53-cf9bd730fafe` collection</td>
       </tr>
       <tr>
         <td>`17a63d0f-b99f-4268-929d-5a5fe5f5dd56`</td>
         <td>[=Resource=]</td>
-        <td>Agent Bob's data stored in same collection as Agent Smith's</td>
+        <td>Agent Alice's data stored in the same Collection as Agent Smith's</td>
       </tr>
   </table>
 </figure>
 
 
-Some of the UUID represent containers and others various types
+Some of the UUID resources represent collections and others various types
 of content. Containers can contain other containers as usual, but this cannot
 be deduced from the name. Only clients that are authorized can tell from the
 returned descriptions what a container contains and what types of content are
