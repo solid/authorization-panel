@@ -871,10 +871,9 @@ a UUID naming scheme.
 
 
 Some of the UUID resources represent collections and others various types
-of content. Containers can contain other containers as usual, but this cannot
+of content. Collections can contain other collections as usual, but this cannot
 be deduced from the name. Only clients that are authorized can tell from the
-returned descriptions what a container contains and what types of content are
-available.
+returned descriptions what the type of the resource is or what a container contains.
 
 The service would like to be able to use the same applications on those resources
 as it does on its public facing Solid Web site, where it uses humanly readable
