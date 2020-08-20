@@ -744,10 +744,9 @@ over time.
 When Felicia prepares a new report `/reports/report-1`, she authorizes only
 the senior research team members receiving the report to have
 inherited [=read access=] to
-`measurements`, with a condition that the [=resources=] must:
-
-* **include** a link from `/reports/report-1`
-    with a link type of `hasMeasurement`
+`measurements`, with a condition that a given meansurement must be
+related to `/reports/report-1` by an `ex:hasMeasurement` predicate for
+that access to be permitted.
 
 This ensures that the senior research team members will be able to read
 measurements referenced by `/reports/report-1`, or any references added to it
