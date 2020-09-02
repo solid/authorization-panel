@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="3043a99e702d31fdc48bd50216de9d456e439ca7" name="document-revision">
+  <meta content="9aedfd32c01a8159486c2a49d07c1c7c3afa379c" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1487,6 +1487,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
         <li><a href="#collection-readappendwrite"><span class="secno">2.2.4</span> <span class="content">Read-append-write access to a Collection</span></a>
         <li><a href="#collection-appendonly"><span class="secno">2.2.5</span> <span class="content">Append-only access to a Collection</span></a>
         <li><a href="#collection-control"><span class="secno">2.2.6</span> <span class="content">Control access to a Collection</span></a>
+        <li><a href="#collection-foaf"><span class="secno">2.2.7</span> <span class="content">Public commenting for extended network</span></a>
        </ol>
       <li>
        <a href="#uc-inheritance"><span class="secno">2.3</span> <span class="content">Inheritance</span></a>
@@ -1755,6 +1756,14 @@ lookup their information.</p>
    <p>Alice trusts Bob with the contents of the <code>project1</code> collection, since it’s
 the output of their shared work. She gives him <a data-link-type="dfn" href="#control-access" id="ref-for-control-access">control access</a> to <code>project1</code> so that he can help her invite other colleagues from the past to
 add <a data-link-type="dfn" href="#resource" id="ref-for-resource①⑥">resources</a> to it.</p>
+   <h4 class="heading settled" data-level="2.2.7" id="collection-foaf"><span class="secno">2.2.7. </span><span class="content">Public commenting for extended network</span><a class="self-link" href="#collection-foaf"></a></h4>
+   <p>Alice has a blog and allows comments on her posts. Ideally, everyone’s
+comments would be immediately visible, but she has previously been overwhelmed
+by spammers. So now she would like to try a compromise: allow the posts
+from her extended social network (friend of her friends, colleagues and
+family)  to be immediately visible. Other posts should only be visible and
+editable to those who wrote them. They can then be viewable to the world when
+they get reviewed.</p>
    <h3 class="heading settled" data-level="2.3" id="uc-inheritance"><span class="secno">2.3. </span><span class="content">Inheritance</span><a class="self-link" href="#uc-inheritance"></a></h3>
    <p>Bob is leading a group of colleagues doing field research. This group
 includes Charles, Felicia, Juan, and Irene.</p>
