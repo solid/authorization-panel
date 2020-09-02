@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="7c44e9ca877a12270b0ca1543a03d9e2b8d43297" name="document-revision">
+  <meta content="3043a99e702d31fdc48bd50216de9d456e439ca7" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1506,9 +1506,10 @@ dfn > a.self-link::before      { content: "#"; }</style>
        <ol class="toc">
         <li><a href="#conditional-time"><span class="secno">2.4.1</span> <span class="content">Conditional access by time</span></a>
         <li><a href="#conditional-tag"><span class="secno">2.4.2</span> <span class="content">Conditional access by tag</span></a>
-        <li><a href="#conditional-filter"><span class="secno">2.4.3</span> <span class="content">Conditional access by filter</span></a>
-        <li><a href="#conditional-control"><span class="secno">2.4.4</span> <span class="content">Conditional control boundaries</span></a>
-        <li><a href="#conditional-action"><span class="secno">2.4.5</span> <span class="content">Conditional access by action</span></a>
+        <li><a href="#conditional-relationship"><span class="secno">2.4.3</span> <span class="content">Conditional access by relationship</span></a>
+        <li><a href="#conditional-filter"><span class="secno">2.4.4</span> <span class="content">Conditional access by filter</span></a>
+        <li><a href="#conditional-control"><span class="secno">2.4.5</span> <span class="content">Conditional control boundaries</span></a>
+        <li><a href="#conditional-action"><span class="secno">2.4.6</span> <span class="content">Conditional access by action</span></a>
        </ol>
       <li><a href="#uc-applications"><span class="secno">2.5</span> <span class="content">Permissioning Applications</span></a>
       <li>
@@ -2011,13 +2012,21 @@ interns.</p>
        <td><code>-- ...</code>
        <td>-
        <td>Collection includes thousands of measurements
+      <tr>
+       <td><code>/reports/</code>
+       <td><a data-link-type="dfn" href="#collection" id="ref-for-collection④⑦">Collection</a>
+       <td>Reports prepared for senior team members
+      <tr>
+       <td><code>-- report-1</code>
+       <td><a data-link-type="dfn" href="#resource" id="ref-for-resource③⑥">Resource</a>
+       <td>Individual report prepared for senior team members
     </table>
    </figure>
    <h4 class="heading settled" data-level="2.4.1" id="conditional-time"><span class="secno">2.4.1. </span><span class="content">Conditional access by time</span><a class="self-link" href="#conditional-time"></a></h4>
    <p>Erin is a research intern that will be assisting Felicia’s team in processing
 and synthesizing data for the <code>Acme</code> trial. She will remain on the team
 until the end of her current academic term on June 30th, 2020.</p>
-   <p>Felicia has granted Erin inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②④">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑤">write access</a> to the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑦">collection</a>, which contains measurements for all trial
+   <p>Felicia has granted Erin inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②④">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑤">write access</a> to the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑧">collection</a>, which contains measurements for all trial
 participants, across all trials.</p>
    <p>Felicia adds a time-based condition for Erin which
 states that her access to <code>measurements</code> is only valid through June 30th, 2020.</p>
@@ -2025,7 +2034,7 @@ states that her access to <code>measurements</code> is only valid through June 3
    <h4 class="heading settled" data-level="2.4.2" id="conditional-tag"><span class="secno">2.4.2. </span><span class="content">Conditional access by tag</span><a class="self-link" href="#conditional-tag"></a></h4>
    <p>As a research intern, Erin is responsible for processing all unprocessed
 measurements for the <code>Acme</code> trial in <code>measurements</code>. However, there
-are measurements for other trials in the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑧">collection</a>,
+are measurements for other trials in the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑨">collection</a>,
 as well as measurements that have already been processed.</p>
    <ul>
     <li data-md>
@@ -2035,7 +2044,7 @@ as well as measurements that have already been processed.</p>
     <li data-md>
      <p>When a new measurement is processed, it is tagged as <code>processed</code></p>
    </ul>
-   <p>Felicia authorizes Erin to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑤">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑥">write access</a> to <code>measurements</code>, with a condition that the <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑥">resources</a> must:</p>
+   <p>Felicia authorizes Erin to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑤">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑥">write access</a> to <code>measurements</code>, with a condition that the <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑦">resources</a> must:</p>
    <ul>
     <li data-md>
      <p><strong>include</strong> the <code>Acme</code> <a data-link-type="dfn" href="#tag" id="ref-for-tag">tag</a></p>
@@ -2045,17 +2054,35 @@ as well as measurements that have already been processed.</p>
    <p>This allows Erin to work with new measurements for the <code>Acme</code> trial without
 being exposed to measurements from other trials, or already processed
 measurements from the <code>Acme</code> trial.</p>
-   <h4 class="heading settled" data-level="2.4.3" id="conditional-filter"><span class="secno">2.4.3. </span><span class="content">Conditional access by filter</span><a class="self-link" href="#conditional-filter"></a></h4>
-   <p>Felicia has been able to limit the scope of the <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑦">resources</a> that Erin
+   <h4 class="heading settled" data-level="2.4.3" id="conditional-relationship"><span class="secno">2.4.3. </span><span class="content">Conditional access by relationship</span><a class="self-link" href="#conditional-relationship"></a></h4>
+   <p>Felicia is responsible for preparing and sharing internal reports for
+senior research team members. These reports include
+direct links to source
+data, including individual measurement <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑧">resources</a> in the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⓪">collection</a>.</p>
+   <p>Senior research team members do not have regular access to <code>measurements</code>.
+They only access individual <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑨">resources</a> in <code>measurements</code> that are linked
+through these reports. Each report only links to a small subset of individual
+measurements. Reports are often amended to reference additional measurements
+over time.</p>
+   <p>When Felicia prepares a new report <code>/reports/report-1</code>, she authorizes only
+the senior research team members receiving the report to have
+inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑥">read access</a> to <code>measurements</code>, with a condition that a given meansurement must be
+related to <code>/reports/report-1</code> by an <code>ex:hasMeasurement</code> predicate for
+that access to be permitted.</p>
+   <p>This ensures that the senior research team members will be able to read
+measurements referenced by <code>/reports/report-1</code>, or any references added to it
+later, but no others.</p>
+   <h4 class="heading settled" data-level="2.4.4" id="conditional-filter"><span class="secno">2.4.4. </span><span class="content">Conditional access by filter</span><a class="self-link" href="#conditional-filter"></a></h4>
+   <p>Felicia has been able to limit the scope of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④⓪">resources</a> that Erin
 can access to unprocessed entries for the <code>Acme</code> trial, which is all that
-she needs to perform her duties. However, each measurement <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑧">resource</a> also
+she needs to perform her duties. However, each measurement <a data-link-type="dfn" href="#resource" id="ref-for-resource④①">resource</a> also
 contains personally identifiable information (PII) for the trial participant
 associated with the measurement. Felicia needs to ensure that Erin cannot
 access that PII.</p>
    <p>Felicia authorizes Erin to access a reduced set of fields within the
-measurement <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑨">resources</a>. When Erin retrieves a measurement, the
+measurement <a data-link-type="dfn" href="#resource" id="ref-for-resource④②">resources</a>. When Erin retrieves a measurement, the
 response will exclude the fields containing PII.</p>
-   <h4 class="heading settled" data-level="2.4.4" id="conditional-control"><span class="secno">2.4.4. </span><span class="content">Conditional control boundaries</span><a class="self-link" href="#conditional-control"></a></h4>
+   <h4 class="heading settled" data-level="2.4.5" id="conditional-control"><span class="secno">2.4.5. </span><span class="content">Conditional control boundaries</span><a class="self-link" href="#conditional-control"></a></h4>
    <p>Megan works on Felicia’s team. Felicia would like Megan to be responsible
 for managing access to trial data for the research interns assigned to
 the <code>Acme</code> project. Felicia doesn’t want to give Megan more permission than
@@ -2064,12 +2091,12 @@ she needs to do that work.</p>
 with conditions that stipulate:</p>
    <ul>
     <li data-md>
-     <p>she only has effective <a data-link-type="dfn" href="#control-access" id="ref-for-control-access④">control access</a> of <a data-link-type="dfn" href="#resource" id="ref-for-resource④⓪">resources</a> that include
-the <code>Acme</code> <a data-link-type="dfn" href="#tag" id="ref-for-tag②">tag</a> within the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑨">collection</a>.</p>
+     <p>she only has effective <a data-link-type="dfn" href="#control-access" id="ref-for-control-access④">control access</a> of <a data-link-type="dfn" href="#resource" id="ref-for-resource④③">resources</a> that include
+the <code>Acme</code> <a data-link-type="dfn" href="#tag" id="ref-for-tag②">tag</a> within the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤①">collection</a>.</p>
     <li data-md>
-     <p>she can only create or change <a data-link-type="dfn" href="#authorization" id="ref-for-authorization③">authorizations</a> targeting the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⓪">collection</a> where <a data-link-type="dfn" href="#agent" id="ref-for-agent①">agents</a> are included in the <code>interns</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②④">authorization group</a>.</p>
+     <p>she can only create or change <a data-link-type="dfn" href="#authorization" id="ref-for-authorization③">authorizations</a> targeting the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤②">collection</a> where <a data-link-type="dfn" href="#agent" id="ref-for-agent①">agents</a> are included in the <code>interns</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②④">authorization group</a>.</p>
    </ul>
-   <h4 class="heading settled" data-level="2.4.5" id="conditional-action"><span class="secno">2.4.5. </span><span class="content">Conditional access by action</span><a class="self-link" href="#conditional-action"></a></h4>
+   <h4 class="heading settled" data-level="2.4.6" id="conditional-action"><span class="secno">2.4.6. </span><span class="content">Conditional access by action</span><a class="self-link" href="#conditional-action"></a></h4>
    <p>The University has a widely used blog for discussion with research teams
 across the world. Researchers who post comments often want to correct
 errors after publication. But this feature can lead to misunderstandings
@@ -2089,22 +2116,22 @@ the same unfettered access that Oscar enjoys.</p>
 only cases where an application he trusts is involved:</p>
    <ul>
     <li data-md>
-     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑤">authorization group</a> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑥">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑤">control access</a> to <code>https://oscar.example</code></p>
+     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑤">authorization group</a> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑦">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑤">control access</a> to <code>https://oscar.example</code></p>
    </ul>
    <p>Following that, per <a href="#inheritance-modifying">§ 2.3.8 Modifying inherited permissions for existing subjects</a>, he could extend this default
-for the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤①">collection</a> to include <code>healthapp</code>:</p>
+for the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤③">collection</a> to include <code>healthapp</code>:</p>
    <ul>
     <li data-md>
-     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑦">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑥">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤②">collection</a></p>
+     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑧">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑥">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a></p>
    </ul>
    <h3 class="heading settled" data-level="2.6" id="uc-privacy"><span class="secno">2.6. </span><span class="content">Privacy</span><a class="self-link" href="#uc-privacy"></a></h3>
    <h4 class="heading settled" data-level="2.6.1" id="uc-whopermitted"><span class="secno">2.6.1. </span><span class="content">Limiting access to who else is permitted</span><a class="self-link" href="#uc-whopermitted"></a></h4>
    <p>Alice is interviewing for a job with Carol. Alice is also interviewing for a
 job with Oscar, Carol’s direct competitor.</p>
-   <p>Alice has given Carol and Oscar <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑧">read access</a> to her <code>resume</code>.</p>
+   <p>Alice has given Carol and Oscar <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑨">read access</a> to her <code>resume</code>.</p>
    <p>Neither Carol or Oscar would appreciate knowing that Alice is interviewing
 with both of them, so it’s important neither Carol or Oscar know who else
-Alice has shared her <code>resume</code> with, despite having <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑨">read access</a> to it.</p>
+Alice has shared her <code>resume</code> with, despite having <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a> to it.</p>
    <h4 class="heading settled" data-level="2.6.2" id="uc-historyofchanges"><span class="secno">2.6.2. </span><span class="content">Limiting access to other authorization conditions</span><a class="self-link" href="#uc-historyofchanges"></a></h4>
    <p>As an extension of <a href="#uc-whopermitted">§ 2.6.1 Limiting access to who else is permitted</a>, it is also important to Alice that
 that neither Carol nor Oscar be able to discern other characteristics of
@@ -2124,7 +2151,7 @@ identity providers.</p>
 once in a while, Juan makes a typo, or accidentally saves the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑦">authorization</a> in an incomplete state.</p>
    <p>Juan runs into trouble on systems where the Web Access Control
 implementation doesn’t properly validate,
-most often resulting in Juan getting locked out of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④①">resource</a> and
+most often resulting in Juan getting locked out of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④④">resource</a> and
 needing administrator assistance to recover.</p>
    <h3 class="heading settled" data-level="2.9" id="uc-capabilities"><span class="secno">2.9. </span><span class="content">Capabilities</span><a class="self-link" href="#uc-capabilities"></a></h3>
    <h4 class="heading settled" data-level="2.9.1" id="capabilities-vc"><span class="secno">2.9.1. </span><span class="content">Possession of a verifiable credential</span><a class="self-link" href="#capabilities-vc"></a></h4>
@@ -2138,7 +2165,7 @@ doctors and care facilities that can be cryptographically verified.</p>
 Oscar’s authorization system at <code>https://oscar.example</code> supports a
 verifiable credential <a data-link-type="dfn" href="#capability" id="ref-for-capability">capability</a>.</p>
    <p>Oscar has set permissions on <code>https://oscar.example/emergency</code> that grants
-someone in possession of a verifiable medical credential to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a> to the contents. This gives them just enough background on
+someone in possession of a verifiable medical credential to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③①">read access</a> to the contents. This gives them just enough background on
 his condition to treat him properly.</p>
    <h4 class="heading settled" data-level="2.9.2" id="capabilities-link"><span class="secno">2.9.2. </span><span class="content">Possession of a link</span><a class="self-link" href="#capabilities-link"></a></h4>
    <p>Bob is about to give a confidential presentation to a group of his
@@ -2149,7 +2176,7 @@ and offers to bring the presentation up for him on her system.</p>
    <p>Unfortunately, Anne doesn’t have an <a data-link-type="dfn" href="#identity" id="ref-for-identity②">identity</a> ready to go that he can
 authorize. Luckily, his authorization system supports a link-based <a data-link-type="dfn" href="#capability" id="ref-for-capability①">capability</a>.</p>
    <p>Bob quickly creates an <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑧">authorization</a> for <code>https://bob.example/presentation</code> that allows anyone in possession of a specially generated link to access
-the document with <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③①">read access</a>. He sets it to <a href="#conditional-time">expire</a> in three hours. Bob gives the link to Anne
+the document with <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③②">read access</a>. He sets it to <a href="#conditional-time">expire</a> in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.</p>
    <h2 class="heading settled" data-level="3" id="requirements"><span class="secno">3. </span><span class="content">Requirements</span><a class="self-link" href="#requirements"></a></h2>
    <p class="issue" id="issue-baedb8a0"><a class="self-link" href="#issue-baedb8a0"></a> Populate requirements based on established use cases.</p>
@@ -2172,9 +2199,9 @@ and the presentation goes off perfectly.</p>
     <li data-md>
      <p><a href="#conditional-tag">§ 2.4.2 Conditional access by tag</a></p>
     <li data-md>
-     <p><a href="#conditional-filter">§ 2.4.3 Conditional access by filter</a></p>
+     <p><a href="#conditional-filter">§ 2.4.4 Conditional access by filter</a></p>
     <li data-md>
-     <p><a href="#conditional-control">§ 2.4.4 Conditional control boundaries</a></p>
+     <p><a href="#conditional-control">§ 2.4.5 Conditional control boundaries</a></p>
     <li data-md>
      <p><a href="#uc-applications">§ 2.5 Permissioning Applications</a></p>
     <li data-md>
@@ -2198,28 +2225,28 @@ include <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a> and <a data-
 of a given <a data-link-type="dfn" href="#identity" id="ref-for-identity④">identity</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑦">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent②">authenticated agent</a>, or in piloted-fashion by another <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated agent</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-controller">resource controller</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent④">agent</a> with fully permissioned
-access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④②">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a> on the Web.</p>
+access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑤">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a> on the Web.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-server">resource server</dfn> is a web server that provides an
-interface to make <a data-link-type="dfn" href="#resource" id="ref-for-resource④③">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application②">applications</a>,
-with the ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource④④">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑨">authorizations</a>.</p>
+interface to make <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑥">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application②">applications</a>,
+with the ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑨">authorizations</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource">resource</dfn> is the target of an HTTP request identified by a <a data-link-type="biblio" href="#biblio-uri">[URI]</a>,
 as defined in <a data-link-type="biblio" href="#biblio-rfc7231">[RFC7231]</a>.</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="collection">collection</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑤">resource</a> that is representative of a set
-of other <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑥">resources</a>, which may include other <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤③">collections</a>.</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="tag">tag</dfn> is a type of metadata associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resource</a> for classification or identification.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization">authorization</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resource</a> that controls access to
-one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑨">resources</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization-group">authorization group</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⓪">resource</a> that represents
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="collection">collection</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resource</a> that is representative of a set
+of other <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑨">resources</a>, which may include other <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑤">collections</a>.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="tag">tag</dfn> is a type of metadata associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⓪">resource</a> for classification or identification.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization">authorization</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤①">resource</a> that controls access to
+one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤②">resources</a>.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization-group">authorization group</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤③">resource</a> that represents
 some combination of <a data-link-type="dfn" href="#agent" id="ref-for-agent⑥">agents</a>, <a data-link-type="dfn" href="#application" id="ref-for-application③">applications</a>, and <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑦">authorization groups</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="capability">capability</dfn> is an object an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑦">agent</a> must possess to be
-permitted to access a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤①">resource</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="access-mode">access mode</dfn> denotes a class of operations that an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑧">agent</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application④">application</a> can perform on one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤②">resources</a>.</p>
+permitted to access a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤④">resource</a>.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="access-mode">access mode</dfn> denotes a class of operations that an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑧">agent</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application④">application</a> can perform on one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑤">resources</a>.</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="read-access">Read access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent⑨">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑤">applications</a> the ability to read, but not modify
-a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤③">resources</a>.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="write-access">Write access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①⓪">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑥">applications</a> the ability to create, update, or delete a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤④">resource</a>.</p>
+a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑥">resources</a>.</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="write-access">Write access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①⓪">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑥">applications</a> the ability to create, update, or delete a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑦">resource</a>.</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="append-access">Append access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①①">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑦">applications</a> to add data to a resource, but not modify
 any data that already exists.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="control-access">Control access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①②">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑧">applications</a> to view and modify <a data-link-type="dfn" href="#authorization" id="ref-for-authorization①⓪">authorizations</a> associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑤">resource</a>.</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="control-access">Control access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①②">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑧">applications</a> to view and modify <a data-link-type="dfn" href="#authorization" id="ref-for-authorization①⓪">authorizations</a> associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑧">resource</a>.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
@@ -2413,7 +2440,7 @@ any data that already exists.</p>
    <b><a href="#agent">#agent</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-agent">2.3.7. Adding new subjects to inherited permissions</a>
-    <li><a href="#ref-for-agent①">2.4.4. Conditional control boundaries</a>
+    <li><a href="#ref-for-agent①">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-agent②">5. Definitions</a> <a href="#ref-for-agent③">(2)</a> <a href="#ref-for-agent④">(3)</a> <a href="#ref-for-agent⑤">(4)</a> <a href="#ref-for-agent⑥">(5)</a> <a href="#ref-for-agent⑦">(6)</a> <a href="#ref-for-agent⑧">(7)</a> <a href="#ref-for-agent⑨">(8)</a> <a href="#ref-for-agent①⓪">(9)</a> <a href="#ref-for-agent①①">(10)</a> <a href="#ref-for-agent①②">(11)</a>
    </ul>
   </aside>
@@ -2480,12 +2507,13 @@ any data that already exists.</p>
     <li><a href="#ref-for-resource①⑥">2.2.6. Control access to a Collection</a>
     <li><a href="#ref-for-resource①⑦">2.3. Inheritance</a> <a href="#ref-for-resource①⑧">(2)</a> <a href="#ref-for-resource①⑨">(3)</a> <a href="#ref-for-resource②⓪">(4)</a> <a href="#ref-for-resource②①">(5)</a> <a href="#ref-for-resource②②">(6)</a> <a href="#ref-for-resource②③">(7)</a> <a href="#ref-for-resource②④">(8)</a> <a href="#ref-for-resource②⑤">(9)</a> <a href="#ref-for-resource②⑥">(10)</a>
     <li><a href="#ref-for-resource②⑦">2.3.5. Control access to collection resources</a>
-    <li><a href="#ref-for-resource②⑧">2.4. Conditional access</a> <a href="#ref-for-resource②⑨">(2)</a> <a href="#ref-for-resource③⓪">(3)</a> <a href="#ref-for-resource③①">(4)</a> <a href="#ref-for-resource③②">(5)</a> <a href="#ref-for-resource③③">(6)</a> <a href="#ref-for-resource③④">(7)</a> <a href="#ref-for-resource③⑤">(8)</a>
-    <li><a href="#ref-for-resource③⑥">2.4.2. Conditional access by tag</a>
-    <li><a href="#ref-for-resource③⑦">2.4.3. Conditional access by filter</a> <a href="#ref-for-resource③⑧">(2)</a> <a href="#ref-for-resource③⑨">(3)</a>
-    <li><a href="#ref-for-resource④⓪">2.4.4. Conditional control boundaries</a>
-    <li><a href="#ref-for-resource④①">2.8. Validation</a>
-    <li><a href="#ref-for-resource④②">5. Definitions</a> <a href="#ref-for-resource④③">(2)</a> <a href="#ref-for-resource④④">(3)</a> <a href="#ref-for-resource④⑤">(4)</a> <a href="#ref-for-resource④⑥">(5)</a> <a href="#ref-for-resource④⑦">(6)</a> <a href="#ref-for-resource④⑧">(7)</a> <a href="#ref-for-resource④⑨">(8)</a> <a href="#ref-for-resource⑤⓪">(9)</a> <a href="#ref-for-resource⑤①">(10)</a> <a href="#ref-for-resource⑤②">(11)</a> <a href="#ref-for-resource⑤③">(12)</a> <a href="#ref-for-resource⑤④">(13)</a> <a href="#ref-for-resource⑤⑤">(14)</a>
+    <li><a href="#ref-for-resource②⑧">2.4. Conditional access</a> <a href="#ref-for-resource②⑨">(2)</a> <a href="#ref-for-resource③⓪">(3)</a> <a href="#ref-for-resource③①">(4)</a> <a href="#ref-for-resource③②">(5)</a> <a href="#ref-for-resource③③">(6)</a> <a href="#ref-for-resource③④">(7)</a> <a href="#ref-for-resource③⑤">(8)</a> <a href="#ref-for-resource③⑥">(9)</a>
+    <li><a href="#ref-for-resource③⑦">2.4.2. Conditional access by tag</a>
+    <li><a href="#ref-for-resource③⑧">2.4.3. Conditional access by relationship</a> <a href="#ref-for-resource③⑨">(2)</a>
+    <li><a href="#ref-for-resource④⓪">2.4.4. Conditional access by filter</a> <a href="#ref-for-resource④①">(2)</a> <a href="#ref-for-resource④②">(3)</a>
+    <li><a href="#ref-for-resource④③">2.4.5. Conditional control boundaries</a>
+    <li><a href="#ref-for-resource④④">2.8. Validation</a>
+    <li><a href="#ref-for-resource④⑤">5. Definitions</a> <a href="#ref-for-resource④⑥">(2)</a> <a href="#ref-for-resource④⑦">(3)</a> <a href="#ref-for-resource④⑧">(4)</a> <a href="#ref-for-resource④⑨">(5)</a> <a href="#ref-for-resource⑤⓪">(6)</a> <a href="#ref-for-resource⑤①">(7)</a> <a href="#ref-for-resource⑤②">(8)</a> <a href="#ref-for-resource⑤③">(9)</a> <a href="#ref-for-resource⑤④">(10)</a> <a href="#ref-for-resource⑤⑤">(11)</a> <a href="#ref-for-resource⑤⑥">(12)</a> <a href="#ref-for-resource⑤⑦">(13)</a> <a href="#ref-for-resource⑤⑧">(14)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="collection">
@@ -2506,19 +2534,20 @@ any data that already exists.</p>
     <li><a href="#ref-for-collection④⓪">2.3.6. Default permissions on created resources</a> <a href="#ref-for-collection④①">(2)</a>
     <li><a href="#ref-for-collection④②">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-collection④③">(2)</a> <a href="#ref-for-collection④④">(3)</a>
     <li><a href="#ref-for-collection④⑤">2.3.8. Modifying inherited permissions for existing subjects</a>
-    <li><a href="#ref-for-collection④⑥">2.4. Conditional access</a>
-    <li><a href="#ref-for-collection④⑦">2.4.1. Conditional access by time</a>
-    <li><a href="#ref-for-collection④⑧">2.4.2. Conditional access by tag</a>
-    <li><a href="#ref-for-collection④⑨">2.4.4. Conditional control boundaries</a> <a href="#ref-for-collection⑤⓪">(2)</a>
-    <li><a href="#ref-for-collection⑤①">2.5. Permissioning Applications</a> <a href="#ref-for-collection⑤②">(2)</a>
-    <li><a href="#ref-for-collection⑤③">5. Definitions</a>
+    <li><a href="#ref-for-collection④⑥">2.4. Conditional access</a> <a href="#ref-for-collection④⑦">(2)</a>
+    <li><a href="#ref-for-collection④⑧">2.4.1. Conditional access by time</a>
+    <li><a href="#ref-for-collection④⑨">2.4.2. Conditional access by tag</a>
+    <li><a href="#ref-for-collection⑤⓪">2.4.3. Conditional access by relationship</a>
+    <li><a href="#ref-for-collection⑤①">2.4.5. Conditional control boundaries</a> <a href="#ref-for-collection⑤②">(2)</a>
+    <li><a href="#ref-for-collection⑤③">2.5. Permissioning Applications</a> <a href="#ref-for-collection⑤④">(2)</a>
+    <li><a href="#ref-for-collection⑤⑤">5. Definitions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="tag">
    <b><a href="#tag">#tag</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-tag">2.4.2. Conditional access by tag</a> <a href="#ref-for-tag①">(2)</a>
-    <li><a href="#ref-for-tag②">2.4.4. Conditional control boundaries</a>
+    <li><a href="#ref-for-tag②">2.4.5. Conditional control boundaries</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="authorization">
@@ -2526,7 +2555,7 @@ any data that already exists.</p>
    <ul>
     <li><a href="#ref-for-authorization">2.3.6. Default permissions on created resources</a>
     <li><a href="#ref-for-authorization①">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization②">(2)</a>
-    <li><a href="#ref-for-authorization③">2.4.4. Conditional control boundaries</a>
+    <li><a href="#ref-for-authorization③">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-authorization④">2.5. Permissioning Applications</a>
     <li><a href="#ref-for-authorization⑤">2.6.2. Limiting access to other authorization conditions</a>
     <li><a href="#ref-for-authorization⑥">2.8. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
@@ -2547,7 +2576,7 @@ any data that already exists.</p>
     <li><a href="#ref-for-authorization-group①④">2.3.6. Default permissions on created resources</a>
     <li><a href="#ref-for-authorization-group①⑤">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization-group①⑥">(2)</a> <a href="#ref-for-authorization-group①⑦">(3)</a> <a href="#ref-for-authorization-group①⑧">(4)</a> <a href="#ref-for-authorization-group①⑨">(5)</a> <a href="#ref-for-authorization-group②⓪">(6)</a>
     <li><a href="#ref-for-authorization-group②①">2.3.8. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-authorization-group②②">(2)</a> <a href="#ref-for-authorization-group②③">(3)</a>
-    <li><a href="#ref-for-authorization-group②④">2.4.4. Conditional control boundaries</a>
+    <li><a href="#ref-for-authorization-group②④">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-authorization-group②⑤">2.5. Permissioning Applications</a> <a href="#ref-for-authorization-group②⑥">(2)</a>
     <li><a href="#ref-for-authorization-group②⑦">5. Definitions</a>
    </ul>
@@ -2587,10 +2616,11 @@ any data that already exists.</p>
     <li><a href="#ref-for-read-access②③">2.3.9. Forcing inherited permissions</a>
     <li><a href="#ref-for-read-access②④">2.4.1. Conditional access by time</a>
     <li><a href="#ref-for-read-access②⑤">2.4.2. Conditional access by tag</a>
-    <li><a href="#ref-for-read-access②⑥">2.5. Permissioning Applications</a> <a href="#ref-for-read-access②⑦">(2)</a>
-    <li><a href="#ref-for-read-access②⑧">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access②⑨">(2)</a>
-    <li><a href="#ref-for-read-access③⓪">2.9.1. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-read-access③①">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-read-access②⑥">2.4.3. Conditional access by relationship</a>
+    <li><a href="#ref-for-read-access②⑦">2.5. Permissioning Applications</a> <a href="#ref-for-read-access②⑧">(2)</a>
+    <li><a href="#ref-for-read-access②⑨">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③⓪">(2)</a>
+    <li><a href="#ref-for-read-access③①">2.9.1. Possession of a verifiable credential</a>
+    <li><a href="#ref-for-read-access③②">2.9.2. Possession of a link</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="write-access">
@@ -2624,7 +2654,7 @@ any data that already exists.</p>
     <li><a href="#ref-for-control-access">2.2.6. Control access to a Collection</a>
     <li><a href="#ref-for-control-access①">2.3.5. Control access to collection resources</a>
     <li><a href="#ref-for-control-access②">2.3.9. Forcing inherited permissions</a>
-    <li><a href="#ref-for-control-access③">2.4.4. Conditional control boundaries</a> <a href="#ref-for-control-access④">(2)</a>
+    <li><a href="#ref-for-control-access③">2.4.5. Conditional control boundaries</a> <a href="#ref-for-control-access④">(2)</a>
     <li><a href="#ref-for-control-access⑤">2.5. Permissioning Applications</a> <a href="#ref-for-control-access⑥">(2)</a>
    </ul>
   </aside>
