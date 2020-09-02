@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="9aedfd32c01a8159486c2a49d07c1c7c3afa379c" name="document-revision">
+  <meta content="7a64999616ed1e14eeb0cc7866b28d5216a807bf" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1517,7 +1517,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
        <a href="#uc-privacy"><span class="secno">2.6</span> <span class="content">Privacy</span></a>
        <ol class="toc">
         <li><a href="#uc-whopermitted"><span class="secno">2.6.1</span> <span class="content">Limiting access to who else is permitted</span></a>
-        <li><a href="#uc-historyofchanges"><span class="secno">2.6.2</span> <span class="content">Limiting access to other authorization conditions</span></a>
+        <li><a href="#uc-minimalcredentials"><span class="secno">2.6.2</span> <span class="content">Minimal Credential Disclosure</span></a>
        </ol>
       <li>
        <a href="#uc-trust"><span class="secno">2.7</span> <span class="content">Trust</span></a>
@@ -2141,14 +2141,15 @@ job with Oscar, Carol’s direct competitor.</p>
    <p>Neither Carol or Oscar would appreciate knowing that Alice is interviewing
 with both of them, so it’s important neither Carol or Oscar know who else
 Alice has shared her <code>resume</code> with, despite having <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a> to it.</p>
-   <h4 class="heading settled" data-level="2.6.2" id="uc-historyofchanges"><span class="secno">2.6.2. </span><span class="content">Limiting access to other authorization conditions</span><a class="self-link" href="#uc-historyofchanges"></a></h4>
-   <p>As an extension of <a href="#uc-whopermitted">§ 2.6.1 Limiting access to who else is permitted</a>, it is also important to Alice that
-that neither Carol nor Oscar be able to discern other characteristics of
-the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑤">authorizations</a> or conditions associated
-with Alice’s <code>resume</code>.</p>
-   <p>For example, if the data Carol and Oscar saw in the resume was <a href="#conditional-filter">filtered</a> to only show a certain subset of her
-background, she wouldn’t want them to know that they were only seeing
-a filtered view.</p>
+   <h4 class="heading settled" data-level="2.6.2" id="uc-minimalcredentials"><span class="secno">2.6.2. </span><span class="content">Minimal Credential Disclosure</span><a class="self-link" href="#uc-minimalcredentials"></a></h4>
+   <p>Following a link on a blog post, Alice comes to a resource that requires
+authentication. She could present one of many verifiable credentials (as per <a href="#capabilities-vc">§ 2.9.1 Possession of a verifiable credential</a>): three self-signed WebID credentials, four bank accounts,
+a drivers licence, two passports, a proof that she is over 18, a credential
+for her college and her university diploma, three club memberships as well
+as her FBI credential.  The resource only requires proof of being over 18.
+Her client’s credential manager should see this and select 
+the credential revealing the least amount of information needed to access 
+the resource.</p>
    <h3 class="heading settled" data-level="2.7" id="uc-trust"><span class="secno">2.7. </span><span class="content">Trust</span><a class="self-link" href="#uc-trust"></a></h3>
    <h4 class="heading settled" data-level="2.7.1" id="uc-trustedissuers"><span class="secno">2.7.1. </span><span class="content">Only trust certain issuers of identity</span><a class="self-link" href="#uc-trustedissuers"></a></h4>
    <p>Carol has a blog, and allows any <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent①">authenticated agent</a> (e.g. <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a>, <a data-link-type="biblio" href="#biblio-did">[DID]</a>) to comment on her blog posts.</p>
@@ -2156,8 +2157,8 @@ a filtered view.</p>
 like to be able to recognize credentials issued from trustworthy
 identity providers.</p>
    <h3 class="heading settled" data-level="2.8" id="uc-validation"><span class="secno">2.8. </span><span class="content">Validation</span><a class="self-link" href="#uc-validation"></a></h3>
-   <p>Juan likes to manage his <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑥">authorizations</a> manually. Every
-once in a while, Juan makes a typo, or accidentally saves the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑦">authorization</a> in an incomplete state.</p>
+   <p>Juan likes to manage his <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑤">authorizations</a> manually. Every
+once in a while, Juan makes a typo, or accidentally saves the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑥">authorization</a> in an incomplete state.</p>
    <p>Juan runs into trouble on systems where the Web Access Control
 implementation doesn’t properly validate,
 most often resulting in Juan getting locked out of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④④">resource</a> and
@@ -2184,7 +2185,7 @@ needs to present in just a few minutes. Anne presented before Bob,
 and offers to bring the presentation up for him on her system.</p>
    <p>Unfortunately, Anne doesn’t have an <a data-link-type="dfn" href="#identity" id="ref-for-identity②">identity</a> ready to go that he can
 authorize. Luckily, his authorization system supports a link-based <a data-link-type="dfn" href="#capability" id="ref-for-capability①">capability</a>.</p>
-   <p>Bob quickly creates an <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑧">authorization</a> for <code>https://bob.example/presentation</code> that allows anyone in possession of a specially generated link to access
+   <p>Bob quickly creates an <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑦">authorization</a> for <code>https://bob.example/presentation</code> that allows anyone in possession of a specially generated link to access
 the document with <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③②">read access</a>. He sets it to <a href="#conditional-time">expire</a> in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.</p>
    <h2 class="heading settled" data-level="3" id="requirements"><span class="secno">3. </span><span class="content">Requirements</span><a class="self-link" href="#requirements"></a></h2>
@@ -2237,7 +2238,7 @@ of a given <a data-link-type="dfn" href="#identity" id="ref-for-identity④">ide
 access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑤">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a> on the Web.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-server">resource server</dfn> is a web server that provides an
 interface to make <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑥">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application②">applications</a>,
-with the ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑨">authorizations</a>.</p>
+with the ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑧">authorizations</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource">resource</dfn> is the target of an HTTP request identified by a <a data-link-type="biblio" href="#biblio-uri">[URI]</a>,
 as defined in <a data-link-type="biblio" href="#biblio-rfc7231">[RFC7231]</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="collection">collection</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resource</a> that is representative of a set
@@ -2255,7 +2256,7 @@ a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑥">resources
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="write-access">Write access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①⓪">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑥">applications</a> the ability to create, update, or delete a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑦">resource</a>.</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="append-access">Append access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①①">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑦">applications</a> to add data to a resource, but not modify
 any data that already exists.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="control-access">Control access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①②">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑧">applications</a> to view and modify <a data-link-type="dfn" href="#authorization" id="ref-for-authorization①⓪">authorizations</a> associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑧">resource</a>.</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="control-access">Control access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①②">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑧">applications</a> to view and modify <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑨">authorizations</a> associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑧">resource</a>.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
@@ -2566,10 +2567,9 @@ any data that already exists.</p>
     <li><a href="#ref-for-authorization①">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization②">(2)</a>
     <li><a href="#ref-for-authorization③">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-authorization④">2.5. Permissioning Applications</a>
-    <li><a href="#ref-for-authorization⑤">2.6.2. Limiting access to other authorization conditions</a>
-    <li><a href="#ref-for-authorization⑥">2.8. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
-    <li><a href="#ref-for-authorization⑧">2.9.2. Possession of a link</a>
-    <li><a href="#ref-for-authorization⑨">5. Definitions</a> <a href="#ref-for-authorization①⓪">(2)</a>
+    <li><a href="#ref-for-authorization⑤">2.8. Validation</a> <a href="#ref-for-authorization⑥">(2)</a>
+    <li><a href="#ref-for-authorization⑦">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-authorization⑧">5. Definitions</a> <a href="#ref-for-authorization⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="authorization-group">
