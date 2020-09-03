@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="fba524a9b2675c56982623366537a3a536fb09c5" name="document-revision">
+  <meta content="7b02084471c3543ad5b04e51470f4a22148bf67d" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1438,7 +1438,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Web Access Control</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-09-02">2 September 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-09-03">3 September 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1487,7 +1487,6 @@ dfn > a.self-link::before      { content: "#"; }</style>
         <li><a href="#collection-readappendwrite"><span class="secno">2.2.4</span> <span class="content">Read-append-write access to a Collection</span></a>
         <li><a href="#collection-appendonly"><span class="secno">2.2.5</span> <span class="content">Append-only access to a Collection</span></a>
         <li><a href="#collection-control"><span class="secno">2.2.6</span> <span class="content">Control access to a Collection</span></a>
-        <li><a href="#collection-foaf"><span class="secno">2.2.7</span> <span class="content">Public commenting for extended network</span></a>
        </ol>
       <li>
        <a href="#uc-inheritance"><span class="secno">2.3</span> <span class="content">Inheritance</span></a>
@@ -1498,9 +1497,10 @@ dfn > a.self-link::before      { content: "#"; }</style>
         <li><a href="#inheritance-appendonly"><span class="secno">2.3.4</span> <span class="content">Append-only access to collection resources</span></a>
         <li><a href="#inheritance-control"><span class="secno">2.3.5</span> <span class="content">Control access to collection resources</span></a>
         <li><a href="#inheritance-defaultcreated"><span class="secno">2.3.6</span> <span class="content">Default permissions on created resources</span></a>
-        <li><a href="#inheritance-adding"><span class="secno">2.3.7</span> <span class="content">Adding new subjects to inherited permissions</span></a>
-        <li><a href="#inheritance-modifying"><span class="secno">2.3.8</span> <span class="content">Modifying inherited permissions for existing subjects</span></a>
-        <li><a href="#inheritance-forcing"><span class="secno">2.3.9</span> <span class="content">Forcing inherited permissions</span></a>
+        <li><a href="#inheritance-extended"><span class="secno">2.3.7</span> <span class="content">Default permissions for extended network</span></a>
+        <li><a href="#inheritance-adding"><span class="secno">2.3.8</span> <span class="content">Adding new subjects to inherited permissions</span></a>
+        <li><a href="#inheritance-modifying"><span class="secno">2.3.9</span> <span class="content">Modifying inherited permissions for existing subjects</span></a>
+        <li><a href="#inheritance-forcing"><span class="secno">2.3.10</span> <span class="content">Forcing inherited permissions</span></a>
        </ol>
       <li>
        <a href="#uc-conditional"><span class="secno">2.4</span> <span class="content">Conditional access</span></a>
@@ -1756,14 +1756,6 @@ lookup their information.</p>
    <p>Alice trusts Bob with the contents of the <code>project1</code> collection, since it’s
 the output of their shared work. She gives him <a data-link-type="dfn" href="#control-access" id="ref-for-control-access">control access</a> to <code>project1</code> so that he can help her invite other colleagues from the past to
 add <a data-link-type="dfn" href="#resource" id="ref-for-resource①⑥">resources</a> to it.</p>
-   <h4 class="heading settled" data-level="2.2.7" id="collection-foaf"><span class="secno">2.2.7. </span><span class="content">Public commenting for extended network</span><a class="self-link" href="#collection-foaf"></a></h4>
-   <p>Alice has a blog and allows comments on her posts. Ideally, everyone’s
-comments would be immediately visible, but she has previously been overwhelmed
-by spammers. So now she would like to try a compromise: allow the posts
-from her extended social network (friend of her friends, colleagues and
-family)  to be immediately visible. Other posts should only be visible and
-editable to those who wrote them. They can then be viewable to the world when
-they get reviewed.</p>
    <h3 class="heading settled" data-level="2.3" id="uc-inheritance"><span class="secno">2.3. </span><span class="content">Inheritance</span><a class="self-link" href="#uc-inheritance"></a></h3>
    <p>Bob is leading a group of colleagues doing field research. This group
 includes Charles, Felicia, Juan, and Irene.</p>
@@ -1922,10 +1914,18 @@ aren’t created with access that too liberal (e.g. public access), or too
 narrow to be usable within their context?</p>
    <p>Bob prefers to specify in granular fashion the default permissions of
 created resources that should be assigned to any <a data-link-type="dfn" href="#authorization" id="ref-for-authorization">authorizations</a> with <a data-link-type="dfn" href="#write-access" id="ref-for-write-access④">write access</a> or <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑨">append access</a> on a given <a data-link-type="dfn" href="#collection" id="ref-for-collection④①">collection</a>.</p>
-   <h4 class="heading settled" data-level="2.3.7" id="inheritance-adding"><span class="secno">2.3.7. </span><span class="content">Adding new subjects to inherited permissions</span><a class="self-link" href="#inheritance-adding"></a></h4>
+   <h4 class="heading settled" data-level="2.3.7" id="inheritance-extended"><span class="secno">2.3.7. </span><span class="content">Default permissions for extended network</span><a class="self-link" href="#inheritance-extended"></a></h4>
+   <p>Alice has a blog and allows comments on her posts. Ideally, everyone’s
+comments would be immediately visible, but she has previously been overwhelmed
+by spammers. So now she would like to try a compromise: allow the posts
+from her extended social network (friend of her friends, colleagues and
+family)  to be immediately visible. Other posts should only be visible and
+editable to those who wrote them. They can then be viewable to the world when
+they get reviewed.</p>
+   <h4 class="heading settled" data-level="2.3.8" id="inheritance-adding"><span class="secno">2.3.8. </span><span class="content">Adding new subjects to inherited permissions</span><a class="self-link" href="#inheritance-adding"></a></h4>
    <p class="note" role="note"><span>Note:</span> Adding a new subject means we are adding a new <a data-link-type="dfn" href="#agent" id="ref-for-agent">agent</a>, <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑤">authorization group</a>, and/or <a data-link-type="dfn" href="#application" id="ref-for-application">application</a> to the collection that isn’t already part of an
 inherited <a data-link-type="dfn" href="#authorization" id="ref-for-authorization①">authorization</a>. Modifying permissions for those that exist in
-inherited <a data-link-type="dfn" href="#authorization" id="ref-for-authorization②">authorizations</a> is covered in <a href="#inheritance-modifying">§ 2.3.8 Modifying inherited permissions for existing subjects</a>.</p>
+inherited <a data-link-type="dfn" href="#authorization" id="ref-for-authorization②">authorizations</a> is covered in <a href="#inheritance-modifying">§ 2.3.9 Modifying inherited permissions for existing subjects</a>.</p>
    <p>Bob has given the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑥">authorization group</a> inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑥">read access</a> to the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④②">collection</a> (detailed in <a href="#inheritance-readonly">§ 2.3.1 Read-only access to collection of resources</a>).</p>
    <p>Celeste isn’t a regular member of the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑦">authorization group</a>,
 but happened to attend the weekly status meeting on December 30th, 2019.</p>
@@ -1938,7 +1938,7 @@ added to it.</p>
 members of the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑨">authorization group</a> have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑨">read access</a>. Celeste has
 no other access to other resources in the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④④">collection</a>,
 nor any that will be created later. The access for the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⓪">authorization group</a> doesn’t change.</p>
-   <h4 class="heading settled" data-level="2.3.8" id="inheritance-modifying"><span class="secno">2.3.8. </span><span class="content">Modifying inherited permissions for existing subjects</span><a class="self-link" href="#inheritance-modifying"></a></h4>
+   <h4 class="heading settled" data-level="2.3.9" id="inheritance-modifying"><span class="secno">2.3.9. </span><span class="content">Modifying inherited permissions for existing subjects</span><a class="self-link" href="#inheritance-modifying"></a></h4>
    <p>On the January 6th weekly status meeting, Bob and the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②①">authorization group</a> covered a research topic related to a commercial
 endeavor that Felicia is involved in. When Felicia saw this on the agenda,
 she informed Bob that it would be a conflict of interest for her to
@@ -1951,7 +1951,7 @@ the inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-acces
    <p>Felicia continues to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②①">read access</a> to all other
 existing resources included in the <code>weekly-status</code> collection, and any new
 resources added to it. Inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②②">read access</a> for others in the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②③">authorization group</a> is unchanged.</p>
-   <h4 class="heading settled" data-level="2.3.9" id="inheritance-forcing"><span class="secno">2.3.9. </span><span class="content">Forcing inherited permissions</span><a class="self-link" href="#inheritance-forcing"></a></h4>
+   <h4 class="heading settled" data-level="2.3.10" id="inheritance-forcing"><span class="secno">2.3.10. </span><span class="content">Forcing inherited permissions</span><a class="self-link" href="#inheritance-forcing"></a></h4>
    <p>As the primary administrator and <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑤">resource controller</a> of <code>https://resource.example</code>, Bob wants to ensure that
 he maintains ultimate control over the data inside.</p>
    <p>Even though he’s given
@@ -2127,7 +2127,7 @@ only cases where an application he trusts is involved:</p>
     <li data-md>
      <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑤">authorization group</a> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑦">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑤">control access</a> to <code>https://oscar.example</code></p>
    </ul>
-   <p>Following that, per <a href="#inheritance-modifying">§ 2.3.8 Modifying inherited permissions for existing subjects</a>, he could extend this default
+   <p>Following that, per <a href="#inheritance-modifying">§ 2.3.9 Modifying inherited permissions for existing subjects</a>, he could extend this default
 for the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤③">collection</a> to include <code>healthapp</code>:</p>
    <ul>
     <li data-md>
@@ -2147,8 +2147,8 @@ authentication. She could present one of many verifiable credentials (as per <a 
 a drivers licence, two passports, a proof that she is over 18, a credential
 for her college and her university diploma, three club memberships as well
 as her FBI credential.  The resource only requires proof of being over 18.
-Her client’s credential manager should see this and select 
-the credential revealing the least amount of information needed to access 
+Her client’s credential manager should see this and select
+the credential revealing the least amount of information needed to access
 the resource.</p>
    <h3 class="heading settled" data-level="2.7" id="uc-trust"><span class="secno">2.7. </span><span class="content">Trust</span><a class="self-link" href="#uc-trust"></a></h3>
    <h4 class="heading settled" data-level="2.7.1" id="uc-trustedissuers"><span class="secno">2.7.1. </span><span class="content">Only trust certain issuers of identity</span><a class="self-link" href="#uc-trustedissuers"></a></h4>
@@ -2197,11 +2197,11 @@ and the presentation goes off perfectly.</p>
    <p><a href="https://github.com/solid/web-access-control-spec">Legacy Web Access Control</a> does not satisfy the following use cases:</p>
    <ul>
     <li data-md>
-     <p><a href="#inheritance-adding">§ 2.3.7 Adding new subjects to inherited permissions</a></p>
+     <p><a href="#inheritance-adding">§ 2.3.8 Adding new subjects to inherited permissions</a></p>
     <li data-md>
-     <p><a href="#inheritance-modifying">§ 2.3.8 Modifying inherited permissions for existing subjects</a></p>
+     <p><a href="#inheritance-modifying">§ 2.3.9 Modifying inherited permissions for existing subjects</a></p>
     <li data-md>
-     <p><a href="#inheritance-forcing">§ 2.3.9 Forcing inherited permissions</a></p>
+     <p><a href="#inheritance-forcing">§ 2.3.10 Forcing inherited permissions</a></p>
     <li data-md>
      <p><a href="#collection-readappendwrite">§ 2.2.4 Read-append-write access to a Collection</a></p>
     <li data-md>
@@ -2449,7 +2449,7 @@ any data that already exists.</p>
   <aside class="dfn-panel" data-for="agent">
    <b><a href="#agent">#agent</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-agent">2.3.7. Adding new subjects to inherited permissions</a>
+    <li><a href="#ref-for-agent">2.3.8. Adding new subjects to inherited permissions</a>
     <li><a href="#ref-for-agent①">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-agent②">5. Definitions</a> <a href="#ref-for-agent③">(2)</a> <a href="#ref-for-agent④">(3)</a> <a href="#ref-for-agent⑤">(4)</a> <a href="#ref-for-agent⑥">(5)</a> <a href="#ref-for-agent⑦">(6)</a> <a href="#ref-for-agent⑧">(7)</a> <a href="#ref-for-agent⑨">(8)</a> <a href="#ref-for-agent①⓪">(9)</a> <a href="#ref-for-agent①①">(10)</a> <a href="#ref-for-agent①②">(11)</a>
    </ul>
@@ -2474,7 +2474,7 @@ any data that already exists.</p>
   <aside class="dfn-panel" data-for="application">
    <b><a href="#application">#application</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-application">2.3.7. Adding new subjects to inherited permissions</a>
+    <li><a href="#ref-for-application">2.3.8. Adding new subjects to inherited permissions</a>
     <li><a href="#ref-for-application①">2.5. Permissioning Applications</a>
     <li><a href="#ref-for-application②">5. Definitions</a> <a href="#ref-for-application③">(2)</a> <a href="#ref-for-application④">(3)</a> <a href="#ref-for-application⑤">(4)</a> <a href="#ref-for-application⑥">(5)</a> <a href="#ref-for-application⑦">(6)</a> <a href="#ref-for-application⑧">(7)</a>
    </ul>
@@ -2487,7 +2487,7 @@ any data that already exists.</p>
     <li><a href="#ref-for-resource-controller②">2.1.1. Control access</a>
     <li><a href="#ref-for-resource-controller③">2.2. Basic collection access</a>
     <li><a href="#ref-for-resource-controller④">2.3. Inheritance</a>
-    <li><a href="#ref-for-resource-controller⑤">2.3.9. Forcing inherited permissions</a>
+    <li><a href="#ref-for-resource-controller⑤">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-resource-controller⑥">2.4. Conditional access</a>
     <li><a href="#ref-for-resource-controller⑦">2.5. Permissioning Applications</a> <a href="#ref-for-resource-controller⑧">(2)</a>
    </ul>
@@ -2498,7 +2498,7 @@ any data that already exists.</p>
     <li><a href="#ref-for-resource-server">2.1. Basic resource access</a>
     <li><a href="#ref-for-resource-server①">2.2. Basic collection access</a>
     <li><a href="#ref-for-resource-server②">2.3. Inheritance</a>
-    <li><a href="#ref-for-resource-server③">2.3.9. Forcing inherited permissions</a>
+    <li><a href="#ref-for-resource-server③">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-resource-server④">2.4. Conditional access</a>
     <li><a href="#ref-for-resource-server⑤">2.5. Permissioning Applications</a>
     <li><a href="#ref-for-resource-server⑥">2.9.2. Possession of a link</a>
@@ -2542,8 +2542,8 @@ any data that already exists.</p>
     <li><a href="#ref-for-collection③⑧">2.3.4. Append-only access to collection resources</a>
     <li><a href="#ref-for-collection③⑨">2.3.5. Control access to collection resources</a>
     <li><a href="#ref-for-collection④⓪">2.3.6. Default permissions on created resources</a> <a href="#ref-for-collection④①">(2)</a>
-    <li><a href="#ref-for-collection④②">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-collection④③">(2)</a> <a href="#ref-for-collection④④">(3)</a>
-    <li><a href="#ref-for-collection④⑤">2.3.8. Modifying inherited permissions for existing subjects</a>
+    <li><a href="#ref-for-collection④②">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-collection④③">(2)</a> <a href="#ref-for-collection④④">(3)</a>
+    <li><a href="#ref-for-collection④⑤">2.3.9. Modifying inherited permissions for existing subjects</a>
     <li><a href="#ref-for-collection④⑥">2.4. Conditional access</a> <a href="#ref-for-collection④⑦">(2)</a>
     <li><a href="#ref-for-collection④⑧">2.4.1. Conditional access by time</a>
     <li><a href="#ref-for-collection④⑨">2.4.2. Conditional access by tag</a>
@@ -2564,7 +2564,7 @@ any data that already exists.</p>
    <b><a href="#authorization">#authorization</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-authorization">2.3.6. Default permissions on created resources</a>
-    <li><a href="#ref-for-authorization①">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization②">(2)</a>
+    <li><a href="#ref-for-authorization①">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization②">(2)</a>
     <li><a href="#ref-for-authorization③">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-authorization④">2.5. Permissioning Applications</a>
     <li><a href="#ref-for-authorization⑤">2.8. Validation</a> <a href="#ref-for-authorization⑥">(2)</a>
@@ -2583,8 +2583,8 @@ any data that already exists.</p>
     <li><a href="#ref-for-authorization-group①⓪">2.3.3. Read-write access to collection resources</a> <a href="#ref-for-authorization-group①①">(2)</a> <a href="#ref-for-authorization-group①②">(3)</a>
     <li><a href="#ref-for-authorization-group①③">2.3.4. Append-only access to collection resources</a>
     <li><a href="#ref-for-authorization-group①④">2.3.6. Default permissions on created resources</a>
-    <li><a href="#ref-for-authorization-group①⑤">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization-group①⑥">(2)</a> <a href="#ref-for-authorization-group①⑦">(3)</a> <a href="#ref-for-authorization-group①⑧">(4)</a> <a href="#ref-for-authorization-group①⑨">(5)</a> <a href="#ref-for-authorization-group②⓪">(6)</a>
-    <li><a href="#ref-for-authorization-group②①">2.3.8. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-authorization-group②②">(2)</a> <a href="#ref-for-authorization-group②③">(3)</a>
+    <li><a href="#ref-for-authorization-group①⑤">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization-group①⑥">(2)</a> <a href="#ref-for-authorization-group①⑦">(3)</a> <a href="#ref-for-authorization-group①⑧">(4)</a> <a href="#ref-for-authorization-group①⑨">(5)</a> <a href="#ref-for-authorization-group②⓪">(6)</a>
+    <li><a href="#ref-for-authorization-group②①">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-authorization-group②②">(2)</a> <a href="#ref-for-authorization-group②③">(3)</a>
     <li><a href="#ref-for-authorization-group②④">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-authorization-group②⑤">2.5. Permissioning Applications</a> <a href="#ref-for-authorization-group②⑥">(2)</a>
     <li><a href="#ref-for-authorization-group②⑦">5. Definitions</a>
@@ -2620,9 +2620,9 @@ any data that already exists.</p>
     <li><a href="#ref-for-read-access①③">2.3.3. Read-write access to collection resources</a>
     <li><a href="#ref-for-read-access①④">2.3.4. Append-only access to collection resources</a>
     <li><a href="#ref-for-read-access①⑤">2.3.5. Control access to collection resources</a>
-    <li><a href="#ref-for-read-access①⑥">2.3.7. Adding new subjects to inherited permissions</a> <a href="#ref-for-read-access①⑦">(2)</a> <a href="#ref-for-read-access①⑧">(3)</a> <a href="#ref-for-read-access①⑨">(4)</a>
-    <li><a href="#ref-for-read-access②⓪">2.3.8. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-read-access②①">(2)</a> <a href="#ref-for-read-access②②">(3)</a>
-    <li><a href="#ref-for-read-access②③">2.3.9. Forcing inherited permissions</a>
+    <li><a href="#ref-for-read-access①⑥">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-read-access①⑦">(2)</a> <a href="#ref-for-read-access①⑧">(3)</a> <a href="#ref-for-read-access①⑨">(4)</a>
+    <li><a href="#ref-for-read-access②⓪">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-read-access②①">(2)</a> <a href="#ref-for-read-access②②">(3)</a>
+    <li><a href="#ref-for-read-access②③">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-read-access②④">2.4.1. Conditional access by time</a>
     <li><a href="#ref-for-read-access②⑤">2.4.2. Conditional access by tag</a>
     <li><a href="#ref-for-read-access②⑥">2.4.3. Conditional access by relationship</a>
@@ -2662,7 +2662,7 @@ any data that already exists.</p>
    <ul>
     <li><a href="#ref-for-control-access">2.2.6. Control access to a Collection</a>
     <li><a href="#ref-for-control-access①">2.3.5. Control access to collection resources</a>
-    <li><a href="#ref-for-control-access②">2.3.9. Forcing inherited permissions</a>
+    <li><a href="#ref-for-control-access②">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-control-access③">2.4.5. Conditional control boundaries</a> <a href="#ref-for-control-access④">(2)</a>
     <li><a href="#ref-for-control-access⑤">2.5. Permissioning Applications</a> <a href="#ref-for-control-access⑥">(2)</a>
    </ul>
