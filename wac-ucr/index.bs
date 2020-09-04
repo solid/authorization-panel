@@ -894,6 +894,83 @@ Her client's credential manager should see this and select
 the credential revealing the least amount of information needed to access
 the resource.
 
+### High Security Scenario ### {#uc-confidential} 
+
+A service with very high security and confidentiality requirements must publish 
+resources without the URL for any resource leaking information about it's content.
+This service publishes all these resources using the Tor protocol, so that the location
+of the servers can remain secret.
+All resources on this Solid server are named by the root container using
+a UUID naming scheme.
+
+<figure>
+<figcaption>Contents under 
+`https://ciadotgov4sjwlzihbbgxnqg3xiyrg7so2r2o3lt5wz5ypk4sxyjstad.onion/`</figcaption>
+  <table class="data collections" align="left">
+    <col>
+    <col>
+    <col>
+    <thead>
+      <tr>
+        <th scope="col">Resource</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr>
+        <td>`4fcffa1b-3cc2-4ace-be65-2b0cf8045550`</td>
+        <td>[=Collection=]</td>
+        <td>Collection for online meeting on 24 July 2025</td>
+      </tr>
+       <tr>
+        <td>`aa91d049-9997-48c8-b115-2217c3c9c0d5`</td>
+        <td>[=Resource=]</td>
+        <td>Agent Alice's notes for the meeting stored in above collection</td>
+      </tr>
+      <tr>
+        <td>`6b063d07-9f25-4692-ba3d-dff02f200028`</td>
+        <td>Video</td>
+        <td>Recorded audio/video of web conference meeting stored in above collection</td>
+      </tr>
+     <tr>
+        <td>`4376ed72-37d8-4432-8dce-7a796f4bdd66`</td>
+        <td>[=Collection=]</td>
+        <td>Collection for 14 September 2025 online meeting</td>
+      </tr>
+      <tr>
+        <td>`796d8d67-3e88-483f-b1c1-d4eba63827e3`</td>
+        <td>Video</td>
+        <td>Recorded audio/video of web conference meeting</td>
+      </tr>
+      <tr>
+        <td>`b7123ed7-3861-4b37-9b53-cf9bd730fafe`</td>
+        <td>[=Collection=]</td>
+        <td>Subcollection of 14 Sept Collection for data dumps</td>
+      </tr>
+      <tr>
+        <td>`2d97f889-8f7d-43fb-83f8-1437b05896ba`</td>
+        <td>[=Resource=]</td>
+        <td>Agent Smith's data stored in in `b7123ed7-3861-4b37-9b53-cf9bd730fafe` collection</td>
+      </tr>
+      <tr>
+        <td>`17a63d0f-b99f-4268-929d-5a5fe5f5dd56`</td>
+        <td>[=Resource=]</td>
+        <td>Agent Alice's data stored in the same Collection as Agent Smith's</td>
+      </tr>
+  </table>
+</figure>
+
+
+Some of the UUID resources represent collections and others various types
+of content. Collections can contain other collections as usual, but this cannot
+be deduced from the name. Only clients that are authorized can tell from the
+returned descriptions what the type of the resource is or what a container contains.
+
+The service would like to be able to use the same applications on those resources
+as it does on its public facing Solid Web site, where it uses humanly readable
+and memorable names for its resources.
+
 ## Trust ## {#uc-trust}
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}

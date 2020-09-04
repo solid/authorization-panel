@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="89c9fb52e9a604be934471f18bf30d3bfc7a3fc3" name="document-revision">
+  <meta content="8e5aecd6e337de305673c31f90467a290a589c32" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1518,6 +1518,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
        <ol class="toc">
         <li><a href="#uc-whopermitted"><span class="secno">2.6.1</span> <span class="content">Limiting access to who else is permitted</span></a>
         <li><a href="#uc-minimalcredentials"><span class="secno">2.6.2</span> <span class="content">Minimal Credential Disclosure</span></a>
+        <li><a href="#uc-confidential"><span class="secno">2.6.3</span> <span class="content">High Security Scenario</span></a>
        </ol>
       <li>
        <a href="#uc-trust"><span class="secno">2.7</span> <span class="content">Trust</span></a>
@@ -2157,6 +2158,67 @@ as her FBI credential.  The resource only requires proof of being over 18.
 Her client’s credential manager should see this and select
 the credential revealing the least amount of information needed to access
 the resource.</p>
+   <h4 class="heading settled" data-level="2.6.3" id="uc-confidential"><span class="secno">2.6.3. </span><span class="content">High Security Scenario</span><a class="self-link" href="#uc-confidential"></a></h4>
+   <p>A service with very high security and confidentiality requirements must publish
+resources without the URL for any resource leaking information about it’s content.
+This service publishes all these resources using the Tor protocol, so that the location
+of the servers can remain secret.
+All resources on this Solid server are named by the root container using
+a UUID naming scheme.</p>
+   <figure>
+    <figcaption>Contents under <code>https://ciadotgov4sjwlzihbbgxnqg3xiyrg7so2r2o3lt5wz5ypk4sxyjstad.onion/</code></figcaption>
+    <table align="left" class="data collections">
+     <colgroup>
+      <col>
+      <col>
+      <col>
+     <thead>
+      <tr>
+       <th scope="col">Resource
+       <th scope="col">Type
+       <th scope="col">Description
+     <tbody>
+      <tr>
+       <td><code>4fcffa1b-3cc2-4ace-be65-2b0cf8045550</code>
+       <td><a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑤">Collection</a>
+       <td>Collection for online meeting on 24 July 2025
+      <tr>
+       <td><code>aa91d049-9997-48c8-b115-2217c3c9c0d5</code>
+       <td><a data-link-type="dfn" href="#resource" id="ref-for-resource④④">Resource</a>
+       <td>Agent Alice’s notes for the meeting stored in above collection
+      <tr>
+       <td><code>6b063d07-9f25-4692-ba3d-dff02f200028</code>
+       <td>Video
+       <td>Recorded audio/video of web conference meeting stored in above collection
+      <tr>
+       <td><code>4376ed72-37d8-4432-8dce-7a796f4bdd66</code>
+       <td><a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑥">Collection</a>
+       <td>Collection for 14 September 2025 online meeting
+      <tr>
+       <td><code>796d8d67-3e88-483f-b1c1-d4eba63827e3</code>
+       <td>Video
+       <td>Recorded audio/video of web conference meeting
+      <tr>
+       <td><code>b7123ed7-3861-4b37-9b53-cf9bd730fafe</code>
+       <td><a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑦">Collection</a>
+       <td>Subcollection of 14 Sept Collection for data dumps
+      <tr>
+       <td><code>2d97f889-8f7d-43fb-83f8-1437b05896ba</code>
+       <td><a data-link-type="dfn" href="#resource" id="ref-for-resource④⑤">Resource</a>
+       <td>Agent Smith’s data stored in in <code>b7123ed7-3861-4b37-9b53-cf9bd730fafe</code> collection
+      <tr>
+       <td><code>17a63d0f-b99f-4268-929d-5a5fe5f5dd56</code>
+       <td><a data-link-type="dfn" href="#resource" id="ref-for-resource④⑥">Resource</a>
+       <td>Agent Alice’s data stored in the same Collection as Agent Smith’s
+    </table>
+   </figure>
+   <p>Some of the UUID resources represent collections and others various types
+of content. Collections can contain other collections as usual, but this cannot
+be deduced from the name. Only clients that are authorized can tell from the
+returned descriptions what the type of the resource is or what a container contains.</p>
+   <p>The service would like to be able to use the same applications on those resources
+as it does on its public facing Solid Web site, where it uses humanly readable
+and memorable names for its resources.</p>
    <h3 class="heading settled" data-level="2.7" id="uc-trust"><span class="secno">2.7. </span><span class="content">Trust</span><a class="self-link" href="#uc-trust"></a></h3>
    <h4 class="heading settled" data-level="2.7.1" id="uc-trustedissuers"><span class="secno">2.7.1. </span><span class="content">Only trust certain issuers of identity</span><a class="self-link" href="#uc-trustedissuers"></a></h4>
    <p>Carol has a blog, and allows any <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent①">authenticated agent</a> (e.g. <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a>, <a data-link-type="biblio" href="#biblio-did">[DID]</a>) to comment on her blog posts.</p>
@@ -2168,7 +2230,7 @@ identity providers.</p>
 once in a while, Juan makes a typo, or accidentally saves the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑥">authorization</a> in an incomplete state.</p>
    <p>Juan runs into trouble on systems where the Web Access Control
 implementation doesn’t properly validate,
-most often resulting in Juan getting locked out of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④④">resource</a> and
+most often resulting in Juan getting locked out of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resource</a> and
 needing administrator assistance to recover.</p>
    <h3 class="heading settled" data-level="2.9" id="uc-capabilities"><span class="secno">2.9. </span><span class="content">Capabilities</span><a class="self-link" href="#uc-capabilities"></a></h3>
    <h4 class="heading settled" data-level="2.9.1" id="capabilities-vc"><span class="secno">2.9.1. </span><span class="content">Possession of a verifiable credential</span><a class="self-link" href="#capabilities-vc"></a></h4>
@@ -2242,28 +2304,28 @@ include <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a> and <a data-
 of a given <a data-link-type="dfn" href="#identity" id="ref-for-identity④">identity</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent②">authenticated agent</a>, or in piloted-fashion by another <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated agent</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-controller">resource controller</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent④">agent</a> with fully permissioned
-access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑤">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑨">resource server</a> on the Web.</p>
+access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑨">resource server</a> on the Web.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-server">resource server</dfn> is a web server that provides an
-interface to make <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑥">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application②">applications</a>,
-with the ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑧">authorizations</a>.</p>
+interface to make <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑨">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application②">applications</a>,
+with the ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⓪">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑧">authorizations</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource">resource</dfn> is the target of an HTTP request identified by a <a data-link-type="biblio" href="#biblio-uri">[URI]</a>,
 as defined in <a data-link-type="biblio" href="#biblio-rfc7231">[RFC7231]</a>.</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="collection">collection</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resource</a> that is representative of a set
-of other <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑨">resources</a>, which may include other <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑤">collections</a>.</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="tag">tag</dfn> is a type of metadata associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⓪">resource</a> for classification or identification.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization">authorization</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤①">resource</a> that controls access to
-one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤②">resources</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization-group">authorization group</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤③">resource</a> that represents
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="collection">collection</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤①">resource</a> that is representative of a set
+of other <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤②">resources</a>, which may include other <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑧">collections</a>.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="tag">tag</dfn> is a type of metadata associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤③">resource</a> for classification or identification.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization">authorization</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤④">resource</a> that controls access to
+one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑤">resources</a>.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authorization-group">authorization group</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑥">resource</a> that represents
 some combination of <a data-link-type="dfn" href="#agent" id="ref-for-agent⑥">agents</a>, <a data-link-type="dfn" href="#application" id="ref-for-application③">applications</a>, and <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑦">authorization groups</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="capability">capability</dfn> is an object an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑦">agent</a> must possess to be
-permitted to access a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤④">resource</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="access-mode">access mode</dfn> denotes a class of operations that an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑧">agent</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application④">application</a> can perform on one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑤">resources</a>.</p>
+permitted to access a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑦">resource</a>.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="access-mode">access mode</dfn> denotes a class of operations that an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑧">agent</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application④">application</a> can perform on one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑧">resources</a>.</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="read-access">Read access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent⑨">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑤">applications</a> the ability to read, but not modify
-a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑥">resources</a>.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="write-access">Write access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①⓪">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑥">applications</a> the ability to create, update, or delete a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑦">resource</a>.</p>
+a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑨">resources</a>.</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="write-access">Write access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode①">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①⓪">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑥">applications</a> the ability to create, update, or delete a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑥⓪">resource</a>.</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="append-access">Append access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode②">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①①">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑦">applications</a> to add data to a resource, but not modify
 any data that already exists.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="control-access">Control access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①②">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑧">applications</a> to view and modify <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑨">authorizations</a> associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⑧">resource</a>.</p>
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="control-access">Control access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent①②">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑧">applications</a> to view and modify <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑨">authorizations</a> associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑥①">resource</a>.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
@@ -2531,8 +2593,9 @@ any data that already exists.</p>
     <li><a href="#ref-for-resource③⑧">2.4.3. Conditional access by relationship</a> <a href="#ref-for-resource③⑨">(2)</a>
     <li><a href="#ref-for-resource④⓪">2.4.4. Conditional access by filter</a> <a href="#ref-for-resource④①">(2)</a> <a href="#ref-for-resource④②">(3)</a>
     <li><a href="#ref-for-resource④③">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-resource④④">2.8. Validation</a>
-    <li><a href="#ref-for-resource④⑤">5. Definitions</a> <a href="#ref-for-resource④⑥">(2)</a> <a href="#ref-for-resource④⑦">(3)</a> <a href="#ref-for-resource④⑧">(4)</a> <a href="#ref-for-resource④⑨">(5)</a> <a href="#ref-for-resource⑤⓪">(6)</a> <a href="#ref-for-resource⑤①">(7)</a> <a href="#ref-for-resource⑤②">(8)</a> <a href="#ref-for-resource⑤③">(9)</a> <a href="#ref-for-resource⑤④">(10)</a> <a href="#ref-for-resource⑤⑤">(11)</a> <a href="#ref-for-resource⑤⑥">(12)</a> <a href="#ref-for-resource⑤⑦">(13)</a> <a href="#ref-for-resource⑤⑧">(14)</a>
+    <li><a href="#ref-for-resource④④">2.6.3. High Security Scenario</a> <a href="#ref-for-resource④⑤">(2)</a> <a href="#ref-for-resource④⑥">(3)</a>
+    <li><a href="#ref-for-resource④⑦">2.8. Validation</a>
+    <li><a href="#ref-for-resource④⑧">5. Definitions</a> <a href="#ref-for-resource④⑨">(2)</a> <a href="#ref-for-resource⑤⓪">(3)</a> <a href="#ref-for-resource⑤①">(4)</a> <a href="#ref-for-resource⑤②">(5)</a> <a href="#ref-for-resource⑤③">(6)</a> <a href="#ref-for-resource⑤④">(7)</a> <a href="#ref-for-resource⑤⑤">(8)</a> <a href="#ref-for-resource⑤⑥">(9)</a> <a href="#ref-for-resource⑤⑦">(10)</a> <a href="#ref-for-resource⑤⑧">(11)</a> <a href="#ref-for-resource⑤⑨">(12)</a> <a href="#ref-for-resource⑥⓪">(13)</a> <a href="#ref-for-resource⑥①">(14)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="collection">
@@ -2559,7 +2622,8 @@ any data that already exists.</p>
     <li><a href="#ref-for-collection⑤⓪">2.4.3. Conditional access by relationship</a>
     <li><a href="#ref-for-collection⑤①">2.4.5. Conditional control boundaries</a> <a href="#ref-for-collection⑤②">(2)</a>
     <li><a href="#ref-for-collection⑤③">2.5. Permissioning Applications</a> <a href="#ref-for-collection⑤④">(2)</a>
-    <li><a href="#ref-for-collection⑤⑤">5. Definitions</a>
+    <li><a href="#ref-for-collection⑤⑤">2.6.3. High Security Scenario</a> <a href="#ref-for-collection⑤⑥">(2)</a> <a href="#ref-for-collection⑤⑦">(3)</a>
+    <li><a href="#ref-for-collection⑤⑧">5. Definitions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="tag">
