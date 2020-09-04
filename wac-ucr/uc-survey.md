@@ -78,6 +78,9 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-control
 ### Default permissions on created resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcreated
 
+### Default permissions for extended network
+URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
+
 ### Adding new subjects to inherited permissions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-adding
 
@@ -95,11 +98,17 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-time
 ### Conditional access by tag
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-tag
 
+### Conditional access by relationship
+URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-relationship
+
 ### Conditional access by filter
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-filter
 
 ### Conditional control boundaries
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
+
+### Conditional access by action
+URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 
 ## Permissioning Applications
 
@@ -108,8 +117,14 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
 ### Limiting access to who else is permitted
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-whopermitted
 
+### Minimal Credential Disclosure
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-minimalcredentials
+
 ### Limiting access to other authorization conditions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
+
+### Limit information disclosure through URI
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
 
 ## Trust
 
