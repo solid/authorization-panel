@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="7a9c6575a5fce35b9c8c9428d082d479f7f4fe93" name="document-revision">
+  <meta content="d3bf8ed5922bf19704143cc4bffe2724ae685add" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1477,6 +1477,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
         <li><a href="#basic-readonly"><span class="secno">2.1.6</span> <span class="content">Read-only access</span></a>
         <li><a href="#basic-group"><span class="secno">2.1.7</span> <span class="content">Group access</span></a>
         <li><a href="#basic-public"><span class="secno">2.1.8</span> <span class="content">Public access</span></a>
+        <li><a href="#basic-authenticated"><span class="secno">2.1.9</span> <span class="content">Logged in access</span></a>
        </ol>
       <li>
        <a href="#uc-collections"><span class="secno">2.2</span> <span class="content">Basic collection access</span></a>
@@ -1643,6 +1644,19 @@ easy for Alice.</p>
    <h4 class="heading settled" data-level="2.1.8" id="basic-public"><span class="secno">2.1.8. </span><span class="content">Public access</span><a class="self-link" href="#basic-public"></a></h4>
    <p>Alice decides <code>resume</code> is ready to share with everyone, so she gives <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">read access</a> to the public (everyone), and shares a link to it on several
 job boards.</p>
+   <h4 class="heading settled" data-level="2.1.9" id="basic-authenticated"><span class="secno">2.1.9. </span><span class="content">Logged in access</span><a class="self-link" href="#basic-authenticated"></a></h4>
+   <p>Alice runs an open online workshop for a few people she works with but also
+she sends an invitation to aa public mailing list suggesting experts
+in her field should also come.</p>
+   <p>She sets the access to the materials so
+that anyone who has a solid ID can log in and access it.
+(They have read access to the agenda, and write access to the minutes, say).</p>
+   <p>She uses an app which accumulates the set of Ids of the people who have used this access
+as a group.</p>
+   <p>People who follow her link to the materials are prompted by the system to log
+in, or if necessary to make a new solid account and then log in.</p>
+   <p>After the workshop is over, she changes the access on the materials
+to explicitly be that group.</p>
    <h3 class="heading settled" data-level="2.2" id="uc-collections"><span class="secno">2.2. </span><span class="content">Basic collection access</span><a class="self-link" href="#uc-collections"></a></h3>
    <p class="note" role="note"><span>Note:</span> These use cases are focused on access to a <a data-link-type="dfn" href="#collection" id="ref-for-collection">collection</a> itself. Use cases that focus on permissions related to <a data-link-type="dfn" href="#resource" id="ref-for-resource②">resources</a> included
 in that <a data-link-type="dfn" href="#collection" id="ref-for-collection①">collection</a> are covered in <a href="#uc-inheritance">§ 2.3 Inheritance</a>.</p>
