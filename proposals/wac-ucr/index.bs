@@ -179,6 +179,26 @@ Alice decides `resume` is ready to share with everyone, so she gives
 [=read access=] to the public (everyone), and shares a link to it on several
 job boards.
 
+### Logged in access ### {#basic-authenticated}
+
+Alice runs an open online workshop for a few people she works with but also
+she sends an invitation to aa public mailing list suggesting experts
+in her field should also come.
+
+She sets the access to the materials so
+that anyone who has a solid ID can log in and access it.
+(They have read access to the agenda, and write access to the minutes, say).
+
+She uses an app which accumulates the set of Ids of the people who have used this access
+as a group.
+
+People who follow her link to the materials are prompted by the system to log
+in, or if necessary to make a new solid account and then log in.
+
+After the workshop is over, she changes the access on the materials
+to explicitly be that group.
+
+
 ## Basic collection access ## {#uc-collections}
 
 Note: These use cases are focused on access to a [=collection=]
