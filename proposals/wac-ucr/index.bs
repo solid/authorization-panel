@@ -128,7 +128,7 @@ in the reference section of `resume`. Alice gives Danielle [=read access=] to
 `resume` for context, and [=append access=] so that she can add a link to
 the recommendation that she creates and hosts on her own [=resource server=]
 at `https://danielle.example/recommendation`. Danielle is the
-[=resource controller=] for that resource and gives it public [=read access=]. 
+[=resource controller=] for that resource and gives it public [=read access=].
 
 ### Append-only access ### {#basic-appendonly}
 
@@ -881,6 +881,18 @@ Neither Carol or Oscar would appreciate knowing that Alice is interviewing
 with both of them, so it's important neither Carol or Oscar know who else
 Alice has shared her `resume` with, despite having [=read access=] to it.
 
+### Limiting access to other authorization conditions ### {#uc-historyofchanges}
+
+As an extension of [[#uc-whopermitted]], it is also important to Alice that
+that neither Carol nor Oscar be able to discern other characteristics of
+the [=authorizations=] or conditions associated
+with Alice's `resume`.
+
+For example, if the data Carol and Oscar saw in the resume was
+[[#conditional-filter|filtered]] to only show a certain subset of her
+background, she wouldn't want them to know that they were only seeing
+a filtered view.
+
 ### Minimal Credential Disclosure ### {#uc-minimalcredentials}
 
 Following a link on a blog post, Alice comes to a resource that requires
@@ -893,7 +905,7 @@ Her client's credential manager should see this and select
 the credential revealing the least amount of information needed to access
 the resource.
 
-### Limit information disclosure through URI ### {#uc-limituri} 
+### Limit information disclosure through URI ### {#uc-limituri}
 
 A service with very high security and confidentiality requirements must publish
 resources without the URL for any resource leaking information about it's content.
