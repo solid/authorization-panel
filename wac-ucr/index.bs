@@ -112,12 +112,24 @@ and [=write access=] so that he can make changes to it, which he does.
 
 ### Read-append access ### {#basic-readappend}
 
+#### Alice stores Danielle's recommendation #### {#basic-readappend-single-storage}
+
 Danielle agrees to give Alice a personal reference, which Alice will
 include in the references section of `resume`.
 Alice gives Danielle [=read access=] to `resume` for context, and
 [=append access=] so that she can only add new data to `resume`, and
 cannot change any existing data within it. Danielle adds a glowing
 reference for Alice to `resume`.
+
+#### Danielle stores their own recommendation #### {#basic-readappend-multi-storage}
+
+Danielle agrees to give Alice a personal reference, which Alice will link to
+in the reference section of `resume`. Alice gives Danielle [=read access=] to
+`resume` for context, and [=append access=] to a `recommendations` inbox.
+Danielle creates a recommendation on their [=resource server=] at
+`https://danielle.example/recommendation`. Danielle is the [=resource
+controller=] for that resource and gives it public [=read access=]. Danielle
+then notifies Alice's inbox about the recommendation.
 
 ### Append-only access ### {#basic-appendonly}
 

@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="7b02084471c3543ad5b04e51470f4a22148bf67d" name="document-revision">
+  <meta content="b3d34261b8ed1e03a6030c974b3c93390b40f1ce" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1438,7 +1438,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Web Access Control</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-09-03">3 September 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-09-04">4 September 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1603,43 +1603,50 @@ permissions for it.</p>
    <p>Alice gives Bob <a data-link-type="dfn" href="#read-access" id="ref-for-read-access">read access</a> so that he can read the <code>resume</code> resource,
 and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access">write access</a> so that he can make changes to it, which he does.</p>
    <h4 class="heading settled" data-level="2.1.3" id="basic-readappend"><span class="secno">2.1.3. </span><span class="content">Read-append access</span><a class="self-link" href="#basic-readappend"></a></h4>
+   <h5 class="heading settled" data-level="2.1.3.1" id="basic-readappend-single-storage"><span class="secno">2.1.3.1. </span><span class="content">Alice stores Danielle’s recommendation</span><a class="self-link" href="#basic-readappend-single-storage"></a></h5>
    <p>Danielle agrees to give Alice a personal reference, which Alice will
 include in the references section of <code>resume</code>.
 Alice gives Danielle <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①">read access</a> to <code>resume</code> for context, and <a data-link-type="dfn" href="#append-access" id="ref-for-append-access">append access</a> so that she can only add new data to <code>resume</code>, and
 cannot change any existing data within it. Danielle adds a glowing
 reference for Alice to <code>resume</code>.</p>
+   <h5 class="heading settled" data-level="2.1.3.2" id="basic-readappend-multi-storage"><span class="secno">2.1.3.2. </span><span class="content">Danielle stores their own recommendation</span><a class="self-link" href="#basic-readappend-multi-storage"></a></h5>
+   <p>Danielle agrees to give Alice a personal reference, which Alice will link to
+in the reference section of <code>resume</code>. Alice gives Danielle <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②">read access</a> to <code>resume</code> for context, and <a data-link-type="dfn" href="#append-access" id="ref-for-append-access①">append access</a> to a <code>recommendations</code> inbox.
+Danielle creates a recommendation on their <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server①">resource server</a> at <code>https://danielle.example/recommendation</code>. Danielle is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller③">resource
+controller</a> for that resource and gives it public <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③">read access</a>. Danielle
+then notifies Alice’s inbox about the recommendation.</p>
    <h4 class="heading settled" data-level="2.1.4" id="basic-appendonly"><span class="secno">2.1.4. </span><span class="content">Append-only access</span><a class="self-link" href="#basic-appendonly"></a></h4>
    <p>Alice is interested in seeing whether any of her other contacts might
 provide good recommendations that she can include as additional references
 or a resume cover letter.</p>
-   <p>She creates a <code>recommendations</code> resource, and grants <a data-link-type="dfn" href="#append-access" id="ref-for-append-access①">append access</a> to the <code>contacts</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group">authorization group</a>, which represents every professional
+   <p>She creates a <code>recommendations</code> resource, and grants <a data-link-type="dfn" href="#append-access" id="ref-for-append-access②">append access</a> to the <code>contacts</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group">authorization group</a>, which represents every professional
 contact in her virtual rolodex. She sends a mass-mail to <code>contacts</code>,
 with a link to an app they can use to submit a recommendation, which will be
-appended to <code>recommendations</code>. Since they only have <a data-link-type="dfn" href="#append-access" id="ref-for-append-access②">append access</a> and not <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②">read access</a>, they can add to <code>recommendations</code> but they
+appended to <code>recommendations</code>. Since they only have <a data-link-type="dfn" href="#append-access" id="ref-for-append-access③">append access</a> and not <a data-link-type="dfn" href="#read-access" id="ref-for-read-access④">read access</a>, they can add to <code>recommendations</code> but they
 cannot see recommendations that have already been added.</p>
    <h4 class="heading settled" data-level="2.1.5" id="basic-removing"><span class="secno">2.1.5. </span><span class="content">Removing access</span><a class="self-link" href="#basic-removing"></a></h4>
    <p>Alice removes Bob and Danielle’s access to <code>resume</code>, since they’ve both
 finished contributing to it. They can no longer read or make changes to it.</p>
    <h4 class="heading settled" data-level="2.1.6" id="basic-readonly"><span class="secno">2.1.6. </span><span class="content">Read-only access</span><a class="self-link" href="#basic-readonly"></a></h4>
-   <p>Alice has a job interview with Carol. Alice gives Carol <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③">read access</a> to <code>resume</code> ahead of the interview.</p>
+   <p>Alice has a job interview with Carol. Alice gives Carol <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑤">read access</a> to <code>resume</code> ahead of the interview.</p>
    <h4 class="heading settled" data-level="2.1.7" id="basic-group"><span class="secno">2.1.7. </span><span class="content">Group access</span><a class="self-link" href="#basic-group"></a></h4>
    <p>Alice has additional interest, and is now interviewing with people from
 multiple organizations, including Carol, Oscar, and Frank.</p>
    <p>To make it easier to keep track of everyone,
 Alice creates an <code>interviewing</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①">authorization group</a> and adds Carol,
-Oscar, and Frank to it. She grants <a data-link-type="dfn" href="#read-access" id="ref-for-read-access④">read access</a> on <code>resume</code> to the <code>interviewing</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②">authorization group</a>.</p>
+Oscar, and Frank to it. She grants <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑥">read access</a> on <code>resume</code> to the <code>interviewing</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②">authorization group</a>.</p>
    <p>Alice removes any individual permissions on <code>resume</code> that were granted
 to members of the <code>interviewing</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group③">authorization group</a> since they are no longer necessary.</p>
    <p>Now Alice can add new people she’s interviewing with to the <code>interviewing</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group④">authorization group</a>, and remove them when the
 opportunity is no longer active. This is much more intuitive and
 easy for Alice.</p>
    <h4 class="heading settled" data-level="2.1.8" id="basic-public"><span class="secno">2.1.8. </span><span class="content">Public access</span><a class="self-link" href="#basic-public"></a></h4>
-   <p>Alice decides <code>resume</code> is ready to share with everyone, so she gives <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑤">read access</a> to the public (everyone), and shares a link to it on several
+   <p>Alice decides <code>resume</code> is ready to share with everyone, so she gives <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">read access</a> to the public (everyone), and shares a link to it on several
 job boards.</p>
    <h3 class="heading settled" data-level="2.2" id="uc-collections"><span class="secno">2.2. </span><span class="content">Basic collection access</span><a class="self-link" href="#uc-collections"></a></h3>
    <p class="note" role="note"><span>Note:</span> These use cases are focused on access to a <a data-link-type="dfn" href="#collection" id="ref-for-collection">collection</a> itself. Use cases that focus on permissions related to <a data-link-type="dfn" href="#resource" id="ref-for-resource②">resources</a> included
 in that <a data-link-type="dfn" href="#collection" id="ref-for-collection①">collection</a> are covered in <a href="#uc-inheritance">§ 2.3 Inheritance</a>.</p>
-   <p>Alice has a portfolio <a data-link-type="dfn" href="#collection" id="ref-for-collection②">collection</a> stored on her <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server①">resource server</a> at <code>https://alice.example/portfolio</code>, which she is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller③">resource controller</a> for. She provides access to the <code>portfolio</code> to potential employers as she moves through a job interview process.</p>
+   <p>Alice has a portfolio <a data-link-type="dfn" href="#collection" id="ref-for-collection②">collection</a> stored on her <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server②">resource server</a> at <code>https://alice.example/portfolio</code>, which she is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller④">resource controller</a> for. She provides access to the <code>portfolio</code> to potential employers as she moves through a job interview process.</p>
    <p>The <code>portfolio</code> includes <a data-link-type="dfn" href="#resource" id="ref-for-resource③">resources</a> representing individual deliverables
 she’s produced throughout her career, along with <a data-link-type="dfn" href="#collection" id="ref-for-collection③">collections</a> of deliverables from larger scale projects that she’s worked on.</p>
    <figure>
@@ -1697,9 +1704,9 @@ https://alice.example/</figcaption>
 as well as the specific people (Carol, Oscar, and Frank) to contact at
 each one.</p>
    <p>Alice sends individual e-mails to Carol, Oscar, and Frank with links to her <code>resume</code> and <code>portfolio</code>.</p>
-   <p>Alice has granted Carol, Oscar, and Frank <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑥">read access</a> to her <code>resume</code> which
+   <p>Alice has granted Carol, Oscar, and Frank <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑧">read access</a> to her <code>resume</code> which
 allows them to read its contents fully.</p>
-   <p>Alice has also granted them <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">read access</a> to the <code>portfolio</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑨">collection</a>.
+   <p>Alice has also granted them <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑨">read access</a> to the <code>portfolio</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑨">collection</a>.
 She only wants them to see detail about the <code>portfolio</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪">collection</a> itself, along with a listing of its contents, but not the
 contents of the <a data-link-type="dfn" href="#resource" id="ref-for-resource⑧">resources</a> included in that <a data-link-type="dfn" href="#collection" id="ref-for-collection①①">collection</a> just yet.</p>
    <p>Alice wants know which of them are really interested based on who
@@ -1708,7 +1715,7 @@ asks her for more access to the contents of <code>portfolio</code>.</p>
    <p>Alice worked with Milo in the past, where they produced a deliverable
 (<code>document1</code>) that she has included in her <code>portfolio</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①②">collection</a>.</p>
    <p>Alice realized that she doesn’t have the most up-to-date version <code>document1</code>,
-and needs Milo to replace it. She gives Milo <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑧">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①">write access</a> to the <code>portfolio</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①③">collection</a> itself, which allows him to
+and needs Milo to replace it. She gives Milo <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⓪">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access①">write access</a> to the <code>portfolio</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①③">collection</a> itself, which allows him to
 see the listing of its contents, as well as add and remove items from the <a data-link-type="dfn" href="#collection" id="ref-for-collection①④">collection</a>.</p>
    <p>He cannot read the contents of any of the <a data-link-type="dfn" href="#resource" id="ref-for-resource⑨">resources</a> included in the <a data-link-type="dfn" href="#collection" id="ref-for-collection①⑤">collection</a>, but this is fine, since he knows the name of the <a data-link-type="dfn" href="#resource" id="ref-for-resource①⓪">resource</a> he’s replacing.</p>
    <p>Milo updates the contents of <code>document1</code> to the most recent version.</p>
@@ -1717,7 +1724,7 @@ see the listing of its contents, as well as add and remove items from the <a dat
 the project deliverables she could find in the <code>project1</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①⑥">collection</a>.
 She’s sure that she’s missing some, and that Bob would have the missing
 items.</p>
-   <p>Alice grants Bob <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑨">read access</a> and <a data-link-type="dfn" href="#append-access" id="ref-for-append-access③">append access</a> to the <code>project1</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①⑦">collection</a>, which allows him to see the list of what is there,
+   <p>Alice grants Bob <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①①">read access</a> and <a data-link-type="dfn" href="#append-access" id="ref-for-append-access④">append access</a> to the <code>project1</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①⑦">collection</a>, which allows him to see the list of what is there,
 and add new <a data-link-type="dfn" href="#resource" id="ref-for-resource①①">resources</a> to it.</p>
    <p>He can’t see the contents of the <a data-link-type="dfn" href="#resource" id="ref-for-resource①②">resources</a>, or remove anything in the list.
 That’s fine because he only needs to add the <a data-link-type="dfn" href="#resource" id="ref-for-resource①③">resources</a> that aren’t
@@ -1732,9 +1739,9 @@ which are stored in the <code>comments</code> <a data-link-type="dfn" href="#col
 permissions:</p>
    <ul>
     <li data-md>
-     <p>Inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⓪">read access</a> to the <code>comments</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①⑨">collection</a> so they can list and read existing comments (including their own).</p>
+     <p>Inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①②">read access</a> to the <code>comments</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection①⑨">collection</a> so they can list and read existing comments (including their own).</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#append-access" id="ref-for-append-access④">Append access</a> to the <code>comments</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection②⓪">collection</a>, which allows them to
+     <p><a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑤">Append access</a> to the <code>comments</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection②⓪">collection</a>, which allows them to
 add their own comments, but not change anyone else’s including their
 own after the comments have been submitted.</p>
     <li data-md>
@@ -1745,7 +1752,7 @@ have created themselves, but none created by anyone else.</p>
    <p>Alice realizes it would be helpful if Carol, Oscar, and Frank could
 provide her with job opportunities that they think she would be a fit for
 at their respective organizations.</p>
-   <p>She provides them with <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑤">append access</a> to the <code>opportunities</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection②①">collection</a>.
+   <p>She provides them with <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑥">append access</a> to the <code>opportunities</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection②①">collection</a>.
 This allows each of them to add new <a data-link-type="dfn" href="#resource" id="ref-for-resource①④">resources</a> to <code>opportunities</code>, without
 the ability to see the listing of other <a data-link-type="dfn" href="#resource" id="ref-for-resource①⑤">resources</a> in the <a data-link-type="dfn" href="#collection" id="ref-for-collection②②">collection</a>,
 or modify them. This means
@@ -1759,7 +1766,7 @@ add <a data-link-type="dfn" href="#resource" id="ref-for-resource①⑥">resourc
    <h3 class="heading settled" data-level="2.3" id="uc-inheritance"><span class="secno">2.3. </span><span class="content">Inheritance</span><a class="self-link" href="#uc-inheritance"></a></h3>
    <p>Bob is leading a group of colleagues doing field research. This group
 includes Charles, Felicia, Juan, and Irene.</p>
-   <p>The group uses a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server②">resource server</a> for storing their information at <code>https://research.example/</code>, which Bob administers as the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller④">resource controller</a>.</p>
+   <p>The group uses a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server③">resource server</a> for storing their information at <code>https://research.example/</code>, which Bob administers as the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑤">resource controller</a>.</p>
    <p>Bob creates an <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group⑤">authorization group</a> called <code>research</code>, and adds Charles,
 Felicia, Juan, and Irene to it.</p>
    <figure>
@@ -1872,40 +1879,40 @@ to act as the scribe and post notes after the meeting for sharing
 with his colleagues. However, he doesn’t want the overhead of granting
 them permissions every week to each newly created note.</p>
    <p>Bob stores his notes from the weekly status meeting in the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection②⑧">collection</a>.</p>
-   <p>He grants the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group⑦">authorization group</a> inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①①">read access</a> to the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection②⑨">collection</a>, which means they can read specific
+   <p>He grants the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group⑦">authorization group</a> inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①③">read access</a> to the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection②⑨">collection</a>, which means they can read specific
 details about the <a data-link-type="dfn" href="#collection" id="ref-for-collection③⓪">collection</a>, see a listing of the resource included
 in it (e.g. Bob’s notes), and read the contents of each note. This is especially
 important because in this case each of Bob’s notes are actually a <a data-link-type="dfn" href="#collection" id="ref-for-collection③①">collection</a> themselves, capable of storing
 inline data or attachments, like pictures or videos.</p>
-   <p>Because Bob grants inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①②">read access</a> at the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③②">collection</a>, it will apply to everything already in the <a data-link-type="dfn" href="#collection" id="ref-for-collection③③">collection</a>,
+   <p>Because Bob grants inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①④">read access</a> at the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③②">collection</a>, it will apply to everything already in the <a data-link-type="dfn" href="#collection" id="ref-for-collection③③">collection</a>,
 as well as anything that will be added in the future.</p>
    <h4 class="heading settled" data-level="2.3.2" id="inheritance-readappend"><span class="secno">2.3.2. </span><span class="content">Read-append access to collection resources</span><a class="self-link" href="#inheritance-readappend"></a></h4>
    <p>Every day, someone in the group is responsible for recording data from
 devices in the field, and storing those metrics in <code>daily-metrics</code>.</p>
-   <p>Bob gives the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group⑧">authorization group</a> inherited <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑥">append access</a> to the <code>daily-metrics</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③④">collection</a>. This allows anyone in the <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group⑨">authorization group</a> to see the contents of the <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑤">collection</a>, and
+   <p>Bob gives the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group⑧">authorization group</a> inherited <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑦">append access</a> to the <code>daily-metrics</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③④">collection</a>. This allows anyone in the <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group⑨">authorization group</a> to see the contents of the <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑤">collection</a>, and
 add new readings. They cannot modify readings after they are recorded. This
 provides confidence that readings are not manipulated after the fact.</p>
    <h4 class="heading settled" data-level="2.3.3" id="inheritance-readwrite"><span class="secno">2.3.3. </span><span class="content">Read-write access to collection resources</span><a class="self-link" href="#inheritance-readwrite"></a></h4>
    <p>The members of the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⓪">authorization group</a> collaborate on a
 daily summary, where they analyze the day’s field readings stored in <code>daily-summaries</code>, detailing any new, validated, or invalidated hypotheses.</p>
-   <p>Bob gives the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①①">authorization group</a> inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①③">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access②">write access</a> to the <code>daily-summaries</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑥">collection</a>. This allows
+   <p>Bob gives the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①①">authorization group</a> inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑤">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access②">write access</a> to the <code>daily-summaries</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑥">collection</a>. This allows
 anyone in the <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①②">authorization group</a> to see the contents of the <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑦">collection</a> and collaborate on a given day’s summary. They can
 update the contents together until they’re satisfied with the results.</p>
    <h4 class="heading settled" data-level="2.3.4" id="inheritance-appendonly"><span class="secno">2.3.4. </span><span class="content">Append-only access to collection resources</span><a class="self-link" href="#inheritance-appendonly"></a></h4>
    <p>Bob purchases a new field device that is able to automatically push daily
 metric readings in <code>daily-metrics</code>.</p>
-   <p>Bob gives the new field device <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①④">read access</a> on the <code>daily-metrics</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑧">collection</a> so it can access the list of resources inside, and
-inherited <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑦">append access</a> access to <code>daily-metrics</code>, which allows it to add
+   <p>Bob gives the new field device <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑥">read access</a> on the <code>daily-metrics</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑧">collection</a> so it can access the list of resources inside, and
+inherited <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑧">append access</a> access to <code>daily-metrics</code>, which allows it to add
 to a daily-metric resource if it already exists, or create a new one
 if a member of the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①③">authorization group</a> hasn’t made
 one for that day yet.</p>
    <h4 class="heading settled" data-level="2.3.5" id="inheritance-control"><span class="secno">2.3.5. </span><span class="content">Control access to collection resources</span><a class="self-link" href="#inheritance-control"></a></h4>
    <p>Bob realizes that he needs some help administering <code>https://research.example</code>.
-He provides Carol with inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑤">read access</a> and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access①">control access</a> to <code>https://research.example/</code>, allowing her to read and manage permissions for
+He provides Carol with inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑦">read access</a> and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access①">control access</a> to <code>https://research.example/</code>, allowing her to read and manage permissions for
 all of the <a data-link-type="dfn" href="#resource" id="ref-for-resource②⑦">resources</a> and <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑨">collections</a> included within it.</p>
    <h4 class="heading settled" data-level="2.3.6" id="inheritance-defaultcreated"><span class="secno">2.3.6. </span><span class="content">Default permissions on created resources</span><a class="self-link" href="#inheritance-defaultcreated"></a></h4>
    <p>Bob is granting inherited permissions to the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①④">authorization group</a> at the <a data-link-type="dfn" href="#collection" id="ref-for-collection④⓪">collection</a> level for <code>daily-summaries</code> and <code>daily-metrics</code> that include the ability to add
-resources (<a data-link-type="dfn" href="#write-access" id="ref-for-write-access③">write access</a> / <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑧">append access</a>).</p>
+resources (<a data-link-type="dfn" href="#write-access" id="ref-for-write-access③">write access</a> / <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑨">append access</a>).</p>
    <p>It’s important
 that the resources they create have the correct permissions assigned
 automatically, and he needs to be able to ensure this when he
@@ -1913,7 +1920,7 @@ sets up their access. Otherwise, how can he be sure that the files
 aren’t created with access that too liberal (e.g. public access), or too
 narrow to be usable within their context?</p>
    <p>Bob prefers to specify in granular fashion the default permissions of
-created resources that should be assigned to any <a data-link-type="dfn" href="#authorization" id="ref-for-authorization">authorizations</a> with <a data-link-type="dfn" href="#write-access" id="ref-for-write-access④">write access</a> or <a data-link-type="dfn" href="#append-access" id="ref-for-append-access⑨">append access</a> on a given <a data-link-type="dfn" href="#collection" id="ref-for-collection④①">collection</a>.</p>
+created resources that should be assigned to any <a data-link-type="dfn" href="#authorization" id="ref-for-authorization">authorizations</a> with <a data-link-type="dfn" href="#write-access" id="ref-for-write-access④">write access</a> or <a data-link-type="dfn" href="#append-access" id="ref-for-append-access①⓪">append access</a> on a given <a data-link-type="dfn" href="#collection" id="ref-for-collection④①">collection</a>.</p>
    <h4 class="heading settled" data-level="2.3.7" id="inheritance-extended"><span class="secno">2.3.7. </span><span class="content">Default permissions for extended network</span><a class="self-link" href="#inheritance-extended"></a></h4>
    <p>Alice has a blog and allows comments on her posts. Ideally, everyone’s
 comments would be immediately visible, but she has previously been overwhelmed
@@ -1926,16 +1933,16 @@ they get reviewed.</p>
    <p class="note" role="note"><span>Note:</span> Adding a new subject means we are adding a new <a data-link-type="dfn" href="#agent" id="ref-for-agent">agent</a>, <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑤">authorization group</a>, and/or <a data-link-type="dfn" href="#application" id="ref-for-application">application</a> to the collection that isn’t already part of an
 inherited <a data-link-type="dfn" href="#authorization" id="ref-for-authorization①">authorization</a>. Modifying permissions for those that exist in
 inherited <a data-link-type="dfn" href="#authorization" id="ref-for-authorization②">authorizations</a> is covered in <a href="#inheritance-modifying">§ 2.3.9 Modifying inherited permissions for existing subjects</a>.</p>
-   <p>Bob has given the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑥">authorization group</a> inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑥">read access</a> to the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④②">collection</a> (detailed in <a href="#inheritance-readonly">§ 2.3.1 Read-only access to collection of resources</a>).</p>
+   <p>Bob has given the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑥">authorization group</a> inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑧">read access</a> to the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④②">collection</a> (detailed in <a href="#inheritance-readonly">§ 2.3.1 Read-only access to collection of resources</a>).</p>
    <p>Celeste isn’t a regular member of the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑦">authorization group</a>,
 but happened to attend the weekly status meeting on December 30th, 2019.</p>
-   <p>Bob would like to give Celeste inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑦">read access</a> to <strong>only</strong> the
+   <p>Bob would like to give Celeste inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑨">read access</a> to <strong>only</strong> the
 note for the meeting she attended (<code>12-30-2019.note</code>),
-without affecting the access that he’s given to the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑧">authorization group</a>. <code>research</code> has inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑧">read access</a> on
+without affecting the access that he’s given to the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑧">authorization group</a>. <code>research</code> has inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⓪">read access</a> on
 everything in the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④③">collection</a>, and anything that is
 added to it.</p>
    <p>Effective access to <code>12-30-2019.note</code> should be that Celeste and the
-members of the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑨">authorization group</a> have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access①⑨">read access</a>. Celeste has
+members of the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group①⑨">authorization group</a> have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②①">read access</a>. Celeste has
 no other access to other resources in the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④④">collection</a>,
 nor any that will be created later. The access for the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⓪">authorization group</a> doesn’t change.</p>
    <h4 class="heading settled" data-level="2.3.9" id="inheritance-modifying"><span class="secno">2.3.9. </span><span class="content">Modifying inherited permissions for existing subjects</span><a class="self-link" href="#inheritance-modifying"></a></h4>
@@ -1947,25 +1954,25 @@ participate in the discussion.</p>
 Bob and Felicia agreed that he would remove her access to the meeting
 note for that session - <code>01-06-2020.note</code>, which is included in the <code>weekly-status</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑤">collection</a>.</p>
    <p>Effective access to <code>01-06-2020.note</code> then becomes
-the inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⓪">read access</a> to the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②②">authorization group</a> (which Felicia is part of), minus Felicia.</p>
-   <p>Felicia continues to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②①">read access</a> to all other
+the inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②②">read access</a> to the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②②">authorization group</a> (which Felicia is part of), minus Felicia.</p>
+   <p>Felicia continues to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②③">read access</a> to all other
 existing resources included in the <code>weekly-status</code> collection, and any new
-resources added to it. Inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②②">read access</a> for others in the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②③">authorization group</a> is unchanged.</p>
+resources added to it. Inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②④">read access</a> for others in the <code>research</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②③">authorization group</a> is unchanged.</p>
    <h4 class="heading settled" data-level="2.3.10" id="inheritance-forcing"><span class="secno">2.3.10. </span><span class="content">Forcing inherited permissions</span><a class="self-link" href="#inheritance-forcing"></a></h4>
-   <p>As the primary administrator and <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑤">resource controller</a> of <code>https://resource.example</code>, Bob wants to ensure that
+   <p>As the primary administrator and <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑥">resource controller</a> of <code>https://resource.example</code>, Bob wants to ensure that
 he maintains ultimate control over the data inside.</p>
    <p>Even though he’s given
-Carol permission to help him administer the <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server③">resource server</a>, he wants
+Carol permission to help him administer the <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server④">resource server</a>, he wants
 to ensure that she’s not able to cut out his access. He wants
-to always maintain a minimum of <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②③">read access</a> and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access②">control access</a> to
+to always maintain a minimum of <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑤">read access</a> and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access②">control access</a> to
 all of the resources in <code>https://resource.example</code>. This allows him to have
 visibility into everything, and change their permissions as needed.</p>
    <h3 class="heading settled" data-level="2.4" id="uc-conditional"><span class="secno">2.4. </span><span class="content">Conditional access</span><a class="self-link" href="#uc-conditional"></a></h3>
    <p>Felicia works for an organization that conducts clinical trials, and
 leads a team that processes and synthesizes incoming data from
 trial participants, including participants in the <code>Acme</code> trial.</p>
-   <p>The organization uses a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server④">resource server</a> at <code>https://trials.example</code> as a data repository for all of their clinical trial data.
-Felicia is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑥">resource controller</a> of <code>https://trials.example</code>,
+   <p>The organization uses a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑤">resource server</a> at <code>https://trials.example</code> as a data repository for all of their clinical trial data.
+Felicia is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑦">resource controller</a> of <code>https://trials.example</code>,
 managing authorized access to it for her colleagues, and a group of research
 interns.</p>
    <figure>
@@ -2035,7 +2042,7 @@ interns.</p>
    <p>Erin is a research intern that will be assisting Felicia’s team in processing
 and synthesizing data for the <code>Acme</code> trial. She will remain on the team
 until the end of her current academic term on June 30th, 2020.</p>
-   <p>Felicia has granted Erin inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②④">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑤">write access</a> to the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑧">collection</a>, which contains measurements for all trial
+   <p>Felicia has granted Erin inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑥">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑤">write access</a> to the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection④⑧">collection</a>, which contains measurements for all trial
 participants, across all trials.</p>
    <p>Felicia adds a time-based condition for Erin which
 states that her access to <code>measurements</code> is only valid through June 30th, 2020.</p>
@@ -2053,7 +2060,7 @@ as well as measurements that have already been processed.</p>
     <li data-md>
      <p>When a new measurement is processed, it is tagged as <code>processed</code></p>
    </ul>
-   <p>Felicia authorizes Erin to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑤">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑥">write access</a> to <code>measurements</code>, with a condition that the <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑦">resources</a> must:</p>
+   <p>Felicia authorizes Erin to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑦">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑥">write access</a> to <code>measurements</code>, with a condition that the <a data-link-type="dfn" href="#resource" id="ref-for-resource③⑦">resources</a> must:</p>
    <ul>
     <li data-md>
      <p><strong>include</strong> the <code>Acme</code> <a data-link-type="dfn" href="#tag" id="ref-for-tag">tag</a></p>
@@ -2075,7 +2082,7 @@ measurements. Reports are often amended to reference additional measurements
 over time.</p>
    <p>When Felicia prepares a new report <code>/reports/report-1</code>, she authorizes only
 the senior research team members receiving the report to have
-inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑥">read access</a> to <code>measurements</code>, with a condition that a given meansurement must be
+inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑧">read access</a> to <code>measurements</code>, with a condition that a given meansurement must be
 related to <code>/reports/report-1</code> by an <code>ex:hasMeasurement</code> predicate for
 that access to be permitted.</p>
    <p>This ensures that the senior research team members will be able to read
@@ -2114,10 +2121,10 @@ the following policy: their authors can edit comments for a minimum of 5
 minutes and only until these are themselves commented. After that point, the
 post will be in read-only access mode.</p>
    <h3 class="heading settled" data-level="2.5" id="uc-applications"><span class="secno">2.5. </span><span class="content">Permissioning Applications</span><a class="self-link" href="#uc-applications"></a></h3>
-   <p>Oscar stores all of his data in a private <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑤">resource server</a> at <code>https://oscar.example</code>, where he is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑦">resource controller</a>.</p>
+   <p>Oscar stores all of his data in a private <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑥">resource server</a> at <code>https://oscar.example</code>, where he is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑧">resource controller</a>.</p>
    <p>He stores a wide spectrum of things, from personal financial data to
 collaborative projects that he works on with his friends and colleagues.</p>
-   <p>As the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑧">resource controller</a> for <code>https://oscar.example</code>, any application that
+   <p>As the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑨">resource controller</a> for <code>https://oscar.example</code>, any application that
 operates with or on behalf of Oscar’s <a data-link-type="dfn" href="#identity" id="ref-for-identity①">identity</a> would operate with
 the same unfettered access that Oscar enjoys.</p>
    <p>It is important to Oscar that he can include <a data-link-type="dfn" href="#application" id="ref-for-application①">applications</a> in his <a data-link-type="dfn" href="#authorization" id="ref-for-authorization④">authorizations</a> to limit this unfettered access.</p>
@@ -2125,22 +2132,22 @@ the same unfettered access that Oscar enjoys.</p>
 only cases where an application he trusts is involved:</p>
    <ul>
     <li data-md>
-     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑤">authorization group</a> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑦">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑤">control access</a> to <code>https://oscar.example</code></p>
+     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑤">authorization group</a> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑨">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑤">control access</a> to <code>https://oscar.example</code></p>
    </ul>
    <p>Following that, per <a href="#inheritance-modifying">§ 2.3.9 Modifying inherited permissions for existing subjects</a>, he could extend this default
 for the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤③">collection</a> to include <code>healthapp</code>:</p>
    <ul>
     <li data-md>
-     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑧">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑥">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a></p>
+     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑥">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a></p>
    </ul>
    <h3 class="heading settled" data-level="2.6" id="uc-privacy"><span class="secno">2.6. </span><span class="content">Privacy</span><a class="self-link" href="#uc-privacy"></a></h3>
    <h4 class="heading settled" data-level="2.6.1" id="uc-whopermitted"><span class="secno">2.6.1. </span><span class="content">Limiting access to who else is permitted</span><a class="self-link" href="#uc-whopermitted"></a></h4>
    <p>Alice is interviewing for a job with Carol. Alice is also interviewing for a
 job with Oscar, Carol’s direct competitor.</p>
-   <p>Alice has given Carol and Oscar <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑨">read access</a> to her <code>resume</code>.</p>
+   <p>Alice has given Carol and Oscar <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③①">read access</a> to her <code>resume</code>.</p>
    <p>Neither Carol or Oscar would appreciate knowing that Alice is interviewing
 with both of them, so it’s important neither Carol or Oscar know who else
-Alice has shared her <code>resume</code> with, despite having <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a> to it.</p>
+Alice has shared her <code>resume</code> with, despite having <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③②">read access</a> to it.</p>
    <h4 class="heading settled" data-level="2.6.2" id="uc-minimalcredentials"><span class="secno">2.6.2. </span><span class="content">Minimal Credential Disclosure</span><a class="self-link" href="#uc-minimalcredentials"></a></h4>
    <p>Following a link on a blog post, Alice comes to a resource that requires
 authentication. She could present one of many verifiable credentials (as per <a href="#capabilities-vc">§ 2.9.1 Possession of a verifiable credential</a>): three self-signed WebID credentials, four bank accounts,
@@ -2175,18 +2182,18 @@ doctors and care facilities that can be cryptographically verified.</p>
 Oscar’s authorization system at <code>https://oscar.example</code> supports a
 verifiable credential <a data-link-type="dfn" href="#capability" id="ref-for-capability">capability</a>.</p>
    <p>Oscar has set permissions on <code>https://oscar.example/emergency</code> that grants
-someone in possession of a verifiable medical credential to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③①">read access</a> to the contents. This gives them just enough background on
+someone in possession of a verifiable medical credential to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③③">read access</a> to the contents. This gives them just enough background on
 his condition to treat him properly.</p>
    <h4 class="heading settled" data-level="2.9.2" id="capabilities-link"><span class="secno">2.9.2. </span><span class="content">Possession of a link</span><a class="self-link" href="#capabilities-link"></a></h4>
    <p>Bob is about to give a confidential presentation to a group of his
-colleagues. His presentation is stored on his personal <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑥">resource server</a> at <code>https://bob.example/presentation</code>.</p>
+colleagues. His presentation is stored on his personal <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑦">resource server</a> at <code>https://bob.example/presentation</code>.</p>
    <p>Bob is having trouble hooking his laptop up to the projector, and
 needs to present in just a few minutes. Anne presented before Bob,
 and offers to bring the presentation up for him on her system.</p>
    <p>Unfortunately, Anne doesn’t have an <a data-link-type="dfn" href="#identity" id="ref-for-identity②">identity</a> ready to go that he can
 authorize. Luckily, his authorization system supports a link-based <a data-link-type="dfn" href="#capability" id="ref-for-capability①">capability</a>.</p>
    <p>Bob quickly creates an <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑦">authorization</a> for <code>https://bob.example/presentation</code> that allows anyone in possession of a specially generated link to access
-the document with <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③②">read access</a>. He sets it to <a href="#conditional-time">expire</a> in three hours. Bob gives the link to Anne
+the document with <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③④">read access</a>. He sets it to <a href="#conditional-time">expire</a> in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.</p>
    <h2 class="heading settled" data-level="3" id="requirements"><span class="secno">3. </span><span class="content">Requirements</span><a class="self-link" href="#requirements"></a></h2>
    <p class="issue" id="issue-baedb8a0"><a class="self-link" href="#issue-baedb8a0"></a> Populate requirements based on established use cases.</p>
@@ -2233,9 +2240,9 @@ represented by a unique <a data-link-type="biblio" href="#biblio-uri">[URI]</a>.
 include <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a> and <a data-link-type="biblio" href="#biblio-did">[DID]</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authenticated-agent">authenticated agent</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent③">agent</a> that has proven control
 of a given <a data-link-type="dfn" href="#identity" id="ref-for-identity④">identity</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑦">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent②">authenticated agent</a>, or in piloted-fashion by another <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated agent</a>.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent②">authenticated agent</a>, or in piloted-fashion by another <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated agent</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-controller">resource controller</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent④">agent</a> with fully permissioned
-access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑤">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a> on the Web.</p>
+access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑤">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑨">resource server</a> on the Web.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-server">resource server</dfn> is a web server that provides an
 interface to make <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑥">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application②">applications</a>,
 with the ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑧">authorizations</a>.</p>
@@ -2485,24 +2492,26 @@ any data that already exists.</p>
     <li><a href="#ref-for-resource-controller">2. Use Cases</a>
     <li><a href="#ref-for-resource-controller①">2.1. Basic resource access</a>
     <li><a href="#ref-for-resource-controller②">2.1.1. Control access</a>
-    <li><a href="#ref-for-resource-controller③">2.2. Basic collection access</a>
-    <li><a href="#ref-for-resource-controller④">2.3. Inheritance</a>
-    <li><a href="#ref-for-resource-controller⑤">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-resource-controller⑥">2.4. Conditional access</a>
-    <li><a href="#ref-for-resource-controller⑦">2.5. Permissioning Applications</a> <a href="#ref-for-resource-controller⑧">(2)</a>
+    <li><a href="#ref-for-resource-controller③">2.1.3.2. Danielle stores their own recommendation</a>
+    <li><a href="#ref-for-resource-controller④">2.2. Basic collection access</a>
+    <li><a href="#ref-for-resource-controller⑤">2.3. Inheritance</a>
+    <li><a href="#ref-for-resource-controller⑥">2.3.10. Forcing inherited permissions</a>
+    <li><a href="#ref-for-resource-controller⑦">2.4. Conditional access</a>
+    <li><a href="#ref-for-resource-controller⑧">2.5. Permissioning Applications</a> <a href="#ref-for-resource-controller⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="resource-server">
    <b><a href="#resource-server">#resource-server</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-resource-server">2.1. Basic resource access</a>
-    <li><a href="#ref-for-resource-server①">2.2. Basic collection access</a>
-    <li><a href="#ref-for-resource-server②">2.3. Inheritance</a>
-    <li><a href="#ref-for-resource-server③">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-resource-server④">2.4. Conditional access</a>
-    <li><a href="#ref-for-resource-server⑤">2.5. Permissioning Applications</a>
-    <li><a href="#ref-for-resource-server⑥">2.9.2. Possession of a link</a>
-    <li><a href="#ref-for-resource-server⑦">5. Definitions</a> <a href="#ref-for-resource-server⑧">(2)</a>
+    <li><a href="#ref-for-resource-server①">2.1.3.2. Danielle stores their own recommendation</a>
+    <li><a href="#ref-for-resource-server②">2.2. Basic collection access</a>
+    <li><a href="#ref-for-resource-server③">2.3. Inheritance</a>
+    <li><a href="#ref-for-resource-server④">2.3.10. Forcing inherited permissions</a>
+    <li><a href="#ref-for-resource-server⑤">2.4. Conditional access</a>
+    <li><a href="#ref-for-resource-server⑥">2.5. Permissioning Applications</a>
+    <li><a href="#ref-for-resource-server⑦">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-resource-server⑧">5. Definitions</a> <a href="#ref-for-resource-server⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="resource">
@@ -2607,29 +2616,30 @@ any data that already exists.</p>
    <b><a href="#read-access">#read-access</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-read-access">2.1.2. Read-write access</a>
-    <li><a href="#ref-for-read-access①">2.1.3. Read-append access</a>
-    <li><a href="#ref-for-read-access②">2.1.4. Append-only access</a>
-    <li><a href="#ref-for-read-access③">2.1.6. Read-only access</a>
-    <li><a href="#ref-for-read-access④">2.1.7. Group access</a>
-    <li><a href="#ref-for-read-access⑤">2.1.8. Public access</a>
-    <li><a href="#ref-for-read-access⑥">2.2.1. Read-only access to a Collection</a> <a href="#ref-for-read-access⑦">(2)</a>
-    <li><a href="#ref-for-read-access⑧">2.2.2. Read-write access to a Collection</a>
-    <li><a href="#ref-for-read-access⑨">2.2.3. Read-append access to a Collection</a>
-    <li><a href="#ref-for-read-access①⓪">2.2.4. Read-append-write access to a Collection</a>
-    <li><a href="#ref-for-read-access①①">2.3.1. Read-only access to collection of resources</a> <a href="#ref-for-read-access①②">(2)</a>
-    <li><a href="#ref-for-read-access①③">2.3.3. Read-write access to collection resources</a>
-    <li><a href="#ref-for-read-access①④">2.3.4. Append-only access to collection resources</a>
-    <li><a href="#ref-for-read-access①⑤">2.3.5. Control access to collection resources</a>
-    <li><a href="#ref-for-read-access①⑥">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-read-access①⑦">(2)</a> <a href="#ref-for-read-access①⑧">(3)</a> <a href="#ref-for-read-access①⑨">(4)</a>
-    <li><a href="#ref-for-read-access②⓪">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-read-access②①">(2)</a> <a href="#ref-for-read-access②②">(3)</a>
-    <li><a href="#ref-for-read-access②③">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-read-access②④">2.4.1. Conditional access by time</a>
-    <li><a href="#ref-for-read-access②⑤">2.4.2. Conditional access by tag</a>
-    <li><a href="#ref-for-read-access②⑥">2.4.3. Conditional access by relationship</a>
-    <li><a href="#ref-for-read-access②⑦">2.5. Permissioning Applications</a> <a href="#ref-for-read-access②⑧">(2)</a>
-    <li><a href="#ref-for-read-access②⑨">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③⓪">(2)</a>
-    <li><a href="#ref-for-read-access③①">2.9.1. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-read-access③②">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-read-access①">2.1.3.1. Alice stores Danielle’s recommendation</a>
+    <li><a href="#ref-for-read-access②">2.1.3.2. Danielle stores their own recommendation</a> <a href="#ref-for-read-access③">(2)</a>
+    <li><a href="#ref-for-read-access④">2.1.4. Append-only access</a>
+    <li><a href="#ref-for-read-access⑤">2.1.6. Read-only access</a>
+    <li><a href="#ref-for-read-access⑥">2.1.7. Group access</a>
+    <li><a href="#ref-for-read-access⑦">2.1.8. Public access</a>
+    <li><a href="#ref-for-read-access⑧">2.2.1. Read-only access to a Collection</a> <a href="#ref-for-read-access⑨">(2)</a>
+    <li><a href="#ref-for-read-access①⓪">2.2.2. Read-write access to a Collection</a>
+    <li><a href="#ref-for-read-access①①">2.2.3. Read-append access to a Collection</a>
+    <li><a href="#ref-for-read-access①②">2.2.4. Read-append-write access to a Collection</a>
+    <li><a href="#ref-for-read-access①③">2.3.1. Read-only access to collection of resources</a> <a href="#ref-for-read-access①④">(2)</a>
+    <li><a href="#ref-for-read-access①⑤">2.3.3. Read-write access to collection resources</a>
+    <li><a href="#ref-for-read-access①⑥">2.3.4. Append-only access to collection resources</a>
+    <li><a href="#ref-for-read-access①⑦">2.3.5. Control access to collection resources</a>
+    <li><a href="#ref-for-read-access①⑧">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-read-access①⑨">(2)</a> <a href="#ref-for-read-access②⓪">(3)</a> <a href="#ref-for-read-access②①">(4)</a>
+    <li><a href="#ref-for-read-access②②">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-read-access②③">(2)</a> <a href="#ref-for-read-access②④">(3)</a>
+    <li><a href="#ref-for-read-access②⑤">2.3.10. Forcing inherited permissions</a>
+    <li><a href="#ref-for-read-access②⑥">2.4.1. Conditional access by time</a>
+    <li><a href="#ref-for-read-access②⑦">2.4.2. Conditional access by tag</a>
+    <li><a href="#ref-for-read-access②⑧">2.4.3. Conditional access by relationship</a>
+    <li><a href="#ref-for-read-access②⑨">2.5. Permissioning Applications</a> <a href="#ref-for-read-access③⓪">(2)</a>
+    <li><a href="#ref-for-read-access③①">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③②">(2)</a>
+    <li><a href="#ref-for-read-access③③">2.9.1. Possession of a verifiable credential</a>
+    <li><a href="#ref-for-read-access③④">2.9.2. Possession of a link</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="write-access">
@@ -2647,14 +2657,15 @@ any data that already exists.</p>
   <aside class="dfn-panel" data-for="append-access">
    <b><a href="#append-access">#append-access</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-append-access">2.1.3. Read-append access</a>
-    <li><a href="#ref-for-append-access①">2.1.4. Append-only access</a> <a href="#ref-for-append-access②">(2)</a>
-    <li><a href="#ref-for-append-access③">2.2.3. Read-append access to a Collection</a>
-    <li><a href="#ref-for-append-access④">2.2.4. Read-append-write access to a Collection</a>
-    <li><a href="#ref-for-append-access⑤">2.2.5. Append-only access to a Collection</a>
-    <li><a href="#ref-for-append-access⑥">2.3.2. Read-append access to collection resources</a>
-    <li><a href="#ref-for-append-access⑦">2.3.4. Append-only access to collection resources</a>
-    <li><a href="#ref-for-append-access⑧">2.3.6. Default permissions on created resources</a> <a href="#ref-for-append-access⑨">(2)</a>
+    <li><a href="#ref-for-append-access">2.1.3.1. Alice stores Danielle’s recommendation</a>
+    <li><a href="#ref-for-append-access①">2.1.3.2. Danielle stores their own recommendation</a>
+    <li><a href="#ref-for-append-access②">2.1.4. Append-only access</a> <a href="#ref-for-append-access③">(2)</a>
+    <li><a href="#ref-for-append-access④">2.2.3. Read-append access to a Collection</a>
+    <li><a href="#ref-for-append-access⑤">2.2.4. Read-append-write access to a Collection</a>
+    <li><a href="#ref-for-append-access⑥">2.2.5. Append-only access to a Collection</a>
+    <li><a href="#ref-for-append-access⑦">2.3.2. Read-append access to collection resources</a>
+    <li><a href="#ref-for-append-access⑧">2.3.4. Append-only access to collection resources</a>
+    <li><a href="#ref-for-append-access⑨">2.3.6. Default permissions on created resources</a> <a href="#ref-for-append-access①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="control-access">
