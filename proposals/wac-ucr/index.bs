@@ -893,7 +893,7 @@ Her client's credential manager should see this and select
 the credential revealing the least amount of information needed to access
 the resource.
 
-### High Security Scenario ### {#uc-confidential}
+### Limit information disclosure through URI ### {#uc-limituri} 
 
 A service with very high security and confidentiality requirements must publish
 resources without the URL for any resource leaking information about it's content.
