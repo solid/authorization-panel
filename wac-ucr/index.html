@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="8e5aecd6e337de305673c31f90467a290a589c32" name="document-revision">
+  <meta content="4dcf799adc7cdc33710a06af1dd81d9e0a43151f" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1518,7 +1518,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
        <ol class="toc">
         <li><a href="#uc-whopermitted"><span class="secno">2.6.1</span> <span class="content">Limiting access to who else is permitted</span></a>
         <li><a href="#uc-minimalcredentials"><span class="secno">2.6.2</span> <span class="content">Minimal Credential Disclosure</span></a>
-        <li><a href="#uc-confidential"><span class="secno">2.6.3</span> <span class="content">High Security Scenario</span></a>
+        <li><a href="#uc-limituri"><span class="secno">2.6.3</span> <span class="content">Limit information disclosure through URI</span></a>
        </ol>
       <li>
        <a href="#uc-trust"><span class="secno">2.7</span> <span class="content">Trust</span></a>
@@ -2158,7 +2158,7 @@ as her FBI credential.  The resource only requires proof of being over 18.
 Her client’s credential manager should see this and select
 the credential revealing the least amount of information needed to access
 the resource.</p>
-   <h4 class="heading settled" data-level="2.6.3" id="uc-confidential"><span class="secno">2.6.3. </span><span class="content">High Security Scenario</span><a class="self-link" href="#uc-confidential"></a></h4>
+   <h4 class="heading settled" data-level="2.6.3" id="uc-limituri"><span class="secno">2.6.3. </span><span class="content">Limit information disclosure through URI</span><a class="self-link" href="#uc-limituri"></a></h4>
    <p>A service with very high security and confidentiality requirements must publish
 resources without the URL for any resource leaking information about it’s content.
 This service publishes all these resources using the Tor protocol, so that the location
@@ -2593,7 +2593,7 @@ any data that already exists.</p>
     <li><a href="#ref-for-resource③⑧">2.4.3. Conditional access by relationship</a> <a href="#ref-for-resource③⑨">(2)</a>
     <li><a href="#ref-for-resource④⓪">2.4.4. Conditional access by filter</a> <a href="#ref-for-resource④①">(2)</a> <a href="#ref-for-resource④②">(3)</a>
     <li><a href="#ref-for-resource④③">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-resource④④">2.6.3. High Security Scenario</a> <a href="#ref-for-resource④⑤">(2)</a> <a href="#ref-for-resource④⑥">(3)</a>
+    <li><a href="#ref-for-resource④④">2.6.3. Limit information disclosure through URI</a> <a href="#ref-for-resource④⑤">(2)</a> <a href="#ref-for-resource④⑥">(3)</a>
     <li><a href="#ref-for-resource④⑦">2.8. Validation</a>
     <li><a href="#ref-for-resource④⑧">5. Definitions</a> <a href="#ref-for-resource④⑨">(2)</a> <a href="#ref-for-resource⑤⓪">(3)</a> <a href="#ref-for-resource⑤①">(4)</a> <a href="#ref-for-resource⑤②">(5)</a> <a href="#ref-for-resource⑤③">(6)</a> <a href="#ref-for-resource⑤④">(7)</a> <a href="#ref-for-resource⑤⑤">(8)</a> <a href="#ref-for-resource⑤⑥">(9)</a> <a href="#ref-for-resource⑤⑦">(10)</a> <a href="#ref-for-resource⑤⑧">(11)</a> <a href="#ref-for-resource⑤⑨">(12)</a> <a href="#ref-for-resource⑥⓪">(13)</a> <a href="#ref-for-resource⑥①">(14)</a>
    </ul>
@@ -2622,7 +2622,7 @@ any data that already exists.</p>
     <li><a href="#ref-for-collection⑤⓪">2.4.3. Conditional access by relationship</a>
     <li><a href="#ref-for-collection⑤①">2.4.5. Conditional control boundaries</a> <a href="#ref-for-collection⑤②">(2)</a>
     <li><a href="#ref-for-collection⑤③">2.5. Permissioning Applications</a> <a href="#ref-for-collection⑤④">(2)</a>
-    <li><a href="#ref-for-collection⑤⑤">2.6.3. High Security Scenario</a> <a href="#ref-for-collection⑤⑥">(2)</a> <a href="#ref-for-collection⑤⑦">(3)</a>
+    <li><a href="#ref-for-collection⑤⑤">2.6.3. Limit information disclosure through URI</a> <a href="#ref-for-collection⑤⑥">(2)</a> <a href="#ref-for-collection⑤⑦">(3)</a>
     <li><a href="#ref-for-collection⑤⑧">5. Definitions</a>
    </ul>
   </aside>
