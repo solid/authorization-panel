@@ -4,7 +4,7 @@ Add your name; add +1/+0/0/-0/-1 to a use case you find interesting and add a co
 * +0 "I'm kind of for it, but can live without it"
 * 0 "I really don't care about it"
 * -0 "I'm kind of against it, but can live with it"
-* -1 "out of scope" or "does not belong in first version so we can ship sooner than later" (provide an explanation)
+* -1 "I'm against this right now" (provide an explanation)
 
 ## Basic resource access
 
