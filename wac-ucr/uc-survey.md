@@ -38,6 +38,9 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-group
 ### Public access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-public
 
+### Logged in access
+URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-authenticated
+
 ## Basic collection access
 
 ### Read-only access to a Collection
@@ -111,17 +114,18 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 
 ## Permissioning Applications
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
 
 ## Privacy
 
 ### Limiting access to who else is permitted
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-whopermitted
 
-### Minimal Credential Disclosure
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-minimalcredentials
-
 ### Limiting access to other authorization conditions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
+
+### Minimal Credential Disclosure
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-minimalcredentials
 
 ### Limit information disclosure through URI
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
@@ -132,6 +136,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
 
 ## Validation
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
 
 ## Capabilities
 
