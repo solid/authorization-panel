@@ -182,8 +182,8 @@ job boards.
 ### Logged in access ### {#basic-authenticated}
 
 Alice runs an open online workshop for a few people she works with but also
-she sends an invitation to aa public mailing list suggesting experts
-in her field should also come.
+she sends an invitation to a public mailing list suggesting experts in her
+field should also come.
 
 She sets the access to the materials so
 that anyone who has a solid ID can log in and access it.
@@ -206,9 +206,9 @@ itself. Use cases that focus on permissions related to [=resources=] included
 in that [=collection=] are covered in [[#uc-inheritance]].
 
 Alice has a portfolio [=collection=] stored on her [=resource server=] at
-`https://alice.example/portfolio`, which she is the [=resource controller=]
-for. She provides access to the `portfolio`
-to potential employers as she moves through a job interview process.
+`https://alice.example/portfolio/`, which she is the [=resource controller=]
+for. She provides access to the `portfolio` to potential employers as she
+moves through a job interview process.
 
 The `portfolio` includes [=resources=] representing individual deliverables
 she's produced throughout her career, along with
