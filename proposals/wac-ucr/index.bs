@@ -1013,6 +1013,16 @@ Unfortunately, anyone can setup an identity provider, so Carol would
 like to be able to recognize credentials issued from trustworthy
 identity providers.
 
+### Block access to agents ### {#uc-blockagents}
+
+A nonpartisian group provides a public annotation service, and allows any
+[=authenticated agent=] to share fact-checked information.
+
+Unfortunately, there are bad actors that would like to expose misinformation
+and disinformation through the annotation service. The trusted moderators of
+the service would like to be able to block the bad actors from sharing content
+in the future.
+
 ## Validation ## {#uc-validation}
 
 Juan likes to manage his [=authorizations=] manually. Every
