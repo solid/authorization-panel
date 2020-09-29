@@ -1015,13 +1015,13 @@ identity providers.
 
 ### Block access to agents ### {#uc-blockagents}
 
-A nonpartisian group provides a public annotation service, and allows any
+A nonpartisan group provides a public annotation service, and allows any
 [=authenticated agent=] to share fact-checked information.
 
-Unfortunately, there are bad actors that would like to expose misinformation
-and disinformation through the annotation service. The trusted moderators of
-the service would like to be able to block the bad actors from sharing content
-in the future.
+Unfortunately, there are bad actors that seek to expose misinformation and
+disinformation through the annotation service. The trusted moderators of the
+service would like to be able to block bad actors from sharing content in the
+future.
 
 ## Validation ## {#uc-validation}
 
