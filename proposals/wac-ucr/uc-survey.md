@@ -4,7 +4,7 @@ Add your name; add +1/+0/0/-0/-1 to a use case you find interesting and add a co
 * +0 "I'm kind of for it, but can live without it"
 * 0 "I really don't care about it"
 * -0 "I'm kind of against it, but can live with it"
-* -1 "out of scope" or "does not belong in first version so we can ship sooner than later" (provide an explanation)
+* -1 "I'm against this right now" (provide an explanation)
 
 ## Basic resource access
 
@@ -56,7 +56,12 @@ JUSTINWB: +1
 ### Public access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-public
 
+<<<<<<< HEAD
 JUSTINWB: +1
+=======
+### Logged in access
+URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-authenticated
+>>>>>>> master
 
 ## Basic collection access
 
@@ -175,6 +180,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 JUSTINWB: 0
 
 ## Permissioning Applications
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
 
 JUSTINWB: +1
 
@@ -183,6 +189,7 @@ JUSTINWB: +1
 ### Limiting access to who else is permitted
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-whopermitted
 
+<<<<<<< HEAD
 JUSTINWB: +1
 
 ### Minimal Credential Disclosure
@@ -194,6 +201,13 @@ JUSTINWB: +0
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
 
 JUSTINWB: +1
+=======
+### Limiting access to other authorization conditions
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
+
+### Minimal Credential Disclosure
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-minimalcredentials
+>>>>>>> master
 
 ### Limit information disclosure through URI
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
@@ -208,6 +222,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
 JUSTINWB: +0
 
 ## Validation
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
 
 JUSTINWB: +1
 
