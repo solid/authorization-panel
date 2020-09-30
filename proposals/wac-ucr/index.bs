@@ -857,6 +857,16 @@ the following policy: their authors can edit comments for a minimum of 5
 minutes and only until these are themselves commented. After that point, the
 post will be in read-only access mode.
 
+### Conditional access by payment ### {#conditional-payment}
+
+A musician would like to self publish her music to
+take advantage of a Solid music App. To finance her work 
+she would like to make the music metadata available openly 
+so that fans can follow her new releases, 
+search engines can index it, and the music app can display
+the songs in the user's language. Payment methods need to be 
+flexible  and allow for a smooth integration into music apps.
+
 
 ## Permissioning Applications  ## {#uc-applications}
 
