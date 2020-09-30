@@ -859,14 +859,16 @@ post will be in read-only access mode.
 
 ### Conditional access by payment ### {#conditional-payment}
 
-A musician would like to self publish her music to
-take advantage of a Solid music App. To finance her work 
-she would like to make the music metadata available openly 
-so that fans can follow her new releases, 
-search engines can index it, and the music app can display
-the songs in the user's language. Payment methods need to be 
-flexible  and allow for a smooth integration into music apps.
-
+A musician would like to self publish her music to take advantage of a
+Solid music App. She does this by making the song metadata available openly
+so that fans can follow her new releases, specialised music search engines
+can index it, and music apps can display the song's metadata in their
+users' preferred language. To earn a living, she sets an access control
+rule on the resource, allowing access on proof of payment. Payment methods
+need to be flexible and allow for smooth integration with any music app,
+even enabling automatic payment for small enough sums. Users of the Solid
+Music App would thus have one more song to choose from amongst the large
+number made available by musicians worldwide.
 
 ## Permissioning Applications  ## {#uc-applications}
 
