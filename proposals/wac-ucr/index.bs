@@ -888,6 +888,15 @@ for the `health` [=collection=] to include `healthapp`:
     `healthapp` has [=read access=], [=write access=], and [=control access=]
     to the `health` [=collection=]
 
+### Limiting application access while not acting as resource controller ### {#uc-client-constraints}
+
+Alice uses application *PerformChart* to visualize her work performance across various projects.
+She works on projects across various organizations, including *ACME* and *Omni*. While she has
+controller access to some of the projects, she also has read-write access to many other projects.
+Since *PerformChart* only provides analisis and visualization it doesn't need any write access.
+Alice grants *PerformChart* read only access to all the projects that she can access.
+
+
 ## Privacy ## {#uc-privacy}
 
 ### Limiting access to who else is permitted ### {#uc-whopermitted}
