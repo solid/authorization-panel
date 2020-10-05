@@ -846,6 +846,7 @@ with conditions that stipulate:
 * she can only create or change [=authorizations=]
     targeting the `measurements` [=collection=] where
     [=agents=] are included in the `interns` [=authorization group=].
+* she can't extend or transfer [=control access=] to anyone else.
 
 ### Conditional access by action ### {#conditional-action}
 
@@ -1012,16 +1013,6 @@ Carol has a blog, and allows any [=authenticated agent=]
 Unfortunately, anyone can setup an identity provider, so Carol would
 like to be able to recognize credentials issued from trustworthy
 identity providers.
-
-### Limit control access extension ### {#uc-limitcontrol}
-
-Captain Picard is on an away mission, and due to the circumstances, he would
-like to grant [=control access=] to ship's resources to Guinan while he is
-away.
-
-Picard wants to make sure that Guinan's control privileges is limited to
-further granting control access to anyone but the Commanders [=authorization
-group=] and certain individuals in case of an emergency.
 
 ## Validation ## {#uc-validation}
 
