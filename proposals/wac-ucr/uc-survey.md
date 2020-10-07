@@ -23,14 +23,16 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-control
 
 JUSTINWB: +1
 +1 elf Pavlik
-* +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d].
++1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d].
+Jackson: +1
 
 ### Read-write access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-write
 
 JUSTINWB: +1
 +1 elf Pavlik
-* +1 csarven: Wide use. Required for [ap]. [d].
++1 csarven: Wide use. Required for [ap]. [d].
+Jackson: +1
 
 ### Read-append access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend
@@ -45,6 +47,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-singl
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Generally worth doing. This UC implies a requirement that ensures data integrity.
+Jackson: +1
 
 #### Danielle stores their own recommendation
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-multi-storage
@@ -52,6 +55,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-multi
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: [d] such that agent A sends a notification about the recommendation to agent B's inbox ie. #collection-readappend , instead of updating a resource that references it.
+Jackson: +1
 
 ### Append-only access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-appendonly
@@ -59,6 +63,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-appendonly
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Convoluted scenario but the use case has wide use. [d] with some variations.
+Jackson: +1
 
 ### Removing access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-removing
@@ -66,6 +71,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-removing
 JUSTINWB: +1
 +1 elf Pavlik
 +1: csarven: Wide use. This UC is possibly a duplicate of #basic-control. [d].
+Jackson: +1
 
 ### Read-only access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readonly
@@ -73,6 +79,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readonly
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: +1
 
 ### Group access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-group
@@ -80,12 +87,14 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-group
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: This should be core but can live without it. May [d]. Group management may not be common for [ap].
+Jackson: +1
 
 ### Public access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-public
 
 JUSTINWB +1
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: +1
 
 ### Logged in access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-authenticated
@@ -97,6 +106,7 @@ trusted issuers this can be valuable and probably beneficial in a number of
 scenarios.
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: +1
 
 ## Basic collection access
 
@@ -106,6 +116,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readonly
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: +0 seems like a weak example, but it's needed for other examples
 
 ### Read-write access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readwrite
@@ -113,6 +124,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readwrite
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: -0 Some things need to be clarified here. If you have write access to a collection, do you also have write access to the resources of the collection? It wouldn't make sense for someone to be able to remove a resource from the collection if they don't have write access to that resource. Yet, on the other hand, if having read access on the collection doesn't give you read access to the resources, then it would be incongruent to allow write access to a collection to extend to the resource.
 
 ### Read-append access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappend
@@ -120,6 +132,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappend
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: +1
 
 ### Read-append-write access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappendwrite
@@ -129,6 +142,7 @@ privileges in an append scenario on a container is extremely important to
 a number of collaborative scenarios.
 +1 elf Pavlik
 0 csarven: Seems like duplicate of #collection-readwrite and #collection-readappend
+Jackson: +1
 
 ### Append-only access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-appendonly
@@ -136,6 +150,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-appendonly
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap] eg. creating annotations or notifications. [d].
+Jackson: +1
 
 ### Control access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-control
@@ -143,6 +158,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-control
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d].
+Jackson: +1
 
 ## Inheritance
 
@@ -152,6 +168,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readonly
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: +1
 
 ### Read-append access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
@@ -159,6 +176,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap] eg. need to set base access to read and share annotations and notifications. [d].
+Jackson: 0 I think this needs more clarification on what happens to nested collections.
 
 ### Read-write access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
@@ -166,6 +184,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap] - similar to #inheritance-readappend. [d].
+Jackson: 0 I think this needs more clarification on what happens to nested collections.
 
 ### Append-only access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-appendonly
@@ -173,6 +192,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-appendonly
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap] ie. to be able to update existing resources or to create new ones in a container. [d].
+Jackson: 0 I think this needs more clarification on what happens to nested collections.
 
 ### Control access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-control
@@ -180,6 +200,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-control
 JUSTINWB: +1
 +1 elf Pavlik
 +1 csarven: Wide use. Required for [ap]. [d].
+Jackson: 0 I think this needs more clarification on what happens to nested collections.
 
 ### Default permissions on created resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcreated
@@ -187,6 +208,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcre
 JUSTINWB: +1
 +1 elf Pavlik
 +0 csarven: Difference between default and inherited is not particularly significant for [ap]  - one is sufficient for most common use [d].
+Jackson: +1
 
 ### Default permissions for extended network
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
@@ -194,6 +216,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
 JUSTINWB: +1
 +1 elf Pavlik
 +0 csarven: Not core but probably necessary for some application domains.
+Jackson: +1 Just change "extended network" to "a group" to clarify.
 
 ### Adding new subjects to inherited permissions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-adding
@@ -204,6 +227,7 @@ for every resource specifically, lest they negate permissions that were set
 above.
 +1 elf Pavlik
 +1 csarven: May be duplicating simpler use cases. May [d].
+Jackson: +1
 
 ### Modifying inherited permissions for existing subjects
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-modifying
@@ -214,6 +238,7 @@ for every resource specifically, lest they negate permissions that were set
 above.
 +1 elf Pavlik
 +1 csarven: May be duplicating simpler use cases. May [d].
+Jackson: 0
 
 ### Forcing inherited permissions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-forcing
@@ -225,6 +250,7 @@ access to a collection far down in the hierarchy so they can hide things
 inside.
 +1 elf Pavlik
 +0 csarven: Could be useful for [ap]. May be implemented in [d] depending on other available features. See also note on #collection-control.
+Jackson: +1
 
 ## Conditional access
 
@@ -237,6 +263,7 @@ longer than they're needed. Also very useful when used in concert with
 invitiation flows.
 +1 elf Pavlik
 +0 csarven:
+Jackson: +1
 
 ### Conditional access by tag
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-tag
@@ -249,6 +276,7 @@ work-related, and then giving conditional access to only the work related
 photo albums in my media library to colleagues.
 +1 elf Pavlik
 0 csarven: Too specific. Complicated use case. [sw?]
+Jackson: 0
 
 ### Conditional access by relationship
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-relationship
@@ -264,6 +292,7 @@ she ensure that directive is maintained as new things are added? This use
 case addresses that.
 +1 elf Pavlik
 -0 csarven: Way too specific. Prefer a general form of this UC eg. matching a data shape. [sw?]
+Jackson: +1
 
 ### Conditional access by filter
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-filter
@@ -273,6 +302,7 @@ Ultimately, we need the manage access to data within the resource. There are
 some rational ways to do this using machinery we already have.
 +1 elf Pavlik
 * +0 csarven: Too specific. May require querying. Alternative based on simpler use cases: hide references to resources from a container's index from agents that do not have read permission. [sw?]
+Jackson: +1
 
 ### Conditional control boundaries
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
@@ -280,6 +310,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
 JUSTINWB: +0
 +1 elf Pavlik
 -0 csarven: Seems too convoluted for wide use. [sw?]
+Jackson: +1
 
 ### Conditional access by action
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
@@ -287,6 +318,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 JUSTINWB: 0
 +1 elf Pavlik
 +0 csarven: May be generally useful for [ap]. May [d].
+Jackson: 0
 
 ## Permissioning Applications
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
@@ -296,6 +328,7 @@ by AppID, with the caveat that the effectiveness is specifically when
 the user can strongly identify the application they are using (in
 piloted scenarios)
 0 csarven: it depends on the environment of the application.
+Jackson: +1
 
 ## Privacy
 
@@ -306,11 +339,13 @@ JUSTINWB: +1 - Privacy in this context in paramount, unless the controller
 specifically wants the information to be divulged.
 +1 elf Pavlik
 +1 csarven: Duplicate of #basic-readonly.
+Jackson: +1
 
 ### Limiting access to other authorization conditions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
 
 -0 csarven: Complex use case. Perhaps change focus to auxiliary resources.
+Jackson: +1
 
 ### Minimal Credential Disclosure
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-minimalcredentials
@@ -324,7 +359,8 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
 
 JUSTINWB: +1 - Privacy in this context in paramount, unless the controller
 specifically wants the information to be divulged.
-* +1 csarven: Wide use. I don't plan to implement it.
++1 csarven: Wide use. I don't plan to implement it.
+Jackson: +1
 
 ### Limit information disclosure through URI
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
@@ -334,6 +370,7 @@ system as much as how the resource server itself organizes and/or
 represents data.
 +1 elf Pavlik
 +1 csarven: I don't plan to implement it.
+Jackson: +1
 
 ## Trust
 
@@ -343,12 +380,14 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
 JUSTINWB: +0 - Makes the authenticated agent use case more reasonable to me
 +1 elf Pavlik
 +1 csarven: Wide use. I don't plan to implement it.
+Jackson: +1
 
 ## Validation
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
 
 JUSTINWB: +1 - This just seems like good engineering practice to me
 0 csarven: Not sure why this UC is here or what's expected of it other than making sure server only processes valid authorization policies and in its absence all access is denied.
+Jackson: +1
 
 ## Capabilities
 
@@ -359,6 +398,7 @@ JUSTINWB: +0 - Definitely seems to be a key part of the future of access
 control for us.
 +1 elf Pavlik
 +1 csarven: Wide use.
+Jackson: +1
 
 ### Possession of a link
 URL: https://solid.github.io/authorization-panel/wac-ucr/#capabilities-link
@@ -367,3 +407,4 @@ JUSTINWB: +0 - Can be extremely beneficial in scenarios like invitation
 flows or one-time shares.
 +1 elf Pavlik
 * 0 csarven: Some use but not essential (so, -1 wrt prioritisation)
+Jackson: +1
