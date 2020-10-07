@@ -1323,7 +1323,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version f9f60c8f, updated Fri Sep 25 16:39:03 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="95a10e2689670a08acf4bcd6c89c9e640e2548e1" name="document-revision">
+  <meta content="5554d38ef1c38277f087362cd71c438e81f48bc1" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1770,7 +1770,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Web Access Control</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-10-01">1 October 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-10-07">7 October 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1858,6 +1858,7 @@ dfn > a.self-link::before      { content: "#"; }
        <a href="#uc-trust"><span class="secno">2.7</span> <span class="content">Trust</span></a>
        <ol class="toc">
         <li><a href="#uc-trustedissuers"><span class="secno">2.7.1</span> <span class="content">Only trust certain issuers of identity</span></a>
+        <li><a href="#uc-blockagents"><span class="secno">2.7.2</span> <span class="content">Block access to agents</span></a>
        </ol>
       <li><a href="#uc-validation"><span class="secno">2.8</span> <span class="content">Validation</span></a>
       <li>
@@ -2579,6 +2580,12 @@ and memorable names for its resources.</p>
    <p>Unfortunately, anyone can setup an identity provider, so Carol would
 like to be able to recognize credentials issued from trustworthy
 identity providers.</p>
+   <h4 class="heading settled" data-level="2.7.2" id="uc-blockagents"><span class="secno">2.7.2. </span><span class="content">Block access to agents</span><a class="self-link" href="#uc-blockagents"></a></h4>
+   <p>A nonpartisan group provides a public annotation service, and allows any <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent②">authenticated agent</a> to share fact-checked information.</p>
+   <p>Unfortunately, there are bad actors that seek to expose misinformation and
+disinformation through the annotation service. The trusted moderators of the
+service would like to be able to block bad actors from sharing content in the
+future.</p>
    <h3 class="heading settled" data-level="2.8" id="uc-validation"><span class="secno">2.8. </span><span class="content">Validation</span><a class="self-link" href="#uc-validation"></a></h3>
    <p>Juan likes to manage his <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑥">authorizations</a> manually. Every
 once in a while, Juan makes a typo, or accidentally saves the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑦">authorization</a> in an incomplete state.</p>
@@ -2656,7 +2663,7 @@ represented by a unique <a data-link-type="biblio" href="#biblio-uri">[URI]</a>.
 include <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a> and <a data-link-type="biblio" href="#biblio-did">[DID]</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authenticated-agent">authenticated agent</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent③">agent</a> that has proven control
 of a given <a data-link-type="dfn" href="#identity" id="ref-for-identity④">identity</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent②">authenticated agent</a>, or in piloted-fashion by another <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated agent</a>.</p>
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated agent</a>, or in piloted-fashion by another <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent④">authenticated agent</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-controller">resource controller</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent④">agent</a> with fully permissioned
 access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑨">resource server</a> on the Web.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-server">resource server</dfn> is a web server that provides an
@@ -2891,7 +2898,8 @@ any data that already exists.</p>
    <ul>
     <li><a href="#ref-for-authenticated-agent">2. Use Cases</a>
     <li><a href="#ref-for-authenticated-agent①">2.7.1. Only trust certain issuers of identity</a>
-    <li><a href="#ref-for-authenticated-agent②">5. Definitions</a> <a href="#ref-for-authenticated-agent③">(2)</a>
+    <li><a href="#ref-for-authenticated-agent②">2.7.2. Block access to agents</a>
+    <li><a href="#ref-for-authenticated-agent③">5. Definitions</a> <a href="#ref-for-authenticated-agent④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="application">
