@@ -846,7 +846,7 @@ with conditions that stipulate:
 * she can only create or change [=authorizations=]
     targeting the `measurements` [=collection=] where
     [=agents=] are included in the `interns` [=authorization group=].
-* she can't extend or transfer [=control access=] to anyone else.
+* she can't grant [=control access=] to anyone else.
 
 ### Conditional access by action ### {#conditional-action}
 
