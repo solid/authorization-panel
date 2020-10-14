@@ -1323,7 +1323,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 89ebb6ab, updated Fri Oct 9 15:32:07 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="606e0f646b14901c22736d661884dc27aee788d0" name="document-revision">
+  <meta content="5f7bc8da15f15e970c3e26fe88720f693ab7620d" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1844,6 +1844,7 @@ dfn > a.self-link::before      { content: "#"; }
         <li><a href="#conditional-filter"><span class="secno">2.4.4</span> <span class="content">Conditional access by filter</span></a>
         <li><a href="#conditional-control"><span class="secno">2.4.5</span> <span class="content">Conditional control boundaries</span></a>
         <li><a href="#conditional-action"><span class="secno">2.4.6</span> <span class="content">Conditional access by action</span></a>
+        <li><a href="#conditional-payment"><span class="secno">2.4.7</span> <span class="content">Conditional access by payment</span></a>
        </ol>
       <li>
        <a href="#uc-applications"><span class="secno">2.5</span> <span class="content">Permissioning Applications</span></a>
@@ -2474,6 +2475,17 @@ if edited after someone else has commented on the comment. They institute
 the following policy: their authors can edit comments for a minimum of 5
 minutes and only until these are themselves commented. After that point, the
 post will be in read-only access mode.</p>
+   <h4 class="heading settled" data-level="2.4.7" id="conditional-payment"><span class="secno">2.4.7. </span><span class="content">Conditional access by payment</span><a class="self-link" href="#conditional-payment"></a></h4>
+   <p>A musician would like to self publish her music to take advantage of a
+Solid music App. She does this by making the song metadata available openly
+so that fans can follow her new releases, specialised music search engines
+can index it, and music apps can display the song’s metadata in their
+users' preferred language. To earn a living, she sets an access control
+rule on the resource, allowing access on proof of payment. Payment methods
+need to be flexible and allow for smooth integration with any music app,
+even enabling automatic payment for small enough sums. Users of the Solid
+Music App would thus have one more song to choose from amongst the large
+number made available by musicians worldwide.</p>
    <h3 class="heading settled" data-level="2.5" id="uc-applications"><span class="secno">2.5. </span><span class="content">Permissioning Applications</span><a class="self-link" href="#uc-applications"></a></h3>
    <p>Oscar stores all of his data in a private <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑥">resource server</a> at <code>https://oscar.example</code>, where he is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑧">resource controller</a>.</p>
    <p>He stores a wide spectrum of things, from personal financial data to
