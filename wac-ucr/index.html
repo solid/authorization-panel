@@ -1198,7 +1198,7 @@ Possible extra rowspan handling
 	ul.index ul,
 	ul.index dl { font-size: smaller; }
 	@media not print {
-		ul.index li span {
+		ul.index li span:not(.dfn-paneled) {
 			white-space: nowrap;
 			color: transparent; }
 		ul.index li a:hover + span,
@@ -1321,9 +1321,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version f9f60c8f, updated Fri Sep 25 16:39:03 2020 -0700" name="generator">
+  <meta content="Bikeshed version 89ebb6ab, updated Fri Oct 9 15:32:07 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="2bc26bedf1e3351b3b2485ee87687ac134a8f1af" name="document-revision">
+  <meta content="d968820db2f923185cf0befb53b3d326241b5b37" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1573,7 +1573,7 @@ figcaption:not(.no-marker)::before {
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
 .dfn-panel > b { display: block; }
-.dfn-panel a { color: black; }
+.dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
 .dfn-panel > b + b { margin-top: 0.25em; }
 .dfn-panel ul { padding: 0; }
@@ -1770,7 +1770,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Web Access Control</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-10-08">8 October 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-10-14">14 October 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1845,7 +1845,11 @@ dfn > a.self-link::before      { content: "#"; }
         <li><a href="#conditional-control"><span class="secno">2.4.5</span> <span class="content">Conditional control boundaries</span></a>
         <li><a href="#conditional-action"><span class="secno">2.4.6</span> <span class="content">Conditional access by action</span></a>
        </ol>
-      <li><a href="#uc-applications"><span class="secno">2.5</span> <span class="content">Permissioning Applications</span></a>
+      <li>
+       <a href="#uc-applications"><span class="secno">2.5</span> <span class="content">Permissioning Applications</span></a>
+       <ol class="toc">
+        <li><a href="#uc-client-constraints"><span class="secno">2.5.1</span> <span class="content">Limiting application access while not acting as resource controller</span></a>
+       </ol>
       <li>
        <a href="#uc-privacy"><span class="secno">2.6</span> <span class="content">Privacy</span></a>
        <ol class="toc">
@@ -2488,6 +2492,12 @@ for the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-f
     <li data-md>
      <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑥">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a></p>
    </ul>
+   <h4 class="heading settled" data-level="2.5.1" id="uc-client-constraints"><span class="secno">2.5.1. </span><span class="content">Limiting application access while not acting as resource controller</span><a class="self-link" href="#uc-client-constraints"></a></h4>
+   <p>Alice uses application <em>PerformChart</em> to visualize her work performance across various projects.
+She works on projects across various organizations, including <em>ACME</em> and <em>Omni</em>. While she has
+controller access to some of the projects, she also has read-write access to many other projects.
+Since <em>PerformChart</em> only provides analisis and visualization it doesn’t need any write access.
+Alice grants <em>PerformChart</em> read only access to all the projects that she can access.</p>
    <h3 class="heading settled" data-level="2.6" id="uc-privacy"><span class="secno">2.6. </span><span class="content">Privacy</span><a class="self-link" href="#uc-privacy"></a></h3>
    <h4 class="heading settled" data-level="2.6.1" id="uc-whopermitted"><span class="secno">2.6.1. </span><span class="content">Limiting access to who else is permitted</span><a class="self-link" href="#uc-whopermitted"></a></h4>
    <p>Alice is interviewing for a job with Carol. Alice is also interviewing for a
