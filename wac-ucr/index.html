@@ -1323,7 +1323,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 89ebb6ab, updated Fri Oct 9 15:32:07 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="d968820db2f923185cf0befb53b3d326241b5b37" name="document-revision">
+  <meta content="376e474adc44dd4bb06b647ff680efe84d88db8f" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -2463,6 +2463,8 @@ with conditions that stipulate:</p>
 the <code>Acme</code> <a data-link-type="dfn" href="#tag" id="ref-for-tag②">tag</a> within the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤①">collection</a>.</p>
     <li data-md>
      <p>she can only create or change <a data-link-type="dfn" href="#authorization" id="ref-for-authorization③">authorizations</a> targeting the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤②">collection</a> where <a data-link-type="dfn" href="#agent" id="ref-for-agent①">agents</a> are included in the <code>interns</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②④">authorization group</a>.</p>
+    <li data-md>
+     <p>she can’t grant <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑤">control access</a> to anyone else.</p>
    </ul>
    <h4 class="heading settled" data-level="2.4.6" id="conditional-action"><span class="secno">2.4.6. </span><span class="content">Conditional access by action</span><a class="self-link" href="#conditional-action"></a></h4>
    <p>The University has a widely used blog for discussion with research teams
@@ -2484,13 +2486,13 @@ the same unfettered access that Oscar enjoys.</p>
 only cases where an application he trusts is involved:</p>
    <ul>
     <li data-md>
-     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑤">authorization group</a> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑨">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑤">control access</a> to <code>https://oscar.example</code></p>
+     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑤">authorization group</a> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access②⑨">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑦">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑥">control access</a> to <code>https://oscar.example</code></p>
    </ul>
    <p>Following that, per <a href="#inheritance-modifying">§ 2.3.9 Modifying inherited permissions for existing subjects</a>, he could extend this default
 for the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤③">collection</a> to include <code>healthapp</code>:</p>
    <ul>
     <li data-md>
-     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑥">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a></p>
+     <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑦">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a></p>
    </ul>
    <h4 class="heading settled" data-level="2.5.1" id="uc-client-constraints"><span class="secno">2.5.1. </span><span class="content">Limiting application access while not acting as resource controller</span><a class="self-link" href="#uc-client-constraints"></a></h4>
    <p>Alice uses application <em>PerformChart</em> to visualize her work performance across various projects.
@@ -3111,8 +3113,8 @@ any data that already exists.</p>
     <li><a href="#ref-for-control-access">2.2.6. Control access to a Collection</a>
     <li><a href="#ref-for-control-access①">2.3.5. Control access to collection resources</a>
     <li><a href="#ref-for-control-access②">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-control-access③">2.4.5. Conditional control boundaries</a> <a href="#ref-for-control-access④">(2)</a>
-    <li><a href="#ref-for-control-access⑤">2.5. Permissioning Applications</a> <a href="#ref-for-control-access⑥">(2)</a>
+    <li><a href="#ref-for-control-access③">2.4.5. Conditional control boundaries</a> <a href="#ref-for-control-access④">(2)</a> <a href="#ref-for-control-access⑤">(3)</a>
+    <li><a href="#ref-for-control-access⑥">2.5. Permissioning Applications</a> <a href="#ref-for-control-access⑦">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
