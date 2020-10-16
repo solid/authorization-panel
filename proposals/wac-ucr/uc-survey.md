@@ -326,7 +326,9 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-payment
 * +0 csarven: Generally useful for [ap] in that it can handle server's response to client error eg. prompt user with "Payment Required". May [d].
 
 ## Permissioning Applications
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
+
+### Limiting access to trusted applications
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trusted-applications
 
 * +1 justinwb: Limiting access to only specific applications, identified
 by AppID, with the caveat that the effectiveness is specifically when
