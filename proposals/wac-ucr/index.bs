@@ -857,7 +857,9 @@ payment for small enough sums. Users of the Solid Music App would thus have
 one more song to choose from amongst the large number made available by
 musicians worldwide.
 
-## Permissioning Applications  ## {#uc-applications}
+## Permissioning Applications ## {#uc-applications}
+
+### Limiting access to trusted applications ### {#uc-trusted-applications}
 
 Oscar stores all of his data in a private [=resource server=] at
 `https://oscar.example`, where he is the [=resource controller=].
