@@ -320,6 +320,10 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 * 0 csarven:  May be generally useful for [ap]. May [d].
 * 0 jaxoncreed:
 
+### Conditional access by payment
+URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-payment
+
+
 ## Permissioning Applications
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
 
@@ -329,6 +333,9 @@ the user can strongly identify the application they are using (in
 piloted scenarios)
 * 0 csarven:  it depends on the environment of the application.
 * +1 jaxoncreed:
+
+### Limiting application access while not acting as resource controller
+URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-constraints
 
 ## Privacy
 
