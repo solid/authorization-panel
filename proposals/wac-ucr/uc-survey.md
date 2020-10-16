@@ -323,6 +323,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 ### Conditional access by payment
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-payment
 
+* +0 csarven: Generally useful for [ap] in that it can handle server's response to client error eg. prompt user with "Payment Required". May [d].
 
 ## Permissioning Applications
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
@@ -336,6 +337,8 @@ piloted scenarios)
 
 ### Limiting application access while not acting as resource controller
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-constraints
+
+* 0 csarven: A bit of a low-level server-side plumbing. Unclear how an application (like [ap]) may want/need to set a policy as such.
 
 ## Privacy
 
