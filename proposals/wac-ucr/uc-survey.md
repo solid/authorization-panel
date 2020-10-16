@@ -315,7 +315,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
 ### Conditional access by action
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 
-JUSTINWB: 0
+* 0 justinwb:
 * +1 elf-pavlik:
 * 0 csarven:  May be generally useful for [ap]. May [d].
 * 0 jaxoncreed:
