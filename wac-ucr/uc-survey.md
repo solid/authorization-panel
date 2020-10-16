@@ -141,7 +141,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappendw
 privileges in an append scenario on a container is extremely important to
 a number of collaborative scenarios.
 * +1 elf-pavlik:
-* 0 csarven:  Seems like duplicate of #collection-readwrite and #collection-readappend
+* 0 csarven: Seems like duplicate of #collection-readwrite and #collection-readappend
 * +1 jaxoncreed:
 
 ### Append-only access to a Collection
@@ -207,7 +207,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcre
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* 0 csarven:  Difference between default and inherited is not particularly significant for [ap]  - one is sufficient for most common use [d].
+* 0 csarven: Difference between default and inherited is not particularly significant for [ap]  - one is sufficient for most common use [d].
 * +1 jaxoncreed:
 
 ### Default permissions for extended network
@@ -215,7 +215,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* 0 csarven:  Not core but probably necessary for some application domains.
+* 0 csarven: Not core but probably necessary for some application domains.
 * +1 jaxoncreed: Just change "extended network" to "a group" to clarify.
 
 ### Adding new subjects to inherited permissions
@@ -249,7 +249,7 @@ shouldn't be able to have their permissions denied by someone with control
 access to a collection far down in the hierarchy so they can hide things
 inside.
 * +1 elf-pavlik:
-* 0 csarven:  Could be useful for [ap]. May be implemented in [d] depending on other available features. See also note on #collection-control.
+* 0 csarven: Could be useful for [ap]. May be implemented in [d] depending on other available features. See also note on #collection-control.
 * +1 jaxoncreed:
 
 ## Conditional access
@@ -275,7 +275,7 @@ be extremely useful. For example, being able to tag photo albums as
 work-related, and then giving conditional access to only the work related
 photo albums in my media library to colleagues.
 * +1 elf-pavlik:
-* 0 csarven:  Too specific. Complicated use case. [sw?]
+* 0 csarven: Too specific. Complicated use case. [sw?]
 * 0 jaxoncreed:
 
 ### Conditional access by relationship
@@ -291,7 +291,7 @@ things stored in different places, how can she do that rationally? How can
 she ensure that directive is maintained as new things are added? This use
 case addresses that.
 * +1 elf-pavlik:
-* 0 csarven:  Way too specific. Prefer a general form of this UC eg. matching a data shape. [sw?]
+* 0 csarven: Way too specific. Prefer a general form of this UC eg. matching a data shape. [sw?]
 * +1 jaxoncreed:
 
 ### Conditional access by filter
@@ -301,7 +301,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-filter
 Ultimately, we need the manage access to data within the resource. There are
 some rational ways to do this using machinery we already have.
 * +1 elf-pavlik:
-* 0 csarven:  Too specific. May require querying. Alternative based on simpler use cases: hide references to resources from a container's index from agents that do not have read permission. [sw?]
+* 0 csarven: Too specific. May require querying. Alternative based on simpler use cases: hide references to resources from a container's index from agents that do not have read permission. [sw?]
 * +1 jaxoncreed:
 
 ### Conditional control boundaries
@@ -309,7 +309,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
 
 * +0 justinwb:
 * +1 elf-pavlik:
-* 0 csarven:  Seems too convoluted for wide use. [sw?]
+* 0 csarven: Seems too convoluted for wide use. [sw?]
 * +1 jaxoncreed:
 
 ### Conditional access by action
@@ -317,12 +317,13 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 
 * 0 justinwb:
 * +1 elf-pavlik:
-* 0 csarven:  May be generally useful for [ap]. May [d].
+* 0 csarven: May be generally useful for [ap]. May [d].
 * 0 jaxoncreed:
 
 ### Conditional access by payment
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-payment
 
+* +0 csarven: Generally useful for [ap] in that it can handle server's response to client error eg. prompt user with "Payment Required". May [d].
 
 ## Permissioning Applications
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
@@ -331,11 +332,13 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-applications
 by AppID, with the caveat that the effectiveness is specifically when
 the user can strongly identify the application they are using (in
 piloted scenarios)
-* 0 csarven:  it depends on the environment of the application.
+* 0 csarven: it depends on the environment of the application.
 * +1 jaxoncreed:
 
 ### Limiting application access while not acting as resource controller
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-constraints
+
+* 0 csarven: A bit of a low-level server-side plumbing. Unclear how an application (like [ap]) may want/need to set a policy as such.
 
 ## Privacy
 
@@ -351,7 +354,7 @@ specifically wants the information to be divulged.
 ### Limiting access to other authorization conditions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
 
-* 0 csarven:  Complex use case. Perhaps change focus to auxiliary resources.
+* 0 csarven: Complex use case. Perhaps change focus to auxiliary resources.
 * +1 jaxoncreed:
 
 ### Minimal Credential Disclosure
@@ -393,7 +396,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
 
 * +1 justinwb: This just seems like good engineering practice to me
-* 0 csarven:  Not sure why this UC is here or what's expected of it other than making sure server only processes valid authorization policies and in its absence all access is denied.
+* 0 csarven: Not sure why this UC is here or what's expected of it other than making sure server only processes valid authorization policies and in its absence all access is denied.
 * +1 jaxoncreed:
 
 ## Capabilities
@@ -413,5 +416,5 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#capabilities-link
 * +0 justinwb: Can be extremely beneficial in scenarios like invitation
 flows or one-time shares.
 * +1 elf-pavlik:
-* 0 csarven:  Some use but not essential (so, -1 wrt prioritisation)
+* 0 csarven: Some use but not essential (so, -1 wrt prioritisation)
 * +1 jaxoncreed:
