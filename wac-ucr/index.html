@@ -1323,7 +1323,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 89ebb6ab, updated Fri Oct 9 15:32:07 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="76013df571db4202a199a737dfe92a748348f561" name="document-revision">
+  <meta content="d989cf3d68ee8b2e89f330d40fa50d96a5e86a5a" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1849,7 +1849,8 @@ dfn > a.self-link::before      { content: "#"; }
       <li>
        <a href="#uc-applications"><span class="secno">2.5</span> <span class="content">Permissioning Applications</span></a>
        <ol class="toc">
-        <li><a href="#uc-client-constraints"><span class="secno">2.5.1</span> <span class="content">Limiting application access while not acting as resource controller</span></a>
+        <li><a href="#uc-trusted-applications"><span class="secno">2.5.1</span> <span class="content">Limiting access to trusted applications</span></a>
+        <li><a href="#uc-client-constraints"><span class="secno">2.5.2</span> <span class="content">Limiting application access while not acting as resource controller</span></a>
        </ol>
       <li>
        <a href="#uc-privacy"><span class="secno">2.6</span> <span class="content">Privacy</span></a>
@@ -2477,6 +2478,7 @@ payment for small enough sums. Users of the Solid Music App would thus have
 one more song to choose from amongst the large number made available by
 musicians worldwide.</p>
    <h3 class="heading settled" data-level="2.5" id="uc-applications"><span class="secno">2.5. </span><span class="content">Permissioning Applications</span><a class="self-link" href="#uc-applications"></a></h3>
+   <h4 class="heading settled" data-level="2.5.1" id="uc-trusted-applications"><span class="secno">2.5.1. </span><span class="content">Limiting access to trusted applications</span><a class="self-link" href="#uc-trusted-applications"></a></h4>
    <p>Oscar stores all of his data in a private <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑥">resource server</a> at <code>https://oscar.example</code>, where he is the <a data-link-type="dfn" href="#resource-controller" id="ref-for-resource-controller⑧">resource controller</a>.</p>
    <p>He stores a wide spectrum of things, from personal financial data to
 collaborative projects that he works on with his friends and colleagues.</p>
@@ -2496,7 +2498,7 @@ for the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-f
     <li data-md>
      <p>Oscar <strong>with the</strong> <code>trusted-applications</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group②⑥">authorization group</a> AND <code>healthapp</code> has <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⓪">read access</a>, <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑧">write access</a>, and <a data-link-type="dfn" href="#control-access" id="ref-for-control-access⑦">control access</a> to the <code>health</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a></p>
    </ul>
-   <h4 class="heading settled" data-level="2.5.1" id="uc-client-constraints"><span class="secno">2.5.1. </span><span class="content">Limiting application access while not acting as resource controller</span><a class="self-link" href="#uc-client-constraints"></a></h4>
+   <h4 class="heading settled" data-level="2.5.2" id="uc-client-constraints"><span class="secno">2.5.2. </span><span class="content">Limiting application access while not acting as resource controller</span><a class="self-link" href="#uc-client-constraints"></a></h4>
    <p>Alice uses application <em>PerformChart</em> to visualize her work performance across
 various projects. She works on projects across various organizations,
 including <em>ACME</em> and <em>Omni</em>. While she has controller access to some of the
@@ -2903,7 +2905,7 @@ already exists.</p>
    <b><a href="#identity">#identity</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-identity">2. Use Cases</a>
-    <li><a href="#ref-for-identity①">2.5. Permissioning Applications</a>
+    <li><a href="#ref-for-identity①">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-identity②">2.9.2. Possession of a link</a>
     <li><a href="#ref-for-identity③">5. Definitions</a> <a href="#ref-for-identity④">(2)</a>
    </ul>
@@ -2921,7 +2923,7 @@ already exists.</p>
    <b><a href="#application">#application</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-application">2.3.8. Adding new subjects to inherited permissions</a>
-    <li><a href="#ref-for-application①">2.5. Permissioning Applications</a>
+    <li><a href="#ref-for-application①">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-application②">5. Definitions</a> <a href="#ref-for-application③">(2)</a> <a href="#ref-for-application④">(3)</a> <a href="#ref-for-application⑤">(4)</a> <a href="#ref-for-application⑥">(5)</a> <a href="#ref-for-application⑦">(6)</a> <a href="#ref-for-application⑧">(7)</a>
    </ul>
   </aside>
@@ -2936,7 +2938,7 @@ already exists.</p>
     <li><a href="#ref-for-resource-controller⑤">2.3. Inheritance</a>
     <li><a href="#ref-for-resource-controller⑥">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-resource-controller⑦">2.4. Conditional access</a>
-    <li><a href="#ref-for-resource-controller⑧">2.5. Permissioning Applications</a> <a href="#ref-for-resource-controller⑨">(2)</a>
+    <li><a href="#ref-for-resource-controller⑧">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-resource-controller⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="resource-server">
@@ -2948,7 +2950,7 @@ already exists.</p>
     <li><a href="#ref-for-resource-server③">2.3. Inheritance</a>
     <li><a href="#ref-for-resource-server④">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-resource-server⑤">2.4. Conditional access</a>
-    <li><a href="#ref-for-resource-server⑥">2.5. Permissioning Applications</a>
+    <li><a href="#ref-for-resource-server⑥">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-resource-server⑦">2.9.2. Possession of a link</a>
     <li><a href="#ref-for-resource-server⑧">5. Definitions</a> <a href="#ref-for-resource-server⑨">(2)</a>
    </ul>
@@ -2998,7 +3000,7 @@ already exists.</p>
     <li><a href="#ref-for-collection④⑨">2.4.2. Conditional access by tag</a>
     <li><a href="#ref-for-collection⑤⓪">2.4.3. Conditional access by relationship</a>
     <li><a href="#ref-for-collection⑤①">2.4.5. Conditional control boundaries</a> <a href="#ref-for-collection⑤②">(2)</a>
-    <li><a href="#ref-for-collection⑤③">2.5. Permissioning Applications</a> <a href="#ref-for-collection⑤④">(2)</a>
+    <li><a href="#ref-for-collection⑤③">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-collection⑤④">(2)</a>
     <li><a href="#ref-for-collection⑤⑤">2.6.4. Limit information disclosure through URI</a> <a href="#ref-for-collection⑤⑥">(2)</a> <a href="#ref-for-collection⑤⑦">(3)</a>
     <li><a href="#ref-for-collection⑤⑧">5. Definitions</a>
    </ul>
@@ -3016,7 +3018,7 @@ already exists.</p>
     <li><a href="#ref-for-authorization">2.3.6. Default permissions on created resources</a>
     <li><a href="#ref-for-authorization①">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization②">(2)</a>
     <li><a href="#ref-for-authorization③">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-authorization④">2.5. Permissioning Applications</a>
+    <li><a href="#ref-for-authorization④">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-authorization⑤">2.6.2. Limiting access to other authorization conditions</a>
     <li><a href="#ref-for-authorization⑥">2.8. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
     <li><a href="#ref-for-authorization⑧">2.9.2. Possession of a link</a>
@@ -3037,7 +3039,7 @@ already exists.</p>
     <li><a href="#ref-for-authorization-group①⑤">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization-group①⑥">(2)</a> <a href="#ref-for-authorization-group①⑦">(3)</a> <a href="#ref-for-authorization-group①⑧">(4)</a> <a href="#ref-for-authorization-group①⑨">(5)</a> <a href="#ref-for-authorization-group②⓪">(6)</a>
     <li><a href="#ref-for-authorization-group②①">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-authorization-group②②">(2)</a> <a href="#ref-for-authorization-group②③">(3)</a>
     <li><a href="#ref-for-authorization-group②④">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-authorization-group②⑤">2.5. Permissioning Applications</a> <a href="#ref-for-authorization-group②⑥">(2)</a>
+    <li><a href="#ref-for-authorization-group②⑤">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-authorization-group②⑥">(2)</a>
     <li><a href="#ref-for-authorization-group②⑦">5. Definitions</a>
    </ul>
   </aside>
@@ -3078,7 +3080,7 @@ already exists.</p>
     <li><a href="#ref-for-read-access②⑥">2.4.1. Conditional access by time</a>
     <li><a href="#ref-for-read-access②⑦">2.4.2. Conditional access by tag</a>
     <li><a href="#ref-for-read-access②⑧">2.4.3. Conditional access by relationship</a>
-    <li><a href="#ref-for-read-access②⑨">2.5. Permissioning Applications</a> <a href="#ref-for-read-access③⓪">(2)</a>
+    <li><a href="#ref-for-read-access②⑨">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-read-access③⓪">(2)</a>
     <li><a href="#ref-for-read-access③①">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③②">(2)</a>
     <li><a href="#ref-for-read-access③③">2.9.1. Possession of a verifiable credential</a>
     <li><a href="#ref-for-read-access③④">2.9.2. Possession of a link</a>
@@ -3093,7 +3095,7 @@ already exists.</p>
     <li><a href="#ref-for-write-access③">2.3.6. Default permissions on created resources</a> <a href="#ref-for-write-access④">(2)</a>
     <li><a href="#ref-for-write-access⑤">2.4.1. Conditional access by time</a>
     <li><a href="#ref-for-write-access⑥">2.4.2. Conditional access by tag</a>
-    <li><a href="#ref-for-write-access⑦">2.5. Permissioning Applications</a> <a href="#ref-for-write-access⑧">(2)</a>
+    <li><a href="#ref-for-write-access⑦">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-write-access⑧">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="append-access">
@@ -3117,7 +3119,7 @@ already exists.</p>
     <li><a href="#ref-for-control-access①">2.3.5. Control access to collection resources</a>
     <li><a href="#ref-for-control-access②">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-control-access③">2.4.5. Conditional control boundaries</a> <a href="#ref-for-control-access④">(2)</a> <a href="#ref-for-control-access⑤">(3)</a>
-    <li><a href="#ref-for-control-access⑥">2.5. Permissioning Applications</a> <a href="#ref-for-control-access⑦">(2)</a>
+    <li><a href="#ref-for-control-access⑥">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-control-access⑦">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
