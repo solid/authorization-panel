@@ -796,7 +796,7 @@ over time.
 
 When Felicia prepares a new report `/reports/report-1`, she authorizes only
 the senior research team members receiving the report to have inherited [=read
-access=] to `measurements`, with a condition that a given meansurement must be
+access=] to `measurements`, with a condition that a given measurement must be
 related to `/reports/report-1` by an `ex:hasMeasurement` predicate for that
 access to be permitted.
 
