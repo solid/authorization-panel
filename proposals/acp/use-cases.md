@@ -147,8 +147,8 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#resumeAssistance>
-  a <acp:AccessControl> ;
-  acp:apply <:personalTrusted> .
+  a acp:AccessControl ;
+  acp:apply :personalTrusted .
 }
 ```
 ```HTTP
@@ -201,7 +201,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 <#resumeAssistance>
   a acp:AccessControl ;
-  acp:apply <:commentsOnly> .
+  acp:apply :commentsOnly .
 }
 ```
 ```HTTP
@@ -301,8 +301,8 @@ prefix : <https://danielle.pod/mypolicies#>
 
 INSERT DATA { 
 <#open>
-  a <acp:AccessControl> ;
-  acp:apply <:publicAccess> .
+  a acp:AccessControl ;
+  acp:apply :publicAccess .
 }
 ```
 ```HTTP
@@ -350,7 +350,7 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply :podControl .
 }
 ```
@@ -411,7 +411,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 <#access>
   a acp:AccessControl ;
-  acp:apply <:recommend> .
+  acp:apply :recommend .
 }
 ```
 ```HTTP
@@ -437,8 +437,8 @@ prefix : <https://alice.pod/policies/personal#>
 
 DELETE DATA { 
 <#access>
-  acp:apply <:personalTrusted> ;
-  acp:apply <:commentsOnly> .
+  acp:apply :personalTrusted ;
+  acp:apply :commentsOnly .
 }
 ```
 ```HTTP
@@ -489,7 +489,7 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#access>
-  acp:apply <:namedRead> .
+  acp:apply :namedRead .
 }
 ```
 ```HTTP
@@ -538,8 +538,8 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a <acp:AccessControl> ;
-  acp:apply <:podControl> .
+  a acp:AccessControl ;
+  acp:apply :podControl .
 }
 ```
 ```HTTP
@@ -770,7 +770,7 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply :podControl .
 }
 ```
@@ -824,7 +824,7 @@ prefix : <https://alice.pod/workshops/workshop1/policy#>
 
 INSERT DATA { 
 <#access>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply :attendeesAccess ;
   acp:applyMembers :attendeesAccess .
 }
@@ -912,7 +912,7 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#access>
-  acp:apply <:jobRead> .
+  acp:apply :jobRead .
 }
 ```
 ```HTTP
@@ -975,7 +975,7 @@ INSERT DATA {
   acp:agent <https://milo.pod/profile/card#me> .
 
 <#miloControl>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply <#MiloUpdate> .
 }
 ```
@@ -1013,7 +1013,7 @@ INSERT DATA {
   acp:agent <https://bob.pod/profile/card#me> .
 
 <#bobControl>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply <#bobAdditions> .
 }
 ```
@@ -1087,7 +1087,7 @@ INSERT DATA {
   acp:agent <https://danielle.pod/profile/card#me> .
 
 <#colleagueControl>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply <#colleagueComments> ;
   acp:apply <#colleagueReads> ;
   acp:applyMembers <#colleagueReads> .
