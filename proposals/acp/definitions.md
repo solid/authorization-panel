@@ -133,7 +133,7 @@ Access Modes describe a type of access to resources.
 *   The Pod Owner metadata MUST be managed by the Solid Server.
 *   The Pod Owner MUST always have Read and Write access to all [Access Control Resources](#access-control-resource) (ACR) i.e. it is not possible to remove Read or Write access from a Pod Owner from ACRs.
 *   The Pod Owner WebID is returned as a Link header in response to a GET or HEAD request on a resource 
-    *   Link: &lt;[https://bob.pod/profile/card#me](https://bob.pod/profile/card#me)>; rel=”acp:PodOwner”
+    *   Link: &lt;[https://bob.pod/profile/card#me](https://bob.pod/profile/card#me)>; rel="http://www.w3.org/ns/solid/acp#PodOwner"
 *   The acp:PodOwner link header is returned if the [Agent](#agent) has acp:Read access to the Resource and:
     *   the _acp:accessPodOwner_ predicate does not exist in the root [Access Control Resource](#access-control-resource) or
     *   the _acp:accessPodOwner_ predicate exists in the root [Access Control Resource](#access-control-resource) and provides the [Agent](#agent) with Read access.
