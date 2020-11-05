@@ -147,8 +147,8 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#resumeAssistance>
-  a <acp:AccessControl> ;
-  acp:apply <:personalTrusted> .
+  a acp:AccessControl ;
+  acp:apply :personalTrusted .
 }
 ```
 ```HTTP
@@ -164,7 +164,7 @@ _Danielle agrees to give Alice a personal reference, which Alice will include in
 Provide Danielle with access to the resume.
 
 ```HTTP
-PATCH /policies/personal?ext=acp HTTP/1.1
+PATCH /policies/personal HTTP/1.1
 Host: alice.pod
 Content-Type: application/sparql-update
 ```
@@ -201,7 +201,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 <#resumeAssistance>
   a acp:AccessControl ;
-  acp:apply <:commentsOnly> .
+  acp:apply :commentsOnly .
 }
 ```
 ```HTTP
@@ -301,8 +301,8 @@ prefix : <https://danielle.pod/mypolicies#>
 
 INSERT DATA { 
 <#open>
-  a <acp:AccessControl> ;
-  acp:apply <:publicAccess> .
+  a acp:AccessControl ;
+  acp:apply :publicAccess .
 }
 ```
 ```HTTP
@@ -350,7 +350,7 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply :podControl .
 }
 ```
@@ -372,7 +372,7 @@ HTTP/1.1 201 Created
 Create the policy to allow append access to the contacts group
 
 ```HTTP
-PATCH /policies/personal?ext=acp HTTP/1.1
+PATCH /policies/personal HTTP/1.1
 Host: alice.pod
 Content-Type: application/sparql-update
 ```
@@ -411,7 +411,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 <#access>
   a acp:AccessControl ;
-  acp:apply <:recommend> .
+  acp:apply :recommend .
 }
 ```
 ```HTTP
@@ -437,8 +437,8 @@ prefix : <https://alice.pod/policies/personal#>
 
 DELETE DATA { 
 <#access>
-  acp:apply <:personalTrusted> ;
-  acp:apply <:commentsOnly> .
+  acp:apply :personalTrusted ;
+  acp:apply :commentsOnly .
 }
 ```
 ```HTTP
@@ -452,7 +452,7 @@ _Alice has a job interview with Carol. Alice gives Carol[ read access](https://s
 Create the policy to allow read access.
 
 ```HTTP
-PATCH /policies/personal?ext=acp HTTP/1.1
+PATCH /policies/personal HTTP/1.1
 Host: alice.pod
 Content-Type: application/sparql-update
 ```
@@ -489,7 +489,7 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#access>
-  acp:apply <:namedRead> .
+  acp:apply :namedRead .
 }
 ```
 ```HTTP
@@ -538,8 +538,8 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a <acp:AccessControl> ;
-  acp:apply <:podControl> .
+  a acp:AccessControl ;
+  acp:apply :podControl .
 }
 ```
 ```HTTP
@@ -549,7 +549,7 @@ HTTP/1.1 204 No Content
 Give read access to the interviewing group and remove individual access for carol as she is a member of the interviewing group.
 
 ```HTTP
-PATCH /policies/personal?ext=acp HTTP/1.1
+PATCH /policies/personal HTTP/1.1
 Host: alice.pod
 Content-Type: application/sparql-update
 ```
@@ -575,7 +575,7 @@ _Alice decides her resume is ready to share with everyone, so she gives [read ac
 Give read access to the public by amending the ‘readers’ rule and remove group access for the interviewing group as there is no need now that the resource is public. We could also delete the interviewing group if it was no longer going to be used. 
 
 ```HTTP
-PATCH /policies/personal?ext=acp HTTP/1.1
+PATCH /policies/personal HTTP/1.1
 Host: alice.pod
 Content-Type: application/sparql-update
 ```
@@ -770,7 +770,7 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply :podControl .
 }
 ```
@@ -824,7 +824,7 @@ prefix : <https://alice.pod/workshops/workshop1/policy#>
 
 INSERT DATA { 
 <#access>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply :attendeesAccess ;
   acp:applyMembers :attendeesAccess .
 }
@@ -872,7 +872,7 @@ Examples giving read access to the resume were provided in previous use cases so
 Create the policy to allow read access.
 
 ```HTTP
-PATCH /policies/personal?ext=acp HTTP/1.1
+PATCH /policies/personal HTTP/1.1
 Host: alice.pod
 Content-Type: application/sparql-update
 ```
@@ -912,7 +912,7 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#access>
-  acp:apply <:jobRead> .
+  acp:apply :jobRead .
 }
 ```
 ```HTTP
@@ -936,7 +936,7 @@ The interpretation of the use case is that Milo requires read access to the port
 First we will just add Milo to the existing list of people who can read the collection.
 
 ```HTTP
-PATCH /policies/personal?ext=acp HTTP/1.1
+PATCH /policies/personal HTTP/1.1
 Host: alice.pod
 Content-Type: application/sparql-update
 ```
@@ -975,7 +975,7 @@ INSERT DATA {
   acp:agent <https://milo.pod/profile/card#me> .
 
 <#miloControl>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply <#MiloUpdate> .
 }
 ```
@@ -1013,7 +1013,7 @@ INSERT DATA {
   acp:agent <https://bob.pod/profile/card#me> .
 
 <#bobControl>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply <#bobAdditions> .
 }
 ```
@@ -1087,7 +1087,7 @@ INSERT DATA {
   acp:agent <https://danielle.pod/profile/card#me> .
 
 <#colleagueControl>
-  a <acp:AccessControl> ;
+  a acp:AccessControl ;
   acp:apply <#colleagueComments> ;
   acp:apply <#colleagueReads> ;
   acp:applyMembers <#colleagueReads> .

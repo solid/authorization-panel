@@ -1,10 +1,5 @@
 # Introduction
 
-*   When a policy is removed from a Pod then remove from all AC where it is referenced.
-*   Add pseudo code to show that a PUT and PATH will create intermediary containers.
-*   If a resource does not exist for a PATH then basically do a PUT. 
-*   PUT container should overwrite the non containment triples rather than throw an error
-
 This document describes a proposal for access control policies as an authorization mechanism for Solid servers. The content is based on an implementation of access control policies by Inrupt. The content is not meant to be a protocol specification but rather a description of an implementation that can help inform the authorization panel on how access control policies could work in the Solid ecosystem.
 
 *   [**Section 1**](model.md) describes the data model, the vocabulary and the responsibilities of a Solid server implementing access control policies.
@@ -91,4 +86,3 @@ The **_Controller_** policy gives write and read access to those who satisfy the
     *   **Locked (using applyLocked predicate)**
 
        When a locked policy is applied to an ACR it can only be removed from the ACR by anybody with write access to the root ACR, i.e. the ACR for ‘/’. If a locked policy is applied to the resource /A/B then people who have access to the ACR for /A/B cannot remove that policy. Similarly people who have access to the ACR for /A cannot remove that policy. Only people with access to the ACR for / can remove that policy. The same applies if the locked policy is propagated to children of /A/B.
-
