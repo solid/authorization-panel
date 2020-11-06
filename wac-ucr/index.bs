@@ -24,6 +24,12 @@ Abstract:
     font-size: 12px;
   }
 
+  @media (prefers-color-scheme: dark) {
+    table.collections tbody tr:nth-child(even) {
+      background-color: DarkSlateGray;
+    }
+  }
+
   table.collections tbody td {
     font-size: 12px;
   }
@@ -34,6 +40,12 @@ Abstract:
 
   a[data-link-type=dfn] {
     color: #000000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    a[data-link-type=dfn] {
+      color: #FFFFFF;
+    }
   }
 
 }

@@ -1323,7 +1323,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 89ebb6ab, updated Fri Oct 9 15:32:07 2020 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="25513e44c355cc03ce12f8baaa97d212d9c073ba" name="document-revision">
+  <meta content="fa04595043cd1f58ab4718da16370fd04bac73a2" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1333,6 +1333,12 @@ Possible extra rowspan handling
   table.collections tbody tr:nth-child(even) {
     background-color: lightgray;
     font-size: 12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    table.collections tbody tr:nth-child(even) {
+      background-color: DarkSlateGray;
+    }
   }
 
   table.collections tbody td {
@@ -1345,6 +1351,12 @@ Possible extra rowspan handling
 
   a[data-link-type=dfn] {
     color: #000000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    a[data-link-type=dfn] {
+      color: #FFFFFF;
+    }
   }
 
 }
@@ -1770,7 +1782,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Web Access Control</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-11-05">5 November 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-11-06">6 November 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
