@@ -5,7 +5,7 @@ This document describes a proposal for access control policies as an authorizati
 *   [**Section 1**](model.md) describes the data model, the vocabulary and the responsibilities of a Solid server implementing access control policies.
 *   [**Section 2**](use-cases.md) provides examples of using access control policies to implement the use cases specified by the Solid authorization panel.
 *   [**Section 3**](definitions.md) provides a definition for the terms used throughout the document. 
-*   **Section 4** describes the runtime enforcement of access policies and the server managed propagation and deletion of access policies. 
+*   [**Section 4**](enforcement-propagation.md) describes the runtime enforcement of access policies and the server managed propagation and deletion of access policies. 
 *   **Section 5** provides the WebIDL for the client API for access control policies. 
 
 ## Summary
