@@ -1,5 +1,6 @@
 Add your name; add +1/+0/0/-0/-1 to a use case you find interesting and add a comment along these lines:
 
+* +3 "Needed. Implemented. In use"
 * +1 "yes, I need it, will implement, worth doing"
 * +0 "I'm kind of for it, but can live without it"
 * 0 "I really don't care about it"
@@ -15,6 +16,7 @@ Notes:
   * [sw?] What common social Web use cases are currently out there for this?
 
 ---
+# Current Solid WAC features
 
 ## Basic resource access
 
@@ -25,6 +27,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-control
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Read-write access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-write
@@ -33,10 +36,13 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-write
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
+* +3 timbl:
+
 
 ### Read-append access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend
 
+* +3 timbl:
 * +1 justinwb:
 * +1 elf-pavlik:
 * csarven: The resume resource is assumed to be simple ie. a single unit, and there is no assumption about it being a dynamic or compound resource. UC #basic-readappend assumes an append operation that can add information to a specific part of a resource ie. the references section. An agent can append information to a resource (as in #basic-appendonly) but there is no guarantee or validation assumed to take place as part of the use case - hence, other requirements needs to be met in parallel for this use case to actually work.
@@ -64,6 +70,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-appendonly
 * +1 elf-pavlik:
 * +1 csarven: Convoluted scenario but the use case has wide use. [d] with some variations.
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Removing access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-removing
@@ -72,6 +79,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-removing
 * +1 elf-pavlik:
 * +1 csarven: Wide use. This UC is possibly a duplicate of #basic-control. [d].
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Read-only access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readonly
@@ -80,6 +88,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readonly
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Group access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-group
@@ -88,6 +97,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-group
 * +1 elf-pavlik:
 * +1 csarven: This should be core but can live without it. May [d]. Group management may not be common for [ap].
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Public access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-public
@@ -95,6 +105,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-public
 * +1 justinwb:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Logged in access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-authenticated
@@ -107,6 +118,12 @@ scenarios.
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
+* +3 timbl: Please link to the contrversy if you cite it. Allowing non-anonymous public acesss is a really important level.
+a bit like Anonymous FTP - anyone can access it but please leave your email address  It is not abut being secure
+agaist being accessed by evil people. It is about being to collect a list of interested people.
+I know people push back on this because they don't understand it.  A huge number of things
+of web you can log in with any email address or any facebook or google account.
+This is an important aspect of onboarding and the growth os Solid.
 
 ## Basic collection access
 
@@ -117,6 +134,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readonly
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * +0 jaxoncreed: seems like a weak example, but it's needed for other examples
+* +3 timbl:
 
 ### Read-write access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readwrite
@@ -125,6 +143,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readwrite
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * -0 jaxoncreed: Some things need to be clarified here. If you have write access to a collection, do you also have write access to the resources of the collection? It wouldn't make sense for someone to be able to remove a resource from the collection if they don't have write access to that resource. Yet, on the other hand, if having read access on the collection doesn't give you read access to the resources, then it would be incongruent to allow write access to a collection to extend to the resource.
+* +3 timbl:
 
 ### Read-append access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappend
@@ -143,6 +162,7 @@ a number of collaborative scenarios.
 * +1 elf-pavlik:
 * 0 csarven: Seems like duplicate of #collection-readwrite and #collection-readappend
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Append-only access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-appendonly
@@ -151,6 +171,8 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-appendonly
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap] eg. creating annotations or notifications. [d].
 * +1 jaxoncreed:
+* +3 timbl: Append-only access allows you to implement the semantics of message passing.  That is a crcuial building blcok for many systems,
+technical and social.  We may been extra functionality to in some cases giuve people read-write access to a thing they have posted using append-only access.
 
 ### Control access to a Collection
 URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-control
@@ -159,6 +181,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-control
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
+* +3 timbl:
 
 ## Inheritance
 
@@ -169,6 +192,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readonly
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
+* +3 timbl:
 
 ### Read-append access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
@@ -177,6 +201,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap] eg. need to set base access to read and share annotations and notifications. [d].
 * 0 jaxoncreed: I think this needs more clarification on what happens to nested collections.
+* +3 timbl:
 
 ### Read-write access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
@@ -185,6 +210,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap] - similar to #inheritance-readappend. [d].
 * 0 jaxoncreed: I think this needs more clarification on what happens to nested collections.
+* +3 timbl:
 
 ### Append-only access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-appendonly
@@ -193,6 +219,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-appendonly
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap] ie. to be able to update existing resources or to create new ones in a container. [d].
 * 0 jaxoncreed: I think this needs more clarification on what happens to nested collections.
+* +3 timbl:
 
 ### Control access to collection resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-control
@@ -201,6 +228,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-control
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap]. [d].
 * 0 jaxoncreed: I think this needs more clarification on what happens to nested collections.
+* +3 timbl:
 
 ### Default permissions on created resources
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcreated
@@ -209,6 +237,9 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcre
 * +1 elf-pavlik:
 * 0 csarven: Difference between default and inherited is not particularly significant for [ap]  - one is sufficient for most common use [d].
 * +1 jaxoncreed:
+* +3 timbl:
+
+# Things which may not all be in WAC now
 
 ### Default permissions for extended network
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
@@ -277,6 +308,7 @@ photo albums in my media library to colleagues.
 * +1 elf-pavlik:
 * 0 csarven: Too specific. Complicated use case. [sw?]
 * 0 jaxoncreed:
+* 0 timbl: Suspect this should be part of a rule based system
 
 ### Conditional access by relationship
 URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-relationship
