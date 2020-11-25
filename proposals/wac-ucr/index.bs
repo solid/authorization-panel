@@ -922,8 +922,8 @@ allowed to perform, the public, as well as any other group.
 For example, for user level permission, if the application is not granted
 [=write access=] on the resource that Guinan is currently editing, the UI can
 disable the "Save" button in the menu. Guinan also wants to know if the
-content they are updating is granted [=read access=] to the public -
-consequently, eg. if it can be liked, bookmarked, archived by everyone.
+public is granted [=read access=] on the content they are updating, and
+thus if it can be, for example, liked, bookmarked, archived by everyone.
 
 
 ## Privacy ## {#uc-privacy}
