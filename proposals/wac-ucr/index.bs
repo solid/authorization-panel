@@ -920,7 +920,7 @@ adapts its user interface by way of distinguishing between allowed
 application, to the public (everyone), or to a group.
 
 For example, for user level permission, if the application is not granted
-write access on the resource that Guinan is currently editing, the user
+[=write access=] on the resource that Guinan is currently editing, the user
 interface can disable the "Save" button in the menu. Guinan also wants to know
 if the public is granted [=read access=] on the content they are updating, and
 thus if it can be, for example, liked, bookmarked, archived by everyone.
