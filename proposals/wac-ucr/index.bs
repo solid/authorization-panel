@@ -914,7 +914,7 @@ that she can access.
 ### Application determining access privileges {#uc-client-determine-access-privileges}
 
 Guinan uses an application to author and publish documents. The application
-adapts its user interface by way of distinguishing between allowed
+adapts its user interface to distinguish between allowed
 (actionable) and disallowed features based on access information that the
 [=resource server=] reveals, for example, permissions that are granted to the
 application, to the public (everyone), or to a group.
