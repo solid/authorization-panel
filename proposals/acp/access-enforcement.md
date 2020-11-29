@@ -32,7 +32,7 @@ getAccessModes(agent : Agent, resource : Resource) {
   let accessModes = new Access()
   let acr : ACR = r.getAccessControlResource()
 
-  acr.foreach (ac : AccessControl => {
+  acr.getAccessControls().foreach (ac : AccessControl => {
     accessModes.add(evaluatePolicies (ac.apply, agent, resource))
     accessModes.add(evaluatePolicies (ac.applyProtected, agent, resource))
     accessModes.add(evaluatePolicies (ac.applyLocked, agent, resource))
