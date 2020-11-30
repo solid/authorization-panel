@@ -5,21 +5,9 @@ Solid Authorization Panel.
 
 ## Meetings
 
-Meetings of the Authorization panel take place at 10AM EST / 4PM CEST on Wednesdays. Meeting details listed below:
+Meetings of the Authorization panel take place at 10AM EST / 4PM CEST on Wednesdays. 
 
-```
-https://global.gotomeeting.com/join/544111573
-
-You can also dial in using your phone.
-
-Access Code: 544-111-573
-
-United States (Toll Free): 1 866 899 4679
-Belgium (Toll Free): 0 800 81382
-Mexico (Toll Free): 01 800 112 4376
-Switzerland (Toll Free): 0 800 000 452
-United Kingdom (Toll Free): 0 800 389 5276
-```
+Meeting link: https://meet.jit.si/solid-authorization
 
 ## Purpose
 
