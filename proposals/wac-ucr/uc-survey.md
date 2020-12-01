@@ -466,7 +466,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
 * +1 elf-pavlik:
 * +1 csarven: Wide use. I don't plan to implement it.
 * +1 jaxoncreed:
-* +0 Kai Gilb: graphMetrix
+* +0 KaiGilb: graphMetrix
 
 ## Validation
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
