@@ -364,7 +364,7 @@ Ultimately, we need the manage access to data within the resource. There are
 some rational ways to do this using machinery we already have.
 * +1 elf-pavlik:
 * 0 csarven: Too specific. May require querying. Alternative based on simpler use cases: hide references to resources from a container's index from agents that do not have read permission. [sw?]
-* +1 jaxoncreed:* 
+* +1 jaxoncreed:
 * +1 KaiGilb: graphMetrix
 
 ### Conditional control boundaries
