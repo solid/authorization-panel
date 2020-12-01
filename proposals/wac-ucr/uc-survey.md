@@ -435,7 +435,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-minimalcredentials
 * +0 justinwb: This scenario is legitimate though I believe we'll likely
 get to VC in the next cycle.
 * +1 elf-pavlik:
-* +0 Kai Gilb: graphMetrix Sound good. I would again think this would be app controlled
+* +0 KaiGilb: graphMetrix Sound good. I would again think this would be app controlled
 
 ### Limiting access to other authorization conditions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
