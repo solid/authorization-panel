@@ -455,7 +455,7 @@ represents data.
 * +1 elf-pavlik:
 * +1 csarven: I don't plan to implement it.
 * +1 jaxoncreed:
-* +0 Kai Gilb: graphMetrix. Sounds good for the future, we are not there quite yet.
+* +0 KaiGilb: graphMetrix. Sounds good for the future, we are not there quite yet.
 
 ## Trust
 
