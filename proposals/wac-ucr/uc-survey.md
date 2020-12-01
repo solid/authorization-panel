@@ -444,7 +444,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
 specifically wants the information to be divulged.
 * +1 csarven: Wide use. I don't plan to implement it.
 * +1 jaxoncreed:
-* this seems like a duplicate from 2 up
+* KaiGilb: this seems like a duplicate from 2 up
 
 ### Limit information disclosure through URI
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
