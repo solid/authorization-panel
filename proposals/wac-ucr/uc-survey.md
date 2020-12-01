@@ -408,7 +408,7 @@ piloted scenarios)
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-constraints
 
 * 0 csarven: A bit of a low-level server-side plumbing. Unclear how an application (like [ap]) may want/need to set a policy as such.
-* im a little unclear on this case
+* KaiGilb: im a little unclear on this case
 
 ## Privacy
 
