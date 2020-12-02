@@ -241,10 +241,6 @@ The table below maps HTTP methods to the required _acp:AccessMode_ when handling
   </tr>
 </table>
 
-When an [Agent](definitions.md#agent) A attempts to access an [Access Control Resource](definitions.md#access-control-resource) ACR using HTTP method M, the following algorithm is used to enforce access control.
-
-[ACR access enforcement](acr-access-enforcement.md)
-
 ## ACR Policy Propagation 
 
 [ACR policy propagation](acr-policy-propagation.md)
