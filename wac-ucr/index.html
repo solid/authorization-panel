@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version c5172e83, updated Fri Nov 20 15:35:20 2020 -0800" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="d0474ef5cb5042823dfd50cce8e8309cc97e3e3e" name="document-revision">
+  <meta content="b0e2ab955b885d01fab8dc419fc551eddf10cca1" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -560,6 +560,7 @@ dfn > a.self-link::before      { content: "#"; }
        <ol class="toc">
         <li><a href="#uc-trusted-applications"><span class="secno">2.5.1</span> <span class="content">Limiting access to trusted applications</span></a>
         <li><a href="#uc-client-constraints"><span class="secno">2.5.2</span> <span class="content">Limiting application access while not acting as resource controller</span></a>
+        <li><a href="#uc-client-determine-access-privileges"><span class="secno">2.5.3</span> <span class="content">Application determining access privileges {#uc-client-determine-access-privileges}</span></a>
        </ol>
       <li>
        <a href="#uc-privacy"><span class="secno">2.6</span> <span class="content">Privacy</span></a>
@@ -1219,14 +1220,23 @@ including <em>ACME</em> and <em>Omni</em>. While she has controller access to so
 projects, she also has read-write access to many other projects. Since <em>PerformChart</em> only provides analysis and visualization it doesn’t need any
 write access. Alice grants <em>PerformChart</em> read only access to all the projects
 that she can access.</p>
+   <h4 class="heading settled" data-level="2.5.3" id="uc-client-determine-access-privileges"><span class="secno">2.5.3. </span><span class="content">Application determining access privileges {#uc-client-determine-access-privileges}</span><a class="self-link" href="#uc-client-determine-access-privileges"></a></h4>
+   <p>Guinan uses an application to author and publish documents. The application
+adapts its user interface to distinguish between allowed
+(actionable) and disallowed features based on access information that the <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑦">resource server</a> reveals, for example, permissions that are granted to the
+application, to the public (everyone), or to a group.</p>
+   <p>For example, for user level permission, if the application is not granted <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑨">write access</a> on the resource that Guinan is currently editing, the user
+interface can disable the "Save" button in the menu. Guinan also wants to know
+if the public is granted <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③①">read access</a> on the content they are updating, and
+thus if it can be, for example, liked, bookmarked, archived by everyone.</p>
    <h3 class="heading settled" data-level="2.6" id="uc-privacy"><span class="secno">2.6. </span><span class="content">Privacy</span><a class="self-link" href="#uc-privacy"></a></h3>
    <h4 class="heading settled" data-level="2.6.1" id="uc-whopermitted"><span class="secno">2.6.1. </span><span class="content">Limiting access to who else is permitted</span><a class="self-link" href="#uc-whopermitted"></a></h4>
    <p>Alice is interviewing for a job with Carol. Alice is also interviewing for a
 job with Oscar, Carol’s direct competitor.</p>
-   <p>Alice has given Carol and Oscar <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③①">read access</a> to her <code>resume</code>.</p>
+   <p>Alice has given Carol and Oscar <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③②">read access</a> to her <code>resume</code>.</p>
    <p>Neither Carol or Oscar would appreciate knowing that Alice is interviewing
 with both of them, so it’s important neither Carol or Oscar know who else
-Alice has shared her <code>resume</code> with, despite having <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③②">read access</a> to it.</p>
+Alice has shared her <code>resume</code> with, despite having <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③③">read access</a> to it.</p>
    <h4 class="heading settled" data-level="2.6.2" id="uc-historyofchanges"><span class="secno">2.6.2. </span><span class="content">Limiting access to other authorization conditions</span><a class="self-link" href="#uc-historyofchanges"></a></h4>
    <p>As an extension of <a href="#uc-whopermitted">§ 2.6.1 Limiting access to who else is permitted</a>, it is also important to Alice that
 that neither Carol nor Oscar be able to discern other characteristics of the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑤">authorizations</a> or conditions associated with Alice’s <code>resume</code>.</p>
@@ -1334,18 +1344,18 @@ care facilities that can be cryptographically verified.</p>
 Oscar’s authorization system at <code>https://oscar.example</code> supports a verifiable
 credential <a data-link-type="dfn" href="#capability" id="ref-for-capability">capability</a>.</p>
    <p>Oscar has set permissions on <code>https://oscar.example/emergency</code> that grants
-someone in possession of a verifiable medical credential to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③③">read access</a> to the contents. This gives them just enough background on his
+someone in possession of a verifiable medical credential to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③④">read access</a> to the contents. This gives them just enough background on his
 condition to treat him properly.</p>
    <h4 class="heading settled" data-level="2.9.2" id="capabilities-link"><span class="secno">2.9.2. </span><span class="content">Possession of a link</span><a class="self-link" href="#capabilities-link"></a></h4>
    <p>Bob is about to give a confidential presentation to a group of his colleagues.
-His presentation is stored on his personal <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑦">resource server</a> at <code>https://bob.example/presentation</code>.</p>
+His presentation is stored on his personal <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a> at <code>https://bob.example/presentation</code>.</p>
    <p>Bob is having trouble hooking his laptop up to the projector, and needs to
 present in just a few minutes. Anne presented before Bob, and offers to bring
 the presentation up for him on her system.</p>
    <p>Unfortunately, Anne doesn’t have an <a data-link-type="dfn" href="#identity" id="ref-for-identity②">identity</a> ready to go that he can
 authorize. Luckily, his authorization system supports a link-based <a data-link-type="dfn" href="#capability" id="ref-for-capability①">capability</a>.</p>
    <p>Bob quickly creates an <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑧">authorization</a> for <code>https://bob.example/presentation</code> that allows anyone in possession of a
-specially generated link to access the document with <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③④">read access</a>. He sets
+specially generated link to access the document with <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⑤">read access</a>. He sets
 it to <a href="#conditional-time">expire</a> in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.</p>
    <h2 class="heading settled" data-level="3" id="requirements"><span class="secno">3. </span><span class="content">Requirements</span><a class="self-link" href="#requirements"></a></h2>
@@ -1393,10 +1403,10 @@ represented by a unique <a data-link-type="biblio" href="#biblio-uri">[URI]</a>.
 include <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a> and <a data-link-type="biblio" href="#biblio-did">[DID]</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authenticated-agent">authenticated agent</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent③">agent</a> that has proven control of a
 given <a data-link-type="dfn" href="#identity" id="ref-for-identity④">identity</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application">application</dfn> is a piece of software that interfaces with a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑨">resource server</a>, which may operate autonomously as an <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent③">authenticated
 agent</a>, or in piloted-fashion by another <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent④">authenticated agent</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-controller">resource controller</dfn> is an <a data-link-type="dfn" href="#agent" id="ref-for-agent④">agent</a> with fully permissioned
-access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑨">resource
+access and control over one or more <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑧">resources</a> residing on a <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server①⓪">resource
 server</a> on the Web.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-server">resource server</dfn> is a web server that provides an interface to
 make <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑨">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application②">applications</a>, with the
@@ -1561,8 +1571,9 @@ already exists.</p>
     <li><a href="#ref-for-resource-server④">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-resource-server⑤">2.4. Conditional access</a>
     <li><a href="#ref-for-resource-server⑥">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-resource-server⑦">2.9.2. Possession of a link</a>
-    <li><a href="#ref-for-resource-server⑧">5. Definitions</a> <a href="#ref-for-resource-server⑨">(2)</a>
+    <li><a href="#ref-for-resource-server⑦">2.5.3. Application determining access privileges {#uc-client-determine-access-privileges}</a>
+    <li><a href="#ref-for-resource-server⑧">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-resource-server⑨">5. Definitions</a> <a href="#ref-for-resource-server①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="resource">
@@ -1691,9 +1702,10 @@ already exists.</p>
     <li><a href="#ref-for-read-access②⑦">2.4.2. Conditional access by tag</a>
     <li><a href="#ref-for-read-access②⑧">2.4.3. Conditional access by relationship</a>
     <li><a href="#ref-for-read-access②⑨">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-read-access③⓪">(2)</a>
-    <li><a href="#ref-for-read-access③①">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③②">(2)</a>
-    <li><a href="#ref-for-read-access③③">2.9.1. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-read-access③④">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-read-access③①">2.5.3. Application determining access privileges {#uc-client-determine-access-privileges}</a>
+    <li><a href="#ref-for-read-access③②">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③③">(2)</a>
+    <li><a href="#ref-for-read-access③④">2.9.1. Possession of a verifiable credential</a>
+    <li><a href="#ref-for-read-access③⑤">2.9.2. Possession of a link</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="write-access">
@@ -1706,6 +1718,7 @@ already exists.</p>
     <li><a href="#ref-for-write-access⑤">2.4.1. Conditional access by time</a>
     <li><a href="#ref-for-write-access⑥">2.4.2. Conditional access by tag</a>
     <li><a href="#ref-for-write-access⑦">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-write-access⑧">(2)</a>
+    <li><a href="#ref-for-write-access⑨">2.5.3. Application determining access privileges {#uc-client-determine-access-privileges}</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="append-access">
