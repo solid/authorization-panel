@@ -911,7 +911,7 @@ write access. Alice grants *PerformChart* read only access to all the projects
 that she can access.
 
 
-### Application determining access privileges {#uc-client-determine-access-privileges}
+### Application determining access privileges ### {#uc-client-determine-access-privileges}
 
 Guinan uses an application to author and publish documents. The application
 adapts its user interface to distinguish between allowed
