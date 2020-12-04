@@ -402,7 +402,7 @@ the user can strongly identify the application they are using (in
 piloted scenarios)
 * 0 csarven: it depends on the environment of the application.
 * +1 jaxoncreed:
-* im a little unclear on this case
+* KaiGilb: im a little unclear on this case
 
 ### Limiting application access while not acting as resource controller
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-constraints
