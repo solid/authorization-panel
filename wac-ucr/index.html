@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version c5172e83, updated Fri Nov 20 15:35:20 2020 -0800" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="b0e2ab955b885d01fab8dc419fc551eddf10cca1" name="document-revision">
+  <meta content="e42f9ae52d2385d646925d31560e9910af75684d" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -475,7 +475,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Web Access Control</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-12-02">2 December 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-12-04">4 December 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -560,7 +560,7 @@ dfn > a.self-link::before      { content: "#"; }
        <ol class="toc">
         <li><a href="#uc-trusted-applications"><span class="secno">2.5.1</span> <span class="content">Limiting access to trusted applications</span></a>
         <li><a href="#uc-client-constraints"><span class="secno">2.5.2</span> <span class="content">Limiting application access while not acting as resource controller</span></a>
-        <li><a href="#uc-client-determine-access-privileges"><span class="secno">2.5.3</span> <span class="content">Application determining access privileges {#uc-client-determine-access-privileges}</span></a>
+        <li><a href="#uc-client-determine-access-privileges"><span class="secno">2.5.3</span> <span class="content">Application determining access privileges</span></a>
        </ol>
       <li>
        <a href="#uc-privacy"><span class="secno">2.6</span> <span class="content">Privacy</span></a>
@@ -1220,7 +1220,7 @@ including <em>ACME</em> and <em>Omni</em>. While she has controller access to so
 projects, she also has read-write access to many other projects. Since <em>PerformChart</em> only provides analysis and visualization it doesn’t need any
 write access. Alice grants <em>PerformChart</em> read only access to all the projects
 that she can access.</p>
-   <h4 class="heading settled" data-level="2.5.3" id="uc-client-determine-access-privileges"><span class="secno">2.5.3. </span><span class="content">Application determining access privileges {#uc-client-determine-access-privileges}</span><a class="self-link" href="#uc-client-determine-access-privileges"></a></h4>
+   <h4 class="heading settled" data-level="2.5.3" id="uc-client-determine-access-privileges"><span class="secno">2.5.3. </span><span class="content">Application determining access privileges</span><a class="self-link" href="#uc-client-determine-access-privileges"></a></h4>
    <p>Guinan uses an application to author and publish documents. The application
 adapts its user interface to distinguish between allowed
 (actionable) and disallowed features based on access information that the <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑦">resource server</a> reveals, for example, permissions that are granted to the
@@ -1571,7 +1571,7 @@ already exists.</p>
     <li><a href="#ref-for-resource-server④">2.3.10. Forcing inherited permissions</a>
     <li><a href="#ref-for-resource-server⑤">2.4. Conditional access</a>
     <li><a href="#ref-for-resource-server⑥">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-resource-server⑦">2.5.3. Application determining access privileges {#uc-client-determine-access-privileges}</a>
+    <li><a href="#ref-for-resource-server⑦">2.5.3. Application determining access privileges</a>
     <li><a href="#ref-for-resource-server⑧">2.9.2. Possession of a link</a>
     <li><a href="#ref-for-resource-server⑨">5. Definitions</a> <a href="#ref-for-resource-server①⓪">(2)</a>
    </ul>
@@ -1702,7 +1702,7 @@ already exists.</p>
     <li><a href="#ref-for-read-access②⑦">2.4.2. Conditional access by tag</a>
     <li><a href="#ref-for-read-access②⑧">2.4.3. Conditional access by relationship</a>
     <li><a href="#ref-for-read-access②⑨">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-read-access③⓪">(2)</a>
-    <li><a href="#ref-for-read-access③①">2.5.3. Application determining access privileges {#uc-client-determine-access-privileges}</a>
+    <li><a href="#ref-for-read-access③①">2.5.3. Application determining access privileges</a>
     <li><a href="#ref-for-read-access③②">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③③">(2)</a>
     <li><a href="#ref-for-read-access③④">2.9.1. Possession of a verifiable credential</a>
     <li><a href="#ref-for-read-access③⑤">2.9.2. Possession of a link</a>
@@ -1718,7 +1718,7 @@ already exists.</p>
     <li><a href="#ref-for-write-access⑤">2.4.1. Conditional access by time</a>
     <li><a href="#ref-for-write-access⑥">2.4.2. Conditional access by tag</a>
     <li><a href="#ref-for-write-access⑦">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-write-access⑧">(2)</a>
-    <li><a href="#ref-for-write-access⑨">2.5.3. Application determining access privileges {#uc-client-determine-access-privileges}</a>
+    <li><a href="#ref-for-write-access⑨">2.5.3. Application determining access privileges</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="append-access">
