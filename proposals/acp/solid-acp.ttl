@@ -1,14 +1,14 @@
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix cc: <http://creativecommons.org/ns#>
-prefix dcterms: <http://purl.org/dc/terms/>
-prefix owl: <http://www.w3.org/2002/07/owl#>
-prefix schema:   <http://schema.org/>
-prefix vann: <http://purl.org/vocab/vann/>
-prefix vcard: <http://www.w3.org/2006/vcard/ns#>
-
-prefix acp: <http://www.w3.org/ns/solid/acp#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema:   <http://schema.org/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix gen: <http://www.w3.org/2006/gen/ont#> .
+@prefix acp: <http://www.w3.org/ns/solid/acp#> .
 
 
 acp: a owl:Ontology ;
@@ -100,6 +100,8 @@ acp:accessControl a rdf:Property ;
     rdfs:label "accessControl"@en ;
     rdfs:comment """The object of this relationship is the access control resource associated with the subject resource.
  This relationship is intended to be used as the rel type of a Link, via HTTP Link Headers rfc5988 for Linked Data resources."""@en ;
+    rdfs:domain gen:InformationResource ;
+    rdfs:range acp:AccessControlResource;
     rdfs:isDefinedBy acp: .
 
 acp:access a rdf:Property ;

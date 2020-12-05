@@ -1,0 +1,51 @@
+@prefix acl: <http://www.w3.org/ns/auth/acl#> .
+@prefix acp: <http://www.w3.org/ns/solid/acp#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> . 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Obvious
+acp:accessControl owl:equivalentProperty acl:accessControl .
+
+# Obvious equivalences for Modes
+acp:AccessMode owl:equivalentClass acl:AccessMode .
+acp:Append owl:equivalentClass acl:Append .
+acp:Write  owl:equivalentClass acl:Write .
+acp:Read   owl:equivalentClass acl:Read .
+# Note: there is no equivalent to acl:Control in acp
+
+# this seems quite natural
+acp:allow owl:equivalentProperty acl:mode .
+
+# Note acl:authorizes does not exist (I invented it in issue 128), 
+# so we could also keep acp:access
+# See https://github.com/solid/authorization-panel/issues/128#issuecomment-736615538
+acp:access owl:equivalentProperty acl:authorizes .
+
+# [R1] 
+# ACP has no equivalent to acl:accessTo which is a good thing
+# (see https://github.com/solid/authorization-panel/issues/128 )
+# but it can be inferred from
+acl:accessTo owl:inverseOf [ 
+        owl:propertyChainAxiom ( acp:accessControl acp:access )
+     ] . 
+
+# [R1] should force the following 
+acp:Policy owl:equivalentClass acl:Authorization .
+
+# [R1]  also tells us that  
+acl:accessControl rdfs:range acp:AccessControlResource .
+
+# We relate acl:agent and acl:agentClass in the obvious way
+# see https://github.com/solid/authorization-panel/issues/146
+acl:agent owl:propertyChainAxiom ( acl:agentClass [ owl:inverseOf rdf:type ] ) .
+
+# see: https://github.com/solid/authorization-panel/issues/147
+acp:Rule owl:equivalentClass foaf:Agent .
+
+#Todo:
+# 
+# Relate acp:accessMembers(Protected) to ldp:contains
+# 
+
