@@ -44,6 +44,11 @@ acl:agent owl:propertyChainAxiom ( acl:agentClass [ owl:inverseOf rdf:type ] ) .
 # see: https://github.com/solid/authorization-panel/issues/147
 acp:Rule owl:equivalentClass foaf:Agent .
 
+# see https://github.com/solid/authorization-panel/issues/147#issuecomment-739417497
+acp:agent owl:subPropertyOf [ owl:inverseOf rdf:type ] .
+
+
+
 #Todo:
 # 
 # Relate acp:accessMembers(Protected) to ldp:contains
