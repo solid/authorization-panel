@@ -18,23 +18,13 @@ acp:Read   owl:equivalentClass acl:Read .
 # this seems quite natural
 acp:allow owl:equivalentProperty acl:mode .
 
-# Note acl:authorizes does not exist (I invented it in issue 128), 
-# so we could also keep acp:access
-# See https://github.com/solid/authorization-panel/issues/128#issuecomment-736615538
-acp:access owl:equivalentProperty acl:authorizes .
+# see https://github.com/solid/authorization-panel/issues/143#issuecomment-739496841
+acp:access owl:inverseOf acl:accessTo .
 
-# [R1] 
-# ACP has no equivalent to acl:accessTo which is a good thing
-# (see https://github.com/solid/authorization-panel/issues/128 )
-# but it can be inferred from
-acl:accessTo owl:inverseOf [ 
-        owl:propertyChainAxiom ( acp:accessControl acp:access )
-     ] . 
-
-# [R1] should force the following 
+# this should force the following 
 acp:Policy owl:equivalentClass acl:Authorization .
 
-# [R1]  also tells us that  
+# also tells us that  
 acl:accessControl rdfs:range acp:AccessControlResource .
 
 # We relate acl:agent and acl:agentClass in the obvious way
@@ -46,7 +36,6 @@ acp:Rule owl:equivalentClass foaf:Agent .
 
 # see https://github.com/solid/authorization-panel/issues/147#issuecomment-739417497
 acp:agent owl:subPropertyOf [ owl:inverseOf rdf:type ] .
-
 
 
 #Todo:
