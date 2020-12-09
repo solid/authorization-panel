@@ -19,7 +19,25 @@ acp:Read   owl:equivalentClass acl:Read .
 acp:allow owl:equivalentProperty acl:mode .
 
 # see https://github.com/solid/authorization-panel/issues/143#issuecomment-739496841
-acp:access owl:inverseOf acl:accessTo .
+# where it was proposed that
+# acp:access owl:inverseOf acl:accessTo .
+# But that is too strong.
+# This weaker form is a better starting point
+# https://github.com/solid/authorization-panel/issues/149#issuecomment-741956016
+
+acp:access rdfs:subPropertyOf [ owl:inverseOf acl:accessTo ] . 
+acp:access rdfs:domain acp:AccessControlResource .
+
+# if we add acp:authorizes to allow following a link from the ACR to the property
+
+acp:authorizes a rdf:Property;
+   rdfs:domain acp:AccessControlResource;
+   rdfs:range acp:Policy;
+   rdfs:comment "this ACR authorizes the linked to Policy for ldp:Resources that have a Link relation to it."@en .
+
+# with acp:authorizes we have the following implication (see later comment on issue 149)
+
+[ owl:propertyChainAxiom ( acp:accessControl acp:authorizes ) ]  rdfs:subPropertyOf acl:accessTo .
 
 # this should force the following 
 acp:Policy owl:equivalentClass acl:Authorization .
