@@ -28,7 +28,7 @@ acp:allow owl:equivalentProperty acl:mode .
 acp:access rdfs:subPropertyOf [ owl:inverseOf acl:accessTo ] . 
 acp:access rdfs:domain acp:AccessControlResource .
 
-# if we add acp:authorizes to allow following a link from the ACR to the property
+# if we add acp:authorizes to allow following a link from the ACR to the Policy
 
 acp:authorizes a rdf:Property;
    rdfs:domain acp:AccessControlResource;
@@ -37,7 +37,7 @@ acp:authorizes a rdf:Property;
 
 # with acp:authorizes we have the following implication (see later comment on issue 149)
 
-[ owl:propertyChainAxiom ( acp:accessControl acp:authorizes ) ]  rdfs:subPropertyOf acl:accessTo .
+[ owl:propertyChainAxiom ( acp:accessControl acp:authorizes ) ]  rdfs:subPropertyOf [ owl:inverseOf acl:accessTo ] .
 
 # this should force the following 
 acp:Policy owl:equivalentClass acl:Authorization .
