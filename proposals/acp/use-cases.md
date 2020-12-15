@@ -2,7 +2,7 @@
 
 The use cases are defined in [Use Cases and Requirements for Web Access Control](https://solid.github.io/authorization-panel/wac-ucr/). 
 
-For each use case the following will be provided:
+For each use case, the following will be provided:
 
 *   A diagram of the [Agents](definitions.md#agent), Pods and resources.
 *   A link to the specific use case.
@@ -17,13 +17,13 @@ For each use case the following will be provided:
 
 _Alice asks Bob to help make her resume more presentable. Alice must give Bob permission to do this, because her resume is not a public resource, and as the[ resource controller](https://solid.github.io/authorization-panel/wac-ucr/#resource-controller) Alice is the only one who can manage permissions for it._
 
-By default the WebID used to provision a Pod becomes the [Pod Owner](definitions.md#pod-owner). The Pod Owner always has _acp:Read_ and _acp:Write_ access to all [Access Control Resources](definitions.md#access-control-resource) and therefore has complete control over the entire Pod.
+By default, the WebID used to provision a Pod becomes the [Pod Owner](definitions.md#pod-owner). The Pod Owner always has _acp:Read_ and _acp:Write_ access to all [Access Control Resources](definitions.md#access-control-resource) and therefore has complete control over the entire Pod.
 
 When a Pod is first provisioned, only the Pod Owner has access and they must then actively decide to give any other WebID access to resources.
 
 If a Pod has no policies defined, the Pod Owner can create policies and rules in the ACR for the root / container and use those policies to apply access control to the root container. 
 
-Create a ‘policies’ container
+Create a ‘policies’ container.
 
 ```HTTP
 POST / HTTP/1.1
@@ -109,7 +109,7 @@ HTTP/1.1 204 No Content
 
 _Alice gives Bob [read access](https://solid.github.io/authorization-panel/wac-ucr/#read-access) so that he can read the resume resource, and [write access](https://solid.github.io/authorization-panel/wac-ucr/#write-access) so that he can make changes to it, which he does._
 
-Create Resume
+Create Resume.
 
 ```HTTP
 PUT /resume HTTP/1.1
@@ -208,7 +208,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-Danielle adds a glowing reference to Alice’s resume. **The use of application/merge-patch here is merely an example. The media-type used will depend on the type of data and the semantics will then depend on the implementation and/or the standards around the media-type. The purpose of the example below is to show that ACP can handle providing acp:Append only access.**
+Danielle adds a glowing reference to Alice’s resume. **The use of application/merge-patch here is merely an example. The media-type used will depend on the type of data and the semantics will then depend on the implementation and/or the standards around the media-type. The purpose of the example below is to show that ACP can handle providing _acp:Append_ only access.**
 
 ```HTTP
 PATCH /resume HTTP/1.1
@@ -230,7 +230,7 @@ HTTP/1.1 204 No Content
 
 _Danielle agrees to give Alice a personal reference, which Alice will link to in the reference section of her resume. Alice gives Danielle read access to resume for context, and append access so that she can add a link to the recommendation that she creates and hosts on her own resource server at https://danielle.example/recommendation. Danielle is the resource controller for that resource and gives it public read access._
 
-Create the public policy to allow sharing of a recommendation
+Create the public policy to allow sharing of a recommendation.
 
 ```HTTP
 PUT /mypolicies HTTP/1.1
@@ -261,7 +261,7 @@ HTTP/1.1 201 Created
 Location: /mypolicies
 ```
 
-Write the recommendation
+Write the recommendation.
 
 ```HTTP
 PUT /recommendation HTTP/1.1
@@ -337,7 +337,7 @@ Content-Type: text/turtle
 HTTP/1.1 201 Created
 ```
 
-Make the group private
+Make the group private.
 
 ```HTTP
 PATCH /contacts?ext=acp HTTP/1.1
@@ -358,7 +358,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-Create the recommendations resource
+Create the recommendations resource.
 
 ```HTTP
 PUT /recommendations HTTP/1.1
@@ -369,7 +369,7 @@ Content-Type: text/plain
 HTTP/1.1 201 Created
 ```
 
-Create the policy to allow append access to the contacts group
+Create the policy to allow append access to the contacts group.
 
 ```HTTP
 PATCH /policies/personal HTTP/1.1
@@ -506,7 +506,7 @@ _Alice removes any individual permissions on her resume that were granted to mem
 
 _Now Alice can add new people she’s interviewing with to the interviewing [authorization group](https://solid.github.io/authorization-panel/wac-ucr/#authorization-group), and remove them when the opportunity is no longer active. This is much more intuitive and easy for Alice._
 
-Create a group called interviewing
+Create a group called interviewing.
 
 ```HTTP
 PUT /interviewing HTTP/1.1
@@ -525,7 +525,7 @@ prefix vcard: <http://www.w3.org/2006/vcard/ns#>
 HTTP/1.1 201 Created
 ```
 
-Make the group private
+Make the group private.
 
 ```HTTP
 PATCH /interviewing?ext=acp HTTP/1.1
@@ -598,15 +598,15 @@ HTTP/1.1 204 No Content
 
 _Alice runs an open online workshop for a few people she works with but also she sends an invitation to a public mailing list suggesting experts in her field should also come._
 
-_She sets the access to the materials so that anyone who has a solid ID can log in and access it. (They have read access to the agenda, and write access to the minutes, say)._
+_She sets the access to the materials so that anyone who has a Solid ID can log in and access it. (They have read access to the agenda, and write access to the minutes, say)._
 
-_She uses an app which accumulates the set of Ids of the people who have used this access as a group._
+_She uses an app which accumulates the set of IDs of the people who have used this access as a group._
 
-_People who follow her link to the materials are prompted by the system to log in, or if necessary to make a new solid account and then log in._
+_People who follow her link to the materials are prompted by the system to log in, or if necessary to make a new Solid account and then log in._
 
 _After the workshop is over, she changes the access on the materials to explicitly be that group._
 
-Create a container for the workshop
+Create a container for the workshop.
 
 ```HTTP
 PUT /workshops HTTP/1.1
@@ -757,7 +757,7 @@ Content-Type: text/turtle
 HTTP/1.1 201 Created
 ```
 
-Make the group private
+Make the group private.
 
 ```HTTP
 PATCH /workshops/workshop1/attendees?ext=acp HTTP/1.1
@@ -778,7 +778,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-The workshop is now over so the access will be changed to read only for the materials and the minutes and it will be made available only to those who attended the workshop.
+The workshop is now over so the access will be changed to read only for the materials and the minutes, and it will be made available only to those who attended the workshop.
 
 Create the policy that applies only to the attendees group.
 
@@ -919,7 +919,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-Notice that the _acp:apply_ predicate was used to apply the policy to the portfolio collection. If we wanted to apply the policy to the contents of the collection too we would have used the _acp:applyMembers_ predicate. We have also reused an existing _acp:AccessControl_ in the ACR called _&lt;#access>_.
+Notice that the _acp:apply_ predicate was used to apply the policy to the portfolio collection. If we wanted to apply the policy to the contents of the collection too, we would have used the _acp:applyMembers_ predicate. We have also reused an existing _acp:AccessControl_ in the ACR called _&lt;#access>_.
 
 ### 2.2.2 Read-write access to a collection
 
@@ -989,7 +989,7 @@ Notice that we added the policy and rule directly to the ACR for document1 rathe
 
 _Alice worked with Bob in the past on a project, and she has included the project deliverables she could find in the project1 [collection](https://solid.github.io/authorization-panel/wac-ucr/#collection). She’s sure that she’s missing some, and that Bob would have the missing items._
 
-_Alice grants Bob[read access](https://solid.github.io/authorization-panel/wac-ucr/#read-access) and [append access](https://solid.github.io/authorization-panel/wac-ucr/#append-access) to the project1 [collection](https://solid.github.io/authorization-panel/wac-ucr/#collection), which allows him to see the list of what is there, and add new [resources](https://solid.github.io/authorization-panel/wac-ucr/#resource) to it._
+_Alice grants Bob [read access](https://solid.github.io/authorization-panel/wac-ucr/#read-access) and [append access](https://solid.github.io/authorization-panel/wac-ucr/#append-access) to the project1 [collection](https://solid.github.io/authorization-panel/wac-ucr/#collection), which allows him to see the list of what is there, and add new [resources](https://solid.github.io/authorization-panel/wac-ucr/#resource) to it._
 
 _He can’t see the contents of the [resources](https://solid.github.io/authorization-panel/wac-ucr/#resource), or remove anything in the list. That’s fine because he only needs to add the [resources](https://solid.github.io/authorization-panel/wac-ucr/#resource) that aren’t included._
 
@@ -1165,7 +1165,7 @@ _Bob reminds Alice that some of the other people who worked on project1 may also
 
 _Alice trusts Bob with the contents of the project1 collection, since it’s the output of their shared work. She gives him [control access](https://solid.github.io/authorization-panel/wac-ucr/#control-access) to project1 so that he can help her invite other colleagues from the past to add [resources](https://solid.github.io/authorization-panel/wac-ucr/#resource) to it._
 
-Using ACP we simply need to give Bob read and write access to the [Access Control Resource](definitions.md#access-control-resource) for the project1 container.
+Using ACP, we simply need to give Bob read and write access to the [Access Control Resource](definitions.md#access-control-resource) for the project1 container.
 
 ```HTTP
 PATCH /portfolio/project1/?ext=acp HTTP/1.1
