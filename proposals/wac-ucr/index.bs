@@ -1128,164 +1128,164 @@ Requirements {#requirements}
 
 ## Functional Requirements ## {#req-functional}
 
-1. The system MUST permit or restrict an [=agent's=] ability to access a 
+1. The system shall permit or restrict an [=agent's=] ability to access a 
     [=resource=] or [=collection=]. [[#uc-basic]], 
     [[#uc-collections]], [[#uc-blockagents]]
 
-1. The system MUST allow access to be limited based on the [=identity=] of 
+1. The system shall allow access to be limited based on the [=identity=] of 
     the [=agent=]. [[#uc-basic]], [[#uc-collections]]
 
-1. The system MUST allow access to be limited to an [=agent=] 
+1. The system shall allow access to be limited to an [=agent=] 
     based on the [=agent's=] membership in a certain group of [=agents=]. 
     [[#basic-group]]
     
-1. The system MUST allow access to be limited to an [=agent=] 
+1. The system shall allow access to be limited to an [=agent=] 
     based on the client [=application=] in use by the [=agent=]. 
     [[#uc-trusted-applications]]
 
-1. The system MUST allow for access to a certain resource to be limited to 
+1. The system shall allow for access to a certain resource to be limited to 
     the [=agent=] that created that resource.
     [[#collection-readappendwrite]]
 
-1. The system MAY allow access to be limited to an [=agent=] 
+1. The system shall allow access to be limited to an [=agent=] 
     based on the [=agent's=] possession of a certain verifiable credential
     or capability. FUTURE. 
     [[#capabilities-vc]], [[#capabilities-link]], [[#uc-minimalcredentials]]
     
-1. The system MUST allow access to be limited to any 
+1. The system shall allow access to be limited to any 
     unauthenticated [=agent=].
     [[#basic-public]]
     
-1. The system MUST allow access to be limited to any 
+1. The system shall allow access to be limited to any 
     authenticated [=agent=].
     [[#basic-authenticated]]
 
-1. The system MUST limit the ability to read the access permissions 
+1. The system shall limit the ability to read the access permissions 
     associated with a certain [=resource=].
     [[#basic-control]], [[#uc-whopermitted]], [[#uc-historyofchanges]]
     
-1. The system MUST limit the ability to change the access permissions 
+1. The system shall limit the ability to change the access permissions 
     associated with a certain [=resource=].
     [[#basic-control]]
 
-1. The system MUST furnish the effective access permission modes on a certain
+1. The system shall furnish the effective access permission modes on a certain
     [=resource=] as they relate to the [=agent=] making the request,
     in the request response.
     [[#uc-client-determine-access-privileges]]
 
-1. The system MUST limit the ability to read a certain [=resource=].
+1. The system shall limit the ability to read a certain [=resource=].
     [[#basic-readonly]], [[#basic-write]], [[#basic-readappend]]
 
-1. The system MUST limit the ability to change any of the contents of a 
+1. The system shall limit the ability to change any of the contents of a 
     certain [=resource=].
     [[#basic-write]]
 
-1. The system MUST limit the ability to delete a certain [=resource=].
+1. The system shall limit the ability to delete a certain [=resource=].
     <span class="issue">Corresponding use case needs to be added</span>
 
-1. The system MUST limit the ability to change existing data in a 
+1. The system shall limit the ability to change existing data in a 
     certain [=resource=], such that only new data can be added to it.
     [[#basic-appendonly]]
     
-1. The system MUST limit the ability to read a certain [=collection=],
+1. The system shall limit the ability to read a certain [=collection=],
     exposing only the data from the [=collection=] resource itself, and a
     listing of its members.
     [[#collection-readonly]], [[#collection-readwrite]], [[#collection-readappend]],
     [[#collection-readappendwrite]]
     
-1. The system MUST limit the ability to create a [=resource=] in a 
+1. The system shall limit the ability to create a [=resource=] in a 
     certain [=collection=].
     [[#collection-readwrite]], [[#collection-readappend]],
     [[#collection-readappendwrite]]
 
-1. The system MUST limit the ability to delete a [=resource=] in a 
+1. The system shall limit the ability to delete a [=resource=] in a 
     certain [=collection=].
     <span class="issue">Corresponding use case needs to be added</span>
 
-1. The system MUST allow for the creator of a [=resource=] in a certain 
+1. The system shall allow for the creator of a [=resource=] in a certain 
     [=collection=] to be granted access to the created [=resource=].
     [[#collection-readappendwrite]]
     
-1. The system MUST limit the ability to read the access permissions 
+1. The system shall limit the ability to read the access permissions 
     associated with a certain [=collection=].
     [[#collection-control]], [[#uc-whopermitted]], [[#uc-historyofchanges]]
     
-1. The system MUST limit the ability to change the access permissions 
+1. The system shall limit the ability to change the access permissions 
     associated with a certain [=collection=].
     [[#collection-control]]
 
-1. The system MUST furnish the effective access permission modes on a certain
+1. The system shall furnish the effective access permission modes on a certain
     [=collection=] as they relate to the [=agent=] making the request,
     in the request response.
     [[#uc-client-determine-access-privileges]].
 
-1. The system MUST limit the ability to access a certain [=resource=] by
+1. The system shall limit the ability to access a certain [=resource=] by
     a given start and/or end data and time.
     [[#conditional-time]]
     
-1. The system MUST limit the ability to access a certain [=resource=] by
+1. The system shall limit the ability to access a certain [=resource=] by
     a tag associated with that resource.
     [[#conditional-tag]]
     
-1. The system MUST limit the ability to access a certain [=resource=] based
+1. The system shall limit the ability to access a certain [=resource=] based
     on the existence of a specific relationship with another [=resource=].
     [[#conditional-relationship]]
 
-1. The system MUST allow for a certain [=collection=] to specify access 
+1. The system shall allow for a certain [=collection=] to specify access 
     permissions that are inherited by its members.
     [[#uc-inheritance]]
     
-1. The system MUST allow for the members of a certain [=collection=] to
+1. The system shall allow for the members of a certain [=collection=] to
     extend or augment the permissions inherited from that [=collection=].
     [[#inheritance-adding]], [[#inheritance-modifying]]  
 
-1. The system MUST allow for a certain [=collection=] to specify access 
+1. The system shall allow for a certain [=collection=] to specify access 
     permissions that are inherited by its members and cannot be augmented.
     [[#inheritance-forcing]]
 
-1. The system MUST allow for a certain resource to be read if
+1. The system shall allow for a certain resource to be read if
     the [=agent=] has inherited that permission from the [=collection=] the
     [=resource=] is a member of.
     [[#inheritance-readonly]]
     
-1. The system MUST allow for a new resource to be created if the 
+1. The system shall allow for a new resource to be created if the 
     [=agent=] has inherited that permission from the [=collection=] the 
     [=resource=] is a member of.
     [[#inheritance-readappend]]
 
-1. The system MUST allow for a new resource to be created if the 
+1. The system shall allow for a new resource to be created if the 
     [=agent=] has inherited that permission from the [=collection=] the 
     [=resource=] is a member of.
     [[#inheritance-readappend]]    
 
-1. The system MUST allow for the default permissions of a newly created 
+1. The system shall allow for the default permissions of a newly created 
     [=resources=] to be inherited from the [=collection=] the 
     [=resource=] is a member of.
     [[#inheritance-defaultcreated]], [[#inheritance-extended]]
     
-1. The system MUST allow for a resource to be changed if 
+1. The system shall allow for a resource to be changed if 
     the [=agent=] has inherited that permission from the [=collection=] the
     [=resource=] is a member of.
     [[#inheritance-readwrite]]
 
-1. The system MUST allow for a resource to be deleted if 
+1. The system shall allow for a resource to be deleted if 
     the [=agent=] has inherited that permission from the [=collection=] the
     [=resource=] is a member of.
     <span class="issue">Corresponding use case needs to be added</span>
 
-1. The system MUST allow for new data to be added to a [=resource=], without
+1. The system shall allow for new data to be added to a [=resource=], without
     being able to change existing data in that [=resource=], if
     the [=agent=] has inherited that permission from the [=collection=] the
     [=resource=] is a member of.
     <span class="issue">Corresponding use case needs to be added</span>
 
-1. The system MUST allow for the access permissions
+1. The system shall allow for the access permissions
     associated with a certain resource to be read
     if the [=agent=] has inherited that permission from the [=collection=] the
     [=resource=] is a member of.    
     [[#inheritance-control]]
 
-1. The system MUST allow for the access permissions
+1. The system shall allow for the access permissions
     associated with a certain resource to be changed
     if the [=agent=] has inherited that permission from the [=collection=] the
     [=resource=] is a member of.
