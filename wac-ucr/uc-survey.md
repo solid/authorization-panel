@@ -285,8 +285,6 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcre
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
 
-# Things which may not all be in WAC now
-
 ### Default permissions for extended network
 URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
 
@@ -307,7 +305,7 @@ above.
 * +1 elf-pavlik:
 * +1 csarven: May be duplicating simpler use cases. May [d].
 * +1 jaxoncreed:
-* +1 KaiGilb: graphMetrix For the mentioned use case, it seems easier to me to give Celeste permission on the specific note directly. But being able to add new subjects sounds useful 
+* +1 KaiGilb: graphMetrix For the mentioned use case, it seems easier to me to give Celeste permission on the specific note directly. But being able to add new subjects sounds useful
 * +1 hindia:
 
 ### Modifying inherited permissions for existing subjects
@@ -347,7 +345,7 @@ way to ensure that permissions meant to be short-lived don't hang around
 longer than they're needed. Also very useful when used in concert with
 invitiation flows.
 * +1 elf-pavlik:
-* 0 csarven: 
+* 0 csarven:
 * +1 jaxoncreed:
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
