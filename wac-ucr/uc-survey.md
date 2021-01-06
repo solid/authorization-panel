@@ -570,6 +570,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-blockagents
 
 * +1 dmitrizagidulin: Seems reasonable.
+* +1 csarven: Wide use re: support healthy community and debate. Useful for [ap]. May [d].
 
 ## Validation
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
