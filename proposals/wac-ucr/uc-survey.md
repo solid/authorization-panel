@@ -10,6 +10,8 @@ Add your name; add +1/+0/0/-0/-1 to a use case you find interesting and add a co
 ---
 
 Notes:
+* [ai] application implementation
+* [si] server implementation
 * csarven:
   * [d] Will implement or implemented in [dokieli](https://github.com/linkeddata/dokieli).
   * [ap] Authoring and publication tools.
@@ -23,14 +25,15 @@ Notes:
 ### Control access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-control
 
-* +1 justinwb:
-* +1 elf-pavlik:
-* +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d].
+* +1 justinwb: to the ability to read and write permissions on resources. public [ai]. private [ai].
+* +1 elf-pavlik: 
+* +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d]. public [ai].
 * +1 jaxoncreed:
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
-* +1 dmitrizagidulin:
+* +1 dmitrizagidulin: public [si].
+* +1 bblfish: public [si].
 
 ### Read-write access
 URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-write
