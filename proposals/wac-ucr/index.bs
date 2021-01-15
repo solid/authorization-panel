@@ -1072,6 +1072,18 @@ the [=resource=] and needing administrator assistance to recover.
 
 ## Capabilities ## {#uc-capabilities}
 
+### Possesion of a group membership verifiable credential ### {#group-membership-vc}
+
+Omni Inc. granted Acme Inc. read-write access to their online store front.
+This grant allows all Acme Inc. to have that access as long as they can
+present membership credential issued by Acme Inc. At the time of the grant
+Omni Inc. notified Acme Inc. about that grant and all access details,
+including membership credential requirement for Acme Inc. members.
+Alice who works for Acme Inc. now can access Omni Inc. onlne store front
+using her membership credential issued by Acme Inc. Acme Inc. doesn't maintain
+public list of their members, and Omni Inc. can not know who is Acme Inc.
+member unless that person presents a verifiable credential.
+
 ### Possession of a verifiable credential ### {#capabilities-vc}
 
 Oscar has a medical condition that causes random and very serious seizures
