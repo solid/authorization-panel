@@ -1143,8 +1143,8 @@ Requirements {#requirements}
     based on the client [=application=] in use by the [=agent=]. 
     [[#uc-trusted-applications]]
 
-1. The system shall allow for access to a certain resource to be limited to 
-    the [=agent=] that created that resource.
+1. The system shall allow for access to a [=resource=] or 
+    [=collection=] to be limited to the [=agent=] that created it.
     [[#collection-readappendwrite]]
 
 1. The system shall allow access to be limited to an [=agent=] 
