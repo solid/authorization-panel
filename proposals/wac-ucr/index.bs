@@ -1149,7 +1149,7 @@ Requirements {#requirements}
 
 1. The system shall allow access to be limited to an [=agent=] 
     based on the [=agent's=] possession of a certain verifiable credential
-    or capability. FUTURE. 
+    or capability.
     [[#capabilities-vc]], [[#capabilities-link]], [[#uc-minimalcredentials]]
     
 1. The system shall allow access to be limited to any 
@@ -1168,9 +1168,9 @@ Requirements {#requirements}
     associated with a certain [=resource=].
     [[#basic-control]]
 
-1. The system shall furnish the effective access permission modes on a certain
-    [=resource=] as they relate to the [=agent=] making the request,
-    in the request response.
+1. The system shall provide the effective access permission modes on a certain
+    [=resource=] or [=collection=] as they relate to the [=agent=] making the 
+    request, in the request response.
     [[#uc-client-determine-access-privileges]]
 
 1. The system shall limit the ability to read a certain [=resource=].
@@ -1213,11 +1213,6 @@ Requirements {#requirements}
 1. The system shall limit the ability to change the access permissions 
     associated with a certain [=collection=].
     [[#collection-control]]
-
-1. The system shall furnish the effective access permission modes on a certain
-    [=collection=] as they relate to the [=agent=] making the request,
-    in the request response.
-    [[#uc-client-determine-access-privileges]].
 
 1. The system shall limit the ability to access a certain [=resource=] by
     a given start and/or end data and time.
