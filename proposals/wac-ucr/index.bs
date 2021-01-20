@@ -1075,14 +1075,14 @@ the [=resource=] and needing administrator assistance to recover.
 ### Possesion of a group membership verifiable credential ### {#group-membership-vc}
 
 Omni Corp. granted Acme Corp. read-write access to their online store front.
-This grant allows all Acme Corp. to have that access as long as they can
-present membership credential issued by Acme Corp. At the time of the grant
-Omni Corp. notified Acme Corp. about that grant and all access details,
-including membership credential requirement for Acme Corp. members.
-Alice who works for Acme Corp. now can access Omni Corp. online store front
+This grant allows all Acme Corp. employees to have that access as long as they can
+present a membership credential issued by Acme Corp. At the time of the grant,
+Omni Corp. notifies Acme Corp., detailing pertinent access details,
+including the membership credential requirement for Acme Corp. employees.
+Alice works for Acme Corp. and can now access the Omni Corp. online store front
 using her membership credential issued by Acme Corp. Acme Corp. doesn't maintain
-public list of their members, and Omni Corp. can not know who is Acme Corp.
-member unless that person presents a verifiable credential.
+a public list of their employees, and Omni Corp. can not know who is employed by Acme Corp.
+unless that person presents a verifiable credential.
 
 ### Possession of a verifiable credential ### {#capabilities-vc}
 
