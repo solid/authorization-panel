@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version c5172e83, updated Fri Nov 20 15:35:20 2020 -0800" name="generator">
   <link href="https://solid.github.io/authorization-panel/wac-ucr/" rel="canonical">
-  <meta content="8d8b51702649d4da689043ca4dfaf4cc9c7e78ad" name="document-revision">
+  <meta content="975d9a4cc910df31ef639cb3ab5c5af486fc21d3" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -580,8 +580,9 @@ dfn > a.self-link::before      { content: "#"; }
       <li>
        <a href="#uc-capabilities"><span class="secno">2.9</span> <span class="content">Capabilities</span></a>
        <ol class="toc">
-        <li><a href="#capabilities-vc"><span class="secno">2.9.1</span> <span class="content">Possession of a verifiable credential</span></a>
-        <li><a href="#capabilities-link"><span class="secno">2.9.2</span> <span class="content">Possession of a link</span></a>
+        <li><a href="#group-membership-vc"><span class="secno">2.9.1</span> <span class="content">Possesion of a group membership verifiable credential</span></a>
+        <li><a href="#capabilities-vc"><span class="secno">2.9.2</span> <span class="content">Possession of a verifiable credential</span></a>
+        <li><a href="#capabilities-link"><span class="secno">2.9.3</span> <span class="content">Possession of a link</span></a>
        </ol>
      </ol>
     <li>
@@ -1245,7 +1246,7 @@ background, she wouldn’t want them to know that they were only seeing a
 filtered view.</p>
    <h4 class="heading settled" data-level="2.6.3" id="uc-minimalcredentials"><span class="secno">2.6.3. </span><span class="content">Minimal Credential Disclosure</span><a class="self-link" href="#uc-minimalcredentials"></a></h4>
    <p>Following a link on a blog post, Alice comes to a resource that requires
-authentication. She could present one of many verifiable credentials (as per <a href="#capabilities-vc">§ 2.9.1 Possession of a verifiable credential</a>): three self-signed WebID credentials, four bank
+authentication. She could present one of many verifiable credentials (as per <a href="#capabilities-vc">§ 2.9.2 Possession of a verifiable credential</a>): three self-signed WebID credentials, four bank
 accounts, a drivers licence, two passports, a proof that she is over 18, a
 credential for her college and her university diploma, three club memberships
 as well as her FBI credential. The resource only requires proof of being
@@ -1333,7 +1334,17 @@ incomplete state.</p>
 doesn’t properly validate, most often resulting in Juan getting locked out of
 the <a data-link-type="dfn" href="#resource" id="ref-for-resource④⑦">resource</a> and needing administrator assistance to recover.</p>
    <h3 class="heading settled" data-level="2.9" id="uc-capabilities"><span class="secno">2.9. </span><span class="content">Capabilities</span><a class="self-link" href="#uc-capabilities"></a></h3>
-   <h4 class="heading settled" data-level="2.9.1" id="capabilities-vc"><span class="secno">2.9.1. </span><span class="content">Possession of a verifiable credential</span><a class="self-link" href="#capabilities-vc"></a></h4>
+   <h4 class="heading settled" data-level="2.9.1" id="group-membership-vc"><span class="secno">2.9.1. </span><span class="content">Possesion of a group membership verifiable credential</span><a class="self-link" href="#group-membership-vc"></a></h4>
+   <p>Omni Corp granted Acme Corp read-write access to three of their projects: A, B,
+and C. This grant allows all Acme Corp employees to have that access as long as
+they can present a membership credential issued by Acme Corp. At the time of
+the grant, Omni Corp notifies Acme Corp, detailing pertinent access details,
+including the membership credential requirement for Acme Corp employees. Acme
+Corp doesn’t maintain a public list of their employees, so Omni Corp cannot
+know who is employed by Acme Corp unless that person presents a verifiable
+credential. Alice works for Acme Corp, and can now access the Omni Corp
+projects A, B, and C, using her membership credential issued by Acme Corp.</p>
+   <h4 class="heading settled" data-level="2.9.2" id="capabilities-vc"><span class="secno">2.9.2. </span><span class="content">Possession of a verifiable credential</span><a class="self-link" href="#capabilities-vc"></a></h4>
    <p>Oscar has a medical condition that causes random and very serious seizures
 several times per year. Wherever Oscar is, he needs to be rushed immediately
 to the closest hospital in an ambulance.</p>
@@ -1346,7 +1357,7 @@ credential <a data-link-type="dfn" href="#capability" id="ref-for-capability">ca
    <p>Oscar has set permissions on <code>https://oscar.example/emergency</code> that grants
 someone in possession of a verifiable medical credential to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③④">read access</a> to the contents. This gives them just enough background on his
 condition to treat him properly.</p>
-   <h4 class="heading settled" data-level="2.9.2" id="capabilities-link"><span class="secno">2.9.2. </span><span class="content">Possession of a link</span><a class="self-link" href="#capabilities-link"></a></h4>
+   <h4 class="heading settled" data-level="2.9.3" id="capabilities-link"><span class="secno">2.9.3. </span><span class="content">Possession of a link</span><a class="self-link" href="#capabilities-link"></a></h4>
    <p>Bob is about to give a confidential presentation to a group of his colleagues.
 His presentation is stored on his personal <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a> at <code>https://bob.example/presentation</code>.</p>
    <p>Bob is having trouble hooking his laptop up to the projector, and needs to
@@ -1389,9 +1400,9 @@ and the presentation goes off perfectly.</p>
     <li data-md>
      <p><a href="#uc-validation">§ 2.8 Validation</a></p>
     <li data-md>
-     <p><a href="#capabilities-vc">§ 2.9.1 Possession of a verifiable credential</a></p>
+     <p><a href="#capabilities-vc">§ 2.9.2 Possession of a verifiable credential</a></p>
     <li data-md>
-     <p><a href="#capabilities-link">§ 2.9.2 Possession of a link</a></p>
+     <p><a href="#capabilities-link">§ 2.9.3 Possession of a link</a></p>
    </ul>
    <h2 class="heading settled" data-level="5" id="definitions"><span class="secno">5. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2>
    <p>All definitions as stated below should be considered in the context of Web
@@ -1526,7 +1537,7 @@ already exists.</p>
    <ul>
     <li><a href="#ref-for-identity">2. Use Cases</a>
     <li><a href="#ref-for-identity①">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-identity②">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-identity②">2.9.3. Possession of a link</a>
     <li><a href="#ref-for-identity③">5. Definitions</a> <a href="#ref-for-identity④">(2)</a>
    </ul>
   </aside>
@@ -1572,7 +1583,7 @@ already exists.</p>
     <li><a href="#ref-for-resource-server⑤">2.4. Conditional access</a>
     <li><a href="#ref-for-resource-server⑥">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-resource-server⑦">2.5.3. Application determining access privileges</a>
-    <li><a href="#ref-for-resource-server⑧">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-resource-server⑧">2.9.3. Possession of a link</a>
     <li><a href="#ref-for-resource-server⑨">5. Definitions</a> <a href="#ref-for-resource-server①⓪">(2)</a>
    </ul>
   </aside>
@@ -1642,7 +1653,7 @@ already exists.</p>
     <li><a href="#ref-for-authorization④">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-authorization⑤">2.6.2. Limiting access to other authorization conditions</a>
     <li><a href="#ref-for-authorization⑥">2.8. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
-    <li><a href="#ref-for-authorization⑧">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-authorization⑧">2.9.3. Possession of a link</a>
     <li><a href="#ref-for-authorization⑨">5. Definitions</a> <a href="#ref-for-authorization①⓪">(2)</a>
    </ul>
   </aside>
@@ -1667,8 +1678,8 @@ already exists.</p>
   <aside class="dfn-panel" data-for="capability">
    <b><a href="#capability">#capability</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-capability">2.9.1. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-capability①">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-capability">2.9.2. Possession of a verifiable credential</a>
+    <li><a href="#ref-for-capability①">2.9.3. Possession of a link</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="access-mode">
@@ -1704,8 +1715,8 @@ already exists.</p>
     <li><a href="#ref-for-read-access②⑨">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-read-access③⓪">(2)</a>
     <li><a href="#ref-for-read-access③①">2.5.3. Application determining access privileges</a>
     <li><a href="#ref-for-read-access③②">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access③③">(2)</a>
-    <li><a href="#ref-for-read-access③④">2.9.1. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-read-access③⑤">2.9.2. Possession of a link</a>
+    <li><a href="#ref-for-read-access③④">2.9.2. Possession of a verifiable credential</a>
+    <li><a href="#ref-for-read-access③⑤">2.9.3. Possession of a link</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="write-access">
