@@ -349,8 +349,7 @@ permissions:
 * Inherited [=read access=] to the `comments` [=collection=]
     so they can list and read existing comments (including their own).
 * [=Append access=] to the `comments` [=collection=], which allows them to
-    add their own comments, but not change anyone else's including their
-    own after the comments have been submitted.
+    add their own comments, but not change anyone else's.
 * Ability to write (edit or delete) any resources in `comments` that they
     have created themselves, but none created by anyone else.
 
@@ -1202,8 +1201,9 @@ Requirements {#requirements}
     certain [=collection=].
     <span class="issue">Corresponding use case needs to be added</span>
 
-1. The system shall allow for the creator of a [=resource=] in a certain 
-    [=collection=] to be granted access to the created [=resource=].
+1. The system shall allow for the creator of a [=resource=] or [=collection=]
+    in a certain [=collection=] to be automatically granted access to the 
+    created [=resource=] or [=collection=].
     [[#collection-readappendwrite]]
     
 1. The system shall limit the ability to read the access permissions 
