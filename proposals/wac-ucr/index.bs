@@ -1176,8 +1176,8 @@ Requirements {#requirements}
 1. The system shall limit the ability to read a certain [=resource=].
     [[#basic-readonly]], [[#basic-write]], [[#basic-readappend]]
 
-1. The system shall limit the ability to change any of the contents of a 
-    certain [=resource=].
+1. The system shall limit the ability to change any of the existing contents 
+    of a certain [=resource=].
     [[#basic-write]]
 
 1. The system shall limit the ability to delete a certain [=resource=].
