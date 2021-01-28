@@ -1,0 +1,10 @@
+[
+  {
+    "srcDir": ".",
+    "destDir": ".",
+    "showOutput": "true",
+    "showError": "true",
+    "files": "index.bs",
+    "command": "bikeshed spec index.bs"
+  }
+]
