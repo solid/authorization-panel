@@ -1127,9 +1127,9 @@ Requirements {#requirements}
 
 ## Functional Requirements ## {#req-functional}
 
-1. The system shall permit or restrict an [=agent's=] ability to access a 
-    [=resource=] or [=collection=]. [[#uc-basic]], 
-    [[#uc-collections]], [[#uc-blockagents]]
+Note: Unless otherwise specified, *allowing or limiting access* in the 
+subsequent requirements should be interpreted in the context of allowing
+or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 1. The system shall allow access to be limited based on the [=identity=] of 
     the [=agent=]. [[#uc-basic]], [[#uc-collections]]
