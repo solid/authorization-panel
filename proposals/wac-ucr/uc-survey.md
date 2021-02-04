@@ -633,6 +633,11 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
 
 ## Capabilities
 
+### Possession of a group membership verifiable credential
+URL: https://solid.github.io/authorization-panel/wac-ucr/#group-membership-vc
+
+* 0 csarven: Some use but not essential for [ap]. Will not implement (for [d]).
+
 ### Possession of a verifiable credential
 URL: https://solid.github.io/authorization-panel/wac-ucr/#capabilities-vc
 
