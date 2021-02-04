@@ -576,7 +576,9 @@ get to VC in the next cycle.
 * +1 hindia:
 * dmitrizagidulin: This is out of scope for authorization. At best, it belongs
     in a wallet spec or implementation guide.
-* +3 bblfish: public [si] [ai]: this is very much a requirement on the server not the client. Without it we cannot secure privacy for the client across pods, as clients would constantly have to present for each remote resource every ID it has, even when none are valid. 
+* +3 bblfish: public [si] [ai]: this is very much a requirement on the server not the client. Without it we cannot secure privacy for the client across pods, as clients would constantly have to present for each remote resource every ID it has, even when none are valid.
+* +0 csarven: "minimal" is unclear. Client to present only one credential? Least "sensitive" - what criteria? Exact/Close match (schema) of what's allowed? Good UC to support. Not essential for [ap]. I don't plan to implement it.
+
 
 ### Limit information disclosure through URI
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
@@ -629,7 +631,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
 ### Possession of a group membership verifiable credential
 URL: https://solid.github.io/authorization-panel/wac-ucr/#group-membership-vc
 
-* 0 csarven: Some use but not essential for [ap]. Will not implement (for [d]).
+* 0 csarven: Some use but not essential for [ap]. I don't plan to implement it.
 
 ### Possession of a verifiable credential
 URL: https://solid.github.io/authorization-panel/wac-ucr/#capabilities-vc
@@ -658,4 +660,3 @@ flows or one-time shares.
 * +1 hindia: love this too
 * +1 dmitrizagidulin: Essential for shares.
 * +0 bblfish: interesting use case. This could be just that the resource is read/write to everyone? (+if needed making the URL obscure). Or is the server meant to detect a redirect?
-
