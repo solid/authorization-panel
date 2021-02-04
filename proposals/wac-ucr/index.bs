@@ -1072,7 +1072,7 @@ the [=resource=] and needing administrator assistance to recover.
 
 ## Capabilities ## {#uc-capabilities}
 
-### Possesion of a group membership verifiable credential ### {#group-membership-vc}
+### Possession of a group membership verifiable credential ### {#group-membership-vc}
 
 Omni Corp granted Acme Corp read-write access to three of their projects: A, B,
 and C. This grant allows all Acme Corp employees to have that access as long as
