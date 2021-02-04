@@ -556,6 +556,9 @@ specifically wants the information to be divulged.
 ### Limiting access to other authorization conditions
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
 
+* +1 justinwb: Privacy in this context in paramount, unless the controller
+specifically wants the information to be divulged.
+* +1 elf-pavlik:
 * 0 csarven: Complex use case. Perhaps change focus to auxiliary resources.
 * +1 jaxoncreed:
 * +1 KaiGilb: graphMetrix. Im not sure this should be handled by permission, but yes, they should not see it.
@@ -574,16 +577,6 @@ get to VC in the next cycle.
 * dmitrizagidulin: This is out of scope for authorization. At best, it belongs
     in a wallet spec or implementation guide.
 * +3 bblfish: public [si] [ai]: this is very much a requirement on the server not the client. Without it we cannot secure privacy for the client across pods, as clients would constantly have to present for each remote resource every ID it has, even when none are valid. 
-
-### Limiting access to other authorization conditions
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
-
-* +1 justinwb: Privacy in this context in paramount, unless the controller
-specifically wants the information to be divulged.
-* +1 csarven: Wide use. I don't plan to implement it.
-* +1 jaxoncreed:
-* KaiGilb: this seems like a duplicate from 2 up
-* +1 hindia:
 
 ### Limit information disclosure through URI
 URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
