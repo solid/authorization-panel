@@ -65,7 +65,7 @@ Introduction {#intro}
 
 The [[#usecases]] in this document represent real-world scenarios that
 Web Access Control can and should support. The [[#requirements]] in this
-document are derived from those use cases, and req- the contents of the
+document are derived from those use cases, and support the contents of the
 next Web Access Control specification.
 
 [[#limitations]] highlights the [[#usecases]] that
