@@ -535,7 +535,7 @@ invite other colleagues from the past to add [=resources=] to it.
 
 </div>
 
-## Resource access inherited from Collection ## {#uc-inheritance}
+## Collection resource inherited access ## {#uc-inheritance}
 
 Bob is leading a group of colleagues doing field research. This group
 includes Charles, Felicia, Juan, and Irene.
