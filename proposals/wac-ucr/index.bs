@@ -699,7 +699,7 @@ videos.
 
 Because Bob sets inherited [=read access=] at the `weekly-status`
 [=collection=], it applies to all of the members already in the [=collection=], as
-well as any that will be added in the future.
+well as any that are added in the future.
 
 <div class="assertion">
 
