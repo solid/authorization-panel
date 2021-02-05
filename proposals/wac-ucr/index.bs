@@ -688,7 +688,7 @@ Bob stores his notes from the weekly status meeting in the `weekly-status`
 
 He grants the `research` [=authorization group=] [=read access=] to
 the `weekly-status` [=collection=], which means they can read specific details
-about the [=collection=] and see a listing of the resources included in it (e.g.
+about the [=collection=] and see a listing of the resources included in it (e.g.,
 Bob's notes). He also grants them inherited [=read access=] to the members
 of the [=collection=], which allows them to read the contents of each note. 
 
