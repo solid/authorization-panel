@@ -2,7 +2,7 @@
 Title: Use Cases and Requirements for Web Access Control
 Shortname: wac-ucr
 Level: 1
-Max ToC Depth: 3
+Max ToC Depth: 2
 Status: w3c/ED
 Group: solid-cg
 URL: https://solid.github.io/authorization-panel/wac-ucr/
@@ -1548,14 +1548,14 @@ and the presentation goes off perfectly.
 * [[#req-read]]
 * [[#req-conditional-time]]
 
-Requirements {#requirements}
+Functional Requirements {#requirements}
 ================================================================================
-
-## Functional Requirements ## {#req-functional}
 
 Note: Unless otherwise specified, *allowing or limiting access* in the 
 subsequent requirements should be interpreted in the context of allowing
 or limiting access to a [=resource=] or [=collection=] by an [=agent=].
+
+## Access by subject ## {#req-as}
 
 ### The system shall allow access to be limited based on the [=identity=] of the [=agent=]. ### {#req-agent-identity}
 
@@ -1587,18 +1587,6 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#uc-client-constraints]]
 </div>
 
-### The system shall allow for access to a [=resource=] or [=collection=] to be limited to the [=agent=] that created it. ### {#req-creator}
-
-<div class="assertion">    
-  Related use cases: [[#collection-readappendwrite]]
-</div>
-
-### The system shall allow access to be limited to an [=agent=] based on the [=agent's=] possession of a certain verifiable credential or capability. ### {#req-vc}
-
-<div class="assertion">    
-  Related use cases: [[#capabilities-vc]], [[#capabilities-link]], [[#uc-minimalcredentials]]
-</div>
-
 ### The system shall allow access to be permitted for any unauthenticated or authenticated [=agent=]. ### {#req-public}
 
 <div class="assertion">    
@@ -1610,7 +1598,17 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 <div class="assertion">    
   Related use cases: [[#basic-authenticated]]
 </div>
-    
+
+## Access by capability ## {#req-capabilities}
+
+### The system shall allow access to be limited to an [=agent=] based on the [=agent's=] possession of a certain verifiable credential or capability. ### {#req-vc}
+
+<div class="assertion">    
+  Related use cases: [[#capabilities-vc]], [[#capabilities-link]], [[#uc-minimalcredentials]]
+</div>
+
+## Access to resources ## {#req-resources}
+
 ### The system shall limit the ability to read the access permissions associated with a certain [=resource=]. ### {#req-read-permissions}
 
 <div class="assertion">    
@@ -1646,6 +1644,14 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 <div class="assertion">    
   Related use cases: [[#basic-appendonly]], [[#basic-readappend]]
 </div>
+
+### The system shall allow for access to a [=resource=] or [=collection=] to be limited to the [=agent=] that created it. ### {#req-creator}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readappendwrite]]
+</div>
+
+## Access to collections ## {#req-collections}
     
 ### The system shall limit the ability to read a certain [=collection=], exposing only the data from the [=collection=] resource itself, and a listing of its members. ### {#req-collection-read}
 
@@ -1686,47 +1692,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#collection-control]]
 </div>
 
-### The system shall limit the ability to access a certain [=resource=] by a given start and/or end data and time.### {#req-conditional-time}
-
-<div class="assertion">    
-  Related use cases: [[#conditional-time]]
-</div>
-
-### The system shall limit the ability to access a certain [=resource=] by a tag associated with that resource.### {#req-conditional-tag}
-
-<div class="assertion">    
-  Related use cases: [[#conditional-tag]]
-</div>
-    
-### The system shall limit the ability to access a certain [=resource=] based on the existence of a specific relationship with another [=resource=].### {#req-conditional-relationship}
-
-<div class="assertion">    
-  Related use cases: [[#conditional-relationship]]
-</div>
-    
-### The system shall limit access to only a subset of data in a certain [=resource=] based on supplied filter criteria.### {#req-conditional-filter}
-
-<div class="assertion">    
-  Related use cases: [[#conditional-filter]]
-</div>
-
-### The system shall allow the [=access modes=] and/or conditions of a given access permission for a certain [=resource=] or [=collection=] to change after other specified conditions have been satisfied.### {#req-conditional-action}
-
-<div class="assertion">    
-  Related use cases: [[#conditional-action]]
-</div>
-  
-### The system shall limit the ability to read, create, or change only those access permissions for a given [=resource=] or [=collection=] that apply to a specified group of [=agents=].### {#req-conditional-control}
-
-<div class="assertion">    
-  Related use cases: [[#conditional-control]]
-</div>
-
-### The system shall limit the ability to read, create, or change access permissions for [=resources=] associated with a particular tag.### {#req-conditional-control-tag}
-
-<div class="assertion">    
-  Related use cases: [[#conditional-control]]
-</div>
+## Inherited access to collection resources ## {#req-inherited}
 
 ### The system shall allow for a certain [=collection=] to specify access permissions that are inherited by its members.### {#req-collection-inheritance}
 
@@ -1786,6 +1752,50 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 <div class="assertion">    
   Related use cases: [[#inheritance-control]]
+</div>
+
+## Conditional access ## {#req-conditional}
+
+### The system shall limit the ability to access a certain [=resource=] by a given start and/or end data and time.### {#req-conditional-time}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-time]]
+</div>
+
+### The system shall limit the ability to access a certain [=resource=] by a tag associated with that resource.### {#req-conditional-tag}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-tag]]
+</div>
+    
+### The system shall limit the ability to access a certain [=resource=] based on the existence of a specific relationship with another [=resource=].### {#req-conditional-relationship}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-relationship]]
+</div>
+    
+### The system shall limit access to only a subset of data in a certain [=resource=] based on supplied filter criteria.### {#req-conditional-filter}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-filter]]
+</div>
+
+### The system shall allow the [=access modes=] and/or conditions of a given access permission for a certain [=resource=] or [=collection=] to change after other specified conditions have been satisfied.### {#req-conditional-action}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-action]]
+</div>
+  
+### The system shall limit the ability to read, create, or change only those access permissions for a given [=resource=] or [=collection=] that apply to a specified group of [=agents=].### {#req-conditional-control}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-control]]
+</div>
+
+### The system shall limit the ability to read, create, or change access permissions for [=resources=] associated with a particular tag.### {#req-conditional-control-tag}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-control]]
 </div>
 
 Limitations of Legacy Web Access Control {#limitations}
