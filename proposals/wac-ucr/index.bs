@@ -1609,13 +1609,13 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 ## Access to resources ## {#req-resources}
 
-### The system shall limit the ability to read the access permissions associated with a certain [=resource=]. ### {#req-read-permissions}
+### The system shall limit the ability to read the access permissions directly associated with a certain [=resource=]. ### {#req-read-permissions}
 
 <div class="assertion">    
   Related use cases: [[#basic-read-permissions]], [[#uc-whopermitted]], [[#uc-historyofchanges]]
 </div>
     
-### The system shall limit the ability to change the access permissions associated with a certain [=resource=]. ### {#req-change-permissions}
+### The system shall limit the ability to change the access permissions directly associated with a certain [=resource=]. ### {#req-change-permissions}
 
 <div class="assertion">    
   Related use cases: [[#basic-change-permissions]]
@@ -1645,6 +1645,12 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#basic-appendonly]], [[#basic-readappend]]
 </div>
 
+### The system shall limit the ability to delete a certain [=resource=]. ### {#req-delete}
+
+<div class="assertion">    
+  Related use cases: TODO
+</div>
+
 ### The system shall allow for access to a [=resource=] or [=collection=] to be limited to the [=agent=] that created it. ### {#req-creator}
 
 <div class="assertion">    
@@ -1653,18 +1659,18 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 ## Access to collections ## {#req-collections}
     
-### The system shall limit the ability to read a certain [=collection=], exposing only the data from the [=collection=] resource itself, and a listing of its members. ### {#req-collection-read}
+### The system shall limit the ability to read a certain [=collection=], including only the data from the [=collection=] resource itself, and a listing of its members, and excluding the contents of its members, or any metadata about them. ### {#req-collection-read}
 
 <div class="assertion">    
   Related use cases: [[#collection-readonly]], [[#collection-readwrite]], 
   [[#collection-readappend]], [[#collection-readappendwrite]]
 </div>
   
-### The system shall limit the ability to change data specific to a certain [=collection=], including only the data from the [=collection=] resource itself, and a listing of its members. ### {#req-collection-write}
+### The system shall limit the ability to change data specific to a certain [=collection=], including only the data from the [=collection=] resource itself, and excluding any additions or subtractions from its list of members. ### {#req-collection-write}
 
 <div class="assertion">    
   Related use cases: [[#collection-readwrite]]
-</div>  
+</div>
 
 ### The system shall limit the ability to create a [=resource=] in a certain [=collection=].### {#req-collection-create}
 
@@ -1673,20 +1679,26 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   [[#collection-readappendwrite]]
 </div>
 
-### The system shall allow for the creator of a [=resource=] or [=collection=] in a certain [=collection=] to be automatically granted access to the created [=resource=] or [=collection=].### {#req-collection-creator}
+### The system shall limit the ability to delete a [=resource=] in a certain [=collection=].### {#req-collection-delete}
+
+<div class="assertion">    
+  Related use cases: TODO
+</div>
+
+### The system shall allow for the creator of a [=resource=] in a certain [=collection=] to be automatically granted access to the created [=resource=].### {#req-collection-creator}
 
 <div class="assertion">    
   Related use cases: [[#collection-readappendwrite]]
 </div>
     
-### The system shall limit the ability to read the access permissions associated with a certain [=collection=].### {#req-collection-read-permissions}
+### The system shall limit the ability to read the access permissions directly associated with a certain [=collection=].### {#req-collection-read-permissions}
 
 <div class="assertion">    
   Related use cases: [[#collection-control]], [[#uc-whopermitted]], 
   [[#uc-historyofchanges]]
 </div>
       
-### The system shall limit the ability to change the access permissions associated with a certain [=collection=].### {#req-collection-change-permissions}
+### The system shall limit the ability to change the access permissions directly associated with a certain [=collection=].### {#req-collection-change-permissions}
 
 <div class="assertion">    
   Related use cases: [[#collection-control]]
@@ -1699,8 +1711,32 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 <div class="assertion">    
   Related use cases: [[#uc-inheritance]]
 </div>
+
+### The system shall allow for a certain resource to be read if the [=agent=] has inherited [=read access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-readonly}
   
-### The system shall allow for the members of a certain [=collection=] to extend or augment the permissions inherited from that [=collection=].### {#req-inheritance-modify}
+<div class="assertion">    
+  Related use cases: [[#inheritance-readonly]]
+</div>
+
+### The system shall allow for a resource to be changed if the [=agent=] has inherited [=write access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-change}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-readwrite]]
+</div>
+
+### The system shall allow for new data to be added to a [=resource=], without being able to change existing data in that [=resource=], if the [=agent=] has inherited [=append access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-appendonly}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-appendonly]]
+</div>
+
+### The system shall allow for a new resources to be added a given [=collection=] if the [=agent=] has inherited [=create access=] from the parent [=collection=] that the given [=collection=] is a member of. ### {#req-inheritance-create}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-readappend]]
+</div>
+  
+### The system shall allow for the members of a certain [=collection=] to extend or augment the permissions inherited from the parent [=collection=].### {#req-inheritance-modify}
 
 <div class="assertion">    
   Related use cases: [[#inheritance-adding]], [[#inheritance-modifying]]
@@ -1712,43 +1748,19 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#inheritance-forcing]]
 </div>
 
-### The system shall allow for a certain resource to be read if the [=agent=] has inherited that permission from the [=collection=] the [=resource=] is a member of. ### {#req-inheritance-readonly}
-  
-<div class="assertion">    
-  Related use cases: [[#inheritance-readonly]]
-</div>
-    
-### The system shall allow for a new resource to be created if the [=agent=] has inherited that permission from the [=collection=] the [=resource=] is a member of. ### {#req-inheritance-create}
-
-<div class="assertion">    
-  Related use cases: [[#inheritance-readappend]]
-</div>
-
-### The system shall allow for the default permissions of a newly created [=resources=] to be inherited from the [=collection=] the [=resource=] is a member of. ### {#req-inheritance-default-permissions}
+### The system shall allow for the default permissions of a newly created [=resource=] to be inherited from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-default-permissions}
 
 <div class="assertion">    
   Related use cases: [[#inheritance-defaultcreated]], [[#inheritance-extended]]
 </div>
     
-### The system shall allow for a resource to be changed if the [=agent=] has inherited that permission from the [=collection=] the [=resource=] is a member of. ### {#req-inheritance-change}
-
-<div class="assertion">    
-  Related use cases: [[#inheritance-readwrite]]
-</div>
-
-### The system shall allow for new data to be added to a [=resource=], without being able to change existing data in that [=resource=], if the [=agent=] has inherited that permission from the [=collection=] the [=resource=] is a member of. ### {#req-inheritance-appendonly}
-
-<div class="assertion">    
-  Related use cases: [[#inheritance-appendonly]]
-</div>
-    
-### The system shall allow for the access permissions associated with a certain resource to be read if the [=agent=] has inherited that permission from the [=collection=] the [=resource=] is a member of. ### {#req-inheritance-read-permissions}
+### The system shall allow for the access permissions directly associated with a certain resource to be read if the [=agent=] has inherited [=read permission access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-read-permissions}
 
 <div class="assertion">    
   Related use cases: [[#inheritance-control]]
 </div>
     
-### The system shall allow for the access permissions associated with a certain resource to be changed if the [=agent=] has inherited that permission from the [=collection=] the [=resource=] is a member of. ### {#req-inheritance-change-permissions}
+### The system shall allow for the access permissions directly associated with a certain resource to be changed if the [=agent=] has inherited [=write permission access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-change-permissions}
 
 <div class="assertion">    
   Related use cases: [[#inheritance-control]]
@@ -1869,14 +1881,31 @@ An <dfn>access mode</dfn> denotes a class of operations that an [=agent=]
 and/or [=application=] can perform on one or more [=resources=].
 
 <dfn>Read access</dfn> is an [=access mode=] that allows [=agents=] and/or
-[=applications=] the ability to read, but not modify a [=resources=].
+[=applications=] the ability to read, but not modify a [=resource=]. When
+the [=resource=] is a [=collection=], this includes access to the list
+of [=resources=] in that [=collection=], but does not include access to
+their contents, or any metadata about them.
 
 <dfn>Write access</dfn> is an [=access mode=] that allows [=agents=] and/or
-[=applications=] the ability to create, update, or delete a [=resource=].
+[=applications=] the ability to modify the contents of a [=resource=]. When
+the resource is a [=collection=], the contents of the [=collection=] resource
+itself can be modified, but [=create access=] and [=delete access=] are
+required to create or delete [=resources=] from the [=collection=].
 
 <dfn>Append access</dfn> is an [=access mode=] that allows [=agents=] and/or
-[=applications=] to add data to a resource, but not modify any data that
-already exists.
+[=applications=] to add data to the contents of a resource, but not modify 
+any of the existing contents. When the resource is a [=collection=], the 
+contents of the [=collection=] resource
+itself can be added to, but [=create access=] is required to add new 
+[=resources=] to the [=collection=].
+
+<dfn>Create access</dfn> is an [=access mode=] that allows [=agents=] and/or
+[=applications=] to add new [=resources=] to a given [=collection=].
+
+<dfn>Delete access</dfn> is an [=access mode=] that allows [=agents=] and/or
+[=applications=] to delete a [=resource=]. If the [=resource=] is a 
+[=collection=], it includes the ability to delete [=resources=] in that
+collection.
 
 <dfn>Read permission access</dfn> is an [=access mode=] that allows [=agents=] and/or
 [=applications=] to view [=authorizations=] associated with a [=resource=].
