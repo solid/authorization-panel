@@ -78,7 +78,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-multi
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* +1 csarven: [d] such that agent A sends a notification about the recommendation to agent B's inbox ie. #collection-readappend , instead of updating a resource that references it.
+* +1 csarven: [d] such that agent A sends a notification about the recommendation to agent B's inbox ie. #collection-readcreate , instead of updating a resource that references it.
 * +1 jaxoncreed:
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
@@ -206,7 +206,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readwrite
 * +0 bblfish: public [si] [ai]. (agree with jaxon. I also think one needs to distinguish between ability to add new resources the Container, and changes to the container itself. You may be happy to allow people to add to an ldp:Container but not to change the nature of the container, say from an ldp:BasicContainer to an ldp:IndirectContainer, as the latter container has speech act implications beyond the creation of the content. See my [chapter 2 of my 2nd year report](https://co-operating.systems/2019/04/01/). Yes, delete without read seems dubious and dangerous - in [RelBAC](https://github.com/solid/authorization-panel/issues/150) I think delete is a subproperty of write.). 
 
 ### Read-append access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappend
+URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readcreate
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -219,13 +219,13 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappend
 * +1 bblfish: public [si] [ai] (agree with Dmitry though I one could also allow new types of containers that act as RSS feeds, giving title and summaries of the contents therein).
 
 ### Read-append-write access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappendwrite
+URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readcreatedelete
 
 * +1 justinwb: Being able to designate the creator of a resource with specific
 privileges in an append scenario on a container is extremely important to
 a number of collaborative scenarios.
 * +1 elf-pavlik:
-* 0 csarven: Seems like duplicate of #collection-readwrite and #collection-readappend
+* 0 csarven: Seems like duplicate of #collection-readwrite and #collection-readcreate
 * +1 jaxoncreed:
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
@@ -237,7 +237,7 @@ a number of collaborative scenarios.
 
 
 ### Append-only access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-appendonly
+URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-createonly
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -281,7 +281,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readonly
    authorize any group to access resources)
 
 ### Read-append access to collection resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
+URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readcreate
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -294,11 +294,11 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
 * +1 bblfish: public [si] [ai] 
 
 ### Read-write access to collection resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
+URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-manage
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* +1 csarven: Wide use. Required for [ap] - similar to #inheritance-readappend. [d].
+* +1 csarven: Wide use. Required for [ap] - similar to #inheritance-readcreate. [d].
 * 0 jaxoncreed: I think this needs more clarification on what happens to nested collections.
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
@@ -307,7 +307,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
 * +1 bblfish: public [si] [ai] 
 
 ### Append-only access to collection resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-appendonly
+URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-createappend
 
 * +1 justinwb:
 * +1 elf-pavlik:
