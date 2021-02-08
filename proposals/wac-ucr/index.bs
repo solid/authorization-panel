@@ -1766,7 +1766,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#inheritance-createappend]]
 </div>
 
-### The system shall allow for a new resources to be added to a given [=collection=] if the [=agent=] has inherited [=create access=] from the parent [=collection=] that the given [=collection=] is a member of. ### {#req-inheritance-create}
+### The system shall allow for new resources to be added to a given [=collection=] if the [=agent=] has inherited [=create access=] from the parent [=collection=] that the given [=collection=] is a member of. ### {#req-inheritance-create}
 
 <div class="assertion">    
   Related use cases: [[#inheritance-readcreate]]
