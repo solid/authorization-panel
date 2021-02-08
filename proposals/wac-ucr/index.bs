@@ -446,7 +446,7 @@ in the `portfolio` [=resource=].
 ### Read-create access to a Collection ### {#collection-readcreate}
 
 Alice worked with Bob in the past on a project, and she has added a
-partial set of the final project deliverables she into the `project1` 
+partial set of the final project deliverables into the `project1` 
 [=collection=]. She knows that Bob has the rest, and he agrees to provide
 them.
 
@@ -1766,7 +1766,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#inheritance-createappend]]
 </div>
 
-### The system shall allow for a new resources to be added a given [=collection=] if the [=agent=] has inherited [=create access=] from the parent [=collection=] that the given [=collection=] is a member of. ### {#req-inheritance-create}
+### The system shall allow for a new resources to be added to a given [=collection=] if the [=agent=] has inherited [=create access=] from the parent [=collection=] that the given [=collection=] is a member of. ### {#req-inheritance-create}
 
 <div class="assertion">    
   Related use cases: [[#inheritance-readcreate]]
