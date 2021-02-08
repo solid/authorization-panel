@@ -1602,13 +1602,13 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 ## Access to resources ## {#req-resources}
 
-### The system shall limit the ability to read the access permissions associated with a certain [=resource=]. ### {#req-read-permissions}
+### The system shall allow the ability to read the access permissions associated with a certain [=resource=] to be limited. ### {#req-read-permissions}
 
 <div class="assertion">    
   Related use cases: [[#basic-read-permissions]], [[#uc-whopermitted]], [[#uc-historyofchanges]]
 </div>
     
-### The system shall limit the ability to change the access permissions associated with a certain [=resource=]. ### {#req-change-permissions}
+### The system shall allow the ability to change the access permissions associated with a certain [=resource=] to be limited. ### {#req-change-permissions}
 
 <div class="assertion">    
   Related use cases: [[#basic-change-permissions]]
@@ -1620,19 +1620,19 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#uc-client-determine-access-privileges]]
 </div>
 
-### The system shall limit the ability to read a certain [=resource=].### {#req-read}
+### The system shall allow the ability to read a certain [=resource=] to be limited.### {#req-read}
 
 <div class="assertion">    
   Related use cases: [[#basic-readonly]], [[#basic-write]], [[#basic-readappend]]
 </div>
 
-### The system shall limit the ability to change any of the existing contents of a certain [=resource=].### {#req-write}
+### The system shall allow the ability to change any of the existing contents of a certain [=resource=] to be limited.### {#req-write}
 
 <div class="assertion">    
   Related use cases: [[#basic-write]]
 </div>
 
-### The system shall limit the ability to change existing data in a certain [=resource=], such that only new data can be added to it.### {#req-append}
+### The system shall allow the ability to change existing data in a certain [=resource=] to be limited, such that only new data can be added to it.### {#req-append}
 
 <div class="assertion">    
   Related use cases: [[#basic-appendonly]], [[#basic-readappend]]
@@ -1646,20 +1646,20 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 ## Access to collections ## {#req-collections}
     
-### The system shall limit the ability to read a certain [=collection=], exposing only the data from the [=collection=] resource itself, and a listing of its members. ### {#req-collection-read}
+### The system shall allow the ability to read a certain [=collection=] to be limited, exposing only the data from the [=collection=] resource itself, and a listing of its members. ### {#req-collection-read}
 
 <div class="assertion">    
   Related use cases: [[#collection-readonly]], [[#collection-readwrite]], 
   [[#collection-readappend]], [[#collection-readappendwrite]]
 </div>
   
-### The system shall limit the ability to change data specific to a certain [=collection=], including only the data from the [=collection=] resource itself, and a listing of its members. ### {#req-collection-write}
+### The system shall allow the ability to change data specific to a certain [=collection=] to be limited, including only the data from the [=collection=] resource itself, and a listing of its members. ### {#req-collection-write}
 
 <div class="assertion">    
   Related use cases: [[#collection-readwrite]]
 </div>  
 
-### The system shall limit the ability to create a [=resource=] in a certain [=collection=].### {#req-collection-create}
+### The system shall allow the ability to create a [=resource=] in a certain [=collection=] to be limited.### {#req-collection-create}
 
 <div class="assertion">    
   Related use cases: [[#collection-readwrite]], [[#collection-readappend]],
@@ -1672,14 +1672,14 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#collection-readappendwrite]]
 </div>
     
-### The system shall limit the ability to read the access permissions associated with a certain [=collection=].### {#req-collection-read-permissions}
+### The system shall allow the ability to read the access permissions associated with a certain [=collection=] to be limited.### {#req-collection-read-permissions}
 
 <div class="assertion">    
   Related use cases: [[#collection-control]], [[#uc-whopermitted]], 
   [[#uc-historyofchanges]]
 </div>
       
-### The system shall limit the ability to change the access permissions associated with a certain [=collection=].### {#req-collection-change-permissions}
+### The system shall allow the ability to change the access permissions associated with a certain [=collection=] to be limited.### {#req-collection-change-permissions}
 
 <div class="assertion">    
   Related use cases: [[#collection-control]]
@@ -1749,25 +1749,25 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 ## Conditional access ## {#req-conditional}
 
-### The system shall limit the ability to access a certain [=resource=] by a given start and/or end data and time.### {#req-conditional-time}
+### The system shall allow the ability to limit access to a certain [=resource=] by a given start and/or end data and time.### {#req-conditional-time}
 
 <div class="assertion">    
   Related use cases: [[#conditional-time]]
 </div>
 
-### The system shall limit the ability to access a certain [=resource=] by a tag associated with that resource.### {#req-conditional-tag}
+### The system shall allow the ability to limit access a certain [=resource=] by a tag associated with that resource.### {#req-conditional-tag}
 
 <div class="assertion">    
   Related use cases: [[#conditional-tag]]
 </div>
     
-### The system shall limit the ability to access a certain [=resource=] based on the existence of a specific relationship with another [=resource=].### {#req-conditional-relationship}
+### The system shall allow the ability to limit access a certain [=resource=] based on the existence of a specific relationship with another [=resource=].### {#req-conditional-relationship}
 
 <div class="assertion">    
   Related use cases: [[#conditional-relationship]]
 </div>
     
-### The system shall limit access to only a subset of data in a certain [=resource=] based on supplied filter criteria.### {#req-conditional-filter}
+### The system shall allow access to be limited to only a subset of data in a certain [=resource=] based on supplied filter criteria.### {#req-conditional-filter}
 
 <div class="assertion">    
   Related use cases: [[#conditional-filter]]
@@ -1779,13 +1779,13 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#conditional-action]]
 </div>
   
-### The system shall limit the ability to read, create, or change only those access permissions for a given [=resource=] or [=collection=] that apply to a specified group of [=agents=].### {#req-conditional-control}
+### The system shall allow the ability to read, create, or change only those access permissions for a given [=resource=] or [=collection=] that apply to a specified group of [=agents=] to be limited.### {#req-conditional-control}
 
 <div class="assertion">    
   Related use cases: [[#conditional-control]]
 </div>
 
-### The system shall limit the ability to read, create, or change access permissions for [=resources=] associated with a particular tag.### {#req-conditional-control-tag}
+### The system shall allow the ability to read, create, or change access permissions for [=resources=] associated with a particular tag to be limited.### {#req-conditional-control-tag}
 
 <div class="assertion">    
   Related use cases: [[#conditional-control]]
