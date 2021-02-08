@@ -831,6 +831,7 @@ reviewed.
 
 * [[#req-inheritance-default-permissions]]
 * [[#req-agent-group]]
+* [[#req-conditional-relationship]]
 
 </div>
 
@@ -1764,7 +1765,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 ### The system shall allow the ability to limit access a certain [=resource=] based on the existence of a specific relationship with another [=resource=].### {#req-conditional-relationship}
 
 <div class="assertion">    
-  Related use cases: [[#conditional-relationship]]
+  Related use cases: [[#conditional-relationship]], [[#inheritance-extended]]
 </div>
     
 ### The system shall allow access to be limited to only a subset of data in a certain [=resource=] based on supplied filter criteria.### {#req-conditional-filter}
