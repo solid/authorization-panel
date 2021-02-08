@@ -72,7 +72,7 @@ Use Cases {#usecases}
 ================================================================================
 
 For the purposes of simplicity, the use cases herein assume that named
-individuals (i.e. Alice, Bob, Carol, etc.) are already
+individuals (i.e., Alice, Bob, Carol, etc.) are already
 [=authenticated agents=], and their corresponding [=identities=] are known
 by the [=resource controller=] when they are granted access.
 
@@ -530,7 +530,7 @@ Bob stores his notes from the weekly status meeting in the `weekly-status`
 
 He grants the `research` [=authorization group=] inherited [=read access=] to
 the `weekly-status` [=collection=], which means they can read specific details
-about the [=collection=], see a listing of the resource included in it (e.g.
+about the [=collection=], see a listing of the resource included in it (e.g.,
 Bob's notes), and read the contents of each note. This is especially important
 because in this case each of Bob's notes are actually a [=collection=]
 themselves, capable of storing inline data or attachments, like pictures or
@@ -591,7 +591,7 @@ access=]).
 It's important that the resources they create have the correct permissions
 assigned automatically, and he needs to be able to ensure this when he sets up
 their access. Otherwise, how can he be sure that the files aren't created with
-access that too liberal (e.g. public access), or too narrow to be usable
+access that too liberal (e.g., public access), or too narrow to be usable
 within their context?
 
 Bob prefers to specify in granular fashion the default permissions of created
@@ -1044,7 +1044,7 @@ humanly readable and memorable names for its resources.
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}
 
-Carol has a blog, and allows any [=authenticated agent=] (e.g. [[WEBID]],
+Carol has a blog, and allows any [=authenticated agent=] (e.g., [[WEBID]],
 [[DID]]) to comment on her blog posts.
 
 Unfortunately, anyone can setup an identity provider, so Carol would like to
