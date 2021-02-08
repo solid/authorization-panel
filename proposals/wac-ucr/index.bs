@@ -80,22 +80,6 @@ individuals (i.e. Alice, Bob, Carol, etc.) are already
 [=authenticated agents=], and their corresponding [=identities=] are known
 by the [=resource controller=] when they are granted access.
 
-Additionally, since the vast majority of these use cases involve a
-[=resource controller=] reviewing and modifying permissions as an
-[=authenticated agent=], the following requirements are not listed explicitly
-in every use case, but should be assumed when permissions are assigned. 
-They may appear in certain use cases (such as [[#basic-change-permissions]]) when
-relevant.
-
-<div class="assertion">
-
-* [[#req-read-permissions]]
-* [[#req-change-permissions]]
-* [[#req-collection-read-permissions]]
-* [[#req-collection-change-permissions]]
-
-</div>
-
 ## Resource access ## {#uc-basic}
 
 Alice has a private draft of her resume stored on her [=resource server=] at
