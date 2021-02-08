@@ -1210,6 +1210,7 @@ musicians worldwide.
 * [[#req-conditional-action]]
 * [[#req-conditional-relationship]]
 * [[#req-vc]]
+* [[#req-vc-determine]]
 
 </div>
 
@@ -1360,6 +1361,7 @@ resource.
 <div class="assertion">
 
 * [[#req-vc]]
+* [[#req-vc-determine]]
  
 </div>
 
@@ -1521,7 +1523,8 @@ condition to treat him properly.
 
 * [[#req-vc]]
 * [[#req-inheritance-readonly]]
- 
+* [[#req-vc-determine]]
+
 </div>
 
 ### Possession of a link ### {#capabilities-link}
@@ -1605,6 +1608,12 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 <div class="assertion">    
   Related use cases: [[#capabilities-vc]], [[#capabilities-link]], [[#uc-minimalcredentials]]
+</div>
+
+### The system shall ensure that there are practical and efficient mechanism available for the client to determine an appropriate credential to present for access to a given [=resource=]. ### {#req-vc-determine}
+
+<div class="assertion">    
+  Related use cases: [[#capabilities-vc]], [[#uc-minimalcredentials]], [[#conditional-payment]]
 </div>
 
 ## Access to resources ## {#req-resources}
