@@ -1417,7 +1417,6 @@ scheme.
   </table>
 </figure>
 
-
 Some of the UUID resources represent collections and others various types of
 content. Collections can contain other collections as usual, but this cannot
 be deduced from the name. Only clients that are authorized can tell from the
@@ -1427,6 +1426,14 @@ contains.
 The service would like to be able to use the same applications on those
 resources as it does on its public facing Solid Web site, where it uses
 humanly readable and memorable names for its resources.
+
+<div class="assertion">
+
+* [[#req-uripath]]
+ 
+</div>
+
+
 
 ## Trust ## {#uc-trust}
 
@@ -1643,6 +1650,12 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 <div class="assertion">    
   Related use cases: [[#collection-readappendwrite]]
+</div>
+
+### The system shall not rely on the URI path to identity [=resources=] or [=collections=] ### {#req-uripath}
+
+<div class="assertion">    
+  Related use cases: [[#uc-limituri]]
 </div>
 
 ## Access to collections ## {#req-collections}
