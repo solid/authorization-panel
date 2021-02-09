@@ -1801,16 +1801,19 @@ does not satisfy the following use cases:
 * [[#inheritance-adding]]
 * [[#inheritance-modifying]]
 * [[#inheritance-forcing]]
+* [[#inheritance-extended]]
 * [[#collection-readappendwrite]]
 * [[#conditional-time]]
 * [[#conditional-tag]]
 * [[#conditional-filter]]
 * [[#conditional-control]]
+* [[#conditional-payment]]
 * [[#uc-applications]]
 * [[#uc-trustedissuers]]
 * [[#uc-validation]]
 * [[#capabilities-vc]]
 * [[#capabilities-link]]
+* [[#uc-minimalcredentials]]
 
 Definitions {#definitions}
 ================================================================================
