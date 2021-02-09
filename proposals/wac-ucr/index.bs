@@ -1827,6 +1827,7 @@ does not satisfy the following use cases:
 * [[#capabilities-vc]]
 * [[#capabilities-link]]
 * [[#uc-minimalcredentials]]
+* [[#uc-limituri]]
 
 Definitions {#definitions}
 ================================================================================
