@@ -786,7 +786,7 @@ Bob gives the new field device the following permissions on the
 * [=Create access=] so it can create a new daily metric resource if a member of
     the `research` [=authorization group=] hasn't made one for that day yet.
 * Inherited [=append access=] so it can add metric readings to daily-metric
-    resources that already exists.
+    resources that already exist.
 
 <div class="assertion">
 
