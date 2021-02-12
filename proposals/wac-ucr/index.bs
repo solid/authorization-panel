@@ -453,9 +453,9 @@ them.
 Alice grants Bob the following access on the `project1` [=collection=]:
 
 * [=Read access=] which allows him to see the summary detail of `project1` 
-    stored in the `project` [=resource=] itself. It also lets him
-    see a list of the [=resources=] in the [=collection=], which lets him confirm
-    that his uploads are stored successfully.
+    stored in the `project` [=resource=] itself, as well as
+    a list of the [=resources=] in the [=collection=], which lets him confirm
+    whether his uploads are stored successfully.
 * [=Create access=] on `project1`, which allows him to add new [=resources=]
     to it.
 
