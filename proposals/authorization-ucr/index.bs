@@ -1,15 +1,15 @@
 <pre class='metadata'>
-Title: Use Cases and Requirements for Web Access Control
-Shortname: wac-ucr
+Title: Use Cases and Requirements for Authorization in Solid
+Shortname: authorization-ucr
 Level: 1
 Max ToC Depth: 2
 Status: w3c/ED
 Group: solid-cg
-URL: https://solid.github.io/authorization-panel/wac-ucr/
+URL: https://solid.github.io/authorization-panel/authorization-ucr/
 Editor: Solid Editorial Team
 Markup Shorthands: markdown yes
 Abstract:
-  Use Cases and Requirements for Web Access Control.
+  Use Cases and Requirements for Authorization in Solid.
 </pre>
 
 <!-- For bikeshed style overrides -->
@@ -64,13 +64,12 @@ Introduction {#intro}
 ================================================================================
 
 The [[#usecases]] in this document represent real-world scenarios that
-Web Access Control can and should support. The [[#requirements]] in this
-document are derived from those use cases, and support the contents of the
-next Web Access Control specification.
+a Solid authorization system should support. The [[#requirements]] in this
+document are derived from those use cases, and will inform and guide
+the contents of a subsequent specification proposal.
 
 [[#limitations]] highlights the [[#usecases]] that
-[Legacy Web Access Control](https://github.com/solid/web-access-control-spec)
-fails to satisfy.
+the current authorization system fails to satisfy.
 
 Use Cases {#usecases}
 ================================================================================
@@ -1509,7 +1508,7 @@ Juan likes to manage his [=authorizations=] manually. Every once in a while,
 Juan makes a typo, or accidentally saves the [=authorization=] in an
 incomplete state.
 
-Juan runs into trouble on systems where the Web Access Control implementation
+Juan runs into trouble on systems where the authorization system implementation
 doesn't properly validate, most often resulting in Juan getting locked out of
 the [=resource=] and needing administrator assistance to recover.
 
@@ -1858,10 +1857,10 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#conditional-control]]
 </div>
 
-Limitations of Legacy Web Access Control {#limitations}
+Limitations of Web Access Control {#limitations}
 ================================================================================
 
-[Legacy Web Access Control](https://github.com/solid/web-access-control-spec)
+[Web Access Control](https://github.com/solid/web-access-control-spec)
 does not satisfy the following use cases:
 
 * [[#inheritance-adding]]
@@ -1885,8 +1884,8 @@ does not satisfy the following use cases:
 Definitions {#definitions}
 ================================================================================
 
-All definitions as stated below should be considered in the context of Web
-Access Control, whether explicitly stated or not.
+All definitions as stated below should be considered in the context of 
+an authorization system in Solid, whether explicitly stated or not.
 
 An <dfn>agent</dfn> is a distinct individual, group, organization, or piece of
 software with an [=identity=] that can be strongly authenticated.
