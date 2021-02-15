@@ -1656,7 +1656,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#basic-change-permissions]]
 </div>
 
-### The system shall provide the effective access permission modes on a certain [=resource=] or [=collection=] as they relate to the [=agent=] making the request, in the request response. ### {#req-effective-modes}
+### The system shall provide the effective access permissions on a certain [=resource=] or [=collection=] as they relate to the [=agent=] making the request, in the request response. ### {#req-effective-modes}
 
 <div class="assertion">    
   Related use cases: [[#uc-client-determine-access-privileges]]
