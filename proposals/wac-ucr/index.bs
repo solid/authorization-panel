@@ -429,10 +429,9 @@ in the `portfolio` [=resource=].
 
 ### Read-create access to a Collection ### {#collection-readcreate}
 
-Alice worked with Bob in the past on a project, and she has added a
-partial set of the final project deliverables into the `project1` 
-[=collection=]. She knows that Bob has the rest, and he agrees to provide
-them.
+Alice worked with Bob on a past project, and she has added a partial set
+of the final project deliverables to the `project1` [=collection=]. She
+knows that Bob has the rest, and he agrees to provide them.
 
 Alice grants Bob the following access on the `project1` [=collection=]:
 
