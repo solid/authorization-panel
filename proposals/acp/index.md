@@ -34,7 +34,7 @@ Access Control Policies are a mechanism to define and enforce authorization to r
 ![Rules can specify agents and groups"](diagrams/rules-groups.svg "Rules can specify agents and groups")
 
 *   When applying a policy to a container, a user can specify that the policy should be propagated to all children in that container by using the applyMembers predicate. The server will then ensure that this policy is applied (using the apply predicate) to all resources created in that container.
-*   If the resource created in the container is itself a container then the server will also propagate the policy using the applyMembes predicate on the child container. 
+*   If the resource created in the container is itself a container then the server will also propagate the policy using the applyMembers predicate on the child container. 
 
 ![Policies propagate to container children using the apply members predicate"](diagrams/apply-members.svg "Policies propagate to container children using the applyMembers predicate")
 
