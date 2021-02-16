@@ -841,6 +841,8 @@ reviewed.
 
 * [[#req-inheritance-default-permissions]]
 * [[#req-agent-group]]
+* [[#req-vc]]
+* [[#req-vc-determine]]
 * [[#req-conditional-relationship]]
 
 </div>
