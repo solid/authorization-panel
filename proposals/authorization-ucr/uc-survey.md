@@ -22,8 +22,15 @@ Notes:
 
 ## Basic resource access
 
-### Control access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-control
+### Change permissions 
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-change-permissions
+
+* +1 bblfish: public [si] [ai].
+
+### Read permissions (was basic control?)
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-read-permissions
+
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-control
 
 * +1 justinwb: to the ability to read and write permissions on resources. public [ai]. private [ai].
 * +1 elf-pavlik: 
@@ -35,8 +42,9 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-control
 * +1 dmitrizagidulin: public [si].
 * +1 bblfish: public [si] [ai].
 
+
 ### Read-write access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-write
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-write
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -48,8 +56,9 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-write
 * +1 dmitrizagidulin:
 * +1 bblfish: public [si] [ai] (note: the resume example implies a PATCH mechanism for HTML, which needs to be identified, and taken on elsewhere.  PATCH for RDF is specified and quite implementable (it involves SPARQL UPDATE)).
 
+
 ### Read-append access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-readappend
 
 * +3 timbl:
 * +1 justinwb:
@@ -62,7 +71,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend
 
 
 #### Alice stores Danielle's recommendation
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-single-storage
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-readappend-single-storage
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -74,11 +83,11 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-singl
 * +1 bblfish: public [si] [ai]. (note: again assumes RDF based Resumé)
 
 #### Danielle stores their own recommendation
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-multi-storage
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-readappend-multi-storage
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* +1 csarven: [d] such that agent A sends a notification about the recommendation to agent B's inbox ie. #collection-readappend , instead of updating a resource that references it.
+* +1 csarven: [d] such that agent A sends a notification about the recommendation to agent B's inbox ie. #collection-readcreate , instead of updating a resource that references it.
 * +1 jaxoncreed:
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
@@ -86,7 +95,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-multi
 * +1 bblfish: public [si] [ai]. (note: for RDF based Resumes this make sense, not for HTML)
 
 ### Append-only access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-appendonly
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-appendonly
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -101,7 +110,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-appendonly
 * +1 bblfish: public [si] [ai] )(note: resumé examples make sense for RDF based resumes. Or for append to a container (in which case the RDF can be signed). For RDF based resumes, append makes sense if the resumé is in Quad format, as that allows subgraphs to be signed. Otherwise linking makes more sense)
 
 ### Removing access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-removing
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-removing
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -115,7 +124,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-removing
 
 
 ### Read-only access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readonly
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-readonly
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -128,7 +137,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-readonly
 * +1 bblfish: public [si] [ai].
 
 ### Group access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-group
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-group
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -141,7 +150,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-group
 * +1 bblfish: public [si] [ai].
 
 ### Public access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-public
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-public
 
 * +1 justinwb:
 * +1 csarven: Wide use. Required for [ap]. [d].
@@ -153,7 +162,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-public
 * +1 bblfish: public [si] [ai].
 
 ### Logged in access
-URL: https://solid.github.io/authorization-panel/wac-ucr/#basic-authenticated
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-authenticated
 
 * +0 justinwb: There's controversy over whether this can be valuable given
 the ability for anyone to spin up their own identity in a decentralized
@@ -177,10 +186,11 @@ This is an important aspect of onboarding and the growth os Solid.
     "Grant access only if the user consents to be added to a list for future contacting etc".
 * +1 bblfish: public [si] [ai].
 
-## Basic collection access
+## Collection access
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-collection
 
 ### Read-only access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readonly
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-readonly
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -190,10 +200,11 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readonly
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
 * +3 dmitrizagidulin:
-* +1 bblfish: public [si] [ai]. (proviso: if the ldp:Container only contains ldp:contains links, and no other descriptive info, it would be difficult for people to know what the contents are to make up their minds about what they are interested in. See the Tor example where it would make no sense. Perhaps one needs to add that the container shows the title of the contents, and summary, and links to requests to see the contents. This would require something like an solid:InformativeContainer which shows such information and acts like an RSS Feed.)
+* +1 bblfish: public [si] [ai]. (changes with PR 166 ok)
+
 
 ### Read-write access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readwrite
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-readwrite
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -203,10 +214,10 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readwrite
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
 * +1 dmitrizagidulin: (though I agree with @jaxoncreed that clarification is needed.)
-* +0 bblfish: public [si] [ai]. (agree with jaxon. I also think one needs to distinguish between ability to add new resources the Container, and changes to the container itself. You may be happy to allow people to add to an ldp:Container but not to change the nature of the container, say from an ldp:BasicContainer to an ldp:IndirectContainer, as the latter container has speech act implications beyond the creation of the content. See my [chapter 2 of my 2nd year report](https://co-operating.systems/2019/04/01/). Yes, delete without read seems dubious and dangerous - in [RelBAC](https://github.com/solid/authorization-panel/issues/150) I think delete is a subproperty of write.). 
+* +0 bblfish: public [si] [ai]. (changes with PR 166 ok)
 
-### Read-append access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappend
+### Read-create access to a Collection
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-readcreate
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -216,16 +227,16 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappend
 * +1 hindia:
 * +0 dmitrizagidulin: The usefulness of this UC, as written, depends on resource
     names (filenames) being human-readable.
-* +1 bblfish: public [si] [ai] (agree with Dmitry though I one could also allow new types of containers that act as RSS feeds, giving title and summaries of the contents therein).
+* +1 bblfish: public [si] [ai] (changes with PR 166 ok)
 
-### Read-append-write access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-readappendwrite
+### Read-create-delete access to a Collection
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-readcreatedelete
 
 * +1 justinwb: Being able to designate the creator of a resource with specific
 privileges in an append scenario on a container is extremely important to
 a number of collaborative scenarios.
 * +1 elf-pavlik:
-* 0 csarven: Seems like duplicate of #collection-readwrite and #collection-readappend
+* 0 csarven: Seems like duplicate of #collection-readwrite and #collection-readcreate
 * +1 jaxoncreed:
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
@@ -236,22 +247,22 @@ a number of collaborative scenarios.
 * +2 bblfish: public [si] [ai]
 
 
-### Append-only access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-appendonly
+### Create-only access to a Collection
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-createonly
 
 * +1 justinwb:
 * +1 elf-pavlik:
 * +1 csarven: Wide use. Required for [ap] eg. creating annotations or notifications. [d].
 * +1 jaxoncreed:
-* +3 timbl: Append-only access allows you to implement the semantics of message passing.  That is a crcuial building blcok for many systems,
+* +3 timbl: Append-only access allows you to implement the semantics of message passing.  That is a crucial building block for many systems,
 technical and social.  We may been extra functionality to in some cases giuve people read-write access to a thing they have posted using append-only access.
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
 * +3 dmitrizagidulin:
 * +2 bblfish: public [si] [ai]
 
-### Control access to a Collection
-URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-control
+### Manage permissions for a Collection
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-control
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -263,10 +274,10 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#collection-control
 * +3 dmitrizagidulin:
 * +1 bblfish: public [si] [ai]
 
-## Inheritance
+## Collection resource inherited access
 
 ### Read-only access to collection of resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readonly
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-readonly
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -276,12 +287,10 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readonly
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
 * +3 dmitrizagidulin:
-* +1 bblfish: public [si] [ai] (note: I find the phrase "research authorization group" unwieldy. Why should 
-   one distinguish an authorization group, from any other group of agents? Any access control rule can 
-   authorize any group to access resources)
+* +1 bblfish: public [si] [ai] 
 
-### Read-append access to collection resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
+### Read-create access to collection resources
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-readcreate
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -293,12 +302,12 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readappend
 * +1 dmitrizagidulin:
 * +1 bblfish: public [si] [ai] 
 
-### Read-write access to collection resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
+### Manage a hierarchy of collection resources
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-manage
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* +1 csarven: Wide use. Required for [ap] - similar to #inheritance-readappend. [d].
+* +1 csarven: Wide use. Required for [ap] - similar to #inheritance-readcreate. [d].
 * 0 jaxoncreed: I think this needs more clarification on what happens to nested collections.
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
@@ -306,8 +315,8 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-readwrite
 * +3 dmitrizagidulin:
 * +1 bblfish: public [si] [ai] 
 
-### Append-only access to collection resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-appendonly
+### Create-append access to collection resources
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-createappend
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -319,8 +328,8 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-appendonly
 * +3 dmitrizagidulin:
 * +1 bblfish: public [si] [ai] 
 
-### Control access to collection resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-control
+### Manage permissions for collection resources
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-control
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -333,7 +342,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-control
 * +1 bblfish: public [si] [ai] 
 
 ### Default permissions on created resources
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcreated
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-defaultcreated
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -346,7 +355,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-defaultcre
 * +1 bblfish: public [si] [ai] 
 
 ### Default permissions for extended network
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-extended
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -355,10 +364,10 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-extended
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
 * +1 dmitrizagidulin:
-* +1 bblfish: public [si] [ai]  (note: I don't understand the last paragraph: what is a "granular fashion"?)
+* +1 bblfish: public [si] [ai] 
 
 ### Adding new subjects to inherited permissions
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-adding
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-adding
 
 * +1 justinwb: Without an extensible inheritance system, it is near impossible
 to do any permission management that doesn't require managing permissions
@@ -373,7 +382,7 @@ above.
 * +1 bblfish: public [si] [ai] 
 
 ### Modifying inherited permissions for existing subjects
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-modifying
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-modifying
 
 * +1 justinwb: Without an extensible inheritance system, it is near impossible
 to do any permission management that doesn't require managing permissions
@@ -388,7 +397,7 @@ above.
 * +1 bblfish: public [si] [ai] (note: could be tricky to do right) 
 
 ### Forcing inherited permissions
-URL: https://solid.github.io/authorization-panel/wac-ucr/#inheritance-forcing
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-forcing
 
 * +1 justinwb: Some permissions shouldn't be contradicted. For example,
 the administrator with full control access of a given storage (i.e. pod)
@@ -406,7 +415,7 @@ inside.
 ## Conditional access
 
 ### Conditional access by time
-URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-time
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-time
 
 * +1 justinwb: Setting timeouts can really come in handy, and is a good
 way to ensure that permissions meant to be short-lived don't hang around
@@ -421,7 +430,7 @@ invitiation flows.
 * +1 bblfish: public [si] [ai] 
 
 ### Conditional access by tag
-URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-tag
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-tag
 
 * +1 justinwb: Noting that we haven't specified a tag-based system for data
 yet in solid, the ability to tag individual resources, or collections of
@@ -439,7 +448,7 @@ photo albums in my media library to colleagues.
 * +1 bblfish: public [si] [ai] - agree with dmitri and justin
 
 ### Conditional access by relationship
-URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-relationship
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-relationship
 
 * +1 justinwb: Cannot underscore how important this use case is to doing
 intuitive authorization on more complex data objects. We cannot rely on
@@ -456,10 +465,10 @@ case addresses that.
 * +1 KaiGilb: graphMetrix. This seems very important. Like only give certain doctor relations access to records.
 * +1 hindia:
 * +1 dmitrizagidulin:
-* +1 bblfish: public [si] [ai] - agree with dmitri and justin
+* +1 bblfish: public [si] [ai] - agree with justin
 
 ### Conditional access by filter
-URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-filter
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-filter
 
 * +0 justinwb: This is important, but I think we can hit it in the next cycle.
 Ultimately, we need the manage access to data within the resource. There are
@@ -473,7 +482,7 @@ some rational ways to do this using machinery we already have.
 * +0 bblfish: public [si] [ai] - agree with justinwb, there is already a lot on the plate. 
 
 ### Conditional control boundaries
-URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-control
 
 * +0 justinwb:
 * +1 elf-pavlik:
@@ -485,7 +494,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-control
 * +0 bblfish: public [si] [ai] - this may be something for the next version, requires reasoning to do well
 
 ### Conditional access by action
-URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-action
 
 * 0 justinwb:
 * +1 elf-pavlik:
@@ -497,18 +506,18 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-action
 * +0 bblfish: public [si] [ai] - very nice feature, but may be for next version
 
 ### Conditional access by payment
-URL: https://solid.github.io/authorization-panel/wac-ucr/#conditional-payment
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-payment
 
 * +0 csarven: Generally useful for [ap] in that it can handle server's response to client error eg. prompt user with "Payment Required". May [d].
 * +0 Kai Gilb: graphMetrix. Sounds cool, but maybe it could be handled by other means integrating with pay wall etc.
 * +1 hindia:
-* +0 dmitrizagidulin: The proof of payment could be handled by https://solid.github.io/authorization-panel/wac-ucr/#capabilities-vc
+* +0 dmitrizagidulin: The proof of payment could be handled by https://solid.github.io/authorization-panel/authorization-ucr/#capabilities-vc
 * +0 bblfish: public [si] [ai] - may be able to research this, depending on funding.
 
 ## Permissioning Applications
 
 ### Limiting access to trusted applications
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trusted-applications
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-trusted-applications
 
 * +1 justinwb: Limiting access to only specific applications, identified
 by AppID, with the caveat that the effectiveness is specifically when
@@ -522,16 +531,16 @@ piloted scenarios)
 * -1 bblfish:  This should be possible, but on the whole it would be better if this happned on the client side, by something like what was called [the launcher app](https://github.com/solid/authorization-panel/issues/45). The reason is that this works ok for the Oscar's own server, but not that well for every other server. A better use case would be one involving Oscar discovering that an App is badly written, and is creating havock, and wanting to limit it for that reason. This would also allow one to subscribe to some security service that would test apps and publish blacklists. 
 
 ### Limiting application access while not acting as resource controller
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-constraints
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-client-constraints
 
 * 0 csarven: A bit of a low-level server-side plumbing. Unclear how an application (like [ap]) may want/need to set a policy as such.
 * KaiGilb: im a little unclear on this case
 * +1 hindia:
 * +1 dmitrizagidulin:
-* -1 bblfish: this is better done on the client, where such information can be written out once, without needing to have control access to every resource on the web that the app could have access to.
+* +1 bblfish: this needs to be done on the client, where such information can be written out once, without needing to have control access to every resource on the web that the app could have access to. I described this better in [Interop Panel Meeting 2021-02-02](https://github.com/solid/data-interoperability-panel/blob/master/meetings/2021-02-02.md).
 
 ### Application determining access privileges
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-determine-access-privileges
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-client-determine-access-privileges
 
 * +1 csarven: Required for [ap]. [d].
 * +1 hindia:
@@ -541,7 +550,7 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-client-determine-ac
 ## Privacy
 
 ### Limiting access to who else is permitted
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-whopermitted
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-whopermitted
 
 * +1 justinwb: Privacy in this context in paramount, unless the controller
 specifically wants the information to be divulged.
@@ -554,7 +563,7 @@ specifically wants the information to be divulged.
 * +1 bblfish: public [si] [ai] 
 
 ### Limiting access to other authorization conditions
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-historyofchanges
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-historyofchanges
 
 * +1 justinwb: Privacy in this context in paramount, unless the controller
 specifically wants the information to be divulged.
@@ -567,7 +576,7 @@ specifically wants the information to be divulged.
 * 0 bblfish: A bit too vague. This may just be a case of  making the filtering rules invisible to either user. Filtering is orthogonal to access control, and filters can themselves be access controlled.
 
 ### Minimal Credential Disclosure
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-minimalcredentials
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-minimalcredentials
 
 * +0 justinwb: This scenario is legitimate though I believe we'll likely
 get to VC in the next cycle.
@@ -578,10 +587,11 @@ get to VC in the next cycle.
     in a wallet spec or implementation guide.
 * +3 bblfish: public [si] [ai]: this is very much a requirement on the server not the client. Without it we cannot secure privacy for the client across pods, as clients would constantly have to present for each remote resource every ID it has, even when none are valid.
 * +0 csarven: "minimal" is unclear. Client to present only one credential? Least "sensitive" - what criteria? Exact/Close match (schema) of what's allowed? Good UC to support. Not essential for [ap]. I don't plan to implement it.
+* +2 bblfish: [si] [ac] re: csarven, reasoning about credentials is difficult I agree, so there should be a library that does all that type of work. That is what the [Launcher App](https://github.com/solid/authorization-panel/blob/master/proposals/LauncherApp.md) or something like it is meant to do.
 
 
 ### Limit information disclosure through URI
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-limituri
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-limituri
 
 * 0 justinwb: I'm not positive this is a use case for the authorization
 system as much as how the resource server itself organizes and/or
@@ -593,12 +603,12 @@ represents data.
 * +1 hindia:
 * +0 dmitrizagidulin: Doesn't belong in authorization, this should be in the
     server spec security/privacy considerations section.
-* +3 bblfish: [si] [ai] This is essential to make sure that authorization is completely based on follow your nose principles, not on pattern matching URLs or other implicit assumptions. Having a Tor based Solid Server should make for excellent demos at security conferences, ie conferences where the audience we need to convince go. Putting a Solid Server behind Tor should not be a lot of work, neither should creating a UUID to Resource mapping.
+* +3 bblfish: [si] [ai] This is essential to make sure that authorization is completely based on follow your nose principles, not on pattern matching URLs or other implicit assumptions. Having a Tor based Solid Server should make for excellent demos at security conferences, ie conferences where the audience we need to convince go. Putting a Solid Server behind Tor should not be a lot of work, neither should creating a UUID to Resource mapping. Note that I also defend the idea of [full use of relative URLs in Solid](https://github.com/solid/specification/issues/194) which I believe is compatible with this.
 
 ## Trust
 
 ### Only trust certain issuers of identity
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-trustedissuers
 
 * +0 justinwb: Makes the authenticated agent use case more reasonable to me
 * +1 elf-pavlik:
@@ -608,17 +618,17 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-trustedissuers
 * +1 hindia:
 * -0 dmitrizagidulin: Seems like a very specific use case (a special case of
       allowing access by group).
-* +0 bblfish: agree with dmitri, but still useful. Door should be left open to it, and perhaps wait until the situation arises where people demand it. 
+* +0 bblfish: agree with dmitri, but still useful. This is actually a case of restrictions on issuers, which is the (nearly) the only thing TLS client certificate negotition allows.
 
 ### Block access to agents
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-blockagents
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-blockagents
 
 * +1 dmitrizagidulin: Seems reasonable.
 * +1 csarven: Wide use re: support healthy community and debate. Useful for [ap]. May [d].
 * +1 bblfish: public [si] [ai] 
 
 ## Validation
-URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-validation
 
 * +1 justinwb: This just seems like good engineering practice to me
 * 0 csarven: Not sure why this UC is here or what's expected of it other than making sure server only processes valid authorization policies and in its absence all access is denied.
@@ -629,12 +639,13 @@ URL: https://solid.github.io/authorization-panel/wac-ucr/#uc-validation
 ## Capabilities
 
 ### Possession of a group membership verifiable credential
-URL: https://solid.github.io/authorization-panel/wac-ucr/#group-membership-vc
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#group-membership-vc
 
 * 0 csarven: Some use but not essential for [ap]. I don't plan to implement it.
+* +1 bblfish: This is actually quite advanced, but I think it can be done elegantly summarized in the meetings notes for [2021-01-27](https://github.com/solid/authorization-panel/blob/master/meetings/2021-01-27.md).
 
 ### Possession of a verifiable credential
-URL: https://solid.github.io/authorization-panel/wac-ucr/#capabilities-vc
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#capabilities-vc
 
 * +0 justinwb: Definitely seems to be a key part of the future of access
 control for us.
@@ -649,7 +660,7 @@ control for us.
 * +1 bblfish: very important to keep in mind. May not be possible to get this through the first version, though I would like to try.
 
 ### Possession of a link
-URL: https://solid.github.io/authorization-panel/wac-ucr/#capabilities-link
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#capabilities-link
 
 * +0 justinwb: Can be extremely beneficial in scenarios like invitation
 flows or one-time shares.
@@ -659,4 +670,4 @@ flows or one-time shares.
 * +1 KaiGilb: graphMetrix (maybe +1)
 * +1 hindia: love this too
 * +1 dmitrizagidulin: Essential for shares.
-* +0 bblfish: interesting use case. This could be just that the resource is read/write to everyone? (+if needed making the URL obscure). Or is the server meant to detect a redirect?
+* +0 bblfish: interesting use case. This could be just that the resource is read/write to everyone? (+if needed making the URL obscure). Or is the server meant to detect a redirect? If it requires the user to go through a user interface as done on Google according to Dmitri, then this may not be scalable. So it needs to be tied in with some machine readable system where the client auth app can automate some tasks when authorized by a users' policy.
