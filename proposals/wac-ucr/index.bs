@@ -72,7 +72,7 @@ Use Cases {#usecases}
 ================================================================================
 
 For the purposes of simplicity, the use cases herein assume that named
-individuals (i.e., Alice, Bob, Carol, etc.) are already
+individuals (e.g., Alice, Bob, Carol, etc.) are already
 [=authenticated agents=], and their corresponding [=identities=] are known
 by the [=resource controller=] when they are granted access.
 
