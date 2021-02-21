@@ -40,7 +40,7 @@ acp:authorizes a rdf:Property;
 [ owl:propertyChainAxiom ( acp:accessControl acp:authorizes ) ]  rdfs:subPropertyOf [ owl:inverseOf acl:accessTo ] .
 
 # this should force the following 
-acp:Policy owl:equivalentClass acl:Authorization .
+acp:AccessPolicy owl:equivalentClass acl:Authorization .
 
 # also tells us that  
 acl:accessControl rdfs:range acp:AccessControlResource .
@@ -60,4 +60,3 @@ acp:agent owl:subPropertyOf [ owl:inverseOf rdf:type ] .
 # 
 # Relate acp:accessMembers(Protected) to ldp:contains
 # 
-
