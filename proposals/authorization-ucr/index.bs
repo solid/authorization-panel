@@ -814,7 +814,7 @@ access=]).
 It's important that the resources they create have the correct permissions
 assigned automatically, and he needs to be able to ensure this when he sets up
 their access. Otherwise, how can he be sure that the files aren't created with
-access that too liberal (e.g., public access), or too narrow to be usable
+access that is too liberal (e.g., public access), or too narrow to be usable
 within their context?
 
 Bob prefers to specify in granular fashion the default permissions of created
