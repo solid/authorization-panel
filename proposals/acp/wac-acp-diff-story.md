@@ -110,7 +110,7 @@ _:bart-copies-assignment-1
   ] .
 ```
 
-She could instead move that policy someplace independent from the existence of `</courses/8.04/assignment-1>`, e.g `</myAccessPolicies>`, so it won't disappear if she deletes or renames `assignment-1`:
+She could instead move that policy someplace independent from the existence of `</courses/8.04/assignment-1>`, e.g., `</myAccessPolicies>`, so it won't disappear if she deletes or renames `assignment-1`:
 ``` turtle
 <#bart-copies-my-homework>
   a acp:AccessPolicy ;
