@@ -51,7 +51,7 @@ _:bart-copies-my-assignments
   acl:mode acl:Read ;
   acl:accessToClass [ acl:regex ".*/courses/8.04/assignment-.*" ] .
 ```
-, but Solid doesn't implement that feature, instead appying access to everything in a Container, e.g.
+&mdash; but Solid doesn't implement that feature, instead applying access to everything in a Container, e.g. &mdash;
 ``` turtle
 _:bart-reads-8.04
   acl:agent <http://solid.example/users/bart#id> ;
