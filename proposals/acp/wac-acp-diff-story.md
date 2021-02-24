@@ -2,7 +2,7 @@
 
 Audience: those familiar with WAC or those who learn from comparisons
 
-Access control is fundamentally about stating `who` can `do what` `to what` resource.
+Access control is fundamentally about stating `who` can `do what` to `what resource`.
 
 ## ShEx for WAC:
 Web Access Control (WAC) uses a simple schema to make those assertions directly in RDF:
