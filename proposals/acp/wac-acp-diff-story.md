@@ -119,7 +119,7 @@ She could instead move that policy someplace independent from the existence of `
     acp:agent <http://solid.example/users/bart#id>
   ] .
 ```
-Now she can and apply it to multiple homeworks or all of her 8.04 documents with individual access controls like:
+Now she can apply it to multiple homework documents or all of her 8.04 documents with individual access controls like:
 ``` turtle
 _:bart-copies-assignment-2
   a acl:AccessControl ;
