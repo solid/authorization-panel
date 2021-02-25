@@ -10,6 +10,7 @@ Editor: Justin Bingham, Janeiro Digital, https://janeirodigital.com
 Editor: Matthieu Bosquet, Inrupt, https://inrupt.com 
 Abstract: Access Control Policies are a mechanism to define and enforce 
   authorization to resources stored in a Solid Pod.
+Boilerplate: style-darkmode off
 </pre>
 
 <div boilerplate="copyright">
