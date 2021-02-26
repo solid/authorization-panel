@@ -6,6 +6,7 @@ Max ToC Depth: 2
 Status: w3c/ED
 Group: solid-cg
 URL: https://solid.github.io/authorization-panel/acp-specification
+Editor: Aaron Coburn, Inrupt, https://inrupt.com
 Editor: Justin Bingham, Janeiro Digital, https://janeirodigital.com
 Editor: Matthieu Bosquet, Inrupt, https://inrupt.com 
 Abstract: Access Control Policies are a mechanism to define and enforce 
