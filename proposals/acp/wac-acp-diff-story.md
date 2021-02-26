@@ -44,7 +44,7 @@ _:bart-copies-assignment-1
 ```
 In Solid, this access document would appear in the same Container as `assignment-1`.
 
-In principle WAC lets her grant access to all assignments under `/courses/8.04/`
+In principle, WAC lets her grant access to all assignments under `/courses/8.04/` &mdash;
 ``` turtle
 _:bart-copies-my-assignments
   acl:agent <http://solid.example/users/bart#id> ;
