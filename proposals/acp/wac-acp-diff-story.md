@@ -5,6 +5,7 @@ This document is intended to reflect the following authoritative-ish definitions
 - [solid/specification](http://github.com/solid/specification)
 - [sold/web-access-control](http://github.com/solid/solid-spec)
 The goal is to ground conversations which compare WAC and ACP.
+This is a work in progress.
 
 Audience: those familiar with WAC or those who learn from comparisons
 
