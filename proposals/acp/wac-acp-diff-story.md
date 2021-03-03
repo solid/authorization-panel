@@ -1,5 +1,11 @@
 # ACP Compared to Web Access Control
 
+This document is intended to reflect the following authoritative-ish definitions:
+- [W3C wiki](http://www.w3.org/wiki/WebAccessControl)
+- [solid/specification](http://github.com/solid/specification)
+- [sold/web-access-control](http://github.com/solid/solid-spec)
+The goal is to ground conversations which compare WAC and ACP.
+
 Audience: those familiar with WAC or those who learn from comparisons
 
 Access control is fundamentally about stating `who` can `do what` to `what resource`.
