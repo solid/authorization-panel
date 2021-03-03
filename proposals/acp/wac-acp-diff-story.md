@@ -30,7 +30,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
   # to what resource
   (   acl:accessTo IRI
-    | acl:accessToClass [foaf:Document] OR @<AclRegexShape>
+    | acl:accessToClass [foaf:Document] OR @<AclRegexShape> # TODO: remove Regexp, add auth user
   ) ;
 
   ^acl:trustedOrigin IRI ?
