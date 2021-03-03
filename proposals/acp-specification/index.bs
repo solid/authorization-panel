@@ -14,6 +14,12 @@ Abstract: Access Control Policies are a mechanism to define and enforce
 Boilerplate: style-darkmode off
 </pre>
 
+<style>
+figcaption {
+  text-align: left;
+}
+</style>
+
 <div boilerplate="copyright">
 MIT License Copyright 2019 - 2020 W3C Solid Community Group
 </div>
