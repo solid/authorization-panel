@@ -1694,7 +1694,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#collection-readcreatedelete]]
 </div>
 
-### The system shall not rely on the URI path to identity [=resources=] or [=collections=] ### {#req-uripath}
+### The system shall not rely on URI semantics to identify [=collections=]. ### {#req-uripath}
 
 <div class="assertion">    
   Related use cases: [[#uc-limituri]]
@@ -1817,7 +1817,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 ## Conditional access ## {#req-conditional}
 
-### The system shall allow the ability to limit access to a certain [=resource=] by a given start and/or end data and time.### {#req-conditional-time}
+### The system shall allow the ability to limit access to a certain [=resource=] by a given start and/or end date and time.### {#req-conditional-time}
 
 <div class="assertion">    
   Related use cases: [[#conditional-time]]
