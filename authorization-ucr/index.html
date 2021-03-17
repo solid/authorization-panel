@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version b94c7e755, updated Fri Feb 19 16:28:59 2021 -0800" name="generator">
   <link href="https://solid.github.io/authorization-panel/authorization-ucr/" rel="canonical">
-  <meta content="ccddbac80b4c4cd6005b0f8de43c7a62e2be2eff" name="document-revision">
+  <meta content="49ff4486e5aa4d3fe01a80aee3bae132f4f19c4b" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -479,7 +479,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Authorization in Solid</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-03-12">12 March 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-03-17">17 March 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -530,8 +530,7 @@ dfn > a.self-link::before      { content: "#"; }
       <li><a href="#req-inherited"><span class="secno">3.5</span> <span class="content">Inherited access to collection resources</span></a>
       <li><a href="#req-conditional"><span class="secno">3.6</span> <span class="content">Conditional access</span></a>
      </ol>
-    <li><a href="#limitations"><span class="secno">4</span> <span class="content">Limitations of Web Access Control</span></a>
-    <li><a href="#definitions"><span class="secno">5</span> <span class="content">Definitions</span></a>
+    <li><a href="#definitions"><span class="secno">4</span> <span class="content">Definitions</span></a>
     <li>
      <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
@@ -557,8 +556,6 @@ dfn > a.self-link::before      { content: "#"; }
 a Solid authorization system should support. The <a href="#requirements">§ 3 Functional Requirements</a> in this
 document are derived from those use cases, and will inform and guide
 the contents of a subsequent specification proposal.</p>
-   <p><a href="#limitations">§ 4 Limitations of Web Access Control</a> highlights the <a href="#usecases">§ 2 Use Cases</a> that
-the current authorization system fails to satisfy.</p>
    <h2 class="heading settled" data-level="2" id="usecases"><span class="secno">2. </span><span class="content">Use Cases</span><a class="self-link" href="#usecases"></a></h2>
    <p>Unless stated otherwise, the use cases herein assume that named
 individuals (e.g., Alice, Bob, Carol, etc.) are already <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent">authenticated agents</a>, and their corresponding <a data-link-type="dfn" href="#identity" id="ref-for-identity">identities</a> are known
@@ -2005,47 +2002,7 @@ or limiting access to a <a data-link-type="dfn" href="#resource" id="ref-for-res
    <div class="assertion"> Related use cases: <a href="#conditional-control">§ 2.4.5 Conditional control boundaries</a> </div>
    <h4 class="heading settled" data-level="3.6.7" id="req-conditional-control-tag"><span class="secno">3.6.7. </span><span class="content">The system shall allow the ability to read, create, or change access permissions for <a data-link-type="dfn" href="#resource" id="ref-for-resource⑨⑨">resources</a> associated with a particular tag to be limited.</span><a class="self-link" href="#req-conditional-control-tag"></a></h4>
    <div class="assertion"> Related use cases: <a href="#conditional-control">§ 2.4.5 Conditional control boundaries</a> </div>
-   <h2 class="heading settled" data-level="4" id="limitations"><span class="secno">4. </span><span class="content">Limitations of Web Access Control</span><a class="self-link" href="#limitations"></a></h2>
-   <p><a href="https://github.com/solid/web-access-control-spec">Web Access Control</a> does not satisfy the following use cases:</p>
-   <ul>
-    <li data-md>
-     <p><a href="#inheritance-adding">§ 2.3.8 Adding new subjects to inherited permissions</a></p>
-    <li data-md>
-     <p><a href="#inheritance-modifying">§ 2.3.9 Modifying inherited permissions for existing subjects</a></p>
-    <li data-md>
-     <p><a href="#inheritance-forcing">§ 2.3.10 Forcing inherited permissions</a></p>
-    <li data-md>
-     <p><a href="#inheritance-extended">§ 2.3.7 Default permissions for extended network</a></p>
-    <li data-md>
-     <p><a href="#collection-readcreatedelete">§ 2.2.4 Read-create-delete access to a Collection</a></p>
-    <li data-md>
-     <p><a href="#conditional-time">§ 2.4.1 Conditional access by time</a></p>
-    <li data-md>
-     <p><a href="#conditional-tag">§ 2.4.2 Conditional access by tag</a></p>
-    <li data-md>
-     <p><a href="#conditional-filter">§ 2.4.4 Conditional access by filter</a></p>
-    <li data-md>
-     <p><a href="#conditional-control">§ 2.4.5 Conditional control boundaries</a></p>
-    <li data-md>
-     <p><a href="#conditional-payment">§ 2.4.7 Conditional access by payment</a></p>
-    <li data-md>
-     <p><a href="#uc-trusted-applications">§ 2.5.1 Limiting access to trusted applications</a></p>
-    <li data-md>
-     <p><a href="#uc-client-constraints">§ 2.5.2 Limiting application access while not acting as resource controller</a></p>
-    <li data-md>
-     <p><a href="#uc-trustedissuers">§ 2.7.1 Only trust certain issuers of identity</a></p>
-    <li data-md>
-     <p><a href="#uc-validation">§ 2.8 Validation</a></p>
-    <li data-md>
-     <p><a href="#capabilities-vc">§ 2.9.2 Possession of a verifiable credential</a></p>
-    <li data-md>
-     <p><a href="#capabilities-link">§ 2.9.3 Possession of a link</a></p>
-    <li data-md>
-     <p><a href="#uc-minimalcredentials">§ 2.6.3 Minimal Credential Disclosure</a></p>
-    <li data-md>
-     <p><a href="#uc-limituri">§ 2.6.4 Limit information disclosure through URI</a></p>
-   </ul>
-   <h2 class="heading settled" data-level="5" id="definitions"><span class="secno">5. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2>
+   <h2 class="heading settled" data-level="4" id="definitions"><span class="secno">4. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2>
    <p>All definitions as stated below should be considered in the context of
 an authorization system in Solid, whether explicitly stated or not.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="agent">agent</dfn> is a distinct individual, group, organization, or piece of
@@ -2138,26 +2095,26 @@ collection.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#access-mode">access mode</a><span>, in §5</span>
-   <li><a href="#agent">agent</a><span>, in §5</span>
-   <li><a href="#append-access">Append access</a><span>, in §5</span>
-   <li><a href="#application">application</a><span>, in §5</span>
-   <li><a href="#authenticated-agent">authenticated agent</a><span>, in §5</span>
-   <li><a href="#authorization">authorization</a><span>, in §5</span>
-   <li><a href="#authorization-group">authorization group</a><span>, in §5</span>
-   <li><a href="#capability">capability</a><span>, in §5</span>
-   <li><a href="#collection">collection</a><span>, in §5</span>
-   <li><a href="#create-access">Create access</a><span>, in §5</span>
-   <li><a href="#delete-access">Delete access</a><span>, in §5</span>
-   <li><a href="#identity">identity</a><span>, in §5</span>
-   <li><a href="#read-access">Read access</a><span>, in §5</span>
-   <li><a href="#read-permission-access">Read permission access</a><span>, in §5</span>
-   <li><a href="#resource">resource</a><span>, in §5</span>
-   <li><a href="#resource-controller">resource controller</a><span>, in §5</span>
-   <li><a href="#resource-server">resource server</a><span>, in §5</span>
-   <li><a href="#tag">tag</a><span>, in §5</span>
-   <li><a href="#write-access">Write access</a><span>, in §5</span>
-   <li><a href="#write-permission-access">Write permission access</a><span>, in §5</span>
+   <li><a href="#access-mode">access mode</a><span>, in §4</span>
+   <li><a href="#agent">agent</a><span>, in §4</span>
+   <li><a href="#append-access">Append access</a><span>, in §4</span>
+   <li><a href="#application">application</a><span>, in §4</span>
+   <li><a href="#authenticated-agent">authenticated agent</a><span>, in §4</span>
+   <li><a href="#authorization">authorization</a><span>, in §4</span>
+   <li><a href="#authorization-group">authorization group</a><span>, in §4</span>
+   <li><a href="#capability">capability</a><span>, in §4</span>
+   <li><a href="#collection">collection</a><span>, in §4</span>
+   <li><a href="#create-access">Create access</a><span>, in §4</span>
+   <li><a href="#delete-access">Delete access</a><span>, in §4</span>
+   <li><a href="#identity">identity</a><span>, in §4</span>
+   <li><a href="#read-access">Read access</a><span>, in §4</span>
+   <li><a href="#read-permission-access">Read permission access</a><span>, in §4</span>
+   <li><a href="#resource">resource</a><span>, in §4</span>
+   <li><a href="#resource-controller">resource controller</a><span>, in §4</span>
+   <li><a href="#resource-server">resource server</a><span>, in §4</span>
+   <li><a href="#tag">tag</a><span>, in §4</span>
+   <li><a href="#write-access">Write access</a><span>, in §4</span>
+   <li><a href="#write-permission-access">Write permission access</a><span>, in §4</span>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
@@ -2172,7 +2129,7 @@ collection.</p>
    <dt id="biblio-did">[DID]
    <dd>Drummond Reed; et al. <a href="https://www.w3.org/TR/did-core/">Decentralized Identifiers (DIDs) v1.0</a>. URL: <a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a>
    <dt id="biblio-uri">[URI]
-   <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://tools.ietf.org/html/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a>. January 2005. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>
+   <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://datatracker.ietf.org/doc/html/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a>. January 2005. Internet Standard. URL: <a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a>
    <dt id="biblio-webid">[WEBID]
    <dd>Tim Berners-Lee; Henry Story; Andrei Sambra. <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/">WebID 1.0</a>. URL: <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/">https://www.w3.org/2005/Incubator/webid/spec/identity/</a>
   </dl>
@@ -2200,7 +2157,7 @@ collection.</p>
     <li><a href="#ref-for-agent②②">3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of.</a>
     <li><a href="#ref-for-agent②③">3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of.</a>
     <li><a href="#ref-for-agent②④">3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.</a>
-    <li><a href="#ref-for-agent②⑤">5. Definitions</a> <a href="#ref-for-agent②⑥">(2)</a> <a href="#ref-for-agent②⑦">(3)</a> <a href="#ref-for-agent②⑧">(4)</a> <a href="#ref-for-agent②⑨">(5)</a> <a href="#ref-for-agent③⓪">(6)</a> <a href="#ref-for-agent③①">(7)</a> <a href="#ref-for-agent③②">(8)</a> <a href="#ref-for-agent③③">(9)</a> <a href="#ref-for-agent③④">(10)</a> <a href="#ref-for-agent③⑤">(11)</a> <a href="#ref-for-agent③⑥">(12)</a> <a href="#ref-for-agent③⑦">(13)</a> <a href="#ref-for-agent③⑧">(14)</a>
+    <li><a href="#ref-for-agent②⑤">4. Definitions</a> <a href="#ref-for-agent②⑥">(2)</a> <a href="#ref-for-agent②⑦">(3)</a> <a href="#ref-for-agent②⑧">(4)</a> <a href="#ref-for-agent②⑨">(5)</a> <a href="#ref-for-agent③⓪">(6)</a> <a href="#ref-for-agent③①">(7)</a> <a href="#ref-for-agent③②">(8)</a> <a href="#ref-for-agent③③">(9)</a> <a href="#ref-for-agent③④">(10)</a> <a href="#ref-for-agent③⑤">(11)</a> <a href="#ref-for-agent③⑥">(12)</a> <a href="#ref-for-agent③⑦">(13)</a> <a href="#ref-for-agent③⑧">(14)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="identity">
@@ -2211,7 +2168,7 @@ collection.</p>
     <li><a href="#ref-for-identity②">2.9.3. Possession of a link</a>
     <li><a href="#ref-for-identity③">3.1.1. The system shall allow access to be limited based on the identity of the agent.</a>
     <li><a href="#ref-for-identity④">3.1.2. The system shall allow access to be limited based on the identity of the agent, only when that identity is issued by a trusted identity provider.</a>
-    <li><a href="#ref-for-identity⑤">5. Definitions</a> <a href="#ref-for-identity⑥">(2)</a>
+    <li><a href="#ref-for-identity⑤">4. Definitions</a> <a href="#ref-for-identity⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="authenticated-agent">
@@ -2220,7 +2177,7 @@ collection.</p>
     <li><a href="#ref-for-authenticated-agent">2. Use Cases</a>
     <li><a href="#ref-for-authenticated-agent①">2.7.1. Only trust certain issuers of identity</a>
     <li><a href="#ref-for-authenticated-agent②">2.7.2. Block access to agents</a>
-    <li><a href="#ref-for-authenticated-agent③">5. Definitions</a> <a href="#ref-for-authenticated-agent④">(2)</a>
+    <li><a href="#ref-for-authenticated-agent③">4. Definitions</a> <a href="#ref-for-authenticated-agent④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="application">
@@ -2230,7 +2187,7 @@ collection.</p>
     <li><a href="#ref-for-application①">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-application②">3.1.4. The system shall allow access to be limited to an agent based on the client application in use by the agent.</a>
     <li><a href="#ref-for-application③">3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to.</a>
-    <li><a href="#ref-for-application④">5. Definitions</a> <a href="#ref-for-application⑤">(2)</a> <a href="#ref-for-application⑥">(3)</a> <a href="#ref-for-application⑦">(4)</a> <a href="#ref-for-application⑧">(5)</a> <a href="#ref-for-application⑨">(6)</a> <a href="#ref-for-application①⓪">(7)</a> <a href="#ref-for-application①①">(8)</a> <a href="#ref-for-application①②">(9)</a> <a href="#ref-for-application①③">(10)</a>
+    <li><a href="#ref-for-application④">4. Definitions</a> <a href="#ref-for-application⑤">(2)</a> <a href="#ref-for-application⑥">(3)</a> <a href="#ref-for-application⑦">(4)</a> <a href="#ref-for-application⑧">(5)</a> <a href="#ref-for-application⑨">(6)</a> <a href="#ref-for-application①⓪">(7)</a> <a href="#ref-for-application①①">(8)</a> <a href="#ref-for-application①②">(9)</a> <a href="#ref-for-application①③">(10)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="resource-controller">
@@ -2259,7 +2216,7 @@ collection.</p>
     <li><a href="#ref-for-resource-server⑥">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-resource-server⑦">2.5.3. Application determining access privileges</a>
     <li><a href="#ref-for-resource-server⑧">2.9.3. Possession of a link</a>
-    <li><a href="#ref-for-resource-server⑨">5. Definitions</a> <a href="#ref-for-resource-server①⓪">(2)</a>
+    <li><a href="#ref-for-resource-server⑨">4. Definitions</a> <a href="#ref-for-resource-server①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="resource">
@@ -2314,7 +2271,7 @@ collection.</p>
     <li><a href="#ref-for-resource⑨⑦">3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.</a>
     <li><a href="#ref-for-resource⑨⑧">3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.</a>
     <li><a href="#ref-for-resource⑨⑨">3.6.7. The system shall allow the ability to read, create, or change access permissions for resources associated with a particular tag to be limited.</a>
-    <li><a href="#ref-for-resource①⓪⓪">5. Definitions</a> <a href="#ref-for-resource①⓪①">(2)</a> <a href="#ref-for-resource①⓪②">(3)</a> <a href="#ref-for-resource①⓪③">(4)</a> <a href="#ref-for-resource①⓪④">(5)</a> <a href="#ref-for-resource①⓪⑤">(6)</a> <a href="#ref-for-resource①⓪⑥">(7)</a> <a href="#ref-for-resource①⓪⑦">(8)</a> <a href="#ref-for-resource①⓪⑧">(9)</a> <a href="#ref-for-resource①⓪⑨">(10)</a> <a href="#ref-for-resource①①⓪">(11)</a> <a href="#ref-for-resource①①①">(12)</a> <a href="#ref-for-resource①①②">(13)</a> <a href="#ref-for-resource①①③">(14)</a> <a href="#ref-for-resource①①④">(15)</a> <a href="#ref-for-resource①①⑤">(16)</a> <a href="#ref-for-resource①①⑥">(17)</a> <a href="#ref-for-resource①①⑦">(18)</a> <a href="#ref-for-resource①①⑧">(19)</a> <a href="#ref-for-resource①①⑨">(20)</a> <a href="#ref-for-resource①②⓪">(21)</a> <a href="#ref-for-resource①②①">(22)</a> <a href="#ref-for-resource①②②">(23)</a>
+    <li><a href="#ref-for-resource①⓪⓪">4. Definitions</a> <a href="#ref-for-resource①⓪①">(2)</a> <a href="#ref-for-resource①⓪②">(3)</a> <a href="#ref-for-resource①⓪③">(4)</a> <a href="#ref-for-resource①⓪④">(5)</a> <a href="#ref-for-resource①⓪⑤">(6)</a> <a href="#ref-for-resource①⓪⑥">(7)</a> <a href="#ref-for-resource①⓪⑦">(8)</a> <a href="#ref-for-resource①⓪⑧">(9)</a> <a href="#ref-for-resource①⓪⑨">(10)</a> <a href="#ref-for-resource①①⓪">(11)</a> <a href="#ref-for-resource①①①">(12)</a> <a href="#ref-for-resource①①②">(13)</a> <a href="#ref-for-resource①①③">(14)</a> <a href="#ref-for-resource①①④">(15)</a> <a href="#ref-for-resource①①⑤">(16)</a> <a href="#ref-for-resource①①⑥">(17)</a> <a href="#ref-for-resource①①⑦">(18)</a> <a href="#ref-for-resource①①⑧">(19)</a> <a href="#ref-for-resource①①⑨">(20)</a> <a href="#ref-for-resource①②⓪">(21)</a> <a href="#ref-for-resource①②①">(22)</a> <a href="#ref-for-resource①②②">(23)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="collection">
@@ -2367,7 +2324,7 @@ collection.</p>
     <li><a href="#ref-for-collection⑨⑦">3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of.</a>
     <li><a href="#ref-for-collection⑨⑧">3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.</a>
     <li><a href="#ref-for-collection⑨⑨">3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.</a>
-    <li><a href="#ref-for-collection①⓪⓪">5. Definitions</a> <a href="#ref-for-collection①⓪①">(2)</a> <a href="#ref-for-collection①⓪②">(3)</a> <a href="#ref-for-collection①⓪③">(4)</a> <a href="#ref-for-collection①⓪④">(5)</a> <a href="#ref-for-collection①⓪⑤">(6)</a> <a href="#ref-for-collection①⓪⑥">(7)</a> <a href="#ref-for-collection①⓪⑦">(8)</a> <a href="#ref-for-collection①⓪⑧">(9)</a> <a href="#ref-for-collection①⓪⑨">(10)</a> <a href="#ref-for-collection①①⓪">(11)</a>
+    <li><a href="#ref-for-collection①⓪⓪">4. Definitions</a> <a href="#ref-for-collection①⓪①">(2)</a> <a href="#ref-for-collection①⓪②">(3)</a> <a href="#ref-for-collection①⓪③">(4)</a> <a href="#ref-for-collection①⓪④">(5)</a> <a href="#ref-for-collection①⓪⑤">(6)</a> <a href="#ref-for-collection①⓪⑥">(7)</a> <a href="#ref-for-collection①⓪⑦">(8)</a> <a href="#ref-for-collection①⓪⑧">(9)</a> <a href="#ref-for-collection①⓪⑨">(10)</a> <a href="#ref-for-collection①①⓪">(11)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="tag">
@@ -2387,7 +2344,7 @@ collection.</p>
     <li><a href="#ref-for-authorization⑤">2.6.2. Limiting access to other authorization conditions</a>
     <li><a href="#ref-for-authorization⑥">2.8. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
     <li><a href="#ref-for-authorization⑧">2.9.3. Possession of a link</a>
-    <li><a href="#ref-for-authorization⑨">5. Definitions</a> <a href="#ref-for-authorization①⓪">(2)</a> <a href="#ref-for-authorization①①">(3)</a>
+    <li><a href="#ref-for-authorization⑨">4. Definitions</a> <a href="#ref-for-authorization①⓪">(2)</a> <a href="#ref-for-authorization①①">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="authorization-group">
@@ -2405,7 +2362,7 @@ collection.</p>
     <li><a href="#ref-for-authorization-group①⑨">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-authorization-group②⓪">(2)</a> <a href="#ref-for-authorization-group②①">(3)</a>
     <li><a href="#ref-for-authorization-group②②">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-authorization-group②③">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-authorization-group②④">(2)</a>
-    <li><a href="#ref-for-authorization-group②⑤">5. Definitions</a>
+    <li><a href="#ref-for-authorization-group②⑤">4. Definitions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="capability">
@@ -2419,7 +2376,7 @@ collection.</p>
    <b><a href="#access-mode">#access-mode</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-access-mode">3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.</a>
-    <li><a href="#ref-for-access-mode①">5. Definitions</a> <a href="#ref-for-access-mode②">(2)</a> <a href="#ref-for-access-mode③">(3)</a> <a href="#ref-for-access-mode④">(4)</a> <a href="#ref-for-access-mode⑤">(5)</a> <a href="#ref-for-access-mode⑥">(6)</a> <a href="#ref-for-access-mode⑦">(7)</a>
+    <li><a href="#ref-for-access-mode①">4. Definitions</a> <a href="#ref-for-access-mode②">(2)</a> <a href="#ref-for-access-mode③">(3)</a> <a href="#ref-for-access-mode④">(4)</a> <a href="#ref-for-access-mode⑤">(5)</a> <a href="#ref-for-access-mode⑥">(6)</a> <a href="#ref-for-access-mode⑦">(7)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="read-access">
@@ -2492,7 +2449,7 @@ collection.</p>
     <li><a href="#ref-for-create-access⑥">2.3.4. Create-append access to collection resources</a>
     <li><a href="#ref-for-create-access⑦">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-create-access⑧">(2)</a> <a href="#ref-for-create-access⑨">(3)</a>
     <li><a href="#ref-for-create-access①⓪">3.5.5. The system shall allow for new resources to be added to a given collection if the agent has inherited create access from the parent collection that the given collection is a member of.</a>
-    <li><a href="#ref-for-create-access①①">5. Definitions</a> <a href="#ref-for-create-access①②">(2)</a>
+    <li><a href="#ref-for-create-access①①">4. Definitions</a> <a href="#ref-for-create-access①②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="delete-access">
@@ -2503,7 +2460,7 @@ collection.</p>
     <li><a href="#ref-for-delete-access②">2.3.3. Manage a hierarchy of collection resources</a> <a href="#ref-for-delete-access③">(2)</a>
     <li><a href="#ref-for-delete-access④">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-delete-access⑤">(2)</a> <a href="#ref-for-delete-access⑥">(3)</a>
     <li><a href="#ref-for-delete-access⑦">3.5.6. The system shall allow for resources to be deleted from a given collection if the agent has inherited delete access from the parent collection that the given collection is a member of.</a>
-    <li><a href="#ref-for-delete-access⑧">5. Definitions</a>
+    <li><a href="#ref-for-delete-access⑧">4. Definitions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="read-permission-access">
