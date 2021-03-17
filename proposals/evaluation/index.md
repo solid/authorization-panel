@@ -14,5 +14,5 @@
 | 🔸 | 🔸 | 🔸 | []() | |
 
 ✅ Requirement is fulfilled
-❌ Requirement is no met
+❌ Requirement is not fulfilled
 🔸 Status of requirement fulfillment to be determined
