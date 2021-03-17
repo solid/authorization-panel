@@ -68,9 +68,6 @@ a Solid authorization system should support. The [[#requirements]] in this
 document are derived from those use cases, and will inform and guide
 the contents of a subsequent specification proposal.
 
-[[#limitations]] highlights the [[#usecases]] that
-the current authorization system fails to satisfy.
-
 Use Cases {#usecases}
 ================================================================================
 
@@ -1858,31 +1855,6 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 <div class="assertion">    
   Related use cases: [[#conditional-control]]
 </div>
-
-Limitations of Web Access Control {#limitations}
-================================================================================
-
-[Web Access Control](https://github.com/solid/web-access-control-spec)
-does not satisfy the following use cases:
-
-* [[#inheritance-adding]]
-* [[#inheritance-modifying]]
-* [[#inheritance-forcing]]
-* [[#inheritance-extended]]
-* [[#collection-readcreatedelete]]
-* [[#conditional-time]]
-* [[#conditional-tag]]
-* [[#conditional-filter]]
-* [[#conditional-control]]
-* [[#conditional-payment]]
-* [[#uc-trusted-applications]]
-* [[#uc-client-constraints]]
-* [[#uc-trustedissuers]]
-* [[#uc-validation]]
-* [[#capabilities-vc]]
-* [[#capabilities-link]]
-* [[#uc-minimalcredentials]]
-* [[#uc-limituri]]
 
 Definitions {#definitions}
 ================================================================================
