@@ -15,4 +15,4 @@
 
 ✅ Requirement is fulfilled
 ❌ Requirement is no met
-🔸 Status of requirement to be determined
+🔸 Status of requirement fulfillment to be determined
