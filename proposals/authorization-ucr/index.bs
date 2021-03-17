@@ -811,7 +811,7 @@ access=]).
 It's important that the resources they create have the correct permissions
 assigned automatically, and he needs to be able to ensure this when he sets up
 their access. Otherwise, how can he be sure that the files aren't created with
-access that too liberal (e.g. public access), or too narrow to be usable
+access that is too liberal (e.g., public access), or too narrow to be usable
 within their context?
 
 Bob prefers to specify in granular fashion the default permissions of created
@@ -1472,7 +1472,7 @@ humanly readable and memorable names for its resources.
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}
 
-Carol has a blog, and allows any [=authenticated agent=] (e.g. [[WEBID]],
+Carol has a blog, and allows any [=authenticated agent=] (e.g., [[WEBID]],
 [[DID]]) to comment on her blog posts.
 
 Unfortunately, anyone can setup an identity provider, so Carol would like to
@@ -1635,7 +1635,7 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#capabilities-vc]], [[#capabilities-link]], [[#uc-minimalcredentials]]
 </div>
 
-### The system shall ensure that there are practical and efficient mechanism available for the client to determine an appropriate credential to present for access to a given [=resource=]. ### {#req-vc-determine}
+### The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given [=resource=]. ### {#req-vc-determine}
 
 <div class="assertion">    
   Related use cases: [[#capabilities-vc]], [[#uc-minimalcredentials]], [[#conditional-payment]]
