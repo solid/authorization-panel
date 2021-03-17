@@ -12,3 +12,7 @@
 | 🔸 | 🔸 | 🔸 | [3.1.7. The system shall allow access to be limited to any authenticated agent.](https://solid.github.io/authorization-panel/authorization-ucr/#req-authenticated) | |
 | 🔸 | ✅ | 🔸 | [3.2.2. The system shall ensure that there are practical and efficient mechanism available for the client to determine an appropriate credential to present for access to a given resource.](https://solid.github.io/authorization-panel/authorization-ucr/#req-vc-determine) | [issue 189: ACLs on ACLs for WAC](https://github.com/solid/authorization-panel/issues/189) |
 | 🔸 | 🔸 | 🔸 | []() | |
+
+✅ Requirement is fulfilled
+❌ Requirement is no met
+🔸 Status of requirement to be determined
