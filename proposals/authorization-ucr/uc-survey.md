@@ -26,12 +26,6 @@ Notes:
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-change-permissions
 
 * +1 bblfish: public [si] [ai].
-
-### Read permissions (was basic control?)
-URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-read-permissions
-
-URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-control
-
 * +1 justinwb: to the ability to read and write permissions on resources. public [ai]. private [ai].
 * +1 elf-pavlik: 
 * +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d]. public [ai].
@@ -41,6 +35,9 @@ URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-contro
 * +1 hindia:
 * +1 dmitrizagidulin: public [si].
 * +1 bblfish: public [si] [ai].
+
+### Read permissions
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-read-permissions
 
 
 ### Read-write access
