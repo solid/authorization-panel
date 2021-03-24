@@ -62,10 +62,10 @@ The **_Controller_** policy gives write and read access to those who satisfy the
 
 *   A rule simply lists a number of agents and groups. In the future, rules can be extended to provide more capability. 
 *   A policy can specify multiple rules to determine who gets the access defined by the policy. 
-*   The rules in the policy can be combined so that: 
-    *   All of the rules need to be satisfied (the user needs to be in all the rules)
-    *   Any of the rules need to be satisfied (the user needs to be in at least one rule)
-    *   None of the rules can be satisfied (the user cannot be in any of the rules)
+*   The rules in the policy can be combined into any of the following: 
+    *   All of the rules are satisfied (the user must be in all the rules)
+    *   Any of the rules are satisfied (the user must be in at least one rule)
+    *   None of the rules are satisfied (the user must not be in any of the rules)
 *   Using rules the user has fine grained control over who gets the access specified by a policy.
 
 ### Advanced policy management 
