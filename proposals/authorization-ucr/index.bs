@@ -1,15 +1,15 @@
 <pre class='metadata'>
-Title: Use Cases and Requirements for Web Access Control
-Shortname: wac-ucr
+Title: Use Cases and Requirements for Authorization in Solid
+Shortname: authorization-ucr
 Level: 1
-Max ToC Depth: 3
+Max ToC Depth: 2
 Status: w3c/ED
 Group: solid-cg
-URL: https://solid.github.io/authorization-panel/wac-ucr/
+URL: https://solid.github.io/authorization-panel/authorization-ucr/
 Editor: Solid Editorial Team
 Markup Shorthands: markdown yes
 Abstract:
-  Use Cases and Requirements for Web Access Control.
+  Use Cases and Requirements for Authorization in Solid.
 </pre>
 
 <!-- For bikeshed style overrides -->
@@ -42,6 +42,10 @@ Abstract:
     color: #000000;
   }
 
+  .assertion {
+    font-size: small;
+  }
+
   @media (prefers-color-scheme: dark) {
     a[data-link-type=dfn] {
       color: #FFFFFF;
@@ -60,23 +64,19 @@ Introduction {#intro}
 ================================================================================
 
 The [[#usecases]] in this document represent real-world scenarios that
-Web Access Control can and should support. The [[#requirements]] in this
-document are derived from those use cases, and inform the contents of the
-Web Access Control specification.
-
-[[#limitations]] highlights the [[#usecases]] that
-[Legacy Web Access Control](https://github.com/solid/web-access-control-spec)
-fails to satisfy.
+a Solid authorization system should support. The [[#requirements]] in this
+document are derived from those use cases, and will inform and guide
+the contents of a subsequent specification proposal.
 
 Use Cases {#usecases}
 ================================================================================
 
-For the purposes of simplicity, the use cases herein assume that named
-individuals (i.e. Alice, Bob, Carol, etc.) are already
+Unless stated otherwise, the use cases herein assume that named
+individuals (e.g., Alice, Bob, Carol, etc.) are already
 [=authenticated agents=], and their corresponding [=identities=] are known
 by the [=resource controller=] when they are granted access.
 
-## Basic resource access ## {#uc-basic}
+## Resource access ## {#uc-basic}
 
 Alice has a private draft of her resume stored on her [=resource server=] at
 `https://alice.example/resume`. Alice is the [=resource controller=]
@@ -110,17 +110,45 @@ for that resource.
   </table>
 </figure>
 
-### Control access ### {#basic-control}
+### Change permissions ### {#basic-change-permissions}
 
 Alice asks Bob to help make her resume more presentable. Alice must give Bob
 permission to do this, because `resume` is not a public resource, and as the
 [=resource controller=] Alice is the only one who can manage permissions for
 it.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-change-permissions]]
+
+</div>
+
+### Read permissions ### {#basic-read-permissions}
+
+Jasmine is a recruiter that has been helping Alice with job placement. Alice
+gives Jasmine the ability to read the permissions on `resume`, so that
+she can see who else Alice has shared her resume with.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read-permissions]]
+
+</div>
+
 ### Read-write access ### {#basic-write}
 
 Alice gives Bob [=read access=] so that he can read the `resume` resource, and
 [=write access=] so that he can make changes to it, which he does.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read]]
+* [[#req-write]]
+
+</div>
 
 ### Read-append access ### {#basic-readappend}
 
@@ -132,6 +160,14 @@ in the references section of `resume`. Alice gives Danielle [=read access=] to
 to `resume`, and cannot change any existing data within it. Danielle adds a
 glowing reference for Alice to `resume`.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read]]
+* [[#req-append]]
+
+</div>
+
 #### Danielle stores their own recommendation #### {#basic-readappend-multi-storage}
 
 Danielle agrees to give Alice a personal reference, which Alice will link to
@@ -140,6 +176,14 @@ in the reference section of `resume`. Alice gives Danielle [=read access=] to
 recommendation that she creates and hosts on her own [=resource server=] at
 `https://danielle.example/recommendation`. Danielle is the [=resource
 controller=] for that resource and gives it public [=read access=].
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read]]
+* [[#req-append]]
+
+</div>
 
 ### Append-only access ### {#basic-appendonly}
 
@@ -151,19 +195,40 @@ She creates a `recommendations` resource, and grants [=append access=] to the
 `contacts` [=authorization group=], which represents every professional
 contact in her virtual rolodex. She sends a mass-mail to `contacts`, with a
 link to an app they can use to submit a recommendation, which will be appended
-to `recommendations`. Since they only have [=append access=] and not [=read
-access=], they can add to `recommendations` but they cannot see
+to `recommendations`. Since they only have [=append access=] and not [=read access=], 
+they can add to `recommendations` but they cannot see
 recommendations that have already been added.
+
+<div class="assertion">
+
+* [[#req-agent-group]]
+* [[#req-append]]
+
+</div>
 
 ### Removing access ### {#basic-removing}
 
 Alice removes Bob and Danielle's access to `resume`, since they've both
 finished contributing to it. They can no longer read or make changes to it.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-change-permissions]]
+
+</div>
+
 ### Read-only access ### {#basic-readonly}
 
 Alice has a job interview with Carol. Alice gives Carol [=read access=] to
 `resume` ahead of the interview.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read]]
+
+</div>
 
 ### Group access ### {#basic-group}
 
@@ -182,11 +247,25 @@ Now Alice can add new people she's interviewing with to the `interviewing`
 [=authorization group=], and remove them when the opportunity is no longer
 active. This is much more intuitive and easy for Alice.
 
+<div class="assertion">
+
+* [[#req-agent-group]]
+* [[#req-read]]
+
+</div>
+
 ### Public access ### {#basic-public}
 
-Alice decides `resume` is ready to share with everyone, so she gives [=read
-access=] to the public (everyone), and shares a link to it on several job
-boards.
+Alice decides `resume` is ready to share with everyone, so she gives 
+[=read access=] to the public (everyone), and shares a link to it on 
+several job boards.
+
+<div class="assertion">
+
+* [[#req-public]]
+* [[#req-read]]
+
+</div>
 
 ### Logged in access ### {#basic-authenticated}
 
@@ -207,8 +286,16 @@ in, or if necessary to make a new solid account and then log in.
 After the workshop is over, she changes the access on the materials to
 explicitly be that group.
 
+<div class="assertion">
 
-## Basic collection access ## {#uc-collections}
+* [[#req-authenticated]]
+* [[#req-read]]
+* [[#req-write]]
+* [[#req-agent-group]]
+
+</div>
+
+## Collection access ## {#uc-collections}
 
 Note: These use cases are focused on access to a [=collection=] itself. Use
 cases that focus on permissions related to [=resources=] included in that
@@ -219,9 +306,13 @@ Alice has a portfolio [=collection=] stored on her [=resource server=] at
 for. She provides access to the `portfolio` to potential employers as she
 moves through a job interview process.
 
-The `portfolio` includes [=resources=] representing individual deliverables
-she's produced throughout her career, along with [=collections=] of
+The `portfolio` [=collection=] includes [=resources=] representing individual 
+deliverables she's produced throughout her career, along with [=collections=] of
 deliverables from larger scale projects that she's worked on.
+
+The `portfolio` [=resource=] itself includes summary information about the 
+portfolio as a whole. For example, Alice details why she chose to include 
+the items together as a representation of her work.
 
 <figure>
 <figcaption>Alice's portfolio and opportunities [=collections=] at
@@ -241,8 +332,9 @@ https://alice.example/</figcaption>
       <tr>
         <td>`portfolio/`</td>
         <td>[=Collection=]</td>
-        <td>Individual documents she's produced, and collections
-        of deliverables from projects she's worked on.</td>
+        <td>Resource includes summary information about the portfolio as a 
+        whole. Member [=resources=] include individual documents she's produced, 
+        and collections of deliverables from projects she's worked on.</td>
       </tr>
       <tr>
         <td>`-- document1`</td>
@@ -296,45 +388,65 @@ Alice has granted Carol, Oscar, and Frank [=read access=] to her `resume`
 which allows them to read its contents fully.
 
 Alice has also granted them [=read access=] to the `portfolio` [=collection=].
-She only wants them to see detail about the `portfolio` [=collection=] itself,
-along with a listing of its contents, but not the contents of the
-[=resources=] included in that [=collection=] just yet.
+She only wants them to see summary detail about the `portfolio` [=collection=] 
+itself, along with a listing of its contents, but not the contents of the
+[=resources=] included in that [=collection=].
 
-Alice wants know which of them are really interested based on who asks her for
-more access to the contents of `portfolio`.
+Alice wants to know which of them are really interested based on who asks her for
+more access to the contents of the resources in `portfolio`.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read]]
+* [[#req-collection-read]]
+
+</div>
 
 ### Read-write access to a Collection ### {#collection-readwrite}
 
-Alice worked with Milo in the past, where they produced a deliverable
-(`document1`) that she has included in her `portfolio` [=collection=].
+Alice is revising the summary description of her `portfolio`, which is
+stored in the [=resource=] for the `portfolio` [=collection=].
 
-Alice realized that she doesn't have the most up-to-date version `document1`,
-and needs Milo to replace it. She gives Milo [=read access=] and [=write
-access=] to the `portfolio` [=collection=] itself, which allows him to see the
-listing of its contents, as well as add and remove items from the
-[=collection=].
+Milo is Alice's friend, and she enlists his help in reviewing and revising
+her summary.
 
-He cannot read the contents of any of the [=resources=] included in the
-[=collection=], but this is fine, since he knows the name of the [=resource=]
-he's replacing.
+Alice gives Milo [=read access=] and [=write access=] to the `portfolio` 
+[=collection=] itself, which allows him read and modify the existing summary
+in the `portfolio` [=resource=].
+ 
+<div class="assertion">
 
-Milo updates the contents of `document1` to the most recent version.
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-collection-write]]
 
-### Read-append access to a Collection ### {#collection-readappend}
+</div>
 
-Alice worked with Bob in the past on a project, and she has included the
-project deliverables she could find in the `project1` [=collection=]. She's
-sure that she's missing some, and that Bob would have the missing items.
+### Read-create access to a Collection ### {#collection-readcreate}
 
-Alice grants Bob [=read access=] and [=append access=] to the `project1`
-[=collection=], which allows him to see the list of what is there, and add new
-[=resources=] to it.
+Alice worked with Bob on a past project, and she has added a partial set
+of the final project deliverables to the `project1` [=collection=]. She
+knows that Bob has the rest, and he agrees to provide them.
 
-He can't see the contents of the [=resources=], or remove anything in the
-list. That's fine because he only needs to add the [=resources=] that aren't
-included.
+Alice grants Bob the following access on the `project1` [=collection=]:
 
-### Read-append-write access to a Collection ### {#collection-readappendwrite}
+* [=Read access=] which allows him to see the summary detail of `project1` 
+    stored in the `project` [=resource=] itself, as well as
+    a list of the [=resources=] in the [=collection=], which lets him confirm
+    whether his uploads are stored successfully.
+* [=Create access=] on `project1`, which allows him to add new [=resources=]
+    to it.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-collection-create]]
+
+</div>
+
+### Read-create-delete access to a Collection ### {#collection-readcreatedelete}
 
 Note: Despite this section's focus on permissions specific to the collection
 resource itself, this use case also incorporates inherited read access to
@@ -346,38 +458,66 @@ which are stored in the `comments` [=collection=].
 When she asks a colleague to leave a comment, she gives them the following
 permissions:
 
-* Inherited [=read access=] to the `comments` [=collection=]
-    so they can list and read existing comments (including their own).
-* [=Append access=] to the `comments` [=collection=], which allows them to
-    add their own comments, but not change anyone else's including their
-    own after the comments have been submitted.
-* Ability to write (edit or delete) any resources in `comments` that they
-    have created themselves, but none created by anyone else.
+* [=Read access=] to the `comments` [=collection=]
+    so they can list existing comments (including their own).
+* Inherited [=read access=] to the [=resources=] in the `comments` [=collection=],
+    so they can read the contents of existing comments (including their own).
+* [=Create access=] to the `comments` [=collection=], which allows them to
+    add new comments, but not change any that exist already.
+* Default permissions on new [=resources=] in `comments` that stipulate:
+    * [=Delete access=] for the creator of a [=resource=] - so they can delete
+        their own comments if they like, but no one else's.
 
-### Append-only access to a Collection ### {#collection-appendonly}
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-inheritance-readonly]]
+* [[#req-collection-creator]]
+* [[#req-collection-create]]
+* [[#req-collection-delete]]
+
+</div>
+
+### Create-only access to a Collection ### {#collection-createonly}
 
 Alice realizes it would be helpful if Carol, Oscar, and Frank could provide
 her with job opportunities that they think she would be a fit for at their
 respective organizations.
 
-She provides them with [=append access=] to the `opportunities`
+She provides them with [=create access=] to the `opportunities`
 [=collection=]. This allows each of them to add new [=resources=] to
 `opportunities`, without the ability to see the listing of other [=resources=]
 in the [=collection=], or modify them. This means that they can each add
 opportunities, but none of the others will see them.
 
-### Control access to a Collection ### {#collection-control}
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-create]]
+
+</div>
+
+### Manage permissions for a Collection ### {#collection-control}
 
 Bob reminds Alice that some of the other people who worked on `project1` may
 also have materials they can add to the `portfolio`, but he needs to lookup
 their information.
 
 Alice trusts Bob with the contents of the `project1` collection, since it's
-the output of their shared work. She gives him [=control access=] to
-`project1` so that he can help her invite other colleagues from the past to
-add [=resources=] to it.
+the output of their shared work. She gives him [=read permission access=] 
+and [=write permission access=] to `project1` so that he can help her 
+invite other colleagues from the past to add [=resources=] to it.
 
-## Inheritance ## {#uc-inheritance}
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read-permissions]]
+* [[#req-collection-change-permissions]]
+
+</div>
+
+## Collection resource inherited access ## {#uc-inheritance}
 
 Bob is leading a group of colleagues doing field research. This group
 includes Charles, Felicia, Juan, and Irene.
@@ -493,7 +633,7 @@ https://research.example/</figcaption>
         <td>Daily reading</td>
       </tr>
       <tr>
-        <td>`daily-analysis/`</td>
+        <td>`daily-summaries/`</td>
         <td>Collection</td>
         <td>Daily analysis for group research</td>
       </tr>
@@ -515,7 +655,7 @@ https://research.example/</figcaption>
   </table>
 </figure>
 
-### Read-only access to collection of resources ### {#inheritance-readonly}
+### Read-only access to collection resources ### {#inheritance-readonly}
 
 Bob has a weekly status meeting with the members of the `research`
 [=authorization group=].
@@ -528,58 +668,138 @@ them permissions every week to each newly created note.
 Bob stores his notes from the weekly status meeting in the `weekly-status`
 [=collection=].
 
-He grants the `research` [=authorization group=] inherited [=read access=] to
+He grants the `research` [=authorization group=] [=read access=] to
 the `weekly-status` [=collection=], which means they can read specific details
-about the [=collection=], see a listing of the resource included in it (e.g.
-Bob's notes), and read the contents of each note. This is especially important
+about the [=collection=] and see a listing of the resources included in it (e.g.,
+Bob's notes). He also grants them inherited [=read access=] to the members
+of the [=collection=], which allows them to read the contents of each note. 
+
+This is especially important
 because in this case each of Bob's notes are actually a [=collection=]
 themselves, capable of storing inline data or attachments, like pictures or
 videos.
 
-Because Bob grants inherited [=read access=] at the `weekly-status`
-[=collection=], it will apply to everything already in the [=collection=], as
-well as anything that will be added in the future.
+Because Bob sets inherited [=read access=] at the `weekly-status`
+[=collection=], it applies to all of the members already in the [=collection=], as
+well as any that are added in the future.
 
-### Read-append access to collection resources ### {#inheritance-readappend}
+<div class="assertion">
+
+* [[#req-agent-group]]
+* [[#req-collection-read]]
+* [[#req-inheritance-readonly]]
+
+</div>
+
+### Read-create access to collection resources ### {#inheritance-readcreate}
 
 Every day, someone in the group is responsible for recording data from devices
 in the field, and storing those metrics in `daily-metrics`.
 
-Bob gives the `research` [=authorization group=] inherited [=append access=]
-to the `daily-metrics` [=collection=]. This allows anyone in the
-[=authorization group=] to see the contents of the [=collection=], and add new
-readings. They cannot modify readings after they are recorded. This provides
-confidence that readings are not manipulated after the fact.
+Bob sets the following permissions on the `daily-metrics` [=collection=] for
+the `research` [=authorization group=]:
 
-### Read-write access to collection resources ### {#inheritance-readwrite}
+* [=Read access=] so they can see the current list of [=resources=] in 
+    the [=collection=]. 
+* Inherited [=read access=] so that they can read the contents of those 
+    [=resources=].
+* [=Create access=] so that they can add new readings. They cannot modify 
+    readings after they are recorded, because they do not have [=write access=],
+    and they cannot remove them, because they do not have [=delete access=]. 
+    This provides confidence that readings 
+    are not manipulated after the fact.
+
+<div class="assertion">
+
+* [[#req-agent-group]]
+* [[#req-collection-read]]
+* [[#req-inheritance-readonly]]
+* [[#req-collection-create]]
+
+</div>
+
+### Manage a hierarchy of collection resources ### {#inheritance-manage}
 
 The members of the `research` [=authorization group=] collaborate on a daily
 summary, where they analyze the day's field readings stored in
 `daily-summaries`, detailing any new, validated, or invalidated hypotheses.
 
-Bob gives the `research` [=authorization group=] inherited [=read access=] and
-[=write access=] to the `daily-summaries` [=collection=]. This allows anyone
-in the [=authorization group=] to see the contents of the [=collection=] and
-collaborate on a given day's summary. They can update the contents together
-until they're satisfied with the results.
+Bob sets the following permissions on the `daily-summaries` [=collection=]
+for the `research` [=authorization group=]:
 
-### Append-only access to collection resources ### {#inheritance-appendonly}
+* [=Read access=] so they can see the current list of [=resources=] in 
+    the `daily-summaries`. 
+* [=Create access=] so they can add new summary [=resources=] to `daily-summaries`
+* [=Delete access=] so they can remove summary [=resources=] from `daily-summaries`
+* Inherited [=read access=] so they can read the 
+    contents of the summaries in the [=collection=]
+* Inherited [=write access=] so they can modify their contents
+* Inherited [=create access=] so they can add [=resources=] to any [=collections=]
+    that might be added to `daily-summaries`
+* Inherited [=delete access=] so they can remove [=resources=] from any
+    [=collections=] that might be added to `daily-summaries`
+
+<div class="assertion">
+
+* [[#req-agent-group]]
+* [[#req-collection-read]]
+* [[#req-collection-create]]
+* [[#req-collection-delete]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-change]]
+* [[#req-inheritance-create]]
+* [[#req-inheritance-delete]]
+
+</div>
+
+### Create-append access to collection resources ### {#inheritance-createappend}
 
 Bob purchases a new field device that is able to automatically push daily
 metric readings in `daily-metrics`.
 
-Bob gives the new field device [=read access=] on the `daily-metrics`
-[=collection=] so it can access the list of resources inside, and inherited
-[=append access=] access to `daily-metrics`, which allows it to add to a
-daily-metric resource if it already exists, or create a new one if a member of
-the `research` [=authorization group=] hasn't made one for that day yet.
+Bob gives the new field device the following permissions on the
+`daily-metrics` [=collection=]:
 
-### Control access to collection resources ### {#inheritance-control}
+* [=Read access=] so it can access the list of resources in the collection
+* Inherited [=read access=] so it can read the contents of existing metric readings
+* [=Create access=] so it can create a new daily metric resource if a member of
+    the `research` [=authorization group=] hasn't made one for that day yet.
+* Inherited [=append access=] so it can add metric readings to daily-metric
+    resources that already exist.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-collection-create]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-appendonly]]
+
+</div>
+
+### Manage permissions for collection resources ### {#inheritance-control}
 
 Bob realizes that he needs some help administering `https://research.example`.
-He provides Carol with inherited [=read access=] and [=control access=] to
-`https://research.example/`, allowing her to read and manage permissions for
-all of the [=resources=] and [=collections=] included within it.
+He provides Carol with the following permissions on the 
+`https://research.example` collection:
+
+* [=Read access=] so she can see the current list of [=resources=] in 
+    the [=collection=]. 
+* Inherited [=read access=] so she can read the 
+    contents of the resources in the [=collection=]
+* [=Read permission access=] and [=write permission access=] allowing her 
+    to read and manage permissions for all of the [=resources=] and 
+    included within it.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-inheritance-readonly]]
+* [[#req-collection-read-permissions]]
+* [[#req-collection-change-permissions]]
+
+</div>
 
 ### Default permissions on created resources ### {#inheritance-defaultcreated}
 
@@ -591,12 +811,18 @@ access=]).
 It's important that the resources they create have the correct permissions
 assigned automatically, and he needs to be able to ensure this when he sets up
 their access. Otherwise, how can he be sure that the files aren't created with
-access that too liberal (e.g. public access), or too narrow to be usable
+access that is too liberal (e.g., public access), or too narrow to be usable
 within their context?
 
 Bob prefers to specify in granular fashion the default permissions of created
 resources that should be assigned to any [=authorizations=] with [=write
 access=] or [=append access=] on a given [=collection=].
+
+<div class="assertion">
+
+* [[#req-inheritance-default-permissions]]
+
+</div>
 
 ### Default permissions for extended network ### {#inheritance-extended}
 
@@ -607,6 +833,17 @@ her extended social network (friend of her friends, colleagues and family)  to
 be immediately visible. Other posts should only be visible and editable to
 those who wrote them. They can then be viewable to the world when they get
 reviewed.
+
+<div class="assertion">
+
+* [[#req-inheritance-default-permissions]]
+* [[#req-agent-group]]
+* [[#req-vc]]
+* [[#req-vc-determine]]
+* [[#req-conditional-relationship]]
+
+</div>
+
 
 ### Adding new subjects to inherited permissions ### {#inheritance-adding}
 
@@ -622,7 +859,7 @@ to the `weekly-status` [=collection=] (detailed in [[#inheritance-readonly]]).
 Celeste isn't a regular member of the `research` [=authorization group=], but
 happened to attend the weekly status meeting on December 30th, 2019.
 
-Bob would like to give Celeste inherited [=read access=] to **only** the note
+Bob would like to give Celeste [=read access=] to **only** the note
 for the meeting she attended (`12-30-2019.note`), without affecting the access
 that he's given to the `research` [=authorization group=]. `research` has
 inherited [=read access=] on everything in the `weekly-status` [=collection=],
@@ -633,6 +870,14 @@ of the `research` [=authorization group=] have inherited [=read access=].
 Celeste has no other access to other resources in the `weekly-status`
 [=collection=], nor any that will be created later. The access for the
 `research` [=authorization group=] doesn't change.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-modify]]
+
+</div>
 
 ### Modifying inherited permissions for existing subjects ### {#inheritance-modifying}
 
@@ -656,6 +901,14 @@ resources included in the `weekly-status` collection, and any new resources
 added to it. Inherited [=read access=] for others in the `research`
 [=authorization group=] is unchanged.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-modify]]
+
+</div>
+
 ### Forcing inherited permissions ### {#inheritance-forcing}
 
 As the primary administrator and [=resource controller=] of
@@ -664,9 +917,21 @@ control over the data inside.
 
 Even though he's given Carol permission to help him administer the [=resource
 server=], he wants to ensure that she's not able to cut out his access. He
-wants to always maintain a minimum of [=read access=] and [=control access=]
-to all of the resources in `https://resource.example`. This allows him to have
+wants to always maintain a minimum of [=read access=], [=read permission access=],
+and [=write permission access=] to all of the resources in 
+`https://resource.example`. This allows him to have
 visibility into everything, and change their permissions as needed.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-change-permissions]]
+* [[#req-inheritance-change-permissions]]
+* [[#req-inheritance-read-permissions]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-force]]
+
+</div>
 
 ## Conditional access ## {#uc-conditional}
 
@@ -763,14 +1028,26 @@ Erin is a research intern that will be assisting Felicia's team in processing
 and synthesizing data for the `Acme` trial. She will remain on the team until
 the end of her current academic term on June 30th, 2020.
 
-Felicia has granted Erin inherited [=read access=] and [=write access=] to the
-`measurements` [=collection=], which contains measurements for all trial
+The `measurements` [=collection=] contains measurements for all trial 
 participants, across all trials.
 
-Felicia adds a time-based condition for Erin which states that her access to
-`measurements` is only valid through June 30th, 2020.
+Felicia has granted Erin [=read access=] to the `measurements` [=collection=],
+and inherited [=read access=] and [=write access=] to the
+[=resources=] in the `measurements` [=collection=]. Felicia adds a 
+time-based condition for Erin which states that this access 
+is only valid through June 30th, 2020.
 
 Erin will have no access to `measurements` after June 30th, 2020.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-change]]
+* [[#req-conditional-time]]
+
+</div>
 
 ### Conditional access by tag ### {#conditional-tag}
 
@@ -783,7 +1060,8 @@ measurements that have already been processed.
 * All measurements for the `Acme` trial are tagged with `Acme`
 * When a new measurement is processed, it is tagged as `processed`
 
-Felicia authorizes Erin to have inherited [=read access=] and [=write access=]
+Felicia authorizes Erin to have [=read access=] to the `measurements` 
+[=collection=], and inherited [=read access=] and [=write access=]
 to `measurements`, with a condition that the [=resources=] must:
 
 * **include** the `Acme` [=tag=]
@@ -792,6 +1070,16 @@ to `measurements`, with a condition that the [=resources=] must:
 This allows Erin to work with new measurements for the `Acme` trial without
 being exposed to measurements from other trials, or already processed
 measurements from the `Acme` trial.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-change]]
+* [[#req-conditional-tag]]
+
+</div>
 
 ### Conditional access by relationship ### {#conditional-relationship}
 
@@ -808,13 +1096,28 @@ over time.
 
 When Felicia prepares a new report `/reports/report-1`, she authorizes only
 the senior research team members receiving the report to have inherited [=read
-access=] to `measurements`, with a condition that a given measurement must be
+access=] to [=resources=] in `measurements`, with a condition that a given 
+measurement must be
 related to `/reports/report-1` by an `ex:hasMeasurement` predicate for that
 access to be permitted.
 
 This ensures that the senior research team members will be able to read
 measurements referenced by `/reports/report-1`, or any references added to it
 later, but no others.
+
+There may be different ways to describe the relationships which propagate access rules, for example:
+
+* Relationships may be `direct` or `indirect`, e.g., `report-1` references `measurement-2`, which in turn references `instrument-3`.
+* Relationships may be `forward` or `inverse`, e.g., `slide-4` references `report-1`, so the permissions associated with `report-1` also apply to `slide-4`.
+* Relationships may be asserted in the `referring` document, the `referenced` document, or some third document, e.g., a document other than `report-1` which contains the relationship linking `report-1` to `measurement-2`.
+
+<div class="assertion">
+
+* [[#req-agent-group]]
+* [[#req-inheritance-readonly]]
+* [[#req-conditional-relationship]]
+
+</div>
 
 ### Conditional access by filter ### {#conditional-filter}
 
@@ -829,6 +1132,17 @@ Felicia authorizes Erin to access a reduced set of fields within the
 measurement [=resources=]. When Erin retrieves a measurement, the response
 will exclude the fields containing PII.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-change]]
+* [[#req-conditional-tag]]
+* [[#req-conditional-filter]]
+
+</div>
+
 ### Conditional control boundaries ### {#conditional-control}
 
 Megan works on Felicia's team. Felicia would like Megan to be responsible for
@@ -836,15 +1150,29 @@ managing access to trial data for the research interns assigned to the `Acme`
 project. Felicia doesn't want to give Megan more permission than she needs to
 do that work.
 
-Felicia grants Megan inherited [=control access=] to `measurements`, with
+Felicia grants Megan inherited [=read permission access=]
+and [=write permission access=] to `measurements`, with
 conditions that stipulate:
 
-* she only has effective [=control access=] of [=resources=] that include
+* she only has effective [=read permission access=] and 
+    [=write permission access=] of [=resources=] that include
     the `Acme` [=tag=] within the `measurements` [=collection=].
 * she can only create or change [=authorizations=]
     targeting the `measurements` [=collection=] where
     [=agents=] are included in the `interns` [=authorization group=].
-* she can't grant [=control access=] to anyone else.
+* she can't grant [=read permission access=] and/or [=write permission access=] 
+    to anyone else.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-collection-read]]
+* [[#req-inheritance-read-permissions]]
+* [[#req-inheritance-change-permissions]]
+* [[#req-conditional-control]]
+* [[#req-conditional-control-tag]]
+
+</div>
 
 ### Conditional access by action ### {#conditional-action}
 
@@ -855,6 +1183,16 @@ after someone else has commented on the comment. They institute the following
 policy: their authors can edit comments for a minimum of 5 minutes and only
 until these are themselves commented. After that point, the post will be in
 read-only access mode.
+
+<div class="assertion">
+
+* [[#req-agent-group]]
+* [[#req-collection-creator]]
+* [[#req-inheritance-change]]
+* [[#req-inheritance-readonly]]
+* [[#req-conditional-action]]
+
+</div>
 
 ### Conditional access by payment ### {#conditional-payment}
 
@@ -868,6 +1206,16 @@ allow for smooth integration with any music app, even enabling automatic
 payment for small enough sums. Users of the Solid Music App would thus have
 one more song to choose from amongst the large number made available by
 musicians worldwide.
+
+<div class="assertion">
+
+* [[#req-read]]
+* [[#req-conditional-action]]
+* [[#req-conditional-relationship]]
+* [[#req-vc]]
+* [[#req-vc-determine]]
+
+</div>
 
 ## Permissioning Applications ## {#uc-applications}
 
@@ -890,15 +1238,52 @@ For example, to constrain Oscar's access to `https://oscar.example` to only
 cases where an application he trusts is involved:
 
 * Oscar **with the** `trusted-applications` [=authorization group=] has
-    [=read access=], [=write access=], and [=control access=] to
-    `https://oscar.example`
+    the following permissions on `https://oscar.example`:
+    * [=Read access=] so that he can read summary data for the
+        `https://oscar.example` [=resource=], and list its contents. Inherited
+        [=read access=] to all member resources so he can read and/or list their
+        contents.
+    * [=Write access=] so that he can change summary data for the
+        `https://oscar.example` [=resource=]. Inherited [=write access=] to
+        all member [=resources=] so he can change their contents.
+    * [=read permission access=] and [=write permission access=] so that
+        he can read and manage permissions. Inherited [=read permission access=]
+        and [=write permission access=] so that he can manage permissions
+        for all member resources.
+    * [=Create access=] and [=Delete access=] so that
+        he can add and remove resources. Inherited [=create access=] and 
+        [=delete access=] so that he can add resources to member [=collections=]
+        and delete resources from them.
 
 Following that, per [[#inheritance-modifying]], he could extend this default
 for the `health` [=collection=] to include `healthapp`:
 
 * Oscar **with the** `trusted-applications` [=authorization group=] AND
-    `healthapp` has [=read access=], [=write access=], and [=control access=]
-    to the `health` [=collection=]
+    `healthapp` has [=read access=], [=write access=], [=create access=],
+    [=delete access=], [=read permission access=],
+    and [=write permission access=] to the `health` [=collection=], along
+    with corresponding inherited permissions for [=collection=] member
+    [=resources=].
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-application]]
+* [[#req-collection-read]]
+* [[#req-collection-write]]
+* [[#req-collection-create]]
+* [[#req-collection-delete]]
+* [[#req-collection-read-permissions]]
+* [[#req-collection-change-permissions]]
+* [[#req-inheritance-change]]
+* [[#req-inheritance-readonly]]
+* [[#req-inheritance-create]]
+* [[#req-inheritance-delete]]
+* [[#req-inheritance-read-permissions]]
+* [[#req-inheritance-change-permissions]]
+* [[#req-inheritance-modify]]
+
+</div>
 
 ### Limiting application access while not acting as resource controller ### {#uc-client-constraints}
 
@@ -910,6 +1295,17 @@ projects, she also has read-write access to many other projects. Since
 write access. Alice grants *PerformChart* read only access to all the projects
 that she can access.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-application]]
+* [[#req-client-constrained]]
+* [[#req-collection-read]]
+* [[#req-collection-write]]
+* [[#req-inheritance-change]]
+* [[#req-inheritance-readonly]]
+
+</div>
 
 ### Application determining access privileges ### {#uc-client-determine-access-privileges}
 
@@ -925,6 +1321,15 @@ interface can disable the "Save" button in the menu. Guinan also wants to know
 if the public is granted [=read access=] on the content they are updating, and
 thus if it can be, for example, liked, bookmarked, archived by everyone.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-public]]
+* [[#req-effective-modes]]
+* [[#req-read]]
+* [[#req-write]]
+ 
+</div>
 
 ## Privacy ## {#uc-privacy}
 
@@ -939,6 +1344,14 @@ Neither Carol or Oscar would appreciate knowing that Alice is interviewing
 with both of them, so it's important neither Carol or Oscar know who else
 Alice has shared her `resume` with, despite having [=read access=] to it.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read-permissions]]
+* [[#req-read]]
+ 
+</div>
+
 ### Limiting access to other authorization conditions ### {#uc-historyofchanges}
 
 As an extension of [[#uc-whopermitted]], it is also important to Alice that
@@ -949,6 +1362,13 @@ For example, if the data Carol and Oscar saw in the resume was
 [[#conditional-filter|filtered]] to only show a certain subset of her
 background, she wouldn't want them to know that they were only seeing a
 filtered view.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-read-permissions]]
+ 
+</div>
 
 ### Minimal Credential Disclosure ### {#uc-minimalcredentials}
 
@@ -961,6 +1381,13 @@ as well as her FBI credential. The resource only requires proof of being
 over 18. Her client's credential manager should see this and select the
 credential revealing the least amount of information needed to access the
 resource.
+
+<div class="assertion">
+
+* [[#req-vc]]
+* [[#req-vc-determine]]
+ 
+</div>
 
 ### Limit information disclosure through URI ### {#uc-limituri}
 
@@ -1029,7 +1456,6 @@ scheme.
   </table>
 </figure>
 
-
 Some of the UUID resources represent collections and others various types of
 content. Collections can contain other collections as usual, but this cannot
 be deduced from the name. Only clients that are authorized can tell from the
@@ -1040,15 +1466,30 @@ The service would like to be able to use the same applications on those
 resources as it does on its public facing Solid Web site, where it uses
 humanly readable and memorable names for its resources.
 
+<div class="assertion">
+
+* [[#req-uripath]]
+ 
+</div>
+
+
+
 ## Trust ## {#uc-trust}
 
 ### Only trust certain issuers of identity ### {#uc-trustedissuers}
 
-Carol has a blog, and allows any [=authenticated agent=] (e.g. [[WEBID]],
+Carol has a blog, and allows any [=authenticated agent=] (e.g., [[WEBID]],
 [[DID]]) to comment on her blog posts.
 
 Unfortunately, anyone can setup an identity provider, so Carol would like to
 be able to recognize credentials issued from trustworthy identity providers.
+
+<div class="assertion">
+
+* [[#req-agent-identity]]
+* [[#req-trusted-identity]]
+ 
+</div>
 
 ### Block access to agents ### {#uc-blockagents}
 
@@ -1060,17 +1501,35 @@ disinformation through the annotation service. The trusted moderators of the
 service would like to be able to block bad actors from sharing content in the
 future.
 
+<div class="assertion">
+
+* [[#req-agent-identity]]
+ 
+</div>
+
 ## Validation ## {#uc-validation}
 
 Juan likes to manage his [=authorizations=] manually. Every once in a while,
 Juan makes a typo, or accidentally saves the [=authorization=] in an
 incomplete state.
 
-Juan runs into trouble on systems where the Web Access Control implementation
+Juan runs into trouble on systems where the authorization system implementation
 doesn't properly validate, most often resulting in Juan getting locked out of
 the [=resource=] and needing administrator assistance to recover.
 
 ## Capabilities ## {#uc-capabilities}
+
+### Possession of a group membership verifiable credential ### {#group-membership-vc}
+
+Omni Corp granted Acme Corp read-write access to three of their projects: A, B,
+and C. This grant allows all Acme Corp employees to have that access as long as
+they can present a membership credential issued by Acme Corp. At the time of
+the grant, Omni Corp notifies Acme Corp, detailing pertinent access details,
+including the membership credential requirement for Acme Corp employees. Acme
+Corp doesn't maintain a public list of their employees, so Omni Corp cannot
+know who is employed by Acme Corp unless that person presents a verifiable
+credential. Alice works for Acme Corp, and can now access the Omni Corp
+projects A, B, and C, using her membership credential issued by Acme Corp.
 
 ### Possession of a verifiable credential ### {#capabilities-vc}
 
@@ -1090,6 +1549,14 @@ Oscar has set permissions on `https://oscar.example/emergency` that grants
 someone in possession of a verifiable medical credential to have inherited
 [=read access=] to the contents. This gives them just enough background on his
 condition to treat him properly.
+
+<div class="assertion">
+
+* [[#req-vc]]
+* [[#req-inheritance-readonly]]
+* [[#req-vc-determine]]
+
+</div>
 
 ### Possession of a link ### {#capabilities-link}
 
@@ -1111,42 +1578,295 @@ specially generated link to access the document with [=read access=]. He sets
 it to [[#conditional-time|expire]] in three hours. Bob gives the link to Anne
 and the presentation goes off perfectly.
 
-Requirements {#requirements}
+* [[#req-vc]]
+* [[#req-read]]
+* [[#req-conditional-time]]
+
+Functional Requirements {#requirements}
 ================================================================================
 
-Issue: Populate requirements based on established use cases.
+Note: Unless otherwise specified, *allowing or limiting access* in the 
+subsequent requirements should be interpreted in the context of allowing
+or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
-## Example Category ## {#example-category}
+## Access by subject ## {#req-as}
 
-### This is an example requirement ### {#example-requirement}
+### The system shall allow access to be limited based on the [=identity=] of the [=agent=]. ### {#req-agent-identity}
 
-Assert: Related Use Cases: [[#uc-basic]]
+<div class="assertion">    
+  Related use cases: [[#uc-basic]], [[#uc-collections]]
+</div>
 
-Limitations of Legacy Web Access Control {#limitations}
-================================================================================
+### The system shall allow access to be limited based on the [=identity=] of the [=agent=], only when that identity is issued by a trusted identity provider. ### {#req-trusted-identity}
 
-[Legacy Web Access Control](https://github.com/solid/web-access-control-spec)
-does not satisfy the following use cases:
+<div class="assertion">    
+  Related use cases: [[#uc-trustedissuers]]
+</div>
 
-* [[#inheritance-adding]]
-* [[#inheritance-modifying]]
-* [[#inheritance-forcing]]
-* [[#collection-readappendwrite]]
-* [[#conditional-time]]
-* [[#conditional-tag]]
-* [[#conditional-filter]]
-* [[#conditional-control]]
-* [[#uc-applications]]
-* [[#uc-trustedissuers]]
-* [[#uc-validation]]
-* [[#capabilities-vc]]
-* [[#capabilities-link]]
+### The system shall allow access to be limited to an [=agent=] based on the [=agent's=] membership in a certain group of [=agents=]. ### {#req-agent-group}
+
+<div class="assertion">    
+  Related use cases: [[#basic-group]]
+</div>
+
+### The system shall allow access to be limited to an [=agent=] based on the client [=application=] in use by the [=agent=]. ### {#req-application}
+
+<div class="assertion">    
+  Related use cases: [[#uc-trusted-applications]]
+</div>
+
+### The system shall allow an [=agent=] to limit modes and/or conditions of access for a given client [=application=] in their use for a [=resource=] or [=collection=] that they have been granted access to. ### {#req-client-constrained}
+
+<div class="assertion">    
+  Related use cases: [[#uc-client-constraints]]
+</div>
+
+### The system shall allow access to be permitted for any unauthenticated or authenticated [=agent=]. ### {#req-public}
+
+<div class="assertion">    
+  Related use cases: [[#basic-public]]
+</div>
+    
+### The system shall allow access to be limited to any authenticated [=agent=]. ### {#req-authenticated}
+    
+<div class="assertion">    
+  Related use cases: [[#basic-authenticated]]
+</div>
+
+## Access by capability ## {#req-capabilities}
+
+### The system shall allow access to be limited to an [=agent=] based on the [=agent's=] possession of a certain verifiable credential or capability. ### {#req-vc}
+
+<div class="assertion">    
+  Related use cases: [[#capabilities-vc]], [[#capabilities-link]], [[#uc-minimalcredentials]]
+</div>
+
+### The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given [=resource=]. ### {#req-vc-determine}
+
+<div class="assertion">    
+  Related use cases: [[#capabilities-vc]], [[#uc-minimalcredentials]], [[#conditional-payment]]
+</div>
+
+## Access to resources ## {#req-resources}
+
+### The system shall allow the ability to read the access permissions associated with a certain [=resource=] to be limited. ### {#req-read-permissions}
+
+<div class="assertion">    
+  Related use cases: [[#basic-read-permissions]], [[#uc-whopermitted]], [[#uc-historyofchanges]]
+</div>
+    
+### The system shall allow the ability to change the access permissions associated with a certain [=resource=] to be limited. ### {#req-change-permissions}
+
+<div class="assertion">    
+  Related use cases: [[#basic-change-permissions]]
+</div>
+
+### The system shall provide the effective access permissions on a certain [=resource=] or [=collection=] as they relate to the [=agent=] making the request, in the request response. ### {#req-effective-modes}
+
+<div class="assertion">    
+  Related use cases: [[#uc-client-determine-access-privileges]]
+</div>
+
+### The system shall allow the ability to read a certain [=resource=] to be limited.### {#req-read}
+
+<div class="assertion">    
+  Related use cases: [[#basic-readonly]], [[#basic-write]], [[#basic-readappend]]
+</div>
+
+### The system shall allow the ability to change any of the existing contents of a certain [=resource=] to be limited.### {#req-write}
+
+<div class="assertion">    
+  Related use cases: [[#basic-write]]
+</div>
+
+### The system shall allow the ability to change existing data in a certain [=resource=] to be limited, such that only new data can be added to it.### {#req-append}
+
+<div class="assertion">    
+  Related use cases: [[#basic-appendonly]], [[#basic-readappend]]
+</div>
+
+### The system shall limit the ability to delete a certain [=resource=]. ### {#req-delete}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readcreatedelete]]
+</div>
+
+### The system shall allow for access to a [=resource=] or [=collection=] to be limited to the [=agent=] that created it. ### {#req-creator}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readcreatedelete]]
+</div>
+
+### The system shall not rely on the URI path to identity [=resources=] or [=collections=] ### {#req-uripath}
+
+<div class="assertion">    
+  Related use cases: [[#uc-limituri]]
+</div>
+
+## Access to collections ## {#req-collections}
+    
+### The system shall allow the ability to read a certain [=collection=] to be limited, exposing only the data from the [=collection=] resource itself, and a listing of its members, and excluding the contents of its members, or any metadata about them. ### {#req-collection-read}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readonly]], [[#collection-readwrite]], 
+  [[#collection-readcreate]], [[#collection-readcreatedelete]]
+</div>
+  
+### The system shall allow the ability to change data specific to a certain [=collection=] to be limited, including only the data from the [=collection=] resource itself, and excluding any additions or subtractions from its list of members. ### {#req-collection-write}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readwrite]]
+</div>
+
+### The system shall allow the ability to create a [=resource=] in a certain [=collection=] to be limited.### {#req-collection-create}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readwrite]], [[#collection-readcreate]],
+  [[#collection-readcreatedelete]], [[#collection-createonly]]
+</div>
+
+### The system shall limit the ability to delete a [=resource=] in a certain [=collection=].### {#req-collection-delete}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readcreatedelete]]
+</div>
+
+### The system shall allow for the creator of a [=resource=] in a certain [=collection=] to be automatically granted access to the created [=resource=].### {#req-collection-creator}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readcreatedelete]]
+</div>
+    
+### The system shall allow the ability to read the access permissions associated with a certain [=collection=] to be limited.### {#req-collection-read-permissions}
+
+<div class="assertion">    
+  Related use cases: [[#collection-control]], [[#uc-whopermitted]], 
+  [[#uc-historyofchanges]]
+</div>
+      
+### The system shall allow the ability to change the access permissions directly associated with a certain [=collection=] to be limited.### {#req-collection-change-permissions}
+
+<div class="assertion">    
+  Related use cases: [[#collection-control]]
+</div>
+
+## Inherited access to collection resources ## {#req-inherited}
+
+### The system shall allow for a certain [=collection=] to specify access permissions that are inherited by its members.### {#req-collection-inheritance}
+
+<div class="assertion">    
+  Related use cases: [[#uc-inheritance]]
+</div>
+
+### The system shall allow for a certain resource to be read if the [=agent=] has inherited [=read access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-readonly}
+  
+<div class="assertion">    
+  Related use cases: [[#inheritance-readonly]]
+</div>
+
+### The system shall allow for a resource to be changed if the [=agent=] has inherited [=write access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-change}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-manage]]
+</div>
+
+### The system shall allow for new data to be added to a [=resource=], without being able to change existing data in that [=resource=], if the [=agent=] has inherited [=append access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-appendonly}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-createappend]]
+</div>
+
+### The system shall allow for new resources to be added to a given [=collection=] if the [=agent=] has inherited [=create access=] from the parent [=collection=] that the given [=collection=] is a member of. ### {#req-inheritance-create}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-readcreate]]
+</div>
+
+### The system shall allow for resources to be deleted from a given [=collection=] if the [=agent=] has inherited [=delete access=] from the parent [=collection=] that the given [=collection=] is a member of. ### {#req-inheritance-delete}
+
+<div class="assertion">    
+  Related use cases: [[#collection-readcreatedelete]]
+</div>
+
+### The system shall allow for the members of a certain [=collection=] to extend or augment the permissions inherited from the parent [=collection=].### {#req-inheritance-modify}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-adding]], [[#inheritance-modifying]]
+</div>
+
+### The system shall allow for a certain [=collection=] to specify access permissions that are inherited by its members and cannot be augmented. ### {#req-inheritance-force}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-forcing]]
+</div>
+
+### The system shall allow for the default permissions of a newly created [=resource=] to be inherited from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-default-permissions}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-defaultcreated]], [[#inheritance-extended]]
+</div>
+    
+### The system shall allow for the access permissions directly associated with a certain resource to be read if the [=agent=] has inherited [=read permission access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-read-permissions}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-control]]
+</div>
+    
+### The system shall allow for the access permissions directly associated with a certain resource to be changed if the [=agent=] has inherited [=write permission access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-change-permissions}
+
+<div class="assertion">    
+  Related use cases: [[#inheritance-control]]
+</div>
+
+## Conditional access ## {#req-conditional}
+
+### The system shall allow the ability to limit access to a certain [=resource=] by a given start and/or end data and time.### {#req-conditional-time}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-time]]
+</div>
+
+### The system shall allow the ability to limit access to a certain [=resource=] by a tag associated with that resource.### {#req-conditional-tag}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-tag]]
+</div>
+    
+### The system shall allow the ability to limit access to a certain [=resource=] based on the existence of a specific relationship with another [=resource=].### {#req-conditional-relationship}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-relationship]], [[#inheritance-extended]]
+</div>
+    
+### The system shall allow access to be limited to only a subset of data in a certain [=resource=] based on supplied filter criteria.### {#req-conditional-filter}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-filter]]
+</div>
+
+### The system shall allow the [=access modes=] and/or conditions of a given access permission for a certain [=resource=] or [=collection=] to change after other specified conditions have been satisfied.### {#req-conditional-action}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-action]]
+</div>
+  
+### The system shall allow the ability to read, create, or change only those access permissions for a given [=resource=] or [=collection=] that apply to a specified group of [=agents=] to be limited.### {#req-conditional-control}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-control]]
+</div>
+
+### The system shall allow the ability to read, create, or change access permissions for [=resources=] associated with a particular tag to be limited.### {#req-conditional-control-tag}
+
+<div class="assertion">    
+  Related use cases: [[#conditional-control]]
+</div>
 
 Definitions {#definitions}
 ================================================================================
 
-All definitions as stated below should be considered in the context of Web
-Access Control, whether explicitly stated or not.
+All definitions as stated below should be considered in the context of 
+an authorization system in Solid, whether explicitly stated or not.
 
 An <dfn>agent</dfn> is a distinct individual, group, organization, or piece of
 software with an [=identity=] that can be strongly authenticated.
@@ -1193,18 +1913,37 @@ An <dfn>access mode</dfn> denotes a class of operations that an [=agent=]
 and/or [=application=] can perform on one or more [=resources=].
 
 <dfn>Read access</dfn> is an [=access mode=] that allows [=agents=] and/or
-[=applications=] the ability to read, but not modify a [=resources=].
+[=applications=] the ability to read, but not modify a [=resource=]. When
+the [=resource=] is a [=collection=], this includes access to the list
+of [=resources=] in that [=collection=], but does not include access to
+their contents, or any metadata about them.
 
 <dfn>Write access</dfn> is an [=access mode=] that allows [=agents=] and/or
-[=applications=] the ability to create, update, or delete a [=resource=].
+[=applications=] the ability to modify the contents of a [=resource=]. When
+the resource is a [=collection=], the contents of the [=collection=] resource
+itself can be modified, but [=create access=] and [=delete access=] are
+required to create or delete [=resources=] from the [=collection=].
 
 <dfn>Append access</dfn> is an [=access mode=] that allows [=agents=] and/or
-[=applications=] to add data to a resource, but not modify any data that
-already exists.
+[=applications=] to add data to the contents of a resource, but not modify 
+any of the existing contents. When the resource is a [=collection=], the 
+contents of the [=collection=] resource
+itself can be added to, but [=create access=] is required to add new 
+[=resources=] to the [=collection=].
 
-<dfn>Control access</dfn> is an [=access mode=] that allows [=agents=] and/or
-[=applications=] to view and modify [=authorizations=] associated with a
-[=resource=].
+<dfn>Create access</dfn> is an [=access mode=] that allows [=agents=] and/or
+[=applications=] to add new [=resources=] to a given [=collection=].
+
+<dfn>Delete access</dfn> is an [=access mode=] that allows [=agents=] and/or
+[=applications=] to delete a [=resource=]. If the [=resource=] is a 
+[=collection=], it includes the ability to delete [=resources=] in that
+collection.
+
+<dfn>Read permission access</dfn> is an [=access mode=] that allows [=agents=] and/or
+[=applications=] to view [=authorizations=] associated with a [=resource=].
+
+<dfn>Write permission access</dfn> is an [=access mode=] that allows [=agents=] and/or
+[=applications=] to modify [=authorizations=] associated with a [=resource=].
 
 <pre class="biblio">
 {
