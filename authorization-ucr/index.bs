@@ -1105,6 +1105,12 @@ This ensures that the senior research team members will be able to read
 measurements referenced by `/reports/report-1`, or any references added to it
 later, but no others.
 
+There may be different ways to describe the relationships which propagate access rules, for example:
+
+* Relationships may be `direct` or `indirect`, e.g., `report-1` references `measurement-2`, which in turn references `instrument-3`.
+* Relationships may be `forward` or `inverse`, e.g., `slide-4` references `report-1`, so the permissions associated with `report-1` also apply to `slide-4`.
+* Relationships may be asserted in the `referring` document, the `referenced` document, or some third document, e.g., a document other than `report-1` which contains the relationship linking `report-1` to `measurement-2`.
+
 <div class="assertion">
 
 * [[#req-agent-group]]

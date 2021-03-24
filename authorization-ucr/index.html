@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version b94c7e755, updated Fri Feb 19 16:28:59 2021 -0800" name="generator">
   <link href="https://solid.github.io/authorization-panel/authorization-ucr/" rel="canonical">
-  <meta content="e0f75aa5132745b903ce6be965cb0526ce6f9f54" name="document-revision">
+  <meta content="5d6117593b23a229d8eca4afeda5dc7b6d783d46" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -1468,6 +1468,15 @@ access to be permitted.</p>
    <p>This ensures that the senior research team members will be able to read
 measurements referenced by <code>/reports/report-1</code>, or any references added to it
 later, but no others.</p>
+   <p>There may be different ways to describe the relationships which propagate access rules, for example:</p>
+   <ul>
+    <li data-md>
+     <p>Relationships may be <code>direct</code> or <code>indirect</code>, e.g., <code>report-1</code> references <code>measurement-2</code>, which in turn references <code>instrument-3</code>.</p>
+    <li data-md>
+     <p>Relationships may be <code>forward</code> or <code>inverse</code>, e.g., <code>slide-4</code> references <code>report-1</code>, so the permissions associated with <code>report-1</code> also apply to <code>slide-4</code>.</p>
+    <li data-md>
+     <p>Relationships may be asserted in the <code>referring</code> document, the <code>referenced</code> document, or some third document, e.g., a document other than <code>report-1</code> which contains the relationship linking <code>report-1</code> to <code>measurement-2</code>.</p>
+   </ul>
    <div class="assertion">
     <ul>
      <li data-md>
