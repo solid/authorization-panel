@@ -1108,7 +1108,7 @@ This ensures that the senior research team members will be able to read
 measurements referenced by `/reports/report-1`, or any references added to it
 later, but no others.
 
-Three axes describe the relationships which propagate access rules:
+Three axes may describe the relationships which propagate access rules:
 
 1. Relationships may be `direct` or `indirect`, e.g., `report-1` references `measurement-2`, which in turn references `instrument-3`.
 2. Relationships may be `forward` or `inverse`, e.g., `slide-4` references `report-1`, so the permissions associated with `report-1` also apply to `slide-4`.
