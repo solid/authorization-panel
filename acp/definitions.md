@@ -56,9 +56,9 @@
     *   _acp:apply_: Specifies zero or more [Access Policies](#access-policy) that determine access to R.
     *   _acp:applyProtected_: (Post GA) Specifies zero or more [Access Policies](#access-policy) that determine access to R. These [Access Policies](#access-policy) can only be removed from the ACR by an [agent](#agent) who has acp:Write access to the ACR where the AP was originally added. If an AP is added directly to an ACR then _acp:apply_ and _acp:applyProtected_ have the same semantics. However if an AP is propagated from an ACR higher in the tree then an [Agent](#agent) could only remove the AP if they had acp:Write access to the ACR higher in the tree where the AP was originally added and subsequently propagated from.  
     *   _acp:applyLocked_: (Post GA) Specifies zero or more [Access Policies](#access-policy) that determine access to R. These [Access Policies](#access-policy) can only be removed from the ACR by an [agent](#agent) who has acp:Write access to the root ‘/’ of the Pod.
-    *   acp:applyMembers: Specifies zero or more [Access Policies](#access-policy) that are propagated to the [ACR](#access-control-resource) of the children of R as the _acp:apply_ and acp:applyMembers predicates when the children are created or when an [Access Policy](#access-control) is added to the ACR.
-    *   _acp:applyMembersProtected_:(Post GA) Specifies zero or more [Access Policies](#access-policy) that are propagated to the [ACR](#access-control-resource) of the children of R as the _acp:applyProtected_ and acp:applyMembersProtected predicates when the children are created or when an [Access Policy](#access-control) is added to the ACR. These [Access Policies](#access-policy) can only be removed from the ACR  by an [agent](#agent) who has acp:Write access to the ACR where the AP was originally added.
-    *   _acp:applyMembersLocked_:(Post GA) Specifies zero or more [Access Policies](#access-policy) that are propagated to the [ACR](#access-control-resource) of the children of R as the _acp:applyLocked_ and acp:applyMembersLocked predicates when the children are created or when an [Access Policy](#access-control) is added to the ACR. These [Access Policies](#access-policy) can only be removed from the ACR by an agent who has acp:Write access to the root ‘/’ of the Pod.
+    *   _acp:applyMembers_: Specifies zero or more [Access Policies](#access-policy) that are propagated to the [ACR](#access-control-resource) of the children of R as the _acp:apply_ and _acp:applyMembers_ predicates when the children are created or when an [Access Policy](#access-control) is added to the ACR.
+    *   _acp:applyMembersProtected_: (Post GA) Specifies zero or more [Access Policies](#access-policy) that are propagated to the [ACR](#access-control-resource) of the children of R as the _acp:applyProtected_ and _acp:applyMembersProtected_ predicates when the children are created or when an [Access Policy](#access-control) is added to the ACR. These [Access Policies](#access-policy) can only be removed from the ACR  by an [agent](#agent) who has acp:Write access to the ACR where the AP was originally added.
+    *   _acp:applyMembersLocked_:(Post GA) Specifies zero or more [Access Policies](#access-policy) that are propagated to the [ACR](#access-control-resource) of the children of R as the _acp:applyLocked_ and _acp:applyMembersLocked_ predicates when the children are created or when an [Access Policy](#access-control) is added to the ACR. These [Access Policies](#access-policy) can only be removed from the ACR by an agent who has acp:Write access to the root ‘/’ of the Pod.
 
 ![alt_text](diagrams/ac-policies.svg "image_tooltip")
 
@@ -132,9 +132,9 @@ Access Modes describe a type of access to resources.
 *   The Pod Owner MUST be a [WebID](#webid).
 *   The Pod Owner metadata MUST be managed by the Solid Server.
 *   The Pod Owner MUST always have Read and Write access to all [Access Control Resources](#access-control-resource) (ACR) i.e. it is not possible to remove Read or Write access from a Pod Owner from ACRs.
-*   The Pod Owner WebID is returned as a Link header in response to a GET or HEAD request on a resource 
+*   The Pod Owner WebID is returned as a Link header in response to a GET or HEAD request on a resource:
     *   Link: &lt;[https://bob.pod/profile/card#me](https://bob.pod/profile/card#me)>; rel="http://www.w3.org/ns/solid/acp#PodOwner"
 *   The acp:PodOwner link header is returned if the [Agent](#agent) has acp:Read access to the Resource and:
-    *   the _acp:accessPodOwner_ predicate does not exist in the root [Access Control Resource](#access-control-resource) or
+    *   the _acp:accessPodOwner_ predicate does not exist in the root [Access Control Resource](#access-control-resource); or,
     *   the _acp:accessPodOwner_ predicate exists in the root [Access Control Resource](#access-control-resource) and provides the [Agent](#agent) with Read access.
-*   A Solid Server MUST allow Pod Ownership to be transferred to a different [agent](#agent) (Post GA)
+*   A Solid Server MUST allow Pod Ownership to be transferred to a different [agent](#agent) (Post GA).

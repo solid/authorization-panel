@@ -14,7 +14,7 @@ The Access Control Policy [vocabulary](https://github.com/inrupt/access-control-
 
 ## Server Responsibilities
 
-In the text below acp is defined as:
+In the text below, acp is defined as:
 
 ```rdf
 prefix acp: <http://w3.org/ns/solid/acp#>
@@ -36,8 +36,8 @@ prefix acp: <http://w3.org/ns/solid/acp#>
 
 ![alt_text](diagrams/propagate-container.svg  "image_tooltip")
 
-5. When an [Access Policy](definitions.md#access-policy) is added to an [Access Control](definitions.md#access-control) in an [ACR](definitions.md#access-control-resource) for a container, with any of the predicates, _applyMembers_, applyMembersProtected or _applyMembersLocked_, the server is responsible for propagating that [Access Policy](definitions.md#access-policy) to all the children of the container.
-6. When an [Access Policy](definitions.md#access-policy) with any of the predicates, _applyMembers_, applyMembersProtected or _applyMembersLocked_, is removed from an [Access Control](definitions.md#access-control) in an [ACR](definitions.md#access-control-resource) for a container, the server is responsible for removing that [Access Policy](definitions.md#access-policy) from all the children of the container.
+5. When an [Access Policy](definitions.md#access-policy) is added to an [Access Control](definitions.md#access-control) in an [ACR](definitions.md#access-control-resource) for a container, with any of the predicates, _applyMembers_, _applyMembersProtected_ or _applyMembersLocked_, the server is responsible for propagating that [Access Policy](definitions.md#access-policy) to all the children of the container.
+6. When an [Access Policy](definitions.md#access-policy) with any of the predicates, _applyMembers_, _applyMembersProtected_ or _applyMembersLocked_, is removed from an [Access Control](definitions.md#access-control) in an [ACR](definitions.md#access-control-resource) for a container, the server is responsible for removing that [Access Policy](definitions.md#access-policy) from all the children of the container.
 7. An [Access Policy](definitions.md#access-policy) applied with the _applyMembersLocked_ or _applyLocked_ predicate can only be removed by an [Agent](definitions.md#agent) who has acp:Write access to the ACR for the root of the Pod.
 8. An [Access Policy](definitions.md#access-policy) applied with the _applyMembersProtected_ or _applyProtected_ predicate can only be removed by an [Agent](definitions.md#agent) who has acp:Write access to the ACR for the Container where the [Access Policy](definitions.md#access-policy) was first applied. 
 9. When an [Access Policy](definitions.md#access-policy) is propagated via the _applyMembersProtected_ predicate, the server is responsible for storing a reference to the ACR where the [Access Policy](definitions.md#access-policy) was originally propagated from. This reference is used by the server to determine whether an [Agent](definitions.md#agent) has the relevant access to remove the [Access Policy](definitions.md#access-policy). Note if the ability to move resources was ever implemented then the _applyMembersProtected_ predicate would need to be re-examined.
