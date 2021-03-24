@@ -1111,7 +1111,7 @@ later, but no others.
 Three axes describe the relationships which propagate access rules:
 
 1. Relationships may be `direct` or `indirect`, e.g., `report-1` references `measurement-2`, which in turn references `instrument-3`.
-2. Relationships may be `forward` or `inverse`, e.g., `slides-4` references `report-1`, so the permissions associated with `report-1` also apply to `slides-4`.
+2. Relationships may be `forward` or `inverse`, e.g., `slide-4` references `report-1`, so the permissions associated with `report-1` also apply to `slide-4`.
 3. Relationships may be asserted in the `referring` document, the `referenced` document, or some third document, e.g., a document other than `report-1` which contains the relationship linking `report-1` to `measurement-2`.
 
 <div class="assertion">
