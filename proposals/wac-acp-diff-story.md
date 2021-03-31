@@ -1,6 +1,6 @@
 # ACP Compared to Web Access Control
 
-This document is intended to reflect the following authoritative-ish definitions:
+This document is intended to reflect the following semi-authoritative (strongly suggestive) definitions:
 - [W3C wiki](http://www.w3.org/wiki/WebAccessControl)
 - [solid/specification](http://github.com/solid/specification)
 - [sold/web-access-control](http://github.com/solid/solid-spec)
