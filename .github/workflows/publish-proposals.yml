@@ -4,7 +4,7 @@ name: publish proposals
 on:
   push:
     # only concerned with changes in the master branch
-    branches: [ master ]
+    branches: [ main ]
     # only invoke when a bikeshed document is updated
     # paths: [ '*.bs' ]
 
