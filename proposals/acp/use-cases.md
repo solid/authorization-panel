@@ -1,27 +1,27 @@
 # 2. Use Cases
 
-The use cases are defined in [Use Cases and Requirements for Web Access Control](https://solid.github.io/authorization-panel/wac-ucr/). 
+The use cases are defined in [Use Cases and Requirements for Web Access Change](https://solid.github.io/authorization-panel/wac-ucr/). 
 
 For each use case, the following will be provided:
 
 *   A diagram of the [Agents](definitions.md#agent), Pods and resources.
 *   A link to the specific use case.
-*   The appropriate access control statements in [Turtle](https://www.w3.org/TR/turtle/).
+*   The appropriate access change statements in [Turtle](https://www.w3.org/TR/turtle/).
 *   An examination of the use case.
 
 ## 2.1 Basic Resource Access
 
 ![alt_text](diagrams/2.1.svg "image_tooltip")
 
-### [2.1.1 Control Access](https://solid.github.io/authorization-panel/wac-ucr/#basic-control)
+### [2.1.1 Change Access](https://solid.github.io/authorization-panel/wac-ucr/#basic-change)
 
-_Alice asks Bob to help make her resume more presentable. Alice must give Bob permission to do this, because her resume is not a public resource, and as the[ resource controller](https://solid.github.io/authorization-panel/wac-ucr/#resource-controller) Alice is the only one who can manage permissions for it._
+_Alice asks Bob to help make her resume more presentable. Alice must give Bob permission to do this, because her resume is not a public resource, and as the[ resource changeler](https://solid.github.io/authorization-panel/wac-ucr/#resource-changeler) Alice is the only one who can manage permissions for it._
 
-By default, the WebID used to provision a Pod becomes the [Pod Owner](definitions.md#pod-owner). The Pod Owner always has _acp:Read_ and _acp:Write_ access to all [Access Control Resources](definitions.md#access-control-resource) and therefore has complete control over the entire Pod.
+By default, the WebID used to provision a Pod becomes the [Pod Owner](definitions.md#pod-owner). The Pod Owner always has _acp:Read_ and _acp:Write_ access to all [Access Change Resources](definitions.md#access-change-resource) and therefore has complete change over the entire Pod.
 
 When a Pod is first provisioned, only the Pod Owner has access and they must then actively decide to give any other WebID access to resources.
 
-If a Pod has no policies defined, the Pod Owner can create policies and rules in the ACR for the root / container and use those policies to apply access control to the root container. 
+If a Pod has no policies defined, the Pod Owner can create policies and rules in the ACR for the root / container and use those policies to apply access change to the root container. 
 
 Create a ‘policies’ container.
 
@@ -57,10 +57,10 @@ Content-Type: text/turtle
   acp:allow acp:Write, acp:Read ;
   acp:allOf <#editorFriends> .
 
-<#podControl>
+<#podChange>
   a acp:AccessPolicy ;
   acp:allow acp:Write, acp:Read ;
-  acp:allOf <#accessControllers> .
+  acp:allOf <#accessChangelers> .
 
 # Rules
 
@@ -68,7 +68,7 @@ Content-Type: text/turtle
   a acp:Rule ;
   acp:agent <https://bob.pod/profile/card#me> .
 
-<#accessControllers>
+<#accessChangelers>
   a acp:Rule ;
   acp:agent <https://alice.pod/profile/card#me> .
 ```
@@ -77,7 +77,7 @@ HTTP/1.1 201 Created
 Location: /policies/personal
 ```
 
-Apply the podControl [Access Policy](definitions.md#access-policy) to the root of the Pod and all its current and future children.
+Apply the podChange [Access Policy](definitions.md#access-policy) to the root of the Pod and all its current and future children.
 
 ```HTTP
 PATCH /?ext=acp HTTP/1.1
@@ -90,13 +90,13 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <>
-  acp:access :podControl ;
-  acp:accessMembers :podControl .
+  acp:access :podChange ;
+  acp:accessMembers :podChange .
 
 <#myPodAccess>
-  a acp:AccessControl ;
-  acp:applyConstant :podControl ;
-  acp:applyMembersConstant :podControl .
+  a acp:AccessChange ;
+  acp:applyConstant :podChange ;
+  acp:applyMembersConstant :podChange .
 }
 ```
 ```HTTP
@@ -123,7 +123,7 @@ I hope that Bob can help me because he is great at this type of thing and I trus
 HTTP/1.1 201 Created
 ```
 
-Let’s see what the IRI for the [Access Control Resource](definitions.md#access-control-resource) for /resume is.
+Let’s see what the IRI for the [Access Change Resource](definitions.md#access-change-resource) for /resume is.
 
 ```HTTP
 HEAD /resume HTTP/1.1
@@ -131,7 +131,7 @@ HOST: alice.pod
 ```
 ```HTTP
 HTTP/1.1 200 OK
-Link: <https://alice.pod/resume?ext=acp>; rel="http://www.w3.org/ns/solid/acp#accessControl"
+Link: <https://alice.pod/resume?ext=acp>; rel="http://www.w3.org/ns/solid/acp#accessChange"
 ```
 
 Now Alice gives Bob access to edit her resume. 
@@ -147,7 +147,7 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#resumeAssistance>
-  a acp:AccessControl ;
+  a acp:AccessChange ;
   acp:apply :personalTrusted .
 }
 ```
@@ -200,7 +200,7 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#resumeAssistance>
-  a acp:AccessControl ;
+  a acp:AccessChange ;
   acp:apply :commentsOnly .
 }
 ```
@@ -228,7 +228,7 @@ HTTP/1.1 204 No Content
 
 ### [2.1.3.2. Danielle stores their own recommendation](https://solid.github.io/authorization-panel/wac-ucr/#basic-readappend-multi-storage)
 
-_Danielle agrees to give Alice a personal reference, which Alice will link to in the reference section of her resume. Alice gives Danielle read access to resume for context, and append access so that she can add a link to the recommendation that she creates and hosts on her own resource server at https://danielle.example/recommendation. Danielle is the resource controller for that resource and gives it public read access._
+_Danielle agrees to give Alice a personal reference, which Alice will link to in the reference section of her resume. Alice gives Danielle read access to resume for context, and append access so that she can add a link to the recommendation that she creates and hosts on her own resource server at https://danielle.example/recommendation. Danielle is the resource changeler for that resource and gives it public read access._
 
 Create the public policy to allow sharing of a recommendation.
 
@@ -277,7 +277,7 @@ and I would happily work with Alice again in the future.
 HTTP/1.1 201 Created
 ```
 
-Let’s see what the IRI for the [Access Control Resource](definitions.md#access-control-resource) for /recommendation is.
+Let’s see what the IRI for the [Access Change Resource](definitions.md#access-change-resource) for /recommendation is.
 
 ```HTTP
 HEAD /recommendation HTTP/1.1
@@ -285,7 +285,7 @@ HOST: danielle.pod
 ```
 ```HTTP
 HTTP/1.1 200 OK
-Link: <https://danielle.pod/recommendation?ext=acp>; rel="http://www.w3.org/ns/solid/acp#accessControl"
+Link: <https://danielle.pod/recommendation?ext=acp>; rel="http://www.w3.org/ns/solid/acp#accessChange"
 ```
 
 Give public access to the recommendation.
@@ -301,7 +301,7 @@ prefix : <https://danielle.pod/mypolicies#>
 
 INSERT DATA { 
 <#open>
-  a acp:AccessControl ;
+  a acp:AccessChange ;
   acp:apply :publicAccess .
 }
 ```
@@ -350,8 +350,8 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a acp:AccessControl ;
-  acp:apply :podControl .
+  a acp:AccessChange ;
+  acp:apply :podChange .
 }
 ```
 ```HTTP
@@ -410,7 +410,7 @@ prefix : <https://alice.pod/policies/personal#>
 
 INSERT DATA { 
 <#access>
-  a acp:AccessControl ;
+  a acp:AccessChange ;
   acp:apply :recommend .
 }
 ```
@@ -538,8 +538,8 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a acp:AccessControl ;
-  acp:apply :podControl .
+  a acp:AccessChange ;
+  acp:apply :podChange .
 }
 ```
 ```HTTP
@@ -709,7 +709,7 @@ prefix : <https://alice.pod/workshops/policies#>
 
 INSERT DATA { 
 <#access>
-  a acp:AccessControl ;
+  a acp:AccessChange ;
   acp:apply :openMaterial ;
   acp:applyMembers :openMaterial .
 }
@@ -729,7 +729,7 @@ prefix : <https://alice.pod/workshops/policies#>
 
 INSERT DATA { 
 <#access>
-  a acp:AccessControl ;
+  a acp:AccessChange ;
   acp:apply :openInteraction .
 }
 ```
@@ -770,8 +770,8 @@ prefix : <https://alice.pod/personal#>
 
 INSERT DATA { 
 <#private>
-  a acp:AccessControl ;
-  acp:apply :podControl .
+  a acp:AccessChange ;
+  acp:apply :podChange .
 }
 ```
 ```HTTP
@@ -824,7 +824,7 @@ prefix : <https://alice.pod/workshops/workshop1/policy#>
 
 INSERT DATA { 
 <#access>
-  a acp:AccessControl ;
+  a acp:AccessChange ;
   acp:apply :attendeesAccess ;
   acp:applyMembers :attendeesAccess .
 }
@@ -919,7 +919,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-Notice that the _acp:apply_ predicate was used to apply the policy to the portfolio collection. If we wanted to apply the policy to the contents of the collection too, we would have used the _acp:applyMembers_ predicate. We have also reused an existing _acp:AccessControl_ in the ACR called _&lt;#access>_.
+Notice that the _acp:apply_ predicate was used to apply the policy to the portfolio collection. If we wanted to apply the policy to the contents of the collection too, we would have used the _acp:applyMembers_ predicate. We have also reused an existing _acp:AccessChange_ in the ACR called _&lt;#access>_.
 
 ### 2.2.2 Read-write access to a collection
 
@@ -974,8 +974,8 @@ INSERT DATA {
   a acp:Rule ;
   acp:agent <https://milo.pod/profile/card#me> .
 
-<#miloControl>
-  a acp:AccessControl ;
+<#miloChange>
+  a acp:AccessChange ;
   acp:apply <#MiloUpdate> .
 }
 ```
@@ -1012,8 +1012,8 @@ INSERT DATA {
   a acp:Rule ;
   acp:agent <https://bob.pod/profile/card#me> .
 
-<#bobControl>
-  a acp:AccessControl ;
+<#bobChange>
+  a acp:AccessChange ;
   acp:apply <#bobAdditions> .
 }
 ```
@@ -1021,7 +1021,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-Note that this access control will allow Bob to add new items to the project1 container but once added, he will not be able to read or write those items. If we wanted Bob to be able to read the resources he added to the container we would need to add the following.
+Note that this access change will allow Bob to add new items to the project1 container but once added, he will not be able to read or write those items. If we wanted Bob to be able to read the resources he added to the container we would need to add the following.
 
 ```HTTP
 PATCH /portfolio/project1/?ext=acp HTTP/1.1
@@ -1042,7 +1042,7 @@ INSERT DATA {
   a acp:Rule ;
   acp:agent acp:CreatorAgent .
 
-<#bobControl>
+<#bobChange>
   acp:applyMembers <#creatorCanRead> .
 }
 ```
@@ -1086,8 +1086,8 @@ INSERT DATA {
   a acp:Rule ;
   acp:agent <https://danielle.pod/profile/card#me> .
 
-<#colleagueControl>
-  a acp:AccessControl ;
+<#colleagueChange>
+  a acp:AccessChange ;
   acp:apply <#colleagueComments> ;
   acp:apply <#colleagueReads> ;
   acp:applyMembers <#colleagueReads> .
@@ -1118,7 +1118,7 @@ INSERT DATA {
   a acp:Rule ;
   acp:agent acp:CreatorAgent .
 
-<#colleagueControl>
+<#colleagueChange>
   acp:applyMembers <#colleagueEditComments> .
 }
 ```
@@ -1148,7 +1148,7 @@ INSERT DATA {
   acp:allow acp:Append ;
   acp:allOf :jobContacts .
 
-<#oppControl>
+<#oppChange>
   acp:apply <#jobOpportunities> .
 }
 ```
@@ -1156,16 +1156,16 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-This allows the members of the ‘jobContacts’ rule (which we created for a [previous use case](#2-2-1-read-only-access-to-a-collection)) to create resources in the opportunities container. However they will not be able to list the contents of the container or read any of the resources in the container. If we wanted to allow them to read the opportunities they created themselves, we could simply use the _acp:CreatorAgent_ class in a rule as we did in previous use cases and use the _applyMembers_ predicate to add a policy to the oppControl [Access Control](definitions.md#access-control).
+This allows the members of the ‘jobContacts’ rule (which we created for a [previous use case](#2-2-1-read-only-access-to-a-collection)) to create resources in the opportunities container. However they will not be able to list the contents of the container or read any of the resources in the container. If we wanted to allow them to read the opportunities they created themselves, we could simply use the _acp:CreatorAgent_ class in a rule as we did in previous use cases and use the _applyMembers_ predicate to add a policy to the oppChange [Access Change](definitions.md#access-change).
 
 
-### 2.2.6 Control access to a collection
+### 2.2.6 Change access to a collection
 
 _Bob reminds Alice that some of the other people who worked on project1 may also have materials they can add to the portfolio, but he needs to look up their information._
 
-_Alice trusts Bob with the contents of the project1 collection, since it’s the output of their shared work. She gives him [control access](https://solid.github.io/authorization-panel/wac-ucr/#control-access) to project1 so that he can help her invite other colleagues from the past to add [resources](https://solid.github.io/authorization-panel/wac-ucr/#resource) to it._
+_Alice trusts Bob with the contents of the project1 collection, since it’s the output of their shared work. She gives him [change access](https://solid.github.io/authorization-panel/wac-ucr/#change-access) to project1 so that he can help her invite other colleagues from the past to add [resources](https://solid.github.io/authorization-panel/wac-ucr/#resource) to it._
 
-Using ACP, we simply need to give Bob read and write access to the [Access Control Resource](definitions.md#access-control-resource) for the project1 container.
+Using ACP, we simply need to give Bob read and write access to the [Access Change Resource](definitions.md#access-change-resource) for the project1 container.
 
 ```HTTP
 PATCH /portfolio/project1/?ext=acp HTTP/1.1
@@ -1177,9 +1177,9 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 
 INSERT DATA { 
 
-<> acp:access <#bobAsController> .
+<> acp:access <#bobAsChangeler> .
 
-<#bobAsController>
+<#bobAsChangeler>
   a acp:AccessPolicy ;
   acp:allow acp:Read, acp:Write ;
   acp:allOf <#bob> .

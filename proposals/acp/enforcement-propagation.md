@@ -1,6 +1,6 @@
 # 4. Enforcement & Propagation
 
-## Access Control Enforcement
+## Access Change Enforcement
 
 ### HTTP Method to Access Mode
 
@@ -83,7 +83,7 @@ The table below maps HTTP methods to the required _acp:AccessMode_.
 
 ### Access Enforcement
 
-When an [Agent](definitions.md#agent) A attempts to access a Resource R using HTTP method M, the following algorithm is used to enforce access control.
+When an [Agent](definitions.md#agent) A attempts to access a Resource R using HTTP method M, the following algorithm is used to enforce access change.
 
 [Access Enforcement](access-enforcement.md)
 
@@ -91,7 +91,7 @@ When an [Agent](definitions.md#agent) A attempts to access a Resource R using HT
 
 [Policy Propagation](policy-propagation.md)
 
-## Access Control Visibility
+## Access Change Visibility
 
 ### Visibility of access to a resource
 
@@ -149,7 +149,7 @@ If the [Agent](definitions.md#agent) does not have  [http://www.w3.org/ns/solid/
 
 Note that for both a HEAD request and a GET request the server may be configured to respond with a HTTP status code 404 if the existence of the resource should not be revealed to a client. 
 
-### Visibility of access to Access Control Resource
+### Visibility of access to Access Change Resource
 
 An Agent has Read access to the ACR for a resource if they have Read access according to the policies specified by any of the following predicates:
 
@@ -167,15 +167,15 @@ An Agent has Write access to the ACR for a resource if they have Write access ac
     * Policies can be added using _acp:applyLocked_ and _acp:applyMembersLocked_
     * Statements using _acp:applyLocked_ and _acp:applyMembersLocked_ can only be removed if an agent has write access via _acp:access_ to the ACR for the root '/' container. 
 
-Note that the Append mode is not relevant for access to [Access Control Resources](definitions.md#access-control-resource). 
+Note that the Append mode is not relevant for access to [Access Change Resources](definitions.md#access-change-resource). 
 
 A successful GET or HEAD request on an ACR will contain the following link header
 
 ```HTTP
-Link : <http://www.w3.org/ns/solid/acp#AccessControlResource>; rel="type"
+Link : <http://www.w3.org/ns/solid/acp#AccessChangeResource>; rel="type"
 ```
 
-## ACR Access Control Enforcement
+## ACR Access Change Enforcement
 
 
 ### HTTP Method to ACR Access Mode

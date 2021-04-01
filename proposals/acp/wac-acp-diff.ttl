@@ -6,14 +6,14 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 # Obvious
-acp:accessControl owl:equivalentProperty acl:accessControl .
+acp:accessChange owl:equivalentProperty acl:accessChange .
 
 # Obvious equivalences for Modes
 acp:AccessMode owl:equivalentClass acl:AccessMode .
 acp:Append owl:equivalentClass acl:Append .
 acp:Write  owl:equivalentClass acl:Write .
 acp:Read   owl:equivalentClass acl:Read .
-# Note: there is no equivalent to acl:Control in acp
+# Note: there is no equivalent to acl:Change in acp
 
 # this seems quite natural
 acp:allow owl:equivalentProperty acl:mode .
@@ -26,24 +26,24 @@ acp:allow owl:equivalentProperty acl:mode .
 # https://github.com/solid/authorization-panel/issues/149#issuecomment-741956016
 
 acp:access rdfs:subPropertyOf [ owl:inverseOf acl:accessTo ] . 
-acp:access rdfs:domain acp:AccessControlResource .
+acp:access rdfs:domain acp:AccessChangeResource .
 
 # if we add acp:authorizes to allow following a link from the ACR to the Policy
 
 acp:authorizes a rdf:Property;
-   rdfs:domain acp:AccessControlResource;
+   rdfs:domain acp:AccessChangeResource;
    rdfs:range acp:Policy;
    rdfs:comment "this ACR authorizes the linked to Policy for ldp:Resources that have a Link relation to it."@en .
 
 # with acp:authorizes we have the following implication (see later comment on issue 149)
 
-[ owl:propertyChainAxiom ( acp:accessControl acp:authorizes ) ]  rdfs:subPropertyOf [ owl:inverseOf acl:accessTo ] .
+[ owl:propertyChainAxiom ( acp:accessChange acp:authorizes ) ]  rdfs:subPropertyOf [ owl:inverseOf acl:accessTo ] .
 
 # this should force the following 
 acp:AccessPolicy owl:equivalentClass acl:Authorization .
 
 # also tells us that  
-acl:accessControl rdfs:range acp:AccessControlResource .
+acl:accessChange rdfs:range acp:AccessChangeResource .
 
 # We relate acl:agent and acl:agentClass in the obvious way
 # see https://github.com/solid/authorization-panel/issues/146

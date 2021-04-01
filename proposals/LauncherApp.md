@@ -1,11 +1,11 @@
 # Launcher App
 
-The Launcher App is the most trusted App in the user's App ecosystem. When Alice installs the Launcher App on her server, it allows her to add Apps to a preferred App list, keeps keys for each App, and signs tokens or [HTTP Sig headers](https://github.com/solid/authentication-panel/blob/master/HttpSignature.md) for any App launched by the Launcher App in order to allow it to authenticate for a particular resource. As such it is at the center of Access Control and Authentication Logic in the browser.
+The Launcher App is the most trusted App in the user's App ecosystem. When Alice installs the Launcher App on her server, it allows her to add Apps to a preferred App list, keeps keys for each App, and signs tokens or [HTTP Sig headers](https://github.com/solid/authentication-panel/blob/master/HttpSignature.md) for any App launched by the Launcher App in order to allow it to authenticate for a particular resource. As such it is at the center of Access Change and Authentication Logic in the browser.
 
 In more detail, the App Launcher:
   * presents the various Apps a user likes to use in a user friendly way, makes it easy for a user to add new ones, and to launch them in a seperate frame.
   * For each App the user adds, it creates an AppID Document, containing an AppId that identifies the App instance as used by a particular user.
-  * If needed it maintains the link chain from the user's WebID document to it, to allow access control rules that require users to authenticate via their App.
+  * If needed it maintains the link chain from the user's WebID document to it, to allow access change rules that require users to authenticate via their App.
   * The AppID Document keeps metadata about the App:
 	  * an icon to display to the user
      * where the source code of the App is located, by linking to an App Manifest, which should contain additional information such as who built the App, the issue database for it, etc...
@@ -13,7 +13,7 @@ In more detail, the App Launcher:
   * It creates a local resource space (an LDPC) for each App to use and sets the initial access rights to that space
   * It plays the role of the keychain for each App, by creating public/private key pairs for each App securely, publishing the public key and managing links from the user's WebID to the App instance profiles. It can also play the role of an OpenID Connect proxy.
   
-This proposal emerged out of [issue 45: User Controlled Authorization App and App Launcher](https://github.com/solid/authorization-and-access-control-panel/issues/45) 
+This proposal emerged out of [issue 45: User Changeled Authorization App and App Launcher](https://github.com/solid/authorization-and-access-change-panel/issues/45) 
 
 
 # Description
@@ -45,7 +45,7 @@ solid:manifest a rdf:Property;
    rdfs:domain solid:App;
 	rdfs:range solid:Manifest;
 	rdfs:comment """
-	   relates an App instance description in control of the user to the App Manifest, that contains links
+	   relates an App instance description in change of the user to the App Manifest, that contains links
 		to its source, owners, ...
 	""";
 ```
@@ -53,7 +53,7 @@ solid:manifest a rdf:Property;
 
 # Problems Solved
 
-The Launcher App solves the following problems [identified by the Panel](https://github.com/solid/authorization-and-access-control-panel/blob/master/meetings/2019-10-09.md), see also [updated version in HackMD](https://hackmd.io/GeD5XLyzTG6WNHsxkOxqJA).
+The Launcher App solves the following problems [identified by the Panel](https://github.com/solid/authorization-and-access-change-panel/blob/master/meetings/2019-10-09.md), see also [updated version in HackMD](https://hackmd.io/GeD5XLyzTG6WNHsxkOxqJA).
 
 ### Identifying the App Source & App Manifest
 
@@ -73,7 +73,7 @@ following triples:
 ### Constraining the App 
 
 The App launcher can keep information about desired restrictions on the app, placing those in a special file
-that can access controlled for only App Launcher visibility if needed:
+that can access changeled for only App Launcher visibility if needed:
 
 ```Turtle
 <#CalendarApp> a solid:App;
@@ -110,7 +110,7 @@ a request, create an wACL with the content
 ```	
 
 And include that, or a colletion of such files in each created acl. 
-Inclusion is useful to avoid duplication of access control rules.
+Inclusion is useful to avoid duplication of access change rules.
 
 ### Varying levels of sensitivity for resources
 
@@ -121,10 +121,10 @@ a certain type of sensitivity
 
 ## Additional Problems to be solved
 
-### Access Control Policies
+### Access Change Policies
 
 The Launcher App could be tuned for policies as to when
-to automate the access control decisions, so as to avoid
+to automate the access change decisions, so as to avoid
 overwhelming the user with pop up boxes asking for access to resources.
 This would work especially well if the Launcher App proxies all HTTP requests.
 The App Launcher would then contain a policy editor to make it easy to
@@ -140,12 +140,12 @@ an HTTP Origin, namely by using the AppId.
 # Use Cases
 
 The Launcher App addresses the following use cases from the 
-[Use Case Document](https://github.com/solid/authorization-and-access-control-panel/blob/master/UseCases.md).
+[Use Case Document](https://github.com/solid/authorization-and-access-change-panel/blob/master/UseCases.md).
 We limit ourselves here to three use cases for the moment.
 
 ### Alice's Admin App
 
-> Alice uses https://admin.example to control her pod
+> Alice uses https://admin.example to change her pod
 Admin wants to be able to read and write to all files on a user’s Pod
 
 This is the App we are calling the Launcher App. The first thing
@@ -197,17 +197,17 @@ We extend this example to a friend group, as there is no reason not to make it s
 
 After installation the Launcher/Admin App gives access to sPhoto to a subfolder structure where Alice stores her Photos. The Launcher App initially only signs requests for files in that URL space.
 
-As Alice grows confident in the quality of the App she extends the permissions by using the Launcher App to edit any photos of members of a particular group by WebID, from which it can find the spaces in which photos are located. Whenever access control is required there the sPhoto sends a request to the Launcher App, 
+As Alice grows confident in the quality of the App she extends the permissions by using the Launcher App to edit any photos of members of a particular group by WebID, from which it can find the spaces in which photos are located. Whenever access change is required there the sPhoto sends a request to the Launcher App, 
 which signs the tokens if allowed, without bothering Alice for authorization at each point.
 
-We note here that if the Launcher App could control all the web connections (as would have been possible with [Foreign Fetch](https://developers.google.com/web/updates/2016/09/foreign-fetch) this would give it a lot more control. Indeed there may be a lot to be gained by giving the Launcher App control over the RDF Quad store of all data found on the web. This would allow the sPhoto to search for any images in the database. In order to avoid leakages of information this would require functionality such as [COWL](https://www.w3.org/TR/COWL/) to be present in the browsers (see [COWL issue  80: What is the Status of COWL](https://github.com/w3c/webappsec-cowl/issues/80).
+We note here that if the Launcher App could change all the web connections (as would have been possible with [Foreign Fetch](https://developers.google.com/web/updates/2016/09/foreign-fetch) this would give it a lot more change. Indeed there may be a lot to be gained by giving the Launcher App change over the RDF Quad store of all data found on the web. This would allow the sPhoto to search for any images in the database. In order to avoid leakages of information this would require functionality such as [COWL](https://www.w3.org/TR/COWL/) to be present in the browsers (see [COWL issue  80: What is the Status of COWL](https://github.com/w3c/webappsec-cowl/issues/80).
 
 If ever Alice sPhoto edits a photo outside of the well know space and needs Write Access to an external resource, the Launcher App gives it out but not before asking Alice for permission.
 
 
 # Success Criteria
 
-The Launcher App can be evaluated against the [Success Criteria](https://github.com/solid/authorization-and-access-control-panel) identified by the panel.
+The Launcher App can be evaluated against the [Success Criteria](https://github.com/solid/authorization-and-access-change-panel) identified by the panel.
 
 
 #### The system is not abusable
@@ -240,9 +240,9 @@ Resources found by following links can also describe how and where certain chang
 
 Either the Resource Server blocks the App because it does not provide the right credentials, or the App Launcher refuses to sign because the App is requesting access to content which are in the disallowed resource space.
 
-#### It should be possible for an agent with Control access to block/allow certain apps from accessing a specific resource as any agent
+#### It should be possible for an agent with Change access to block/allow certain apps from accessing a specific resource as any agent
 
-Yes, the Launcher App (a.k.a Admin App) can do that as it controls the authentication keys for each App.
+Yes, the Launcher App (a.k.a Admin App) can do that as it changes the authentication keys for each App.
 
 #### It should be easy to allow others accessing your resources to use apps you're okay without requiring your explicit consent.
 

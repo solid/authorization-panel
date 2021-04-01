@@ -1,4 +1,4 @@
-# 2019-11-06  Authorization and Access Control Panel
+# 2019-11-06  Authorization and Access Change Panel
 
 ## Present
 
@@ -32,27 +32,27 @@
      - Justin: Yeah I think you'll need that.
  - Justin: The one thing I can commit is that next wednesday we'll have some documentation and a paper prototype for you all. It will just be a baseline that we can start working with.
 
-### [App tags #48](https://github.com/solid/authorization-and-access-control-panel/issues/48)
+### [App tags #48](https://github.com/solid/authorization-and-access-change-panel/issues/48)
  - Michael: We've discussed tags before, and in the issue I addressed a few things Jackson brought up.
      - You can now set a default tag map for an app (app tag document) if it doesn't have one that the origin is talking to. But no wildcards are allowed for the default origin
      - Tag mode: the user instead of assigning tags for an app at the origin and then it's up to the resource owner to divy up tags. Instead the resource owner might tag resources and then the user can assign tags only for specific permission modes.
  - Elf: I think that using IRIs denoting a shape seems incompatible with having some kind of regular expressions. IRIs should be opaque. I would like to understand the use cases for wildcards.
-     - Michael: The original idea of having opaque strings is borrowed from AWS's access control system. I'm imagining that if we were to use URIs as tags, you probably wouldn't wildcard on them. The organizing structure probably would be origin, path, and hash. But I also imagine that wildcarding may not be used. But, I left it in there mostly for generality.
+     - Michael: The original idea of having opaque strings is borrowed from AWS's access change system. I'm imagining that if we were to use URIs as tags, you probably wouldn't wildcard on them. The organizing structure probably would be origin, path, and hash. But I also imagine that wildcarding may not be used. But, I left it in there mostly for generality.
      - Henry: You could use regex for authorizing whole areas of the URL space. I found it quite useful because you could have acls on containers and sub-containers. So, it makes a lot of sense on the path area. There is a spec called Powder that standardizes how to do regex on urls and it has an ontology. A subclass is really just wildcarding. 
      - Michael: No one is required to use wildcarding. And one of the better uses for wildcarding is that it allows for multi-dimensional slicing in an easy way. That is potentially a powerful organizing and permission slicing capability.
-     - Elf: The tags Chat.Read, Photos.*, Books.Read all seems to be about access control which we already have. We already have some concepts represented as access mode. So maybe we can have a construct that says "conforms to this shape and has this access mode" So that would be preferable to smushing concepts together.
+     - Elf: The tags Chat.Read, Photos.*, Books.Read all seems to be about access change which we already have. We already have some concepts represented as access mode. So maybe we can have a construct that says "conforms to this shape and has this access mode" So that would be preferable to smushing concepts together.
      - Michael (from chat): later in the issue i revised how you would use tags, tags would not be like Chat.Read, but maybe Chat.Public.
 
-### [Allow apps to request permissions, and explain why #31](https://github.com/solid/authorization-and-access-control-panel/issues/31)
+### [Allow apps to request permissions, and explain why #31](https://github.com/solid/authorization-and-access-change-panel/issues/31)
 
 (Dmitri: I propose we postpone the "request permission" item till later calls. We need to settle on app identifiers and metadata before getting to them asking permission.)
 
  - Elf: apps need to have a way to access something specific. Apps need to have a way to request access to specific data. You could have a common repository of shapes so that an app knows what kind of data it's working with.
  - 
 
-#### Apps having Control Access (and Read on Contacts and Write on Notifications) vs. dedicated Sharing App
+#### Apps having Change Access (and Read on Contacts and Write on Notifications) vs. dedicated Sharing App
 
-### [Alternative Authentication Flow #49](https://github.com/solid/authorization-and-access-control-panel/issues/49)
+### [Alternative Authentication Flow #49](https://github.com/solid/authorization-and-access-change-panel/issues/49)
 
 ### Continuing Discussion of App Metadata (App Profile)
 

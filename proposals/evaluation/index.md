@@ -47,8 +47,8 @@
 | 🔸 | 🔸 | 🔸 | [3.6.3. The system shall allow the ability to limit access to a certain resource based on the existence of a specific relationship with another resource.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-relationship) |
 | 🔸 | 🔸 | 🔸 | [3.6.4. The system shall allow access to be limited to only a subset of data in a certain resource based on supplied filter criteria.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-filter) |
 | 🔸 | 🔸 | 🔸 | [3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-action) |
-| 🔸 | 🔸 | 🔸 | [3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-control) |
-| 🔸 | 🔸 | 🔸 | [3.6.7. The system shall allow the ability to read, create, or change access permissions for resources associated with a particular tag to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-control-tag) |
+| 🔸 | 🔸 | 🔸 | [3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-change) |
+| 🔸 | 🔸 | 🔸 | [3.6.7. The system shall allow the ability to read, create, or change access permissions for resources associated with a particular tag to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-change-tag) |
 
 ## Notes
 
@@ -151,6 +151,6 @@ https://github.com/solid/authorization-panel/issues/176
 
 ### [3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-action)
 
-### [3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-control)
+### [3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-change)
 
-### [3.6.7. The system shall allow the ability to read, create, or change access permissions for resources associated with a particular tag to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-control-tag)
+### [3.6.7. The system shall allow the ability to read, create, or change access permissions for resources associated with a particular tag to be limited.](https://solid.github.io/authorization-panel/authorization-ucr/#req-conditional-change-tag)

@@ -1,24 +1,24 @@
 # Introduction
 
-This document describes a proposal for access control policies as an authorization mechanism for Solid servers. The content is based on an implementation of access control policies by Inrupt. The content is not meant to be a protocol specification but rather a description of an implementation that can help inform the authorization panel on how access control policies could work in the Solid ecosystem.
+This document describes a proposal for access change policies as an authorization mechanism for Solid servers. The content is based on an implementation of access change policies by Inrupt. The content is not meant to be a protocol specification but rather a description of an implementation that can help inform the authorization panel on how access change policies could work in the Solid ecosystem.
 
-*   [**Section 1**](model.md) describes the data model, the vocabulary and the responsibilities of a Solid server implementing access control policies.
-*   [**Section 2**](use-cases.md) provides examples of using access control policies to implement the use cases specified by the Solid authorization panel.
+*   [**Section 1**](model.md) describes the data model, the vocabulary and the responsibilities of a Solid server implementing access change policies.
+*   [**Section 2**](use-cases.md) provides examples of using access change policies to implement the use cases specified by the Solid authorization panel.
 *   [**Section 3**](definitions.md) provides a definition for the terms used throughout the document. 
 *   [**Section 4**](enforcement-propagation.md) describes the runtime enforcement of access policies and the server managed propagation and deletion of access policies. 
-*   **Section 5** provides the WebIDL for the client API for access control policies. 
+*   **Section 5** provides the WebIDL for the client API for access change policies. 
 
 ## Summary
 
-Access Control Policies are a mechanism to define and enforce authorization to resources stored in a Solid Pod.
+Access Change Policies are a mechanism to define and enforce authorization to resources stored in a Solid Pod.
 
 ### Protecting Resources 
 
-*   Every resource has an associated Access Control Resource (ACR) which is managed by the server; the server is responsible for creating and deleting the ACR. The ACR specifies the access control metadata for the resource.
+*   Every resource has an associated Access Change Resource (ACR) which is managed by the server; the server is responsible for creating and deleting the ACR. The ACR specifies the access change metadata for the resource.
 
 ![A resource has a 1 to 1 mapping to an ACR](diagrams/resource-acr.svg "A resource has a 1-1 mapping to an ACR")
 
-*   Users can apply policies in an ACR to protect access to the related resource. The policies are included in one or more access control statements.
+*   Users can apply policies in an ACR to protect access to the related resource. The policies are included in one or more access change statements.
 *   If an ACR does not have a policy, then by default there is no access to the associated resource. However the Pod owner always has access to change the policies on an ACR so resources can never be unreachable by the Pod owner.
 *   Each policy specifies whether users are allowed access (Read, Write or Append) to the resource or are denied access to the resource. 
 
@@ -46,19 +46,19 @@ In the example below the **_Friends_** policy has been applied to the **_blog_**
 
 ### Using Policies 
 
-*   Every resource in a Pod has an associated Access Control Resource (ACR), which is created by the server when a resource is created. The ACR contains one or more access control statements. Access control statements specify the policies that have been applied and protect access to  the associated resource.
+*   Every resource in a Pod has an associated Access Change Resource (ACR), which is created by the server when a resource is created. The ACR contains one or more access change statements. Access change statements specify the policies that have been applied and protect access to  the associated resource.
 *   The Pod Owner always has read and write access to all ACRs.
 *   This allows the Pod Owner to apply policies to any resource.
 *   However, an ACR can also specify policies that determine access to itself.
 *   This allows the Pod Owner to grant read and/or write access to other users to an ACR. 
-*   In this way, policies can be used to control access to resources, but also to control access to ACRs. So the Pod Owner can delegate control of access for parts of the Pod to other users. 
+*   In this way, policies can be used to change access to resources, but also to change access to ACRs. So the Pod Owner can delegate change of access for parts of the Pod to other users. 
 *   Policies and rules can be defined directly in an ACR, or they can be defined in a separate resource. 
 
-Expanding on the previous example we now wish to add the **_Controller_** policy to the **_blog_** resource. But the **_Controller_** policy does not apply directly to the blog resource, instead it determines **_access_** to the Access Control Resource (ACR) associated with the **_blog_** resource. This determines who can modify the ACR and thereby decide on the access for the **_blog_** resource. 
+Expanding on the previous example we now wish to add the **_Changeler_** policy to the **_blog_** resource. But the **_Changeler_** policy does not apply directly to the blog resource, instead it determines **_access_** to the Access Change Resource (ACR) associated with the **_blog_** resource. This determines who can modify the ACR and thereby decide on the access for the **_blog_** resource. 
 
-The **_Controller_** policy gives write and read access to those who satisfy the **_Trusted_** rule. In this case that is simply Harry and Ivanna. So both Harry and Ivanna can change access to the **_blog_** resource by adding and removing policies and rules. 
+The **_Changeler_** policy gives write and read access to those who satisfy the **_Trusted_** rule. In this case that is simply Harry and Ivanna. So both Harry and Ivanna can change access to the **_blog_** resource by adding and removing policies and rules. 
 
-![The access predicate determines who can access and change an ACR](diagrams/ex-blog-controller.svg "The access predicate determines who can access and change an ACR")
+![The access predicate determines who can access and change an ACR](diagrams/ex-blog-changeler.svg "The access predicate determines who can access and change an ACR")
 
 ### Using Rules 
 
@@ -68,7 +68,7 @@ The **_Controller_** policy gives write and read access to those who satisfy the
     *   All of the rules are satisfied (the user must be in all the rules)
     *   Any of the rules are satisfied (the user must be in at least one rule)
     *   None of the rules are satisfied (the user must not be in any of the rules)
-*   Using rules the user has fine grained control over who gets the access specified by a policy.
+*   Using rules the user has fine grained change over who gets the access specified by a policy.
 
 ### Advanced policy management 
 

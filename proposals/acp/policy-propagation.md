@@ -101,7 +101,7 @@ export function patchResource(agent: Agent, resource: Resource, content: Readabl
  *        the container because those triples are server managed and cannot be
  *        manipulated directly. Even if the decision was to still require acp:write
  *        access on the container becuase it is changing, I still think it is a valid
- *        case to have acp:delete to control deletion of the resource.
+ *        case to have acp:delete to change deletion of the resource.
  */
 export function deleteResource(agent: Agent, resource: Resource, container: Container) {
   if (!isAccessAllowed(agent, resource, HTTPMethod.DELETE)) return accessError(agent);
@@ -192,7 +192,7 @@ export function patchContainer(agent: Agent, container: Container, content: Read
  *
  * When an Agent tries to delete a Container in the parent Container
  * with the DELETE HTTP method, the following algorithms are used to
- * enforce access control and policy propagation.
+ * enforce access change and policy propagation.
  *
  * There are 4 approaches available :
  *
@@ -425,14 +425,14 @@ function createContainer(pContainer: Container, iri: IRI, content: Readable) {
  * acp:applyMembersLocked     -> acp:applyLocked
  */
 function propagatePolicies(container: Container, resource: Resource) {
-  const acr = resource.getAccessControlResource();
-  const cacr = container.getAccessControlResource();
+  const acr = resource.getAccessChangeResource();
+  const cacr = container.getAccessChangeResource();
 
   propagate(cacr, cacr.getIri(), ACP.ACCESS_MEMBERS, acr, ACP.ACCESS);
   propagate(cacr, cacr.getIri(), ACP.ACCESS_MEMBERS_PROTECTED, acr, ACP.ACCESS_PROTECTED);
   propagate(cacr, cacr.getIri(), ACP.ACCESS_MEMBERS_LOCKED, acr, ACP.ACCESS_LOCKED);
 
-  cacr.getAccessControls().forEach((ac: AccessControl) => {
+  cacr.getAccessChanges().forEach((ac: AccessChange) => {
     propagate(cacr, ac.getIri(), ACP.APPLY_MEMBERS, acr, ACP.APPLY);
     propagate(cacr, ac.getIri(), ACP.APPLY_MEMBERS_PROTECTED, acr, ACP.APPLY_PROTECTED);
     propagate(cacr, ac.getIri(), ACP.APPLY_MEMBERS_LOCKED, acr, ACP.APPLY_LOCKED);
@@ -460,8 +460,8 @@ function propagatePolicies(container: Container, resource: Resource) {
  * acp:applyMembersLocked     -> acp:applyMembersLocked
  */
 function propagatePoliciesToContainer(pContainer: Container, container: Container) {
-  const pAcr = pContainer.getAccessControlResource();
-  const cAcr = container.getAccessControlResource();
+  const pAcr = pContainer.getAccessChangeResource();
+  const cAcr = container.getAccessChangeResource();
 
   propagate(pAcr, pAcr.getIri(), ACP.ACCESS_MEMBERS, cAcr, ACP.ACCESS);
   propagate(pAcr, pAcr.getIri(), ACP.ACCESS_MEMBERS, cAcr, ACP.ACCESS_MEMBERS);
@@ -470,7 +470,7 @@ function propagatePoliciesToContainer(pContainer: Container, container: Containe
   propagate(pAcr, pAcr.getIri(), ACP.ACCESS_MEMBERS_LOCKED, cAcr, ACP.ACCESS_LOCKED);
   propagate(pAcr, pAcr.getIri(), ACP.ACCESS_MEMBERS_LOCKED, cAcr, ACP.ACCESS_MEMBERS_LOCKED);
 
-  pAcr.getAccessControls().forEach((ac: AccessControl) => {
+  pAcr.getAccessChanges().forEach((ac: AccessChange) => {
     propagate(pAcr, ac.getIri(), ACP.APPLY_MEMBERS, cAcr, ACP.APPLY);
     propagate(pAcr, ac.getIri(), ACP.APPLY_MEMBERS, cAcr, ACP.APPLY_MEMBERS);
     propagate(pAcr, ac.getIri(), ACP.APPLY_MEMBERS_PROTECTED, cAcr, ACP.APPLY_PROTECTED);

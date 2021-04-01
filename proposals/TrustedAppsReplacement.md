@@ -1,37 +1,37 @@
 # Trusted Apps Replacement
 
 This proposed replacement for trusted apps details splitting it into two kinds:
- - "Signatory Control," which allows **resource owners** to control what some authorized agent (person or organizatin) has access to based on the app, bot and/or identity provider (signatory) sending the token.
- - "Client Constraints," which allows **app users** to control what an app has access to
+ - "Signatory Change," which allows **resource owners** to change what some authorized agent (person or organizatin) has access to based on the app, bot and/or identity provider (signatory) sending the token.
+ - "Client Constraints," which allows **app users** to change what an app has access to
 
 ## Terminology
  - Client User: The individual using an client
- - Resource Controller: An individual who can set access control information for a specific resource. Under ACL, this is the individual who has `control` access, but may be different in other access control systems.
+ - Resource Changeler: An individual who can set access change information for a specific resource. Under ACL, this is the individual who has `change` access, but may be different in other access change systems.
  - Trusted: A system is said to be "trusted" by someone if that individual is okay with the system performing any operation in the Solidverse as them.
  - Semi-trusted: a system is said to be "semi-trusted" by someone if that individual is only okay with the system performing a subset of all possible operations in the Solidverse as them.
  - Identity Provider (IDP): A server trusted by the app user responsible for giving access to apps.
  - Signatory: A party involved in signing a token (either the client or identity provider)
 
-### Example Access Control Systems
+### Example Access Change Systems
 For each item detailed here, I provide a few examples on how each could be represented.
- - WAC: The current access control system in Solid (https://github.com/solid/web-access-control-spec)
- - TuringAC: A hypothetical new access control system that would a Turing-Complete language (I use JavaScript for the examples but it could be anything) language to define access control rules. The need for it was proposed [here](https://github.com/solid/data-interoperability-panel/issues/34). TuringAC is not fully thought out, it is simply here as an example.
- - ShapeAC: A hypothetical new shape based access control system that would use shapes to define what an agent has access to based on the shape of the data.
- - TagAC: A hypotetical new access control system (defined by Michael Thornburgh [here](https://github.com/solid/authorization-and-access-control-panel/issues/48)) that relies on tagging resources to define the agents who have access.
+ - WAC: The current access change system in Solid (https://github.com/solid/web-access-change-spec)
+ - TuringAC: A hypothetical new access change system that would a Turing-Complete language (I use JavaScript for the examples but it could be anything) language to define access change rules. The need for it was proposed [here](https://github.com/solid/data-interoperability-panel/issues/34). TuringAC is not fully thought out, it is simply here as an example.
+ - ShapeAC: A hypothetical new shape based access change system that would use shapes to define what an agent has access to based on the shape of the data.
+ - TagAC: A hypotetical new access change system (defined by Michael Thornburgh [here](https://github.com/solid/authorization-and-access-change-panel/issues/48)) that relies on tagging resources to define the agents who have access.
 
-## Signatory Control
+## Signatory Change
 
-The Signatory Control system allows resource owners to define the apps and identity providers that can and cannot access data.
+The Signatory Change system allows resource owners to define the apps and identity providers that can and cannot access data.
 
 This feature is for resource owners that are paranoid about the apps and/or identity providers that are used to contact this server. It is recommended that this feature is only used for very specific kinds of data as enabling it too often violated Solid's philosophy of being able to access data from any client.
 
-Signatory Control should be used under the caution that there is no way to fully ensure that a client is truely what it claims to be. Spoofing and malicious user-agents are always possible. Therefore, this tool should **only** be used to prevent phishing attacks by malicious apps.
+Signatory Change should be used under the caution that there is no way to fully ensure that a client is truely what it claims to be. Spoofing and malicious user-agents are always possible. Therefore, this tool should **only** be used to prevent phishing attacks by malicious apps.
 
-### Representing in Access Control Rules
+### Representing in Access Change Rules
 
 Because blanket restrictions on resources from the signatory perspective should be discouraged in most cases, by default, resource owners are allowed to set a blacklist of signatories. However, the rules can be changed into a whitelist if a resource owner desires.
 
-TODO/NOTE: As per Tim's request, all acl based rules should be modified to have unique RDF types such that any subset of triples on the new type will not communicate a less secure access control rule.
+TODO/NOTE: As per Tim's request, all acl based rules should be modified to have unique RDF types such that any subset of triples on the new type will not communicate a less secure access change rule.
 
 #### As a Blacklist
 
@@ -189,7 +189,7 @@ Below is how token procurement and resquest process works.
 
 Again, it is important to stress that a resource server can ensure that a token is signed by a certain identity provider, but cannot be completely sure that a token is used by a certain application. If the application and identity provider are in collusion, the token can be spoofed.
 
-In the following scenario, Alice is going to go to `https://badguys.com` not knowing that it's a malicious site. Bob, however, does know about badguys, and has set up access control rules to prevent badguys from being able to take his data.
+In the following scenario, Alice is going to go to `https://badguys.com` not knowing that it's a malicious site. Bob, however, does know about badguys, and has set up access change rules to prevent badguys from being able to take his data.
 
 This deviates from the [current dpop flow](https://tools.ietf.org/html/draft-fett-oauth-dpop-03) in the following ways:
 
@@ -201,7 +201,7 @@ AUTHORIZATION
 
 SENDING REQUEST
  - In step 9, we extract wthe client id
- - In step 10, we fail because of the applied access control rules
+ - In step 10, we fail because of the applied access change rules
 
 ![](https://i.imgur.com/k1yymTI.png)
 
@@ -386,7 +386,7 @@ The server fetches the JWKS and validates that the id_vc was signed by it.
 The pod extracts the id and the client from the id_vc.
 
 ##### 10. Performs Authorization
-The pod applies the extracted credentials against the access control rules. In this case, we reject because we Bob has banned `https://badguys.com`
+The pod applies the extracted credentials against the access change rules. In this case, we reject because we Bob has banned `https://badguys.com`
 
 ##### 11. Returns Result
 The server return the result. In this case a 403 is provided denoting the forbidden nature of the request.

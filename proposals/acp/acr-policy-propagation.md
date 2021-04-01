@@ -5,7 +5,7 @@
  *
  * agent    : The Agent issuing the PUT request to overwrite the ACR associated with the Resource
  * resource : The Resource associated with the ACR to be overwritten
- * newAcr   : The access control statements to overwrite the ACR with
+ * newAcr   : The access change statements to overwrite the ACR with
  *
  * Return    : 403 or 401 if the Agent does not have permission.
  *             204 if the ACR is overwritten successfully.
@@ -14,14 +14,14 @@
 export function putResourceAcr(agent: Agent, resource: Resource, newAcr: ACR) {
   let removeAcr: ACR;
   let addAcr: ACR;
-  [removeAcr, addAcr] = ACR.diff(resource.getAccessControlResource(), newAcr);
+  [removeAcr, addAcr] = ACR.diff(resource.getAccessChangeResource(), newAcr);
   if (!canChangeAcr(agent, resource, removeAcr, addAcr)) return accessError(agent);
 
   return doPutResourceAcr(agent, resource, newAcr);
 }
 
 function doPutResourceAcr(agent: Agent, resource: Resource, newAcr: ACR) {
-  const acr = resource.getAccessControlResource();
+  const acr = resource.getAccessChangeResource();
 
   // Handle propagation of the removal and adding of policies
   acr.removeStatements();
@@ -36,8 +36,8 @@ function doPutResourceAcr(agent: Agent, resource: Resource, newAcr: ACR) {
  *
  * agent     : The Agent issuing the PATCH request to update the ACR associated with the Resource
  * resource  : The Resource associated with the ACR to be updated
- * removeAcr : The access control statements to remove from  the ACR
- * addAcr    : The access control statements to add to the ACR
+ * removeAcr : The access change statements to remove from  the ACR
+ * addAcr    : The access change statements to add to the ACR
  *
  * Return    : 403 or 401 if the Agent does not have permission.
  *             204 if the ACR is updated successfully.
@@ -50,7 +50,7 @@ export function patchResourceAcr(agent: Agent, resource: Resource, removeAcr: AC
 }
 
 function doPatchResourceAcr(agent: Agent, resource: Resource, removeAcr: ACR, addAcr: ACR) {
-  const acr = resource.getAccessControlResource();
+  const acr = resource.getAccessChangeResource();
 
   acr.removeStatements(removeAcr);
   acr.addStatements(addAcr);
@@ -70,7 +70,7 @@ function doPatchResourceAcr(agent: Agent, resource: Resource, removeAcr: ACR, ad
 export function putContainerAcr(agent: Agent, container: Container, newAcr: ACR) {
   let removeAcr: ACR;
   let addAcr: ACR;
-  [removeAcr, addAcr] = ACR.diff(container.getAccessControlResource(), newAcr);
+  [removeAcr, addAcr] = ACR.diff(container.getAccessChangeResource(), newAcr);
   if (!canChangeContainerAcr(agent, container, removeAcr, addAcr)) return accessError(agent);
 
   return doPatchContainerAcr(agent, container, removeAcr, addAcr);
@@ -79,8 +79,8 @@ export function putContainerAcr(agent: Agent, container: Container, newAcr: ACR)
 /**
  * agent     : The Agent issuing the PATCH request to update the ACR associated with the Container
  * container : The Container associated with the ACR to be updated
- * removeAcr : The access control statements to remove from  the ACR
- * addAcr    : The access control statements to add to the ACR
+ * removeAcr : The access change statements to remove from  the ACR
+ * addAcr    : The access change statements to add to the ACR
  *
  * Return    : 403 or 401 if the Agent does not have permission.
  *             204 if the ACR is overwritten successfully.
@@ -93,7 +93,7 @@ export function patchContainerAcr(agent: Agent, container: Container, removeAcr:
 }
 
 function doPatchContainerAcr(agent: Agent, container: Container, removeAcr: ACR, addAcr: ACR) {
-  const acr = container.getAccessControlResource();
+  const acr = container.getAccessChangeResource();
 
   acr.removeStatements(removeAcr);
   acr.addStatements(addAcr);
@@ -289,7 +289,7 @@ function canRemoveProtectedPolicies(agent: Agent, resource: Resource, removeAcr:
 
   //check that each individual protected policy can be removed by this agent
   if (
-    !removeAcr.getAccessControls().every((ac: AccessControl) => {
+    !removeAcr.getAccessChanges().every((ac: AccessChange) => {
       ac.applyProtected.every((p: Policy) => {
         const container: Container = getOriginContainerForPolicy(p);
         if (!isAcrAccessProtectedAllowed(agent, container, HTTPMethod.PUT)) return false;
@@ -300,7 +300,7 @@ function canRemoveProtectedPolicies(agent: Agent, resource: Resource, removeAcr:
     return false;
 
   if (resource.isContainer()) {
-    return removeAcr.getAccessControls().every((ac: AccessControl) => {
+    return removeAcr.getAccessChanges().every((ac: AccessChange) => {
       ac.applyMembersProtected.every((p: Policy) => {
         const container: Container = getOriginContainerForPolicy(p);
         if (!isAcrAccessProtectedAllowed(agent, container, HTTPMethod.PUT)) return false;

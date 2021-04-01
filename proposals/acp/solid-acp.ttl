@@ -13,8 +13,8 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 
 acp: a owl:Ontology ;
     owl:versionInfo "0.1" ;
-    dcterms:title "Solid Access Control Policy Vocabulary"@en ;
-    dcterms:description "A vocabulary to structure policy-based access controls for the Solid ecosystem."@en ;
+    dcterms:title "Solid Access Change Policy Vocabulary"@en ;
+    dcterms:description "A vocabulary to structure policy-based access changes for the Solid ecosystem."@en ;
     dcterms:creator <https://inrupt.com/profile/card/#us> ;
     dcterms:issued "2020-09-15"^^xsd:date ;
     vann:preferredNamespacePrefix "acp" ;
@@ -48,14 +48,14 @@ acp:PublicAgent a rdfs:Resource ;
 #   Classes
 #################
 
-acp:AccessControl a rdfs:Class ;
-    rdfs:label "Access Control"@en ;
-    rdfs:comment "Access Control statements associate an AccessControlResource with specific Policy definitions."@en ;
+acp:AccessChange a rdfs:Class ;
+    rdfs:label "Access Change"@en ;
+    rdfs:comment "Access Change statements associate an AccessChangeResource with specific Policy definitions."@en ;
     rdfs:isDefinedBy acp: .
 
-acp:AccessControlResource a rdfs:Class ;
-    rdfs:label "Access Control Resource"@en ;
-    rdfs:comment "An RDF resource that includes AccessControl statements"@en ;
+acp:AccessChangeResource a rdfs:Class ;
+    rdfs:label "Access Change Resource"@en ;
+    rdfs:comment "An RDF resource that includes AccessChange statements"@en ;
     rdfs:isDefinedBy acp: .
 
 acp:Policy a rdfs:Class ;
@@ -96,12 +96,12 @@ acp:Append a rdfs:Class ;
 #   Properties
 ####################
 
-acp:accessControl a rdf:Property ;
-    rdfs:label "accessControl"@en ;
-    rdfs:comment """The object of this relationship is the access control resource associated with the subject resource.
+acp:accessChange a rdf:Property ;
+    rdfs:label "accessChange"@en ;
+    rdfs:comment """The object of this relationship is the access change resource associated with the subject resource.
  This relationship is intended to be used as the rel type of a Link, via HTTP Link Headers rfc5988 for Linked Data resources."""@en ;
     rdfs:domain gen:InformationResource ;
-    rdfs:range acp:AccessControlResource;
+    rdfs:range acp:AccessChangeResource;
     rdfs:isDefinedBy acp: .
 
 acp:access a rdf:Property ;
@@ -147,7 +147,7 @@ acp:accessMembersProtected a rdf:Property ;
 acp:apply a rdf:Property ;
     rdfs:label "apply"@en ;
     rdfs:comment "The apply property indentifies the access policies to apply to a resource."@en ;
-    rdfs:domain acp:AccessControl ;
+    rdfs:domain acp:AccessChange ;
     rdfs:range acp:Policy ;
     rdfs:isDefinedBy acp: .
 
@@ -155,7 +155,7 @@ acp:applyProtected a rdf:Property ;
     rdfs:label "apply protected"@en ;
     rdfs:comment """The applyProtected property identifies the access policies to apply to a resource's members recursively.
     These policies may not be removed except by an agent with write access to the ACR where the policy was initially applied."""@en ;
-    rdfs:domain acp:AccessControl ;
+    rdfs:domain acp:AccessChange ;
     rdfs:range acp:Policy ;
     rdfs:isDefinedBy acp: .
 
@@ -163,14 +163,14 @@ acp:applyLocked a rdf:Property ;
     rdfs:label "apply locked"@en ;
     rdfs:comment """The applyLocked property identifies the access policies to apply to a resource's members recursively.
  These policies may not be removed except by an agent with write access to the root ACR."""@en ;
-    rdfs:domain acp:AccessControl ;
+    rdfs:domain acp:AccessChange ;
     rdfs:range acp:Policy ;
     rdfs:isDefinedBy acp: .
 
 acp:applyMembers a rdf:Property ;
     rdfs:label "apply members"@en ;
     rdfs:comment "The applyMembers property indentifies the access policies to apply to a resource's members recursively."@en ;
-    rdfs:domain acp:AccessControl ;
+    rdfs:domain acp:AccessChange ;
     rdfs:range acp:Policy ;
     rdfs:isDefinedBy acp: .
 
@@ -178,7 +178,7 @@ acp:applyMembersProtected a rdf:Property ;
     rdfs:label "apply members protected"@en ;
     rdfs:comment """The applyMembersProtected property identifies the access policies to apply to a resource's members recursively.
  These policies may not be removed except by an agent with write access to the ACR where the policy was initially applied."""@en ;
-    rdfs:domain acp:AccessControl ;
+    rdfs:domain acp:AccessChange ;
     rdfs:range acp:Policy ;
     rdfs:isDefinedBy acp: .
 
@@ -186,7 +186,7 @@ acp:applyMembersLocked a rdf:Property ;
     rdfs:label "apply members locked"@en ;
     rdfs:comment """The applyMembersLocked property identifies the access policies to apply to a resource's members recurseively.
  These policies may not be removed except by an agent with write access to the root ACR."""@en ;
-    rdfs:domain acp:AccessControl ;
+    rdfs:domain acp:AccessChange ;
     rdfs:range acp:Policy ;
     rdfs:isDefinedBy acp: .
 

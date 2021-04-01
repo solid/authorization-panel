@@ -1,6 +1,6 @@
 ```TypeScript
 /**
- * Evaluate all the acp:Policy statements in each acp:AccessControl
+ * Evaluate all the acp:Policy statements in each acp:AccessChange
  * in the ACR for the Resource.
  * Accumulate all of the acp:AccessModes for the acp:allow and
  * acp:deny statements for each acp:Policy that is satisfied.
@@ -21,10 +21,10 @@
  **/
 
 export function isAccessAllowed(agent: Agent, resource: Resource, method: HTTPMethod): boolean {
-  const acr: ACR = resource.getAccessControlResource();
+  const acr: ACR = resource.getAccessChangeResource();
   const accessModes: AccessModes = new AccessModes();
 
-  acr.getAccessControls().forEach((ac: AccessControl) => {
+  acr.getAccessChanges().forEach((ac: AccessChange) => {
     accessModes.add(evaluatePolicies(ac.apply, agent, resource));
     accessModes.add(evaluatePolicies(ac.applyProtected, agent, resource));
     accessModes.add(evaluatePolicies(ac.applyLocked, agent, resource));
@@ -55,15 +55,15 @@ export function isAccessAllowed(agent: Agent, resource: Resource, method: HTTPMe
  * Return: true if access is allowed, otherwise false
  */
 export function isAcrAccessAllowed(agent: Agent, resource: Resource, method: HTTPMethod) {
-  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessControlResource().access);
+  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessChangeResource().access);
 }
 
 export function isAcrAccessMembersAllowed(agent: Agent, resource: Resource, method: HTTPMethod) {
-  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessControlResource().accessMembers);
+  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessChangeResource().accessMembers);
 }
 
 export function isAcrAccessProtectedAllowed(agent: Agent, resource: Resource, method: HTTPMethod) {
-  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessControlResource().accessProtected);
+  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessChangeResource().accessProtected);
 }
 
 export function isAcrAccessMembersProtectedAllowed(agent: Agent, resource: Resource, method: HTTPMethod) {
@@ -71,16 +71,16 @@ export function isAcrAccessMembersProtectedAllowed(agent: Agent, resource: Resou
     agent,
     resource,
     method,
-    resource.getAccessControlResource().accessMembersProtected
+    resource.getAccessChangeResource().accessMembersProtected
   );
 }
 
 export function isAcrAccessLockedAllowed(agent: Agent, resource: Resource, method: HTTPMethod) {
-  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessControlResource().accessLocked);
+  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessChangeResource().accessLocked);
 }
 
 export function isAcrAccessMembersLockedAllowed(agent: Agent, resource: Resource, method: HTTPMethod) {
-  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessControlResource().accessMembersLocked);
+  return isAcrAccessPoliciesAllowed(agent, resource, method, resource.getAccessChangeResource().accessMembersLocked);
 }
 
 // Helper functions
@@ -96,7 +96,7 @@ export function isAcrAccessMembersLockedAllowed(agent: Agent, resource: Resource
  * Return: true if access is allowed, otherwise false
  */
 function isAcrAccessPoliciesAllowed(agent: Agent, resource: Resource, method: HTTPMethod, policies: Policy[]) {
-  const acr: ACR = resource.getAccessControlResource();
+  const acr: ACR = resource.getAccessChangeResource();
   const requiredMode = HTTPMethodToAcrAccessMode.get(method);
 
   if (evaluatePolicies(policies, agent, acr).contains(requiredMode)) return true;

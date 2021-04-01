@@ -74,12 +74,12 @@ Use Cases {#usecases}
 Unless stated otherwise, the use cases herein assume that named
 individuals (e.g., Alice, Bob, Carol, etc.) are already
 [=authenticated agents=], and their corresponding [=identities=] are known
-by the [=resource controller=] when they are granted access.
+by the [=resource changeler=] when they are granted access.
 
 ## Resource access ## {#uc-basic}
 
 Alice has a private draft of her resume stored on her [=resource server=] at
-`https://alice.example/resume`. Alice is the [=resource controller=]
+`https://alice.example/resume`. Alice is the [=resource changeler=]
 for that resource.
 
 <figure>
@@ -114,7 +114,7 @@ for that resource.
 
 Alice asks Bob to help make her resume more presentable. Alice must give Bob
 permission to do this, because `resume` is not a public resource, and as the
-[=resource controller=] Alice is the only one who can manage permissions for
+[=resource changeler=] Alice is the only one who can manage permissions for
 it.
 
 <div class="assertion">
@@ -175,7 +175,7 @@ in the reference section of `resume`. Alice gives Danielle [=read access=] to
 `resume` for context, and [=append access=] so that she can add a link to the
 recommendation that she creates and hosts on her own [=resource server=] at
 `https://danielle.example/recommendation`. Danielle is the [=resource
-controller=] for that resource and gives it public [=read access=].
+changeler=] for that resource and gives it public [=read access=].
 
 <div class="assertion">
 
@@ -302,7 +302,7 @@ cases that focus on permissions related to [=resources=] included in that
 [=collection=] are covered in [[#uc-inheritance]].
 
 Alice has a portfolio [=collection=] stored on her [=resource server=] at
-`https://alice.example/portfolio/`, which she is the [=resource controller=]
+`https://alice.example/portfolio/`, which she is the [=resource changeler=]
 for. She provides access to the `portfolio` to potential employers as she
 moves through a job interview process.
 
@@ -498,7 +498,7 @@ opportunities, but none of the others will see them.
 
 </div>
 
-### Manage permissions for a Collection ### {#collection-control}
+### Manage permissions for a Collection ### {#collection-change}
 
 Bob reminds Alice that some of the other people who worked on `project1` may
 also have materials they can add to the `portfolio`, but he needs to lookup
@@ -524,7 +524,7 @@ includes Charles, Felicia, Juan, and Irene.
 
 The group uses a [=resource server=] for storing their information at
 `https://research.example/`, which Bob administers as the [=resource
-controller=].
+changeler=].
 
 Bob creates an [=authorization group=] called `research`, and adds Charles,
 Felicia, Juan, and Irene to it.
@@ -777,7 +777,7 @@ Bob gives the new field device the following permissions on the
 
 </div>
 
-### Manage permissions for collection resources ### {#inheritance-control}
+### Manage permissions for collection resources ### {#inheritance-change}
 
 Bob realizes that he needs some help administering `https://research.example`.
 He provides Carol with the following permissions on the 
@@ -911,9 +911,9 @@ added to it. Inherited [=read access=] for others in the `research`
 
 ### Forcing inherited permissions ### {#inheritance-forcing}
 
-As the primary administrator and [=resource controller=] of
+As the primary administrator and [=resource changeler=] of
 `https://resource.example`, Bob wants to ensure that he maintains ultimate
-control over the data inside.
+change over the data inside.
 
 Even though he's given Carol permission to help him administer the [=resource
 server=], he wants to ensure that she's not able to cut out his access. He
@@ -941,7 +941,7 @@ including participants in the `Acme` trial.
 
 The organization uses a [=resource server=] at `https://trials.example` as a
 data repository for all of their clinical trial data. Felicia is the
-[=resource controller=] of `https://trials.example`, managing authorized
+[=resource changeler=] of `https://trials.example`, managing authorized
 access to it for her colleagues, and a group of research interns.
 
 <figure>
@@ -1143,7 +1143,7 @@ will exclude the fields containing PII.
 
 </div>
 
-### Conditional control boundaries ### {#conditional-control}
+### Conditional change boundaries ### {#conditional-change}
 
 Megan works on Felicia's team. Felicia would like Megan to be responsible for
 managing access to trial data for the research interns assigned to the `Acme`
@@ -1169,8 +1169,8 @@ conditions that stipulate:
 * [[#req-collection-read]]
 * [[#req-inheritance-read-permissions]]
 * [[#req-inheritance-change-permissions]]
-* [[#req-conditional-control]]
-* [[#req-conditional-control-tag]]
+* [[#req-conditional-change]]
+* [[#req-conditional-change-tag]]
 
 </div>
 
@@ -1200,7 +1200,7 @@ A musician would like to self publish her music to take advantage of a Solid
 music App. She does this by making the song metadata available openly so that
 fans can follow her new releases, specialised music search engines can index
 it, and music apps can display the song's metadata in their users' preferred
-language. To earn a living, she sets an access control rule on the resource,
+language. To earn a living, she sets an access change rule on the resource,
 allowing access on proof of payment. Payment methods need to be flexible and
 allow for smooth integration with any music app, even enabling automatic
 payment for small enough sums. Users of the Solid Music App would thus have
@@ -1222,12 +1222,12 @@ musicians worldwide.
 ### Limiting access to trusted applications ### {#uc-trusted-applications}
 
 Oscar stores all of his data in a private [=resource server=] at
-`https://oscar.example`, where he is the [=resource controller=].
+`https://oscar.example`, where he is the [=resource changeler=].
 
 He stores a wide spectrum of things, from personal financial data to
 collaborative projects that he works on with his friends and colleagues.
 
-As the [=resource controller=] for `https://oscar.example`, any application
+As the [=resource changeler=] for `https://oscar.example`, any application
 that operates with or on behalf of Oscar's [=identity=] would operate with the
 same unfettered access that Oscar enjoys.
 
@@ -1285,11 +1285,11 @@ for the `health` [=collection=] to include `healthapp`:
 
 </div>
 
-### Limiting application access while not acting as resource controller ### {#uc-client-constraints}
+### Limiting application access while not acting as resource changeler ### {#uc-client-constraints}
 
 Alice uses application *PerformChart* to visualize her work performance across
 various projects. She works on projects across various organizations,
-including *ACME* and *Omni*. While she has controller access to some of the
+including *ACME* and *Omni*. While she has changeler access to some of the
 projects, she also has read-write access to many other projects. Since
 *PerformChart* only provides analysis and visualization it doesn't need any
 write access. Alice grants *PerformChart* read only access to all the projects
@@ -1740,14 +1740,14 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 ### The system shall allow the ability to read the access permissions associated with a certain [=collection=] to be limited.### {#req-collection-read-permissions}
 
 <div class="assertion">    
-  Related use cases: [[#collection-control]], [[#uc-whopermitted]], 
+  Related use cases: [[#collection-change]], [[#uc-whopermitted]], 
   [[#uc-historyofchanges]]
 </div>
       
 ### The system shall allow the ability to change the access permissions directly associated with a certain [=collection=] to be limited.### {#req-collection-change-permissions}
 
 <div class="assertion">    
-  Related use cases: [[#collection-control]]
+  Related use cases: [[#collection-change]]
 </div>
 
 ## Inherited access to collection resources ## {#req-inherited}
@@ -1809,13 +1809,13 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 ### The system shall allow for the access permissions directly associated with a certain resource to be read if the [=agent=] has inherited [=read permission access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-read-permissions}
 
 <div class="assertion">    
-  Related use cases: [[#inheritance-control]]
+  Related use cases: [[#inheritance-change]]
 </div>
     
 ### The system shall allow for the access permissions directly associated with a certain resource to be changed if the [=agent=] has inherited [=write permission access=] from the parent [=collection=] the [=resource=] is a member of. ### {#req-inheritance-change-permissions}
 
 <div class="assertion">    
-  Related use cases: [[#inheritance-control]]
+  Related use cases: [[#inheritance-change]]
 </div>
 
 ## Conditional access ## {#req-conditional}
@@ -1850,16 +1850,16 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
   Related use cases: [[#conditional-action]]
 </div>
   
-### The system shall allow the ability to read, create, or change only those access permissions for a given [=resource=] or [=collection=] that apply to a specified group of [=agents=] to be limited.### {#req-conditional-control}
+### The system shall allow the ability to read, create, or change only those access permissions for a given [=resource=] or [=collection=] that apply to a specified group of [=agents=] to be limited.### {#req-conditional-change}
 
 <div class="assertion">    
-  Related use cases: [[#conditional-control]]
+  Related use cases: [[#conditional-change]]
 </div>
 
-### The system shall allow the ability to read, create, or change access permissions for [=resources=] associated with a particular tag to be limited.### {#req-conditional-control-tag}
+### The system shall allow the ability to read, create, or change access permissions for [=resources=] associated with a particular tag to be limited.### {#req-conditional-change-tag}
 
 <div class="assertion">    
-  Related use cases: [[#conditional-control]]
+  Related use cases: [[#conditional-change]]
 </div>
 
 Definitions {#definitions}
@@ -1875,15 +1875,15 @@ An <dfn>identity</dfn> is used to uniquely identify a given [=agent=],
 represented by a unique [[URI]]. Examples of compatible identity systems
 include [[WEBID]] and [[DID]].
 
-An <dfn>authenticated agent</dfn> is an [=agent=] that has proven control of a
+An <dfn>authenticated agent</dfn> is an [=agent=] that has proven change of a
 given [=identity=].
 
 An <dfn>application</dfn> is a piece of software that interfaces with a
 [=resource server=], which may operate autonomously as an [=authenticated
 agent=], or in piloted-fashion by another [=authenticated agent=].
 
-A <dfn>resource controller</dfn> is an [=agent=] with fully permissioned
-access and control over one or more [=resources=] residing on a [=resource
+A <dfn>resource changeler</dfn> is an [=agent=] with fully permissioned
+access and change over one or more [=resources=] residing on a [=resource
 server=] on the Web.
 
 A <dfn>resource server</dfn> is a web server that provides an interface to
@@ -1900,7 +1900,7 @@ other [=resources=], which may include other [=collections=].
 A <dfn>tag</dfn> is a type of metadata associated with a [=resource=] for
 classification or identification.
 
-An <dfn>authorization</dfn> is a [=resource=] that controls access to one or
+An <dfn>authorization</dfn> is a [=resource=] that changes access to one or
 more [=resources=].
 
 An <dfn>authorization group</dfn> is a [=resource=] that represents some

@@ -28,7 +28,7 @@ URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-change
 * +1 bblfish: public [si] [ai].
 * +1 justinwb: to the ability to read and write permissions on resources. public [ai]. private [ai].
 * +1 elf-pavlik: 
-* +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d]. public [ai].
+* +1 csarven: Wide use. Any agent having the ability to change access changes has wide use. Required for [ap]. [d]. public [ai].
 * +1 jaxoncreed:
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
@@ -111,7 +111,7 @@ URL: https://solid.github.io/authorization-panel/authorization-ucr/#basic-removi
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* +1 csarven: Wide use. This UC is possibly a duplicate of #basic-control. [d].
+* +1 csarven: Wide use. This UC is possibly a duplicate of #basic-change. [d].
 * +1 jaxoncreed:
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
@@ -259,11 +259,11 @@ technical and social.  We may been extra functionality to in some cases giuve pe
 * +2 bblfish: public [si] [ai]
 
 ### Manage permissions for a Collection
-URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-control
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#collection-change
 
 * +1 justinwb:
 * +1 elf-pavlik:
-* +1 csarven: Wide use. Any agent having the ability to change access controls has wide use. Required for [ap]. [d].
+* +1 csarven: Wide use. Any agent having the ability to change access changes has wide use. Required for [ap]. [d].
 * +1 jaxoncreed:
 * +3 timbl:
 * +1 KaiGilb: graphMetrix
@@ -326,7 +326,7 @@ URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-
 * +1 bblfish: public [si] [ai] 
 
 ### Manage permissions for collection resources
-URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-control
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-change
 
 * +1 justinwb:
 * +1 elf-pavlik:
@@ -397,12 +397,12 @@ above.
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-forcing
 
 * +1 justinwb: Some permissions shouldn't be contradicted. For example,
-the administrator with full control access of a given storage (i.e. pod)
-shouldn't be able to have their permissions denied by someone with control
+the administrator with full change access of a given storage (i.e. pod)
+shouldn't be able to have their permissions denied by someone with change
 access to a collection far down in the hierarchy so they can hide things
 inside.
 * +1 elf-pavlik:
-* 0 csarven: Could be useful for [ap]. May be implemented in [d] depending on other available features. See also note on #collection-control.
+* 0 csarven: Could be useful for [ap]. May be implemented in [d] depending on other available features. See also note on #collection-change.
 * +1 jaxoncreed:
 * +1 KaiGilb: graphMetrix
 * +1 hindia:
@@ -478,8 +478,8 @@ some rational ways to do this using machinery we already have.
 * +1 dmitrizagidulin:
 * +0 bblfish: public [si] [ai] - agree with justinwb, there is already a lot on the plate. 
 
-### Conditional control boundaries
-URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-control
+### Conditional change boundaries
+URL: https://solid.github.io/authorization-panel/authorization-ucr/#conditional-change
 
 * +0 justinwb:
 * +1 elf-pavlik:
@@ -527,14 +527,14 @@ piloted scenarios)
 * +1 dmitrizagidulin:
 * -1 bblfish:  This should be possible, but on the whole it would be better if this happned on the client side, by something like what was called [the launcher app](https://github.com/solid/authorization-panel/issues/45). The reason is that this works ok for the Oscar's own server, but not that well for every other server. A better use case would be one involving Oscar discovering that an App is badly written, and is creating havock, and wanting to limit it for that reason. This would also allow one to subscribe to some security service that would test apps and publish blacklists. 
 
-### Limiting application access while not acting as resource controller
+### Limiting application access while not acting as resource changeler
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-client-constraints
 
 * 0 csarven: A bit of a low-level server-side plumbing. Unclear how an application (like [ap]) may want/need to set a policy as such.
 * KaiGilb: im a little unclear on this case
 * +1 hindia:
 * +1 dmitrizagidulin:
-* +1 bblfish: this needs to be done on the client, where such information can be written out once, without needing to have control access to every resource on the web that the app could have access to. I described this better in [Interop Panel Meeting 2021-02-02](https://github.com/solid/data-interoperability-panel/blob/master/meetings/2021-02-02.md).
+* +1 bblfish: this needs to be done on the client, where such information can be written out once, without needing to have change access to every resource on the web that the app could have access to. I described this better in [Interop Panel Meeting 2021-02-02](https://github.com/solid/data-interoperability-panel/blob/master/meetings/2021-02-02.md).
 
 ### Application determining access privileges
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-client-determine-access-privileges
@@ -549,7 +549,7 @@ URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-client-de
 ### Limiting access to who else is permitted
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-whopermitted
 
-* +1 justinwb: Privacy in this context in paramount, unless the controller
+* +1 justinwb: Privacy in this context in paramount, unless the changeler
 specifically wants the information to be divulged.
 * +1 elf-pavlik:
 * +1 csarven: Duplicate of #basic-readonly.
@@ -562,7 +562,7 @@ specifically wants the information to be divulged.
 ### Limiting access to other authorization conditions
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-historyofchanges
 
-* +1 justinwb: Privacy in this context in paramount, unless the controller
+* +1 justinwb: Privacy in this context in paramount, unless the changeler
 specifically wants the information to be divulged.
 * +1 elf-pavlik:
 * 0 csarven: Complex use case. Perhaps change focus to auxiliary resources.
@@ -570,7 +570,7 @@ specifically wants the information to be divulged.
 * +1 KaiGilb: graphMetrix. Im not sure this should be handled by permission, but yes, they should not see it.
 * +1 hindia:
 * +1 dmitrizagidulin:
-* 0 bblfish: A bit too vague. This may just be a case of  making the filtering rules invisible to either user. Filtering is orthogonal to access control, and filters can themselves be access controlled.
+* 0 bblfish: A bit too vague. This may just be a case of  making the filtering rules invisible to either user. Filtering is orthogonal to access change, and filters can themselves be access changeled.
 
 ### Minimal Credential Disclosure
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-minimalcredentials
@@ -578,7 +578,7 @@ URL: https://solid.github.io/authorization-panel/authorization-ucr/#uc-minimalcr
 * +0 justinwb: This scenario is legitimate though I believe we'll likely
 get to VC in the next cycle.
 * +1 elf-pavlik:
-* +0 KaiGilb: graphMetrix Sound good. I would again think this would be app controlled
+* +0 KaiGilb: graphMetrix Sound good. I would again think this would be app changeled
 * +1 hindia:
 * dmitrizagidulin: This is out of scope for authorization. At best, it belongs
     in a wallet spec or implementation guide.
@@ -645,7 +645,7 @@ URL: https://solid.github.io/authorization-panel/authorization-ucr/#group-member
 URL: https://solid.github.io/authorization-panel/authorization-ucr/#capabilities-vc
 
 * +0 justinwb: Definitely seems to be a key part of the future of access
-control for us.
+change for us.
 * +1 elf-pavlik:
 * +1 csarven: Wide use.
 * +1 jaxoncreed:

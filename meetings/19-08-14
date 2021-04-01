@@ -3,7 +3,7 @@
 ## Michael Thornburgh's Proposal
 https://github.com/solid/app-authorization-panel/issues/12
 
- - Use case: A pod owner wants to control the apps that they use to access their data, but there's nothing stopping this method from being used in the general use case
+ - Use case: A pod owner wants to change the apps that they use to access their data, but there's nothing stopping this method from being used in the general use case
  - Solution is per resource server because the app you're using, you and the resource server are the only ones that should know about the interaction
  - General Philosophy: The resource server should decide whether to grant access to a particular resource (not the trusted apps in the profile or the scopes in the IDP)
  - Trusted apps are very coarse. And we can create scopes for everything, but that's difficult
@@ -30,7 +30,7 @@ https://github.com/solid/app-authorization-panel/issues/12
 - Jackson: Do we want to suggest discovery pattern ourself and propose it to interop-panel? I think now would be good time to make that decision. IMO we should think of some form of discovery inside of app authorization.
 - Michiel: We should define a standard for what happens after discovery.
 - Dmitri: we should work with data interop panel, but i also see it as core part of app authorization - what kind of things app will ask permission for. We can ask for some 'path' or something we find in type index
-- Henry: I would like to propose seeing how far one can go with an access control list. How would you do this completely to get any kind of access control using OWL reasoners.
+- Henry: I would like to propose seeing how far one can go with an access change list. How would you do this completely to get any kind of access change using OWL reasoners.
 
 
 ## Project Teams

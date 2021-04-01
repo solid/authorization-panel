@@ -15,7 +15,7 @@ Introduction
 An HTTP client, for example a software application running in a web browser,
 can attempt to access a resource on an HTTP server. The server might restrict
 access to the resource according to one or more required access privileges,
-for example with an Access Control List.
+for example with an Access Change List.
 
 The client might not possess sufficient privilege according to the server,
 so the server might deny the requested access. For example, the client's user
@@ -52,15 +52,15 @@ only these examples.
   classes of resources depending on what application she uses, independent
   of other visitors or the applications they use.
 * A browser-based permission management interface might only be available to
-  the RS's owner, or only to a resource's controllers, or to all visitors.
+  the RS's owner, or only to a resource's changelers, or to all visitors.
   The availablility of the interface might depend on the scope of additional
   privilege required, or RS capability, or configuration.
 * An RS could allow a visitor to request access to a resource for which the
   visitor currently has no permission at all.
   - The visitor might be a non-person automatic software agent (bot).
-  - Processing the request could involve updating Access Control resources
+  - Processing the request could involve updating Access Change resources
     or adding the visitor to one or more groups or lists.
-  - The request might require approval of the resource's controller(s) or
+  - The request might require approval of the resource's changeler(s) or
     an administrator (especially for a bot), or be by a multiphase approval
     process.
   - The request might be approved as a result of the person-visitor accepting
@@ -104,7 +104,7 @@ software application currently being used for the access attempted.
 The method by which a server determines whether it's appropriate to allow the
 client to request additional privilege is beyond the scope of this memo.
 Methods could include, but are not limited to, determining whether the
-authenticated identity is the controller of the resource, or is the owner of
+authenticated identity is the changeler of the resource, or is the owner of
 the server.
 
 Terminology
@@ -227,10 +227,10 @@ example, because the authenticated user is the owner):
 
     ←
     HTTP/2 403 Forbidden
-    Access-Control-Allow-Origin: https://other.example
-    Access-Control-Expose-Headers: Link
+    Access-Change-Allow-Origin: https://other.example
+    Access-Change-Expose-Headers: Link
     Content-type: text/html; charset=utf-8
-    Cache-control: no-cache, no-store
+    Cache-change: no-cache, no-store
     Date: Fri, 09 Aug 2019 05:09:18 GMT
     Link: </auth/request-permission?r=8374B650-4974-4E14-A7DF-8729041A96D8>; rel="x-permission-request"; expires_in="600"
     
@@ -253,9 +253,9 @@ the permission request [capability][] was given is the owner):
 
     ←
     HTTP/2 202 Accepted
-    Access-Control-Allow-Origin: https://other.example
+    Access-Change-Allow-Origin: https://other.example
     Content-type: application/json; charset=utf-8
-    Cache-control: no-cache, no-store
+    Cache-change: no-cache, no-store
     Date: Fri, 09 Aug 2019 05:09:19 GMT
     
     {

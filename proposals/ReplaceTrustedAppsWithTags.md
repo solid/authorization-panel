@@ -1,11 +1,11 @@
 DRAFT PROPOSAL
 ==============
 
-Scope Tags in WAC for User Control of App Privilege
+Scope Tags in WAC for User Change of App Privilege
 ===================================================
 This memo proposes to replace the "trusted apps" mechanism, and to augment
-the `acl:origin` mechanism in [Web Access Control (WAC)][WAC], in order to
-enable resource owners and users to control the access privileges that their
+the `acl:origin` mechanism in [Web Access Change (WAC)][WAC], in order to
+enable resource owners and users to change the access privileges that their
 various apps have to different classes of resources, by introducing the
 notions of
 
@@ -15,7 +15,7 @@ notions of
 Summary
 -------
 The resource owner classifies her resources by assigning one or more tags to
-`acl:Authorizations` in a resource's Web Access Control Resource (ACL). The
+`acl:Authorizations` in a resource's Web Access Change Resource (ACL). The
 owner can choose the same or different tags for different access modes.
 
 The user authorizes sets of tags, and the access modes to which they apply,
@@ -114,7 +114,7 @@ for administrative and management apps.
 	    acl:origin <https://coolmanager.example>;
 	    acl:tagMode [
 	        acl:tag "*";
-	        acl:mode acl:Read, acl:Write, acl:Control
+	        acl:mode acl:Read, acl:Write, acl:Change
 	    ] .
 
 To support a default App Authorization, the `acl:resourceServer` can give the
@@ -263,7 +263,7 @@ inbox, resource servers including human-readable information on a FAQ page,
 and well-known convention.
 
 
-  [WAC]:         https://github.com/solid/web-access-control-spec
+  [WAC]:         https://github.com/solid/web-access-change-spec
   [realm]:       https://tools.ietf.org/html/rfc7235#section-2.2
   [zenomt-auth]: https://github.com/zenomt/webid-auth-protocol
   [RFC2119]:     https://tools.ietf.org/html/rfc2119
