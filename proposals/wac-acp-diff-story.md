@@ -20,7 +20,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 <AclShape> {
   # who
-  (  acl:agentClass @<GroupShape> OR [foaf:Agent acl:AuthenticatedAgent] ;
+  (  acl:agentClass [foaf:Agent acl:AuthenticatedAgent]
     | acl:agentGroup @<GroupShape> OR IRI # likely in another resource
     | acl:agent IRI
     | acl:origin IRI
