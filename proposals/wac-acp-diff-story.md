@@ -13,6 +13,7 @@ Access control is fundamentally about stating `who` can `do what` to `what resou
 This matches very precisely the WAC ontology.
 
 ## ShEx for WAC:
+
 Systems implementing Web Access Control (WAC) use a simple schema to make those assertions directly in RDF:
 
 ``` shex
@@ -153,8 +154,8 @@ This would allow one to place rules in different resources without needing to sp
 ```Turtle
 <> :authorizes _:a1, <personal#Rule1> .
 _:a1 a acl:Authorization;
-     acl:agentClass foaf:Agent ;
-    acl:mode acl:Read .
+   acl:agentClass foaf:Agent ;
+   acl:mode acl:Read .
 ```
 
 Note that the `acl:accessTo` relation is missing here. But it can easily be inferred. Any agent - be it a client or the server Guard - following the `Link: <card.acl>;rel=acl` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements (see the illustration below)
@@ -165,7 +166,7 @@ Note that the `acl:accessTo` relation is missing here. But it can easily be infe
 _:a1 acl:accessTo <card> .
 ```
 
-Here deduction means quite simply: to create a new graph with that relation added to it. Once that is done the same `AclShape` written up above holds.
+Here deduction means quite simply: to create a new graph with the above triple added to it. Once that is done, the same `AclShape` written up above holds.
 
  2. for the `<presonal#Rule1>` 
 
@@ -185,6 +186,12 @@ and followed the `:authorizes` link to `<personal>` would be able to deduce the 
 ```
 
 and so that `AclShape` would still be valid.
+
+There are then two AclShapes that are compabible.
+ 1. the AclShape now applied after "inferencing"
+ 2. the AclShape applied before inferencing [todo: write that out]
+
+We thus get the same effect of allowing rules to be written and referred to, without those rules needing to specify in advance all the resources for which it is valid.
 
 The above layout is illustrated in the following diagram. Double lines represent `Link` relation headers, the solid lines represent relations explicitly written out, and the dotted lines represent inferred relations.
 
