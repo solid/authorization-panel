@@ -10,6 +10,7 @@ This is a work in progress.
 Audience: those familiar with WAC or those who learn from comparisons
 
 Access control is fundamentally about stating `who` can `do what` to `what resource`.
+This matches very precisely the WAC ontology.
 
 ## ShEx for WAC:
 Systems implementing Web Access Control (WAC) use a simple schema to make those assertions directly in RDF:
@@ -133,3 +134,57 @@ _:bart-copies-assignment-2
   a acl:AccessControl ;
   acp:apply </myAccessPolicies#bart-copies-my-homework> .
 ```
+
+## Minimal Extension to WAC enabling the same features
+
+Another way of getting the same effect as ACP is to extend WAC with a `:authorizes`
+relation defined as 
+
+```Turtle
+acl:accessTo owl:inverseOf [ 
+        owl:propertyChainAxiom ( acl:accessControl :authorizes )
+      ] .
+```
+
+(We leave the namespace for `:authorizes` open for the moment as it could be in the wac, acp, or another namespace).
+
+This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example Tim Berners-Lee's profile could contain 
+
+```Turtle
+<> :authorizes _:a1, <personal#Rule1> .
+_:a1 a acl:Authorization;
+     acl:agentClass foaf:Agent ;
+    acl:mode acl:Read .
+```
+
+Note that the `acl:accessTo` relation is missing from the Access Control Resource (ACR). But it can easily be inferred. Any client following the `Link: <card.acl>;rel=acl` header from the original resource, can then follow the `:authorizes` links and so deduce the relation
+
+```Turtle
+_:a1 acl:accessTo <card> .
+```
+
+Here deduction means quite simply: to create a new graph with that relation added to it. Once that is done the same `AclShape` written up above holds.
+
+The same is true after dereferencing the `<personal#Rule1>` value.
+This could refer to the `<personal>` resource which let us say contains the following triples:
+
+```Turtle
+<#Rule1> acl:agent <card#i>;
+    acl:mode acl:Read, acl:Write .
+```
+
+Again the client having followed the `Link: <card.acl>;rel=acl` header from `<card>` 
+and followed the `:authorizes` link to `<personal>` would be able to deduce the triple
+
+```Turtle
+<#Rule1> acl:accessTo <card> .
+```
+
+and so that `AclShape` would still be valid.
+
+This is illustrated in the following picture:
+
+![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/110973010-f70d3580-835c-11eb-85f0-d0fccc53dba0.jpg)
+
+
+
