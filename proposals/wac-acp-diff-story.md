@@ -157,7 +157,9 @@ _:a1 a acl:Authorization;
     acl:mode acl:Read .
 ```
 
-Note that the `acl:accessTo` relation is missing from the Access Control Resource (ACR). But it can easily be inferred. Any client following the `Link: <card.acl>;rel=acl` header from the original resource, can then follow the `:authorizes` links and so deduce the relation
+Note that the `acl:accessTo` relation is missing from the Access Control Resource (ACR). But it can easily be inferred. Any agent - be it a client or the server Guard - following the `Link: <card.acl>;rel=acl` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements
+
+ 1. for the bnode `_:a1`
 
 ```Turtle
 _:a1 acl:accessTo <card> .
@@ -165,15 +167,17 @@ _:a1 acl:accessTo <card> .
 
 Here deduction means quite simply: to create a new graph with that relation added to it. Once that is done the same `AclShape` written up above holds.
 
-The same is true after dereferencing the `<personal#Rule1>` value.
-This could refer to the `<personal>` resource which let us say contains the following triples:
+ 2. for the `<presonal#Rule1>` 
+
+As above after dereferencing the `<personal#Rule1>` the same principle applies. 
+If the document `<personal>` contains the following triples:
 
 ```Turtle
 <#Rule1> acl:agent <card#i>;
     acl:mode acl:Read, acl:Write .
 ```
 
-Again the client having followed the `Link: <card.acl>;rel=acl` header from `<card>` 
+then the client having followed the `Link: <card.acl>;rel=acl` header from `<card>` 
 and followed the `:authorizes` link to `<personal>` would be able to deduce the triple
 
 ```Turtle
@@ -182,7 +186,7 @@ and followed the `:authorizes` link to `<personal>` would be able to deduce the 
 
 and so that `AclShape` would still be valid.
 
-This is illustrated in the following picture:
+The above layout is illustrated in the following diagram. Double lines represent `Link` relation headers, the solid lines represent relations explicitly written out, and the dotted lines represent inferred relations.
 
 ![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/110973010-f70d3580-835c-11eb-85f0-d0fccc53dba0.jpg)
 
