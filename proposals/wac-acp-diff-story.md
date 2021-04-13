@@ -148,7 +148,7 @@ acl:accessTo owl:inverseOf [
 
 (We leave the namespace for `:authorizes` open for the moment as it could be in the wac, acp, or another namespace).
 
-This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example Tim Berners-Lee's profile could contain 
+This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example the access control resource associated with Tim Berners-Lee's WebID Profile could contain 
 
 ```Turtle
 <> :authorizes _:a1, <personal#Rule1> .
@@ -157,7 +157,7 @@ _:a1 a acl:Authorization;
     acl:mode acl:Read .
 ```
 
-Note that the `acl:accessTo` relation is missing from the Access Control Resource (ACR). But it can easily be inferred. Any agent - be it a client or the server Guard - following the `Link: <card.acl>;rel=acl` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements
+Note that the `acl:accessTo` relation is missing here. But it can easily be inferred. Any agent - be it a client or the server Guard - following the `Link: <card.acl>;rel=acl` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements (see the illustration below)
 
  1. for the bnode `_:a1`
 
