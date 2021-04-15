@@ -139,17 +139,17 @@ _:bart-copies-assignment-2
 ## Minimal Extension to WAC enabling the same features
 
 Another way of getting the same effect as ACP is to extend WAC with a `:authorizes`
-relation defined as 
+relation defined as
 
 ```Turtle
-acl:accessTo owl:inverseOf [ 
+acl:accessTo owl:inverseOf [
         owl:propertyChainAxiom ( acl:accessControl :authorizes )
       ] .
 ```
 
 (We leave the namespace for `:authorizes` open for the moment as it could be in the wac, acp, or another namespace).
 
-This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example, the access control resource associated with Tim Berners-Lee's WebID Profile could contain 
+This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example, the access control resource associated with Tim Berners-Lee's WebID Profile could contain
 
 ```Turtle
 <> :authorizes _:a1, <personal#Rule1> .
@@ -169,9 +169,9 @@ _:a1 acl:accessTo <card> .
 
 Here deduction means quite simply: to create a new graph with the above triple added to it. Once that is done, the same `AclShape` written up above holds of that graph.
 
- 2. for the `<presonal#Rule1>` 
+ 2. for the `<personal#Rule1>`
 
-As above after dereferencing the `<personal#Rule1>` the same principle applies. 
+As above after dereferencing the `<personal#Rule1>` the same principle applies.
 If the document `<personal>` contains the following triples:
 
 ```Turtle
@@ -179,7 +179,7 @@ If the document `<personal>` contains the following triples:
     acl:mode acl:Read, acl:Write .
 ```
 
-then the client having followed the `Link: <card.acl>;rel=acl` header from `<card>` 
+then the client having followed the `Link: <card.acl>;rel="...#accessControl"` header from `<card>`
 and followed the `:authorizes` link to `<personal>` would be able to deduce the triple
 
 ```Turtle
@@ -194,9 +194,9 @@ The above layout is illustrated in the following diagram. Double lines represent
 
 ![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/114870725-cc4d4b80-9df8-11eb-829e-a90d1de120d6.jpg)
 
-We then seem to have two AclShapes that are compatible.
- 1. The current `AclShape` defined above would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation there.
- 2. Newer Clients could use a different Shape when taking into account the following of the right `Link` header. This Shex would be
+We seem to have two AclShapes that are compatible.
+ 1. The current `AclShape` defined above would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation in the inferred graph.
+ 2. Newer Clients could use a different Shape, taking into account the following of the right `Link` header. This Shex would be
 
 ```shex
 PREFIX acl: <http://www.w3.org/ns/auth/acl#>
@@ -211,7 +211,7 @@ PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 }
 ```
 
-Where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations. 
+Where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations.
 
 As we see though, this does not mean that these two relations need to be removed from the ACL ontology. They are the first step to understanding access control, and will very likely be useful for applications such as Linked Data Notifications, and can easily be inferred.
 
