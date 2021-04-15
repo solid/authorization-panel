@@ -203,7 +203,7 @@ PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 
 <WacLinkHeaderShape> {
    # Link header shape
-   acl:accessControl <WacAuthzShape> .
+   (acl:accessControl <WacAuthzShape> )
 }
 
 <WacAuthzShape> {
