@@ -192,7 +192,7 @@ We thus get the same effect of allowing rules to be written and referred to, wit
 
 The above layout is illustrated in the following diagram. Double lines represent `Link` relation headers, the solid lines represent relations explicitly written out, and the dotted lines represent inferred relations.
 
-![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/110973010-f70d3580-835c-11eb-85f0-d0fccc53dba0.jpg)
+![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/114870725-cc4d4b80-9df8-11eb-829e-a90d1de120d6.jpg)
 
 We then seem to have two AclShapes that are compatible.
  1. The current `AclShape` defined above would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation there.
