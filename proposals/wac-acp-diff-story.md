@@ -149,7 +149,7 @@ acl:accessTo owl:inverseOf [
 
 (We leave the namespace for `:authorizes` open for the moment as it could be in the wac, acp, or another namespace).
 
-This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example the access control resource associated with Tim Berners-Lee's WebID Profile could contain 
+This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example, the access control resource associated with Tim Berners-Lee's WebID Profile could contain 
 
 ```Turtle
 <> :authorizes _:a1, <personal#Rule1> .
@@ -158,7 +158,8 @@ _:a1 a acl:Authorization;
    acl:mode acl:Read .
 ```
 
-Note that the `acl:accessTo` relation is missing here. But it can easily be inferred. Any agent - be it a client or the server Guard - following the `Link: <card.acl>;rel=acl` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements (see the illustration below)
+Note that the `acl:accessTo` relation is missing here. But it can easily be inferred. Any agent - be it a client or the server Guard - following the `Link: <card.acl>;rel="http://www.w3.org/ns/auth/acl#accessControl"` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements (see the illustration below)
+
 
  1. for the bnode `_:a1`
 
@@ -166,7 +167,7 @@ Note that the `acl:accessTo` relation is missing here. But it can easily be infe
 _:a1 acl:accessTo <card> .
 ```
 
-Here deduction means quite simply: to create a new graph with the above triple added to it. Once that is done, the same `AclShape` written up above holds.
+Here deduction means quite simply: to create a new graph with the above triple added to it. Once that is done, the same `AclShape` written up above holds of that graph.
 
  2. for the `<presonal#Rule1>` 
 
@@ -187,15 +188,32 @@ and followed the `:authorizes` link to `<personal>` would be able to deduce the 
 
 and so that `AclShape` would still be valid.
 
-There are then two AclShapes that are compabible.
- 1. the AclShape now applied after "inferencing"
- 2. the AclShape applied before inferencing [todo: write that out]
-
 We thus get the same effect of allowing rules to be written and referred to, without those rules needing to specify in advance all the resources for which it is valid.
 
 The above layout is illustrated in the following diagram. Double lines represent `Link` relation headers, the solid lines represent relations explicitly written out, and the dotted lines represent inferred relations.
 
 ![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/110973010-f70d3580-835c-11eb-85f0-d0fccc53dba0.jpg)
+
+We then seem to have two AclShapes that are compatible.
+ 1. The current `AclShape` defined above would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation there.
+ 2. Newer Clients could use a different Shape when taking into account the following of the right `Link` header. This Shex would be
+
+```shex
+PREFIX acl: <http://www.w3.org/ns/auth/acl#>
+
+<WacLinkHeaderShape> {
+   # Link header shape
+   acl:accessControl <WacAuthzShape> .
+}
+
+<WacAuthzShape> {
+   ( :authorizes <AclShape2> )
+}
+```
+
+Where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations. 
+
+As we see though, this does not mean that these two relations need to be removed from the ACL ontology. They are the first step to understanding access control, and will very likely be useful for applications such as Linked Data Notifications, and can easily be inferred.
 
 
 
