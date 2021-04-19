@@ -3,15 +3,41 @@ Title: Access Control Policies
 Shortname: acp
 Level: 1
 Max ToC Depth: 2
+Boilerplate: style-darkmode off
 Status: w3c/ED
 Group: solid-cg
 URL: https://solid.github.io/authorization-panel/acp-specification
 Editor: Aaron Coburn, Inrupt, https://inrupt.com
 Editor: Justin Bingham, Janeiro Digital, https://janeirodigital.com
 Editor: Matthieu Bosquet, Inrupt, https://inrupt.com 
-Abstract: Access Control Policies are a mechanism to define and enforce 
-  authorization to resources stored in a Solid Pod.
-Boilerplate: style-darkmode off
+Abstract:
+  This document defines the Access Control Policies Language (ACP), a language for
+  enforcing resource access against a set of conditions. These conditions are provided
+  as Access Controls, Policies and Matchers expressed in the form of an RDF graph.
+  RDF graphs that are used in this manner are called "authorization graphs" in ACP.
+  and the resource access that are validated against an authorization graph are
+  called "context graphs". As ACP authorization graphs are used to validate that
+  context graphs satisfy a set of conditions they can also be viewed as a description
+  of the context graphs that do satisfy these conditions. 
+Status Text:
+  This section describes the status of this document at the time of its publication.
+  Other documents may supersede this document. A list of current W3C publications
+  and the latest revision of this technical report can be found in the [W3C technical
+  reports index](https://www.w3.org/TR/) at https://www.w3.org/TR/.
+
+  This document is produced from work by the [Solid Community Group](https://www.w3.org/community/solid/).
+  It is a draft document that may, or may not, be officially published. It may be
+  updated, replaced, or obsoleted by other documents at any time. It is inappropriate
+  to cite this document as anything other than work in progress. The source code
+  is available at the following URI [https://github.com/solid/authorization-panel](https://github.com/solid/authorization-panel).
+
+  This document was published by the [Solid Authorization Panel](https://github.com/solid/process/blob/master/panels.md#authorization)
+  as a First Draft.
+
+  [GitHub Issues](https://github.com/solid/authorization-panel/issues) are preferred
+  for discussion of this specification. Alternatively, you can send comments to
+  our mailing list. Please send them to [public-solid@w3.org](mailto:public-solid@w3.org)
+  ([archives](https://lists.w3.org/Archives/Public/public-solid/))
 </pre>
 
 <style>
