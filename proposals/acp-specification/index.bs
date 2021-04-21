@@ -13,8 +13,8 @@ Editor: Matthieu Bosquet, Inrupt, https://inrupt.com
 Abstract:
   This document defines the Access Control Policies Language (ACP), a language for
   enforcing resource access against a set of conditions. These conditions are provided
-  as Access Controls, Policies and Matchers expressed in the form of an RDF graph.
-  RDF graphs that are used in this manner are called "authorization graphs" in ACP.
+  as Access Controls, Policies, and Matchers, expressed in the form of an RDF graph.
+  RDF graphs that are used in this manner are called "authorization graphs" in ACP,
   and the resource access that are validated against an authorization graph are
   called "context graphs". As ACP authorization graphs are used to validate that
   context graphs satisfy a set of conditions they can also be viewed as a description
