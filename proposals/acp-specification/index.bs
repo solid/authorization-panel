@@ -29,7 +29,7 @@ Status Text:
   It is a draft document that may, or may not, be officially published. It may be
   updated, replaced, or obsoleted by other documents at any time. It is inappropriate
   to cite this document as anything other than work in progress. The source code
-  is available at the following URI [https://github.com/solid/authorization-panel](https://github.com/solid/authorization-panel).
+  is available at the following URI: [https://github.com/solid/authorization-panel](https://github.com/solid/authorization-panel).
 
   This document was published by the [Solid Authorization Panel](https://github.com/solid/process/blob/master/panels.md#authorization)
   as a First Draft.
