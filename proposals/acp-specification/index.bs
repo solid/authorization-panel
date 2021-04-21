@@ -36,7 +36,7 @@ Status Text:
 
   [GitHub Issues](https://github.com/solid/authorization-panel/issues) are preferred
   for discussion of this specification. Alternatively, you can send comments to
-  our mailing list. Please send them to [public-solid@w3.org](mailto:public-solid@w3.org)
+  our mailing list, [public-solid@w3.org](mailto:public-solid@w3.org)
   ([archives](https://lists.w3.org/Archives/Public/public-solid/))
 </pre>
 
