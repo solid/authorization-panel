@@ -15,9 +15,9 @@ Abstract:
   enforcing resource access against a set of conditions. These conditions are provided
   as Access Controls, Policies, and Matchers, expressed in the form of an RDF graph.
   RDF graphs that are used in this manner are called "authorization graphs" in ACP,
-  and the resource access that are validated against an authorization graph are
-  called "context graphs". As ACP authorization graphs are used to validate that
-  context graphs satisfy a set of conditions they can also be viewed as a description
+  and the resource accesses that are validated against an authorization graph are
+  called "context graphs". As ACP authorization graphs are used to validate whether
+  context graphs satisfy a set of conditions, they can also be viewed as a description
   of the context graphs that do satisfy these conditions. 
 Status Text:
   This section describes the status of this document at the time of its publication.
