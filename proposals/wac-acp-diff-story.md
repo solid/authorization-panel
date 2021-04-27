@@ -171,22 +171,22 @@ Here deduction means quite simply: to create a new graph with the above triple a
 
  2. for the `<personal#Rule1>`
 
-As above after dereferencing the `<personal#Rule1>` the same principle applies.
-If the document `<personal>` contains the following triples:
+    As above after dereferencing the `<personal#Rule1>` the same principle applies.
+    If the document `<personal>` contains the following triples &mdash;
 
-```Turtle
-<#Rule1> acl:agent <card#i>;
-    acl:mode acl:Read, acl:Write .
-```
+    ```Turtle
+    <#Rule1> acl:agent <card#i>;
+        acl:mode acl:Read, acl:Write .
+    ```
 
-then the client having followed the `Link: <card.acl>;rel="...#accessControl"` header from `<card>`
-and followed the `:authorizes` link to `<personal>` would be able to deduce the triple
+    &mdash; then the client, having followed the `Link: <card.acl>;rel="...#accessControl"` header from `<card>`
+    and followed the `:authorizes` link to `<personal>`, would be able to deduce the triple &mdash;
 
-```Turtle
-<#Rule1> acl:accessTo <card> .
-```
+    ```Turtle
+    <#Rule1> acl:accessTo <card> .
+    ```
 
-and so that `AclShape` would still be valid.
+    &mdash; so that `AclShape` would still be valid.
 
 We thus get the same effect of allowing rules to be written and referred to, without those rules needing to specify in advance all the resources for which it is valid.
 
