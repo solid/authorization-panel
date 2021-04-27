@@ -149,7 +149,7 @@ acl:accessTo owl:inverseOf [
 
 (We leave the namespace for `:authorizes` open for the moment as it could be in the wac, the acp, or another namespace).
 
-This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example, the access control resource associated with Tim Berners-Lee's WebID Profile could contain
+This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. For example, the access control resource associated with Tim Berners-Lee's WebID Profile could contain &mdash;
 
 ```Turtle
 <> :authorizes _:a1, <personal#Rule1> .
