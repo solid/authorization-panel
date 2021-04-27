@@ -190,7 +190,7 @@ Here deduction means quite simply: to create a new graph with the above triple a
 
 We thus get the same effect of allowing rules to be written and referred to, without those rules needing to specify in advance all the resources for which it is valid.
 
-The above layout is illustrated in the following diagram. Double lines represent `Link` relation headers, the solid lines represent relations explicitly written out, and the dotted lines represent inferred relations.
+The above layout is illustrated in the following diagram. Double lines represent `Link` relation headers; the solid lines represent relations explicitly written out; and the dotted lines represent inferred relations.
 
 ![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/114870725-cc4d4b80-9df8-11eb-829e-a90d1de120d6.jpg)
 
