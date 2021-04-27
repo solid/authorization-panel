@@ -196,21 +196,21 @@ The above layout is illustrated in the following diagram. Double lines represent
 
 We seem to have two AclShapes that are compatible.
  1. The current `AclShape` defined above would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation in the inferred graph.
- 2. Newer Clients could use a different Shape, taking into account the following of the right `Link` header. This Shex would be
+ 2. Newer Clients could use a different Shape, taking into account the following of the right `Link` header. This Shex would be &mdash;
 
-```shex
-PREFIX acl: <http://www.w3.org/ns/auth/acl#>
+    ```shex
+    PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 
-<WacLinkHeaderShape> {
-   # Link header shape
-   (acl:accessControl <WacAuthzShape> )
-}
+    <WacLinkHeaderShape> {
+       # Link header shape
+       (acl:accessControl <WacAuthzShape> )
+    }
 
-<WacAuthzShape> {
-   ( :authorizes <AclShape2> )
-}
-```
+    <WacAuthzShape> {
+       ( :authorizes <AclShape2> )
+    }
+    ```
 
-Where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations.
+    &mdash; where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations.
 
 As we see, though, this does not mean that these two relations need to be removed from the ACL ontology. They are the first step to understanding access control, and will very likely be useful for applications such as Linked Data Notifications, and can easily be inferred.
