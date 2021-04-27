@@ -138,7 +138,7 @@ _:bart-copies-assignment-2
 
 ## Minimal Extension to WAC enabling the same features
 
-Another way of getting the same effect as ACP is to extend WAC with a `:authorizes`
+Another way of getting the same effect as ACP is to extend WAC with an `:authorizes`
 relation defined as
 
 ```Turtle
@@ -214,6 +214,5 @@ PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 Where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations.
 
 As we see though, this does not mean that these two relations need to be removed from the ACL ontology. They are the first step to understanding access control, and will very likely be useful for applications such as Linked Data Notifications, and can easily be inferred.
-
 
 
