@@ -195,7 +195,7 @@ The above layout is illustrated in the following diagram. Double lines represent
 ![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/114870725-cc4d4b80-9df8-11eb-829e-a90d1de120d6.jpg)
 
 We seem to have two AclShapes that are compatible.
- 1. The current `AclShape` defined above would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation in the inferred graph.
+ 1. The current `AclShape`, as defined above, would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation in the inferred graph.
  2. Newer Clients could use a different Shape, taking into account the following of the right `Link` header. This Shex would be &mdash;
 
     ```shex
