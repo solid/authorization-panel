@@ -158,7 +158,7 @@ _:a1 a acl:Authorization;
    acl:mode acl:Read .
 ```
 
-Note that the `acl:accessTo` relation is missing here. But it can easily be inferred. Any agent - be it a client or the server Guard - following the `Link: <card.acl>;rel="http://www.w3.org/ns/auth/acl#accessControl"` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements (see the illustration below)
+Note that the `acl:accessTo` relation is missing here, but it can easily be inferred. Any agent &mdash; be it a client or the server Guard &mdash; following the `Link: <card.acl>;rel="http://www.w3.org/ns/auth/acl#accessControl"` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements (see the illustration below):
 
 
  1. for the bnode `_:a1`
@@ -214,4 +214,3 @@ PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 Where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations.
 
 As we see though, this does not mean that these two relations need to be removed from the ACL ontology. They are the first step to understanding access control, and will very likely be useful for applications such as Linked Data Notifications, and can easily be inferred.
-
