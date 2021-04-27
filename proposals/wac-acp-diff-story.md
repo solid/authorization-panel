@@ -139,7 +139,7 @@ _:bart-copies-assignment-2
 ## Minimal Extension to WAC enabling the same features
 
 Another way of getting the same effect as ACP is to extend WAC with an `:authorizes`
-relation defined as
+relation defined as &mdash;
 
 ```Turtle
 acl:accessTo owl:inverseOf [
