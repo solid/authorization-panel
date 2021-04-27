@@ -147,7 +147,7 @@ acl:accessTo owl:inverseOf [
       ] .
 ```
 
-(We leave the namespace for `:authorizes` open for the moment as it could be in the wac, acp, or another namespace).
+(We leave the namespace for `:authorizes` open for the moment as it could be in the wac, the acp, or another namespace).
 
 This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. So for example, the access control resource associated with Tim Berners-Lee's WebID Profile could contain
 
@@ -214,5 +214,4 @@ PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 Where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations.
 
 As we see though, this does not mean that these two relations need to be removed from the ACL ontology. They are the first step to understanding access control, and will very likely be useful for applications such as Linked Data Notifications, and can easily be inferred.
-
 
