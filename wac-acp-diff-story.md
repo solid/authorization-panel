@@ -10,8 +10,10 @@ This is a work in progress.
 Audience: those familiar with WAC or those who learn from comparisons
 
 Access control is fundamentally about stating `who` can `do what` to `what resource`.
+This matches very precisely the WAC ontology.
 
 ## ShEx for WAC:
+
 Systems implementing Web Access Control (WAC) use a simple schema to make those assertions directly in RDF:
 
 ``` shex
@@ -133,3 +135,82 @@ _:bart-copies-assignment-2
   a acl:AccessControl ;
   acp:apply </myAccessPolicies#bart-copies-my-homework> .
 ```
+
+## Minimal Extension to WAC enabling the same features
+
+Another way of getting the same effect as ACP is to extend WAC with an `:authorizes`
+relation defined as &mdash;
+
+```Turtle
+acl:accessTo owl:inverseOf [
+        owl:propertyChainAxiom ( acl:accessControl :authorizes )
+      ] .
+```
+
+(We leave the namespace for `:authorizes` open for the moment as it could be in the wac, the acp, or another namespace).
+
+This would allow one to place rules in different resources without needing to specify the `wac:accessTo` relation as in ACP. For example, the access control resource associated with Tim Berners-Lee's WebID Profile could contain &mdash;
+
+```Turtle
+<> :authorizes _:a1, <personal#Rule1> .
+_:a1 a acl:Authorization;
+   acl:agentClass foaf:Agent ;
+   acl:mode acl:Read .
+```
+
+Note that the `acl:accessTo` relation is missing here, but it can easily be inferred. Any agent &mdash; be it a client or the server Guard &mdash; following the `Link: <card.acl>;rel="http://www.w3.org/ns/auth/acl#accessControl"` header from the original resource `<card>`, can then follow the `:authorizes` links and so deduce the following 2 statements (see the illustration below):
+
+
+ 1. for the bnode `_:a1`
+
+    ```Turtle
+    _:a1 acl:accessTo <card> .
+    ```
+
+    Here, deduction means, quite simply: <em>to create a new graph with the above triple added to it.</em> Once that is done, the same `AclShape` written up above holds for that graph.
+
+ 2. for the `<personal#Rule1>`
+
+    As above after dereferencing the `<personal#Rule1>` the same principle applies.
+    If the document `<personal>` contains the following triples &mdash;
+
+    ```Turtle
+    <#Rule1> acl:agent <card#i>;
+        acl:mode acl:Read, acl:Write .
+    ```
+
+    &mdash; then the client, having followed the `Link: <card.acl>;rel="...#accessControl"` header from `<card>`
+    and followed the `:authorizes` link to `<personal>`, would be able to deduce the triple &mdash;
+
+    ```Turtle
+    <#Rule1> acl:accessTo <card> .
+    ```
+
+    &mdash; so that `AclShape` would still be valid.
+
+We thus get the same effect of allowing rules to be written and referred to, without those rules needing to specify in advance all the resources for which it is valid.
+
+The above layout is illustrated in the following diagram. Double lines represent `Link` relation headers; the solid lines represent relations explicitly written out; and the dotted lines represent inferred relations.
+
+![Illustration of :authorizes](https://user-images.githubusercontent.com/124506/114870725-cc4d4b80-9df8-11eb-829e-a90d1de120d6.jpg)
+
+We seem to have two AclShapes that are compatible.
+ 1. The current `AclShape`, as defined above, would allow clients working with the inferred graph to continue working even on WAC deployed as above. They would find the `acl:accessTo` relation in the inferred graph.
+ 2. Newer Clients could use a different Shape, taking into account the following of the right `Link` header. This Shex would be &mdash;
+
+    ```shex
+    PREFIX acl: <http://www.w3.org/ns/auth/acl#>
+
+    <WacLinkHeaderShape> {
+       # Link header shape
+       (acl:accessControl <WacAuthzShape> )
+    }
+
+    <WacAuthzShape> {
+       ( :authorizes <AclShape2> )
+    }
+    ```
+
+    &mdash; where `<AclShape2>` is `<AclShape>` minus the `acl:accessTo` and `acl:accessToClass` relations.
+
+As we see, though, this does not mean that these two relations need to be removed from the ACL ontology. They are the first step to understanding access control, and will very likely be useful for applications such as Linked Data Notifications, and can easily be inferred.
