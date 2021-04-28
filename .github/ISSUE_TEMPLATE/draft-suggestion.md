@@ -1,11 +1,11 @@
 ---
 name: Proposals suggestion
-about: Suggestion for improving on of existing proposals
+about: Suggestion for improving existing proposals
 ---
 
 ## On proposal
 
-Which proposal your suggestion is intended for? (ACP, WAC+)
+Which proposal is your suggestion intended for? (e.g. ACP, WAC+)
 
 ## Details
 

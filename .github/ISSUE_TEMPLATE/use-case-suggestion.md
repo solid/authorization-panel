@@ -5,7 +5,7 @@ about: Suggestion for improving use cases document
 
 ## On use case
 
-Which existing use case your suggestion is intended for? (or a new use case)
+Which existing use case is your suggestion intended for? (or a new use case)
 
 ## Details
 
