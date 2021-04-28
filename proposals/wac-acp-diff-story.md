@@ -163,11 +163,11 @@ Note that the `acl:accessTo` relation is missing here, but it can easily be infe
 
  1. for the bnode `_:a1`
 
-```Turtle
-_:a1 acl:accessTo <card> .
-```
+    ```Turtle
+    _:a1 acl:accessTo <card> .
+    ```
 
-Here deduction means quite simply: to create a new graph with the above triple added to it. Once that is done, the same `AclShape` written up above holds of that graph.
+    Here, deduction means, quite simply: <em>to create a new graph with the above triple added to it.</em> Once that is done, the same `AclShape` written up above holds for that graph.
 
  2. for the `<personal#Rule1>`
 
