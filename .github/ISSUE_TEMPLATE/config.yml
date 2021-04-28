@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: discussions
+    url: https://github.com/solid/authorization-panel/discussions
+    about: Open discussion should happen here. Issues require clear acceptance citeria for resolving them.
+  - name: chatroom
+    url: https://gitter.im/solid/authorization-panel
+    about: Public gitter channel for quick questions and real time discussion (as much as different timezones allow).
