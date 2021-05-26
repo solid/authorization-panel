@@ -24,7 +24,7 @@ ex:AgentMatcher1
   acp:agent ex:Alice .
 ```
 
-Note: `acp:access` points to policies applied to the access control.
+Note: `acp:access` points to policies applied to the access control, which means the permissions applied to an access control are granular, in other words, could for example be read-only.
 
 ### WAC
 
@@ -35,7 +35,7 @@ ex:AccessControl1
     acl:mode acl:Control .
 ```
 
-Note: `acl:Control` gives full access to the access control resource
+Note: `acl:Control` gives full access to the access control resource.
 
 
 ## Read-write access
