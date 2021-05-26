@@ -24,7 +24,7 @@ ex:AgentMatcher1
   acp:agent ex:Alice .
 ```
 
-Note: `acp:access` points to policies applied to the access control, which means the permissions applied to an access control are granular, in other words, could for example be read-only.
+Note: `acp:access` points to policies applied to the access control, which means the permissions applied to an access control are granular; in other words, could be read-only, for example.
 
 ### WAC
 
