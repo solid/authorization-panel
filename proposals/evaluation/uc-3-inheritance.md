@@ -35,7 +35,7 @@ ex:Collection1
 
 ex:AccessControl1
     acl:agent ex:Alice ;
-    acl:accessTo ex:Collection1 ;
+    acl:default ex:Collection1 ;
     acl:mode acl:Read .
 ```
 
