@@ -39,4 +39,4 @@ ex:AccessControl1
     acl:mode acl:Read .
 ```
 
-Note: A resource, whether container or not, will use its parent's access control unless it has its own access control defined (parentage being defined via the `ldp:contains` predicate). Inheritance is not granular and can be cut off by adding an access control to a resource at any point in the resource hierarchy tree.
+Note: A resource will use its parent container's access control `acl:default` authorization unless it has its own access control defined (parentage being defined via the `ldp:contains` predicate). Inheritance is not granular and can be cut off by adding an access control to a resource at any point in the resource hierarchy tree. If the parent container doesn't have an access control, the inheritance works its way up.
