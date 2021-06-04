@@ -32,9 +32,10 @@ Note: Resources linked to a collection via `ldp:contains` will inherit policies 
 The Weekly status collection is an `ldp:BasicContainer`, which contains a number of `ldp:BasicContainers`, one for each weekly meeting. The advantage of having these as containers rather than plain resources is that any number of other documents can be added to the container too.
 
 ```turtle
-<.> a ldp:BasicContainer;
+<.>
+  a ldp:BasicContainer ;
   ldp:contains <2021-04-28/>, <2021-05-05/>, <2021-05-12/> .
-```  
+```
 
 
 The `<weekly-status/>` container links to an `acl:accessControl` resource located at `<.acl>` in the same container. So we have the following hierarchy of resources:
@@ -50,9 +51,10 @@ The `<weekly-status/>` container links to an `acl:accessControl` resource locate
 This acl contains
 
 ```turtle
-[]  acl:agentClass </groups/research#g1> ;
-    acl:default <.> ;
-    acl:mode acl:Read .
+[]
+  acl:agentClass </groups/research#g1> ;
+  acl:default <.> ;
+  acl:mode acl:Read .
 ```
 
 Note: A resource will use its parent container's access control `acl:default` authorization unless it has its own access control defined (parentage being defined via the `ldp:contains` predicate). Inheritance is not granular and can be cut off by adding an access control to a resource at any point in the resource hierarchy tree. If the parent container doesn't have an access control, the WAC inheritance algorithm works its way up through `ldp:contains` predicates.
