@@ -76,7 +76,7 @@ The acl enabling read access to all resources contained by `</weekly-status/>` f
 <#authorization>
   a acl:Authorization ;
   acl:agentGroup </groups/research#g1> ;
-  acl:default <./> ;
+  acl:default <.> ;
   acl:mode acl:Read .
 ```
 
