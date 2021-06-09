@@ -1,5 +1,14 @@
 # Access Inheritance Use Cases
 
+Within this document, the following namespace prefix bindings are used:
+
+| Prefix  | Namespace                         |
+| ------- | --------------------------------- |
+| acl     | http://www.w3.org/ns/auth/acl#    |
+| acp     | http://www.w3.org/ns/solid/acp#   |
+| ex      | https://example.com/              |
+| vcard   | http://www.w3.org/2006/vcard/ns#  |
+
 
 ## Read access on a collection of resources
 
@@ -32,6 +41,7 @@ Note: Resources linked to a collection via `ldp:contains` will inherit policies 
 The Weekly status collection is an `ldp:BasicContainer`, which contains a number of `ldp:BasicContainers`, one for each weekly meeting. The advantage of having these as containers rather than plain resources is that any number of other documents can be added to the container too.
 
 ```turtle
+# Resource: </work/weekly-status/>
 <.>
   a ldp:BasicContainer ;
   ldp:contains <2021-04-28/>, <2021-05-05/>, <2021-05-12/> .
@@ -48,11 +58,22 @@ The `<weekly-status/>` container links to an `acl:accessControl` resource locate
 </work/weekly-status/2021-05-12/>
 ```
 
-This acl contains
+We want to setup read access for members of the research authorization group `g1`:
 
 ```turtle
+# Resource: </groups/research>
+<#g1>
+    a                vcard:Group ;
+    vcard:hasMember  ex:Bob ;
+    vcard:hasMember  ex:Alice .
+```
+
+This acl contains:
+
+```turtle
+# Resource: </work/weekly-status/.acl>
 []
-  acl:agentClass </groups/research#g1> ;
+  acl:agentGroup </groups/research#g1> ;
   acl:default <.> ;
   acl:mode acl:Read .
 ```
