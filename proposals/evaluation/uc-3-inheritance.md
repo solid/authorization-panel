@@ -12,8 +12,6 @@ Within this document, the following namespace prefix bindings are used:
 
 ## Read access on a collection of resources
 
-See also: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-readonly
-
 Alice can read all resources in a collection.
 
 ### ACP
@@ -36,7 +34,11 @@ ex:AgentMatcher1
 
 Note: Resources linked to a collection via `ldp:contains` will inherit policies linked to the collection's access control via `acp:applyMembers`. Collections linked to a collection via `ldp:contains` will pass the inherited policies through to their member resources.
 
-### WAC
+## Read access to a group on a collection of resources
+
+See also: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-readonly
+
+### Setup
 
 The Weekly status collection is an `ldp:BasicContainer`, which contains a number of `ldp:BasicContainers`, one for each weekly meeting. The advantage of having these as containers rather than plain resources is that any number of other documents can be added to the container too.
 
@@ -58,6 +60,44 @@ We have the following hierarchy of resources:
 </weekly-status/2021-05-05/>
 </weekly-status/2021-05-12/>
 ```
+
+We want to enable read access to all resources contained in `</weekly-status/>` for a group of people (`ex:Alice` & `ex:Bob`).
+
+### ACP
+
+The `</weekly-status/.acl>` resource is advertised as `</weekly-status/>`'s access control list via a `Link` header with a relationship type of `http://www.w3.org/ns/auth/acl#accessControl`.
+
+Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
+
+```turtle
+# Resource: </acp/matcher/research#g1>
+<#g1>
+  a acp:AgentMatcher ;
+  acp:agent ex:Bob, ex:Alice .
+```
+
+The research policy #1 gives read access to all agents in `</acp/matcher/research#g1>`:
+
+```turtle
+# Resource: </acp/policy/research#p1>
+<#p1>
+  a acp:Policy ;
+  acp:anyOf </acp/matcher/research#g1> ;
+  acp:allow acl:Read .
+```
+
+The access control `<#authorization>` enabling read access to all resources contained by `</weekly-status/>` for all agents matched by `</acp/matcher/research#g1>` is:
+
+```turtle
+# Resource: </weekly-status/.acl>
+<#authorization>
+  a acp:AccessControl ;
+  acp:apply </acp/policy/research#p1> ;
+  acp:applyMembers </acp/policy/research#p1> .
+```
+
+
+### WAC
 
 Bob and Alice are members of the research group `</groups/research#g1>`:
 
