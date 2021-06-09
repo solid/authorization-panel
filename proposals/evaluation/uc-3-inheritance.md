@@ -7,8 +7,8 @@ Within this document, the following namespace prefix bindings are used:
 | acl     | http://www.w3.org/ns/auth/acl#    |
 | acp     | http://www.w3.org/ns/solid/acp#   |
 | ex      | https://example.com/              |
+| ldp     | http://www.w3.org/ns/ldp#         |
 | vcard   | http://www.w3.org/2006/vcard/ns#  |
-
 
 ## Read access on a collection of resources
 
@@ -41,24 +41,25 @@ Note: Resources linked to a collection via `ldp:contains` will inherit policies 
 The Weekly status collection is an `ldp:BasicContainer`, which contains a number of `ldp:BasicContainers`, one for each weekly meeting. The advantage of having these as containers rather than plain resources is that any number of other documents can be added to the container too.
 
 ```turtle
-# Resource: </work/weekly-status/>
+# Resource: </weekly-status/>
 <.>
   a ldp:BasicContainer ;
   ldp:contains <2021-04-28/>, <2021-05-05/>, <2021-05-12/> .
 ```
 
+The `</weekly-status/.acl>` resource is advertised as `</weekly-status/>`'s access control list via a `Link` header with a relationship type of `http://www.w3.org/ns/auth/acl#accessControl`.
 
-The `<weekly-status/>` container links to an `acl:accessControl` resource located at `<.acl>` in the same container. So we have the following hierarchy of resources:
+We have the following hierarchy of resources:
 
 ```
-</work/weekly-status/>
-</work/weekly-status/.acl>
-</work/weekly-status/2021-04-28/>
-</work/weekly-status/2021-05-05/>
-</work/weekly-status/2021-05-12/>
+</weekly-status/>
+</weekly-status/.acl>
+</weekly-status/2021-04-28/>
+</weekly-status/2021-05-05/>
+</weekly-status/2021-05-12/>
 ```
 
-We want to setup read access for members of the research authorization group `g1`:
+Bob and Alice are members of the research group `</groups/research#g1>`:
 
 ```turtle
 # Resource: </groups/research>
@@ -68,10 +69,10 @@ We want to setup read access for members of the research authorization group `g1
     vcard:hasMember  ex:Alice .
 ```
 
-This acl contains:
+The acl enabling read access to all resources contained by `</weekly-status/>` for all members of group `</groups/research#g1>` is:
 
 ```turtle
-# Resource: </work/weekly-status/.acl>
+# Resource: </weekly-status/.acl>
 []
   acl:agentGroup </groups/research#g1> ;
   acl:default <.> ;
