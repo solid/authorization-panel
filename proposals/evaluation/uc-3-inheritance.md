@@ -120,6 +120,6 @@ The acl enabling read access to all resources contained by `</weekly-status/>` f
   acl:mode acl:Read .
 ```
 
-Note: A resource will use its parent container's access control `acl:default` authorization unless it has its own access control defined (parentage being defined via the `ldp:contains` predicate). Inheritance is not granular and can be cut off by adding an access control to a resource at any point in the resource hierarchy tree. If the parent container doesn't have an access control, the WAC inheritance algorithm works its way up through `ldp:contains` predicates.
+Note: If a resource does not have its own access control defined, it will use the `acl:default` access control of its parent container, defined via the `ldp:contains` predicate. If the parent container doesn't have an access control, the WAC inheritance algorithm works its way up through `ldp:contains` predicates. Inheritance is not granular, and can be limited by adding an access control to a resource at any point in the resource hierarchy tree. 
 
-The downside of this is that adding an access control resource, requires all the relevant rules to be copied to the new acr, creating duplication of rules.
+The downside of this is that adding an access control resource ("acr") requires that all relevant rules be copied to that new acr, creating duplication of rules.
