@@ -2,13 +2,13 @@
 
 Within this document, the following namespace prefix bindings are used:
 
-| Prefix  | Namespace                         |
-| ------- | --------------------------------- |
-| acl     | http://www.w3.org/ns/auth/acl#    |
-| acp     | http://www.w3.org/ns/solid/acp#   |
-| ex      | https://example.com/              |
-| ldp     | http://www.w3.org/ns/ldp#         |
-| vcard   | http://www.w3.org/2006/vcard/ns#  |
+| Prefix    | Namespace                           |
+| --------- | ----------------------------------- |
+| `acl`     | `http://www.w3.org/ns/auth/acl#`    |
+| `acp`     | `http://www.w3.org/ns/solid/acp#`   |
+| `ex`      | `https://example.com/`              |
+| `ldp`     | `http://www.w3.org/ns/ldp#`         |
+| `vcard`   | `http://www.w3.org/2006/vcard/ns#`  |
 
 ## Read access on a collection of resources
 
