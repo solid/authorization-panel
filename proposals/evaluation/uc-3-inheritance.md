@@ -65,7 +65,6 @@ We want to enable read access to all resources contained in `</weekly-status/>` 
 
 ### ACP
 
-The `</weekly-status/.acl>` resource is advertised as `</weekly-status/>`'s access control list via a `Link` header with a relationship type of `http://www.w3.org/ns/auth/acl#accessControl`.
 
 Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
 
