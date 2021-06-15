@@ -69,7 +69,7 @@ We want to enable read access to all resources contained in `</weekly-status/>` 
 Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
 
 ```turtle
-# Resource: </acp/matcher/research#g1>
+# Resource: </acp/matcher/research>
 <#g1>
   a acp:AgentMatcher ;
   acp:agent ex:Bob, ex:Alice .
