@@ -5,42 +5,26 @@ Within this document, the following namespace prefix bindings are used:
 | Prefix    | Namespace                           |
 | --------- | ----------------------------------- |
 | `acl`     | `http://www.w3.org/ns/auth/acl#`    |
+| `ac`      |  WAC+ namespace, undetermined       |
 | `acp`     | `http://www.w3.org/ns/solid/acp#`   |
 | `ex`      | `https://example.com/`              |
 | `ldp`     | `http://www.w3.org/ns/ldp#`         |
-| `vcard`   | `http://www.w3.org/2006/vcard/ns#`  |
+| `vcard`   | `http://www.w3.org/2006/vcard/ns#` 
+ |
 
-## Read access on a collection of resources
+## 1. Read access on a collection of resources
 
 Alice can read all resources in a collection.
 
 ### ACP
 
-```turtle
-ex:Collection1
-  acp:accessControl ex:AccessControl1 ;
-  ldp:contains ex:Resource1 .
-
-ex:AccessControl1
-  acp:applyMembers ex:Policy1 .
-
-ex:Policy1
-  acp:anyOf ex:AgentMatcher1 ;
-  acp:allow acl:Read .
-
-ex:AgentMatcher1
-  acp:agent ex:Alice .
-```
-
-Note: Resources linked to a collection via `ldp:contains` will inherit policies linked to the collection's access control via `acp:applyMembers`. Collections linked to a collection via `ldp:contains` will pass the inherited policies through to their member resources.
-
 ## Read access to a group on a collection of resources
 
-See also: https://solid.github.io/authorization-panel/authorization-ucr/#inheritance-readonly
+See also: [UCR 2.3 Collection resource inherited access](https://solid.github.io/authorization-panel/authorization-ucr/#uc-inheritance)
 
 ### Setup
 
-The Weekly status collection is an `ldp:BasicContainer`, which contains a number of `ldp:BasicContainers`, one for each weekly meeting. The advantage of having these as containers rather than plain resources is that any number of other documents can be added to the container too.
+The Weekly status collection is an `ldp:BasicContainer`, which contains other `ldp:BasicContainers`, one for each weekly meeting, into which further documents can be placed. 
 
 ```turtle
 # Resource: </weekly-status/>
@@ -51,20 +35,25 @@ The Weekly status collection is an `ldp:BasicContainer`, which contains a number
 
 The `</weekly-status/.acl>` resource is advertised as `</weekly-status/>`'s access control list via a `Link` header with a relationship type of `http://www.w3.org/ns/auth/acl#accessControl`.
 
-We have the following hierarchy of resources:
+We have the following hierarchy of resources (shown in more detail in the UCR)
 
 ```
 </weekly-status/>
-</weekly-status/.acl>
+</weekly-status/.acl> ## for WAC rules
+</weekly-status/.acp> ## for ACP 
+</weekly-status/.ac> ## for WAC+ 
 </weekly-status/2021-04-28/>
+</weekly-status/2021-04-28/report.md>
 </weekly-status/2021-05-05/>
+</weekly-status/2021-05-05/report.md>
+</weekly-status/2021-05-05/diagram.jpg>
 </weekly-status/2021-05-12/>
+</daily-metrics/>
 ```
 
 We want to enable read access to all resources contained in `</weekly-status/>` for a group of people (`ex:Alice` & `ex:Bob`).
 
 ### ACP
-
 
 Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
 
@@ -75,7 +64,7 @@ Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
   acp:agent ex:Bob, ex:Alice .
 ```
 
-The research policy #1 gives read access to all agents in `</acp/matcher/research#g1>`:
+The research policy <#p1> gives read access to all agents in `</acp/matcher/research#g1>`:
 
 ```turtle
 # Resource: </acp/policy/research>
@@ -85,17 +74,19 @@ The research policy #1 gives read access to all agents in `</acp/matcher/researc
   acp:allow acl:Read .
 ```
 
-The access control `<#authorization>` enabling read access to all resources contained by `</weekly-status/>` for all agents matched by `</acp/matcher/research#g1>` is:
+The access control `<#authorization>` enables read access to all resources contained by `</weekly-status/>` for all agents matched by `</acp/matcher/research#g1>` is:
 
 ```turtle
-# Resource: </weekly-status/.acl>
+# Resource: </weekly-status/.acp>
 <#authorization>
   a acp:AccessControl ;
   acp:apply </acp/policy/research#p1> ;
   acp:applyMembers </acp/policy/research#p1> .
 ```
 
-
+Todo:  what is the ACR for 
+`</weekly-status/2021-04-28/report.md>` and what information is in it?
+   
 ### WAC
 
 Bob and Alice are members of the research group `</groups/research#g1>`:
@@ -119,6 +110,46 @@ The acl enabling read access to all resources contained by `</weekly-status/>` f
   acl:mode acl:Read .
 ```
 
-Note: If a resource does not have its own access control defined, it will use the `acl:default` access control of its parent container, defined via the `ldp:contains` predicate. If the parent container doesn't have an access control, the WAC inheritance algorithm works its way up through `ldp:contains` predicates. Inheritance is not granular, and can be limited by adding an access control to a resource at any point in the resource hierarchy tree. 
+## 2. Changing permissions to a subcollection
 
-The downside of this is that adding an access control resource ("acr") requires that all relevant rules be copied to that new acr, creating duplication of rules.
+Bob wants to give give Carol read/write access but only to the collection </weekly-status/2021-04-28/> ? (What example from the UCR does this correspond to best?)
+
+### ACP 
+
+todo
+
+### WAC
+
+To change the access rules to the `</weekly-status/2021-04-28/>` collection Bob must edit `</weekly-status/2021-04-28/.acl>`. But doing so will disable the default access control rule located in `</weekly-status/.acl>` . So the content of the PUT must contain the default rule and the new ones.
+
+```Turtle
+# Resource: </weekly-status/2021-04-28/.acl>
+<#authz>
+  a acl:Authorization ;
+  acl:agentGroup </groups/research#g1> ;
+  acl:default <.> ;
+  acl:mode acl:Read .
+
+<#authzNew>
+  a acl:Authorization ;
+  acl:agent ex:Carol ;
+  acl:default <.> ;
+  acl:mode acl:Read, acl:Write .
+```
+
+### WAC+ac:imports
+
+[WAC+:imports](https://github.com/solid/authorization-panel/issues/210) works just as WAC does above with `:default` working as shown. The advantage of `ac:imports` is that the resource  `</weekly-status/2021-04-28/.ac>` need only be set to contain:
+
+```Turtle
+# Resource: </weekly-status/2021-04-28/.ac>
+<> ac:imports <../.acl> .
+
+<#authzNew>
+  a acl:Authorization ;
+  acl:agent ex:Carol ;
+  acl:default <.> ;
+  acl:mode acl:Read, acl:Write .
+```
+
+The advantage of this is that it removes the needed duplication of the `</weekly-status/.acl#authorization>` rule, so that if that needs to be edited it can be done so in one place.
