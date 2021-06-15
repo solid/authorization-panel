@@ -9,8 +9,7 @@ Within this document, the following namespace prefix bindings are used:
 | `acp`     | `http://www.w3.org/ns/solid/acp#`   |
 | `ex`      | `https://example.com/`              |
 | `ldp`     | `http://www.w3.org/ns/ldp#`         |
-| `vcard`   | `http://www.w3.org/2006/vcard/ns#` 
- |
+| `vcard`   | `http://www.w3.org/2006/vcard/ns#`  |
 
 ## 1. Read access on a collection of resources
 
