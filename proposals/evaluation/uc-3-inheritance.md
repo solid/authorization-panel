@@ -78,7 +78,7 @@ Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
 The research policy #1 gives read access to all agents in `</acp/matcher/research#g1>`:
 
 ```turtle
-# Resource: </acp/policy/research#p1>
+# Resource: </acp/policy/research>
 <#p1>
   a acp:Policy ;
   acp:anyOf </acp/matcher/research#g1> ;
