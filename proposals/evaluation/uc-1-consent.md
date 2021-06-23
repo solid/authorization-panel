@@ -4,16 +4,17 @@
 
 Alice wants to use an application called FinanceInsight to help her
 understand trends in her cashflow and spending activity, using financial
-data stored in her personal and work pods. First she'll needs to grant 
-FinanceInsight access to that data across her two pods. 
+data stored in her Pod and data linked to from there on transaction she made with others
+such as her electricity provider, telecom agency, supermarket, bank, etc... 
 
-Since she has a lot of other data in her pod that isn't finance related, 
-she needsto grant FinanceInsight access only to exactly the data it needs.
+Alice needs to grant FinanceInsight access to the financial data on her Pod and
+limit its access to most other data there.  But she does want the App to fetch
+data from the services she used online, as those contain rich metadata that will allow it to categorise her financial activity. For example, even though her credit card
+will show only the total sum of the goods she bought, the supermarket web site will have the full list of goods bought in machine readable format for each transaction, with informatio on the type of goods, links to the producers,... 
 
-Because there's a lot of finance data spread across her pods, along with
-some data that is related in context, she needs help to make sure that she's
-giving FinanceInsight access to all of the data it needs to operate, but no
-more.
+She wants to limit the Apps ability to do anything other than read
+data from those other services, even though she herself using her browser is able to make
+purchases online from them. 
 
 Alice has a trusted party handling authorization that helps her interpret the kind
 of data that FinanceInsight needs, and then presents the access decisions to her
