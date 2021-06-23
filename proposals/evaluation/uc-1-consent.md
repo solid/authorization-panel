@@ -15,7 +15,7 @@ some data that is related in context, she needs help to make sure that she's
 giving FinanceInsight access to all of the data it needs to operate, but no
 more.
 
-Alice has a trusted authorization application that helps her interpret the kind
+Alice has a trusted party handling authorization that helps her interpret the kind
 of data that FinanceInsight needs, and then presents the access decisions to her
 so that she can make intuitive, smart choices. Once she makes those 
 decisions, her trusted authorization application stores a record of them,
