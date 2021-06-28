@@ -8,9 +8,13 @@ data stored in her Pod and data linked from there to transaction she made with o
 such as her electricity provider, telecom agency, supermarket, bank, etc... 
 
 Alice needs to grant FinanceInsight access to the financial data on her Pod and
-limit its access to most other data there.  But she does want the App to fetch
-data from the services she used online, as those contain rich metadata that will allow it to categorise her financial activity. For example, even though her credit card
-will show only the total sum of the goods she bought, the supermarket web site will have the full list of goods bought in machine readable format for each transaction, with informatio on the type of goods, links to the producers,... 
+limit its access to most other data there.  She does want the App to fetch
+data from the services she used online, as those contain rich metadata that
+will allow it to categorize her financial activity. For example, even 
+though her credit card will show only the total sum of the goods she bought,
+the supermarket web site will have the full list of goods bought in machine
+readable format for each transaction, with information on the type of goods,
+links to the producers,... 
 
 She wants to limit the Apps ability to do anything other than read
 data from those other services, even though she herself using her browser is able to make
