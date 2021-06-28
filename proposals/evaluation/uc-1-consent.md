@@ -16,9 +16,9 @@ the supermarket web site will have the full list of goods bought in machine
 readable format for each transaction, with information on the type of goods,
 links to the producers,... 
 
-She wants to limit the Apps ability to do anything other than read
-data from those other services, even though she herself using her browser is able to make
-purchases online from them. 
+She wants to limit the App's ability to do anything other than read data from
+those other services, even though she herself is able to use her browser to
+make purchases online from them. 
 
 Alice has a trusted party handling authorization that helps her interpret the kind
 of data that FinanceInsight needs, and then presents the access decisions to her
