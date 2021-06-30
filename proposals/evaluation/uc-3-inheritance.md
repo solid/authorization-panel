@@ -1,25 +1,11 @@
 # Access Inheritance Use Cases
 
-Within this document, the following namespace prefix bindings are used:
-
-| Prefix    | Namespace                           |
-| --------- | ----------------------------------- |
-| `acl`     | `http://www.w3.org/ns/auth/acl#`    |
-| `ac`      |  WAC+ namespace, undetermined       |
-| `acp`     | `http://www.w3.org/ns/solid/acp#`   |
-| `ex`      | `https://example.com/`              |
-| `ldp`     | `http://www.w3.org/ns/ldp#`         |
-| `vcard`   | `http://www.w3.org/2006/vcard/ns#`  |
-
-## 1. Read access on a collection of resources
-
-Alice can read all resources in a collection.
-
-### ACP
-
-## Read access to a group on a collection of resources
+This is part 3 of the [implementation specific use cases comparison](./use-cases.md).
 
 See also: [UCR 2.3 Collection resource inherited access](https://solid.github.io/authorization-panel/authorization-ucr/#uc-inheritance)
+
+
+## 1. Read access to a group on a collection of resources
 
 ### Setup
 
@@ -32,22 +18,16 @@ The Weekly status collection is an `ldp:BasicContainer`, which contains other `l
   ldp:contains <2021-04-28/>, <2021-05-05/>, <2021-05-12/> .
 ```
 
-The `</weekly-status/.acl>` resource is advertised as `</weekly-status/>`'s access control list via a `Link` header with a relationship type of `http://www.w3.org/ns/auth/acl#accessControl`.
-
 We have the following hierarchy of resources (shown in more detail in the UCR)
 
 ```
 </weekly-status/>
-</weekly-status/.acl> ## for WAC rules
-</weekly-status/.acp> ## for ACP 
-</weekly-status/.ac> ## for WAC+ 
 </weekly-status/2021-04-28/>
 </weekly-status/2021-04-28/report.md>
 </weekly-status/2021-05-05/>
 </weekly-status/2021-05-05/report.md>
 </weekly-status/2021-05-05/diagram.jpg>
 </weekly-status/2021-05-12/>
-</daily-metrics/>
 ```
 
 We want to enable read access to all resources contained in `</weekly-status/>` for a group of people (`ex:Alice` & `ex:Bob`).
@@ -63,7 +43,7 @@ Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
   acp:agent ex:Bob, ex:Alice .
 ```
 
-The research policy <#p1> gives read access to all agents in `</acp/matcher/research#g1>`:
+The research policy `</acp/matcher/research#p1>` gives read access to all agents in `</acp/matcher/research#g1>`:
 
 ```turtle
 # Resource: </acp/policy/research>
@@ -108,6 +88,7 @@ The acl enabling read access to all resources contained by `</weekly-status/>` f
   acl:default <.> ;
   acl:mode acl:Read .
 ```
+
 
 ## 2. Changing permissions to a subcollection
 
