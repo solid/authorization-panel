@@ -4,7 +4,7 @@
 
 Alice wants to use an application called FinanceInsight to help her
 understand trends in her cashflow and spending activity, using financial
-data stored in her Pod and data linked from there to transaction she made with others
+data stored in her Pod and data linked from there to transactions she made with others
 such as her electricity provider, telecom agency, supermarket, bank, etc... 
 
 Alice needs to grant FinanceInsight access to the financial data on her Pod and
