@@ -54,13 +54,13 @@ The research policy `</acp/research#p1>` gives read access to all agents matched
   acp:allow acl:Read .
 ```
 
-The access control `</weekly-status/.acp#authorization>` applies to all resources contained by `</weekly-status/>` and via policy `</acp/research#p1>` enables read access for all agents matched by `</acp/research#m1>`:
+The access control `</weekly-status/.acp#ac1>` applies to all resources contained by `</weekly-status/>` and via policy `</acp/research#p1>` enables read access for all agents matched by `</acp/research#m1>`:
 
 ```turtle
 # Resource: </weekly-status/.acp>
-<#authorization>
+<#ac1>
   a acp:AccessControl ;
-  acp:apply </acp/research#p1> ;
+  acp:apply </acp/research#p1> ; # applies the policy to the container resource </weekly-status/>
   acp:applyMembers </acp/research#p1> . # applies the policy to all resources contained by </weekly-status/>
 ```
 
@@ -118,11 +118,11 @@ The research policy `</acp/research#p2>` gives read access to all agents matched
   acp:allow acl:Read, acl:Write .
 ```
 
-The access control `</weekly-status/2021-04-28/.acp#authorization>` applies to all resources contained by `</weekly-status/2021-04-28/>` and via policy `</acp/research#p2>` enables read access for all agents matched by `</acp/research#m2>`:
+The access control `</weekly-status/2021-04-28/.acp#ac1>` applies to all resources contained by `</weekly-status/2021-04-28/>` and via policy `</acp/research#p2>` enables read access for all agents matched by `</acp/research#m2>`:
 
 ```turtle
 # Resource: </weekly-status/2021-04-28/.acp>
-<#authorization>
+<#ac1>
   a acp:AccessControl ;
   acp:apply </acp/research#p1>, </acp/research#p2> ;
   acp:applyMembers </acp/research#p1>, </acp/research#p2> . # applies the policy to all resources contained by </weekly-status/2021-04-28/>
