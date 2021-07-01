@@ -4,7 +4,7 @@
 
 Alice wants to use an application called FinanceInsight to help her
 understand trends in her cashflow and spending activity, using financial
-data stored in her personal and work pods. First she'll needs to grant 
+data stored in her personal and work pods. First, she'll need to grant 
 FinanceInsight access to that data across her two pods. 
 
 Since she has a lot of other data in her pod that isn't finance related, 
