@@ -25,8 +25,8 @@ can access.
 ## Extending to the Web of Services
 
 Satisfied with FinanceInsight's capabilities, Alice wants to allow the 
-App to follow links from the data on her pod, to data 
-about transaction she is involved in located across the web. 
+App to follow links from the data on her pod to data located across 
+the web, only when its about transactions in which she is involved. 
 For example she has links to her Bank statements, to receipts 
 from shops she visited, and bills from electricity, water and 
 other services providers. These remote spaces are protected to only 
