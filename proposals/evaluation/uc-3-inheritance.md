@@ -18,7 +18,7 @@ The Weekly status collection is an `ldp:BasicContainer`, which contains other `l
   ldp:contains <2021-04-28/>, <2021-05-05/>, <2021-05-12/> .
 ```
 
-We have the following hierarchy of resources (shown in more detail in the UCR)
+We have the following hierarchy of resources (shown in more detail in the UCR):
 
 ```
 </weekly-status/>
@@ -34,33 +34,33 @@ We want to enable read access to all resources contained in `</weekly-status/>` 
 
 ### ACP
 
-Bob and Alice are part of the agent matcher `</acp/matcher/research#g1>`:
+Bob and Alice are part of the agent matcher `</acp/research#m1>`:
 
 ```turtle
-# Resource: </acp/matcher/research>
-<#g1>
+# Resource: </acp/research>
+<#m1>
   a acp:AgentMatcher ;
   acp:agent ex:Bob, ex:Alice .
 ```
 
-The research policy `</acp/matcher/research#p1>` gives read access to all agents in `</acp/matcher/research#g1>`:
+The research policy `</acp/research#p1>` gives read access to all agents matched by `</acp/research#m1>`:
 
 ```turtle
-# Resource: </acp/policy/research>
+# Resource: </acp/research>
 <#p1>
   a acp:Policy ;
-  acp:anyOf </acp/matcher/research#g1> ;
+  acp:anyOf <#m1> ;
   acp:allow acl:Read .
 ```
 
-The access control `<#authorization>` enables read access to all resources contained by `</weekly-status/>` for all agents matched by `</acp/matcher/research#g1>` is:
+The access control `</weekly-status/.acp#authorization>` applies to all resources contained by `</weekly-status/>` and via policy `</acp/research#p1>` enables read access for all agents matched by `</acp/research#m1>`:
 
 ```turtle
 # Resource: </weekly-status/.acp>
 <#authorization>
   a acp:AccessControl ;
-  acp:apply </acp/policy/research#p1> ;
-  acp:applyMembers </acp/policy/research#p1> .
+  acp:apply </acp/research#p1> ;
+  acp:applyMembers </acp/research#p1> . # applies the policy to all resources contained by </weekly-status/>
 ```
 
 Todo:  what is the ACR for 
@@ -92,11 +92,40 @@ The acl enabling read access to all resources contained by `</weekly-status/>` f
 
 ## 2. Changing permissions to a subcollection
 
-Bob wants to give give Carol read/write access but only to the collection </weekly-status/2021-04-28/> ? (What example from the UCR does this correspond to best?)
+Bob wants to give Carol read/write access but only to the collection `</weekly-status/2021-04-28/>`.
+
+(What example from the UCR does this correspond to best?)
 
 ### ACP 
 
-todo
+Carol is part of the agent matcher `</acp/research#m2>`:
+
+```turtle
+# Resource: </acp/research>
+<#m2>
+  a acp:AgentMatcher ;
+  acp:agent ex:Carol .
+```
+
+The research policy `</acp/research#p2>` gives read access to all agents matched by `</acp/research#m2>`:
+
+```turtle
+# Resource: </acp/research>
+<#p2>
+  a acp:Policy ;
+  acp:anyOf <#m2> ;
+  acp:allow acl:Read, acl:Write .
+```
+
+The access control `</weekly-status/2021-04-28/.acp#authorization>` applies to all resources contained by `</weekly-status/2021-04-28/>` and via policy `</acp/research#p2>` enables read access for all agents matched by `</acp/research#m2>`:
+
+```turtle
+# Resource: </weekly-status/2021-04-28/.acp>
+<#authorization>
+  a acp:AccessControl ;
+  acp:apply </acp/research#p1>, </acp/research#p2> ;
+  acp:applyMembers </acp/research#p1>, </acp/research#p2> . # applies the policy to all resources contained by </weekly-status/2021-04-28/>
+```
 
 ### WAC
 
@@ -104,16 +133,33 @@ To change the access rules to the `</weekly-status/2021-04-28/>` collection Bob 
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.acl>
-<#authz>
+<#authorization>
   a acl:Authorization ;
   acl:agentGroup </groups/research#g1> ;
   acl:default <.> ;
   acl:mode acl:Read .
 
-<#authzNew>
+<#new-authorization>
   a acl:Authorization ;
   acl:agent ex:Carol ;
   acl:default <.> ;
+  acl:mode acl:Read, acl:Write .
+```
+
+We could also use WAC's effective access control resource discovery mechanism and augment the content of `</weekly-status/.acl>`.
+
+```Turtle
+# Resource: </weekly-status/.acl>
+<#authorization>
+  a acl:Authorization ;
+  acl:agentGroup </groups/research#g1> ;
+  acl:default <.> ;
+  acl:mode acl:Read .
+
+<#new-authorization>
+  a acl:Authorization ;
+  acl:agent ex:Carol ;
+  acl:default <./2021-04-28/> ;
   acl:mode acl:Read, acl:Write .
 ```
 
@@ -125,7 +171,7 @@ To change the access rules to the `</weekly-status/2021-04-28/>` collection Bob 
 # Resource: </weekly-status/2021-04-28/.ac>
 <> ac:imports <../.acl> .
 
-<#authzNew>
+<#new-authorization>
   a acl:Authorization ;
   acl:agent ex:Carol ;
   acl:default <.> ;
