@@ -1,24 +1,19 @@
 # Consent Workflow Use Cases
 
-## Agent grants access to an application to a selected subset of data across pods
+## Agent grants access to an application to a selected subset of data 
 
 Alice wants to use an application called FinanceInsight to help her
 understand trends in her cashflow and spending activity, using financial
-data stored in her Pod and data linked from there to transactions she made with others
-such as her electricity provider, telecom agency, supermarket, bank, etc... 
+data stored in her personal and work pods. First she'll needs to grant 
+FinanceInsight access to that data across her two pods. 
 
-Alice needs to grant FinanceInsight access to the financial data on her Pod and
-limit its access to most other data there.  She does want the App to fetch
-data from the services she used online, as those contain rich metadata that
-will allow it to categorize her financial activity. For example, even 
-though her credit card will show only the total sum of the goods she bought,
-the supermarket web site will have the full list of goods bought in machine
-readable format for each transaction, with information on the type of goods,
-links to the producers,... 
+Since she has a lot of other data in her pod that isn't finance related, 
+she needs to grant FinanceInsight access only to exactly the data it needs.
 
-She wants to limit the App's ability to do anything other than read data from
-those other services, even though she herself is able to use her browser to
-make purchases online from them. 
+Because there's a lot of finance data spread across her pods, along with
+some data that is related in context, she needs help to make sure that she's
+giving FinanceInsight access to all of the data it needs to operate, but no
+more.
 
 Alice has a trusted party handling authorization that helps her interpret the kind
 of data that FinanceInsight needs, and then presents the access decisions to her
@@ -26,3 +21,26 @@ so that she can make intuitive, smart choices. Once she makes those
 decisions, her trusted authorization application stores a record of them,
 adjusts permissions, and provide FinanceInsight with a record of what it
 can access.
+
+## Extending to the Web of Services
+
+Satisfied with FinanceInsight's capabilities, Alice wants to allow the 
+App to follow links from the data on her pod, to data 
+about transaction she is involved in located across the web. 
+For example she has links to her Bank statements, to receipts 
+from shops she visited, and bills from electricity, water and 
+other services providers. These remote spaces are protected to only 
+allow her access - in addition of course to the service provider. 
+
+The online bills are very interesting as they often have links 
+to rich metadata about the products she bought that go beyond the
+sum total shown on her credit card bill. The receipts provide links
+to the product ontology, supply chain history, notification 
+of updates or problems with the product and links to communicate 
+directly with the producer. 
+
+Even though Alice is happy with FinanceInsight being able to 
+read such data, she wants to limit the Apps ability to participate 
+in any transactions on those web sites. The App should be able to
+Read but not write, unless given explicit personal permission by 
+Alice.
