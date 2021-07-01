@@ -48,17 +48,17 @@ Content-Type: text/turtle
 @prefix acp: <http://www.w3.org/ns/solid/acp#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-<> a acp:AccessPolicyResource .
+<> a acp:AccessControlResource .
  
 # Policies
 
 <#personalTrusted>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write, acp:Read ;
   acp:allOf <#editorFriends> .
 
 <#podControl>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write, acp:Read ;
   acp:allOf <#accessControllers> .
 
@@ -175,7 +175,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#commentsOnly>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append, acp:Read ;
   acp:allOf <#commenters> .
 
@@ -241,12 +241,12 @@ Content-Type: text/turtle
 @prefix acp: <http://www.w3.org/ns/solid/acp#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-<> a acp:AccessPolicyResource .
+<> a acp:AccessControlResource .
  
 # Policies
 
 <#publicAccess>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#public> .
 
@@ -383,7 +383,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#recommend>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append ;
   acp:allOf <#canRecommend> .
 
@@ -463,7 +463,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#namedRead>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#readers> .
 
@@ -673,17 +673,17 @@ Content-Type: text/turtle
 @prefix acp: <http://www.w3.org/ns/solid/acp#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-<> a acp:AccessPolicyResource .
+<> a acp:AccessControlResource .
  
 # Policies
 
 <#openMaterial>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#openWorkshop> .
 
 <#openInteraction>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write, acp:Read ;
   acp:allOf <#openWorkshop> .
 
@@ -791,12 +791,12 @@ Content-Type: text/turtle
 prefix acp: <http://www.w3.org/ns/solid/acp#>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-<> a acp:AccessPolicyResource .
+<> a acp:AccessControlResource .
  
 # Policies
 
 <#attendeesAccess>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#attendees> .
 
@@ -883,7 +883,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#jobRead>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#jobContacts> .
 
@@ -966,7 +966,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#MiloUpdate>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write ;
   acp:allOf <#milo> .
 
@@ -1004,7 +1004,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#bobAdditions>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read, acp:Append ;
   acp:allOf <#bob> .
 
@@ -1034,7 +1034,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#creatorCanRead>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#creators> .
 
@@ -1073,12 +1073,12 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#colleagueReads>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#colleagues> .
 
 <#colleagueComments>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append ;
   acp:allOf <#colleagues> .
 
@@ -1110,7 +1110,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#colleagueEditComments>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write ;
   acp:allOf <#creators> .
 
@@ -1144,7 +1144,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#jobOpportunities>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append ;
   acp:allOf :jobContacts .
 
@@ -1180,7 +1180,7 @@ INSERT DATA {
 <> acp:access <#bobAsController> .
 
 <#bobAsController>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read, acp:Write ;
   acp:allOf <#bob> .
 
