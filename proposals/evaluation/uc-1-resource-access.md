@@ -1,26 +1,49 @@
 # Resource Access Use Cases
 
+This is part 1 of the [implementation specific use cases comparison](./use-cases.md).
 
-## Change permissions
+See also: [UCR 2.1 Resource access](https://solid.github.io/authorization-panel/authorization-ucr/#uc-basic)
 
-See also: https://solid.github.io/authorization-panel/authorization-ucr/#basic-change-permissions
 
-Alice can modify access to a resource.
+## Setup
+
+We have the following hierarchy of resources:
+
+```
+</resume>
+</recommendations>
+```
+
+
+## 1. Change permissions
+
+Alice can modify access to the `</resume>` and `</recommendations>` resources.
 
 ### ACP
 
+The access controls `</resume.acp#ac1>` and `</recommendations.acp#ac1>` apply respectively to the `</resume>` and `</recommendations>` resources and via policy `</.acp#p1>` enable read and write over themselves for Alice who is matched by the agent matcher `</.acp#m1>`:
+
 ```turtle
-ex:Resource1
-  acp:accessControl ex:AccessControl1 .
+# Resource: </resume.acp>
+<#ac1>
+  a acp:AccessControl ;
+  acp:access </.acp#p1> .
+```
 
-ex:AccessControl1
-  acp:access ex:Policy1 .
+```turtle
+# Resource: </recommendations.acp>
+<#ac1>
+  a acp:AccessControl ;
+  acp:access </.acp#p1> .
+```
 
-ex:Policy1
-  acp:anyOf ex:AgentMatcher1 ;
+```turtle
+# Resource: </.acp>
+<#p1>
+  acp:anyOf <#m1> ;
   acp:allow acl:Read, acl:Write .
 
-ex:AgentMatcher1
+<#m1>
   acp:agent ex:Alice .
 ```
 
@@ -38,28 +61,31 @@ ex:AccessControl1
 Note: `acl:Control` gives full access to the access control resource.
 
 
-## Read-write access
+## 3. Read-write access
 
-See also: https://solid.github.io/authorization-panel/authorization-ucr/#basic-write
-
-Bob can read and modify a resource.
+Bob can read and modify the `</resume>` resource.
 
 ### ACP
 
+The access control `</resume.acp#ac1>` is modified to enable via policy `</resume.acp#p1>` read and write access for Bob who is matched by the agent matcher `</resume.acp#m1>`:
+
 ```turtle
-ex:Resource1
-  acp:accessControl ex:AccessControl1 .
+# Resource: </resume.acp>
+<#ac1>
+  a acp:AccessControl ;
+  acp:access </.acp#p1> ;
+  acp:apply <#p1> .
 
-ex:AccessControl1
-  acp:apply ex:Policy1 .
-
-ex:Policy1
-  acp:anyOf ex:AgentMatcher1 ;
+<#p1>
+  a acp:Policy ;
+  acp:anyOf <#m1> ;
   acp:allow acl:Read, acl:Write .
 
-ex:AgentMatcher1
+<#m1>
+  a acp:AgentMatcher ;
   acp:agent ex:Bob .
 ```
+
 
 ### WAC
 
@@ -71,9 +97,7 @@ ex:AccessControl1
 ```
 
 
-## Group access
-
-See also: https://solid.github.io/authorization-panel/authorization-ucr/#basic-group
+## 8. Group access
 
 A group of people can Read multiple resources.
 
