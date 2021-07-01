@@ -33,12 +33,13 @@ other service providers. These remote spaces are protected, set to
 only allow access by Alice — and, of course, by the service provider,
 shop, bank, etc. 
 
-The online bills are very interesting as they often have links 
-to rich metadata about the products she bought that go beyond the
-sum total shown on her credit card bill. The receipts provide links
-to the product ontology, supply chain history, notification 
-of updates or problems with the product and links to communicate 
-directly with the producer. 
+The online bills are very interesting as they often have links to
+rich metadata about the specific products she bought, which can
+go far beyond the total payment shown on her credit card bill.
+The receipts might provide links to the product ontology,
+supply chain history, notifications of updates or problems
+with the product, and/or links to communicate directly with
+the producer. 
 
 Even though Alice is happy with FinanceInsight being able to 
 read such data, she wants to limit the Apps ability to participate 
