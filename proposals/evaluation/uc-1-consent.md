@@ -42,7 +42,7 @@ with the product, and/or links to communicate directly with
 the producer. 
 
 Even though Alice is happy with FinanceInsight being able to 
-read such data, she wants to limit the Apps ability to participate 
+read such data, she wants to limit the App's ability to participate 
 in any transactions on those web sites. The App should be able to
-Read but not write, unless given explicit personal permission by 
+read, but not write, unless given explicit personal permission by 
 Alice.
