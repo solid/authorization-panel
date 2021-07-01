@@ -28,7 +28,7 @@ Satisfied with FinanceInsight's capabilities, Alice wants to allow the
 App to follow links from the data on her pod to data located across 
 the web, only when its about transactions in which she is involved. 
 For example she has links to her Bank statements, to receipts 
-from shops she visited, and bills from electricity, water and 
+from shops she visited, and to bills from electricity, water and 
 other service providers. These remote spaces are protected, set to
 only allow access by Alice — and, of course, by the service provider,
 shop, bank, etc. 
