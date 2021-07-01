@@ -8,7 +8,7 @@ data stored in her personal and work pods. First, she'll need to grant
 FinanceInsight access to that data across her two pods. 
 
 Since she has a lot of other data in her pod that isn't finance related, 
-she needs to grant FinanceInsight access only to exactly the data it needs.
+she wants to grant FinanceInsight access only to exactly the data it needs.
 
 Because there's a lot of finance data spread across her pods, along with
 some data that is related in context, she needs help to make sure that she's
