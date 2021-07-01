@@ -5,9 +5,7 @@ This is part 3 of the [implementation specific use cases comparison](./use-cases
 See also: [UCR 2.3 Collection resource inherited access](https://solid.github.io/authorization-panel/authorization-ucr/#uc-inheritance)
 
 
-## 1. Read access to a group on a collection of resources
-
-### Setup
+## Setup
 
 The Weekly status collection is an `ldp:BasicContainer`, which contains other `ldp:BasicContainers`, one for each weekly meeting, into which further documents can be placed. 
 
@@ -29,6 +27,9 @@ We have the following hierarchy of resources (shown in more detail in the UCR):
 </weekly-status/2021-05-05/diagram.jpg>
 </weekly-status/2021-05-12/>
 ```
+
+
+## 1. Read access to a group on a collection of resources
 
 We want to enable read access to all resources contained in `</weekly-status/>` for a group of people (`ex:Alice` & `ex:Bob`).
 
