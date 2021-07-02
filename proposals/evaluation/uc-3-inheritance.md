@@ -74,9 +74,9 @@ Bob and Alice are members of the research group `</groups/research#g1>`:
 ```turtle
 # Resource: </groups/research>
 <#g1>
-    a                vcard:Group ;
-    vcard:hasMember  ex:Bob ;
-    vcard:hasMember  ex:Alice .
+  a vcard:Group ;
+  vcard:hasMember ex:Bob ;
+  vcard:hasMember ex:Alice .
 ```
 
 The acl enabling read access to all resources contained by `</weekly-status/>` for all members of group `</groups/research#g1>` is:
@@ -170,7 +170,8 @@ We could also use WAC's effective access control resource discovery mechanism an
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.ac>
-<> ac:imports <../.acl> .
+<>
+  ac:imports <../.acl> .
 
 <#new-authorization>
   a acl:Authorization ;
