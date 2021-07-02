@@ -53,9 +53,9 @@ Note: `acp:access` points to policies applied to the access control, which means
 
 ```turtle
 ex:AccessControl1
-    acl:agent ex:Alice ;
-    acl:accessTo ex:Resource1 ;
-    acl:mode acl:Control .
+  acl:agent ex:Alice ;
+  acl:accessTo ex:Resource1 ;
+  acl:mode acl:Control .
 ```
 
 Note: `acl:Control` gives full access to the access control resource.
@@ -91,9 +91,9 @@ The access control `</resume.acp#ac1>` is modified to enable via policy `</resum
 
 ```turtle
 ex:AccessControl1
-    acl:agent ex:Bob ;
-    acl:accessTo ex:Resource1 ;
-    acl:mode acl:Read, acl:Write .
+  acl:agent ex:Bob ;
+  acl:accessTo ex:Resource1 ;
+  acl:mode acl:Read, acl:Write .
 ```
 
 
@@ -103,28 +103,42 @@ A group of people can Read multiple resources.
 
 ### ACP
 
+A group of people is defined in matcher `</.acp#m1>`:
+
 ```turtle
-ex:Resource1
-  acp:accessControl ex:AccessControl1 .
-
-ex:Resource2
-  acp:accessControl ex:AccessControl2 .
-
-ex:AccessControl1
-  acp:apply ex:Policy1 .
-
-ex:AccessControl2
-  acp:apply ex:Policy1 .
-
-ex:Policy1
-  acp:anyOf ex:AgentMatcher1 ;
-  acp:allow acl:Read .
-
-ex:AgentMatcher1
+# Resource: </.acp>
+<#m1>
+  a acp:AgentMatcher ;
   acp:agent ex:Alice, ex:Bob .
 ```
 
-Note: Here the group of people: Alice & Bob; is defined in `ex:AgentMatcher1` which can be reused. In this specific case, since we want to allow read access to the group on both resources, `ex:Policy1` is being reused.
+A policy that allows read is defined in policy `</.acp#p1>`:
+
+```turtle
+# Resource: </.acp>
+<#p1>
+  a acp:Policy ;
+  acp:anyOf <#m1> ;
+  acp:allow acl:Read .
+```
+
+The access controls `</resume.acp#ac1>` and `</recommendations.acp#ac1>` respectively apply to the `</resume>` and `</recommendations>` resources and via policy `</.acp#p1>` enable read for everyone matched by the agent matcher `</.acp#m1>`:
+
+```turtle
+# Resource: </resume.acp>
+<#ac1>
+  a acp:AccessControl ;
+  acp:apply </.acp#p1> .
+```
+
+```turtle
+# Resource: </recommendations.acp>
+<#ac1>
+  a acp:AccessControl ;
+  acp:apply </.acp#p1> .
+```
+
+Note: Here the group of people: Alice & Bob; is defined in `</.acp#m1>` which can be reused. In this specific case, since we want to allow read access to the group on both resources, `</.acp#p1>` is being reused.
 
 ## WAC
 
