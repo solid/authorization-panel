@@ -187,4 +187,4 @@ See also: https://github.com/solid/authorization-panel/pull/216#discussion_r6652
   acl:mode acl:Read, acl:Write .
 ```
 
-The advantage of this is that it removes the needed duplication of the `</weekly-status/.acl#authorization>` rule, so that if that needs to be edited it can be done so in one place.
+In other words, this removes the need to duplicate the `</weekly-status/.acl#authorization>` rule, so any future edits to that rule need only be done in one place.
