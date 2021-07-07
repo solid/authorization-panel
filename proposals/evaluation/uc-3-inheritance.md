@@ -130,7 +130,7 @@ The access control `</weekly-status/2021-04-28/.acp#ac1>` applies to all resourc
 
 ### WAC
 
-To change the access rules to the `</weekly-status/2021-04-28/>` collection Bob must edit `</weekly-status/2021-04-28/.acl>`. But doing so will disable the default access control rule located in `</weekly-status/.acl>` . So the content of the PUT must contain the default rule and the new ones.
+To give Carol read and write access to the `</weekly-status/2021-04-28/>` collection and its content, Bob must create a new effective ACL resource, `</weekly-status/2021-04-28/.acl>`, which must express all permissions that are to govern access to `</weekly-status/2021-04-28/>`. In other words, to maintain the access permissions previously defined in `</weekly-status/.acl>`, Bob will need to include an authorization defining read access for the research group, along with an authorization defining read and write access for Carol, in the new `</weekly-status/2021-04-28/.acl>`.
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.acl>
