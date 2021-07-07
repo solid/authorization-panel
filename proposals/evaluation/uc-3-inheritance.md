@@ -93,7 +93,7 @@ The acl enabling read access to all resources contained by `</weekly-status/>` f
 
 ## 2. Changing permissions to a subcollection
 
-Bob wants to give Carol read/write access but only to the collection `</weekly-status/2021-04-28/>`.
+Bob wants to give Carol read/write access to the "2021-04-28" weekly status, and nothing more; that is, to the collection `</weekly-status/2021-04-28/>` and every resource it contains, but not to any other resource in the collection `</weekly-status/>`.
 
 (What example from the UCR does this correspond to best?)
 
