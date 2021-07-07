@@ -58,7 +58,7 @@ ex:AccessControl1
   acl:mode acl:Control .
 ```
 
-Note: `acl:Control` gives full access to the access control resource.
+Note: `acl:Control` allows read-write operations on the ACL resource.
 
 
 ## 3. Read-write access
