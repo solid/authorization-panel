@@ -147,7 +147,11 @@ To change the access rules to the `</weekly-status/2021-04-28/>` collection Bob 
   acl:mode acl:Read, acl:Write .
 ```
 
-We could also use WAC's effective access control resource discovery mechanism and augment the content of `</weekly-status/.acl>`.
+### WAC+ relaxing acl:default
+
+As per the [ACL ontology definition as of July 2021](https://github.com/solid/authorization-panel/pull/216#discussion_r665338497), the `acl:default` predicate is only effective in statements where the current container is the object, that is, the resource `</weekly-status/.acl>` which is the direct effective access control list of `</weekly-status/>` can only use that directory as target in statements using `acl:default`.
+
+However, if WAC's use of `acl:default` were to be relaxed as described in [issue 191](https://github.com/solid/authorization-panel/issues/191), then one could rely on the effective access control resource discovery mechanism and augment the content of `</weekly-status/.acl>`:
 
 ```Turtle
 # Resource: </weekly-status/.acl>
@@ -164,7 +168,10 @@ We could also use WAC's effective access control resource discovery mechanism an
   acl:mode acl:Read, acl:Write .
 ```
 
-### WAC+ac:imports
+See also: https://github.com/solid/authorization-panel/pull/216#discussion_r665230245
+
+
+### WAC+ ac:imports
 
 [WAC+:imports](https://github.com/solid/authorization-panel/issues/210) works just as WAC does above with `:default` working as shown. The advantage of `ac:imports` is that the resource  `</weekly-status/2021-04-28/.ac>` need only be set to contain:
 
