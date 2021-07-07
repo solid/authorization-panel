@@ -150,6 +150,7 @@ ex:AccessControl1
   acl:mode acl:Read .
 
 ex:AccessControl2
+  a acl:Authorization ;
   acl:agentGroup ex:Group1 ;
   acl:accessTo ex:Resource2 ;
   acl:mode acl:Read .
