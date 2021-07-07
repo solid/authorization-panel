@@ -149,7 +149,7 @@ To give Carol read and write access to the `</weekly-status/2021-04-28/>` collec
 
 ### WAC+ relaxing acl:default
 
-As per the [ACL ontology definition as of July 2021](https://github.com/solid/authorization-panel/pull/216#discussion_r665338497), the `acl:default` predicate is only effective in statements where the current container is the object, that is, the resource `</weekly-status/.acl>` which is the direct effective access control list of `</weekly-status/>` can only use that directory as target in statements using `acl:default`.
+According to the [ACL ontology definition as of July 2021](https://github.com/solid/authorization-panel/pull/216#discussion_r665338497), the `acl:default` predicate is only effective in statements where the current container is the object; that is, the resource `</weekly-status/.acl>`, which is the direct effective access control list of `</weekly-status/>`, can only target that directory in statements using `acl:default`.
 
 However, if WAC's use of `acl:default` were to be relaxed as described in [issue 191](https://github.com/solid/authorization-panel/issues/191), then one could rely on the effective access control resource discovery mechanism and augment the content of `</weekly-status/.acl>`:
 
