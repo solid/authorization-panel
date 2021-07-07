@@ -64,11 +64,7 @@
 
 ## Access Policy Resource
 
-*   An Access Policy Resource (APR) is a resource containing metadata describing the [Access Policies](#access-policy) and [Access Rules](#access-rule) that can be used to determine agent (or group) access to resources. Any resource can act as an Access Policy Resource.
-*   An APR contains zero or more [Access Policies](#access-policy) and zero or more [Access Rules](#access-rule) used by the [Access Policies](#access-policy).
-*   [Access Policies](#access-policy) and [Access Rules](#access-rule) can also be defined in [Access Control Resources](#access-control-resource), but defining them in an APR means they are reusable by agents and manageable by agents without those agents needing access to ACR metadata. 
-
-![alt_text](diagrams/apr.svg "image_tooltip")
+An Access Policy Resource (APR) was an envisaged type of resource that would contain Access Policies and Access Rules. This type of resource was removed and in the current proposal, Access Policies and Access Rules can be defined in any resource. See also: https://github.com/solid/authorization-panel/issues/142#issuecomment-736584841
 
 ## Access Policy
 

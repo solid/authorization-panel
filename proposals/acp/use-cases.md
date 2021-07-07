@@ -37,7 +37,7 @@ HTTP/1.1 201 Created
 Location: /policies
 ```
 
-Create the personal [Access Policy Resource](definitions.md#access-policy-resource). We should use the Location HTTP header in the response from the previous POST because the Slug header may be ignored by the server. 
+Create the personal Resource. We should use the Location HTTP header in the response from the previous POST because the Slug header may be ignored by the server. 
 
 ```HTTP
 PUT /policies/personal HTTP/1.1
@@ -983,7 +983,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-Notice that we added the policy and rule directly to the ACR for document1 rather than to an external [Access Policy Resource](definitions.md#access-policy-resource). When policies and rules are not reusable, it can be more convenient to add them directly to the relevant ACR.
+Notice that we added the policy and rule directly to the ACR for document1 rather than to an external Resource. When policies and rules are not reusable, it can be more convenient to add them directly to the relevant ACR.
 
 ### 2.2.3 Read-append access to a collection
 
