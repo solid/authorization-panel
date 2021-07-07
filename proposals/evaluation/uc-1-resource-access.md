@@ -91,6 +91,7 @@ The access control `</resume.acp#ac1>` is modified to enable via policy `</resum
 
 ```turtle
 ex:AccessControl1
+  a acl:Authorization ;
   acl:agent ex:Bob ;
   acl:accessTo ex:Resource1 ;
   acl:mode acl:Read, acl:Write .
