@@ -160,5 +160,3 @@ ex:AccessControl2
 ex:Group1
   vcard:hasMember ex:Alice, ex:Bob .
 ```
-
-Note: Here, the access mode needs to be specified for every group reuse.
