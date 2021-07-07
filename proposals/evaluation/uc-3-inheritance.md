@@ -118,7 +118,7 @@ The research policy `</acp/research#p2>` gives read access to all agents matched
   acp:allow acl:Read, acl:Write .
 ```
 
-The access control `</weekly-status/2021-04-28/.acp#ac1>` applies to all resources contained by `</weekly-status/2021-04-28/>` and via policy `</acp/research#p2>` enables read access for all agents matched by `</acp/research#m2>`:
+The access control `</weekly-status/2021-04-28/.acp#ac1>` applies to all resources contained by `</weekly-status/2021-04-28/>` and, via policy `</acp/research#p2>`, enables read access for all agents matched by `</acp/research#m2>`:
 
 ```turtle
 # Resource: </weekly-status/2021-04-28/.acp>
