@@ -144,6 +144,7 @@ Note: Here the group of people: Alice & Bob; is defined in `</.acp#m1>` which ca
 
 ```turtle
 ex:AccessControl1
+  a acl:Authorization ;
   acl:agentGroup ex:Group1 ;
   acl:accessTo ex:Resource1 ;
   acl:mode acl:Read .
