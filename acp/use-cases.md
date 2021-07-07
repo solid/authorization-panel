@@ -37,7 +37,7 @@ HTTP/1.1 201 Created
 Location: /policies
 ```
 
-Create the personal [Access Policy Resource](definitions.md#access-policy-resource). We should use the Location HTTP header in the response from the previous POST because the Slug header may be ignored by the server. 
+Create the personal Resource. We should use the Location HTTP header in the response from the previous POST because the Slug header may be ignored by the server. 
 
 ```HTTP
 PUT /policies/personal HTTP/1.1
@@ -48,17 +48,16 @@ Content-Type: text/turtle
 @prefix acp: <http://www.w3.org/ns/solid/acp#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-<> a acp:AccessPolicyResource .
  
 # Policies
 
 <#personalTrusted>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write, acp:Read ;
   acp:allOf <#editorFriends> .
 
 <#podControl>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write, acp:Read ;
   acp:allOf <#accessControllers> .
 
@@ -175,7 +174,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#commentsOnly>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append, acp:Read ;
   acp:allOf <#commenters> .
 
@@ -240,13 +239,11 @@ Content-Type: text/turtle
 ```Turtle
 @prefix acp: <http://www.w3.org/ns/solid/acp#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-
-<> a acp:AccessPolicyResource .
  
 # Policies
 
 <#publicAccess>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#public> .
 
@@ -383,7 +380,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#recommend>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append ;
   acp:allOf <#canRecommend> .
 
@@ -463,7 +460,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#namedRead>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#readers> .
 
@@ -672,18 +669,16 @@ Content-Type: text/turtle
 ```Turtle
 @prefix acp: <http://www.w3.org/ns/solid/acp#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-
-<> a acp:AccessPolicyResource .
  
 # Policies
 
 <#openMaterial>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#openWorkshop> .
 
 <#openInteraction>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write, acp:Read ;
   acp:allOf <#openWorkshop> .
 
@@ -790,13 +785,11 @@ Content-Type: text/turtle
 ```Turtle
 prefix acp: <http://www.w3.org/ns/solid/acp#>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-
-<> a acp:AccessPolicyResource .
  
 # Policies
 
 <#attendeesAccess>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#attendees> .
 
@@ -883,7 +876,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#jobRead>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#jobContacts> .
 
@@ -966,7 +959,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#MiloUpdate>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write ;
   acp:allOf <#milo> .
 
@@ -983,7 +976,7 @@ INSERT DATA {
 HTTP/1.1 204 No Content
 ```
 
-Notice that we added the policy and rule directly to the ACR for document1 rather than to an external [Access Policy Resource](definitions.md#access-policy-resource). When policies and rules are not reusable, it can be more convenient to add them directly to the relevant ACR.
+Notice that we added the policy and rule directly to the ACR for document1 rather than to an external Resource. When policies and rules are not reusable, it can be more convenient to add them directly to the relevant ACR.
 
 ### 2.2.3 Read-append access to a collection
 
@@ -1004,7 +997,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#bobAdditions>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read, acp:Append ;
   acp:allOf <#bob> .
 
@@ -1034,7 +1027,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#creatorCanRead>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#creators> .
 
@@ -1073,12 +1066,12 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#colleagueReads>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read ;
   acp:allOf <#colleagues> .
 
 <#colleagueComments>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append ;
   acp:allOf <#colleagues> .
 
@@ -1110,7 +1103,7 @@ prefix acp: <http://www.w3.org/ns/solid/acp#>
 INSERT DATA { 
 
 <#colleagueEditComments>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Write ;
   acp:allOf <#creators> .
 
@@ -1144,7 +1137,7 @@ prefix : <https://alice.pod/policies/personal#>
 INSERT DATA { 
 
 <#jobOpportunities>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Append ;
   acp:allOf :jobContacts .
 
@@ -1180,7 +1173,7 @@ INSERT DATA {
 <> acp:access <#bobAsController> .
 
 <#bobAsController>
-  a acp:AccessPolicy ;
+  a acp:Policy ;
   acp:allow acp:Read, acp:Write ;
   acp:allOf <#bob> .
 
