@@ -53,6 +53,7 @@ Note: `acp:access` points to policies applied to the access control, which means
 
 ```turtle
 ex:AccessControl1
+  a acl:Authorization ;
   acl:agent ex:Alice ;
   acl:accessTo ex:Resource1 ;
   acl:mode acl:Control .
