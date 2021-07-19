@@ -155,7 +155,7 @@ To give Carol read and write access to the `</weekly-status/2021-04-28/>` collec
 
 Todo: How does a client create a new acl if one does not exist before?
 
- In other words to maintain the access permissions previously defined in `</weekly-status/.acl>`, Bob will need to include an authorization defining read access for the research group, along with an authorization defining read and write access for Carol, in the new `</weekly-status/2021-04-28/.acl>`.
+ In other words, to maintain the access permissions previously defined in `</weekly-status/.acl>`, Bob will need to include an authorization defining read access for the research group, along with an authorization defining read and write access for Carol, in the new `</weekly-status/2021-04-28/.acl>`.
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.acl>
