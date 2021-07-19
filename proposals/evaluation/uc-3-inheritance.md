@@ -205,7 +205,7 @@ We keep `wac:default` working as currently specified.
  
 A unauthenticated client that makes a GET on `</weekly-status/2021-04-28/>` and receives a `401` with a `Link` to `</weekly-status/2021-04-28/>`. 
 
-If the client is the controler of the container it can do a
+If the client is the controller of the container, it can do a
 PUT with the following rules:
 
 ```Turtle
