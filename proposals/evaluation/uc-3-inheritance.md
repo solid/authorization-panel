@@ -28,6 +28,8 @@ We have the following hierarchy of resources (shown in more detail in the UCR):
 </weekly-status/2021-05-12/>
 ```
 
+We omit here the access-control resources as those are proposal specific.
+
 ## 1. Read access to a group on a collection of resources
 
 We want to enable read access to all resources contained in `</weekly-status/>` for a group of people (`ex:Alice` & `ex:Bob`).
