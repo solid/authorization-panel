@@ -45,7 +45,9 @@ Bob and Alice are part of the agent matcher `</acp/research#m1>`:
   acp:agent ex:Bob, ex:Alice .
 ```
 
-The research policy `</acp/research#p1>` gives read access to all agents matched by `</acp/research#m1>`:
+`</acp/research>` is visible only to members of the research group. 
+
+The policy `</acp/research#p1>` gives read access to all agents matched by `</acp/research#m1>`:
 
 ```turtle
 # Resource: </acp/research>
@@ -65,10 +67,16 @@ The access control `</weekly-status/.acp#ac1>` applies to all resources containe
   acp:applyMembers </acp/research#p1> . # applies the policy to all resources contained by </weekly-status/>
 ```
 
-An unauthenticated agent making a GET on `</weekly-status/>` container will receive a `Link: <.acp>; rel="acl"` header in the `401` response that points to the above `<.acp>`. 
-This relation is what makes the contents of `</weekly-status/.acp>` authoritative, and is therefore the information the client can use to decide what credentials to present.
+### Accessing `</weekly-status/>`
 
-A unauthenticated agent making a request to  `</weekly-status/2021-04-28/report.md>` will receive in the header of a 401 a link to `</weekly-status/2021-04-28/report.acp>`.
+An unauthenticated agent making a GET on the `</weekly-status/>` container will receive a `Link: <.acp>; rel="acl"` header in the `401` response that points to the above `<.acp>`. 
+This relation makes the contents of `</weekly-status/.acp>` authoritative and is, therefore, the information the client can use to decide what credentials to present.
+
+[Actors](https://essif-lab.pages.grnet.gr/framework/docs/terms/actor) whose [principal](https://essif-lab.pages.grnet.gr/framework/docs/essifLab-glossary#principal) are not members of the research institute, will not have access to the policy `</acp/research#p1>` and so, not knowing what credential to present will stop there.
+
+### Accessing `</weekly-status/2021-04-28/report.md>`
+
+Any [digital actor](https://essif-lab.pages.grnet.gr/framework/docs/terms/digital-actor) making a request to  `</weekly-status/2021-04-28/report.md>` will receive in the header of a 401, a link to `</weekly-status/2021-04-28/report.acp>`. If that actor makes a `GET` request to that `<report.acp>` it will receive a graph isomorphic to:
 
 ```turtle
 # Resource: </weekly-status/2021-04-28/report.acp>
@@ -79,6 +87,8 @@ A unauthenticated agent making a request to  `</weekly-status/2021-04-28/report.
 ```
 
 Note that `</weekly-status/2021-04-28/report.acp>` is basically a copy of `</weekly-status/.acp>`. In the current proposal, all resources in ACP have their own associated effective Access Control Resource.
+
+The same logic thus applies here as for access to the container. To know which credentials to present, a digital actor will need to know the contents of `</acp/research>`. But access to that is only granted to members of that research organization.
    
 ### WAC
 
@@ -92,7 +102,9 @@ Bob and Alice are members of the research group `</groups/research#g1>`:
   vcard:hasMember ex:Alice .
 ```
 
-The acl enabling read access to all resources contained by `</weekly-status/>` for all members of group `</groups/research#g1>` is:
+This vcard is visible only to members of the research organization. 
+
+The acl enabling read access to all resources contained in `</weekly-status/>` for all members of group `</groups/research#g1>` is:
 
 ```turtle
 # Resource: </weekly-status/.acl>
@@ -103,18 +115,30 @@ The acl enabling read access to all resources contained by `</weekly-status/>` f
   acl:mode acl:Read .
 ```
 
-An unauthenticated client making a GET on the `</weekly-status/>` container will receive a `Link: <.acp>; rel="acl"` header in the `401` response that points to the above `<.acl>`. 
-This relation is what makes the contents of `</weekly-status/.acl>` authoritative, and is therefore the information the client can use to decide what credentials to present.
+Any agent making a GET on the `</weekly-status/>` container will receive a `Link: <.acp>; rel="acl"` header in the `401` response that points to the above `<.acl>`. 
+This relation makes the contents of `</weekly-status/.acl>` authoritative and is, therefore, the information the client must use to decide what credentials to present.
 
-A unauthenticated client making a GET request to  `</weekly-status/2021-04-28/report.md>` will receive in the header of a `401`, either of the following: 
+At present, though, only the controller of `</weekly-status/.acl>` can read that resource, as [WAC](https://solid.github.io/web-access-control-spec/#acl-inheritance-algorithm) does not have an option to make the ACL world-readable. 
+
+A unauthenticated client making a GET request to  `</weekly-status/2021-04-28/report.md>` may receive in the header of a `401`, either of the following: 
 
 1) a `Link` to `</weekly-status/.acl>`. 
 2) a `Link` to `</weekly-status/2021-04-28/report.acl>`
 
-In the case of (1) the client will be able to find out what identity to provide by looking at `</weekly-status/.acl>`. But if the controller wants to add a new editor to `<report.md>` then it will have to add that to the root `</weekly-status/.acl>` as there is no agreed way to create a new acl out of nothing.
+In the case of (1) the actor should be able to find out what identity to provide by looking at `</weekly-status/.acl>`. 
+But if the controller wants to add a new editor to `<report.md>`, then it will have to add that to the root `</weekly-status/.acl>` as there is no agreed way to create a new acl out of nothing.
 
 In the case of (2) a controller with the contents of `</weekly-status/.acl>` will not be applicable, since by the fact of existing `</weekly-status/2021-04-28/report.acl>` will override the default. 
-As a result new access control rules will need to be placed in `</weekly-status/2021-04-28/report.acl>`, potentially duplicating what was in the default acl. 
+As a result new access control rules will need to be placed in `</weekly-status/2021-04-28/report.acl>`, potentially duplicating what was in the default acl.
+
+Furthermore, as there is no way for the acl to express that it can be accessed by someone other than the controller, it cannot be visible to anyone else than the authenticated controller. This means that Bob and Alice must be controllers if their clients can see the content of the acl and decide on what credentials to present. 
+
+### WAC+ acls on acls or extension to modes
+
+With [issue 189: ACLs on ACLs](https://github.com/solid/authorization-panel/issues/189) it becomes possible to make the ACLs more widely readable than the controller, which means that the clients of Bob and Alice can find out that they have access to the resource.
+
+Another option is to have ControlRead modes. 
+Todo: where was that written down?
 
 ## 2. Changing permissions to a subcollection
 
@@ -143,7 +167,9 @@ The research policy `</acp/research#p2>` gives read access to all agents matched
   acp:allow acl:Read, acl:Write .
 ```
 
-The access control `</weekly-status/2021-04-28/.acp#ac1>` applies to all resources contained by `</weekly-status/2021-04-28/>` and, via policy `</acp/research#p2>`, enables read access for all agents matched by `</acp/research#m2>`:
+The access control resource `</weekly-status/2021-04-28/.acp#ac1>` initially starts off as containing relevant triples taken from the relevant `applyMembers` rules of `</weekly-status/.acp>`.
+
+To allow Carol to have access to `</weekly-status/2021-04-28/>` and children, the Controller of `2021-04-28/` needs to edit the rules in `</weekly-status/2021-04-28/.acp>` to something like:
 
 ```turtle
 # Resource: </weekly-status/2021-04-28/.acp>
@@ -153,13 +179,20 @@ The access control `</weekly-status/2021-04-28/.acp#ac1>` applies to all resourc
   acp:applyMembers </acp/research#p1>, </acp/research#p2> . # applies the policy to all resources contained by </weekly-status/2021-04-28/>
 ```
 
+
 ### WAC
 
 To give Carol read and write access to the `</weekly-status/2021-04-28/>` collection and its content, Bob must create a new effective ACL resource, `</weekly-status/2021-04-28/.acl>` which would express all permissions that are to govern access to `</weekly-status/2021-04-28/>`.
 
-Todo: How does a client create a new acl if one does not exist before?
+Todo: How does a client create a new acl if one does not exist before? This is not so easy, as the 
+`</weekly-status/2021-04-28/>` can contain one of the following headers
+1. `Link: </weekly-status/.acl>; rel="acl"`
+2. `Link: </weekly-status/2021-04-28/.acl>; rel="acl"`
+3. no Link header
 
- In other words, to maintain the access permissions previously defined in `</weekly-status/.acl>`, Bob will need to include an authorization defining read access for the research group, along with an authorization defining read and write access for Carol, in the new `</weekly-status/2021-04-28/.acl>`.
+In case 2 the controller agent will know what to edit. But not in case 1 or 3. But since all 3 are left open by the WAC spec, the client cannot know without out-of-band knowledge which resource to edit.
+
+Given that out of band knowledge, the actor wanting to give access permissions to Carol to `</weekly-status/.acl>` resource, will need to copy the relevant rules from `</weekly-status/.acl>` to the newly created `</weekly-status/2021-04-28/.acl>` and include Carol too. 
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.acl>
@@ -176,14 +209,18 @@ Todo: How does a client create a new acl if one does not exist before?
   acl:mode acl:Read, acl:Write .
 ```
 
+As soon this is created, the old ACR will no longer be authoritative. 
+
 ### WAC+ relaxing acl:default
+
+If one were to want the `</weekly-status/2021-04-28/>` ACR to continue to use `</weekly-status/.acl>` then one could make the `acl:default` more flexible as follows.
 
 According to the [ACL ontology definition as of July 2021](https://github.com/solid/authorization-panel/pull/216#discussion_r665338497), the `acl:default` predicate is only effective in statements where the current container is the object; that is, the resource `</weekly-status/.acl>`, which is the direct effective access control list of `</weekly-status/>`, can only target that directory in statements using `acl:default`.
 
 However, if WAC's use of `acl:default` were to be relaxed as described in [issue 191](https://github.com/solid/authorization-panel/issues/191), then one could rely on the effective access control resource discovery mechanism and augment the content of `</weekly-status/.acl>`:
 
 ```Turtle
-# Resource: </weekly-status/.acl>
+# Resource: </weekly-status/2021-04-28/.acl>
 <#authorization>
   a acl:Authorization ;
   acl:agentGroup </groups/research#g1> ;
@@ -199,18 +236,19 @@ However, if WAC's use of `acl:default` were to be relaxed as described in [issue
 
 See also: https://github.com/solid/authorization-panel/pull/216#discussion_r665230245
 
+The problem here is that we need to make a copy of `</weekly-status/2021-04-28/.acl>` in the new acl, which means that changes to the root acl do not get propagated, and the more changes there are the more places will need to be edited to make any changes.
 
 ### WAC+ ac:imports +acr 
 
 [WAC+:imports](https://github.com/solid/authorization-panel/issues/210) is explained most easily if we also require every
 resource to link to its own ACR, as ACP does.
+This removes the out-of-band ACL discovery problem and makes it easy for a client to find out where the effective ACR is.
 
 We keep `wac:default` working as currently specified.
  
-A unauthenticated client that makes a GET on `</weekly-status/2021-04-28/>` and receives a `401` with a `Link` to `</weekly-status/2021-04-28/>`. 
+A unauthenticated client that makes a GET on `</weekly-status/2021-04-28/>` will receives a `401` with a `Link` to `</weekly-status/2021-04-28/.acl>`. 
 
-If the client is the controller of the container, it can do a
-PUT with the following rules:
+If the client is the controller of the container, it can do a PUT with the following rules:
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.ac>
@@ -224,4 +262,4 @@ PUT with the following rules:
   acl:mode acl:Read, acl:Write .
 ```
 
-In other words, this removes the need to duplicate the `</weekly-status/.acl#authorization>` rule, so any future edits to that rule need only be done in one place.
+This removes the need to duplicate the `</weekly-status/.acl#authorization>` rule:  any future edits to that rule need only be done in one place.
