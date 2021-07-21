@@ -65,7 +65,7 @@ The access control `</weekly-status/.acp#ac1>` applies to all resources containe
   acp:applyMembers </acp/research#p1> . # applies the policy to all resources contained by </weekly-status/>
 ```
 
-An unauthenticated client making a GET on `</weekly-status/>` container will receive a `Link: <.acp>; rel="access-control"` header in the `401` response that points to the above `<.acp>`. 
+An unauthenticated client making a GET on `</weekly-status/>` container will receive a `Link: <.acp>; rel="acl"` header in the `401` response that points to the above `<.acp>`. 
 This relation is what makes the contents of `</weekly-status/.acp>` authoritative, and is therefore the information the client can use to decide what credentials to present.
 
 A unauthenticated client making a request to  `</weekly-status/2021-04-28/report.md>` will receive in the header of a 401 a link to `</weekly-status/2021-04-28/report.acp>`. 
@@ -157,7 +157,7 @@ To give Carol read and write access to the `</weekly-status/2021-04-28/>` collec
 
 Todo: How does a client create a new acl if one does not exist before?
 
- In other words to maintain the access permissions previously defined in `</weekly-status/.acl>`, Bob will need to include an authorization defining read access for the research group, along with an authorization defining read and write access for Carol, in the new `</weekly-status/2021-04-28/.acl>`.
+ In other words, to maintain the access permissions previously defined in `</weekly-status/.acl>`, Bob will need to include an authorization defining read access for the research group, along with an authorization defining read and write access for Carol, in the new `</weekly-status/2021-04-28/.acl>`.
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.acl>
@@ -207,7 +207,7 @@ We keep `wac:default` working as currently specified.
  
 A unauthenticated client that makes a GET on `</weekly-status/2021-04-28/>` and receives a `401` with a `Link` to `</weekly-status/2021-04-28/>`. 
 
-If the client is the controler of the container it can do a
+If the client is the controller of the container, it can do a
 PUT with the following rules:
 
 ```Turtle
