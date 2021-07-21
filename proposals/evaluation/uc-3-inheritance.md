@@ -63,7 +63,7 @@ The access control `</weekly-status/.acp#ac1>` applies to all resources containe
   acp:applyMembers </acp/research#p1> . # applies the policy to all resources contained by </weekly-status/>
 ```
 
-An unauthenticated client making a GET on `</weekly-status/>` container will receive a `Link: <.acp>; rel="access-control"` header in the `401` response that points to the above `<.acp>`. 
+An unauthenticated client making a GET on `</weekly-status/>` container will receive a `Link: <.acp>; rel="acl"` header in the `401` response that points to the above `<.acp>`. 
 This relation is what makes the contents of `</weekly-status/.acp>` authoritative, and is therefore the information the client can use to decide what credentials to present.
 
 A unauthenticated client making a request to  `</weekly-status/2021-04-28/report.md>` will receive in the header of a 401 a link to `</weekly-status/2021-04-28/report.acp>`. 
