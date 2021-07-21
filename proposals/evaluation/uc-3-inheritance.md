@@ -102,7 +102,7 @@ Bob and Alice are members of the research group `</groups/research#g1>`:
   vcard:hasMember ex:Alice .
 ```
 
-This vcard is visible only to members of the research organization. 
+This vcard is visible only to members of the research group. 
 
 The acl enabling read access to all resources contained in `</weekly-status/>` for all members of group `</groups/research#g1>` is:
 
