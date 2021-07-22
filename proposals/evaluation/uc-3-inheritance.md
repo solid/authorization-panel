@@ -220,7 +220,7 @@ According to the [ACL ontology definition as of July 2021](https://github.com/so
 However, if WAC's use of `acl:default` were to be relaxed as described in [issue 191](https://github.com/solid/authorization-panel/issues/191), then one could rely on the effective access control resource discovery mechanism and augment the content of `</weekly-status/.acl>`:
 
 ```Turtle
-# Resource: </weekly-status/2021-04-28/.acl>
+# Resource: </weekly-status/.acl>
 <#authorization>
   a acl:Authorization ;
   acl:agentGroup </groups/research#g1> ;
