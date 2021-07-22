@@ -250,7 +250,7 @@ This makes it easy for a client to find out where the effective ACR is.
 We keep `wac:default` working as currently specified. Note, that this proposal is also compatible with more flexible acl:defaults, and indeed with the use of general `wac:accessToClass` descriptions, such as classes of resources with a specific tag.
  
 An unauthenticated client that makes a `GET` on `</weekly-status/2021-04-28/>` will receives a `401` with a `Link` to `</weekly-status/2021-04-28/.acl>`. 
-The  container when newly created would contain the following triple 
+The  container when newly created would contain the following triple:
 
 ```Turtle
 # Resource: </weekly-status/2021-04-28/.ac>
