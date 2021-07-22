@@ -246,7 +246,7 @@ This removes the out-of-band ACL discovery problem and makes it easy for a clien
 
 We keep `wac:default` working as currently specified.
  
-A unauthenticated client that makes a GET on `</weekly-status/2021-04-28/>` will receives a `401` with a `Link` to `</weekly-status/2021-04-28/.acl>`. 
+An unauthenticated client that makes a GET on `</weekly-status/2021-04-28/>` will receives a `401` with a `Link` to `</weekly-status/2021-04-28/.acl>`. 
 
 If the client is the controller of the container, it can do a PUT with the following rules:
 
