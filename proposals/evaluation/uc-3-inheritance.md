@@ -130,7 +130,7 @@ A unauthenticated client actor making a GET request to  `</weekly-status/2021-04
 1) `Link: </weekly-status/.acl>; rel=acl`. 
 2) `Link: </weekly-status/2021-04-28/report.acl>; rel=acl`
 
-As pointed out previously, only the controller and the resource guard can read those, all other actors (eg. Alice or Bob) need undefined out-of-band knowledge to know how to authenticate. So we are limited to the controller actor.
+As pointed out previously, only the controller and the resource guard can read those; all other actors (e.g., Alice or Bob) need undefined out-of-band knowledge to know how to authenticate. We are therefore limited to the controller actor.
 
 In (1) the actor whose Principal is the Controller, will be able to determine using inheritance what credentials it can use. 
 
