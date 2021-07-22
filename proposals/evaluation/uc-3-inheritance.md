@@ -240,7 +240,7 @@ However, if WAC's use of `acl:default` were to be relaxed as described in [issue
 
 See also: https://github.com/solid/authorization-panel/pull/216#discussion_r665230245
 
-As a result the acl's for all the resources could be pointing to the root acl. But doing that will tend to place all the ACLs on a Pod together, giving anyone with access to that acl, visibility on all the access control rules of the Pod.
+As a result the ACLs for all the resources could be pointing to the root ACL. But doing that will tend to place all the ACLs on a Pod together, giving anyone with access to that ACL, visibility on all the access control rules of the Pod.
 
 ### WAC+ ac:imports +acr 
 
