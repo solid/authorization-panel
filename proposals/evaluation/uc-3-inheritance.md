@@ -132,9 +132,9 @@ A unauthenticated client actor making a GET request to  `</weekly-status/2021-04
 
 As pointed out previously, only the controller and the resource guard can read those; all other actors (e.g., Alice or Bob) need undefined out-of-band knowledge to know how to authenticate. We are therefore limited to the controller actor.
 
-In (1) the actor whose Principal is the Controller, will be able to determine using inheritance what credentials it can use. 
+In (1), the actor whose Principal is the Controller, will be able to determine from the `acl:default` rules what credentials it can use. 
 
-In (2), the resource may either has been created already, in which case the default rule of `</weekly-status/.acl>` does not apply, or it has not yet been created, so the default applies, but the client cannot know what the default acl is.
+In (2), the acl resource may either has been already created, in which case the default rule of `</weekly-status/.acl>` does not apply, or it has not yet been created, so the default applies, but the client cannot know what the default acl is.
 
 ### WAC+ acls on acls or extension to modes
 
