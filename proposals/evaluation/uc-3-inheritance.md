@@ -70,7 +70,7 @@ The access control `</weekly-status/.acp#ac1>` applies to all resources containe
 ### Accessing `</weekly-status/>`
 
 An unauthenticated agent making a GET on the `</weekly-status/>` container will receive a `Link: <.acp>; rel="acl"` header in the `401` response that points to the above `<.acp>`. 
-This relation makes the contents of `</weekly-status/.acp>` authoritative and is, therefore, the information the client can use to decide what credentials to present.
+This relation makes the contents of `</weekly-status/.acp>` authoritative and is, therefore, the information the client can use to decide which credentials to present.
 
 [Actors](https://essif-lab.pages.grnet.gr/framework/docs/terms/actor) whose [principal](https://essif-lab.pages.grnet.gr/framework/docs/essifLab-glossary#principal) are not members of the research institute, will not have access to the policy `</acp/research#p1>` and so, not knowing what credential to present will stop there.
 
