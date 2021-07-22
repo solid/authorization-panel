@@ -260,7 +260,7 @@ The  container when newly created would contain the following triple
 
 This allows any client (including the controller's client) to find the default rule by following their nose.
 
-The current WAC inheritance algorithm, states that the inheritance no longer works for a resource that has an ACL. But that does not stop inherticance from from being explicitly defined using `ac:imports`.
+The current WAC inheritance algorithm states that the automatic inheritance no longer has effect for a resource that has an ACL, but that does not stop inheritance from from being explicitly defined using `ac:imports`.
 
 The Actor for the Principal in control of the container can then  `PUT` the following rules to allow Carol to read and write to those containers:
 
