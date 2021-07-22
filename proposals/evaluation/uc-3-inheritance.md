@@ -134,7 +134,7 @@ As pointed out previously, only the controller and the resource guard can read t
 
 In (1) the actor whose Principal is the Controller, will be able to determine using inheritance what credentials it can use. 
 
-In (2) the resource may either be created already, in which case the default rule of `</weekly-status/.acl>` does not apply, or it is not created yet, and the default applies but the client cannot know what the default acl is.
+In (2), the resource may either has been created already, in which case the default rule of `</weekly-status/.acl>` does not apply, or it has not yet been created, so the default applies, but the client cannot know what the default acl is.
 
 ### WAC+ acls on acls or extension to modes
 
