@@ -213,7 +213,7 @@ Given that out of band knowledge, the actor wanting to give access permissions t
 
 As soon as this ACL is created, the old ACL will no longer be authoritative. 
 
-The problem here is that we need to copy many of the statements from `</weekly-status/.acl>` in the new acl, which means that changes to the root acl do not get propagated, and the more changes there are, the more places will need to be edited to make any future changes.
+The problem here is that we need to copy many of the statements from `</weekly-status/.acl>` into the new acl; this means that subsequent changes to the root acl will not get automatically propagated, and the more resources there are, the more places will need to be edited to carry through any future changes made to the root acl.
 
 ### WAC+ relaxing acl:default
 
