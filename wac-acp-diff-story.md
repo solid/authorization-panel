@@ -110,7 +110,7 @@ As above, Jezebel can let Bartholomew copy her homework by editing the ACL docum
 
 ``` turtle
 _:bart-copies-assignment-1
-  a acl:AccessControl ;
+  a acp:AccessControl ;
   acp:apply [
     a acp:Policy ;
     acp:allow acp:Read ;
@@ -132,7 +132,7 @@ She could instead move that policy someplace independent from the existence of `
 Now she can apply it to multiple homework documents or all of her 8.04 documents with individual access controls like:
 ``` turtle
 _:bart-copies-assignment-2
-  a acl:AccessControl ;
+  a acp:AccessControl ;
   acp:apply </myAccessPolicies#bart-copies-my-homework> .
 ```
 
