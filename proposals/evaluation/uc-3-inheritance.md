@@ -87,7 +87,7 @@ If that actor makes a `GET` request to `<report.acp>` it will receive a graph is
 ```
 
 Note that the triples in `</weekly-status/2021-04-28/report.acp>` are generated from the statements in `</weekly-status/.acp>`. 
-All resources in ACP have their own associated effective Access Control Resource.
+All resources covered by an ACP have their own associated effective Access Control Resource.
 
 The same logic thus applies here as for access to the container. To know which credentials to present, a digital actor will need to know the contents of `</acp/research>`. But access to that is only granted to members of that research organization.
    
