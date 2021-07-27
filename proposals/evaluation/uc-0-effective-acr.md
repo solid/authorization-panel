@@ -37,7 +37,7 @@ In ACP, the access control system in place (that is, ACP, as opposed to WAC, for
 
 In WAC, the effective ACR of a resource might be the ACR of a parent container of the resource.
 
-In WAC ACRs are called ACLs (Access Control Lists).
+In WAC, ACRs are called ACLs (Access Control Lists).
 
 WAC's [Effective ACL Resource](https://solid.github.io/web-access-control-spec/#effective-acl-resource) discovery is described in [the WAC spec](https://solid.github.io/web-access-control-spec/) as follows:
 
