@@ -27,7 +27,7 @@ The Link header with relationship type `acl` indicates the access control resour
 
 ### ACP
 
-In ACP, every resource has exactly 1 effective access control resource directly associated to it and every access control resource directly mandates access over exactly one resource and itself.
+In ACP, every resource has exactly 1 effective access control resource directly associated with it, and every access control resource directly governs access over itself and exactly one other resource.
 
 In ACP, access control statements can be spread over several resources; that is, an access control resource can reference other resources.
 
