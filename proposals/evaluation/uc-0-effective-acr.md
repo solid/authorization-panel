@@ -2,7 +2,7 @@
 
 This is part 0 of the [implementation specific use cases comparison](./use-cases.md).
 
-The resource mandating access over another resource is called its effective access control resource (ACR).
+The resource governing access over another resource is called its effective access control resource (ACR).
 
 ## 1. Discovering a resource's effective access control
 
