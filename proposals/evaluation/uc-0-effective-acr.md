@@ -31,7 +31,7 @@ In ACP, every resource has exactly 1 effective access control resource directly 
 
 In ACP, access control statements can be spread over several resources; that is, an access control resource can reference other resources.
 
-In ACP, the access control system in place (that is, ACP, as opposed to WAC, for example) is indicated via a Link header of `rel="type"` `<http://www.w3.org/ns/solid/acp#AccessControlResource>`.
+In ACP, the access control system in place (that is, ACP, as opposed to WAC, for example) is indicated via a Link header of `rel="type"` `<http://www.w3.org/ns/solid/acp#AccessControlResource>` in HTTP response when requesting an ACR.
 
 ### WAC
 
