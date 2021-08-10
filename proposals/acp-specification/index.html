@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <title>Access Control Policies (ACP)</title>
+  <title>Access Control Policy (ACP)</title>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css" media="all" />
   <style>
     :root {
@@ -109,7 +109,7 @@
   </p>
   <header class="head">
     <a class="logo" href="https:&#x2F;&#x2F;solidproject.org&#x2F;"><img alt="Solid" src="solid.svg" width="72" height="66"></a>
-    <h1 property="dc:title">Access Control Policies (ACP)</h1>
+    <h1 property="dc:title">Access Control Policy (ACP)</h1>
     <h2><span property="rdfs:comment">Solid Editor&#39;s Draft</span> <time property="dc:issued" datetime="2021-04-19">2021-04-19</time></h2>
     <dl>
       <dt>This version:</dt>
@@ -165,7 +165,7 @@
   <section datatype="rdf:HTML" property="dc:abstract">
     <h2 id="abstract">Abstract</h2>
     <div>
-      <p>This document defines the Access Control Policies Language (ACP), a language for describing set of conditions for resource access. !!!TODO REMOVE DEFINITIONS AND PUSH TO TERMINOLOGY!!! These conditions are provided as Access Controls, Policies, and Matchers, expressed in the form of an RDF graph. RDF graphs that are used in this manner are called "authorization graphs". Authorization graphs are applied to resource access descriptions expressed in the form of an RDF graph. RDF graphs that are used in this manner are called "context graphs". As ACP authorization graphs are used to validate whether context graphs satisfy a set of conditions, they can also be viewed as a description of the context graphs that do satisfy these conditions. The result of applying an authorization graph to a context graph is a set of access modes expressed in the form of an RDF graph. RDF graphs that are used in this manner are called "access grant graphs".</p>
+      <p>This document defines the Access Control Policy Language (ACP), a language for describing sets of conditions mandating access permissions over resources.</p>
     </div>
   </section>
 
@@ -332,9 +332,11 @@
         <p>Throughout this document, the following terminology is used.</p>
 <div class="def" id="rdf-terminology">
   <div class="term-def-header">Basic RDF Terminology</div>
-  <div>
-      This document uses the terms <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-resource"><dfn data-dfn-type="dfn" id="dfn-resource">resource</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph"><dfn data-dfn-type="dfn" id="dfn-rdf-graph">RDF graph</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple"><dfn data-dfn-type="dfn" id="dfn-rdf-triple">RDF triple</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-iri"><dfn data-dfn-type="dfn" id="dfn-iri">IRI</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-literal"><dfn data-dfn-type="dfn" id="dfn-literal">literal</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node"><dfn data-dfn-type="dfn" id="dfn-blank-node">blank node</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-node"><dfn data-dfn-type="dfn" id="dfn-node">node</dfn></a> of an RDF graph, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term"><dfn data-dfn-type="dfn" id="dfn-rdf-term">RDF term</dfn></a>, and <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-subject"><dfn data-dfn-type="dfn" id="dfn-subject">subject</dfn></a>, <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-predicate"><dfn data-dfn-type="dfn" id="dfn-predicate">predicate</dfn></a>, and <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-object"><dfn data-dfn-type="dfn" id="dfn-object">object</dfn></a> of RDF triples, and <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-datatype"><dfn data-dfn-type="dfn" id="dfn-datatype">datatype</dfn></a> as defined in RDF 1.1 Concepts and Abstract Syntax [<cite><a class="bibref" href="#bib-rdf11-concepts">rdf11-concepts</a></cite>].
-  </div>
+  <p>This document uses the terms <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-resource"><dfn data-dfn-type="dfn" id="dfn-resource">resource</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph"><dfn data-dfn-type="dfn" id="dfn-rdf-graph">RDF graph</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple"><dfn data-dfn-type="dfn" id="dfn-rdf-triple">RDF triple</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-iri"><dfn data-dfn-type="dfn" id="dfn-iri">IRI</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-literal"><dfn data-dfn-type="dfn" id="dfn-literal">literal</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node"><dfn data-dfn-type="dfn" id="dfn-blank-node">blank node</dfn></a>, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-node"><dfn data-dfn-type="dfn" id="dfn-node">node</dfn></a> of an RDF graph, <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term"><dfn data-dfn-type="dfn" id="dfn-rdf-term">RDF term</dfn></a>, and <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-subject"><dfn data-dfn-type="dfn" id="dfn-subject">subject</dfn></a>, <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-predicate"><dfn data-dfn-type="dfn" id="dfn-predicate">predicate</dfn></a>, and <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-object"><dfn data-dfn-type="dfn" id="dfn-object">object</dfn></a> of RDF triples, and <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-datatype"><dfn data-dfn-type="dfn" id="dfn-datatype">datatype</dfn></a> as defined in RDF 1.1 Concepts and Abstract Syntax [<cite><a class="bibref" href="#bib-rdf11-concepts">rdf11-concepts</a></cite>].</p>
+</div>
+<div class="def" id="acp-terminology">
+  <div class="term-def-header">Basic ACP Terminology</div>
+  <p>In ACP, the conditions mandating access over a resource are expressed as Access Controls, Policies, and Matchers, in the form of an RDF graph also called the resource's "authorization graph". Authorization graphs are applied to resource access descriptions expressed in the form of an RDF graph also called a "context graph". As ACP authorization graphs are used to validate whether context graphs satisfy a set of conditions, they can also be viewed as a description of the context graphs that do satisfy these conditions. The result of applying an authorization graph to a context graph is a set of access modes expressed in the form of an RDF graph also called an "access grant graph".</p>
 </div>
 
 
@@ -416,7 +418,6 @@
 </p>
 <pre id="acp-example-context-graph" class="example example-context-graph">
   _:contextX
-    a acp:Context ;
     acp:agent ex:Bob ;
     acp:resource ex:resourceA ;
     acp:client ex:ClientApplicationB ;
