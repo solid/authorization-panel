@@ -144,7 +144,7 @@ to which the server will also return
 ```
 as the resource does not yet exist.
 
-4As a result the client will need to look up one level in the hierarchy to search for the effective ACR
+4. As a result the client will need to look up one level in the hierarchy to search for the effective ACR
 ```HTTP
 HEAD / HTTP/1.1
 ```
