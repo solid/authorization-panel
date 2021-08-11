@@ -6,9 +6,9 @@
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 59d067506, updated Fri Jul 23 15:43:29 2021 -0700" name="generator">
+  <meta content="Bikeshed version 4f053d00e, updated Tue Aug 10 14:13:32 2021 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/authorization-ucr/" rel="canonical">
-  <meta content="2f1931721e3629d7b9f2b95f14a6102caa2a82f4" name="document-revision">
+  <meta content="bb5b98108049bf40e32e380a5f67a18d80a2743c" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -479,7 +479,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Authorization in Solid</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-07-28">28 July 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-08-11">11 August 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2104,43 +2104,43 @@ collection.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#access-mode">access mode</a><span>, in §4</span>
-   <li><a href="#agent">agent</a><span>, in §4</span>
-   <li><a href="#append-access">Append access</a><span>, in §4</span>
-   <li><a href="#application">application</a><span>, in §4</span>
-   <li><a href="#authenticated-agent">authenticated agent</a><span>, in §4</span>
-   <li><a href="#authorization">authorization</a><span>, in §4</span>
-   <li><a href="#authorization-group">authorization group</a><span>, in §4</span>
-   <li><a href="#capability">capability</a><span>, in §4</span>
-   <li><a href="#collection">collection</a><span>, in §4</span>
-   <li><a href="#create-access">Create access</a><span>, in §4</span>
-   <li><a href="#delete-access">Delete access</a><span>, in §4</span>
-   <li><a href="#identity">identity</a><span>, in §4</span>
-   <li><a href="#read-access">Read access</a><span>, in §4</span>
-   <li><a href="#read-permission-access">Read permission access</a><span>, in §4</span>
-   <li><a href="#resource">resource</a><span>, in §4</span>
-   <li><a href="#resource-controller">resource controller</a><span>, in §4</span>
-   <li><a href="#resource-server">resource server</a><span>, in §4</span>
-   <li><a href="#tag">tag</a><span>, in §4</span>
-   <li><a href="#write-access">Write access</a><span>, in §4</span>
-   <li><a href="#write-permission-access">Write permission access</a><span>, in §4</span>
+   <li><a href="#access-mode">access mode</a><span>, in § 4</span>
+   <li><a href="#agent">agent</a><span>, in § 4</span>
+   <li><a href="#append-access">Append access</a><span>, in § 4</span>
+   <li><a href="#application">application</a><span>, in § 4</span>
+   <li><a href="#authenticated-agent">authenticated agent</a><span>, in § 4</span>
+   <li><a href="#authorization">authorization</a><span>, in § 4</span>
+   <li><a href="#authorization-group">authorization group</a><span>, in § 4</span>
+   <li><a href="#capability">capability</a><span>, in § 4</span>
+   <li><a href="#collection">collection</a><span>, in § 4</span>
+   <li><a href="#create-access">Create access</a><span>, in § 4</span>
+   <li><a href="#delete-access">Delete access</a><span>, in § 4</span>
+   <li><a href="#identity">identity</a><span>, in § 4</span>
+   <li><a href="#read-access">Read access</a><span>, in § 4</span>
+   <li><a href="#read-permission-access">Read permission access</a><span>, in § 4</span>
+   <li><a href="#resource">resource</a><span>, in § 4</span>
+   <li><a href="#resource-controller">resource controller</a><span>, in § 4</span>
+   <li><a href="#resource-server">resource server</a><span>, in § 4</span>
+   <li><a href="#tag">tag</a><span>, in § 4</span>
+   <li><a href="#write-access">Write access</a><span>, in § 4</span>
+   <li><a href="#write-permission-access">Write permission access</a><span>, in § 4</span>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-rfc2119">[RFC2119]
-   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-rfc7231">[RFC7231]
-   <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7231.html">Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
+   <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-did">[DID]
-   <dd>Drummond Reed; et al. <a href="https://www.w3.org/TR/did-core/">Decentralized Identifiers (DIDs) v1.0</a>. URL: <a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a>
+   <dd>Drummond Reed; et al. <a href="https://www.w3.org/TR/did-core/"><cite>Decentralized Identifiers (DIDs) v1.0</cite></a>. URL: <a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a>
    <dt id="biblio-uri">[URI]
-   <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://www.rfc-editor.org/rfc/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a>. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
+   <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://www.rfc-editor.org/rfc/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. January 2005. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>
    <dt id="biblio-webid">[WEBID]
-   <dd>Tim Berners-Lee; Henry Story; Andrei Sambra. <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/">WebID 1.0</a>. URL: <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/">https://www.w3.org/2005/Incubator/webid/spec/identity/</a>
+   <dd>Tim Berners-Lee; Henry Story; Andrei Sambra. <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/"><cite>WebID 1.0</cite></a>. URL: <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/">https://www.w3.org/2005/Incubator/webid/spec/identity/</a>
   </dl>
   <aside class="dfn-panel" data-for="agent">
    <b><a href="#agent">#agent</a></b><b>Referenced in:</b>
