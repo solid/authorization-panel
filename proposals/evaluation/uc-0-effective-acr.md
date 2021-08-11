@@ -159,7 +159,40 @@ The client can then continue with
 GET /foo/.acr HTTP/1.1
 ```
 to which the server will finally return the content.
+                  
+### WAC+NTrig
+
+A resource can let a client know that it supports dataset serialisation its ACR by returning the following header in either the 200 or 401:
+
+```HTTP
+Link: </foo/bar/baz/x.acr>; rel="acl"; type="application/trig"
+```
+                                                         
+A client could then follow up with a request to `</foo/bar/baz/x.acr>` with `Accept: application/trig`, which could respond:
+
+```HTTP
+200 Ok
+Content-Type: application/trig
+Content-Length: ...
+
+GRAPH <> {}
+GRAPH </.default.acr> {
+ <#authorization> a acl:Authorization ;
+   acl:agentGroup </owner#me> ;
+   acl:default </> ;
+   acl:mode acl:Control .
+}
+```
+
+This should be read as giving the triples in the `</.default.acr>` graph, and specifying that no triples exist in the `</foo/bar/baz/x.acr>`.
+With a slight adjustment to the WAC spec, this could still count as there being nothing other than the default, which would therefore still be active.
+
+Note: NTrig has already been proposed in [issue 210: add :imports relation](https://github.com/solid/authorization-panel/issues/210).
+
+
+
 
 ## See also
 
 - [Access Control Resource discovery](https://github.com/solid/authorization-panel/issues/228)
+
