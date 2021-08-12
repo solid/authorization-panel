@@ -75,7 +75,7 @@ WAC's [Effective ACL Resource](https://solid.github.io/web-access-control-spec/#
 > 4. Otherwise, repeat the steps using the container resource of resource.
 
 Just as with ACP, the client can follow the `Link: <...acr>; rel="acl"` relation to find out the rules of access. 
-But then we have to cases with WAC:
+But then we have two cases with WAC:
 
 1. the ACR exists and returns the rules 
 2. the ACR returns a `404 Not Found`
