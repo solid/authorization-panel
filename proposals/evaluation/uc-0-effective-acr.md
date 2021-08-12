@@ -48,7 +48,7 @@ The second `Link`, with relation type `ldp:contains`, is needed for WAC.
 
 ### ACP
 
-In ACP, every resource has exactly 1 effective access control resource directly associated with it, and every access control resource directly governs access over itself and exactly one other resource.
+In ACP, every resource has exactly one effective access control resource directly associated with it, and every access control resource directly governs access over itself and exactly one other resource.
 
 In ACP, access control statements can be spread over several resources; that is, an access control resource can reference other resources.
 
