@@ -54,8 +54,8 @@ In ACP, access control statements can be spread over several resources; that is,
 
 In ACP, the access control system in place (that is, ACP, as opposed to WAC, for example) is indicated via a `Link` header of `rel="type"` `<http://www.w3.org/ns/solid/acp#AccessControlResource>` in HTTP response to a request for an ACR.
 
-On receiving the `404` with the `Link` header given in our example, the client can make a request on `/foo/bar/baz/x.acr`, if it wants to look at the Access Control Rules. 
-Since all resources in ACP have an associated ACR, the resource <`/foo/bar/baz/x.acr>` should return a description of the sets of agents that can have access to the resource. 
+On receiving the `404` with the `Link` header given in our example, the client can make a request on `</foo/bar/baz/x.acr>`, if it wants to look at the Access Control Rules. 
+Since all resources in ACP have an associated ACR, the resource `</foo/bar/baz/x.acr>` should return a description of the sets of agents that can have access to the resource. 
 This may include links to rules published elsewhere.
 
 ### WAC
@@ -159,16 +159,23 @@ The client can then continue with —
 GET /foo/.acr HTTP/1.1
 ```
 — to which the server will finally return the content.
-                  
-### WAC+NTrig
 
-A resource can let a client know that it supports dataset serialisation of its ACR by returning the following header with either a 200 or 401 HTTP result code:
+### WAC+
+
+The WAC effective resource discovery algorithm, needed when default ACLs exist, is as shown above, an expensive process for the client to follow, requiring a large number of failed requests.
+We have two ways to fix this:
+ * WAC+NTrig, allows the server to return datasets and so return the result in one request
+ * WAC+:imports, shows how one can, as with ACP, have every resource come with its own ACR, but still have allow defaults to work.
+
+#### WAC+NTrig
+
+A resource can let a client know that it supports dataset serialisation of its ACR by returning the following header with either a 200 or 401 HTTP result code as proposed in [issue 247](https://github.com/solid/authorization-panel/issues/247):
 
 ```HTTP
 Link: </foo/bar/baz/x.acr>; rel="acl"; type="application/trig"
 ```
                                                          
-A client could then follow up with a request to `</foo/bar/baz/x.acr>` with `Accept: application/trig`, which could respond:
+A client could then follow up with a request to `</foo/bar/baz/x.acr>` with `Accept: application/trig` header. The server could respond with, for example:
 
 ```HTTP
 200 Ok
@@ -184,13 +191,35 @@ GRAPH </.default.acr> {
 }
 ```
 
-This should be read as giving the triples in the `</.default.acr>` graph, and specifying that no triples exist in the `</foo/bar/baz/x.acr>`.
-With a slight adjustment to the WAC spec, this could still count as there being nothing other than the default, which would therefore still be active.
+This should be read as 
+ * specifying that no triples exist in`</foo/bar/baz/x.acr>` 
+ * giving the triples in the `</.default.acr>` graph
 
-Note: NTrig has already been proposed in [issue 210: add :imports relation](https://github.com/solid/authorization-panel/issues/210).
+With a slight adjustment to the WAC spec, this could still count as there being nothing other than the default, which would therefore still be active as default for the given resource.
 
+#### WAC+:imports
 
+Another way to allow default reasoning is to use `:imports` as proposed in [issue 210: add :imports relation](https://github.com/solid/authorization-panel/issues/210). 
 
+[Reactive Solid](https://github.com/co-operating-systems/Reactive-SoLiD) has every resource come with an ACR with content. But the server has ACRs for newly created resources explictly `:import` the parent, so that `</foo/bar/baz/x.acr>` returns
+
+```Turtle
+<> :imports <.acr> .
+```
+and `</foo/bar/baz/.acr>` returns 
+
+```
+<> :imports <../.acr> .
+```
+
+And so on, up to the root `</.acr>`.
+
+Clients with control access to a resource, can change the ACR to point straight to the root one.
+
+#### WAC+TriG+:imports
+
+Both of those answers can be combined of course.
+This was proposed in the May 11th comment to [issue 210: add :imports relation](https://github.com/solid/authorization-panel/issues/210#issuecomment-838747077).
 
 ## See also
 
