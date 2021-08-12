@@ -44,7 +44,7 @@ Link: </foo/bar/baz/x.acr>; rel="acl"
 Link: <.>; rev="http://www.w3.org/ns/ldp#contains"
 ```
 
-The second `Link`, with relation type `ldp:contains`, is needed for WAC.
+The second `Link`, with relation type `ldp:contains`, is helpful to help WAC clients determine the effective acl.
 
 ### ACP
 
@@ -164,7 +164,7 @@ GET /foo/.acr HTTP/1.1
 
 The WAC effective resource discovery algorithm, needed when default ACLs exist, is as shown above, an expensive process for the client to follow, requiring a large number of failed requests.
 We have three ways to fix this:
- * WAC+NTrig, allows the server to return datasets and so return the result in one request
+ * WAC+Trig, allows the server to return datasets and so return the result in one request
  * WAC+:imports, shows how one can, as with ACP, have every resource come with its own ACR, but still have allow defaults to work.
  * WAC+rel=control allows the server to publish two `Link` relations: one to the ACR and the other to the effective ACR.
 
