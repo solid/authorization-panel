@@ -229,7 +229,7 @@ This is explained in [issue 248](https://github.com/solid/authorization-panel/is
                
 ```HTTP
 Link: </.default.acr>; rel="acl"
-Link: </foo/bar/baz/x.acr>; rel="acl"
+Link: </foo/bar/baz/x.acr>; rel="control"
 ```
  
 
