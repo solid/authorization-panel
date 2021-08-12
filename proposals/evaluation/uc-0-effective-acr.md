@@ -162,7 +162,7 @@ GET /foo/.acr HTTP/1.1
 
 ### WAC+
 
-The WAC effective resource discovery algorithm, needed when default ACLs exist, is as shown above, an expensive process for the client to follow, requiring a large number of failed requests.
+The WAC effective resource discovery algorithm, needed when default ACLs exist, is, as shown above, an expensive process for the client to follow, requiring a large number of failed requests.
 We have three ways to fix this:
  * WAC+Trig — allows the server to return datasets, and so return the result in one request
  * WAC+:imports — shows how one can, as with ACP, have every resource come with its own ACR, but still allow defaults to work
