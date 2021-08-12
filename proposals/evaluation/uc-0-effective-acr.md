@@ -128,7 +128,7 @@ as the resource does not yet exist.
 ```HTTP
 HEAD /foo/ HTTP/1.1
 ```
-and with luck the server will respond
+— and with luck the server will respond —
 ```HTTP
 200 Ok
 Link: </foo/.acr>; rel="acl"
