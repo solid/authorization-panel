@@ -98,7 +98,7 @@ The client can then continue with —
 ```HTTP
 GET /foo/bar/baz/.acr HTTP/1.1
 ```
-to which the server will also return
+— to which the server will also return —
 ```HTTP
 404 Not Found
 ```
