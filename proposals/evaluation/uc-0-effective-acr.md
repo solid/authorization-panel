@@ -207,7 +207,7 @@ Another way to allow default reasoning is to use `:imports` as proposed in [issu
 ```Turtle
 <> :imports <.acr> .
 ```
-and `</foo/bar/baz/.acr>` returns 
+— and `</foo/bar/baz/.acr>` returns —
 
 ```
 <> :imports <../.acr> .
