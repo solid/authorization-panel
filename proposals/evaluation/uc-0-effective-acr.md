@@ -37,7 +37,7 @@ Content-Type: ...
 
 ...
 ```
-  B. The response is unsuccessful and the client wants to find out how to authenticate to gain access:
+  B. The response is unsuccessful, and the client wants to find out how to authenticate to gain access:
 ```HTTP
 401 Unauthorized
 Link: </foo/bar/baz/x.acr>; rel="acl"
