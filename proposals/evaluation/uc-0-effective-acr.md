@@ -215,7 +215,7 @@ Another way to allow default reasoning is to use `:imports` as proposed in [issu
 
 And so on, up to the root `</.acr>`.
 
-Clients with control access to a resource, can change the ACR to point straight to the root one.
+Clients with control access to a resource can change the ACR to point straight to the root ACR.
 
 #### WAC + TriG + :imports
 
