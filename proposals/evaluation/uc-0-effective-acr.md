@@ -44,7 +44,7 @@ Link: </foo/bar/baz/x.acr>; rel="acl"
 Link: <.>; rev="http://www.w3.org/ns/ldp#contains"
 ```
 
-The second `Link`, with relation type `ldp:contains`, is helpful to help WAC clients determine the effective acl.
+The second `Link`, with relation type `ldp:contains`, helps WAC clients determine the effective ACL.
 
 ### ACP
 
