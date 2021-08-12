@@ -27,7 +27,7 @@ Both WAC and ACP follow an `acl` link header in the response to a resource `R` i
 
 We can start both our examples with the client making a `GET` request on `/foo/bar/baz/x` which returns either of the following responses:
 
-  A. The response is successful but the client wants to then edit the access control rules
+  A. The response is successful, but the client then wants to edit the access control rules:
 ```HTTP
 200 Ok
 Link: </foo/bar/baz/x.acr>; rel="acl"
