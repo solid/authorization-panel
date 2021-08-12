@@ -170,7 +170,7 @@ We have three ways to fix this:
 
 #### WAC+NTrig
 
-A resource can let a client know that it supports dataset serialisation of its ACR by returning the following header with either a 200 or 401 HTTP result code as proposed in [issue 247](https://github.com/solid/authorization-panel/issues/247):
+A resource can let a client know that it supports dataset serialisation of its ACR by returning the following header with either a `200` or `401` HTTP result code as proposed in [issue 247](https://github.com/solid/authorization-panel/issues/247):
 
 ```HTTP
 Link: </foo/bar/baz/x.acr>; rel="acl"; type="application/trig"
