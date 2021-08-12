@@ -224,7 +224,7 @@ This was proposed in the May 11th comment to [issue 210: add :imports relation](
                                       
 #### WAC + acl=control
 
-This is perhaps the simplest solution. By specifying another link relation type, to non created ACR resource we can help the client find its way very quickly to the effective resource, without loosing the ability to edit the most specific one. 
+This is perhaps the simplest solution. By specifying another link relation type to non-created ACR resource, we can help the client find its way very quickly to the effective resource, without losing the ability to edit the most specific one. 
 This is explained in [issue 248](https://github.com/solid/authorization-panel/issues/248).  
                
 ```HTTP
