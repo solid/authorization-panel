@@ -80,8 +80,8 @@ But then we have two cases with WAC:
 1. the ACR exists and returns the rules 
 2. the ACR returns a `404 Not Found`
 
-In (1) everything follows like with ACP above.
-In (2) the client then needs to start the recursive process of looking for the effective ACR. 
+In (1), everything follows like with ACP above.
+In (2), the client then needs to start the recursive process of looking for the effective ACR. 
 We will detail (2) next.
 
 1. First the client is lucky enough to be shown the reverse `ldp:contains` relation, so it can do a HEAD on that to find its `ACL`.
