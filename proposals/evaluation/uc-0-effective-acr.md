@@ -88,7 +88,7 @@ We will detail (2) next.
 ```HTTP
 HEAD /foo/bar/baz/ HTTP/1.1
 ```
-and with luck the server will respond
+— and with luck the server will respond —
 ```HTTP
 200 Ok
 Link: </foo/bar/baz/.acr>; rel="acl"
@@ -102,29 +102,29 @@ to which the server will also return
 ```HTTP
 404 Not Found
 ```
-as the resource does not yet exist.
+— as the resource does not yet exist.
 
-2. As a result the client will need to look up one level in the hierarchy to search for the effective ACR
+2. As a result, the client will need to look up one level in the hierarchy to search for the effective ACR:
 ```HTTP
 HEAD /foo/bar/ HTTP/1.1
 ```
-and with luck the server will respond
+— and with luck the server will respond —
 ```HTTP
 200 Ok
 Link: </foo/bar/.acr>; rel="acl"
 Link: </foo/>; rev="http://www.w3.org/ns/ldp#contains"
 ```
-The client can then continue with
+The client can then continue with —
 ```HTTP
 GET /foo/bar/baz/.acr HTTP/1.1
 ```
-to which the server will also return
+— to which the server will also return —
 ```HTTP
 404 Not Found
 ```
-as the resource does not yet exist.
+— as the resource does not yet exist.
 
-3. As a result the client will need to look up one level in the hierarchy to search for the effective ACR
+3. As a result, the client will need to look up one level in the hierarchy to search for the effective ACR:
 ```HTTP
 HEAD /foo/ HTTP/1.1
 ```
@@ -134,35 +134,35 @@ HEAD /foo/ HTTP/1.1
 Link: </foo/.acr>; rel="acl"
 Link: </>; rev="http://www.w3.org/ns/ldp#contains"
 ```
-The client can then continue with
+The client can then continue with —
 ```HTTP
 GET /foo/.acr HTTP/1.1
 ```
-to which the server will also return
+— to which the server will also return —
 ```HTTP
 404 Not Found
 ```
-as the resource does not yet exist.
+— as the resource does not yet exist.
 
-4. As a result the client will need to look up one level in the hierarchy to search for the effective ACR
+4. As a result, the client will need to look up one level in the hierarchy to search for the effective ACR:
 ```HTTP
 HEAD / HTTP/1.1
 ```
-and with luck the server will respond
+— and with luck the server will respond —
 
 ```HTTP
 200 Ok
 Link: </.acr>; rel="acl"
 ```
-The client can then continue with
+The client can then continue with —
 ```HTTP
 GET /foo/.acr HTTP/1.1
 ```
-to which the server will finally return the content.
+— to which the server will finally return the content.
                   
 ### WAC+NTrig
 
-A resource can let a client know that it supports dataset serialisation its ACR by returning the following header in either the 200 or 401:
+A resource can let a client know that it supports dataset serialisation of its ACR by returning the following header with either a 200 or 401 HTTP result code:
 
 ```HTTP
 Link: </foo/bar/baz/x.acr>; rel="acl"; type="application/trig"
