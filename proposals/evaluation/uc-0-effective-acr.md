@@ -163,9 +163,10 @@ GET /foo/.acr HTTP/1.1
 ### WAC+
 
 The WAC effective resource discovery algorithm, needed when default ACLs exist, is as shown above, an expensive process for the client to follow, requiring a large number of failed requests.
-We have two ways to fix this:
+We have three ways to fix this:
  * WAC+NTrig, allows the server to return datasets and so return the result in one request
  * WAC+:imports, shows how one can, as with ACP, have every resource come with its own ACR, but still have allow defaults to work.
+ * WAC+rel=control allows the server to publish two `Link` relations: one to the ACR and the other to the effective ACR.
 
 #### WAC+NTrig
 
@@ -216,10 +217,21 @@ And so on, up to the root `</.acr>`.
 
 Clients with control access to a resource, can change the ACR to point straight to the root one.
 
-#### WAC+TriG+:imports
+#### WAC + TriG + :imports
 
 Both of those answers can be combined of course.
 This was proposed in the May 11th comment to [issue 210: add :imports relation](https://github.com/solid/authorization-panel/issues/210#issuecomment-838747077).
+                                      
+#### WAC + acl=control
+
+This is perhaps the simplest solution. By specifying another link relation type, to non created ACR resource we can help the client find its way very quickly to the effective resource, without loosing the ability to edit the most specific one. 
+This is explained in [issue 248](https://github.com/solid/authorization-panel/issues/248).  
+               
+```HTTP
+Link: </.default.acr>; rel="acl"
+Link: </foo/bar/baz/x.acr>; rel="acl"
+```
+ 
 
 ## See also
 
