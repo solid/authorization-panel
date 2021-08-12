@@ -202,7 +202,7 @@ With a slight adjustment to the WAC spec, this could still count as there being 
 
 Another way to allow default reasoning is to use `:imports` as proposed in [issue 210: add :imports relation](https://github.com/solid/authorization-panel/issues/210). 
 
-[Reactive Solid](https://github.com/co-operating-systems/Reactive-SoLiD) has every resource come with an ACR with content. But the server has ACRs for newly created resources explictly `:import` the parent, so that `</foo/bar/baz/x.acr>` returns
+[Reactive Solid](https://github.com/co-operating-systems/Reactive-SoLiD) has every resource come with an ACR with content. But the server has ACRs for newly created resources explictly `:import` the parent, so that `</foo/bar/baz/x.acr>` returns —
 
 ```Turtle
 <> :imports <.acr> .
