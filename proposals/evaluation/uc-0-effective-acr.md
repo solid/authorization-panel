@@ -94,7 +94,7 @@ and with luck the server will respond
 Link: </foo/bar/baz/.acr>; rel="acl"
 Link: </foo/bar/>; rev="http://www.w3.org/ns/ldp#contains"
 ```
-The client can then continue with
+The client can then continue with —
 ```HTTP
 GET /foo/bar/baz/.acr HTTP/1.1
 ```
