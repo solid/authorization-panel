@@ -21,7 +21,7 @@ We have the following hierarchy of resources:
 
 ### Universal effective ACR discovery
 
-Both WAC and ACP follow an `acl` link header in the response to a resource `R` in order find the Access Control Rules. 
+Both WAC and ACP follow an `acl` link header in the response to a resource `R`, in order to find the Access Control Rules. 
 (The name "acl" for the type of such a link [is being discussed](https://github.com/solid/authorization-panel/issues/228).) 
 
 
