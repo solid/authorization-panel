@@ -74,7 +74,7 @@ WAC's [Effective ACL Resource](https://solid.github.io/web-access-control-spec/#
 > 3. If resource has an associated aclResource with a representation, return aclResource.
 > 4. Otherwise, repeat the steps using the container resource of resource.
 
-Just as with ACP, the client can follow the `Link: <...acr>; rel="acl"` relation to find out the rules of access. 
+Just as with ACP, the client can follow the `Link: <...acr>; rel="acl"` relation to find the rules of access. 
 But then we have two cases with WAC:
 
 1. the ACR exists and returns the rules 
@@ -159,6 +159,16 @@ The client can then continue with —
 GET /foo/.acr HTTP/1.1
 ```
 — to which the server will finally return the content.
+
+The number of requests needed to find the default can be calculated by the forumla:
+```
+reqN = 2 * slashes + extraFile
+```
+where - 
+* `slashes` is the number of slashes between the original resource and the effective ACR,
+* `extraFile` is 0 if the resource is an ldp:Container and 1 if it is a plain resource.
+
+So in our example above we have `reqN = 2 * 4 + 1 = 9`.
 
 ### WAC+
 
