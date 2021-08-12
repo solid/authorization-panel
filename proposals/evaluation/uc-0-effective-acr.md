@@ -55,7 +55,7 @@ In ACP, access control statements can be spread over several resources; that is,
 In ACP, the access control system in place (that is, ACP, as opposed to WAC, for example) is indicated via a `Link` header of `rel="type"` `<http://www.w3.org/ns/solid/acp#AccessControlResource>` in HTTP response to a request for an ACR.
 
 On receiving the `404` with the `Link` header given in our example, the client can make a request on `/foo/bar/baz/x.acr` if it wants to look at the Access Control Rules. 
-As in ACP all resources have an associated ACR, the resource <`/foo/bar/baz/x.acr>` should return a description of the sets of agents that can have access to the resource. 
+Since all resources in ACP have an associated ACR, the resource <`/foo/bar/baz/x.acr>` should return a description of the sets of agents that can have access to the resource. 
 This may include links to rules published elsewhere.
 
 ### WAC
@@ -195,4 +195,3 @@ Note: NTrig has already been proposed in [issue 210: add :imports relation](http
 ## See also
 
 - [Access Control Resource discovery](https://github.com/solid/authorization-panel/issues/228)
-
