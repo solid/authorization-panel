@@ -160,13 +160,13 @@ GET /foo/.acr HTTP/1.1
 ```
 — to which the server will finally return the content.
 
-The number of requests needed to find the default can be calculated by the forumla:
+The number of requests needed to find the default can be calculated by the formula —
 ```
 reqN = 2 * slashes + extraFile
 ```
-where - 
-* `slashes` is the number of slashes between the original resource and the effective ACR,
-* `extraFile` is 0 if the resource is an ldp:Container and 1 if it is a plain resource.
+— where —
+* `slashes` is the number of slashes between the original resource and the effective ACR
+* `extraFile` is `0` if the resource is an `ldp:Container` and `1` if it is a plain resource
 
 So in our example above we have `reqN = 2 * 4 + 1 = 9`.
 
