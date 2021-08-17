@@ -465,8 +465,8 @@
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#access-mode" class="tocxref"
-                ><span class="secno">4.1</span>Access mode</a
+              <a href="#access-modes-grant" class="tocxref"
+                ><span class="secno">4.1</span>Access modes grant</a
               >
             </li>
           </ol>
@@ -981,6 +981,26 @@
               >.
             </dd>
           </dl>
+          <p>
+            The following example context graph denotes that an instance of
+            resource access over resource X was initiated by Bob using cient
+            application Y with his identity asserted by identity provider Z; it
+            also denotes that Bob is the owner of resource X and Alice is the
+            creator of resource X:
+          </p>
+          <pre
+            id="context-attributes-example-context-graph"
+            class="example example-context-graph"
+          >
+  _:context
+    acp:agent ex:Bob ;
+    acp:resource ex:resourceX ;
+    acp:owner ex:Bob ;
+    acp:creator ex:Alice ;
+    acp:client ex:ClientApplicationY ;
+    acp:issuer ex:IdentityProviderZ .
+</pre
+          >
 
           <section
             datatype="rdf:HTML"
@@ -1068,6 +1088,10 @@
             resource MUST include a Link header with the rel value of type and
             the <code>acp:AccessControlResource</code> URI as link target.
           </p>
+          <p>
+            The following example authorization graph denotes that access
+            control resource A mandates access over resource X and itself:
+          </p>
           <pre
             id="access-control-resource-example-authorization-graph"
             class="example example-authorization-graph"
@@ -1091,8 +1115,11 @@
           </h3>
           <p>
             An access control is the first level of reusable ACP authorization
-            graphs' elements and determines which policies get resolved to grant
-            access over resources and access control resources.
+            graphs' elements, it is linked to an access control resource via the
+            <code>acp:accessControl</code> predicate and determines which
+            policies get resolved to grant access over resources and access
+            control resources respectively via the <code>acp:apply</code> and
+            <code>acp:access</code> predicates.
           </p>
           <p>
             The following example authorization graph denotes that access
@@ -1120,13 +1147,29 @@
               ><span class="content">Resource access</span
               ><a class="self-link" href="#resource-access"></a>
             </h4>
+            <dl>
+              <dt id="acp-apply"><code>acp:apply</code></dt>
+              <dd about="acp:apply" typeof="rdf:Property">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">apply</span> predicate defines the
+                  set of policies that mandate access over resources, it has a
+                  range of
+                  <code property="rdfs:range" resource="acp:Policy"
+                    >acp:Policy</code
+                  >
+                  and a domain of
+                  <code property="rdfs:domain" resource="acp:AccessControl"
+                    >acp:AccessControl</code
+                  >.</span
+                >
+              </dd>
+            </dl>
             <p>
-              The access modes granted for access to a resource are determined
-              through access controls via the <code>acp:apply</code> predicate.
-            </p>
-            <p>
-              The following example access control B will grant access modes
-              allowed by policy D over resource X:
+              The following example authorization graph denotes that access
+              control B will grant access modes allowed by policy D over
+              resource X:
             </p>
             <pre
               id="resource-access-example-authorization-graph"
@@ -1156,14 +1199,29 @@
               ><span class="content">Access control resource access</span
               ><a class="self-link" href="#access-control-resource-access"></a>
             </h4>
+            <dl>
+              <dt id="acp-access"><code>acp:access</code></dt>
+              <dd about="acp:access" typeof="rdf:Property">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">access</span> predicate defines
+                  the set of policies that mandate access over access control
+                  resources, it has a range of
+                  <code property="rdfs:range" resource="acp:Policy"
+                    >acp:Policy</code
+                  >
+                  and a domain of
+                  <code property="rdfs:domain" resource="acp:AccessControl"
+                    >acp:AccessControl</code
+                  >.</span
+                >
+              </dd>
+            </dl>
             <p>
-              The access modes granted for access to an access control resource
-              are determined through access controls via the
-              <code>acp:access</code> predicate.
-            </p>
-            <p>
-              The following example access control C will grant access modes
-              allowed by policy E over access control resource A:
+              The following example authorization graph denotes that access
+              control C will grant access modes allowed by policy E over access
+              control resource A:
             </p>
             <pre
               id="access-control-resource-access-example-authorization-graph"
@@ -1292,9 +1350,24 @@
               <p>
                 Given that the <code>acp:noneOf</code> condition excludes
                 matches, a policy without a satisfied allOf or anyOf condition
-                is never .
+                is never satisfied.
               </p>
             </div>
+            <p>
+              The following example authorization graph denotes that policy A
+              will be satisfied if both matcher B and C are satisfied and either
+              matcher D or E are satisfied and matcher F is not satified:
+            </p>
+            <pre
+              id="access-control-resource-access-example-authorization-graph"
+              class="example example-authorization-graph"
+            >
+  ex:policyA
+    acp:allOf ex:matcherB, ex:matcherC ;
+    acp:anyOf ex:matcherD, matcherE ;
+    acp:noneOf ex:matcherF .
+</pre
+            >
 
             <section
               datatype="rdf:HTML"
@@ -1357,14 +1430,40 @@
                 <li>A policy that is satisfied allows it; and</li>
                 <li>No policy that is satisfied denies it.</li>
               </ul>
+              <p>
+                ACP doesn't define its own access modes. It is possible to reuse
+                access modes defined elsewhere, for example, the
+                <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a>
+                defines <code>acl:Read</code>; <code>acl:Write</code>; and
+                <code>acl:Append</code>. Other access modes can be defined to
+                fit the specific needs of an application, see also:
+                <a href="#access-mode-extensibility"
+                  >Access Mode Extensibility</a
+                >.
+              </p>
             </div>
             <p>
-              For example, the following authorization graph could be translated
-              as such: "Access control A, assuming that both policy B and C are
-              satisfied will grant access mode <code>acl:Read</code> over the
-              resource it mandates control over. It will not grant access mode
+              The following example authorization graph denotes that policy A
+              will allow access modes <code>acl:Read</code> and
+              <code>acl:Append</code> and deny access mode
+              <code>acp:Write</code> if it is satisfied:
+            </p>
+            <pre
+              id="access-control-resource-access-example-authorization-graph"
+              class="example example-authorization-graph"
+            >
+  ex:policyA
+    acp:allow acl:Read, acl:Append ;
+    acp:deny acl:Write .
+</pre
+            >
+            <p>
+              The following example authorization graph denotes that access
+              control A, assuming that both policy B and C are satisfied will
+              grant access mode <code>acl:Read</code> over the resource it
+              mandates control over and will not grant access mode
               <code>acl:Write</code> even though policy B allows it because
-              policy C denies it".
+              policy C denies it.
             </p>
             <pre
               id="control-resource-access-example-authorization-graph"
@@ -1380,16 +1479,6 @@
     acp:deny acl:Write .
 </pre
             >
-            <p>
-              ACP doesn't define its own access modes, instead it reuses access
-              modes defined by the
-              <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a>. Namely:
-              <code>acl:Read</code>; <code>acl:Write</code>; and
-              <code>acl:Append</code>. Other access modes can be defined to fit
-              the specific needs of an application, see:
-              <a href="#access-mode-extensibility">Access Mode Extensibility</a
-              >.
-            </p>
 
             <section
               datatype="rdf:HTML"
@@ -1402,12 +1491,13 @@
             <span class="secno">3.4. </span><span class="content">Matcher</span
             ><a class="self-link" href="#matcher"></a>
           </h3>
-          <p>
-            Matchers are reusable units of access control in ACP. !!!ADD NON
-            NORMATIVE FOR MULTI MATCHER CLIENT/AGENT !!! HOW TO DISCOVER
-            Matchers !!! HOW TO COMMUNICATE CAPABILITIES (context predicates) OF
-            AN ACP ENGINE
-          </p>
+          <p>Matchers are reusable units of access control in ACP.</p>
+          <!--
+  TODO:
+  - ADD NON NORMATIVE FOR MULTI MATCHER CLIENT/AGENT
+  - HOW TO DISCOVER Matchers
+  - HOW TO COMMUNICATE CAPABILITIES (context predicates) OF AN ACP ENGINE
+-->
 
           <section
             datatype="rdf:HTML"
@@ -1619,8 +1709,9 @@
         <p>
           In ACP, the
           <dfn id="def-access-grant-graph">access grant graph</dfn> describes
-          the set of allowed access modes over a resource in context. By
-          default, no access mode is granted over resources.
+          the set of granted access modes over a resource in context of a
+          resource access instance. By default, no access mode is granted over
+          resources.
         </p>
 
         <section
@@ -1629,15 +1720,11 @@
           resource=":access-grant-graph"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="4.1" id="access-mode">
+          <h3 class="heading settled" data-level="4.1" id="access-modes-grant">
             <span class="secno">4.1. </span
-            ><span class="content">Access mode</span
-            ><a class="self-link" href="#access-mode"></a>
+            ><span class="content">Access modes grant</span
+            ><a class="self-link" href="#access-modes-grant"></a>
           </h3>
-          <p>
-            An ACP access modes grant consists of a set of access modes granted
-            over a resource via the <code>acp:mode</code> predicate in context.
-          </p>
           <dl>
             <dt id="acp-mode"><code>acp:mode</code></dt>
             <dd about="acp:mode" typeof="rdf:Property">
@@ -1658,9 +1745,9 @@
             </dd>
           </dl>
           <p>
-            The following example access modes grant will grant access modes
-            <code>acl:Read</code> and <code>acl:Write</code> over resource X to
-            Bob:
+            The following example access grant graph denotes that access modes
+            <code>acl:Read</code> and <code>acl:Write</code> have been granted
+            to Bob for accessing resource X:
           </p>
           <pre
             id="access-mode-extensibility-example-access-grant-graph"
@@ -1676,7 +1763,7 @@
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-mode"
+            resource=":access-modes-grant"
             property="bibo:hasPart"
           ></section>
           <h3
