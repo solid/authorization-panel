@@ -1,4 +1,0 @@
-Access Control Enforcement {#enforcement}
-=====================
-
-Issue: Write enforcement section

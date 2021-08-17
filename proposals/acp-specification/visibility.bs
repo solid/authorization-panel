@@ -1,4 +1,0 @@
-Access Control Visibility {#visibility}
-=====================
-
-Issue: Write visibility section
