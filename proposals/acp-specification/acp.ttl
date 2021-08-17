@@ -70,25 +70,7 @@ acp:Rule a rdfs:Class ;
 
 acp:AccessMode a rdfs:Class ;
     rdfs:label "Access Mode"@en ;
-    rdfs:comment "An abstract access mode. This class should not be used directly. Instead, please use Read, Write and Append"@en ;
-    rdfs:isDefinedBy acp: .
-
-acp:Read a rdfs:Class ;
-    rdfs:label "Read"@en ;
-    rdfs:comment "An access mode indicating Read access"@en ;
-    rdfs:subClassOf acp:AccessMode ;
-    rdfs:isDefinedBy acp: .
-
-acp:Write a rdfs:Class ;
-    rdfs:label "Write"@en ;
-    rdfs:comment "An access mode indicating Write access"@en ;
-    rdfs:subClassOf acp:AccessMode ;
-    rdfs:isDefinedBy acp: .
-
-acp:Append a rdfs:Class ;
-    rdfs:label "Append"@en ;
-    rdfs:comment "An access mode indicating Append access. Append is a more limited form of Write in which data may only be added but not removed."@en ;
-    rdfs:subClassOf acp:AccessMode ;
+    rdfs:comment "The class of access modes when they are used in ACP. This class should not be used directly; instead, use for example the Read, Write and Append access modes defined in the ACP ontology (see also: http://www.w3.org/ns/auth/acl#)."@en ;
     rdfs:isDefinedBy acp: .
 
 
