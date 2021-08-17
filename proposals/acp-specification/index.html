@@ -669,24 +669,36 @@
   # This box contains a context graph
   # It describes the properties of a resource access
 
-  _:contextX acp:resource ex:resourceA .
+  _:context
+    acp:agent ex:Bob ;
+    acp:resource ex:resourceX .
 </pre
           >
           <pre class="example example-authorization-graph">
   # This box contains an authorization graph
   # It describes the conditions required for accessing a resource
 
-  ex:resourceA acp:accessControl ex:accessControlB .
-  ex:accessControlB acp:apply ex:accessControlPolicyC .
+  ex:accessControlResourceA
+    acp:accessControl ex:accessControlB .
+
+  ex:accessControlB acp:apply ex:PolicyC .
+
+  ex:PolicyC
+    acp:anyOf ex:agentMatcherD ;
+    acp:allow acl:Read .
+
+  ex:agentMatcherD
+    acp:agent ex:Bob .
 </pre
           >
           <pre class="example example-access-grant-graph">
   # This box contains an access grant graph
   # It describes in context the granted access over a resource
 
-  _:contextX
-    acp:resource ex:resourceA ;
-    acp:mode ex:X .
+  _:context
+    acp:agent ex:Bob ;
+    acp:resource ex:resourceX ;
+    acp:mode acl:Read .
 </pre
           >
 
@@ -737,19 +749,19 @@
             contains the attributes of a resource access and could be translated
             as
             <em
-              >"Bob requests resource A using client application B with his
-              identity asserted by identity provider C."</em
+              >"Bob is trying to access resource X using client application Y
+              with his identity asserted by identity provider Z."</em
             >:
           </p>
           <pre
             id="acp-example-context-graph"
             class="example example-context-graph"
           >
-  _:contextX
+  _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceA ;
-    acp:client ex:ClientApplicationB ;
-    acp:issuer ex:IdentityProviderC .
+    acp:resource ex:resourceX ;
+    acp:client ex:ClientApplicationY ;
+    acp:issuer ex:IdentityProviderZ .
 </pre
           >
           <p>
@@ -759,22 +771,25 @@
                 >authorization graph</a
               ></cite
             >
-            contains the conditions of access to resource A and could be
+            contains the conditions of access to resource X and could be
             translated as
             <em
-              >"Access to resource A is mandated by access control B. Access
-              control B applies policy C which allows access mode acl:Read when
-              agent matcher D is satisfied. The agent matcher D is satisfied
-              when Alice or Bob are the context graph agent."</em
+              >"Access to resource X is mandated by access control resource A.
+              Access control B applies policy C which allows access mode
+              acl:Read when agent matcher D is satisfied. The agent matcher D is
+              satisfied when Alice or Bob are the context graph agent."</em
             >:
           </p>
           <pre
             id="acp-example-authorization-graph"
             class="example example-authorization-graph"
           >
-  ex:resourceA acp:accessControl ex:accessControlB .
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:accessControl ex:accessControlB .
 
-  ex:accessControlB acp:apply ex:PolicyC .
+  ex:accessControlB
+    acp:apply ex:PolicyC .
 
   ex:PolicyC
     acp:anyOf ex:agentMatcherD ;
@@ -792,21 +807,21 @@
               ></cite
             >
             is the result of applying the previous authorization graph to the
-            previous context graph. Since Bob was matched as the context agent,
-            the policy allowing acl:Read applies. The following resource access
-            graph could be read as
-            <em>"The access mode acl:Read has been granted over resource A."</em
+            previous context graph. Since Bob was matched as the context agent
+            and there is no further restrictions, the policy allowing acl:Read
+            applies. The following resource access graph could be read as
+            <em>"The access mode acl:Read has been granted over resource X."</em
             >:
           </p>
           <pre
             id="acp-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
-  _:contextX
+  _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceA ;
-    acp:client ex:ClientApplicationB ;
-    acp:issuer ex:IdentityProviderC ;
+    acp:resource ex:resourceX ;
+    acp:client ex:ClientApplicationY ;
+    acp:issuer ex:IdentityProviderZ ;
     acp:mode acl:Read .
 </pre
           >
