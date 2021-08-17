@@ -235,20 +235,20 @@
         >.
       </p>
     </header>
-    <section datatype="rdf:HTML" property="dc:abstract">
+    <section>
       <h2 id="abstract">Abstract</h2>
-      <div>
+      <div property="dc:abstract">
         <p>
           This document defines the Access Control Policy Language (ACP), a
-          language for describing sets of conditions mandating access
-          permissions over resources.
+          language for defining sets of conditions mandating access permissions
+          over resources.
         </p>
       </div>
     </section>
 
-    <section datatype="rdf:HTML" property="rdfs:comment">
+    <section>
       <h2 id="status-of-this-document">Status of This Document</h2>
-      <div>
+      <div property="rdfs:comment">
         <p>
           This section describes the status of this document at the time of its
           publication.
@@ -492,10 +492,10 @@
           ><a class="self-link" href="#introduction"></a>
         </h2>
         <p>
-          This section introduces ACP with an overview of the key terminology,
-          and explanation of the conventions used in this document and an
-          example to illustrate basic concepts of resource access description
-          and validation.
+          This section introduces ACP with an overview of key terminology, an
+          explanation of the conventions used in this document, and an example
+          to illustrate basic concepts of resource access description and
+          validation.
         </p>
 
         <section
@@ -575,7 +575,7 @@
               graphs satisfy a set of conditions, they can also be viewed as a
               description of the context graphs that satisfy these conditions.
               The result of applying an authorization graph to a context graph
-              is a set of access modes, expressed in the form of an RDF graph
+              is an access modes grant, expressed in the form of an RDF graph
               called an "access grant graph".
             </p>
           </div>
@@ -632,16 +632,32 @@
               <tr>
                 <td><code>rdf:</code></td>
                 <td>
-                  <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>
+                  <code
+                    ><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                      >http://www.w3.org/1999/02/22-rdf-syntax-ns#</a
+                    ></code
+                  >
                 </td>
               </tr>
               <tr>
                 <td><code>rdfs:</code></td>
-                <td><code>http://www.w3.org/2000/01/rdf-schema#</code></td>
+                <td>
+                  <code
+                    ><a href="http://www.w3.org/2000/01/rdf-schema#"
+                      >http://www.w3.org/2000/01/rdf-schema#</a
+                    ></code
+                  >
+                </td>
               </tr>
               <tr>
                 <td><code>owl:</code></td>
-                <td><code>http://www.w3.org/2002/07/owl#</code></td>
+                <td>
+                  <code
+                    ><a href="http://www.w3.org/2002/07/owl#"
+                      >http://www.w3.org/2002/07/owl#</a
+                    ></code
+                  >
+                </td>
               </tr>
             </tbody>
           </table>
@@ -796,7 +812,10 @@
             previous context graph. Since Bob was matched as the context agent
             and there is no further restrictions, the policy allowing acl:Read
             applies. The following resource access graph could be read as
-            <em>"The access mode acl:Read has been granted over resource X."</em
+            <em
+              >"The access mode acl:Read has been granted over resource X to Bob
+              that was using client application Y and whose identity was
+              asserted by identity provider Z."</em
             >:
           </p>
           <pre
@@ -825,14 +844,15 @@
           ><a class="self-link" href="#context-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs describing the attributes
-          of resource access.
+          This section introduces the ACP constructs used to define the
+          attributes of a resource access instance.
         </p>
         <p>
-          In ACP, the <dfn id="def-context-graph">context graph</dfn> describes
+          In ACP, a <dfn id="def-context-graph">context graph</dfn> describes
           the attributes of a resource access instance that can be
-          <a href="#matcher">matched</a> to a set of conditions to determine a
-          granted set of access modes over a resource. If no resource access
+          <a href="#matcher">matched</a> to a set of conditions defined in the
+          form of an <a href="#authorization-graph">authorization graph</a> in
+          order to determine an access modes grant. If no resource access
           attribute is matched, the granted set of access modes over a resource
           is always empty.
         </p>
@@ -859,7 +879,7 @@
           </p>
           <dl>
             <dt id="acp-attribute"><code>acp:attribute</code></dt>
-            <dd about="acp:attribute">
+            <dd about="acp:attribute" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >An <span property="rdfs:label">attribute</span> describing
                 resource access.
@@ -875,7 +895,7 @@
               >
             </dd>
             <dt id="acp-resource"><code>acp:resource</code></dt>
-            <dd about="acp:resource">
+            <dd about="acp:resource" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >A <span property="rdfs:label">resource</span> subjected to ACP
                 access control.</span
@@ -887,7 +907,7 @@
               >.
             </dd>
             <dt id="acp-agent"><code>acp:agent</code></dt>
-            <dd about="acp:agent">
+            <dd about="acp:agent" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >An <span property="rdfs:label">agent</span> trying to access a
                 resource.</span
@@ -899,7 +919,7 @@
               >.
             </dd>
             <dt id="acp-creator"><code>acp:creator</code></dt>
-            <dd about="acp:creator">
+            <dd about="acp:creator" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >An agent credited as the
                 <span property="rdfs:label">creator</span> of a resource.</span
@@ -911,7 +931,7 @@
               >.
             </dd>
             <dt id="acp-owner"><code>acp:owner</code></dt>
-            <dd about="acp:owner">
+            <dd about="acp:owner" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >An agent credited as the
                 <span property="rdfs:label">owner</span> of a resource.</span
@@ -923,7 +943,7 @@
               >.
             </dd>
             <dt id="acp-client"><code>acp:client</code></dt>
-            <dd about="acp:client">
+            <dd about="acp:client" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >A <span property="rdfs:label">client</span> application used to
                 access a resource.</span
@@ -935,7 +955,7 @@
               >.
             </dd>
             <dt id="acp-issuer"><code>acp:issuer</code></dt>
-            <dd about="acp:issuer">
+            <dd about="acp:issuer" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >An identity provider credited as the
                 <span property="rdfs:label">issuer</span> of the credentials
@@ -949,7 +969,7 @@
               >.
             </dd>
             <dt id="acp-time"><code>acp:time</code></dt>
-            <dd about="acp:time">
+            <dd about="acp:time" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >A <span property="rdfs:label">time</span> at which a resource
                 is accessed.</span
@@ -995,15 +1015,16 @@
           ><a class="self-link" href="#authorization-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs describing the conditions
-          of resource access.
+          This section introduces the ACP constructs used to define the
+          conditions for resource access.
         </p>
         <p>
-          In ACP, the
+          In ACP, an
           <dfn id="def-authorization-graph">authorization graph</dfn>
-          authoriatively mandates the conditions for granting access modes over
-          a resource through validation of Policies and via satisfaction of
-          context Matchers.
+          authoritatively mandates the conditions for granting access modes over
+          a resource and its associated access control resource by defining the
+          Policies and context Matchers that need to be satisfied in order for
+          an access modes grant to be obtained.
         </p>
 
         <section
@@ -1168,12 +1189,18 @@
             <span class="secno">3.3. </span><span class="content">Policy</span
             ><a class="self-link" href="#policy"></a>
           </h3>
-          <p>
-            Policies are reusable units of access control in ACP. Policies
-            define a set of allowed and denied access modes as well as the
-            conditions required for them to apply via the
-            <code>acp:allOf</code>, <code>acp:anyOf</code> and
-            <code>acp:noneOf</code> predicates linking them to matchers.
+          <p>Policies are reusable units of access control in ACP.</p>
+          <p about="acp:Policy" typeof="rdfs:Class">
+            <span property="rdfs:comment"
+              >An <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+              <span property="rdfs:label">Policy</span> defines a set of allowed
+              and denied access modes respectively via the
+              <code>acp:allow</code> and <code>acp:deny</code> predicates as
+              well as the conditions for it to be satisfied via the
+              <code>acp:allOf</code>, <code>acp:anyOf</code> and
+              <code>acp:noneOf</code> predicates which link it to ACP
+              Matchers.</span
+            >
           </p>
 
           <section
@@ -1191,37 +1218,83 @@
               ><span class="content">Policy satisfaction</span
               ><a class="self-link" href="#policy-satisfaction"></a>
             </h4>
-            <p>In ACP, a policy is satisfied if:</p>
-            <ul>
-              <li>It references at least one matcher; and</li>
-              <li>
-                At least one matcher it references matches the given context;
-                and
-              </li>
-              <li>All the conditions it defines are satisfied.</li>
-            </ul>
             <p>
-              Policy conditions behave like intersection, union and exclusion
-              operators. In order to be satisfied:
+              In ACP, policies are satisfied via the <code>acp:allOf</code>,
+              <code>acp:anyOf</code> and <code>acp:noneOf</code> predicates
+              which act respectively as intersection, union and exclusion
+              operators.
             </p>
-            <ul>
-              <li>
-                <code>acp:allOf</code> requires all of its matchers to match the
-                given context;
-              </li>
-              <li>
-                <code>acp:anyOf</code> requires one of its matchers to match the
-                given context;
-              </li>
-              <li>
-                <code>acp:noneOf</code> requires none of its matchers to match
-                the given context.
-              </li>
-            </ul>
-            <p>
-              Given that the noneOf condition excludes matches, a policy without
-              a satisfied allOf or anyOf condition never applies.
-            </p>
+            <dl>
+              <dt id="acp-allof"><code>acp:allOf</code></dt>
+              <dd about="acp:allOf" typeof="rdf:Property">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">allOf</span> predicate defines the
+                  set of matchers that MUST be satisfied for a policy to be
+                  satisfied, it has a range of
+                  <code property="rdfs:range" resource="acp:Matcher"
+                    >acp:Matcher</code
+                  >
+                  and a domain of
+                  <code property="rdfs:domain" resource="acp:Policy"
+                    >acp:Policy</code
+                  >.</span
+                >
+              </dd>
+              <dt id="acp-anyOf"><code>acp:anyOf</code></dt>
+              <dd about="acp:anyOf" typeof="rdf:Property">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">anyOf</span> predicate defines the
+                  set of matchers among which at least one MUST be satisfied in
+                  order for a policy to be satisfied, it has a range of
+                  <code property="rdfs:range" resource="acp:Matcher"
+                    >acp:Matcher</code
+                  >
+                  and a domain of
+                  <code property="rdfs:domain" resource="acp:Policy"
+                    >acp:Policy</code
+                  >.</span
+                >
+              </dd>
+              <dt id="acp-noneOf"><code>acp:noneOf</code></dt>
+              <dd about="acp:noneOf" typeof="rdf:Property">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">noneOf</span> predicate defines
+                  the set of matchers among which none MUST be satisfied in
+                  order for a policy to be satisfied, it has a range of
+                  <code property="rdfs:range" resource="acp:Matcher"
+                    >acp:Matcher</code
+                  >
+                  and a domain of
+                  <code property="rdfs:domain" resource="acp:Policy"
+                    >acp:Policy</code
+                  >.</span
+                >
+              </dd>
+            </dl>
+            <div about="acp:Policy" property="rdfs:comment">
+              <p>
+                In ACP, a policy MUST be considered satisfied if and only if:
+              </p>
+              <ul>
+                <li>It references at least one matcher via a condition; and</li>
+                <li>
+                  At least one matcher it references matches the given context;
+                  and
+                </li>
+                <li>All the conditions it defines are satisfied.</li>
+              </ul>
+              <p>
+                Given that the <code>acp:noneOf</code> condition excludes
+                matches, a policy without a satisfied allOf or anyOf condition
+                is never .
+              </p>
+            </div>
 
             <section
               datatype="rdf:HTML"
@@ -1278,18 +1351,20 @@
                 >
               </dd>
             </dl>
-            <p>An access mode MUST be granted if:</p>
-            <ul>
-              <li>A policy that is satisfied allows it; and</li>
-              <li>No policy that is satisfied denies it.</li>
-            </ul>
+            <div about="acp:Policy" property="rdfs:comment">
+              <p>An access mode MUST be granted if:</p>
+              <ul>
+                <li>A policy that is satisfied allows it; and</li>
+                <li>No policy that is satisfied denies it.</li>
+              </ul>
+            </div>
             <p>
-              For example, the following example authorization graph could be
-              translated as such: "Access control A, assuming that both policy B
-              and C are satisfied will grant access mode
-              <code>acl:Read</code> over the resource it mandates control over.
-              It will not grant access mode <code>acl:Write</code> even though
-              policy B allows it because policy C denies it".
+              For example, the following authorization graph could be translated
+              as such: "Access control A, assuming that both policy B and C are
+              satisfied will grant access mode <code>acl:Read</code> over the
+              resource it mandates control over. It will not grant access mode
+              <code>acl:Write</code> even though policy B allows it because
+              policy C denies it".
             </p>
             <pre
               id="control-resource-access-example-authorization-graph"
@@ -1538,8 +1613,8 @@
           ><a class="self-link" href="#access-grant-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs describing the grant of
-          modes of resource access.
+          This section introduces the ACP constructs used to define access modes
+          granted over resources.
         </p>
         <p>
           In ACP, the
@@ -1560,27 +1635,43 @@
             ><a class="self-link" href="#access-mode"></a>
           </h3>
           <p>
-            An ACP access grant graph consists of access modes granted over a
-            resource via the <code>acp:mode</code> predicate:
+            An ACP access modes grant consists of a set of access modes granted
+            over a resource via the <code>acp:mode</code> predicate in context.
           </p>
           <dl>
             <dt id="acp-mode"><code>acp:mode</code></dt>
-            <dd about="acp:mode">
+            <dd about="acp:mode" typeof="rdf:Property">
               <span property="rdfs:comment"
-                >A <span property="rdfs:label">mode</span> granted for resource
-                access.</span
+                >The
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">mode</span> predicate defines the
+                set of granted access modes for resource access, it has a range
+                of
+                <code property="rdfs:range" resource="acp:AccessMode"
+                  >acp:AccessMode</code
+                >
+                and a domain of
+                <code property="rdfs:domain" resource="acp:Context"
+                  >acp:Context</code
+                >.</span
               >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> modes
-              have range
-              <code property="rdfs:range" resource="acp:AccessMode"
-                >acp:AccessMode</code
-              >
-              and domain
-              <code property="rdfs:domain" resource="rdfs:Resource"
-                >rdfs:Resource</code
-              >.
             </dd>
           </dl>
+          <p>
+            The following example access modes grant will grant access modes
+            <code>acl:Read</code> and <code>acl:Write</code> over resource X to
+            Bob:
+          </p>
+          <pre
+            id="access-mode-extensibility-example-access-grant-graph"
+            class="example example-access-grant-graph"
+          >
+  _:context
+    acp:agent ex:Bob ;
+    acp:resource ex:resourceX ;
+    acp:mode acl:Read, acl:Write .
+</pre
+          >
 
           <section
             datatype="rdf:HTML"
@@ -1604,15 +1695,19 @@
           </p>
           <p>
             For example, one might use the standard access modes defined in the
-            Web Access Control Specification's ACL ontology. The following graph
-            indicate granting <code>acl:Read</code> and
-            <code>acl:Write</code> over resource A:
+            ACL ontology as well as define more specific access modes. The
+            following example access modes grant will grant access modes
+            <code>acl:Read</code> and <code>ex:Delete</code> over resource X to
+            Bob:
           </p>
           <pre
             id="access-mode-extensibility-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
-  ex:resourceA acp:mode acl:Read, acl:Write .
+  _:context
+    acp:agent ex:Bob ;
+    acp:resource ex:resourceX ;
+    acp:mode acl:Read, ex:Delete .
 </pre
           >
 
