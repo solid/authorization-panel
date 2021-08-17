@@ -394,15 +394,15 @@
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#allowed-access-modes" class="tocxref"
-                    ><span class="secno">3.3.1</span>Allowed access modes</a
+                  <a href="#policy-satisfaction" class="tocxref"
+                    ><span class="secno">3.3.1</span>Policy satisfaction</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#applied-policy" class="tocxref"
-                    ><span class="secno">3.3.2</span>Applied policy</a
+                  <a href="#granted-access-modes" class="tocxref"
+                    ><span class="secno">3.3.2</span>Granted access modes</a
                   >
                 </li>
               </ol>
@@ -1070,13 +1070,13 @@
           </h3>
           <p>
             An access control is the first level of reusable ACP authorization
-            graphs' elements and determines which policies apply to grant access
-            over resources and access control resources.
+            graphs' elements and determines which policies get resolved to grant
+            access over resources and access control resources.
           </p>
           <p>
             The following example authorization graph denotes that access
-            control resource A mandates access over resource X using access
-            controls B and C:
+            control resource A mandates access over resource X and itself via
+            access controls B and C:
           </p>
           <pre
             id="access-control-resource-example-authorization-graph"
@@ -1101,8 +1101,7 @@
             </h4>
             <p>
               The access modes granted for access to a resource are determined
-              through an access control via the
-              <code>acp:apply</code> predicate.
+              through access controls via the <code>acp:apply</code> predicate.
             </p>
             <p>
               The following example access control B will grant access modes
@@ -1138,7 +1137,7 @@
             </h4>
             <p>
               The access modes granted for access to an access control resource
-              are determined through an access control via the
+              are determined through access controls via the
               <code>acp:access</code> predicate.
             </p>
             <p>
@@ -1186,24 +1185,111 @@
             <h4
               class="heading settled"
               data-level="3.3.1"
-              id="allowed-access-modes"
+              id="policy-satisfaction"
             >
               <span class="secno">3.3.1. </span
-              ><span class="content">Allowed access modes</span
-              ><a class="self-link" href="#allowed-access-modes"></a>
+              ><span class="content">Policy satisfaction</span
+              ><a class="self-link" href="#policy-satisfaction"></a>
             </h4>
-            <p>In ACP, an access mode is allowed if:</p>
+            <p>In ACP, a policy is satisfied if:</p>
             <ul>
-              <li>A policy that applies allows it; and</li>
-              <li>No policy that apply deny it.</li>
+              <li>It references at least one matcher; and</li>
+              <li>
+                At least one matcher it references matches the given context;
+                and
+              </li>
+              <li>All the conditions it defines are satisfied.</li>
+            </ul>
+            <p>
+              Policy conditions behave like intersection, union and exclusion
+              operators. In order to be satisfied:
+            </p>
+            <ul>
+              <li>
+                <code>acp:allOf</code> requires all of its matchers to match the
+                given context;
+              </li>
+              <li>
+                <code>acp:anyOf</code> requires one of its matchers to match the
+                given context;
+              </li>
+              <li>
+                <code>acp:noneOf</code> requires none of its matchers to match
+                the given context.
+              </li>
+            </ul>
+            <p>
+              Given that the noneOf condition excludes matches, a policy without
+              a satisfied allOf or anyOf condition never applies.
+            </p>
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":policy-satisfaction"
+              property="bibo:hasPart"
+            ></section>
+            <h4
+              class="heading settled"
+              data-level="3.3.2"
+              id="granted-access-modes"
+            >
+              <span class="secno">3.3.2. </span
+              ><span class="content">Granted access modes</span
+              ><a class="self-link" href="#granted-access-modes"></a>
+            </h4>
+            <p>
+              In ACP, access modes are granted via the
+              <code>acp:allow</code> and <code>acp:deny</code> predicates.
+            </p>
+            <dl>
+              <dt id="acp-allow"><code>acp:allow</code></dt>
+              <dd about="acp:allow" typeof="rdf:Property">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">allow</span> predicate defines the
+                  set of access modes allowed by a policy if satisfied, it has a
+                  range of
+                  <code property="rdfs:range" resource="acp:AccessMode"
+                    >acp:AccessMode</code
+                  >
+                  and a domain of
+                  <code property="rdfs:domain" resource="acp:Policy"
+                    >acp:Policy</code
+                  >.</span
+                >
+              </dd>
+              <dt id="acp-deny"><code>acp:deny</code></dt>
+              <dd about="acp:deny" typeof="rdf:Property">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">deny</span> predicate defines the
+                  set of access modes denied by a policy if satisfied, it has a
+                  range of
+                  <code property="rdfs:range" resource="acp:AccessMode"
+                    >acp:AccessMode</code
+                  >
+                  and a domain of
+                  <code property="rdfs:domain" resource="acp:Policy"
+                    >acp:Policy</code
+                  >.</span
+                >
+              </dd>
+            </dl>
+            <p>An access mode MUST be granted if:</p>
+            <ul>
+              <li>A policy that is satisfied allows it; and</li>
+              <li>No policy that is satisfied denies it.</li>
             </ul>
             <p>
               For example, the following example authorization graph could be
               translated as such: "Access control A, assuming that both policy B
-              and C apply will grant access mode <code>acl:Read</code> over the
-              resource it controls. It will not grant access mode
-              <code>acl:Write</code> even though policy B allows it because
-              policy C denies it".
+              and C are satisfied will grant access mode
+              <code>acl:Read</code> over the resource it mandates control over.
+              It will not grant access mode <code>acl:Write</code> even though
+              policy B allows it because policy C denies it".
             </p>
             <pre
               id="control-resource-access-example-authorization-graph"
@@ -1219,49 +1305,21 @@
     acp:deny acl:Write .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":allowed-access-modes"
-              property="bibo:hasPart"
-            ></section>
-            <h4 class="heading settled" data-level="3.3.2" id="applied-policy">
-              <span class="secno">3.3.2. </span
-              ><span class="content">Applied policy</span
-              ><a class="self-link" href="#applied-policy"></a>
-            </h4>
-            <p>In ACP, a policy is applied if:</p>
-            <ul>
-              <li>
-                At least one matcher it uses matches the given context; and
-              </li>
-              <li>All the conditions it defines are satisfied.</li>
-            </ul>
             <p>
-              Policy conditions behave like intersection, union and exclusion
-              operators. In order to be satisfied:
-            </p>
-            <ul>
-              <li>
-                allOf requires all of its matchers to match the given context;
-              </li>
-              <li>
-                anyOf requires one of its matchers to match the given context;
-              </li>
-              <li>
-                noneOf requires none of its matchers to match the given context.
-              </li>
-            </ul>
-            <p>
-              Note that the noneOf condition excludes matches, therefore, a
-              policy without a satisfied allOf or anyOf condition never applies.
+              ACP doesn't define its own access modes, instead it reuses access
+              modes defined by the
+              <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a>. Namely:
+              <code>acl:Read</code>; <code>acl:Write</code>; and
+              <code>acl:Append</code>. Other access modes can be defined to fit
+              the specific needs of an application, see:
+              <a href="#access-mode-extensibility">Access Mode Extensibility</a
+              >.
             </p>
 
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":applied-policy"
+              resource=":granted-access-modes"
               property="bibo:hasPart"
             ></section>
           </section>
