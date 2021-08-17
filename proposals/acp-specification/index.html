@@ -340,15 +340,22 @@
           >
           <ol class="toc">
             <li class="tocline">
+              <a href="#context" class="tocxref"
+                ><span class="secno">2.1</span>Context</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
               <a href="#context-attributes" class="tocxref"
-                ><span class="secno">2.1</span>Context attributes</a
+                ><span class="secno">2.2</span>Context attributes</a
               >
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
               <a href="#context-extensibility" class="tocxref"
-                ><span class="secno">2.2</span>Context extensibility</a
+                ><span class="secno">2.3</span>Context extensibility</a
               >
             </li>
           </ol>
@@ -382,6 +389,14 @@
                   <a href="#access-control-resource-access" class="tocxref"
                     ><span class="secno">3.2.2</span>Access control resource
                     access</a
+                  >
+                </li>
+              </ol>
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#access-control-resolution" class="tocxref"
+                    ><span class="secno">3.2.3</span>Access control
+                    resolution</a
                   >
                 </li>
               </ol>
@@ -863,32 +878,63 @@
           resource=":context-graph"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="2.1" id="context-attributes">
-            <span class="secno">2.1. </span
+          <h3 class="heading settled" data-level="2.1" id="context">
+            <span class="secno">2.1. </span><span class="content">Context</span
+            ><a class="self-link" href="#context"></a>
+          </h3>
+          <dl>
+            <dt id="acp-context"><code>acp:Context</code></dt>
+            <dd about="acp:Context" typeof="rdfs:Class">
+              <span property="rdfs:comment"
+                >In
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>,
+                descriptions of resource access are instances of the
+                <span property="rdfs:label">Context</span> class.</span
+              >
+            </dd>
+          </dl>
+          <p>
+            The following example context graph denotes that an instance of
+            resource access over resource X was initiated by Bob:
+          </p>
+          <pre
+            id="context-example-context-graph"
+            class="example example-context-graph"
+          >
+  _:context
+    a acp:Context ;
+    acp:agent ex:Bob  .
+</pre
+          >
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":context"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="2.2" id="context-attributes">
+            <span class="secno">2.2. </span
             ><span class="content">Context attributes</span
             ><a class="self-link" href="#context-attributes"></a>
           </h3>
           <p>
-            An ACP context graph has type <code>acp:Context</code> and is
-            described via RDFS sub-properties of the
-            <code>acp:attribute</code> predicate.
-          </p>
-          <p>
-            The following are definitions of the standard ACP context
-            attributes:
+            In ACP, RDFS sub-properties of the
+            <code>acp:attribute</code> predicate are used to describe resource
+            access.
           </p>
           <dl>
             <dt id="acp-attribute"><code>acp:attribute</code></dt>
             <dd about="acp:attribute" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >An <span property="rdfs:label">attribute</span> describing
-                resource access.
+                resource access. The
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                attributes have range
+                <code>acp:attribute</code> predicate has a range of
                 <code property="rdfs:range" resource="rdfs:Resource"
                   >rdfs:Resource</code
                 >
-                and domain
+                and a domain of
                 <code property="rdfs:domain" resource="acp:Context"
                   >acp:Context</code
                 >.</span
@@ -993,6 +1039,7 @@
             class="example example-context-graph"
           >
   _:context
+    a acp:Context ;
     acp:agent ex:Bob ;
     acp:resource ex:resourceX ;
     acp:owner ex:Bob ;
@@ -1010,16 +1057,18 @@
           ></section>
           <h3
             class="heading settled"
-            data-level="2.2"
+            data-level="2.3"
             id="context-extensibility"
           >
-            <span class="secno">2.2. </span
+            <span class="secno">2.3. </span
             ><span class="content">Context extensibility</span
             ><a class="self-link" href="#context-extensibility"></a>
           </h3>
           <p>
-            ACP's context graphs can be extended to provide the information
-            required for matching new types of conditions.
+            ACP context graphs can be extended to provide the information
+            required for matching attributes of resource access instances via
+            new sub-properties of <code>acp:attribute</code> in order to fit the
+            specific requirements of applications.
           </p>
 
           <section
@@ -1088,6 +1137,21 @@
             resource MUST include a Link header with the rel value of type and
             the <code>acp:AccessControlResource</code> URI as link target.
           </p>
+          <dl>
+            <dt id="acp-access-control-resource">
+              <code>acp:AccessControlResource</code>
+            </dt>
+            <dd about="acp:AccessControlResource" typeof="rdfs:Class">
+              <span property="rdfs:comment"
+                >In
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>,
+                resources mandating access over a specific resource and
+                themselves are instances of the
+                <span property="rdfs:label">AccessControlResource</span>
+                class.</span
+              >
+            </dd>
+          </dl>
           <p>
             The following example authorization graph denotes that access
             control resource A mandates access over resource X and itself:
@@ -1114,13 +1178,50 @@
             ><a class="self-link" href="#access-control"></a>
           </h3>
           <p>
-            An access control is the first level of reusable ACP authorization
-            graphs' elements, it is linked to an access control resource via the
-            <code>acp:accessControl</code> predicate and determines which
+            Access Controls are the first level of reusable elements of access
+            control in ACP.
+          </p>
+          <dl>
+            <dt id="acp-access-control"><code>acp:AccessControl</code></dt>
+            <dd about="acp:AccessControl" typeof="rdfs:Class">
+              <span property="rdfs:comment"
+                >In
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>,
+                the elements linking access control resources to their policies
+                are instances of the
+                <span property="rdfs:label">AccessControl</span> class.</span
+              >
+            </dd>
+          </dl>
+          <p>
+            Access controls are linked to an access control resources via the
+            <code>acp:accessControl</code> predicate and determine which
             policies get resolved to grant access over resources and access
             control resources respectively via the <code>acp:apply</code> and
             <code>acp:access</code> predicates.
           </p>
+          <dl>
+            <dt id="acp-accessControl"><code>acp:accessControl</code></dt>
+            <dd about="acp:accessControl" typeof="rdf:Property">
+              <span property="rdfs:comment"
+                >The
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">accessControl</span> predicate
+                defines the set of access controls that mandate access over a
+                resource and its associated access control resource, it has a
+                range of
+                <code property="rdfs:range" resource="acp:AccessControl"
+                  >acp:AccessControl</code
+                >
+                and a domain of
+                <code
+                  property="rdfs:domain"
+                  resource="acp:AccessControlResource"
+                  >acp:AccessControlResource</code
+                >.</span
+              >
+            </dd>
+          </dl>
           <p>
             The following example authorization graph denotes that access
             control resource A mandates access over resource X and itself via
@@ -1240,6 +1341,60 @@
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
               resource=":access-control-resource-access"
+              property="bibo:hasPart"
+            ></section>
+            <h4
+              class="heading settled"
+              data-level="3.2.3"
+              id="access-control-resolution"
+            >
+              <span class="secno">3.2.3. </span
+              ><span class="content">Access control resolution</span
+              ><a class="self-link" href="#access-control-resolution"></a>
+            </h4>
+            <p>
+              The set of policies mandating access over a resource and its
+              associated access control resource can be reduced respectively via
+              the <code>acp:accessControl/acp:apply</code> and
+              <code>acp:accessControl/acp:access</code> property paths.
+            </p>
+            <p>
+              In other words, the following example two authorization graphs are
+              equivalent and denote that policies D and E will mandate access
+              over resource X:
+            </p>
+            <pre
+              id="access-control-resolution-example-authorization-graph-1"
+              class="example example-authorization-graph"
+            >
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:accessControl ex:accessControlB, ex:accessControlC .
+
+  ex:accessControlB
+    acp:apply ex:policyD .
+
+  ex:accessControlC
+    acp:apply ex:policyE .
+</pre
+            >
+            <pre
+              id="access-control-resolution-example-authorization-graph-2"
+              class="example example-authorization-graph"
+            >
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:accessControl ex:accessControlF .
+
+  ex:accessControlF
+    acp:apply ex:policyD, ex:policyE .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":access-control-resolution"
               property="bibo:hasPart"
             ></section>
           </section>
@@ -1492,6 +1647,10 @@
             ><a class="self-link" href="#matcher"></a>
           </h3>
           <p>Matchers are reusable units of access control in ACP.</p>
+          <p>
+            An ACP Matcher defines a set of resource access attributes that need
+            to be matched in order for a matcher to be satisfied.
+          </p>
           <!--
   TODO:
   - ADD NON NORMATIVE FOR MULTI MATCHER CLIENT/AGENT
