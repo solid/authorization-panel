@@ -1052,6 +1052,7 @@
             class="example example-authorization-graph"
           >
   ex:accessControlResourceA
+    a acp:AccessControlResource ;
     acp:resource ex:resourceX .
 </pre
           >
@@ -1331,6 +1332,18 @@
                   <span property="rdfs:label">Creator Agent</span> matches all
                   contexts where the creator matches the defined agent. In an
                   authorization graph, the ACP Creator Agent can be used as the
+                  object in a triple where the subject is a matcher and the
+                  predicate is <code>acp:agent</code>.</span
+                >
+              </dd>
+              <dt id="acp-owner-agent"><code>acp:OwnerAgent</code></dt>
+              <dd about="acp:OwnerAgent" typeof="owl:NamedIndividual">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">Owner Agent</span> matches all
+                  contexts where the owner matches the defined agent. In an
+                  authorization graph, the ACP Owner Agent can be used as the
                   object in a triple where the subject is a matcher and the
                   predicate is <code>acp:agent</code>.</span
                 >
