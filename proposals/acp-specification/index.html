@@ -679,6 +679,7 @@
   # It describes the conditions required for accessing a resource
 
   ex:accessControlResourceA
+    acp:resource ex:resourceX ;
     acp:accessControl ex:accessControlB .
 
   ex:accessControlB acp:apply ex:PolicyC .
@@ -840,7 +841,11 @@
         </h2>
         <p>
           This section introduces the ACP constructs describing the attributes
-          of resource access. In ACP, resource access attributes are
+          of resource access.
+        </p>
+        <p>
+          In ACP, the <dfn ="def-context-graph">context graph</dfn> describes
+          the attributes of a resource access instance that can be
           <a href="#matcher">matched</a> to a set of conditions to determine a
           granted set of access modes over a resource. If no resource access
           attribute is matched, the granted set of access modes over a resource
@@ -861,8 +866,10 @@
           <p>
             An ACP context graph has type <code>acp:Context</code> and is
             described via RDFS sub-properties of the
-            <code>acp:attribute</code> predicate. The following are definitions
-            of standard ACP context attributes:
+            <code>acp:attribute</code> predicate.
+          </p>
+          <p>
+            The following are definitions of standard ACP context attributes:
           </p>
           <dl>
             <dt id="acp-attribute"><code>acp:attribute</code></dt>
@@ -1002,9 +1009,14 @@
           ><a class="self-link" href="#authorization-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs mandating resource access
-          conditions. In ACP, an Access Control grants access modes to resources
-          through validation of Policies and context Matchers.
+          This section introduces the ACP constructs describing the conditions
+          of resource access.
+        </p>
+        <p>
+          In ACP, the
+          <dfn ="def-authorization-graph">authorization graph</dfn>
+          authoriatively mandates the conditions for granting access modes over
+          a resource through validation of Policies and context Matchers.
         </p>
 
         <section
@@ -1529,10 +1541,12 @@
           ><a class="self-link" href="#access-grant-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs describing resource access
-          grants. In ACP, resource access is granted as a set of allowed access
-          modes over a resource. By default, no access mode is granted over
-          resources.
+          This section introduces the ACP constructs describing the mode grants
+          of resource access.
+        </p>
+        <p>
+          In ACP, resource access is granted as a set of allowed access modes
+          over a resource. By default, no access mode is granted over resources.
         </p>
 
         <section
