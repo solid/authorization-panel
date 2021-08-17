@@ -360,42 +360,27 @@
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#access-control" class="tocxref"
-                ><span class="secno">3.1</span>Access control</a
+              <a href="#access-control-resource" class="tocxref"
+                ><span class="secno">3.1</span>Access control resource</a
               >
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#resource-access" class="tocxref"
-                    ><span class="secno">3.1.1</span>Resource access</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#control-resource-access" class="tocxref"
-                    ><span class="secno">3.1.2</span>Control resource access</a
-                  >
-                </li>
-              </ol>
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#protected-access-control" class="tocxref"
-                ><span class="secno">3.2</span>Protected access control</a
+              <a href="#access-control" class="tocxref"
+                ><span class="secno">3.2</span>Access control</a
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#protected-resource-access" class="tocxref"
-                    ><span class="secno">3.2.1</span>Protected resource
-                    access</a
+                  <a href="#resource-access" class="tocxref"
+                    ><span class="secno">3.2.1</span>Resource access</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#protected-control-resource-access" class="tocxref"
-                    ><span class="secno">3.2.2</span>Protected control resource
+                  <a href="#access-control-resource-access" class="tocxref"
+                    ><span class="secno">3.2.2</span>Access control resource
                     access</a
                   >
                 </li>
@@ -409,15 +394,15 @@
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#allow-access-modes" class="tocxref"
-                    ><span class="secno">3.3.1</span>Allow access modes</a
+                  <a href="#allowed-access-modes" class="tocxref"
+                    ><span class="secno">3.3.1</span>Allowed access modes</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#apply-policy" class="tocxref"
-                    ><span class="secno">3.3.2</span>Apply policy</a
+                  <a href="#applied-policy" class="tocxref"
+                    ><span class="secno">3.3.2</span>Applied policy</a
                   >
                 </li>
               </ol>
@@ -844,7 +829,7 @@
           of resource access.
         </p>
         <p>
-          In ACP, the <dfn ="def-context-graph">context graph</dfn> describes
+          In ACP, the <dfn id="def-context-graph">context graph</dfn> describes
           the attributes of a resource access instance that can be
           <a href="#matcher">matched</a> to a set of conditions to determine a
           granted set of access modes over a resource. If no resource access
@@ -869,7 +854,8 @@
             <code>acp:attribute</code> predicate.
           </p>
           <p>
-            The following are definitions of standard ACP context attributes:
+            The following are definitions of the standard ACP context
+            attributes:
           </p>
           <dl>
             <dt id="acp-attribute"><code>acp:attribute</code></dt>
@@ -1014,9 +1000,10 @@
         </p>
         <p>
           In ACP, the
-          <dfn ="def-authorization-graph">authorization graph</dfn>
+          <dfn id="def-authorization-graph">authorization graph</dfn>
           authoriatively mandates the conditions for granting access modes over
-          a resource through validation of Policies and context Matchers.
+          a resource through validation of Policies and via satisfaction of
+          context Matchers.
         </p>
 
         <section
@@ -1025,32 +1012,78 @@
           resource=":authorization-graph"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="3.1" id="access-control">
+          <h3
+            class="heading settled"
+            data-level="3.1"
+            id="access-control-resource"
+          >
             <span class="secno">3.1. </span
+            ><span class="content">Access control resource</span
+            ><a class="self-link" href="#access-control-resource"></a>
+          </h3>
+          <p>
+            An access control resource is the entry point of any ACP
+            authorization graph.
+          </p>
+          <p>
+            In ACP, there is a one to one relationship between the access
+            control resource and the resource it mandates access over.
+          </p>
+          <p>
+            When a server wants to enable applications to discover the ACP
+            access control resource associated with a given resource, the server
+            MUST advertise the ACP access control resource that is associated
+            with a resource by responding to HTTP requests over the resource
+            including a Link header with the rel value of acl (acl Link
+            Relation) and the ACP access control resource as link target
+            [RFC8288]. The same mechanism is used in
+            <a
+              href="https://solid.github.io/web-access-control-spec/#acl-resource-discovery"
+              >Web Access Control resource discovery</a
+            >.
+          </p>
+          <p>
+            A server responding to an HTTP request over an ACP access control
+            resource MUST include a Link header with the rel value of type and
+            the <code>acp:AccessControlResource</code> URI as link target.
+          </p>
+          <pre
+            id="access-control-resource-example-authorization-graph"
+            class="example example-authorization-graph"
+          >
+  ex:accessControlResourceA
+    acp:resource ex:resourceX .
+</pre
+          >
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":access-control-resource"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="3.2" id="access-control">
+            <span class="secno">3.2. </span
             ><span class="content">Access control</span
             ><a class="self-link" href="#access-control"></a>
           </h3>
           <p>
-            An access control is the entry point of any ACP authorization graph
-            and determines access modes to be granted over:
-          </p>
-          <ul>
-            <li>A resource; and</li>
-            <li>Its associated control resource (itself).</li>
-          </ul>
-          <p>
-            An access control can be linked to the resource it mandates access
-            over via the <code>acp:accessControl</code> predicate.
+            An access control is the first level of reusable ACP authorization
+            graphs' elements and determines which policies apply to grant access
+            over resources and access control resources.
           </p>
           <p>
             The following example authorization graph denotes that access
-            control A mandates access over resource X:
+            control resource A mandates access over resource X using access
+            controls B and C:
           </p>
           <pre
-            id="access-control-example-authorization-graph"
+            id="access-control-resource-example-authorization-graph"
             class="example example-authorization-graph"
           >
-  ex:resourceX acp:accessControl ex:accessControlA .
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:accessControl ex:accessControlB, ex:accessControlC .
 </pre
           >
 
@@ -1060,8 +1093,8 @@
             resource=":access-control"
             property="bibo:hasPart"
           >
-            <h4 class="heading settled" data-level="3.1.1" id="resource-access">
-              <span class="secno">3.1.1. </span
+            <h4 class="heading settled" data-level="3.2.1" id="resource-access">
+              <span class="secno">3.2.1. </span
               ><span class="content">Resource access</span
               ><a class="self-link" href="#resource-access"></a>
             </h4>
@@ -1071,16 +1104,19 @@
               <code>acp:apply</code> predicate.
             </p>
             <p>
-              The following example access control A will grant access modes
-              allowed by policy B over resource X:
+              The following example access control B will grant access modes
+              allowed by policy D over resource X:
             </p>
             <pre
               id="resource-access-example-authorization-graph"
               class="example example-authorization-graph"
             >
-  ex:resourceX acp:accessControl ex:accessControlA .
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:accessControl ex:accessControlB, ex:accessControlC .
 
-  ex:accessControlA acp:apply ex:policyB .
+  ex:accessControlB
+    acp:apply ex:policyD .
 </pre
             >
 
@@ -1092,149 +1128,39 @@
             ></section>
             <h4
               class="heading settled"
-              data-level="3.1.2"
-              id="control-resource-access"
-            >
-              <span class="secno">3.1.2. </span
-              ><span class="content">Control resource access</span
-              ><a class="self-link" href="#control-resource-access"></a>
-            </h4>
-            <p>
-              A control resource is a resource that mandates access over another
-              resource and itself, that is, an <code>acp:AccessControl</code>.
-            </p>
-            <p>
-              The access modes granted for access to a control resource are
-              determined through its <code>acp:access</code> predicate.
-            </p>
-            <p>
-              The following example access control A will grant access modes
-              allowed by policy B over itself:
-            </p>
-            <pre
-              id="control-resource-access-example-authorization-graph"
-              class="example example-authorization-graph"
-            >
-  ex:accessControlA acp:access ex:policyB .
-</pre
-            >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":control-resource-access"
-              property="bibo:hasPart"
-            ></section>
-          </section>
-          <h3
-            class="heading settled"
-            data-level="3.2"
-            id="protected-access-control"
-          >
-            <span class="secno">3.2. </span
-            ><span class="content">Protected access control</span
-            ><a class="self-link" href="#protected-access-control"></a>
-          </h3>
-          <p>
-            A protected access control is contributing to a control resource's
-            policies while mandating access over itself. A protected control
-            resource can be linked to a control resource via the
-            <code>acp:applyProtected</code> predicate.
-          </p>
-          <p>
-            The following example authorization graph denotes that the protected
-            access control B contributes policies to access control A for
-            mandating access over resource X:
-          </p>
-          <pre
-            id="access-control-example-authorization-graph"
-            class="example example-authorization-graph"
-          >
-  ex:resourceX acp:accessControl ex:accessControlA .
-  ex:accessControlA acp:applyProtected ex:accessControlB .
-</pre
-          >
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":protected-access-control"
-            property="bibo:hasPart"
-          >
-            <h4
-              class="heading settled"
-              data-level="3.2.1"
-              id="protected-resource-access"
-            >
-              <span class="secno">3.2.1. </span
-              ><span class="content">Protected resource access</span
-              ><a class="self-link" href="#protected-resource-access"></a>
-            </h4>
-            <p>
-              The protected access controls contribute to access modes granted
-              for access to a resource via the <code>acp:apply</code> predicate.
-            </p>
-            <p>
-              The following example access control A will grant access modes
-              allowed by policy B and policy C over resource X:
-            </p>
-            <pre
-              id="protected-access-control-example-authorization-graph"
-              class="example example-authorization-graph"
-            >
-  ex:resourceX acp:accessControl ex:accessControlA .
-
-  ex:accessControlA
-    acp:apply ex:policyB ;
-    acp:applyProtected [
-      acp:apply ex:policyC .
-    ] .
-</pre
-            >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":protected-resource-access"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
               data-level="3.2.2"
-              id="protected-control-resource-access"
+              id="access-control-resource-access"
             >
               <span class="secno">3.2.2. </span
-              ><span class="content">Protected control resource access</span
-              ><a
-                class="self-link"
-                href="#protected-control-resource-access"
-              ></a>
+              ><span class="content">Access control resource access</span
+              ><a class="self-link" href="#access-control-resource-access"></a>
             </h4>
             <p>
-              The access modes granted for access to a protected control
-              resource are determined through its
+              The access modes granted for access to an access control resource
+              are determined through an access control via the
               <code>acp:access</code> predicate.
             </p>
             <p>
-              The following example protected access control B will grant access
-              modes allowed by policy C over itself:
+              The following example access control C will grant access modes
+              allowed by policy E over access control resource A:
             </p>
             <pre
-              id="protected-access-control-example-authorization-graph"
+              id="access-control-resource-access-example-authorization-graph"
               class="example example-authorization-graph"
             >
-  ex:resourceX acp:accessControl ex:accessControlA .
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:accessControl ex:accessControlB, ex:accessControlC .
 
-  ex:accessControlA acp:applyProtected ex:protectedAccessControlB .
-
-  ex:protectedAccessControlB acp:access ex:policyC .
+  ex:accessControlC
+    acp:access ex:policyE .
 </pre
             >
 
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":protected-control-resource-access"
+              resource=":access-control-resource-access"
               property="bibo:hasPart"
             ></section>
           </section>
@@ -1259,11 +1185,11 @@
             <h4
               class="heading settled"
               data-level="3.3.1"
-              id="allow-access-modes"
+              id="allowed-access-modes"
             >
               <span class="secno">3.3.1. </span
-              ><span class="content">Allow access modes</span
-              ><a class="self-link" href="#allow-access-modes"></a>
+              ><span class="content">Allowed access modes</span
+              ><a class="self-link" href="#allowed-access-modes"></a>
             </h4>
             <p>In ACP, an access mode is allowed if:</p>
             <ul>
@@ -1296,13 +1222,13 @@
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":allow-access-modes"
+              resource=":allowed-access-modes"
               property="bibo:hasPart"
             ></section>
-            <h4 class="heading settled" data-level="3.3.2" id="apply-policy">
+            <h4 class="heading settled" data-level="3.3.2" id="applied-policy">
               <span class="secno">3.3.2. </span
-              ><span class="content">Apply policy</span
-              ><a class="self-link" href="#apply-policy"></a>
+              ><span class="content">Applied policy</span
+              ><a class="self-link" href="#applied-policy"></a>
             </h4>
             <p>In ACP, a policy is applied if:</p>
             <ul>
@@ -1334,7 +1260,7 @@
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":apply-policy"
+              resource=":applied-policy"
               property="bibo:hasPart"
             ></section>
           </section>
@@ -1486,7 +1412,7 @@
               property="bibo:hasPart"
             ></section>
           </section>
-          <h4
+          <h3
             class="heading settled"
             data-level="3.5"
             id="matcher-extensibility"
@@ -1494,7 +1420,7 @@
             <span class="secno">3.5. </span
             ><span class="content">Matcher extensibility</span
             ><a class="self-link" href="#matcher-extensibility"></a>
-          </h4>
+          </h3>
           <p>
             In order to extend the set of conditions enforceable for resource
             access, new matchers can be created. A new matcher should apply to
@@ -1518,11 +1444,11 @@
             resource=":matcher-extensibility"
             property="bibo:hasPart"
           ></section>
-          <h4 class="heading settled" data-level="3.6" id="inheritance">
+          <h3 class="heading settled" data-level="3.6" id="inheritance">
             <span class="secno">3.6. </span
             ><span class="content">Inheritance</span
             ><a class="self-link" href="#inheritance"></a>
-          </h4>
+          </h3>
           <p>
             Policies are inherited from one Access Control to another via the
             resources they're linked to.
@@ -1541,12 +1467,14 @@
           ><a class="self-link" href="#access-grant-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs describing the mode grants
-          of resource access.
+          This section introduces the ACP constructs describing the grant of
+          modes of resource access.
         </p>
         <p>
-          In ACP, resource access is granted as a set of allowed access modes
-          over a resource. By default, no access mode is granted over resources.
+          In ACP, the
+          <dfn id="def-access-grant-graph">access grant graph</dfn> describes
+          the set of allowed access modes over a resource in context. By
+          default, no access mode is granted over resources.
         </p>
 
         <section
