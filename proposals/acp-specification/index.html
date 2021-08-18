@@ -689,7 +689,10 @@
             Turtle syntax will appear. These fragments of Turtle documents use
             the prefix bindings given above.
           </p>
-          <pre class="example example-context-graph">
+          <pre
+            id="acp-example-context-graph"
+            class="example example-context-graph"
+          >
   # This box contains a context graph
   # It describes the properties of a resource access
 
@@ -698,7 +701,10 @@
     acp:resource ex:resourceX .
 </pre
           >
-          <pre class="example example-authorization-graph">
+          <pre
+            id="acp-example-authorization-graph"
+            class="example example-authorization-graph"
+          >
   # This box contains an authorization graph
   # It describes the conditions required for accessing a resource
 
@@ -716,7 +722,10 @@
     acp:agent ex:Bob .
 </pre
           >
-          <pre class="example example-access-grant-graph">
+          <pre
+            id="acp-example-authorization-graph"
+            class="example example-access-grant-graph"
+          >
   # This box contains an access grant graph
   # It describes in context the granted access over a resource
 
@@ -1241,7 +1250,7 @@
             access controls B and C:
           </p>
           <pre
-            id="access-control-resource-example-authorization-graph"
+            id="access-control-example-authorization-graph"
             class="example example-authorization-graph"
           >
   ex:accessControlResourceA
@@ -1531,7 +1540,7 @@
               matcher D or E are satisfied and matcher F is not satified:
             </p>
             <pre
-              id="access-control-resource-access-example-authorization-graph"
+              id="policy-satisfaction-example-authorization-graph"
               class="example example-authorization-graph"
             >
   ex:policyA
@@ -1621,7 +1630,7 @@
               <code>acp:Write</code> if it is satisfied:
             </p>
             <pre
-              id="access-control-resource-access-example-authorization-graph"
+              id="granted-access-modes-example-authorization-graph-1"
               class="example example-authorization-graph"
             >
   ex:policyA
@@ -1638,7 +1647,7 @@
               policy C denies it.
             </p>
             <pre
-              id="control-resource-access-example-authorization-graph"
+              id="granted-access-modes-example-authorization-graph-2"
               class="example example-authorization-graph"
             >
   ex:accessControlA
@@ -1992,7 +2001,7 @@
             where one of the requested resource's tags is tag B:
           </p>
           <pre
-            id="verifiable-credentials-matcher-example-authorization-graph"
+            id="matcher-extensibility-example-authorization-graph"
             class="example example-authorization-graph"
           >
   ex:matcherA
@@ -2046,7 +2055,7 @@
             access controls mandating control over them:
           </p>
           <pre
-            id="access-control-resource-example-authorization-graph-1"
+            id="inheritance-example-authorization-graph-1"
             class="example example-authorization-graph"
           >
   ex:accessControlResourceA
@@ -2063,7 +2072,7 @@
             this case access control E:
           </p>
           <pre
-            id="access-control-resource-example-authorization-graph-2"
+            id="inheritance-example-authorization-graph-2"
             class="example example-authorization-graph"
           >
   ex:accessControlResourceA
@@ -2087,7 +2096,7 @@
             that is not a member access control and specific to resource Y:
           </p>
           <pre
-            id="access-control-resource-example-authorization-graph-2"
+            id="inheritance-example-authorization-graph-3"
             class="example example-authorization-graph"
           >
   ex:accessControlResourceA
@@ -2172,7 +2181,7 @@
             to Bob for accessing resource X:
           </p>
           <pre
-            id="access-mode-extensibility-example-access-grant-graph"
+            id="access-modes-grant-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
   _:context
@@ -2210,7 +2219,7 @@
             Bob:
           </p>
           <pre
-            id="access-mode-extensibility-example-access-grant-graph"
+            id="access-modes-extensibility-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
   _:context
