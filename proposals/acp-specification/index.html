@@ -1934,9 +1934,105 @@
             ><a class="self-link" href="#inheritance"></a>
           </h3>
           <p>
-            Policies are inherited from one Access Control to another via the
-            resources they're linked to.
+            Contained resources can inherit ACP access controls via the
+            <code>acp:memberAccessControl</code> predicate.
           </p>
+          <dl>
+            <dt id="acp-member-access-control">
+              <code>acp:memberAccessControl</code>
+            </dt>
+            <dd about="acp:memberAccessControl" typeof="rdf:Property">
+              <span property="rdfs:comment"
+                >An
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">memberAccessControl</span> is an
+                access control that mandates access to the resources contained
+                by the resource whose access control resource references member
+                access controls. The
+                <code>acp:memberAccessControl</code> predicate has a range of
+                <code property="rdfs:range" resource="acp:AccessControl"
+                  >acp:AccessControl</code
+                >
+                and a domain of
+                <code
+                  property="rdfs:domain"
+                  resource="acp:AccessControlResource"
+                  >acp:AccessControlResource</code
+                >.</span
+              >
+            </dd>
+          </dl>
+          <p>
+            The following example authorization graph denotes that resource
+            contained by resource X will have access control B and C among the
+            access controls mandating control over them:
+          </p>
+          <pre
+            id="access-control-resource-example-authorization-graph-1"
+            class="example example-authorization-graph"
+          >
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:memberAccessControl ex:accessControlB, ex:accessControlC .
+</pre
+          >
+          <p>
+            In other words, as illustrated in the following example
+            authorization graph, if the resource X contained resource Y and
+            resource Y was access controlled by access control resource D, then
+            access control resource D would inherit access control B and C on
+            top of other access controls mandating access over resource Y, in
+            this case access control E:
+          </p>
+          <pre
+            id="access-control-resource-example-authorization-graph-2"
+            class="example example-authorization-graph"
+          >
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:memberAccessControl ex:accessControlB, ex:accessControlC .
+
+  ex:resourceX
+    ldp:contains ex:resourceY  .
+
+  ex:accessControlResourceD
+    acp:resource ex:resourceY ;
+    acp:memberAccessControl ex:accessControlB, ex:accessControlC ;
+    acp:accessControl ex:accessControlB, ex:accessControlC, ex:accessControlE .
+</pre
+          >
+          <p>
+            Furthermore, as illustrated in the following example authorization
+            graph, member access controls are inherited all the way down the
+            containment hierarchy, so if resource Y contained resources, they
+            would also inherit access controls B and C, but not access control E
+            that is not a member access control and specific to resource Y:
+          </p>
+          <pre
+            id="access-control-resource-example-authorization-graph-2"
+            class="example example-authorization-graph"
+          >
+  ex:accessControlResourceA
+    acp:resource ex:resourceX ;
+    acp:memberAccessControl ex:accessControlB, ex:accessControlC .
+
+  ex:resourceX
+    ldp:contains ex:resourceY .
+
+  ex:accessControlResourceD
+    acp:resource ex:resourceY ;
+    acp:memberAccessControl ex:accessControlB, ex:accessControlC ;
+    acp:accessControl ex:accessControlB, ex:accessControlC, ex:accessControlE .
+
+  ex:resourceY
+    ldp:contains ex:resourceZ .
+
+  ex:accessControlResourceF
+    acp:resource ex:resourceY ;
+    acp:memberAccessControl ex:accessControlB, ex:accessControlC ;
+    acp:accessControl ex:accessControlB, ex:accessControlC .
+</pre
+          >
 
           <section
             datatype="rdf:HTML"
