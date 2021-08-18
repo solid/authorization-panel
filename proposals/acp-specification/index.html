@@ -363,7 +363,7 @@
 
         <li class="tocline">
           <a href="#authorization-graph" class="tocxref"
-            ><span class="secno">3</span>Authorization Graph</a
+            ><span class="secno">3</span>Authorization graph</a
           >
           <ol class="toc">
             <li class="tocline">
@@ -487,8 +487,8 @@
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#access-mode-extensibility" class="tocxref"
-                ><span class="secno">4.2</span>Access mode extensibility</a
+              <a href="#access-modes-extensibility" class="tocxref"
+                ><span class="secno">4.2</span>Access modes extensibility</a
               >
             </li>
           </ol>
@@ -1080,7 +1080,7 @@
         </section>
         <h2 class="heading settled" data-level="3" id="authorization-graph">
           <span class="secno">3. </span
-          ><span class="content">Authorization Graph</span
+          ><span class="content">Authorization graph</span
           ><a class="self-link" href="#authorization-graph"></a>
         </h2>
         <p>
@@ -1143,12 +1143,10 @@
             </dt>
             <dd about="acp:AccessControlResource" typeof="rdfs:Class">
               <span property="rdfs:comment"
-                >In
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>,
-                resources mandating access over a specific resource and
-                themselves are instances of the
+                >An
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
                 <span property="rdfs:label">AccessControlResource</span>
-                class.</span
+                mandates access over a specific resource and itself.</span
               >
             </dd>
           </dl>
@@ -1185,22 +1183,16 @@
             <dt id="acp-access-control"><code>acp:AccessControl</code></dt>
             <dd about="acp:AccessControl" typeof="rdfs:Class">
               <span property="rdfs:comment"
-                >In
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>,
-                the elements linking access control resources to their policies
-                are instances of the
-                <span property="rdfs:label">AccessControl</span> class.</span
+                >An
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">AccessControl</span> is linked to
+                access control resources via the
+                <code>acp:accessControl</code> predicate and determines sets of
+                policies mandating access over resources and access control
+                resources respectively via the <code>acp:apply</code> and
+                <code>acp:access</code> predicates.</span
               >
             </dd>
-          </dl>
-          <p>
-            Access controls are linked to an access control resources via the
-            <code>acp:accessControl</code> predicate and determine which
-            policies get resolved to grant access over resources and access
-            control resources respectively via the <code>acp:apply</code> and
-            <code>acp:access</code> predicates.
-          </p>
-          <dl>
             <dt id="acp-accessControl"><code>acp:accessControl</code></dt>
             <dd about="acp:accessControl" typeof="rdf:Property">
               <span property="rdfs:comment"
@@ -1403,18 +1395,22 @@
             ><a class="self-link" href="#policy"></a>
           </h3>
           <p>Policies are reusable units of access control in ACP.</p>
-          <p about="acp:Policy" typeof="rdfs:Class">
-            <span property="rdfs:comment"
-              >An <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              <span property="rdfs:label">Policy</span> defines a set of allowed
-              and denied access modes respectively via the
-              <code>acp:allow</code> and <code>acp:deny</code> predicates as
-              well as the conditions for it to be satisfied via the
-              <code>acp:allOf</code>, <code>acp:anyOf</code> and
-              <code>acp:noneOf</code> predicates which link it to ACP
-              Matchers.</span
-            >
-          </p>
+          <dl>
+            <dt id="acp-policy"><code>acp:Policy</code></dt>
+            <dd about="acp:Policy" typeof="rdfs:Class">
+              <span property="rdfs:comment"
+                >An
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">Policy</span> defines a set of
+                allowed and denied access modes respectively via the
+                <code>acp:allow</code> and <code>acp:deny</code> predicates as
+                well as the conditions for its satisfaction via the
+                <code>acp:allOf</code>, <code>acp:anyOf</code> and
+                <code>acp:noneOf</code> predicates which link it to ACP
+                Matchers.</span
+              >
+            </dd>
+          </dl>
 
           <section
             datatype="rdf:HTML"
@@ -1586,8 +1582,8 @@
                 <li>No policy that is satisfied denies it.</li>
               </ul>
               <p>
-                ACP doesn't define its own access modes. It is possible to reuse
-                access modes defined elsewhere, for example, the
+                ACP doesn't define its own access modes, instead it reuses
+                access modes defined elsewhere. For example, the
                 <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a>
                 defines <code>acl:Read</code>; <code>acl:Write</code>; and
                 <code>acl:Append</code>. Other access modes can be defined to
@@ -1647,13 +1643,39 @@
             ><a class="self-link" href="#matcher"></a>
           </h3>
           <p>Matchers are reusable units of access control in ACP.</p>
+          <dl>
+            <dt id="acp-matcher"><code>acp:Matcher</code></dt>
+            <dd about="acp:Matcher" typeof="rdfs:Class">
+              <span property="rdfs:comment"
+                >An
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">Matcher</span> defines a set of
+                resource access attributes that need to be matched in order for
+                it to be satisfied. Specific types of ACP Matchers exist for
+                each resource access attribute and a matcher can have multiple
+                types.</span
+              >
+            </dd>
+          </dl>
           <p>
-            An ACP Matcher defines a set of resource access attributes that need
-            to be matched in order for a matcher to be satisfied.
+            The following example authorization graph denotes that matcher A
+            will be satisfied when matched against a context graph where either
+            Alice or Bob are the agent and their identity has been asserted by
+            identity provider B:
           </p>
+          <pre
+            id="matcher-example-authorization-graph"
+            class="example example-authorization-graph"
+          >
+  ex:matcherA
+    a acp:Matcher, acp:AgentMatcher, acp:IssuerMatcher ;
+    acp:agent ex:Bob, ex:Alice ;
+    acp:issuer ex:IdentityProviderB .
+</pre
+          >
+
           <!--
   TODO:
-  - ADD NON NORMATIVE FOR MULTI MATCHER CLIENT/AGENT
   - HOW TO DISCOVER Matchers
   - HOW TO COMMUNICATE CAPABILITIES (context predicates) OF AN ACP ENGINE
 -->
@@ -1731,6 +1753,20 @@
                 >
               </dd>
             </dl>
+            <p>
+              The following example authorization graph denotes that matcher A
+              will be satisfied when matched against a context graph where
+              either Alice or the owner of the resource being accessed are the
+              agent:
+            </p>
+            <pre
+              id="agent-matcher-example-authorization-graph"
+              class="example example-authorization-graph"
+            >
+  ex:matcherA
+    acp:agent ex:Alice, acp:OwnerAgent .
+</pre
+            >
 
             <section
               datatype="rdf:HTML"
@@ -1754,6 +1790,32 @@
                 ></span
               >
             </p>
+            <dl>
+              <dt id="acp-public-client"><code>acp:PublicClient</code></dt>
+              <dd about="acp:PublicClient" typeof="owl:NamedIndividual">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">Public Client</span> matches all
+                  clients. In an authorization graph, the ACP Public Client can
+                  be used as the object in a triple where the subject is a
+                  matcher and the predicate is <code>acp:client</code>.</span
+                >
+              </dd>
+            </dl>
+            <p>
+              The following example authorization graph denotes that matcher A
+              will be satisfied when matched against a context graph where the
+              client used to access a resource is client B:
+            </p>
+            <pre
+              id="client-matcher-example-authorization-graph"
+              class="example example-authorization-graph"
+            >
+  ex:matcherA
+    acp:client ex:clientB .
+</pre
+            >
 
             <section
               datatype="rdf:HTML"
@@ -1777,6 +1839,33 @@
                 ></span
               >
             </p>
+            <dl>
+              <dt id="acp-public-issuer"><code>acp:PublicIssuer</code></dt>
+              <dd about="acp:PublicIssuer" typeof="owl:NamedIndividual">
+                <span property="rdfs:comment"
+                  >The
+                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                  <span property="rdfs:label">Public Issuer</span> matches all
+                  issuers. In an authorization graph, the ACP Public Issuer can
+                  be used as the object in a triple where the subject is a
+                  matcher and the predicate is <code>acp:issuer</code>.</span
+                >
+              </dd>
+            </dl>
+            <p>
+              The following example authorization graph denotes that matcher A
+              will be satisfied when matched against a context graph where the
+              identity provider used to assert the identity of the agent is
+              issuer B:
+            </p>
+            <pre
+              id="issuer-matcher-example-authorization-graph"
+              class="example example-authorization-graph"
+            >
+  ex:matcherA
+    acp:issuer ex:issuerB .
+</pre
+            >
 
             <section
               datatype="rdf:HTML"
@@ -1928,11 +2017,11 @@
           <h3
             class="heading settled"
             data-level="4.2"
-            id="access-mode-extensibility"
+            id="access-modes-extensibility"
           >
             <span class="secno">4.2. </span
-            ><span class="content">Access mode extensibility</span
-            ><a class="self-link" href="#access-mode-extensibility"></a>
+            ><span class="content">Access modes extensibility</span
+            ><a class="self-link" href="#access-modes-extensibility"></a>
           </h3>
           <p>
             There is no standard access modes defined by ACP. Instead, one might
@@ -1960,7 +2049,7 @@
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-mode-extensibility"
+            resource=":access-modes-extensibility"
             property="bibo:hasPart"
           ></section>
         </section>
