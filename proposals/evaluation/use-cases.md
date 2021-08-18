@@ -14,6 +14,7 @@ Within the use cases, the following namespace prefix bindings are used:
 It is assumed in the example solutions to use cases for both WAC and ACP that
 the effective access control resource is represented.
 
+0. [Effective Access Control Resource Discovery](./uc-0-effective-acr.md)
 1. [Resource Access](./uc-1-resource-access.md)
 2. [Collection Access](#)
 3. [Access Inheritance Use Cases](./uc-3-inheritance.md)
