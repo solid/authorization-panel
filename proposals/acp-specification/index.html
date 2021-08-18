@@ -456,6 +456,14 @@
                   >
                 </li>
               </ol>
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#verifiable-credentials-matcher" class="tocxref"
+                    ><span class="secno">3.4.5</span>Verifiable credentials
+                    matcher</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
@@ -1022,6 +1030,19 @@
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> time
               is a sub property of
+              <code property="rdfs:subPropertyOf" resource="acp:attribute"
+                >acp:attribute</code
+              >.
+            </dd>
+            <dt id="acp-vc"><code>acp:vc</code></dt>
+            <dd about="acp:vc" typeof="rdf:Property">
+              <span property="rdfs:comment"
+                >A
+                <span property="rdfs:label">verifiable credentials</span> that
+                is presented as part of a resource access request.</span
+              >
+              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> vc is
+              a sub property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1895,6 +1916,49 @@
               resource=":time-matcher"
               property="bibo:hasPart"
             ></section>
+            <h4
+              class="heading settled"
+              data-level="3.4.5"
+              id="verifiable-credentials-matcher"
+            >
+              <span class="secno">3.4.5. </span
+              ><span class="content">Verifiable credentials matcher</span
+              ><a class="self-link" href="#verifiable-credentials-matcher"></a>
+            </h4>
+            <p id="acp-verifiable-credentials-matcher">
+              <span about="acp:VerifiableCredentialsMatcher" typeof="rdfs:Class"
+                ><span property="rdfs:comment"
+                  >The ACP
+                  <span property="rdfs:label"
+                    >Verifiable Credentials Matcher</span
+                  >
+                  relies on the
+                  <a href="#acp-vc"><code>acp:vc</code></a> predicate to define
+                  sets of matching verifiable credentials.</span
+                ></span
+              >
+            </p>
+            <p>
+              The following example authorization graph denotes that matcher A
+              will be satisfied when matched against a context graph where one
+              of the presented verifiable credentials is credential B and has
+              been issued to the agent requesting the resource:
+            </p>
+            <pre
+              id="verifiable-credentials-matcher-example-authorization-graph"
+              class="example example-authorization-graph"
+            >
+  ex:matcherA
+    acp:vc ex:credentialB .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":verifiable-credentials-matcher"
+              property="bibo:hasPart"
+            ></section>
           </section>
           <h3
             class="heading settled"
@@ -1911,16 +1975,30 @@
             new context attributes in order to maintain consistency and
             portability of authorization graphs accross ACP resolution engines.
             However, refining the behaviour of standard matchers to the needs of
-            a particular system is possible. The algorithms of this
-            specification are not normative.
+            a particular system is possible.
           </p>
           <p>
-            A new context attribute could be, for example, created to validate
-            resource access based on verifiable credentials (VC). This could be
-            achieved by creating a new context attribute <code>acp:vc</code> and
-            designing the corresponding VC matching algorithm as an extension to
-            ACP.
+            A new context attribute could be, for example, created to control
+            resource access based on resource tags. This could be achieved by
+            creating a new context attribute <code>acp:tag</code> and designing
+            the corresponding VC matching algorithm as an extension to ACP. The
+            context graph passed to an ACP system supporting this new kind of
+            matcher would then need to include the requested resource tags in
+            order to get successful matches.
           </p>
+          <p>
+            The following example authorization graph would then denote that
+            matcher A will be satisfied when matched against a context graph
+            where one of the requested resource's tags is tag B:
+          </p>
+          <pre
+            id="verifiable-credentials-matcher-example-authorization-graph"
+            class="example example-authorization-graph"
+          >
+  ex:matcherA
+    acp:tag ex:tagB .
+</pre
+          >
 
           <section
             datatype="rdf:HTML"
