@@ -508,6 +508,27 @@
             </li>
           </ol>
         </li>
+
+        <li class="tocline">
+          <a href="#solid-acp" class="tocxref"
+            ><span class="secno">5</span>Solid ACP</a
+          >
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#resource-management" class="tocxref"
+                ><span class="secno">5.1</span>Resource management</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#access-control-resource-editing" class="tocxref"
+                ><span class="secno">5.2</span>Access control resource
+                editing</a
+              >
+            </li>
+          </ol>
+        </li>
       </ol>
     </nav>
     <main>
@@ -2269,6 +2290,95 @@
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":access-modes-extensibility"
+            property="bibo:hasPart"
+          ></section>
+        </section>
+        <h2 class="heading settled" data-level="5" id="solid-acp">
+          <span class="secno">5. </span><span class="content">Solid ACP</span
+          ><a class="self-link" href="#solid-acp"></a>
+        </h2>
+        <p>
+          This section introduces how ACP may be used in the Solid ecosystem.
+        </p>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":solid-acp"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading settled" data-level="5.1" id="resource-management">
+            <span class="secno">5.1. </span
+            ><span class="content">Resource management</span
+            ><a class="self-link" href="#resource-management"></a>
+          </h3>
+          <p>Access control resources MUST be server managed.</p>
+          <p>
+            There is a one to one relationship between an access control
+            resource and the resource it mandates access permissions over.
+            Therefore, when a resource is created or deleted, the access control
+            resource corresponding to it SHOULD be created or deleted
+            accordingly.
+          </p>
+          <p>
+            Access controls, policies and matchers can all be kept in separate
+            resources that have their own access control resource mandating
+            access permissions over them.
+          </p>
+          <p>
+            As long as an access control, a policy or a matcher is referenced by
+            an access control resource, it SHOULD not be deleted. However, if
+            such consistency cannot be enforced and an access control, a policy
+            or a matcher ceased to be accessible, then access permissions
+            resolution should fail to its default behaviour of only granting
+            read and write access to the failing access control resource to its
+            owner(s); read and write access should not be implicitly granted to
+            a resource whose access control resolution fails, even to owners of
+            that resource.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":resource-management"
+            property="bibo:hasPart"
+          ></section>
+          <h3
+            class="heading settled"
+            data-level="5.2"
+            id="access-control-resource-editing"
+          >
+            <span class="secno">5.2. </span
+            ><span class="content">Access control resource editing</span
+            ><a class="self-link" href="#access-control-resource-editing"></a>
+          </h3>
+          <p>
+            The owner of a storage is implicitly considered an owner of all the
+            resources in the URI space corresponding to storage.
+          </p>
+          <p>
+            An owner of a resource is implicitly considered an owner of its
+            associated access control resource.
+          </p>
+          <p>
+            An owner of an access control resource implicitly has full read and
+            write access over it.
+          </p>
+          <p>
+            To add an access control to or remove an access control from an
+            access control resource, agents that are not owners of that access
+            control resource need read and write access to both the access
+            control resource itself and to the resource where said access
+            control is defined. In other words, access controls defined as part
+            of a separate resource can be protected from unwanted edits in and
+            out of access control resources by setting adequate permissions in
+            their own access control resource.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":access-control-resource-editing"
             property="bibo:hasPart"
           ></section>
         </section>
