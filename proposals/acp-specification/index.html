@@ -1639,10 +1639,13 @@
               </dd>
             </dl>
             <div about="acp:Policy" property="rdfs:comment">
-              <p>An access mode MUST be granted if:</p>
+              <p>
+                An access mode MUST be granted over a resource if and only if in
+                the set of policies mandating access over it:
+              </p>
               <ul>
-                <li>A policy that is satisfied allows it; and</li>
-                <li>No policy that is satisfied denies it.</li>
+                <li>A satisfied policy allows it; and</li>
+                <li>No satisfied policy denies it.</li>
               </ul>
               <p>
                 ACP doesn't define its own access modes, instead it reuses
