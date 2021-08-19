@@ -327,8 +327,15 @@
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#acp-example" class="tocxref"
-                ><span class="secno">1.4</span>ACP example</a
+              <a href="#example-graphs" class="tocxref"
+                ><span class="secno">1.4</span>Example graphs</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#data-model" class="tocxref"
+                ><span class="secno">1.5</span>Data model</a
               >
             </li>
           </ol>
@@ -516,9 +523,10 @@
         </h2>
         <p>
           This section introduces ACP with an overview of key terminology, an
-          explanation of the conventions used in this document, and an example
+          explanation of the conventions used in this document, example graphs
           to illustrate basic concepts of resource access description and
-          validation.
+          validation, and a diagram representing the main elements of the ACP
+          data model.
         </p>
 
         <section
@@ -696,8 +704,8 @@
           </table>
           <p>
             Throughout the document, color-coded boxes containing RDF graphs in
-            Turtle syntax will appear. These fragments of Turtle documents use
-            the prefix bindings given above.
+            Turtle syntax will appear. These RDF representations implicitly use
+            the prefix bindings defined above.
           </p>
           <pre
             id="acp-example-context-graph"
@@ -777,10 +785,10 @@
             resource=":conformance"
             property="bibo:hasPart"
           ></section>
-          <h3 class="heading settled" data-level="1.4" id="acp-example">
+          <h3 class="heading settled" data-level="1.4" id="example-graphs">
             <span class="secno">1.4. </span
-            ><span class="content">ACP example</span
-            ><a class="self-link" href="#acp-example"></a>
+            ><span class="content">Example graphs</span
+            ><a class="self-link" href="#example-graphs"></a>
           </h3>
           <p><em>This section is non-normative.</em></p>
           <p>
@@ -876,7 +884,22 @@
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":acp-example"
+            resource=":example-graphs"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="1.5" id="data-model">
+            <span class="secno">1.5. </span
+            ><span class="content">Data model</span
+            ><a class="self-link" href="#data-model"></a>
+          </h3>
+          <p><em>This section is non-normative.</em></p>
+          <p>The following diagram illustrates the main elements of ACP.</p>
+          <img alt="ACP Data Model" src="acp-data-model.svg" width="100%" />
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":data-model"
             property="bibo:hasPart"
           ></section>
         </section>
