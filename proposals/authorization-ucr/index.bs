@@ -1335,18 +1335,18 @@ thus if it can be, for example, liked, bookmarked, archived by everyone.
 
 ### Delegating subset of received access to another agent ### {#uc-delegation-subset}
 
-An organization *ACME*, grants Alice read-write access to one of their projects.
-Alice wants to get opinion from Bob who doesn't have any access granted directly by *ACME*.
+An organization, *ACME*, grants Alice read-write access to one of their projects.
+Alice wants to get an opinion from Bob, who doesn't have any access granted directly by *ACME*.
 Alice needs to enable Bob to have read access to that project of *ACME*. She could:
 * Save the information as files and share them with Bob
-* Automate taking snapshots and sharing of the latest version with Bob each time the project gets updated
-* Setup a proxy which would allow Bob to have specific limited access impersonating Alice
+* Automate taking snapshots and sharing the latest version with Bob each time the project gets updated
+* Set up a proxy which would allow Bob to have specific limited access impersonating Alice
 
-Luckily *ACME* supports access delegation which alows Alice to simply delegate read-only
+However, *ACME* supports access delegation, which allows Alice to simply delegate read-only
 access to that *ACME* project to Bob.
 
-NOTE: This scenario can be combined with [Limiting application access while not acting as resource controller](#uc-client-constraints)
-where Bob needs to authorize application of his choice to excercise read-only access delegated to him by Alice
+NOTE: This scenario can be combined with [Limiting application access while not acting as resource controller](#uc-client-constraints),
+where Bob needs to authorize application(s) of his choice to exercise the read-only access delegated to him by Alice.
 
 NOTE: See also [OAuth 2.0 Token Exchange - 1.1.  Delegation vs. Impersonation Semantics](https://datatracker.ietf.org/doc/html/rfc8693#section-1.1)
 
