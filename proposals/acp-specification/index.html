@@ -493,29 +493,34 @@
         </li>
 
         <li class="tocline">
+          <a href="#server-capabilities" class="tocxref"
+            ><span class="secno">5</span>Server capabilities</a
+          >
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#options-discovery" class="tocxref"
+                ><span class="secno">5.1</span>Options discovery</a
+              >
+            </li>
+          </ol>
+        </li>
+
+        <li class="tocline">
           <a href="#solid-acp" class="tocxref"
-            ><span class="secno">5</span>Solid ACP</a
+            ><span class="secno">6</span>Solid ACP</a
           >
           <ol class="toc">
             <li class="tocline">
               <a href="#resource-management" class="tocxref"
-                ><span class="secno">5.1</span>Resource management</a
+                ><span class="secno">6.1</span>Resource management</a
               >
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
               <a href="#access-control-resource-editing" class="tocxref"
-                ><span class="secno">5.2</span>Access control resource
+                ><span class="secno">6.2</span>Access control resource
                 editing</a
-              >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#authorization-server-capabilities" class="tocxref"
-                ><span class="secno">5.3</span>Authorization server
-                capaibilities</a
               >
             </li>
           </ol>
@@ -1752,12 +1757,6 @@
 </pre
           >
 
-          <!--
-  TODO:
-  - HOW TO DISCOVER Matchers
-  - HOW TO COMMUNICATE CAPABILITIES (context predicates) OF AN ACP ENGINE
--->
-
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
@@ -2285,8 +2284,82 @@
             property="bibo:hasPart"
           ></section>
         </section>
-        <h2 class="heading settled" data-level="5" id="solid-acp">
-          <span class="secno">5. </span><span class="content">Solid ACP</span
+        <h2 class="heading settled" data-level="5" id="server-capabilities">
+          <span class="secno">5. </span
+          ><span class="content">Server capabilities</span
+          ><a class="self-link" href="#server-capabilities"></a>
+        </h2>
+        <p>
+          This section introduces how ACP servers must advertise their
+          capabilities.
+        </p>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":server-capabilities"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading settled" data-level="5.1" id="options-discovery">
+            <span class="secno">5.1. </span
+            ><span class="content">Options discovery</span
+            ><a class="self-link" href="#options-discovery"></a>
+          </h3>
+          <p>
+            When a server wants to enable applications to discover its ACP
+            capabilities, it MUST do so via link headers.
+          </p>
+          <p>
+            The server MUST advertise the access modes it supports by responding
+            to HTTP OPTIONS requests over ACP access control resources including
+            a Link header with the rel value of
+            <code>http://www.w3.org/ns/solid/acp#mode</code> and the full URI of
+            an access mode as link target [RFC8288]. The server MUST produce one
+            such Link header for each access mode it supports.
+          </p>
+          <p>
+            For example, if a server supports the ACL read, write and append
+            access modes, it should advertise it by responding to HTTP OPTIONS
+            requests over ACP access control resources including three link
+            headers with rel value of
+            <code>http://www.w3.org/ns/solid/acp#mode</code> and respectively
+            targets of <code>http://www.w3.org/ns/auth/acl#Read</code>,
+            <code>http://www.w3.org/ns/auth/acl#Write</code> and
+            <code>http://www.w3.org/ns/auth/acl#Append</code> in order to make
+            it explicit which set of access modes are understood and relevant
+            when editing ACP policies.
+          </p>
+          <p>
+            The server MUST advertise the request attributes it supports by
+            responding to HTTP OPTIONS requests over ACP access control
+            resources including a Link header with the rel value of
+            <code>http://www.w3.org/ns/solid/acp#attribute</code> and the full
+            URI of an acp attribute as link target [RFC8288]. The server MUST
+            produce one such Link header for each request attribute it supports.
+          </p>
+          <p>
+            For example, if a server supports the ACP agent, client and issuer
+            request attributes, it should advertise it by responding to HTTP
+            OPTIONS requests over ACP access control resources including three
+            link headers with rel value of
+            <code>http://www.w3.org/ns/solid/acp#attribute</code> and
+            respectively targets of
+            <code>http://www.w3.org/ns/solid/acp#agent</code>,
+            <code>http://www.w3.org/ns/solid/acp#client</code> and
+            <code>http://www.w3.org/ns/solid/acp#issuer</code> in order to make
+            it explicit which set of request attributes are understood and
+            relevant when editing ACP matchers.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":options-discovery"
+            property="bibo:hasPart"
+          ></section>
+        </section>
+        <h2 class="heading settled" data-level="6" id="solid-acp">
+          <span class="secno">6. </span><span class="content">Solid ACP</span
           ><a class="self-link" href="#solid-acp"></a>
         </h2>
         <p>
@@ -2299,8 +2372,8 @@
           resource=":solid-acp"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="5.1" id="resource-management">
-            <span class="secno">5.1. </span
+          <h3 class="heading settled" data-level="6.1" id="resource-management">
+            <span class="secno">6.1. </span
             ><span class="content">Resource management</span
             ><a class="self-link" href="#resource-management"></a>
           </h3>
@@ -2337,10 +2410,10 @@
           ></section>
           <h3
             class="heading settled"
-            data-level="5.2"
+            data-level="6.2"
             id="access-control-resource-editing"
           >
-            <span class="secno">5.2. </span
+            <span class="secno">6.2. </span
             ><span class="content">Access control resource editing</span
             ><a class="self-link" href="#access-control-resource-editing"></a>
           </h3>
@@ -2371,55 +2444,6 @@
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":access-control-resource-editing"
-            property="bibo:hasPart"
-          ></section>
-          <h3
-            class="heading settled"
-            data-level="5.3"
-            id="authorization-server-capabilities"
-          >
-            <span class="secno">5.3. </span
-            ><span class="content">Authorization server capaibilities</span
-            ><a class="self-link" href="#authorization-server-capabilities"></a>
-          </h3>
-          <p>
-            A Solid server using an ACP server as authorization server may
-            advertise its capabilities in a
-            <code>.well-known/authorization-server-configuration</code> file.
-          </p>
-          <p>
-            The variable parts of an ACP authorization server that need to be
-            advertised are the request attributes and access modes supported.
-          </p>
-          <p>
-            For example, a solid server matching the agent, client and issuer
-            request attributes and accepting the ACL Read, Write and Append
-            access modes could advertise its capabilities as follows:
-          </p>
-          <pre
-            id="authorization-server-capabilities-example-well-known"
-            class="example example-well-known"
-          >
-{
-  "authorization_endpoint": "https://example.com/authorization",
-  "access_modes_supported": [
-    "http://www.w3.org/ns/auth/acl#Read",
-    "http://www.w3.org/ns/auth/acl#Write",
-    "http://www.w3.org/ns/auth/acl#Append"
-  ],
-  "request_attributes_supported": [
-    "http://www.w3.org/ns/solid/acp#agent",
-    "http://www.w3.org/ns/solid/acp#client",
-    "http://www.w3.org/ns/solid/acp#issuer"
-  ],
-}
-</pre
-          >
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":authorization-server-capabilities"
             property="bibo:hasPart"
           ></section>
         </section>
