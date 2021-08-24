@@ -221,7 +221,7 @@ acp:AuthenticatedAgent
 
 acp:CreatorAgent
   a owl:NamedIndividual ;
-  rdfs:comment "The ACP Creator Agent matches all contexts where the creator matches the defined agent. In an authorization graph, the ACP Creator Agent can be used as the object in a triple where the subject is a matcher and the predicate is acp:agent."""@en ;
+  rdfs:comment "The ACP Creator Agent matches all contexts where the creator matches the defined agent. In an authorization graph, the ACP Creator Agent can be used as the object in a triple where the subject is a matcher and the predicate is acp:agent."@en ;
   rdfs:isDefinedBy acp: ;
   rdfs:label "Creator Agent"@en .
 
