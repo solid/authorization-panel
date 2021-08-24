@@ -3,7 +3,7 @@
   about="https://solidproject.org/TR/acp#"
   dir="ltr"
   typeof="doap:Specification schema:Article"
-  prefix=": https://solidproject.org/TR/acp# rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# acp: http://www.w3.org/ns/solid/acp# dc: http://purl.org/dc/terms/ doap: http://usefulinc.com/ns/doap# bibo: http://purl.org/ontology/bibo/ schema: http://schema.org/ "
+  prefix=": https://solidproject.org/TR/acp# rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# acp: http://www.w3.org/ns/solid/acp# dc: http://purl.org/dc/terms/ doap: http://usefulinc.com/ns/doap# bibo: http://purl.org/ontology/bibo/ schema: http://schema.org/ vann: http://purl.org/vocab/vann/ "
   lang="en"
 >
   <head>
@@ -180,7 +180,7 @@
         </dd>
         <dt>Published:</dt>
         <dd>
-          <time datatype="xsd:date" property="schema:datePublished"
+          <time about="acp:" datatype="xsd:date" property="dc:issued"
             >2021-08-19</time
           >
         </dd>
@@ -222,9 +222,15 @@
       <h2 id="abstract">Abstract</h2>
       <div property="dc:abstract">
         <p>
-          This document defines the Access Control Policy Language (ACP), a
-          language for defining sets of conditions mandating access permissions
-          over resources.
+          This document defines the Access Control Policy Language.
+          <span about="acp:" typeof="owl:Ontology" property="rdfs:comment"
+            >The
+            <span property="rdfs:label"
+              >Access Control Policy Language (ACP)</span
+            >
+            is a language for defining sets of conditions mandating access
+            permissions over resources.</span
+          >
         </p>
       </div>
     </section>
@@ -653,11 +659,15 @@
                 <th>Prefix</th>
                 <th>Namespace</th>
               </tr>
-              <tr>
-                <td><code>acp:</code></td>
+              <tr about="acp:">
+                <td>
+                  <code property="vann:preferredNamespacePrefix">acp:</code>
+                </td>
                 <td>
                   <code
-                    ><a href="http://www.w3.org/ns/solid/acp#"
+                    ><a
+                      href="http://www.w3.org/ns/solid/acp#"
+                      property="vann:preferredNamespaceUri"
                       >http://www.w3.org/ns/solid/acp#</a
                     ></code
                   >
@@ -1666,12 +1676,12 @@
               </ul>
               <p>
                 ACP doesn't define its own access modes, instead it reuses
-                access modes defined elsewhere. For example, the
+                access modes defined elsewhere. For example, it could use the
                 <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a>
-                defines <code>acl:Read</code>; <code>acl:Write</code>; and
-                <code>acl:Append</code>. Other access modes can be defined to
-                fit the specific needs of an application, see also:
-                <a href="#access-mode-extensibility"
+                defined <code>acl:Read</code>; <code>acl:Write</code>; and
+                <code>acl:Append</code>. Access modes can be defined to fit the
+                specific needs of an application, see also:
+                <a href="#access-modes-extensibility"
                   >Access Mode Extensibility</a
                 >.
               </p>
