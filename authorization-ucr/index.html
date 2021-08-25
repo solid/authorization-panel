@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version 4f053d00e, updated Tue Aug 10 14:13:32 2021 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/authorization-ucr/" rel="canonical">
-  <meta content="57fb2da07c0216e6a5743c5405ce49013d2818d7" name="document-revision">
+  <meta content="b2d4dca20c8c0249e5a2e7254d44f113b83d5146" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -515,10 +515,11 @@ dfn > a.self-link::before      { content: "#"; }
       <li><a href="#uc-inheritance"><span class="secno">2.3</span> <span class="content">Collection resource inherited access</span></a>
       <li><a href="#uc-conditional"><span class="secno">2.4</span> <span class="content">Conditional access</span></a>
       <li><a href="#uc-applications"><span class="secno">2.5</span> <span class="content">Permissioning Applications</span></a>
-      <li><a href="#uc-privacy"><span class="secno">2.6</span> <span class="content">Privacy</span></a>
-      <li><a href="#uc-trust"><span class="secno">2.7</span> <span class="content">Trust</span></a>
-      <li><a href="#uc-validation"><span class="secno">2.8</span> <span class="content">Validation</span></a>
-      <li><a href="#uc-capabilities"><span class="secno">2.9</span> <span class="content">Capabilities</span></a>
+      <li><a href="#uc-delegation"><span class="secno">2.6</span> <span class="content">Delegation</span></a>
+      <li><a href="#uc-privacy"><span class="secno">2.7</span> <span class="content">Privacy</span></a>
+      <li><a href="#uc-trust"><span class="secno">2.8</span> <span class="content">Trust</span></a>
+      <li><a href="#uc-validation"><span class="secno">2.9</span> <span class="content">Validation</span></a>
+      <li><a href="#uc-capabilities"><span class="secno">2.10</span> <span class="content">Capabilities</span></a>
      </ol>
     <li>
      <a href="#requirements"><span class="secno">3</span> <span class="content">Functional Requirements</span></a>
@@ -659,7 +660,7 @@ or a resume cover letter.</p>
    <p>She creates a <code>recommendations</code> resource, and grants <a data-link-type="dfn" href="#append-access" id="ref-for-append-access②">append access</a> to the <code>contacts</code> <a data-link-type="dfn" href="#authorization-group" id="ref-for-authorization-group">authorization group</a>, which represents every professional
 contact in her virtual rolodex. She sends a mass-mail to <code>contacts</code>, with a
 link to an app they can use to submit a recommendation, which will be appended
-to <code>recommendations</code>. Since they only have <a data-link-type="dfn" href="#append-access" id="ref-for-append-access③">append access</a> and not <a data-link-type="dfn" href="#read-access" id="ref-for-read-access④">read access</a>, 
+to <code>recommendations</code>. Since they only have <a data-link-type="dfn" href="#append-access" id="ref-for-append-access③">append access</a> and not <a data-link-type="dfn" href="#read-access" id="ref-for-read-access④">read access</a>,
 they can add to <code>recommendations</code> but they cannot see
 recommendations that have already been added.</p>
    <div class="assertion">
@@ -709,7 +710,7 @@ active. This is much more intuitive and easy for Alice.</p>
     </ul>
    </div>
    <h4 class="heading settled" data-level="2.1.9" id="basic-public"><span class="secno">2.1.9. </span><span class="content">Public access</span><a class="self-link" href="#basic-public"></a></h4>
-   <p>Alice decides <code>resume</code> is ready to share with everyone, so she gives <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">read access</a> to the public (everyone), and shares a link to it on 
+   <p>Alice decides <code>resume</code> is ready to share with everyone, so she gives <a data-link-type="dfn" href="#read-access" id="ref-for-read-access⑦">read access</a> to the public (everyone), and shares a link to it on
 several job boards.</p>
    <div class="assertion">
     <ul>
@@ -753,7 +754,7 @@ moves through a job interview process.</p>
 deliverables she’s produced throughout her career, along with <a data-link-type="dfn" href="#collection" id="ref-for-collection④">collections</a> of
 deliverables from larger scale projects that she’s worked on.</p>
    <p>The <code>portfolio</code> <a data-link-type="dfn" href="#resource" id="ref-for-resource④">resource</a> itself includes summary information about the
-portfolio as a whole. For example, Alice details why she chose to include 
+portfolio as a whole. For example, Alice details why she chose to include
 the items together as a representation of her work.</p>
    <figure>
     <figcaption>Alice’s portfolio and opportunities <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤">collections</a> at
@@ -772,8 +773,8 @@ https://alice.example/</figcaption>
       <tr>
        <td><code>portfolio/</code>
        <td><a data-link-type="dfn" href="#collection" id="ref-for-collection⑥">Collection</a>
-       <td>Resource includes summary information about the portfolio as a 
-        whole. Member <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤">resources</a> include individual documents she’s produced, 
+       <td>Resource includes summary information about the portfolio as a
+        whole. Member <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤">resources</a> include individual documents she’s produced,
         and collections of deliverables from projects she’s worked on.
       <tr>
        <td><code>-- document1</code>
@@ -925,7 +926,7 @@ opportunities, but none of the others will see them.</p>
 also have materials they can add to the <code>portfolio</code>, but he needs to lookup
 their information.</p>
    <p>Alice trusts Bob with the contents of the <code>project1</code> collection, since it’s
-the output of their shared work. She gives him <a data-link-type="dfn" href="#read-permission-access" id="ref-for-read-permission-access">read permission access</a> and <a data-link-type="dfn" href="#write-permission-access" id="ref-for-write-permission-access">write permission access</a> to <code>project1</code> so that he can help her 
+the output of their shared work. She gives him <a data-link-type="dfn" href="#read-permission-access" id="ref-for-read-permission-access">read permission access</a> and <a data-link-type="dfn" href="#write-permission-access" id="ref-for-write-permission-access">write permission access</a> to <code>project1</code> so that he can help her
 invite other colleagues from the past to add <a data-link-type="dfn" href="#resource" id="ref-for-resource②①">resources</a> to it.</p>
    <div class="assertion">
     <ul>
@@ -1088,8 +1089,8 @@ the <a data-link-type="dfn" href="#collection" id="ref-for-collection③⑦">col
     <li data-md>
      <p><a data-link-type="dfn" href="#create-access" id="ref-for-create-access③">Create access</a> so that they can add new readings. They cannot modify
 readings after they are recorded, because they do not have <a data-link-type="dfn" href="#write-access" id="ref-for-write-access②">write access</a>,
-and they cannot remove them, because they do not have <a data-link-type="dfn" href="#delete-access" id="ref-for-delete-access①">delete access</a>. 
-This provides confidence that readings 
+and they cannot remove them, because they do not have <a data-link-type="dfn" href="#delete-access" id="ref-for-delete-access①">delete access</a>.
+This provides confidence that readings
 are not manipulated after the fact.</p>
    </ul>
    <div class="assertion">
@@ -1188,7 +1189,7 @@ the <a data-link-type="dfn" href="#collection" id="ref-for-collection④③">col
 contents of the resources in the <a data-link-type="dfn" href="#collection" id="ref-for-collection④④">collection</a></p>
     <li data-md>
      <p><a data-link-type="dfn" href="#read-permission-access" id="ref-for-read-permission-access①">Read permission access</a> and <a data-link-type="dfn" href="#write-permission-access" id="ref-for-write-permission-access①">write permission access</a> allowing her
-to read and manage permissions for all of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④⓪">resources</a> and 
+to read and manage permissions for all of the <a data-link-type="dfn" href="#resource" id="ref-for-resource④⓪">resources</a> and
 included within it.</p>
    </ul>
    <div class="assertion">
@@ -1395,8 +1396,8 @@ the end of her current academic term on June 30th, 2020.</p>
    <p>The <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤③">collection</a> contains measurements for all trial
 participants, across all trials.</p>
    <p>Felicia has granted Erin <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③③">read access</a> to the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤④">collection</a>,
-and inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③④">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑥">write access</a> to the <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⓪">resources</a> in the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑤">collection</a>. Felicia adds a 
-time-based condition for Erin which states that this access 
+and inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③④">read access</a> and <a data-link-type="dfn" href="#write-access" id="ref-for-write-access⑥">write access</a> to the <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤⓪">resources</a> in the <code>measurements</code> <a data-link-type="dfn" href="#collection" id="ref-for-collection⑤⑤">collection</a>. Felicia adds a
+time-based condition for Erin which states that this access
 is only valid through June 30th, 2020.</p>
    <p>Erin will have no access to <code>measurements</code> after June 30th, 2020.</p>
    <div class="assertion">
@@ -1461,7 +1462,7 @@ measurements. Reports are often amended to reference additional measurements
 over time.</p>
    <p>When Felicia prepares a new report <code>/reports/report-1</code>, she authorizes only
 the senior research team members receiving the report to have inherited <a data-link-type="dfn" href="#read-access" id="ref-for-read-access③⑦">read
-access</a> to <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤④">resources</a> in <code>measurements</code>, with a condition that a given 
+access</a> to <a data-link-type="dfn" href="#resource" id="ref-for-resource⑤④">resources</a> in <code>measurements</code>, with a condition that a given
 measurement must be
 related to <code>/reports/report-1</code> by an <code>ex:hasMeasurement</code> predicate for that
 access to be permitted.</p>
@@ -1712,8 +1713,26 @@ thus if it can be, for example, liked, bookmarked, archived by everyone.</p>
       <p><a href="#req-write">§ 3.3.5 The system shall allow the ability to change any of the existing contents of a certain resource to be limited.</a></p>
     </ul>
    </div>
-   <h3 class="heading settled" data-level="2.6" id="uc-privacy"><span class="secno">2.6. </span><span class="content">Privacy</span><a class="self-link" href="#uc-privacy"></a></h3>
-   <h4 class="heading settled" data-level="2.6.1" id="uc-whopermitted"><span class="secno">2.6.1. </span><span class="content">Limiting access to who else is permitted</span><a class="self-link" href="#uc-whopermitted"></a></h4>
+   <h3 class="heading settled" data-level="2.6" id="uc-delegation"><span class="secno">2.6. </span><span class="content">Delegation</span><a class="self-link" href="#uc-delegation"></a></h3>
+   <h4 class="heading settled" data-level="2.6.1" id="uc-delegation-subset"><span class="secno">2.6.1. </span><span class="content">Delegating subset of received access to another agent</span><a class="self-link" href="#uc-delegation-subset"></a></h4>
+   <p>An organization, <em>ACME</em>, grants Alice read-write access to one of their projects.
+Alice wants to get an opinion from Bob, who doesn’t have any access granted directly by <em>ACME</em>.
+Alice needs to enable Bob to have read access to that project of <em>ACME</em>. She could:</p>
+   <ul>
+    <li data-md>
+     <p>Save the information as files and share them with Bob</p>
+    <li data-md>
+     <p>Automate taking snapshots and sharing the latest version with Bob each time the project gets updated</p>
+    <li data-md>
+     <p>Set up a proxy which would allow Bob to have specific limited access impersonating Alice</p>
+   </ul>
+   <p>However, <em>ACME</em> supports access delegation, which allows Alice to simply delegate read-only
+access to that <em>ACME</em> project to Bob.</p>
+   <p class="note" role="note"><span>NOTE:</span> This scenario can be combined with <a href="#uc-client-constraints">Limiting application access while not acting as resource controller</a>,
+where Bob needs to authorize application(s) of his choice to exercise the read-only access delegated to him by Alice.</p>
+   <p class="note" role="note"><span>NOTE:</span> See also <a href="https://datatracker.ietf.org/doc/html/rfc8693#section-1.1">OAuth 2.0 Token Exchange - 1.1.  Delegation vs. Impersonation Semantics</a></p>
+   <h3 class="heading settled" data-level="2.7" id="uc-privacy"><span class="secno">2.7. </span><span class="content">Privacy</span><a class="self-link" href="#uc-privacy"></a></h3>
+   <h4 class="heading settled" data-level="2.7.1" id="uc-whopermitted"><span class="secno">2.7.1. </span><span class="content">Limiting access to who else is permitted</span><a class="self-link" href="#uc-whopermitted"></a></h4>
    <p>Alice is interviewing for a job with Carol. Alice is also interviewing for a
 job with Oscar, Carol’s direct competitor.</p>
    <p>Alice has given Carol and Oscar <a data-link-type="dfn" href="#read-access" id="ref-for-read-access④②">read access</a> to her <code>resume</code>.</p>
@@ -1730,8 +1749,8 @@ Alice has shared her <code>resume</code> with, despite having <a data-link-type=
       <p><a href="#req-read">§ 3.3.4 The system shall allow the ability to read a certain resource to be limited.</a></p>
     </ul>
    </div>
-   <h4 class="heading settled" data-level="2.6.2" id="uc-historyofchanges"><span class="secno">2.6.2. </span><span class="content">Limiting access to other authorization conditions</span><a class="self-link" href="#uc-historyofchanges"></a></h4>
-   <p>As an extension of <a href="#uc-whopermitted">§ 2.6.1 Limiting access to who else is permitted</a>, it is also important to Alice that
+   <h4 class="heading settled" data-level="2.7.2" id="uc-historyofchanges"><span class="secno">2.7.2. </span><span class="content">Limiting access to other authorization conditions</span><a class="self-link" href="#uc-historyofchanges"></a></h4>
+   <p>As an extension of <a href="#uc-whopermitted">§ 2.7.1 Limiting access to who else is permitted</a>, it is also important to Alice that
 that neither Carol nor Oscar be able to discern other characteristics of the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑤">authorizations</a> or conditions associated with Alice’s <code>resume</code>.</p>
    <p>For example, if the data Carol and Oscar saw in the resume was <a href="#conditional-filter">filtered</a> to only show a certain subset of her
 background, she wouldn’t want them to know that they were only seeing a
@@ -1744,9 +1763,9 @@ filtered view.</p>
       <p><a href="#req-read-permissions">§ 3.3.1 The system shall allow the ability to read the access permissions associated with a certain resource to be limited.</a></p>
     </ul>
    </div>
-   <h4 class="heading settled" data-level="2.6.3" id="uc-minimalcredentials"><span class="secno">2.6.3. </span><span class="content">Minimal Credential Disclosure</span><a class="self-link" href="#uc-minimalcredentials"></a></h4>
+   <h4 class="heading settled" data-level="2.7.3" id="uc-minimalcredentials"><span class="secno">2.7.3. </span><span class="content">Minimal Credential Disclosure</span><a class="self-link" href="#uc-minimalcredentials"></a></h4>
    <p>Following a link on a blog post, Alice comes to a resource that requires
-authentication. She could present one of many verifiable credentials (as per <a href="#capabilities-vc">§ 2.9.2 Possession of a verifiable credential</a>): three self-signed WebID credentials, four bank
+authentication. She could present one of many verifiable credentials (as per <a href="#capabilities-vc">§ 2.10.2 Possession of a verifiable credential</a>): three self-signed WebID credentials, four bank
 accounts, a drivers licence, two passports, a proof that she is over 18, a
 credential for her college and her university diploma, three club memberships
 as well as her FBI credential. The resource only requires proof of being
@@ -1761,7 +1780,7 @@ resource.</p>
       <p><a href="#req-vc-determine">§ 3.2.2 The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given resource.</a></p>
     </ul>
    </div>
-   <h4 class="heading settled" data-level="2.6.4" id="uc-limituri"><span class="secno">2.6.4. </span><span class="content">Limit information disclosure through URI</span><a class="self-link" href="#uc-limituri"></a></h4>
+   <h4 class="heading settled" data-level="2.7.4" id="uc-limituri"><span class="secno">2.7.4. </span><span class="content">Limit information disclosure through URI</span><a class="self-link" href="#uc-limituri"></a></h4>
    <p>A service with very high security and confidentiality requirements must
 publish resources without the URL for any resource leaking information about
 it’s content. This service publishes all these resources using the Tor
@@ -1829,8 +1848,8 @@ humanly readable and memorable names for its resources.</p>
       <p><a href="#req-uripath">§ 3.3.9 The system shall not rely on the URI structure to infer semantics about the type of resources.</a></p>
     </ul>
    </div>
-   <h3 class="heading settled" data-level="2.7" id="uc-trust"><span class="secno">2.7. </span><span class="content">Trust</span><a class="self-link" href="#uc-trust"></a></h3>
-   <h4 class="heading settled" data-level="2.7.1" id="uc-trustedissuers"><span class="secno">2.7.1. </span><span class="content">Only trust certain issuers of identity</span><a class="self-link" href="#uc-trustedissuers"></a></h4>
+   <h3 class="heading settled" data-level="2.8" id="uc-trust"><span class="secno">2.8. </span><span class="content">Trust</span><a class="self-link" href="#uc-trust"></a></h3>
+   <h4 class="heading settled" data-level="2.8.1" id="uc-trustedissuers"><span class="secno">2.8.1. </span><span class="content">Only trust certain issuers of identity</span><a class="self-link" href="#uc-trustedissuers"></a></h4>
    <p>Carol has a blog, and allows any <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent①">authenticated agent</a> (e.g., <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a>, <a data-link-type="biblio" href="#biblio-did">[DID]</a>) to comment on her blog posts.</p>
    <p>Unfortunately, anyone can setup an identity provider, so Carol would like to
 be able to recognize credentials issued from trustworthy identity providers.</p>
@@ -1842,7 +1861,7 @@ be able to recognize credentials issued from trustworthy identity providers.</p>
       <p><a href="#req-trusted-identity">§ 3.1.2 The system shall allow access to be limited based on the identity of the agent, only when that identity is issued by a trusted identity provider.</a></p>
     </ul>
    </div>
-   <h4 class="heading settled" data-level="2.7.2" id="uc-blockagents"><span class="secno">2.7.2. </span><span class="content">Block access to agents</span><a class="self-link" href="#uc-blockagents"></a></h4>
+   <h4 class="heading settled" data-level="2.8.2" id="uc-blockagents"><span class="secno">2.8.2. </span><span class="content">Block access to agents</span><a class="self-link" href="#uc-blockagents"></a></h4>
    <p>A nonpartisan group provides a public annotation service, and allows any <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent②">authenticated agent</a> to share fact-checked information.</p>
    <p>Unfortunately, there are bad actors that seek to expose misinformation and
 disinformation through the annotation service. The trusted moderators of the
@@ -1854,15 +1873,15 @@ future.</p>
       <p><a href="#req-agent-identity">§ 3.1.1 The system shall allow access to be limited based on the identity of the agent.</a></p>
     </ul>
    </div>
-   <h3 class="heading settled" data-level="2.8" id="uc-validation"><span class="secno">2.8. </span><span class="content">Validation</span><a class="self-link" href="#uc-validation"></a></h3>
+   <h3 class="heading settled" data-level="2.9" id="uc-validation"><span class="secno">2.9. </span><span class="content">Validation</span><a class="self-link" href="#uc-validation"></a></h3>
    <p>Juan likes to manage his <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑥">authorizations</a> manually. Every once in a while,
 Juan makes a typo, or accidentally saves the <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑦">authorization</a> in an
 incomplete state.</p>
    <p>Juan runs into trouble on systems where the authorization system implementation
 doesn’t properly validate, most often resulting in Juan getting locked out of
 the <a data-link-type="dfn" href="#resource" id="ref-for-resource⑥⑥">resource</a> and needing administrator assistance to recover.</p>
-   <h3 class="heading settled" data-level="2.9" id="uc-capabilities"><span class="secno">2.9. </span><span class="content">Capabilities</span><a class="self-link" href="#uc-capabilities"></a></h3>
-   <h4 class="heading settled" data-level="2.9.1" id="group-membership-vc"><span class="secno">2.9.1. </span><span class="content">Possession of a group membership verifiable credential</span><a class="self-link" href="#group-membership-vc"></a></h4>
+   <h3 class="heading settled" data-level="2.10" id="uc-capabilities"><span class="secno">2.10. </span><span class="content">Capabilities</span><a class="self-link" href="#uc-capabilities"></a></h3>
+   <h4 class="heading settled" data-level="2.10.1" id="group-membership-vc"><span class="secno">2.10.1. </span><span class="content">Possession of a group membership verifiable credential</span><a class="self-link" href="#group-membership-vc"></a></h4>
    <p>Omni Corp granted Acme Corp read-write access to three of their projects: A, B,
 and C. This grant allows all Acme Corp employees to have that access as long as
 they can present a membership credential issued by Acme Corp. At the time of
@@ -1872,7 +1891,7 @@ Corp doesn’t maintain a public list of their employees, so Omni Corp cannot
 know who is employed by Acme Corp unless that person presents a verifiable
 credential. Alice works for Acme Corp, and can now access the Omni Corp
 projects A, B, and C, using her membership credential issued by Acme Corp.</p>
-   <h4 class="heading settled" data-level="2.9.2" id="capabilities-vc"><span class="secno">2.9.2. </span><span class="content">Possession of a verifiable credential</span><a class="self-link" href="#capabilities-vc"></a></h4>
+   <h4 class="heading settled" data-level="2.10.2" id="capabilities-vc"><span class="secno">2.10.2. </span><span class="content">Possession of a verifiable credential</span><a class="self-link" href="#capabilities-vc"></a></h4>
    <p>Oscar has a medical condition that causes random and very serious seizures
 several times per year. Wherever Oscar is, he needs to be rushed immediately
 to the closest hospital in an ambulance.</p>
@@ -1895,7 +1914,7 @@ condition to treat him properly.</p>
       <p><a href="#req-vc-determine">§ 3.2.2 The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given resource.</a></p>
     </ul>
    </div>
-   <h4 class="heading settled" data-level="2.9.3" id="capabilities-link"><span class="secno">2.9.3. </span><span class="content">Possession of a link</span><a class="self-link" href="#capabilities-link"></a></h4>
+   <h4 class="heading settled" data-level="2.10.3" id="capabilities-link"><span class="secno">2.10.3. </span><span class="content">Possession of a link</span><a class="self-link" href="#capabilities-link"></a></h4>
    <p>Bob is about to give a confidential presentation to a group of his colleagues.
 His presentation is stored on his personal <a data-link-type="dfn" href="#resource-server" id="ref-for-resource-server⑧">resource server</a> at <code>https://bob.example/presentation</code>.</p>
    <p>Bob is having trouble hooking his laptop up to the projector, and needs to
@@ -1923,7 +1942,7 @@ or limiting access to a <a data-link-type="dfn" href="#resource" id="ref-for-res
    <h4 class="heading settled" data-level="3.1.1" id="req-agent-identity"><span class="secno">3.1.1. </span><span class="content">The system shall allow access to be limited based on the <a data-link-type="dfn" href="#identity" id="ref-for-identity③">identity</a> of the <a data-link-type="dfn" href="#agent" id="ref-for-agent③">agent</a>.</span><a class="self-link" href="#req-agent-identity"></a></h4>
    <div class="assertion"> Related use cases: <a href="#uc-basic">§ 2.1 Resource access</a>, <a href="#uc-collections">§ 2.2 Collection access</a> </div>
    <h4 class="heading settled" data-level="3.1.2" id="req-trusted-identity"><span class="secno">3.1.2. </span><span class="content">The system shall allow access to be limited based on the <a data-link-type="dfn" href="#identity" id="ref-for-identity④">identity</a> of the <a data-link-type="dfn" href="#agent" id="ref-for-agent④">agent</a>, only when that identity is issued by a trusted identity provider.</span><a class="self-link" href="#req-trusted-identity"></a></h4>
-   <div class="assertion"> Related use cases: <a href="#uc-trustedissuers">§ 2.7.1 Only trust certain issuers of identity</a> </div>
+   <div class="assertion"> Related use cases: <a href="#uc-trustedissuers">§ 2.8.1 Only trust certain issuers of identity</a> </div>
    <h4 class="heading settled" data-level="3.1.3" id="req-agent-group"><span class="secno">3.1.3. </span><span class="content">The system shall allow access to be limited to an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑤">agent</a> based on the <a data-link-type="dfn" href="#agent" id="ref-for-agent⑥">agent’s</a> membership in a certain group of <a data-link-type="dfn" href="#agent" id="ref-for-agent⑦">agents</a>.</span><a class="self-link" href="#req-agent-group"></a></h4>
    <div class="assertion"> Related use cases: <a href="#basic-group">§ 2.1.8 Group access</a> </div>
    <h4 class="heading settled" data-level="3.1.4" id="req-application"><span class="secno">3.1.4. </span><span class="content">The system shall allow access to be limited to an <a data-link-type="dfn" href="#agent" id="ref-for-agent⑧">agent</a> based on the client <a data-link-type="dfn" href="#application" id="ref-for-application②">application</a> in use by the <a data-link-type="dfn" href="#agent" id="ref-for-agent⑨">agent</a>.</span><a class="self-link" href="#req-application"></a></h4>
@@ -1936,12 +1955,12 @@ or limiting access to a <a data-link-type="dfn" href="#resource" id="ref-for-res
    <div class="assertion"> Related use cases: <a href="#basic-authenticated">§ 2.1.10 Logged in access</a> </div>
    <h3 class="heading settled" data-level="3.2" id="req-capabilities"><span class="secno">3.2. </span><span class="content">Access by capability</span><a class="self-link" href="#req-capabilities"></a></h3>
    <h4 class="heading settled" data-level="3.2.1" id="req-vc"><span class="secno">3.2.1. </span><span class="content">The system shall allow access to be limited to an <a data-link-type="dfn" href="#agent" id="ref-for-agent①③">agent</a> based on the <a data-link-type="dfn" href="#agent" id="ref-for-agent①④">agent’s</a> possession of a certain verifiable credential or capability.</span><a class="self-link" href="#req-vc"></a></h4>
-   <div class="assertion"> Related use cases: <a href="#capabilities-vc">§ 2.9.2 Possession of a verifiable credential</a>, <a href="#capabilities-link">§ 2.9.3 Possession of a link</a>, <a href="#uc-minimalcredentials">§ 2.6.3 Minimal Credential Disclosure</a> </div>
+   <div class="assertion"> Related use cases: <a href="#capabilities-vc">§ 2.10.2 Possession of a verifiable credential</a>, <a href="#capabilities-link">§ 2.10.3 Possession of a link</a>, <a href="#uc-minimalcredentials">§ 2.7.3 Minimal Credential Disclosure</a> </div>
    <h4 class="heading settled" data-level="3.2.2" id="req-vc-determine"><span class="secno">3.2.2. </span><span class="content">The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given <a data-link-type="dfn" href="#resource" id="ref-for-resource⑥⑨">resource</a>.</span><a class="self-link" href="#req-vc-determine"></a></h4>
-   <div class="assertion"> Related use cases: <a href="#capabilities-vc">§ 2.9.2 Possession of a verifiable credential</a>, <a href="#uc-minimalcredentials">§ 2.6.3 Minimal Credential Disclosure</a>, <a href="#conditional-payment">§ 2.4.7 Conditional access by payment</a> </div>
+   <div class="assertion"> Related use cases: <a href="#capabilities-vc">§ 2.10.2 Possession of a verifiable credential</a>, <a href="#uc-minimalcredentials">§ 2.7.3 Minimal Credential Disclosure</a>, <a href="#conditional-payment">§ 2.4.7 Conditional access by payment</a> </div>
    <h3 class="heading settled" data-level="3.3" id="req-resources"><span class="secno">3.3. </span><span class="content">Access to resources</span><a class="self-link" href="#req-resources"></a></h3>
    <h4 class="heading settled" data-level="3.3.1" id="req-read-permissions"><span class="secno">3.3.1. </span><span class="content">The system shall allow the ability to read the access permissions associated with a certain <a data-link-type="dfn" href="#resource" id="ref-for-resource⑦⓪">resource</a> to be limited.</span><a class="self-link" href="#req-read-permissions"></a></h4>
-   <div class="assertion"> Related use cases: <a href="#basic-read-permissions">§ 2.1.2 Read permissions</a>, <a href="#uc-whopermitted">§ 2.6.1 Limiting access to who else is permitted</a>, <a href="#uc-historyofchanges">§ 2.6.2 Limiting access to other authorization conditions</a> </div>
+   <div class="assertion"> Related use cases: <a href="#basic-read-permissions">§ 2.1.2 Read permissions</a>, <a href="#uc-whopermitted">§ 2.7.1 Limiting access to who else is permitted</a>, <a href="#uc-historyofchanges">§ 2.7.2 Limiting access to other authorization conditions</a> </div>
    <h4 class="heading settled" data-level="3.3.2" id="req-change-permissions"><span class="secno">3.3.2. </span><span class="content">The system shall allow the ability to change the access permissions associated with a certain <a data-link-type="dfn" href="#resource" id="ref-for-resource⑦①">resource</a> to be limited.</span><a class="self-link" href="#req-change-permissions"></a></h4>
    <div class="assertion"> Related use cases: <a href="#basic-change-permissions">§ 2.1.1 Change permissions</a> </div>
    <h4 class="heading settled" data-level="3.3.3" id="req-effective-modes"><span class="secno">3.3.3. </span><span class="content">The system shall provide the effective access permissions on a certain <a data-link-type="dfn" href="#resource" id="ref-for-resource⑦②">resource</a> or <a data-link-type="dfn" href="#collection" id="ref-for-collection⑦⓪">collection</a> as they relate to the <a data-link-type="dfn" href="#agent" id="ref-for-agent①⑤">agent</a> making the request, in the request response.</span><a class="self-link" href="#req-effective-modes"></a></h4>
@@ -1957,7 +1976,7 @@ or limiting access to a <a data-link-type="dfn" href="#resource" id="ref-for-res
    <h4 class="heading settled" data-level="3.3.8" id="req-creator"><span class="secno">3.3.8. </span><span class="content">The system shall allow for access to a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑦⑦">resource</a> or <a data-link-type="dfn" href="#collection" id="ref-for-collection⑦①">collection</a> to be limited to the <a data-link-type="dfn" href="#agent" id="ref-for-agent①⑥">agent</a> that created it.</span><a class="self-link" href="#req-creator"></a></h4>
    <div class="assertion"> Related use cases: <a href="#collection-readcreatedelete">§ 2.2.4 Read-create-delete access to a Collection</a> </div>
    <h4 class="heading settled" data-level="3.3.9" id="req-uripath"><span class="secno">3.3.9. </span><span class="content">The system shall not rely on the URI structure to infer semantics about the type of <a data-link-type="dfn" href="#resource" id="ref-for-resource⑦⑧">resources</a>.</span><a class="self-link" href="#req-uripath"></a></h4>
-   <div class="assertion"> Related use cases: <a href="#uc-limituri">§ 2.6.4 Limit information disclosure through URI</a> </div>
+   <div class="assertion"> Related use cases: <a href="#uc-limituri">§ 2.7.4 Limit information disclosure through URI</a> </div>
    <h3 class="heading settled" data-level="3.4" id="req-collections"><span class="secno">3.4. </span><span class="content">Access to collections</span><a class="self-link" href="#req-collections"></a></h3>
    <h4 class="heading settled" data-level="3.4.1" id="req-collection-read"><span class="secno">3.4.1. </span><span class="content">The system shall allow the ability to read a certain <a data-link-type="dfn" href="#collection" id="ref-for-collection⑦②">collection</a> to be limited, exposing only the data from the <a data-link-type="dfn" href="#collection" id="ref-for-collection⑦③">collection</a> resource itself, and a listing of its members, and excluding the contents of its members, or any metadata about them.</span><a class="self-link" href="#req-collection-read"></a></h4>
    <div class="assertion"> Related use cases: <a href="#collection-readonly">§ 2.2.1 Read-only access to a Collection</a>, <a href="#collection-readwrite">§ 2.2.2 Read-write access to a Collection</a>, <a href="#collection-readcreate">§ 2.2.3 Read-create access to a Collection</a>, <a href="#collection-readcreatedelete">§ 2.2.4 Read-create-delete access to a Collection</a> </div>
@@ -1970,7 +1989,7 @@ or limiting access to a <a data-link-type="dfn" href="#resource" id="ref-for-res
    <h4 class="heading settled" data-level="3.4.5" id="req-collection-creator"><span class="secno">3.4.5. </span><span class="content">The system shall allow for the creator of a <a data-link-type="dfn" href="#resource" id="ref-for-resource⑧①">resource</a> in a certain <a data-link-type="dfn" href="#collection" id="ref-for-collection⑦⑧">collection</a> to be automatically granted access to the created <a data-link-type="dfn" href="#resource" id="ref-for-resource⑧②">resource</a>.</span><a class="self-link" href="#req-collection-creator"></a></h4>
    <div class="assertion"> Related use cases: <a href="#collection-readcreatedelete">§ 2.2.4 Read-create-delete access to a Collection</a> </div>
    <h4 class="heading settled" data-level="3.4.6" id="req-collection-read-permissions"><span class="secno">3.4.6. </span><span class="content">The system shall allow the ability to read the access permissions associated with a certain <a data-link-type="dfn" href="#collection" id="ref-for-collection⑦⑨">collection</a> to be limited.</span><a class="self-link" href="#req-collection-read-permissions"></a></h4>
-   <div class="assertion"> Related use cases: <a href="#collection-control">§ 2.2.6 Manage permissions for a Collection</a>, <a href="#uc-whopermitted">§ 2.6.1 Limiting access to who else is permitted</a>, <a href="#uc-historyofchanges">§ 2.6.2 Limiting access to other authorization conditions</a> </div>
+   <div class="assertion"> Related use cases: <a href="#collection-control">§ 2.2.6 Manage permissions for a Collection</a>, <a href="#uc-whopermitted">§ 2.7.1 Limiting access to who else is permitted</a>, <a href="#uc-historyofchanges">§ 2.7.2 Limiting access to other authorization conditions</a> </div>
    <h4 class="heading settled" data-level="3.4.7" id="req-collection-change-permissions"><span class="secno">3.4.7. </span><span class="content">The system shall allow the ability to change the access permissions directly associated with a certain <a data-link-type="dfn" href="#collection" id="ref-for-collection⑧⓪">collection</a> to be limited.</span><a class="self-link" href="#req-collection-change-permissions"></a></h4>
    <div class="assertion"> Related use cases: <a href="#collection-control">§ 2.2.6 Manage permissions for a Collection</a> </div>
    <h3 class="heading settled" data-level="3.5" id="req-inherited"><span class="secno">3.5. </span><span class="content">Inherited access to collection resources</span><a class="self-link" href="#req-inherited"></a></h3>
@@ -2049,8 +2068,8 @@ their contents, or any metadata about them.</p>
 the resource is a <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪②">collection</a>, the contents of the <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪③">collection</a> resource
 itself can be modified, but <a data-link-type="dfn" href="#create-access" id="ref-for-create-access①①">create access</a> and <a data-link-type="dfn" href="#delete-access" id="ref-for-delete-access⑧">delete access</a> are
 required to create or delete <a data-link-type="dfn" href="#resource" id="ref-for-resource①①⑤">resources</a> from the <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪④">collection</a>.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="append-access">Append access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent③④">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑨">applications</a> to add data to the contents of a resource, but not modify 
-any of the existing contents. When the resource is a <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪⑤">collection</a>, the 
+   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="append-access">Append access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode③">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent③④">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application⑨">applications</a> to add data to the contents of a resource, but not modify
+any of the existing contents. When the resource is a <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪⑤">collection</a>, the
 contents of the <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪⑥">collection</a> resource
 itself can be added to, but <a data-link-type="dfn" href="#create-access" id="ref-for-create-access①②">create access</a> is required to add new <a data-link-type="dfn" href="#resource" id="ref-for-resource①①⑥">resources</a> to the <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪⑦">collection</a>.</p>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-access">Create access</dfn> is an <a data-link-type="dfn" href="#access-mode" id="ref-for-access-mode④">access mode</a> that allows <a data-link-type="dfn" href="#agent" id="ref-for-agent③⑤">agents</a> and/or <a data-link-type="dfn" href="#application" id="ref-for-application①⓪">applications</a> to add new <a data-link-type="dfn" href="#resource" id="ref-for-resource①①⑦">resources</a> to a given <a data-link-type="dfn" href="#collection" id="ref-for-collection①⓪⑧">collection</a>.</p>
@@ -2174,7 +2193,7 @@ collection.</p>
    <ul>
     <li><a href="#ref-for-identity">2. Use Cases</a>
     <li><a href="#ref-for-identity①">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-identity②">2.9.3. Possession of a link</a>
+    <li><a href="#ref-for-identity②">2.10.3. Possession of a link</a>
     <li><a href="#ref-for-identity③">3.1.1. The system shall allow access to be limited based on the identity of the agent.</a>
     <li><a href="#ref-for-identity④">3.1.2. The system shall allow access to be limited based on the identity of the agent, only when that identity is issued by a trusted identity provider.</a>
     <li><a href="#ref-for-identity⑤">4. Definitions</a> <a href="#ref-for-identity⑥">(2)</a>
@@ -2184,8 +2203,8 @@ collection.</p>
    <b><a href="#authenticated-agent">#authenticated-agent</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-authenticated-agent">2. Use Cases</a>
-    <li><a href="#ref-for-authenticated-agent①">2.7.1. Only trust certain issuers of identity</a>
-    <li><a href="#ref-for-authenticated-agent②">2.7.2. Block access to agents</a>
+    <li><a href="#ref-for-authenticated-agent①">2.8.1. Only trust certain issuers of identity</a>
+    <li><a href="#ref-for-authenticated-agent②">2.8.2. Block access to agents</a>
     <li><a href="#ref-for-authenticated-agent③">4. Definitions</a> <a href="#ref-for-authenticated-agent④">(2)</a>
    </ul>
   </aside>
@@ -2224,7 +2243,7 @@ collection.</p>
     <li><a href="#ref-for-resource-server⑤">2.4. Conditional access</a>
     <li><a href="#ref-for-resource-server⑥">2.5.1. Limiting access to trusted applications</a>
     <li><a href="#ref-for-resource-server⑦">2.5.3. Application determining access privileges</a>
-    <li><a href="#ref-for-resource-server⑧">2.9.3. Possession of a link</a>
+    <li><a href="#ref-for-resource-server⑧">2.10.3. Possession of a link</a>
     <li><a href="#ref-for-resource-server⑨">4. Definitions</a> <a href="#ref-for-resource-server①⓪">(2)</a>
    </ul>
   </aside>
@@ -2250,8 +2269,8 @@ collection.</p>
     <li><a href="#ref-for-resource⑤⑤">2.4.4. Conditional access by filter</a> <a href="#ref-for-resource⑤⑥">(2)</a> <a href="#ref-for-resource⑤⑦">(3)</a>
     <li><a href="#ref-for-resource⑤⑧">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-resource⑤⑨">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-resource⑥⓪">(2)</a> <a href="#ref-for-resource⑥①">(3)</a> <a href="#ref-for-resource⑥②">(4)</a>
-    <li><a href="#ref-for-resource⑥③">2.6.4. Limit information disclosure through URI</a> <a href="#ref-for-resource⑥④">(2)</a> <a href="#ref-for-resource⑥⑤">(3)</a>
-    <li><a href="#ref-for-resource⑥⑥">2.8. Validation</a>
+    <li><a href="#ref-for-resource⑥③">2.7.4. Limit information disclosure through URI</a> <a href="#ref-for-resource⑥④">(2)</a> <a href="#ref-for-resource⑥⑤">(3)</a>
+    <li><a href="#ref-for-resource⑥⑥">2.9. Validation</a>
     <li><a href="#ref-for-resource⑥⑦">3. Functional Requirements</a>
     <li><a href="#ref-for-resource⑥⑧">3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to.</a>
     <li><a href="#ref-for-resource⑥⑨">3.2.2. The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given resource.</a>
@@ -2307,7 +2326,7 @@ collection.</p>
     <li><a href="#ref-for-collection⑤⑧">2.4.3. Conditional access by relationship</a>
     <li><a href="#ref-for-collection⑤⑨">2.4.5. Conditional control boundaries</a> <a href="#ref-for-collection⑥⓪">(2)</a>
     <li><a href="#ref-for-collection⑥①">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-collection⑥②">(2)</a> <a href="#ref-for-collection⑥③">(3)</a> <a href="#ref-for-collection⑥④">(4)</a>
-    <li><a href="#ref-for-collection⑥⑤">2.6.4. Limit information disclosure through URI</a> <a href="#ref-for-collection⑥⑥">(2)</a> <a href="#ref-for-collection⑥⑦">(3)</a>
+    <li><a href="#ref-for-collection⑥⑤">2.7.4. Limit information disclosure through URI</a> <a href="#ref-for-collection⑥⑥">(2)</a> <a href="#ref-for-collection⑥⑦">(3)</a>
     <li><a href="#ref-for-collection⑥⑧">3. Functional Requirements</a>
     <li><a href="#ref-for-collection⑥⑨">3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to.</a>
     <li><a href="#ref-for-collection⑦⓪">3.3.3. The system shall provide the effective access permissions on a certain resource or collection as they relate to the agent making the request, in the request response.</a>
@@ -2349,9 +2368,9 @@ collection.</p>
     <li><a href="#ref-for-authorization①">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization②">(2)</a>
     <li><a href="#ref-for-authorization③">2.4.5. Conditional control boundaries</a>
     <li><a href="#ref-for-authorization④">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-authorization⑤">2.6.2. Limiting access to other authorization conditions</a>
-    <li><a href="#ref-for-authorization⑥">2.8. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
-    <li><a href="#ref-for-authorization⑧">2.9.3. Possession of a link</a>
+    <li><a href="#ref-for-authorization⑤">2.7.2. Limiting access to other authorization conditions</a>
+    <li><a href="#ref-for-authorization⑥">2.9. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
+    <li><a href="#ref-for-authorization⑧">2.10.3. Possession of a link</a>
     <li><a href="#ref-for-authorization⑨">4. Definitions</a> <a href="#ref-for-authorization①⓪">(2)</a> <a href="#ref-for-authorization①①">(3)</a>
    </ul>
   </aside>
@@ -2376,8 +2395,8 @@ collection.</p>
   <aside class="dfn-panel" data-for="capability">
    <b><a href="#capability">#capability</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-capability">2.9.2. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-capability①">2.9.3. Possession of a link</a>
+    <li><a href="#ref-for-capability">2.10.2. Possession of a verifiable credential</a>
+    <li><a href="#ref-for-capability①">2.10.3. Possession of a link</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="access-mode">
@@ -2414,9 +2433,9 @@ collection.</p>
     <li><a href="#ref-for-read-access③⑦">2.4.3. Conditional access by relationship</a>
     <li><a href="#ref-for-read-access③⑧">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-read-access③⑨">(2)</a> <a href="#ref-for-read-access④⓪">(3)</a>
     <li><a href="#ref-for-read-access④①">2.5.3. Application determining access privileges</a>
-    <li><a href="#ref-for-read-access④②">2.6.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access④③">(2)</a>
-    <li><a href="#ref-for-read-access④④">2.9.2. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-read-access④⑤">2.9.3. Possession of a link</a>
+    <li><a href="#ref-for-read-access④②">2.7.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access④③">(2)</a>
+    <li><a href="#ref-for-read-access④④">2.10.2. Possession of a verifiable credential</a>
+    <li><a href="#ref-for-read-access④⑤">2.10.3. Possession of a link</a>
     <li><a href="#ref-for-read-access④⑥">3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of.</a>
    </ul>
   </aside>
