@@ -506,33 +506,27 @@
         </li>
 
         <li class="tocline">
-          <a href="#server-capabilities" class="tocxref"
-            ><span class="secno">5</span>Server capabilities</a
+          <a href="#server-implementation" class="tocxref"
+            ><span class="secno">5</span>Server implementation</a
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#options-discovery" class="tocxref"
-                ><span class="secno">5.1</span>Options discovery</a
+              <a href="#capabilities-discovery" class="tocxref"
+                ><span class="secno">5.1</span>Capabilities discovery</a
               >
             </li>
           </ol>
-        </li>
-
-        <li class="tocline">
-          <a href="#solid-acp" class="tocxref"
-            ><span class="secno">6</span>Solid ACP</a
-          >
           <ol class="toc">
             <li class="tocline">
               <a href="#resource-management" class="tocxref"
-                ><span class="secno">6.1</span>Resource management</a
+                ><span class="secno">5.2</span>Resource management</a
               >
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
               <a href="#access-control-resource-editing" class="tocxref"
-                ><span class="secno">6.2</span>Access control resource
+                ><span class="secno">5.3</span>Access control resource
                 editing</a
               >
             </li>
@@ -540,7 +534,7 @@
           <ol class="toc">
             <li class="tocline">
               <a href="#access-control-resource-discovery" class="tocxref"
-                ><span class="secno">6.3</span>Access control resource
+                ><span class="secno">5.4</span>Access control resource
                 discovery</a
               >
             </li>
@@ -2371,26 +2365,31 @@
             property="bibo:hasPart"
           ></section>
         </section>
-        <h2 class="heading settled" data-level="5" id="server-capabilities">
+        <h2 class="heading settled" data-level="5" id="server-implementation">
           <span class="secno">5. </span
-          ><span class="content">Server capabilities</span
-          ><a class="self-link" href="#server-capabilities"></a>
+          ><span class="content">Server implementation</span
+          ><a class="self-link" href="#server-implementation"></a>
         </h2>
         <p>
-          This section introduces how ACP servers must advertise their
-          capabilities.
+          This section introduces how servers must advertise capabilities,
+          manage resources, restrict editing of access control resources and
+          enable access control resource discovery.
         </p>
 
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":server-capabilities"
+          resource=":server-implementation"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="5.1" id="options-discovery">
+          <h3
+            class="heading settled"
+            data-level="5.1"
+            id="capabilities-discovery"
+          >
             <span class="secno">5.1. </span
-            ><span class="content">Options discovery</span
-            ><a class="self-link" href="#options-discovery"></a>
+            ><span class="content">Capabilities discovery</span
+            ><a class="self-link" href="#capabilities-discovery"></a>
           </h3>
           <p>
             When a server wants to enable applications to discover its ACP
@@ -2441,26 +2440,11 @@
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":options-discovery"
+            resource=":capabilities-discovery"
             property="bibo:hasPart"
           ></section>
-        </section>
-        <h2 class="heading settled" data-level="6" id="solid-acp">
-          <span class="secno">6. </span><span class="content">Solid ACP</span
-          ><a class="self-link" href="#solid-acp"></a>
-        </h2>
-        <p>
-          This section introduces how ACP may be used in the Solid ecosystem.
-        </p>
-
-        <section
-          datatype="rdf:HTML"
-          typeof="bibo:Chapter"
-          resource=":solid-acp"
-          property="bibo:hasPart"
-        >
-          <h3 class="heading settled" data-level="6.1" id="resource-management">
-            <span class="secno">6.1. </span
+          <h3 class="heading settled" data-level="5.2" id="resource-management">
+            <span class="secno">5.2. </span
             ><span class="content">Resource management</span
             ><a class="self-link" href="#resource-management"></a>
           </h3>
@@ -2497,10 +2481,10 @@
           ></section>
           <h3
             class="heading settled"
-            data-level="6.2"
+            data-level="5.3"
             id="access-control-resource-editing"
           >
-            <span class="secno">6.2. </span
+            <span class="secno">5.3. </span
             ><span class="content">Access control resource editing</span
             ><a class="self-link" href="#access-control-resource-editing"></a>
           </h3>
@@ -2535,10 +2519,10 @@
           ></section>
           <h3
             class="heading settled"
-            data-level="6.3"
+            data-level="5.4"
             id="access-control-resource-discovery"
           >
-            <span class="secno">6.3. </span
+            <span class="secno">5.4. </span
             ><span class="content">Access control resource discovery</span
             ><a class="self-link" href="#access-control-resource-discovery"></a>
           </h3>
