@@ -537,6 +537,14 @@
               >
             </li>
           </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#access-control-resource-discovery" class="tocxref"
+                ><span class="secno">6.3</span>Access control resource
+                discovery</a
+              >
+            </li>
+          </ol>
         </li>
       </ol>
     </nav>
@@ -750,7 +758,7 @@
 
   _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceX .
+    acp:target ex:resourceX .
 </pre
           >
           <pre
@@ -783,7 +791,7 @@
 
   _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceX ;
+    acp:target ex:resourceX ;
     acp:mode acl:Read .
 </pre
           >
@@ -845,7 +853,7 @@
           >
   _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceX ;
+    acp:target ex:resourceX ;
     acp:client ex:ClientApplicationY ;
     acp:issuer ex:IdentityProviderZ .
 </pre
@@ -908,7 +916,7 @@
           >
   _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceX ;
+    acp:target ex:resourceX ;
     acp:client ex:ClientApplicationY ;
     acp:issuer ex:IdentityProviderZ ;
     acp:mode acl:Read .
@@ -1042,14 +1050,14 @@
                 >.</span
               >
             </dd>
-            <dt id="acp-resource"><code>acp:resource</code></dt>
-            <dd about="acp:resource" typeof="rdf:Property">
+            <dt id="acp-target"><code>acp:target</code></dt>
+            <dd about="acp:target" typeof="rdf:Property">
               <span property="rdfs:comment"
-                >A <span property="rdfs:label">resource</span> subjected to ACP
-                access control.</span
+                >A <span property="rdfs:label">target</span> resource subjected
+                to ACP access control.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              resource is a sub property of
+              target is a sub property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1156,7 +1164,7 @@
   _:context
     a acp:Context ;
     acp:agent ex:Bob ;
-    acp:resource ex:resourceX ;
+    acp:target ex:resourceX ;
     acp:owner ex:Bob ;
     acp:creator ex:Alice ;
     acp:client ex:ClientApplicationY ;
@@ -1234,24 +1242,6 @@
             In ACP, there is a one to one relationship between the access
             control resource and the resource it mandates access over.
           </p>
-          <p>
-            When a server wants to enable applications to discover the ACP
-            access control resource associated with a given resource, the server
-            MUST advertise the ACP access control resource that is associated
-            with a resource by responding to HTTP requests over the resource
-            including a Link header with the rel value of acl (acl Link
-            Relation) and the ACP access control resource as link target
-            [RFC8288]. The same mechanism is used in
-            <a
-              href="https://solid.github.io/web-access-control-spec/#acl-resource-discovery"
-              >Web Access Control resource discovery</a
-            >.
-          </p>
-          <p>
-            A server responding to an HTTP request over an ACP access control
-            resource MUST include a Link header with the rel value of type and
-            the <code>acp:AccessControlResource</code> URI as link target.
-          </p>
           <dl>
             <dt id="acp-access-control-resource">
               <code>acp:AccessControlResource</code>
@@ -1262,6 +1252,68 @@
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
                 <span property="rdfs:label">AccessControlResource</span>
                 mandates access over a specific resource and itself.</span
+              >
+            </dd>
+            <dt id="acp-accessControlResource">
+              <code>acp:accessControlResource</code>
+            </dt>
+            <dd
+              about="acp:accessControlResource"
+              typeof="rdf:Property owl:FunctionalProperty owl:InverseFunctionalProperty"
+            >
+              <span property="rdfs:comment"
+                >The
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">accessControlResource</span>
+                predicate links a resource to the ACP Access control resource
+                mandating access over it, it has a range of
+                <code property="rdfs:range" resource="acp:AccessControlResource"
+                  >acp:AccessControlResource</code
+                >
+                and a domain of
+                <code property="rdfs:domain" resource="rdfs:Resource"
+                  >rdfs:Resource</code
+                >. A resource is only ever mandated access over by one ACP
+                Access control resource and inversely an ACP Access control
+                resource only ever mandates access over one resource. The 1 to 1
+                cardinality of acp:accessControlResource is denoted by it being
+                an owl:FunctionalProperty & owl:InverseFunctionalProperty. The
+                acp:accessControlResource predicate is the inverse of
+                <span property="owl:inverseOf" resource="acp:resource"
+                  >acp:resource</span
+                >.</span
+              >
+            </dd>
+            <dt id="acp-resource"><code>acp:resource</code></dt>
+            <dd
+              about="acp:resource"
+              typeof="rdf:Property owl:FunctionalProperty owl:InverseFunctionalProperty"
+            >
+              <span property="rdfs:comment"
+                >The
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">resource</span> predicate links an
+                ACP Access control resource to the resource it mandates access
+                over, it has a range of
+                <code property="rdfs:range" resource="rdfs:Resource"
+                  >rdfs:Resource</code
+                >
+                and a domain of
+                <code
+                  property="rdfs:domain"
+                  resource="acp:AccessControlResource"
+                  >acp:AccessControlResource</code
+                >. An ACP Access control resource only ever mandates access over
+                one resource and inversely a resource only ever has one ACP
+                Access control resource mandating access over it. The 1 to 1
+                cardinality of acp:resource is denoted by it being an
+                owl:FunctionalProperty & owl:InverseFunctionalProperty. The
+                acp:resource predicate is the inverse of
+                <span
+                  property="owl:inverseOf"
+                  resource="acp:accessControlResource"
+                  >acp:accessControlResource</span
+                >.</span
               >
             </dd>
           </dl>
@@ -2269,7 +2321,7 @@
           >
   _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceX ;
+    acp:target ex:resourceX ;
     acp:mode acl:Read, acl:Write .
 </pre
           >
@@ -2307,7 +2359,7 @@
           >
   _:context
     acp:agent ex:Bob ;
-    acp:resource ex:resourceX ;
+    acp:target ex:resourceX ;
     acp:mode acl:Read, ex:Delete .
 </pre
           >
@@ -2479,6 +2531,40 @@
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":access-control-resource-editing"
+            property="bibo:hasPart"
+          ></section>
+          <h3
+            class="heading settled"
+            data-level="6.3"
+            id="access-control-resource-discovery"
+          >
+            <span class="secno">6.3. </span
+            ><span class="content">Access control resource discovery</span
+            ><a class="self-link" href="#access-control-resource-discovery"></a>
+          </h3>
+          <p>
+            When a server wants to enable applications to discover the ACP
+            access control resource associated with a given resource, the server
+            MUST advertise the ACP access control resource that is associated
+            with a resource by responding to HTTP requests over the resource
+            including a Link header with the rel value of acl (acl Link
+            Relation) and the ACP access control resource as link target
+            [RFC8288]. The same mechanism is used in
+            <a
+              href="https://solid.github.io/web-access-control-spec/#acl-resource-discovery"
+              >Web Access Control resource discovery</a
+            >.
+          </p>
+          <p>
+            A server responding to an HTTP request over an ACP access control
+            resource MUST include a Link header with the rel value of type and
+            the <code>acp:AccessControlResource</code> URI as link target.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":access-control-resource-discovery"
             property="bibo:hasPart"
           ></section>
         </section>
