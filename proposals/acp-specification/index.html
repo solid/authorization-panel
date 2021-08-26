@@ -990,16 +990,16 @@
             <dt id="acp-context"><code>acp:Context</code></dt>
             <dd about="acp:Context" typeof="rdfs:Class">
               <span property="rdfs:comment"
-                >In
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>,
-                descriptions of resource access are instances of the
-                <span property="rdfs:label">Context</span> class.</span
+                >An
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">Context</span> defines the
+                attributes of resource access instances.</span
               >
             </dd>
           </dl>
           <p>
-            The following example context graph denotes that an instance of
-            resource access over resource X was initiated by Bob:
+            The following example context graph denotes an instance of resource
+            access over resource X initiated by Bob:
           </p>
           <pre
             id="context-example-context-graph"
@@ -1023,16 +1023,15 @@
             ><a class="self-link" href="#context-attributes"></a>
           </h3>
           <p>
-            In ACP, RDFS sub-properties of the
-            <code>acp:attribute</code> predicate are used to describe resource
-            access.
+            Instances of resource access are described using RDFS sub-properties
+            of the ACP attribute predicate.
           </p>
           <dl>
             <dt id="acp-attribute"><code>acp:attribute</code></dt>
             <dd about="acp:attribute" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >An <span property="rdfs:label">attribute</span> describing
-                resource access. The
+                instances of resource access. The
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
                 <code>acp:attribute</code> predicate has a range of
                 <code property="rdfs:range" resource="rdfs:Resource"
@@ -1051,7 +1050,7 @@
                 to ACP access control.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              target is a sub property of
+              target is a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1063,7 +1062,7 @@
                 resource.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> agent
-              is a sub property of
+              is a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1075,7 +1074,7 @@
                 <span property="rdfs:label">creator</span> of a resource.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              creator is a sub property of
+              creator is a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1087,7 +1086,7 @@
                 <span property="rdfs:label">owner</span> of a resource.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> owner
-              is a sub property of
+              is a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1099,7 +1098,7 @@
                 access a resource.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              client is a sub property of
+              client is a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1113,7 +1112,7 @@
                 resource.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              issuer is a sub property of
+              issuer is a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1125,7 +1124,7 @@
                 is accessed.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> time
-              is a sub property of
+              is a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1138,7 +1137,7 @@
                 is presented as part of a resource access request.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> vc is
-              a sub property of
+              a sub-property of
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
@@ -1183,7 +1182,7 @@
           </h3>
           <p>
             ACP context graphs can be extended to provide the information
-            required for matching attributes of resource access instances via
+            required for describing attributes of resource access instances via
             new sub-properties of <code>acp:attribute</code> in order to fit the
             specific requirements of applications.
           </p>
@@ -1202,15 +1201,15 @@
         </h2>
         <p>
           This section introduces the ACP constructs used to define the
-          conditions for resource access.
+          conditions mandating access to resources.
         </p>
         <p>
           In ACP, an
           <dfn id="def-authorization-graph">authorization graph</dfn>
-          authoritatively mandates the conditions for granting access modes over
-          a resource and its associated access control resource by defining the
-          Policies and context Matchers that need to be satisfied in order for
-          an access modes grant to be obtained.
+          authoritatively defines the conditions for granting access modes over
+          a resource and its associated access control resource through Access
+          controls, Policies and context Matchers that need to be satisfied in
+          order for an access modes grant to be obtained.
         </p>
 
         <section
@@ -1244,7 +1243,7 @@
               <span property="rdfs:comment"
                 >An
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">AccessControlResource</span>
+                <span property="rdfs:label">Access control resource</span>
                 mandates access over a specific resource and itself.</span
               >
             </dd>
@@ -1346,7 +1345,7 @@
               <span property="rdfs:comment"
                 >An
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">AccessControl</span> is linked to
+                <span property="rdfs:label">Access control</span> is linked to
                 access control resources via the
                 <code>acp:accessControl</code> predicate and determines sets of
                 policies mandating access over resources and access control
@@ -1853,7 +1852,7 @@
               <span about="acp:AgentMatcher" typeof="rdfs:Class"
                 ><span property="rdfs:comment"
                   >The ACP
-                  <span property="rdfs:label">agent matcher</span> relies on the
+                  <span property="rdfs:label">Agent matcher</span> relies on the
                   <a href="#acp-agent"><code>acp:agent</code></a> predicate and
                   three named individuals to define sets of matching
                   agents.</span
@@ -1941,7 +1940,7 @@
               <span about="acp:ClientMatcher" typeof="rdfs:Class"
                 ><span property="rdfs:comment"
                   >The ACP
-                  <span property="rdfs:label">client matcher</span> relies on
+                  <span property="rdfs:label">Client matcher</span> relies on
                   the
                   <a href="#acp-client"><code>acp:client</code></a> predicate to
                   define sets of matching clients.</span
@@ -1990,7 +1989,7 @@
               <span about="acp:IssuerMatcher" typeof="rdfs:Class"
                 ><span property="rdfs:comment"
                   >The ACP
-                  <span property="rdfs:label">issuer matcher</span> relies on
+                  <span property="rdfs:label">Issuer matcher</span> relies on
                   the
                   <a href="#acp-issuer"><code>acp:issuer</code></a> predicate to
                   define sets of matching issuers.</span
@@ -2040,7 +2039,7 @@
               <span about="acp:TimeMatcher" typeof="rdfs:Class"
                 ><span property="rdfs:comment"
                   >The ACP
-                  <span property="rdfs:label">time matcher</span> relies on the
+                  <span property="rdfs:label">Time matcher</span> relies on the
                   <a href="#acp-time"><code>acp:time</code></a> predicate to
                   define ranges of matching times.</span
                 ></span
@@ -2067,7 +2066,7 @@
                 ><span property="rdfs:comment"
                   >The ACP
                   <span property="rdfs:label"
-                    >Verifiable Credentials Matcher</span
+                    >Verifiable credentials matcher</span
                   >
                   relies on the
                   <a href="#acp-vc"><code>acp:vc</code></a> predicate to define
