@@ -22,19 +22,19 @@ prefix vann: <http://purl.org/vocab/vann/>
 acp:Context
     a rdfs:Class ;
     rdfs:label "Context"@en ;
-    rdfs:comment "In ACP, descriptions of resource access are instances of the Context class."@en ;
+    rdfs:comment "An ACP Context defines the attributes of resource access instances."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessControlResource
     a rdfs:Class ;
-    rdfs:label "Access Control Resource"@en ;
-    rdfs:comment "An ACP AccessControlResource mandates access over a specific resource and itself."@en ;
+    rdfs:label "Access control resource"@en ;
+    rdfs:comment "An ACP Access control resource mandates access over a specific resource and itself."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessControl
     a rdfs:Class ;
-    rdfs:label "Access Control"@en ;
-    rdfs:comment "An ACP AccessControl is linked to access control resources via the acp:accessControl predicate and determines sets of policies mandating access over resources and access control resources respectively via the acp:apply and acp:access predicates."@en ;
+    rdfs:label "Access control"@en ;
+    rdfs:comment "An ACP Access control is linked to access control resources via the acp:accessControl predicate and determines sets of policies mandating access over resources and access control resources respectively via the acp:apply and acp:access predicates."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:Policy
@@ -51,9 +51,15 @@ acp:Matcher
     rdfs:comment "An ACP Matcher defines a set of resource access attributes that need to be matched in order for it to be satisfied. Specific types of ACP Matchers exist for each resource access attribute and a matcher can have multiple types."@en ;
     rdfs:isDefinedBy acp: .
 
+acp:AccessGrant
+    a rdfs:Class ;
+    rdfs:label "Access grant"@en ;
+    rdfs:comment "An ACP Access grant defines the set of access modes granted over a particular context."@en ;
+    rdfs:isDefinedBy acp: .
+
 acp:AccessMode
     a rdfs:Class ;
-    rdfs:label "Access Mode"@en ;
+    rdfs:label "Access mode"@en ;
     rdfs:comment "The class of access modes that can be granted by an ACP server. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere. For example, it could use the access modes defined by the ACL ontology: acl:Read; acl:Write; and acl:Append. Access modes can be defined to fit the specific needs of an application. An ACP server MUST advertise the access modes it supports by responding to HTTP OPTIONS requests over ACP access control resources including a Link header with the rel value of http://www.w3.org/ns/solid/acp#mode and the full URI of an access mode as link target [RFC8288]. An ACP server MUST produce one such Link header for each access mode it supports."@en ;
     rdfs:isDefinedBy acp: .
 
@@ -146,7 +152,7 @@ acp:deny
 acp:attribute
     a rdf:Property ;
     rdfs:label "attribute"@en ;
-    rdfs:comment "An attribute describing resource access. The ACP acp:attribute predicate has a range of rdfs:Resource and a domain of acp:Context."@en ;
+    rdfs:comment "An attribute describing instances of resource access. The ACP acp:attribute predicate has a range of rdfs:Resource and a domain of acp:Context."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:Context ;
     rdfs:range rdfs:Resource .
@@ -155,6 +161,12 @@ acp:target
     a rdf:Property ;
     rdfs:label "target"@en ;
     rdfs:comment "A target resource subjected to ACP access control. ACP target is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:mode
+    rdfs:label "mode"@en ;
+    rdfs:comment "A mode of access requested. ACP mode is a sub property of acp:attribute."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
@@ -207,11 +219,18 @@ acp:vc
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
-acp:mode
-    rdfs:label "mode"@en ;
-    rdfs:comment "The ACP mode predicate defines the set of granted access modes for resource access, it has a range of acp:AccessMode and a domain of acp:Context."@en ;
+acp:context
+    rdfs:label "context"@en ;
+    rdfs:comment "The ACP context predicate defines the context for which a set of access modes has been granted for resource access, it has a range of acp:Context and a domain of acp:AccessGrant."@en ;
     rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:Context ;
+    rdfs:domain acp:AccessGrant ;
+    rdfs:range acp:Context .
+
+acp:grant
+    rdfs:label "grant"@en ;
+    rdfs:comment "The ACP grant predicate defines the set of granted access modes for resource access, it has a range of acp:AccessMode and a domain of rdfs:Resource."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain rdfs:Resource ;
     rdfs:range acp:AccessMode .
 
 acp:memberAccessControl

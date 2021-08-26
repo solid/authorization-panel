@@ -750,7 +750,7 @@
   # This box contains a context graph
   # It describes the properties of a resource access
 
-  _:context
+  _:context1
     acp:agent ex:Bob ;
     acp:target ex:resourceX .
 </pre
@@ -783,10 +783,12 @@
   # This box contains an access grant graph
   # It describes in context the granted access over a resource
 
-  _:context
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX ;
-    acp:mode acl:Read .
+  _:grant1
+    acp:context [
+      acp:agent ex:Bob ;
+      acp:target ex:resourceX ;
+    ] ;
+    acp:grant acl:Read .
 </pre
           >
 
@@ -845,7 +847,7 @@
             id="acp-example-context-graph"
             class="example example-context-graph"
           >
-  _:context
+  _:context1
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
     acp:client ex:ClientApplicationY ;
@@ -908,13 +910,15 @@
             id="acp-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
-  _:context
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX ;
-    acp:client ex:ClientApplicationY ;
-    acp:issuer ex:IdentityProviderZ ;
-    acp:mode acl:Read .
-</pre
+    _:grant1
+    acp:context [
+      acp:agent ex:Bob ;
+      acp:target ex:resourceX ;
+      acp:client ex:ClientApplicationY ;
+      acp:issuer ex:IdentityProviderZ ;
+    ] ;
+    acp:grant acl:Read .
+  </pre
           >
 
           <section
@@ -1054,6 +1058,17 @@
               <code property="rdfs:subPropertyOf" resource="acp:attribute"
                 >acp:attribute</code
               >.
+            </dd>
+            <dt id="acp-mode"><code>acp:mode</code></dt>
+            <dd about="acp:mode" typeof="rdf:Property">
+              <span property="rdfs:comment"
+                >A <span property="rdfs:label">mode</span> of access requested.
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                mode is a sub-property of
+                <code property="rdfs:subPropertyOf" resource="acp:attribute"
+                  >acp:attribute</code
+                >.</span
+              >
             </dd>
             <dt id="acp-agent"><code>acp:agent</code></dt>
             <dd about="acp:agent" typeof="rdf:Property">
@@ -2285,20 +2300,46 @@
             ><a class="self-link" href="#access-modes-grant"></a>
           </h3>
           <dl>
-            <dt id="acp-mode"><code>acp:mode</code></dt>
-            <dd about="acp:mode" typeof="rdf:Property">
+            <dt id="acp-AccessGrant"><code>acp:AccessGrant</code></dt>
+            <dd about="acp:AccessGrant" typeof="rdfs:Class">
+              <span property="rdfs:comment"
+                >An
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">Access grant</span> defines the set
+                of access modes granted over a particular context.</span
+              >
+            </dd>
+            <dt id="acp-context"><code>acp:context</code></dt>
+            <dd about="acp:context" typeof="rdf:Property">
               <span property="rdfs:comment"
                 >The
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">mode</span> predicate defines the
+                <span property="rdfs:label">context</span> predicate defines the
+                context for which a set of access modes has been granted for
+                resource access, it has a range of
+                <code property="rdfs:range" resource="acp:Context"
+                  >acp:Context</code
+                >
+                and a domain of
+                <code property="rdfs:domain" resource="acp:AccessGrant"
+                  >acp:AccessGrant</code
+                >.</span
+              >
+            </dd>
+            <dt id="acp-grant"><code>acp:grant</code></dt>
+            <dd about="acp:grant" typeof="rdf:Property">
+              <span property="rdfs:comment"
+                >The
+                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
+                <span property="rdfs:label">grant</span> predicate defines the
                 set of granted access modes for resource access, it has a range
                 of
                 <code property="rdfs:range" resource="acp:AccessMode"
                   >acp:AccessMode</code
                 >
                 and a domain of
-                <code property="rdfs:domain" resource="acp:Context"
-                  >acp:Context</code
+                <code property="rdfs:domain" resource="rdfs:Resource"
+                  >rdfs:Resource</code
                 >.</span
               >
             </dd>
@@ -2312,10 +2353,12 @@
             id="access-modes-grant-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
-  _:context
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX ;
-    acp:mode acl:Read, acl:Write .
+  _:grant1
+    acp:context [
+      acp:agent ex:Bob ;
+      acp:target ex:resourceX ;
+    ] ;
+    acp:grant acl:Read, acl:Write .
 </pre
           >
 
@@ -2350,10 +2393,12 @@
             id="access-modes-extensibility-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
-  _:context
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX ;
-    acp:mode acl:Read, ex:Delete .
+  _:grant1
+    acp:context [
+      acp:agent ex:Bob ;
+      acp:target ex:resourceX ;
+    ] ;
+    acp:grant acl:Read, ex:Delete .
 </pre
           >
 
@@ -2398,16 +2443,16 @@
             The server MUST advertise the access modes it supports by responding
             to HTTP OPTIONS requests over ACP access control resources including
             a Link header with the rel value of
-            <code>http://www.w3.org/ns/solid/acp#mode</code> and the full URI of
-            an access mode as link target [RFC8288]. The server MUST produce one
-            such Link header for each access mode it supports.
+            <code>http://www.w3.org/ns/solid/acp#grant</code> and the full URI
+            of an access mode as link target [RFC8288]. The server MUST produce
+            one such Link header for each access mode it supports.
           </p>
           <p>
             For example, if a server supports the ACL read, write and append
             access modes, it should advertise it by responding to HTTP OPTIONS
             requests over ACP access control resources including three link
             headers with rel value of
-            <code>http://www.w3.org/ns/solid/acp#mode</code> and respectively
+            <code>http://www.w3.org/ns/solid/acp#grant</code> and respectively
             targets of <code>http://www.w3.org/ns/auth/acl#Read</code>,
             <code>http://www.w3.org/ns/auth/acl#Write</code> and
             <code>http://www.w3.org/ns/auth/acl#Append</code> in order to make
