@@ -116,7 +116,7 @@ Link: </foo/>; rev="http://www.w3.org/ns/ldp#contains"
 ```
 The client can then continue with —
 ```HTTP
-GET /foo/bar/baz/.acr HTTP/1.1
+GET /foo/bar/.acr HTTP/1.1
 ```
 — to which the server will also return —
 ```HTTP
