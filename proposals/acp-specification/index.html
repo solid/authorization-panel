@@ -1274,19 +1274,23 @@
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
                 <span property="rdfs:label">accessControlResource</span>
                 predicate links a resource to the ACP Access control resource
-                mandating access over it, it has a range of
+                which mandates access over it.
+                <code>acp:accessControlResource</code> has a range of
                 <code property="rdfs:range" resource="acp:AccessControlResource"
                   >acp:AccessControlResource</code
                 >
                 and a domain of
                 <code property="rdfs:domain" resource="rdfs:Resource"
                   >rdfs:Resource</code
-                >. Access over a resource is only ever mandated by one ACP
-                Access control resource, and inversely an ACP Access control
-                resource only ever mandates access over one resource. The one-to-one
-                cardinality of <code>acp:accessControlResource</code> is denoted by it being
-                an <code>owl:FunctionalProperty</code> &amp; <code>owl:InverseFunctionalProperty</code>. The
-                <code>acp:accessControlResource</code> predicate is the inverse of
+                >. Access over a resource is only ever mandated access over by
+                one ACP Access control resource, and inversely an ACP Access
+                control resource only ever mandates access over one resource.
+                The one-to-one cardinality of
+                <code>acp:accessControlResource</code> is denoted by it being an
+                <code>owl:FunctionalProperty</code> &amp;
+                <code>owl:InverseFunctionalProperty</code>. The
+                <code>acp:accessControlResource</code> predicate is the inverse
+                of
                 <span property="owl:inverseOf" resource="acp:resource"
                   >acp:resource</span
                 >.</span
@@ -1313,10 +1317,11 @@
                   >acp:AccessControlResource</code
                 >. An ACP Access control resource only ever mandates access over
                 one resource and inversely a resource only ever has one ACP
-                Access control resource mandating access over it. The 1 to 1
-                cardinality of acp:resource is denoted by it being an
-                owl:FunctionalProperty & owl:InverseFunctionalProperty. The
-                acp:resource predicate is the inverse of
+                Access control resource mandating access over it. The one-to-one
+                cardinality of <code>acp:resource</code> is denoted by it being
+                an <code>owl:FunctionalProperty</code> &amp;
+                <code>owl:InverseFunctionalProperty</code>. The
+                <code>acp:resource</code> predicate is the inverse of
                 <span
                   property="owl:inverseOf"
                   resource="acp:accessControlResource"
@@ -2575,9 +2580,9 @@
             access control resource associated with a given resource, the server
             MUST advertise the ACP access control resource that is associated
             with that resource by responding to HTTP requests over the resource
-            including a <code>Link</code> header with the <code>rel</code> value of <code>acl</code> (acl Link
-            Relation) and the ACP access control resource as the link target
-            [RFC8288]. The same mechanism is used in
+            including a <code>Link</code> header with the <code>rel</code> value
+            of <code>acl</code> (acl Link Relation) and the ACP access control
+            resource as the link target [RFC8288]. The same mechanism is used in
             <a
               href="https://solid.github.io/web-access-control-spec/#acl-resource-discovery"
               >Web Access Control resource discovery</a
@@ -2585,8 +2590,9 @@
           </p>
           <p>
             A server responding to an HTTP request over an ACP access control
-            resource MUST include a <code>Link</code> header with the <code>rel</code> value of <code>type</code> and
-            the <code>acp:AccessControlResource</code> URI as link target.
+            resource MUST include a <code>Link</code> header with the
+            <code>rel</code> value of <code>type</code> and the
+            <code>acp:AccessControlResource</code> URI as link target.
           </p>
 
           <section
