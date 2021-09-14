@@ -1281,12 +1281,12 @@
                 and a domain of
                 <code property="rdfs:domain" resource="rdfs:Resource"
                   >rdfs:Resource</code
-                >. A resource is only ever mandated access over by one ACP
-                Access control resource and inversely an ACP Access control
-                resource only ever mandates access over one resource. The 1 to 1
-                cardinality of acp:accessControlResource is denoted by it being
-                an owl:FunctionalProperty & owl:InverseFunctionalProperty. The
-                acp:accessControlResource predicate is the inverse of
+                >. Access over a resource is only ever mandated by one ACP
+                Access control resource, and inversely an ACP Access control
+                resource only ever mandates access over one resource. The one-to-one
+                cardinality of <code>acp:accessControlResource</code> is denoted by it being
+                an <code>owl:FunctionalProperty</code> &amp; <code>owl:InverseFunctionalProperty</code>. The
+                <code>acp:accessControlResource</code> predicate is the inverse of
                 <span property="owl:inverseOf" resource="acp:resource"
                   >acp:resource</span
                 >.</span
