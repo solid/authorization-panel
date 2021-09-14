@@ -2574,9 +2574,9 @@
             When a server wants to enable applications to discover the ACP
             access control resource associated with a given resource, the server
             MUST advertise the ACP access control resource that is associated
-            with a resource by responding to HTTP requests over the resource
-            including a Link header with the rel value of acl (acl Link
-            Relation) and the ACP access control resource as link target
+            with that resource by responding to HTTP requests over the resource
+            including a <code>Link</code> header with the <code>rel</code> value of <code>acl</code> (acl Link
+            Relation) and the ACP access control resource as the link target
             [RFC8288]. The same mechanism is used in
             <a
               href="https://solid.github.io/web-access-control-spec/#acl-resource-discovery"
