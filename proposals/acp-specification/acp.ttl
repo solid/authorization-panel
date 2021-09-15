@@ -71,7 +71,7 @@ acp:accessControlResource
     a rdf:Property, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
     owl:inverseOf acp:resource ;
     rdfs:label "accessControlResource"@en ;
-    rdfs:comment "The ACP accessControlResource predicate links a resource to the ACP Access control resource which mandates access over it. acp:accessControlResource has a range of acp:AccessControlResource and a domain of rdfs:Resource. Access over a resource is only ever mandated access over by one ACP Access control resource, and inversely an ACP Access control resource only ever mandates access over one resource. The one-to-one cardinality of acp:accessControlResource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:accessControlResource predicate is the inverse of acp:resource."@en ;
+    rdfs:comment "The ACP accessControlResource predicate links a resource to the ACP Access control resource which mandates access over it. acp:accessControlResource has a range of acp:AccessControlResource and a domain of rdfs:Resource. Access over a resource is only ever mandated by one ACP Access control resource; inversely, an ACP Access control resource only ever mandates access over one resource. The one-to-one cardinality of acp:accessControlResource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:accessControlResource predicate is the inverse of acp:resource."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain rdfs:Resource ;
     rdfs:range acp:AccessControlResource .
