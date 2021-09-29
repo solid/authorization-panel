@@ -215,7 +215,7 @@ acp:time
 acp:vc
     a rdf:Property ;
     rdfs:label "vc"@en ;
-    rdfs:comment "A verifiable credentials that is presented as part of a resource access request. ACP vc is a sub property of acp:attribute."@en ;
+    rdfs:comment "A verifiable credential that is presented as part of a resource access request. ACP vc is a sub property of acp:attribute."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
