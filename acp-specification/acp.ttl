@@ -1,0 +1,281 @@
+prefix acp: <http://www.w3.org/ns/solid/acp#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix dc: <http://purl.org/dc/terms/>
+prefix vann: <http://purl.org/vocab/vann/>
+
+<http://www.w3.org/ns/solid/acp#>
+    a owl:Ontology ;
+    rdfs:label "Access Control Policy Language (ACP)"@en ;
+    rdfs:comment "The Access Control Policy Language (ACP) is a language for defining sets of conditions mandating access permissions over resources."@en ;
+    rdfs:isDefinedBy acp: ;
+    dc:issued "2021-08-19"^^xsd:date ;
+    vann:preferredNamespacePrefix "vann" ;
+    vann:preferredNamespaceUri "http://www.w3.org/ns/solid/acp#"^^xsd:anyURI .
+
+
+#################
+#   Classes
+#################
+acp:Context
+    a rdfs:Class ;
+    rdfs:label "Context"@en ;
+    rdfs:comment "An ACP Context defines the attributes of resource access instances."@en ;
+    rdfs:isDefinedBy acp: .
+
+acp:AccessControlResource
+    a rdfs:Class ;
+    rdfs:label "Access control resource"@en ;
+    rdfs:comment "An ACP Access control resource mandates access over a specific resource and itself."@en ;
+    rdfs:isDefinedBy acp: .
+
+acp:AccessControl
+    a rdfs:Class ;
+    rdfs:label "Access control"@en ;
+    rdfs:comment "An ACP Access control is linked to access control resources via the acp:accessControl predicate and determines sets of policies mandating access over resources and access control resources respectively via the acp:apply and acp:access predicates."@en ;
+    rdfs:isDefinedBy acp: .
+
+acp:Policy
+    a rdfs:Class ;
+    rdfs:label "Access Policy"@en ;
+    rdfs:comment "An ACP Policy defines a set of allowed and denied access modes respectively via the acp:allow and acp:deny predicates as well as the conditions for its satisfaction via the acp:allOf, acp:anyOf and acp:noneOf predicates which link it to ACP Matchers."@en ;
+    rdfs:comment "In ACP, a policy MUST be considered satisfied if and only if: It references at least one matcher via a condition; and, At least one matcher it references matches the given context; and, All the conditions it defines are satisfied. Given that the acp:noneOf condition excludes matches, a policy without a satisfied allOf or anyOf condition is never satisfied."@en ;
+    rdfs:comment "An access mode MUST be granted over a resource if and only if in the set of policies mandating access over it: A satisfied policy allows it; and No satisfied policy denies it. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere."@en ;
+    rdfs:isDefinedBy acp: .
+
+acp:Matcher
+    a rdfs:Class ;
+    rdfs:label "Matcher"@en ;
+    rdfs:comment "An ACP Matcher defines a set of resource access attributes that need to be matched in order for it to be satisfied. Specific types of ACP Matchers exist for each resource access attribute and a matcher can have multiple types."@en ;
+    rdfs:isDefinedBy acp: .
+
+acp:AccessGrant
+    a rdfs:Class ;
+    rdfs:label "Access grant"@en ;
+    rdfs:comment "An ACP Access grant defines the set of access modes granted over a particular context."@en ;
+    rdfs:isDefinedBy acp: .
+
+acp:AccessMode
+    a rdfs:Class ;
+    rdfs:label "Access mode"@en ;
+    rdfs:comment "The class of access modes that can be granted by an ACP server. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere. For example, it could use the access modes defined by the ACL ontology: acl:Read; acl:Write; and acl:Append. Access modes can be defined to fit the specific needs of an application. An ACP server MUST advertise the access modes it supports by responding to HTTP OPTIONS requests over ACP access control resources including a Link header with the rel value of http://www.w3.org/ns/solid/acp#mode and the full URI of an access mode as link target [RFC8288]. An ACP server MUST produce one such Link header for each access mode it supports."@en ;
+    rdfs:isDefinedBy acp: .
+
+
+####################
+#   Properties
+####################
+acp:accessControlResource
+    a rdf:Property, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+    owl:inverseOf acp:resource ;
+    rdfs:label "accessControlResource"@en ;
+    rdfs:comment "The ACP accessControlResource predicate links a resource to the ACP Access control resource which mandates access over it. acp:accessControlResource has a range of acp:AccessControlResource and a domain of rdfs:Resource. Access over a resource is only ever mandated by one ACP Access control resource; inversely, an ACP Access control resource only ever mandates access over one resource. The one-to-one cardinality of acp:accessControlResource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:accessControlResource predicate is the inverse of acp:resource."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range acp:AccessControlResource .
+
+acp:resource
+    a rdf:Property, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+    owl:inverseOf acp:accessControlResource ;
+    rdfs:label "resource"@en ;
+    rdfs:comment "The ACP resource predicate links an ACP Access control resource to the resource over which it mandates access. acp:resource has a range of rdfs:Resource and a domain of acp:AccessControlResource. An ACP Access control resource only ever mandates access over one resource and inversely a resource only ever has one ACP Access control resource mandating access over it. The one-to-one cardinality of acp:resource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:resource predicate is the inverse of acp:accessControlResource."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:AccessControlResource ;
+    rdfs:range rdfs:Resource .
+
+acp:accessControl
+    a rdf:Property ;
+    rdfs:label "accessControl"@en ;
+    rdfs:comment "The ACP accessControl predicate defines the set of access controls that mandate access over a resource and its associated access control resource, it has a range of acp:AccessControl and a domain of acp:AccessControlResource."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:AccessControlResource ;
+    rdfs:range acp:AccessControl .
+
+acp:apply
+    a rdf:Property ;
+    rdfs:label "apply"@en ;
+    rdfs:comment "The ACP apply predicate defines the set of policies that mandate access over resources, it has a range of acp:Policy and a domain of acp:AccessControl."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:AccessControl ;
+    rdfs:range acp:Policy .
+
+acp:access
+    a rdf:Property ;
+    rdfs:label "access"@en ;
+    rdfs:comment "The ACP access predicate defines the set of policies that mandate access over access control resources, it has a range of acp:Policy and a domain of acp:AccessControl."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:AccessControl ;
+    rdfs:range acp:Policy .
+
+acp:allOf
+    a rdf:Property ;
+    rdfs:label "allOf"@en ;
+    rdfs:comment "The ACP allOf predicate defines the set of matchers that MUST be satisfied for a policy to be satisfied, it has a range of acp:Matcher and a domain of acp:Policy."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:Matcher .
+
+acp:anyOf
+    a rdf:Property ;
+    rdfs:label "anyOf"@en ;
+    rdfs:comment "The ACP anyOf predicate defines the set of matchers among which at least one MUST be satisfied in order for a policy to be satisfied, it has a range of acp:Matcher and a domain of acp:Policy."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:Matcher .
+
+acp:noneOf
+    a rdf:Property ;
+    rdfs:label "noneOf"@en ;
+    rdfs:comment "The ACP noneOf predicate defines the set of matchers among which none MUST be satisfied in order for a policy to be satisfied, it has a range of acp:Matcher and a domain of acp:Policy."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:Matcher .
+
+acp:allow
+    a rdf:Property ;
+    rdfs:label "allow"@en ;
+    rdfs:comment "The ACP allow predicate defines the set of access modes allowed by a policy if satisfied, it has a range of acp:AccessMode and a domain of acp:Policy."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:AccessMode .
+
+acp:deny
+    a rdf:Property ;
+    rdfs:label "deny"@en ;
+    rdfs:comment "The ACP deny predicate defines the set of access modes denied by a policy if satisfied, it has a range of acp:AccessMode and a domain of acp:Policy."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:AccessMode .
+
+acp:attribute
+    a rdf:Property ;
+    rdfs:label "attribute"@en ;
+    rdfs:comment "An attribute describing instances of resource access. The ACP acp:attribute predicate has a range of rdfs:Resource and a domain of acp:Context."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Context ;
+    rdfs:range rdfs:Resource .
+
+acp:target
+    a rdf:Property ;
+    rdfs:label "target"@en ;
+    rdfs:comment "A target resource subjected to ACP access control. ACP target is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:mode
+    rdfs:label "mode"@en ;
+    rdfs:comment "A mode of access requested. ACP mode is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:agent
+    a rdf:Property ;
+    rdfs:label "agent"@en ;
+    rdfs:comment "An agent trying to access a resource. ACP agent is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:creator
+    a rdf:Property ;
+    rdfs:label "creator"@en ;
+    rdfs:comment "An agent credited as the creator of a resource. ACP creator is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:owner
+    a rdf:Property ;
+    rdfs:label "owner"@en ;
+    rdfs:comment "An agent credited as the owner of a resource. ACP owner is a sub property of acp:attribute. "@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:client
+    a rdf:Property ;
+    rdfs:label "client"@en ;
+    rdfs:comment "A client application used to access a resource. ACP client is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:issuer
+    a rdf:Property ;
+    rdfs:label "issuer"@en ;
+    rdfs:comment "An identity provider credited as the issuer of the credentials that asserted the identity of the agent trying to access a resource. ACP issuer is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:time
+    a rdf:Property ;
+    rdfs:label "time"@en ;
+    rdfs:comment "A time at which a resource is accessed. ACP time is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:vc
+    a rdf:Property ;
+    rdfs:label "vc"@en ;
+    rdfs:comment "A verifiable credential that is presented as part of a resource access request. ACP vc is a sub property of acp:attribute."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:subPropertyOf acp:attribute .
+
+acp:context
+    rdfs:label "context"@en ;
+    rdfs:comment "The ACP context predicate defines the context for which a set of access modes has been granted for resource access, it has a range of acp:Context and a domain of acp:AccessGrant."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:AccessGrant ;
+    rdfs:range acp:Context .
+
+acp:grant
+    rdfs:label "grant"@en ;
+    rdfs:comment "The ACP grant predicate defines the set of granted access modes for resource access, it has a range of acp:AccessMode and a domain of rdfs:Resource."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range acp:AccessMode .
+
+acp:memberAccessControl
+    rdfs:label "memberAccessControl"@en ;
+    rdfs:comment "An ACP memberAccessControl is an access control that mandates access to the resources contained by the resource whose access control resource references member access controls. The acp:memberAccessControl predicate has a range of acp:AccessControl and a domain of acp:AccessControlResource."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:AccessControlResource ;
+    rdfs:range acp:AccessControl .
+
+
+########################
+#   Named Individuals
+########################
+acp:PublicAgent
+  a owl:NamedIndividual ;
+  rdfs:comment "The ACP Public Agent matches all contexts. In an authorization graph, the ACP Public Agent can be used as the object in a triple where the subject is a matcher and the predicate is acp:agent."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Public Agent"@en .
+
+acp:AuthenticatedAgent
+  a owl:NamedIndividual ;
+  rdfs:comment "The ACP Authenticated Agent matches all contexts where an agent is defined. In an authorization graph, the ACP Authenticated Agent can be used as the object in a triple where the subject is a matcher and the predicate is acp:agent."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Authenticated Agent"@en .
+
+acp:CreatorAgent
+  a owl:NamedIndividual ;
+  rdfs:comment "The ACP Creator Agent matches all contexts where the creator matches the defined agent. In an authorization graph, the ACP Creator Agent can be used as the object in a triple where the subject is a matcher and the predicate is acp:agent."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Creator Agent"@en .
+
+acp:OwnerAgent
+  a owl:NamedIndividual ;
+  rdfs:comment "The ACP Owner Agent matches all contexts where the owner matches the defined agent. In an authorization graph, the ACP Owner Agent can be used as the object in a triple where the subject is a matcher and the predicate is acp:agent."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Owner Agent"@en .
+
+acp:PublicClient
+  a owl:NamedIndividual ;
+  rdfs:comment "The ACP Public Client matches all clients. In an authorization graph, the ACP Public Client can be used as the object in a triple where the subject is a matcher and the predicate is acp:client."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Public Client"@en .
+
+acp:PublicIssuer
+  a owl:NamedIndividual ;
+  rdfs:comment "The ACP Public Issuer matches all issuers. In an authorization graph, the ACP Public Issuer can be used as the object in a triple where the subject is a matcher and the predicate is acp:issuer."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Public Issuer"@en .
