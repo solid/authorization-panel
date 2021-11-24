@@ -4,7 +4,7 @@ https://solid.github.io/authorization-panel/authorization-ucr/#uc-client-constra
 
 ### ACP
 
-ACP allows combining multiple matchers with `acp:allOf`, this allows expressin policy which uses `acp:agent` and `acp:client` in combined matchers.
+ACP allows combining multiple matchers with `acp:allOf`, this allows expressing policy which uses `acp:agent` and `acp:client` in combined matchers.
 
 ```ttl
 PREFIX acp: <http://www.w3.org/ns/solid/acp#>
