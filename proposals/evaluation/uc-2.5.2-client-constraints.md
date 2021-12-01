@@ -4,28 +4,23 @@ https://solid.github.io/authorization-panel/authorization-ucr/#uc-client-constra
 
 ### ACP
 
-ACP allows combining multiple matchers with `acp:allOf`, this allows expressing policy which uses `acp:agent` and `acp:client` in combined matchers.
+ACP requires that if `acp:agent` and `acp:client` are present in the matcher, both need to be satisfied.
 
 ```ttl
 PREFIX acp: <http://www.w3.org/ns/solid/acp#>
 PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 PREFIX ex: <https://example.com/>
 
-ex:accessControlResourceA
-  acp:resource ex:resourceX ;
-  acp:accessControl ex:accessControlB .
-
-ex:accessControlB acp:apply ex:PolicyC .
-
-ex:PolicyC
-  acp:allOf ex:agentMatcherD, ex:clientMatcherD ;
+ex:ReaderAgentPolicy
+  acp:anyOf ex:BobMatcher, ex:AliceMatcher ;
   acp:allow acl:Read .
 
-ex:agentMatcherD
-  acp:agent ex:Bob .
-
-ex:clientMatcherD
+ex:BobMatcher
+  acp:agent ex:Bob ;
   acp:client ex:Projectron .
-```
 
-`ex:Policy` allows acces to `ex:Projectron` but only if `ex:Bob` is using it.
+ex:AliceMatcher
+  acp:agent ex:Alice ;
+  acp:client ex:Projectron, ex:OtherApp .
+
+`ex:BobMatcher` allows access to `ex:Projectron` but only if `ex:Bob` is using it.
