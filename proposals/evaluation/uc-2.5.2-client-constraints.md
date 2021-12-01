@@ -22,7 +22,6 @@ ex:BobMatcher
 ex:AliceMatcher
   acp:agent ex:Alice ;
   acp:client ex:Projectron, ex:OtherApp .
-  
 ```
 
 `ex:BobMatcher` allows access to `ex:Projectron` but only if `ex:Bob` is using it.
