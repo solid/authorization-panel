@@ -34,6 +34,12 @@
       dl dd {
         margin: 0 0 0.5em 2em;
       }
+      dd ul {
+        padding: 0;
+      }
+      dd li {
+        list-style: none;
+      }
       table {
         border-collapse: collapse;
         border-color: #000000;
@@ -133,84 +139,83 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2021-08-19">2021-08-19</time>
+        <time property="dc:issued" datetime="2022-04-22">2022-04-22</time>
       </h2>
-      <dl>
-        <dt>This version:</dt>
-        <dd>
-          <a
-            href="https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification"
-            >https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification</a
-          >
-        </dd>
-        <dt>Latest published version:</dt>
-        <dd>
-          <a
-            href="https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification"
-            >https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification</a
-          >
-        </dd>
-        <dt>Previous version:</dt>
-        <dd>
-          <a
-            rel="dcterms:replaces"
-            href="https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel&#x2F;commits&#x2F;main"
-            >https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel&#x2F;commits&#x2F;main</a
-          >
-        </dd>
-        <dt>Editors:</dt>
-        <dd rel="schema:creator schema:author">
-          <span
-            about="https:&#x2F;&#x2F;pod.inrupt.com&#x2F;matthieu&#x2F;profile&#x2F;card#me"
-            typeof="schema:Person"
-          >
+      <details open="">
+        <summary>More details about this document</summary>
+        <dl>
+          <dt>This version</dt>
+          <dd>
             <a
-              rel="schema:url"
-              href="https:&#x2F;&#x2F;github.com&#x2F;matthieubosquet&#x2F;"
+              href="https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification"
+              >https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification</a
             >
-              <span
-                about="https:&#x2F;&#x2F;pod.inrupt.com&#x2F;matthieu&#x2F;profile&#x2F;card#me"
-                property="schema:name"
-              >
-                <span property="schema:givenName">Matthieu</span>
-                <span property="schema:familyName">Bosquet</span>
-              </span>
-            </a>
-          </span>
-        </dd>
-        <dt>Published:</dt>
-        <dd>
-          <time about="acp:" datatype="xsd:date" property="dc:issued"
-            >2021-08-19</time
-          >
-        </dd>
-        <dt>Modified:</dt>
-        <dd>
-          <time datatype="xsd:date" property="schema:dateModified"
-            >2021-08-19</time
-          >
-        </dd>
-        <dt>Repository:</dt>
-        <dd>
-          <a
-            href="https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel"
-            >GitHub</a
-          >
-        </dd>
-        <dd>
-          <a
-            href="https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel/issues"
-            >Issues</a
-          >
-        </dd>
-        <dt>Test Suite:</dt>
-        <dd>
-          <a href="">Test Suite (Currently missing)</a>
-        </dd>
-      </dl>
+          </dd>
+          <dt>Latest published version</dt>
+          <dd>
+            <a
+              href="https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification"
+              >https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification</a
+            >
+          </dd>
+          <dt>Latest editor's draft</dt>
+          <dd>
+            <a
+              href="https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification"
+              >https:&#x2F;&#x2F;solid.github.io&#x2F;authorization-panel&#x2F;acp-specification</a
+            >
+          </dd>
+          <dt>Source repository</dt>
+          <dd>
+            <a
+              href="https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel"
+              >https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel</a
+            >
+          </dd>
+          <dt>Issues tracking</dt>
+          <dd>
+            <a
+              href="https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel&#x2F;issues"
+              >https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel&#x2F;issues</a
+            >
+          </dd>
+          <dt>Test suite</dt>
+          <dd>
+            <a href="#Currently_Missing">#Currently_Missing</a>
+          </dd>
+          <dt>Implementation reports</dt>
+          <dd>
+            <a href="#Currently_Missing">#Currently_Missing</a>
+          </dd>
+          <dt>Editors</dt>
+          <dd>
+            <ul>
+              <li rel="schema:creator schema:author">
+                <span
+                  about="https:&#x2F;&#x2F;id.inrupt.com&#x2F;matthieu"
+                  typeof="schema:Person"
+                >
+                  <a
+                    rel="schema:url"
+                    href="https:&#x2F;&#x2F;github.com&#x2F;matthieubosquet&#x2F;"
+                  >
+                    <span
+                      about="https:&#x2F;&#x2F;id.inrupt.com&#x2F;matthieu"
+                      property="schema:name"
+                    >
+                      <span property="schema:givenName">Matthieu</span>
+                      <span property="schema:familyName">Bosquet</span>
+                    </span>
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </dd>
+        </dl>
+      </details>
       <p id="copyright" class="copyright">
         <span property="dc:license">MIT License.</span> Copyright ©
-        <span property="dc:dateCopyrighted">2021</span>
+        <span property="dc:dateCopyrighted">2022</span>
         <a
           rel="dc:rightsHolder"
           href="http:&#x2F;&#x2F;www.w3.org&#x2F;community&#x2F;solid&#x2F;"
@@ -1147,8 +1152,7 @@
             <dt id="acp-vc"><code>acp:vc</code></dt>
             <dd about="acp:vc" typeof="rdf:Property">
               <span property="rdfs:comment"
-                >A
-                <span property="rdfs:label">verifiable credential</span> that
+                >A <span property="rdfs:label">verifiable credential</span> that
                 is presented as part of a resource access request.</span
               >
               <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> vc is
@@ -1805,7 +1809,7 @@
             >
   ex:accessControlA
     acp:apply ex:policyB, ex:policyC .
-  
+
   ex:policyB
     acp:allow acl:Read, acl:Write .
 
@@ -2383,8 +2387,9 @@
             ><a class="self-link" href="#access-modes-extensibility"></a>
           </h3>
           <p>
-            There are no standard access modes defined by ACP. Instead, one might
-            tailor the modes and their granularity to the needs of an application.
+            There are no standard access modes defined by ACP. Instead, one
+            might tailor the modes and their granularity to the needs of an
+            application.
           </p>
           <p>
             For example, one might use the standard access modes defined in the
