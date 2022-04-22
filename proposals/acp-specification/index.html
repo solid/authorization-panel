@@ -3,7 +3,7 @@
   about="https://solidproject.org/TR/acp#"
   dir="ltr"
   typeof="doap:Specification schema:Article"
-  prefix=": https://solidproject.org/TR/acp# rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# acp: http://www.w3.org/ns/solid/acp# dc: http://purl.org/dc/terms/ doap: http://usefulinc.com/ns/doap# bibo: http://purl.org/ontology/bibo/ schema: http://schema.org/ vann: http://purl.org/vocab/vann/ "
+  prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# acp: http://www.w3.org/ns/solid/acp# dc: http://purl.org/dc/terms/ doap: http://usefulinc.com/ns/doap# bibo: http://purl.org/ontology/bibo/ schema: http://schema.org/ vann: http://purl.org/vocab/vann/ "
   lang="en"
 >
   <head>
@@ -122,7 +122,7 @@
       }
     </style>
   </head>
-  <body>
+  <body vocab="https://solidproject.org/TR/acp#">
     <p id="toc-nav">
       <a id="toc-jump" href="#toc"
         ><span aria-hidden="true">↑</span>
@@ -748,10 +748,7 @@
             Turtle syntax will appear. These RDF representations implicitly use
             the prefix bindings defined above.
           </p>
-          <pre
-            id="acp-example-context-graph"
-            class="example example-context-graph"
-          >
+          <pre class="example example-context-graph">
   # This box contains a context graph
   # It describes the properties of a resource access
 
@@ -760,10 +757,7 @@
     acp:target ex:resourceX .
 </pre
           >
-          <pre
-            id="acp-example-authorization-graph"
-            class="example example-authorization-graph"
-          >
+          <pre class="example example-authorization-graph">
   # This box contains an authorization graph
   # It describes the conditions required for accessing a resource
 
@@ -781,10 +775,7 @@
     acp:agent ex:Bob .
 </pre
           >
-          <pre
-            id="acp-example-authorization-graph"
-            class="example example-access-grant-graph"
-          >
+          <pre class="example example-access-grant-graph">
   # This box contains an access grant graph
   # It describes in context the granted access over a resource
 
@@ -939,7 +930,11 @@
           </h3>
           <p><em>This section is non-normative.</em></p>
           <p>The following diagram illustrates the main elements of ACP.</p>
-          <img alt="ACP Data Model" src="acp-data-model.svg" width="100%" />
+          <img
+            alt="ACP Data Model"
+            src="acp-data-model.svg"
+            style="width: 100%"
+          />
 
           <section
             datatype="rdf:HTML"
@@ -996,7 +991,7 @@
             ><a class="self-link" href="#context"></a>
           </h3>
           <dl>
-            <dt id="acp-context"><code>acp:Context</code></dt>
+            <dt id="acp-Context"><code>acp:Context</code></dt>
             <dd about="acp:Context" typeof="rdfs:Class">
               <span property="rdfs:comment"
                 >An
