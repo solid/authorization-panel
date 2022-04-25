@@ -302,12 +302,26 @@
               <a href="#terminology" class="tocxref"
                 ><span class="secno">1.1</span>Terminology</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#basic-rdf-terminology" class="tocxref"
+                    ><span class="secno">1.1.1</span>Basic RDF terminology</a
+                  >
+                </li>
+              </ol>
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#basic-acp-terminology" class="tocxref"
+                    ><span class="secno">1.1.2</span>Basic ACP terminology</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#document-conventions" class="tocxref"
-                ><span class="secno">1.2</span>Document conventions</a
+              <a href="#namespaces" class="tocxref"
+                ><span class="secno">1.2</span>Namespaces</a
               >
             </li>
           </ol>
@@ -577,8 +591,22 @@
             ><a class="self-link" href="#terminology"></a>
           </h3>
           <p>Throughout this document, the following terminology is used.</p>
-          <div class="def" id="rdf-terminology">
-            <div class="term-def-header">Basic RDF Terminology</div>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":terminology"
+            property="bibo:hasPart"
+          >
+            <h4
+              class="heading settled"
+              data-level="1.1.1"
+              id="basic-rdf-terminology"
+            >
+              <span class="secno">1.1.1. </span
+              ><span class="content">Basic RDF terminology</span
+              ><a class="self-link" href="#basic-rdf-terminology"></a>
+            </h4>
             <p>
               This document uses the terms
               <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-resource"
@@ -629,42 +657,120 @@
                 ></cite
               >].
             </p>
-          </div>
-          <div class="def" id="acp-terminology">
-            <div class="term-def-header">Basic ACP Terminology</div>
-            <p>
-              In ACP, the conditions mandating access over a resource are
-              expressed as Access Controls, Policies, and Matchers, in the form
-              of an RDF graph called the resource's "authorization graph".
-              Authorization graphs are applied to resource access descriptions
-              expressed in the form of an RDF graph called a "context graph". As
-              ACP authorization graphs are used to validate whether context
-              graphs satisfy a set of conditions, they can also be viewed as a
-              description of the context graphs that satisfy these conditions.
-              The result of applying an authorization graph to a context graph
-              is an access modes grant, expressed in the form of an RDF graph
-              called an "access grant graph".
-            </p>
-          </div>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":terminology"
-            property="bibo:hasPart"
-          ></section>
-          <h3
-            class="heading settled"
-            data-level="1.2"
-            id="document-conventions"
-          >
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":basic-rdf-terminology"
+              property="bibo:hasPart"
+            ></section>
+            <h4
+              class="heading settled"
+              data-level="1.1.2"
+              id="basic-acp-terminology"
+            >
+              <span class="secno">1.1.2. </span
+              ><span class="content">Basic ACP terminology</span
+              ><a class="self-link" href="#basic-acp-terminology"></a>
+            </h4>
+            <dl>
+              <dt id="acp-authorization-graph">Authorization graph</dt>
+              <dd>
+                In ACP, the conditions mandating access to a resource are
+                expressed as Access Controls, Policies, and Matchers, in the
+                form of an RDF graph called the resource's "authorization
+                graph".
+              </dd>
+              <dt id="acp-context-graph">Context graph</dt>
+              <dd>
+                In ACP, instances of resource access are described in the form
+                of an RDF graph called a "context graph".
+              </dd>
+              <dt id="acp-access-grant-graph">Access Grant graph</dt>
+              <dd>
+                In ACP, Authorization graphs are applied to Context graphs to
+                determine whether an instance of resource access satisfies the
+                conditions mandating access to said resource. Running ACP's
+                algorithm to determine access to a resource results in a set
+                (possibly empty) of
+                <a href="#access-modes-grant">Access Modes</a>. ACP engine
+                output is expressed in the form of an RDF graph called an
+                "access grant graph".
+              </dd>
+            </dl>
+            <p>
+              Throughout this document, color-coded boxes containing RDF graphs
+              in Turtle syntax will appear representing example authorization,
+              context and access grant graphs.
+            </p>
+            <pre class="example example-context-graph">
+  # This box contains a context graph
+  # It describes an instance of resource access
+
+  prefix acp: &lt;http://www.w3.org/ns/solid/acp#&gt;
+  prefix ex: &lt;https://example.org/&gt;
+
+  []
+    acp:agent ex:Bob ;
+    acp:target ex:resourceX .
+</pre
+            >
+            <pre class="example example-authorization-graph">
+  # This box contains an authorization graph
+  # It describes the conditions required for accessing a resource
+
+  prefix acl: &lt;http://www.w3.org/ns/auth/acl#&gt;
+  prefix acp: &lt;http://www.w3.org/ns/solid/acp#&gt;
+  prefix ex: &lt;https://example.org/&gt;
+
+  []
+    a acp:AccessControlResource ;
+    acp:resource ex:resourceX ;
+    acp:accessControl [
+      a acp:AccessControl ;
+      acp:apply [
+        a acp:Policy ;
+        acp:allow acl:Read ;
+        acp:anyOf [
+          a acp:AgentMatcher ;
+          acp:agent ex:Bob ;
+        ]
+      ]
+    ] .
+</pre
+            >
+            <pre class="example example-access-grant-graph">
+  # This box contains an access grant graph
+  # It describes in context the granted access over a resource
+
+  prefix acl: &lt;http://www.w3.org/ns/auth/acl#&gt;
+  prefix acp: &lt;http://www.w3.org/ns/solid/acp#&gt;
+  prefix ex: &lt;https://example.org/&gt;
+
+  []
+    acp:grant acl:Read ;
+    acp:context [
+      acp:agent ex:Bob ;
+      acp:target ex:resourceX ;
+    ] .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":basic-acp-terminology"
+              property="bibo:hasPart"
+            ></section>
+          </section>
+          <h3 class="heading settled" data-level="1.2" id="namespaces">
             <span class="secno">1.2. </span
-            ><span class="content">Document conventions</span
-            ><a class="self-link" href="#document-conventions"></a>
+            ><span class="content">Namespaces</span
+            ><a class="self-link" href="#namespaces"></a>
           </h3>
           <p>
-            Within this document, the following namespace prefix bindings are
-            used:
+            Within this document, RDF representations implicitly use the
+            following namespace prefix bindings:
           </p>
           <table>
             <tbody>
@@ -698,7 +804,13 @@
               </tr>
               <tr>
                 <td><code>ex:</code></td>
-                <td><code>https://example.com/</code></td>
+                <td>
+                  <code
+                    ><a href="https://example.org/"
+                      >https://example.org/</a
+                    ></code
+                  >
+                </td>
               </tr>
               <tr>
                 <td><code>ldp:</code></td>
@@ -742,55 +854,11 @@
               </tr>
             </tbody>
           </table>
-          <p>
-            Throughout the document, color-coded boxes containing RDF graphs in
-            Turtle syntax will appear. These RDF representations implicitly use
-            the prefix bindings defined above.
-          </p>
-          <pre class="example example-context-graph">
-  # This box contains a context graph
-  # It describes the properties of a resource access
-
-  _:context1
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX .
-</pre
-          >
-          <pre class="example example-authorization-graph">
-  # This box contains an authorization graph
-  # It describes the conditions required for accessing a resource
-
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlB .
-
-  ex:accessControlB acp:apply ex:PolicyC .
-
-  ex:PolicyC
-    acp:anyOf ex:agentMatcherD ;
-    acp:allow acl:Read .
-
-  ex:agentMatcherD
-    acp:agent ex:Bob .
-</pre
-          >
-          <pre class="example example-access-grant-graph">
-  # This box contains an access grant graph
-  # It describes in context the granted access over a resource
-
-  _:grant1
-    acp:context [
-      acp:agent ex:Bob ;
-      acp:target ex:resourceX ;
-    ] ;
-    acp:grant acl:Read .
-</pre
-          >
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":document-conventions"
+            resource=":namespaces"
             property="bibo:hasPart"
           ></section>
           <h3 class="heading settled" data-level="1.3" id="conformance">
