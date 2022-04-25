@@ -77,10 +77,6 @@
         font-style: normal;
         color: #900;
       }
-      .term-def-header {
-        font-style: italic;
-        font-weight: bold;
-      }
       .example {
         border: 1px solid #999;
         margin-left: 0;
@@ -674,17 +670,17 @@
               ><a class="self-link" href="#basic-acp-terminology"></a>
             </h4>
             <dl>
+              <dt id="acp-context-graph">Context graph</dt>
+              <dd>
+                In ACP, instances of resource access are described in the form
+                of an RDF graph called a "context graph".
+              </dd>
               <dt id="acp-authorization-graph">Authorization graph</dt>
               <dd>
                 In ACP, the conditions mandating access to a resource are
                 expressed as Access Controls, Policies, and Matchers, in the
                 form of an RDF graph called the resource's "authorization
                 graph".
-              </dd>
-              <dt id="acp-context-graph">Context graph</dt>
-              <dd>
-                In ACP, instances of resource access are described in the form
-                of an RDF graph called a "context graph".
               </dd>
               <dt id="acp-access-grant-graph">Access Grant graph</dt>
               <dd>
@@ -895,7 +891,7 @@
           <p>
             The following example
             <cite
-              ><a class="bibref" href="#def-context-graph"
+              ><a class="bibref" href="#dfn-context-graph"
                 >context graph</a
               ></cite
             >
@@ -920,7 +916,7 @@
           <p>
             The following example
             <cite
-              ><a class="bibref" href="#def-authorization-graph"
+              ><a class="bibref" href="#dfn-authorization-graph"
                 >authorization graph</a
               ></cite
             >
@@ -955,7 +951,7 @@
           <p>
             The following example
             <cite
-              ><a class="bibref" href="#def-access-grant-graph"
+              ><a class="bibref" href="#dfn-access-grant-graph"
                 >access grant graph</a
               ></cite
             >
@@ -1034,11 +1030,11 @@
           ><a class="self-link" href="#context-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs used to define the
-          attributes of a resource access instance.
+          This section introduces the ACP terms used to describe properties of
+          resource access instances.
         </p>
         <p>
-          In ACP, a <dfn id="def-context-graph">context graph</dfn> describes
+          In ACP, a <dfn id="dfn-context-graph">context graph</dfn> describes
           the attributes of a resource access instance that can be
           <a href="#matcher">matched</a> to a set of conditions defined in the
           form of an <a href="#authorization-graph">authorization graph</a> in
@@ -1286,7 +1282,7 @@
         </p>
         <p>
           In ACP, an
-          <dfn id="def-authorization-graph">authorization graph</dfn>
+          <dfn id="dfn-authorization-graph">authorization graph</dfn>
           authoritatively defines the conditions for granting access modes over
           a resource and its associated access control resource through Access
           controls, Policies and context Matchers that need to be satisfied in
@@ -2353,7 +2349,7 @@
         </p>
         <p>
           In ACP, the
-          <dfn id="def-access-grant-graph">access grant graph</dfn> describes
+          <dfn id="dfn-access-grant-graph">access grant graph</dfn> describes
           the set of granted access modes over a resource in context of a
           resource access instance. By default, no access mode is granted over
           resources.
