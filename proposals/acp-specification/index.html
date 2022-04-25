@@ -135,7 +135,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-04-22">2022-04-22</time>
+        <time property="dc:issued" datetime="2022-04-25">2022-04-25</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -295,36 +295,22 @@
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#terminology" class="tocxref"
-                ><span class="secno">1.1</span>Terminology</a
+              <a href="#rdf-terminology" class="tocxref"
+                ><span class="secno">1.1</span>RDF terminology</a
               >
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#basic-rdf-terminology" class="tocxref"
-                    ><span class="secno">1.1.1</span>Basic RDF terminology</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#basic-acp-terminology" class="tocxref"
-                    ><span class="secno">1.1.2</span>Basic ACP terminology</a
-                  >
-                </li>
-              </ol>
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#acp-terminology" class="tocxref"
+                ><span class="secno">1.2</span>ACP terminology</a
+              >
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
               <a href="#namespaces" class="tocxref"
-                ><span class="secno">1.2</span>Namespaces</a
-              >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#conformance" class="tocxref"
-                ><span class="secno">1.3</span>Conformance</a
+                ><span class="secno">1.3</span>Namespaces</a
               >
             </li>
           </ol>
@@ -344,8 +330,15 @@
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#ontology" class="tocxref"
-                ><span class="secno">1.6</span>Ontology</a
+              <a href="#vocabulary" class="tocxref"
+                ><span class="secno">1.6</span>Vocabulary</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#conformance" class="tocxref"
+                ><span class="secno">1.7</span>Conformance</a
               >
             </li>
           </ol>
@@ -581,186 +574,108 @@
           resource=":introduction"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="1.1" id="terminology">
+          <h3 class="heading settled" data-level="1.1" id="rdf-terminology">
             <span class="secno">1.1. </span
-            ><span class="content">Terminology</span
-            ><a class="self-link" href="#terminology"></a>
+            ><span class="content">RDF terminology</span
+            ><a class="self-link" href="#rdf-terminology"></a>
           </h3>
-          <p>Throughout this document, the following terminology is used.</p>
+          <p>
+            This document uses the terms
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-resource"
+              ><dfn id="dfn-rdf-resource">resource</dfn></a
+            >,
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph"
+              ><dfn id="dfn-rdf-graph">RDF graph</dfn></a
+            >,
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple"
+              ><dfn id="dfn-rdf-triple">RDF triple</dfn></a
+            >,
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-iri"
+              ><dfn id="dfn-rdf-iri">IRI</dfn></a
+            >,
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-literal"
+              ><dfn id="dfn-rdf-literal">literal</dfn></a
+            >,
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node"
+              ><dfn id="dfn-rdf-blank-node">blank node</dfn></a
+            >,
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-node"
+              ><dfn id="dfn-rdf-node">node</dfn></a
+            >
+            of an RDF graph,
+            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term"
+              ><dfn id="dfn-rdf-term">RDF term</dfn></a
+            >, and
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-subject"
+              ><dfn id="dfn-rdf-subject">subject</dfn></a
+            >,
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-predicate"
+              ><dfn id="dfn-rdf-predicate">predicate</dfn></a
+            >, and
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-object"
+              ><dfn id="dfn-rdf-object">object</dfn></a
+            >
+            of RDF triples, and
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-datatype"
+              ><dfn id="dfn-datatype">datatype</dfn></a
+            >
+            as defined in RDF 1.1 Concepts and Abstract Syntax [<cite
+              ><a class="bibref" href="#bib-rdf11-concepts"
+                >rdf11-concepts</a
+              ></cite
+            >].
+          </p>
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":terminology"
+            resource=":rdf-terminology"
             property="bibo:hasPart"
-          >
-            <h4
-              class="heading settled"
-              data-level="1.1.1"
-              id="basic-rdf-terminology"
-            >
-              <span class="secno">1.1.1. </span
-              ><span class="content">Basic RDF terminology</span
-              ><a class="self-link" href="#basic-rdf-terminology"></a>
-            </h4>
-            <p>
-              This document uses the terms
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-resource"
-                ><dfn data-dfn-type="dfn" id="dfn-resource">resource</dfn></a
-              >,
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph"
-                ><dfn data-dfn-type="dfn" id="dfn-rdf-graph">RDF graph</dfn></a
-              >,
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple"
-                ><dfn data-dfn-type="dfn" id="dfn-rdf-triple"
-                  >RDF triple</dfn
-                ></a
-              >,
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-iri"
-                ><dfn data-dfn-type="dfn" id="dfn-iri">IRI</dfn></a
-              >,
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-literal"
-                ><dfn data-dfn-type="dfn" id="dfn-literal">literal</dfn></a
-              >,
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node"
-                ><dfn data-dfn-type="dfn" id="dfn-blank-node"
-                  >blank node</dfn
-                ></a
-              >,
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-node"
-                ><dfn data-dfn-type="dfn" id="dfn-node">node</dfn></a
-              >
-              of an RDF graph,
-              <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term"
-                ><dfn data-dfn-type="dfn" id="dfn-rdf-term">RDF term</dfn></a
-              >, and
-              <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-subject"
-                ><dfn data-dfn-type="dfn" id="dfn-subject">subject</dfn></a
-              >,
-              <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-predicate"
-                ><dfn data-dfn-type="dfn" id="dfn-predicate">predicate</dfn></a
-              >, and
-              <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-object"
-                ><dfn data-dfn-type="dfn" id="dfn-object">object</dfn></a
-              >
-              of RDF triples, and
-              <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-datatype"
-                ><dfn data-dfn-type="dfn" id="dfn-datatype">datatype</dfn></a
-              >
-              as defined in RDF 1.1 Concepts and Abstract Syntax [<cite
-                ><a class="bibref" href="#bib-rdf11-concepts"
-                  >rdf11-concepts</a
-                ></cite
-              >].
-            </p>
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":basic-rdf-terminology"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="1.1.2"
-              id="basic-acp-terminology"
-            >
-              <span class="secno">1.1.2. </span
-              ><span class="content">Basic ACP terminology</span
-              ><a class="self-link" href="#basic-acp-terminology"></a>
-            </h4>
-            <dl>
-              <dt id="acp-context-graph">Context graph</dt>
-              <dd>
-                In ACP, instances of resource access are described in the form
-                of an RDF graph called a "context graph".
-              </dd>
-              <dt id="acp-authorization-graph">Authorization graph</dt>
-              <dd>
-                In ACP, the conditions mandating access to a resource are
-                expressed as Access Controls, Policies, and Matchers, in the
-                form of an RDF graph called the resource's "authorization
-                graph".
-              </dd>
-              <dt id="acp-access-grant-graph">Access Grant graph</dt>
-              <dd>
-                In ACP, Authorization graphs are applied to Context graphs to
-                determine whether an instance of resource access satisfies the
-                conditions mandating access to said resource. Running ACP's
-                algorithm to determine access to a resource results in a set
-                (possibly empty) of
-                <a href="#access-modes-grant">Access Modes</a>. ACP engine
-                output is expressed in the form of an RDF graph called an
-                "access grant graph".
-              </dd>
-            </dl>
-            <p>
-              Throughout this document, color-coded boxes containing RDF graphs
-              in Turtle syntax will appear representing example authorization,
-              context and access grant graphs.
-            </p>
-            <pre class="example example-context-graph">
-  # This box contains a context graph
-  # It describes an instance of resource access
-
-  prefix acp: &lt;http://www.w3.org/ns/solid/acp#&gt;
-  prefix ex: &lt;https://example.org/&gt;
-
-  []
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX .
-</pre
-            >
-            <pre class="example example-authorization-graph">
-  # This box contains an authorization graph
-  # It describes the conditions required for accessing a resource
-
-  prefix acl: &lt;http://www.w3.org/ns/auth/acl#&gt;
-  prefix acp: &lt;http://www.w3.org/ns/solid/acp#&gt;
-  prefix ex: &lt;https://example.org/&gt;
-
-  []
-    a acp:AccessControlResource ;
-    acp:resource ex:resourceX ;
-    acp:accessControl [
-      a acp:AccessControl ;
-      acp:apply [
-        a acp:Policy ;
-        acp:allow acl:Read ;
-        acp:anyOf [
-          a acp:AgentMatcher ;
-          acp:agent ex:Bob ;
-        ]
-      ]
-    ] .
-</pre
-            >
-            <pre class="example example-access-grant-graph">
-  # This box contains an access grant graph
-  # It describes in context the granted access over a resource
-
-  prefix acl: &lt;http://www.w3.org/ns/auth/acl#&gt;
-  prefix acp: &lt;http://www.w3.org/ns/solid/acp#&gt;
-  prefix ex: &lt;https://example.org/&gt;
-
-  []
-    acp:grant acl:Read ;
-    acp:context [
-      acp:agent ex:Bob ;
-      acp:target ex:resourceX ;
-    ] .
-</pre
-            >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":basic-acp-terminology"
-              property="bibo:hasPart"
-            ></section>
-          </section>
-          <h3 class="heading settled" data-level="1.2" id="namespaces">
+          ></section>
+          <h3 class="heading settled" data-level="1.2" id="acp-terminology">
             <span class="secno">1.2. </span
+            ><span class="content">ACP terminology</span
+            ><a class="self-link" href="#acp-terminology"></a>
+          </h3>
+          <dl>
+            <dt id="dfn-context-graph">Context graph</dt>
+            <dd>
+              In ACP, <a href="#context-graph">context graphs</a> describe the
+              attributes of resource access instances. Those attributes can be
+              matched to sets of conditions defined in the form of an
+              <a href="#dfn-authorization-graph">authorization graph</a> in
+              order to determine access modes granted over resources. If no
+              resource access attribute is matched, the granted set of access
+              modes over a resource is always empty.
+            </dd>
+            <dt id="dfn-authorization-graph">Authorization graph</dt>
+            <dd>
+              In ACP,
+              <a href="#authorization-graph">authorization graphs</a>
+              authoritatively define the conditions for granting access modes
+              over resources through Access controls, Policies and context
+              Matchers. The result of applying an authorization graph to a
+              described instance of resource access is an
+              <a href="#dfn-access-grant-graph">access grant graph</a>.
+            </dd>
+            <dt id="dfn-access-grant-graph">Access grant graph</dt>
+            <dd>
+              In ACP,
+              <a href="#access-grant-graph">access grant graphs</a> describe
+              sets of granted access modes over resources in the context
+              resource access instances. By default, no access mode is granted
+              over resources.
+            </dd>
+          </dl>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":acp-terminology"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="1.3" id="namespaces">
+            <span class="secno">1.3. </span
             ><span class="content">Namespaces</span
             ><a class="self-link" href="#namespaces"></a>
           </h3>
@@ -857,37 +772,17 @@
             resource=":namespaces"
             property="bibo:hasPart"
           ></section>
-          <h3 class="heading settled" data-level="1.3" id="conformance">
-            <span class="secno">1.3. </span
-            ><span class="content">Conformance</span
-            ><a class="self-link" href="#conformance"></a>
-          </h3>
-          <p>
-            All assertions, diagrams, examples, and notes are non-normative, as
-            are all sections explicitly marked non-normative. Everything else is
-            normative.
-          </p>
-          <p id="RFC2119-conformance">
-            The key words <em class="rfc2119">MAY</em>,
-            <em class="rfc2119">MUST</em>, <em class="rfc2119">MUST NOT</em>,
-            and <em class="rfc2119">SHOULD</em> are to be interpreted as
-            described in [<cite
-              ><a class="bibref" href="#rfc2119">RFC 2119</a></cite
-            >] .
-          </p>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":conformance"
-            property="bibo:hasPart"
-          ></section>
           <h3 class="heading settled" data-level="1.4" id="example-graphs">
             <span class="secno">1.4. </span
             ><span class="content">Example graphs</span
             ><a class="self-link" href="#example-graphs"></a>
           </h3>
           <p><em>This section is non-normative.</em></p>
+          <p>
+            Throughout this document, color-coded boxes contain the RDF
+            representation of example context graphs, authorization graphs, and
+            access grant graphs serialized in Turtle.
+          </p>
           <p>
             The following example
             <cite
@@ -906,7 +801,10 @@
             id="acp-example-context-graph"
             class="example example-context-graph"
           >
-  _:context1
+  # This box contains a context graph
+  # It describes an instance of resource access
+
+  []
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
     acp:client ex:ClientApplicationY ;
@@ -923,29 +821,33 @@
             contains the conditions of access to resource X and could be
             translated as
             <em
-              >"Access to resource X is mandated by access control resource A.
-              Access control B applies policy C which allows access mode
-              acl:Read when agent matcher D is satisfied. The agent matcher D is
-              satisfied when Alice or Bob are the context graph agent."</em
+              >"Access to resource X is mandated by one Access Control that
+              applies one Policy which allows access mode acl:Read when the
+              agent matcher is satisfied that Alice or Bob are the agent trying
+              to access resource X."</em
             >:
           </p>
           <pre
             id="acp-example-authorization-graph"
             class="example example-authorization-graph"
           >
-  ex:accessControlResourceA
+  # This box contains an authorization graph
+  # It describes the conditions required for accessing a resource
+
+  []
+    a acp:AccessControlResource ;
     acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlB .
-
-  ex:accessControlB
-    acp:apply ex:PolicyC .
-
-  ex:PolicyC
-    acp:anyOf ex:agentMatcherD ;
-    acp:allow acl:Read .
-
-  ex:agentMatcherD
-    acp:agent ex:Alice, ex:Bob .
+    acp:accessControl [
+      a acp:AccessControl ;
+      acp:apply [
+        a acp:Policy ;
+        acp:allow acl:Read ;
+        acp:anyOf [
+          a acp:AgentMatcher ;
+          acp:agent ex:Alice, ex:Bob ;
+        ]
+      ]
+    ] .
 </pre
           >
           <p>
@@ -958,7 +860,7 @@
             is the result of applying the previous authorization graph to the
             previous context graph. Since Bob was matched as the context agent
             and there is no further restrictions, the policy allowing acl:Read
-            applies. The following resource access graph could be read as
+            applies. The following access grant graph could be read as
             <em
               >"The access mode acl:Read has been granted over resource X to Bob
               that was using client application Y and whose identity was
@@ -969,14 +871,17 @@
             id="acp-example-access-grant-graph"
             class="example example-access-grant-graph"
           >
-    _:grant1
+  # This box contains an access grant graph
+  # It describes in context the granted access over a resource
+
+  []
+    acp:grant acl:Read ;
     acp:context [
       acp:agent ex:Bob ;
       acp:target ex:resourceX ;
       acp:client ex:ClientApplicationY ;
       acp:issuer ex:IdentityProviderZ ;
-    ] ;
-    acp:grant acl:Read .
+    ] .
   </pre
           >
 
@@ -1005,22 +910,46 @@
             resource=":data-model"
             property="bibo:hasPart"
           ></section>
-          <h3 class="heading settled" data-level="1.6" id="ontology">
-            <span class="secno">1.6. </span><span class="content">Ontology</span
-            ><a class="self-link" href="#ontology"></a>
+          <h3 class="heading settled" data-level="1.6" id="vocabulary">
+            <span class="secno">1.6. </span
+            ><span class="content">Vocabulary</span
+            ><a class="self-link" href="#vocabulary"></a>
           </h3>
           <p>
-            A non-normative RDF representation of the Access Control Policy
-            ontology is maintained as a companion document to this specification
-            and
-            <a href="./acp.ttl">available here in turtle serialization format</a
-            >.
+            All terms defined by the Access Control Policy Language are present
+            in a non-normative RDF representation of the
+            <a href="./acp.ttl">ACP ontology serialized in turtle</a>.
           </p>
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":ontology"
+            resource=":vocabulary"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="1.7" id="conformance">
+            <span class="secno">1.7. </span
+            ><span class="content">Conformance</span
+            ><a class="self-link" href="#conformance"></a>
+          </h3>
+          <p>
+            All assertions, diagrams, examples, and notes are non-normative, as
+            are all sections explicitly marked non-normative. Everything else is
+            normative.
+          </p>
+          <p id="RFC2119-conformance">
+            The key words <em class="rfc2119">MAY</em>,
+            <em class="rfc2119">MUST</em>, <em class="rfc2119">MUST NOT</em>,
+            and <em class="rfc2119">SHOULD</em> are to be interpreted as
+            described in [<cite
+              ><a class="bibref" href="#rfc2119">RFC 2119</a></cite
+            >] .
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":conformance"
             property="bibo:hasPart"
           ></section>
         </section>
@@ -1030,17 +959,8 @@
           ><a class="self-link" href="#context-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP terms used to describe properties of
-          resource access instances.
-        </p>
-        <p>
-          In ACP, a <dfn id="dfn-context-graph">context graph</dfn> describes
-          the attributes of a resource access instance that can be
-          <a href="#matcher">matched</a> to a set of conditions defined in the
-          form of an <a href="#authorization-graph">authorization graph</a> in
-          order to determine an access modes grant. If no resource access
-          attribute is matched, the granted set of access modes over a resource
-          is always empty.
+          This section introduces the ACP terms used to describe resource access
+          instances.
         </p>
 
         <section
@@ -1059,22 +979,22 @@
               <span property="rdfs:comment"
                 >An
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">Context</span> defines the
-                attributes of resource access instances.</span
+                <span property="rdfs:label">Context</span> describes instances
+                of resource access.</span
               >
             </dd>
           </dl>
           <p>
-            The following example context graph denotes an instance of resource
+            The following example context graph denotes instances of resource
             access over resource X initiated by Bob:
           </p>
           <pre
             id="context-example-context-graph"
             class="example example-context-graph"
           >
-  _:context
+  []
     a acp:Context ;
-    acp:agent ex:Bob  .
+    acp:agent ex:Bob .
 </pre
           >
 
@@ -1277,16 +1197,8 @@
           ><a class="self-link" href="#authorization-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs used to define the
+          This section introduces the ACP terms used to define sets of
           conditions mandating access to resources.
-        </p>
-        <p>
-          In ACP, an
-          <dfn id="dfn-authorization-graph">authorization graph</dfn>
-          authoritatively defines the conditions for granting access modes over
-          a resource and its associated access control resource through Access
-          controls, Policies and context Matchers that need to be satisfied in
-          order for an access modes grant to be obtained.
         </p>
 
         <section
@@ -2344,15 +2256,8 @@
           ><a class="self-link" href="#access-grant-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP constructs used to define access modes
-          granted over resources.
-        </p>
-        <p>
-          In ACP, the
-          <dfn id="dfn-access-grant-graph">access grant graph</dfn> describes
-          the set of granted access modes over a resource in context of a
-          resource access instance. By default, no access mode is granted over
-          resources.
+          This section introduces the ACP terms used to describe the context in
+          which set of access modes have been granted.
         </p>
 
         <section
