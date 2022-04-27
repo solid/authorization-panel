@@ -1245,7 +1245,7 @@
                 >The
                 <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
                 <span property="rdfs:label">accessControlResource</span>
-                predicate links a resource to the ACP Access control resource
+                predicate links a resource to the ACP Access Control Resource
                 which mandates access over it.
                 <code>acp:accessControlResource</code> has a range of
                 <code property="rdfs:range" resource="acp:AccessControlResource"
@@ -1255,12 +1255,9 @@
                 <code property="rdfs:domain" resource="rdfs:Resource"
                   >rdfs:Resource</code
                 >. Access over a resource is only ever mandated by one ACP
-                Access control resource; inversely, an ACP Access control
-                resource only ever mandates access over one resource. The
-                one-to-one cardinality of
-                <code>acp:accessControlResource</code> is denoted by it being an
-                <code>owl:FunctionalProperty</code> &amp;
-                <code>owl:InverseFunctionalProperty</code>. The
+                Access Control Resource. The cardinality of
+                <code>acp:accessControlResource</code> is denoted by it being a
+                <code>owl:FunctionalProperty</code>. The
                 <code>acp:accessControlResource</code> predicate is the inverse
                 of
                 <span property="owl:inverseOf" resource="acp:resource"
@@ -1287,11 +1284,9 @@
                   property="rdfs:domain"
                   resource="acp:AccessControlResource"
                   >acp:AccessControlResource</code
-                >. An ACP Access control resource only ever mandates access over
-                one resource and inversely a resource only ever has one ACP
-                Access control resource mandating access over it. The one-to-one
-                cardinality of <code>acp:resource</code> is denoted by it being
-                an <code>owl:FunctionalProperty</code> &amp;
+                >. A resource only ever has one ACP Access Control Resource
+                mandating access over it. The cardinality of
+                <code>acp:resource</code> is denoted by it being an
                 <code>owl:InverseFunctionalProperty</code>. The
                 <code>acp:resource</code> predicate is the inverse of
                 <span
