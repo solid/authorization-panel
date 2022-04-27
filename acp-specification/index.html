@@ -857,13 +857,14 @@
               ></cite
             >
             is the result of applying the previous example authorization graph
-            to the previous example context graph. Since Bob was matched as the
-            context agent and there is no further restrictions, the policy
-            allowing acl:Read applies. The following access grant graph could be
-            read as:
+            which defines access to resource X to the previous example context
+            graph which describes an instance of access to target resource X.
+            Bob is matched as the context agent and since it defines no further
+            restrictions, the policy allowing acl:Read is satisfied. The
+            following access grant graph could be read as:
             <em
-              >"The access mode acl:Read has been granted over resource X to Bob
-              that was using client application Y and whose identity was
+              >"The access mode acl:Read is granted to Bob whom requested access
+              to resource X using client application Y and whose identity was
               asserted by identity provider Z."</em
             >.
           </p>
