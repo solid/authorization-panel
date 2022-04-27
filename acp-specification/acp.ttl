@@ -22,24 +22,24 @@ prefix vann: <http://purl.org/vocab/vann/>
 acp:Context
     a rdfs:Class ;
     rdfs:label "Context"@en ;
-    rdfs:comment "An ACP Context defines the attributes of resource access instances."@en ;
+    rdfs:comment "An ACP Context describes instances of resource access."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessControlResource
     a rdfs:Class ;
-    rdfs:label "Access control resource"@en ;
-    rdfs:comment "An ACP Access control resource mandates access over a specific resource and itself."@en ;
+    rdfs:label "Access Control Resource"@en ;
+    rdfs:comment "Instances of the Access Control Resource (ACR) class connect resources to their Access Controls."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessControl
     a rdfs:Class ;
-    rdfs:label "Access control"@en ;
-    rdfs:comment "An ACP Access control is linked to access control resources via the acp:accessControl predicate and determines sets of policies mandating access over resources and access control resources respectively via the acp:apply and acp:access predicates."@en ;
+    rdfs:label "Access Control"@en ;
+    rdfs:comment "Instances of the Access Control class connect Access Controls to their Policies."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:Policy
     a rdfs:Class ;
-    rdfs:label "Access Policy"@en ;
+    rdfs:label "Policy"@en ;
     rdfs:comment "An ACP Policy defines a set of allowed and denied access modes respectively via the acp:allow and acp:deny predicates as well as the conditions for its satisfaction via the acp:allOf, acp:anyOf and acp:noneOf predicates which link it to ACP Matchers."@en ;
     rdfs:comment "In ACP, a policy MUST be considered satisfied if and only if: It references at least one matcher via a condition; and, At least one matcher it references matches the given context; and, All the conditions it defines are satisfied. Given that the acp:noneOf condition excludes matches, a policy without a satisfied allOf or anyOf condition is never satisfied."@en ;
     rdfs:comment "An access mode MUST be granted over a resource if and only if in the set of policies mandating access over it: A satisfied policy allows it; and No satisfied policy denies it. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere."@en ;
@@ -53,13 +53,13 @@ acp:Matcher
 
 acp:AccessGrant
     a rdfs:Class ;
-    rdfs:label "Access grant"@en ;
+    rdfs:label "Access Grant"@en ;
     rdfs:comment "An ACP Access grant defines the set of access modes granted over a particular context."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessMode
     a rdfs:Class ;
-    rdfs:label "Access mode"@en ;
+    rdfs:label "Access Mode"@en ;
     rdfs:comment "The class of access modes that can be granted by an ACP server. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere. For example, it could use the access modes defined by the ACL ontology: acl:Read; acl:Write; and acl:Append. Access modes can be defined to fit the specific needs of an application. An ACP server MUST advertise the access modes it supports by responding to HTTP OPTIONS requests over ACP access control resources including a Link header with the rel value of http://www.w3.org/ns/solid/acp#mode and the full URI of an access mode as link target [RFC8288]. An ACP server MUST produce one such Link header for each access mode it supports."@en ;
     rdfs:isDefinedBy acp: .
 
@@ -68,7 +68,7 @@ acp:AccessMode
 #   Properties
 ####################
 acp:accessControlResource
-    a rdf:Property, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+    a rdf:Property ;
     owl:inverseOf acp:resource ;
     rdfs:label "accessControlResource"@en ;
     rdfs:comment "The ACP accessControlResource predicate links a resource to the ACP Access control resource which mandates access over it. acp:accessControlResource has a range of acp:AccessControlResource and a domain of rdfs:Resource. Access over a resource is only ever mandated by one ACP Access control resource; inversely, an ACP Access control resource only ever mandates access over one resource. The one-to-one cardinality of acp:accessControlResource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:accessControlResource predicate is the inverse of acp:resource."@en ;
@@ -77,7 +77,7 @@ acp:accessControlResource
     rdfs:range acp:AccessControlResource .
 
 acp:resource
-    a rdf:Property, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+    a rdf:Property ;
     owl:inverseOf acp:accessControlResource ;
     rdfs:label "resource"@en ;
     rdfs:comment "The ACP resource predicate links an ACP Access control resource to the resource over which it mandates access. acp:resource has a range of rdfs:Resource and a domain of acp:AccessControlResource. An ACP Access control resource only ever mandates access over one resource and inversely a resource only ever has one ACP Access control resource mandating access over it. The one-to-one cardinality of acp:resource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:resource predicate is the inverse of acp:accessControlResource."@en ;
