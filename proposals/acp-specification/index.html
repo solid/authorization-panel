@@ -51,6 +51,12 @@
         border-style: solid;
         padding: 5px;
       }
+      .bibref::before {
+        content: "[";
+      }
+      .bibref::after {
+        content: "]";
+      }
       .heading {
         position: relative;
       }
@@ -135,7 +141,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-04-26">2022-04-26</time>
+        <time property="dc:issued" datetime="2022-04-27">2022-04-27</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -228,7 +234,7 @@
             >Access Control Policy Language (ACP)</span
           >.
           <span about="acp:" typeof="owl:Ontology" property="rdfs:comment"
-            >ACP is a language for defining sets of conditions mandating access
+            >ACP is a language for describing, controlling and granting access
             to resources.</span
           >
         </p>
@@ -346,7 +352,7 @@
 
         <li class="tocline">
           <a href="#context-graph" class="tocxref"
-            ><span class="secno">3</span>Context graph</a
+            ><span class="secno">3</span>Context Graph</a
           >
           <ol class="toc">
             <li class="tocline">
@@ -373,39 +379,39 @@
 
         <li class="tocline">
           <a href="#authorization-graph" class="tocxref"
-            ><span class="secno">4</span>Authorization graph</a
+            ><span class="secno">4</span>Authorization Graph</a
           >
           <ol class="toc">
             <li class="tocline">
               <a href="#access-control-resource" class="tocxref"
-                ><span class="secno">4.1</span>Access control resource</a
+                ><span class="secno">4.1</span>Access Control Resource</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#example-access-control-resource" class="tocxref"
+                    ><span class="secno">4.1.1</span>Example Access Control
+                    Resource</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
               <a href="#access-control" class="tocxref"
-                ><span class="secno">4.2</span>Access control</a
+                ><span class="secno">4.2</span>Access Control</a
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#resource-access" class="tocxref"
-                    ><span class="secno">4.2.1</span>Resource access</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#access-control-resource-access" class="tocxref"
-                    ><span class="secno">4.2.2</span>Access control resource
-                    access</a
+                  <a href="#example-access-control" class="tocxref"
+                    ><span class="secno">4.2.1</span>Example Access Control</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
                   <a href="#access-control-resolution" class="tocxref"
-                    ><span class="secno">4.2.3</span>Access control
+                    ><span class="secno">4.2.2</span>Access Control
                     resolution</a
                   >
                 </li>
@@ -427,7 +433,7 @@
               <ol class="toc">
                 <li class="tocline">
                   <a href="#granted-access-modes" class="tocxref"
-                    ><span class="secno">4.3.2</span>Granted access modes</a
+                    ><span class="secno">4.3.2</span>Granted Access Modes</a
                   >
                 </li>
               </ol>
@@ -441,7 +447,7 @@
               <ol class="toc">
                 <li class="tocline">
                   <a href="#agent-matcher" class="tocxref"
-                    ><span class="secno">4.4.1</span>Agent matcher</a
+                    ><span class="secno">4.4.1</span>Agent Matcher</a
                   >
                 </li>
               </ol>
@@ -455,22 +461,22 @@
               <ol class="toc">
                 <li class="tocline">
                   <a href="#issuer-matcher" class="tocxref"
-                    ><span class="secno">4.4.3</span>Issuer matcher</a
+                    ><span class="secno">4.4.3</span>Issuer Matcher</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
                   <a href="#time-matcher" class="tocxref"
-                    ><span class="secno">4.4.4</span>Time matcher</a
+                    ><span class="secno">4.4.4</span>Time Matcher</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
                   <a href="#verifiable-credentials-matcher" class="tocxref"
-                    ><span class="secno">4.4.5</span>Verifiable credentials
-                    matcher</a
+                    ><span class="secno">4.4.5</span>Verifiable Credentials
+                    Matcher</a
                   >
                 </li>
               </ol>
@@ -494,12 +500,12 @@
 
         <li class="tocline">
           <a href="#access-grant-graph" class="tocxref"
-            ><span class="secno">5</span>Access grant graph</a
+            ><span class="secno">5</span>Access Grant Graph</a
           >
           <ol class="toc">
             <li class="tocline">
               <a href="#access-modes-grant" class="tocxref"
-                ><span class="secno">5.1</span>Access modes grant</a
+                ><span class="secno">5.1</span>Access Modes Grant</a
               >
             </li>
           </ol>
@@ -533,7 +539,7 @@
           <ol class="toc">
             <li class="tocline">
               <a href="#access-control-resource-editing" class="tocxref"
-                ><span class="secno">6.3</span>Access control resource
+                ><span class="secno">6.3</span>Access Control Resource
                 editing</a
               >
             </li>
@@ -541,7 +547,7 @@
           <ol class="toc">
             <li class="tocline">
               <a href="#access-control-resource-discovery" class="tocxref"
-                ><span class="secno">6.4</span>Access control resource
+                ><span class="secno">6.4</span>Access Control Resource
                 discovery</a
               >
             </li>
@@ -582,51 +588,52 @@
           <p>
             This document uses the terms
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-resource"
-              ><dfn id="dfn-rdf-resource">resource</dfn></a
+              ><dfn id="rdf-resource">resource</dfn></a
             >,
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-vocabulary"
-              ><dfn id="dfn-rdf-vocabulary">RDF vocabulary</dfn></a
+              ><dfn id="rdf-vocabulary">RDF vocabulary</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph"
-              ><dfn id="dfn-rdf-graph">RDF graph</dfn></a
+              ><dfn id="rdf-graph">RDF graph</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple"
-              ><dfn id="dfn-rdf-triple">RDF triple</dfn></a
+              ><dfn id="rdf-triple">RDF triple</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-iri"
-              ><dfn id="dfn-rdf-iri">IRI</dfn></a
+              ><dfn id="rdf-iri">IRI</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-literal"
-              ><dfn id="dfn-rdf-literal">literal</dfn></a
+              ><dfn id="rdf-literal">literal</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-blank-node"
-              ><dfn id="dfn-rdf-blank-node">blank node</dfn></a
+              ><dfn id="rdf-blank-node">blank node</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-node"
-              ><dfn id="dfn-rdf-node">node</dfn></a
+              ><dfn id="rdf-node">node</dfn></a
             >
             of an RDF graph,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term"
-              ><dfn id="dfn-rdf-term">RDF term</dfn></a
+              ><dfn id="rdf-term">RDF term</dfn></a
             >, and
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-subject"
-              ><dfn id="dfn-rdf-subject">subject</dfn></a
+              ><dfn id="rdf-subject">subject</dfn></a
             >,
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-predicate"
-              ><dfn id="dfn-rdf-predicate">predicate</dfn></a
+              ><dfn id="rdf-predicate">predicate</dfn></a
             >, and
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-object"
-              ><dfn id="dfn-rdf-object">object</dfn></a
+              ><dfn id="rdf-object">object</dfn></a
             >
             of RDF triples, and
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-datatype"
-              ><dfn id="dfn-datatype">datatype</dfn></a
+              ><dfn id="datatype">datatype</dfn></a
             >
-            as defined in RDF 1.1 Concepts and Abstract Syntax [<cite
+            as defined in RDF 1.1 Concepts and Abstract Syntax
+            <cite
               ><a class="bibref" href="#bib-rdf11-concepts"
-                >rdf11-concepts</a
+                >RDF11 CONCEPTS</a
               ></cite
-            >].
+            >.
           </p>
 
           <section
@@ -739,28 +746,26 @@
             ><a class="self-link" href="#acp-terminology"></a>
           </h3>
           <dl>
-            <dt id="dfn-context-graph">Context graph</dt>
+            <dt id="terminology-context-graph">Context graph</dt>
             <dd>
-              In ACP, <a href="#context-graph">context graphs</a> describe the
+              <a href="#context-graph">Context graphs</a> describe the
               attributes of resource access instances. Those attributes can be
               matched to sets of conditions defined in the form of an
-              <a href="#dfn-authorization-graph">authorization graph</a> in
-              order to determine access modes granted over resources.
+              <a href="#terminology-authorization-graph">authorization graph</a>
+              in order to determine access modes granted over resources.
             </dd>
-            <dt id="dfn-authorization-graph">Authorization graph</dt>
+            <dt id="terminology-authorization-graph">Authorization graph</dt>
             <dd>
-              In ACP,
-              <a href="#authorization-graph">authorization graphs</a>
+              <a href="#authorization-graph">Authorization graphs</a>
               authoritatively define the conditions for granting access modes
               over resources through Access controls, Policies and context
               Matchers. The result of applying an authorization graph to a
               described instance of resource access is an
-              <a href="#dfn-access-grant-graph">access grant graph</a>.
+              <a href="#terminology-access-grant-graph">access grant graph</a>.
             </dd>
-            <dt id="dfn-access-grant-graph">Access grant graph</dt>
+            <dt id="terminology-access-grant-graph">Access grant graph</dt>
             <dd>
-              In ACP,
-              <a href="#access-grant-graph">access grant graphs</a> describe
+              <a href="#access-grant-graph">Access grant graphs</a> describe
               sets of granted access modes over resources in the context of
               resource access instances.
             </dd>
@@ -778,28 +783,24 @@
             ><a class="self-link" href="#example-graphs"></a>
           </h3>
           <p><em>This section is non-normative.</em></p>
+
           <p>
             Throughout this document, color-coded boxes contain the RDF
             representation of example context graphs, authorization graphs, and
             access grant graphs serialized in Turtle.
           </p>
+
           <p>
             The following example
-            <cite
-              ><a class="bibref" href="#dfn-context-graph"
-                >context graph</a
-              ></cite
-            >
-            describes an instance of resource access and could be translated as:
+            <a href="#terminology-context-graph">context graph</a> describes an
+            instance of resource access and could be translated as:
             <em
               >"Bob is trying to access resource X using client application Y
               with his identity asserted by identity provider Z."</em
             >.
           </p>
-          <pre
-            id="acp-example-context-graph"
-            class="example example-context-graph"
-          >
+
+          <pre id="example-context-graph" class="example example-context-graph">
   # This box contains a context graph
   # It describes an instance of resource access
 
@@ -810,13 +811,10 @@
     acp:issuer ex:IdentityProviderZ .
 </pre
           >
+
           <p>
             The following example
-            <cite
-              ><a class="bibref" href="#dfn-authorization-graph"
-                >authorization graph</a
-              ></cite
-            >
+            <a href="#terminology-authorization-graph">authorization graph</a>
             authoritatively defines the conditions of access to resource X and
             could be translated as:
             <em
@@ -826,8 +824,9 @@
               to access resource X."</em
             >.
           </p>
+
           <pre
-            id="acp-example-authorization-graph"
+            id="example-authorization-graph"
             class="example example-authorization-graph"
           >
   # This box contains an authorization graph
@@ -849,14 +848,11 @@
     ] .
 </pre
           >
+
           <p>
             The following example
-            <cite
-              ><a class="bibref" href="#dfn-access-grant-graph"
-                >access grant graph</a
-              ></cite
-            >
-            is the result of applying the previous example authorization graph
+            <a href="#terminology-access-grant-graph">access grant graph</a> is
+            the result of applying the previous example authorization graph
             which defines access to resource X to the previous example context
             graph which describes an instance of access to target resource X.
             Bob is matched as the context agent and since it defines no further
@@ -868,8 +864,9 @@
               asserted by identity provider Z."</em
             >.
           </p>
+
           <pre
-            id="acp-example-access-grant-graph"
+            id="example-access-grant-graph"
             class="example example-access-grant-graph"
           >
   # This box contains an access grant graph
@@ -883,7 +880,7 @@
       acp:client ex:ClientApplicationY ;
       acp:issuer ex:IdentityProviderZ ;
     ] .
-  </pre
+</pre
           >
 
           <section
@@ -941,8 +938,8 @@
           The key words <em class="rfc2119">MAY</em>,
           <em class="rfc2119">MUST</em>, <em class="rfc2119">MUST NOT</em>, and
           <em class="rfc2119">SHOULD</em> are to be interpreted as described in
-          [<cite><a class="bibref" href="#rfc2119">RFC 2119</a></cite
-          >] .
+          <cite><a class="bibref" href="#bib-rfc-2119">RFC 2119</a></cite
+          >.
         </p>
 
         <section
@@ -953,12 +950,12 @@
         ></section>
         <h2 class="heading settled" data-level="3" id="context-graph">
           <span class="secno">3. </span
-          ><span class="content">Context graph</span
+          ><span class="content">Context Graph</span
           ><a class="self-link" href="#context-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP terms used to describe resource access
-          instances.
+          This section introduces the ACP terms used to describe instances of
+          resource access.
         </p>
 
         <section
@@ -1191,12 +1188,12 @@
         </section>
         <h2 class="heading settled" data-level="4" id="authorization-graph">
           <span class="secno">4. </span
-          ><span class="content">Authorization graph</span
+          ><span class="content">Authorization Graph</span
           ><a class="self-link" href="#authorization-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP terms used to define sets of
-          conditions mandating access to resources.
+          This section introduces the ACP terms used to control access to
+          resources.
         </p>
 
         <section
@@ -1211,170 +1208,194 @@
             id="access-control-resource"
           >
             <span class="secno">4.1. </span
-            ><span class="content">Access control resource</span
+            ><span class="content">Access Control Resource</span
             ><a class="self-link" href="#access-control-resource"></a>
           </h3>
-          <p>
-            An access control resource is the entry point of any ACP
-            authorization graph.
-          </p>
-          <p>
-            In ACP, there is a one to one relationship between the access
-            control resource and the resource over which it mandates access.
-          </p>
           <dl>
-            <dt id="acp-access-control-resource">
+            <dt
+              id="acp-access-control-resource"
+              about="acp:AccessControlResource"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
               <code>acp:AccessControlResource</code>
             </dt>
-            <dd about="acp:AccessControlResource" typeof="rdfs:Class">
-              <span property="rdfs:comment"
-                >An
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">Access control resource</span>
-                mandates access over a specific resource and itself.</span
-              >
+            <dd about="acp:AccessControlResource" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Access Control Resource</span> (ACR)
+              class connect resources to their Access Controls.
             </dd>
-            <dt id="acp-accessControlResource">
-              <code>acp:accessControlResource</code>
-            </dt>
-            <dd
-              about="acp:accessControlResource"
-              typeof="rdf:Property owl:FunctionalProperty owl:InverseFunctionalProperty"
-            >
-              <span property="rdfs:comment"
-                >The
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">accessControlResource</span>
-                predicate links a resource to the ACP Access Control Resource
-                which mandates access over it.
-                <code>acp:accessControlResource</code> has a range of
-                <code property="rdfs:range" resource="acp:AccessControlResource"
-                  >acp:AccessControlResource</code
-                >
-                and a domain of
-                <code property="rdfs:domain" resource="rdfs:Resource"
-                  >rdfs:Resource</code
-                >. Access over a resource is only ever mandated by one ACP
-                Access Control Resource. The cardinality of
-                <code>acp:accessControlResource</code> is denoted by it being a
-                <code>owl:FunctionalProperty</code>. The
-                <code>acp:accessControlResource</code> predicate is the inverse
-                of
-                <span property="owl:inverseOf" resource="acp:resource"
-                  >acp:resource</span
-                >.</span
-              >
-            </dd>
-            <dt id="acp-resource"><code>acp:resource</code></dt>
-            <dd
+
+            <dt
+              id="acp-resource"
               about="acp:resource"
-              typeof="rdf:Property owl:FunctionalProperty owl:InverseFunctionalProperty"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
             >
-              <span property="rdfs:comment"
-                >The
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">resource</span> predicate links an
-                ACP Access control resource to the resource over which it
-                mandates access. <code>acp:resource</code> has a range of
-                <code property="rdfs:range" resource="rdfs:Resource"
-                  >rdfs:Resource</code
-                >
-                and a domain of
-                <code
-                  property="rdfs:domain"
-                  resource="acp:AccessControlResource"
-                  >acp:AccessControlResource</code
-                >. A resource only ever has one ACP Access Control Resource
-                mandating access over it. The cardinality of
-                <code>acp:resource</code> is denoted by it being an
-                <code>owl:InverseFunctionalProperty</code>. The
-                <code>acp:resource</code> predicate is the inverse of
-                <span
-                  property="owl:inverseOf"
-                  resource="acp:accessControlResource"
-                  >acp:accessControlResource</span
-                >.</span
+              <code>acp:resource</code>
+            </dt>
+            <dd about="acp:resource" property="rdfs:comment">
+              The <span property="rdfs:label">resource</span> property connects
+              <span property="rdfs:domain" resource="acp:AccessControlResource"
+                >ACRs</span
               >
+              to
+              <span property="rdfs:range" resource="rdfs:Resource"
+                >resources</span
+              >
+              they control. It is the inverse of
+              <code
+                property="owl:inverseOf"
+                resource="acp:accessControlResource"
+                >acp:accessControlResource</code
+              >.
+            </dd>
+
+            <dt
+              id="acp-access-control"
+              about="acp:accessControl"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:accessControl</code>
+            </dt>
+            <dd about="acp:accessControl" property="rdfs:comment">
+              The <span property="rdfs:label">access control</span> property
+              connects
+              <span property="rdfs:domain" resource="acp:AccessControlResource"
+                >ACRs</span
+              >
+              to
+              <span property="rdfs:range" resource="acp:AccessControl"
+                >access controls</span
+              >.
+            </dd>
+
+            <dt
+              id="acp-member-access-control"
+              about="acp:memberAccessControl"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:memberAccessControl</code>
+            </dt>
+            <dd about="acp:memberAccessControl" property="rdfs:comment">
+              The
+              <span property="rdfs:label">member access control</span> property
+              connects
+              <span property="rdfs:domain" resource="acp:AccessControlResource"
+                >ACRs</span
+              >
+              of member resources to
+              <span property="rdfs:range" resource="acp:AccessControl"
+                >access controls</span
+              >.
             </dd>
           </dl>
-          <p>
-            The following example authorization graph denotes that access
-            control resource A mandates access over resource X and itself:
-          </p>
-          <pre
-            id="access-control-resource-example-authorization-graph"
-            class="example example-authorization-graph"
-          >
-  ex:accessControlResourceA
-    a acp:AccessControlResource ;
-    acp:resource ex:resourceX .
-</pre
-          >
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":access-control-resource"
             property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="4.2" id="access-control">
-            <span class="secno">4.2. </span
-            ><span class="content">Access control</span
-            ><a class="self-link" href="#access-control"></a>
-          </h3>
-          <p>
-            Access Controls are the first level of reusable elements of access
-            control in ACP.
-          </p>
-          <dl>
-            <dt id="acp-access-control"><code>acp:AccessControl</code></dt>
-            <dd about="acp:AccessControl" typeof="rdfs:Class">
-              <span property="rdfs:comment"
-                >An
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">Access control</span> is linked to
-                access control resources via the
-                <code>acp:accessControl</code> predicate and determines sets of
-                policies mandating access over resources and access control
-                resources respectively via the <code>acp:apply</code> and
-                <code>acp:access</code> predicates.</span
-              >
-            </dd>
-            <dt id="acp-accessControl"><code>acp:accessControl</code></dt>
-            <dd about="acp:accessControl" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >The
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">accessControl</span> predicate
-                defines the set of access controls that mandate access over a
-                resource and its associated access control resource, it has a
-                range of
-                <code property="rdfs:range" resource="acp:AccessControl"
-                  >acp:AccessControl</code
-                >
-                and a domain of
-                <code
-                  property="rdfs:domain"
-                  resource="acp:AccessControlResource"
-                  >acp:AccessControlResource</code
-                >.</span
-              >
-            </dd>
-          </dl>
-          <p>
-            The following example authorization graph denotes that access
-            control resource A mandates access over resource X and itself via
-            access controls B and C:
-          </p>
-          <pre
-            id="access-control-example-authorization-graph"
-            class="example example-authorization-graph"
           >
+            <h4
+              class="heading settled"
+              data-level="4.1.1"
+              id="example-access-control-resource"
+            >
+              <span class="secno">4.1.1. </span
+              ><span class="content">Example Access Control Resource</span
+              ><a class="self-link" href="#example-access-control-resource"></a>
+            </h4>
+            <p>
+              The following example authorization graph means that access to
+              resource X is controlled by both Access Controls B and C;
+              furthermore, access to members of resource X is controlled by
+              Access Control D.
+            </p>
+
+            <pre
+              id="access-control-resource-example-authorization-graph"
+              class="example example-authorization-graph"
+            >
   ex:accessControlResourceA
     acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlB, ex:accessControlC .
+    acp:accessControl ex:accessControlB, ex:accessControlC ;
+    acp:memberAccessControl ex:accessControlD .
 </pre
-          >
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":example-access-control-resource"
+              property="bibo:hasPart"
+            ></section>
+          </section>
+          <h3 class="heading settled" data-level="4.2" id="access-control">
+            <span class="secno">4.2. </span
+            ><span class="content">Access Control</span
+            ><a class="self-link" href="#access-control"></a>
+          </h3>
+          <dl>
+            <dt
+              id="acp-access-control"
+              about="acp:AccessControl"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:AccessControl</code>
+            </dt>
+            <dd about="acp:AccessControl" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Access Control</span> class connect
+              Access Controls to their Policies.
+            </dd>
+
+            <dt
+              id="acp-apply"
+              about="acp:apply"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:apply</code>
+            </dt>
+            <dd about="acp:apply" property="rdfs:comment">
+              The <span property="rdfs:label">apply</span> property connects
+              <span property="rdfs:domain" resource="acp:AccessControl"
+                >Access Controls</span
+              >
+              to the
+              <span property="rdfs:range" resource="acp:Policy">Policies</span>
+              they apply to Resources.
+            </dd>
+
+            <dt
+              id="acp-access"
+              about="acp:access"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:access</code>
+            </dt>
+            <dd about="acp:access" property="rdfs:comment">
+              The <span property="rdfs:label">access</span> property connects
+              <span property="rdfs:domain" resource="acp:AccessControl"
+                >Access Controls</span
+              >
+              to the
+              <span property="rdfs:range" resource="acp:Policy">Policies</span>
+              they apply to ACRs.
+            </dd>
+          </dl>
 
           <section
             datatype="rdf:HTML"
@@ -1382,34 +1403,19 @@
             resource=":access-control"
             property="bibo:hasPart"
           >
-            <h4 class="heading settled" data-level="4.2.1" id="resource-access">
+            <h4
+              class="heading settled"
+              data-level="4.2.1"
+              id="example-access-control"
+            >
               <span class="secno">4.2.1. </span
-              ><span class="content">Resource access</span
-              ><a class="self-link" href="#resource-access"></a>
+              ><span class="content">Example Access Control</span
+              ><a class="self-link" href="#example-access-control"></a>
             </h4>
-            <dl>
-              <dt id="acp-apply"><code>acp:apply</code></dt>
-              <dd about="acp:apply" typeof="rdf:Property">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">apply</span> predicate defines the
-                  set of policies that mandate access over resources, it has a
-                  range of
-                  <code property="rdfs:range" resource="acp:Policy"
-                    >acp:Policy</code
-                  >
-                  and a domain of
-                  <code property="rdfs:domain" resource="acp:AccessControl"
-                    >acp:AccessControl</code
-                  >.</span
-                >
-              </dd>
-            </dl>
             <p>
-              The following example authorization graph denotes that access
-              control B will grant access modes allowed by policy D over
-              resource X:
+              The following example authorization graph means that access to
+              resource X is controlled by Policy C while access to ACR A is
+              controlled by Policy D.
             </p>
             <pre
               id="resource-access-example-authorization-graph"
@@ -1417,82 +1423,30 @@
             >
   ex:accessControlResourceA
     acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlB, ex:accessControlC .
-
-  ex:accessControlB
-    acp:apply ex:policyD .
+    acp:accessControl [
+      acp:apply ex:policyC ;
+      acp:access ex:policyD ;
+    ] .
 </pre
             >
 
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":resource-access"
+              resource=":example-access-control"
               property="bibo:hasPart"
             ></section>
             <h4
               class="heading settled"
               data-level="4.2.2"
-              id="access-control-resource-access"
-            >
-              <span class="secno">4.2.2. </span
-              ><span class="content">Access control resource access</span
-              ><a class="self-link" href="#access-control-resource-access"></a>
-            </h4>
-            <dl>
-              <dt id="acp-access"><code>acp:access</code></dt>
-              <dd about="acp:access" typeof="rdf:Property">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">access</span> predicate defines
-                  the set of policies that mandate access over access control
-                  resources, it has a range of
-                  <code property="rdfs:range" resource="acp:Policy"
-                    >acp:Policy</code
-                  >
-                  and a domain of
-                  <code property="rdfs:domain" resource="acp:AccessControl"
-                    >acp:AccessControl</code
-                  >.</span
-                >
-              </dd>
-            </dl>
-            <p>
-              The following example authorization graph denotes that access
-              control C will grant access modes allowed by policy E over access
-              control resource A:
-            </p>
-            <pre
-              id="access-control-resource-access-example-authorization-graph"
-              class="example example-authorization-graph"
-            >
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlB, ex:accessControlC .
-
-  ex:accessControlC
-    acp:access ex:policyE .
-</pre
-            >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":access-control-resource-access"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="4.2.3"
               id="access-control-resolution"
             >
-              <span class="secno">4.2.3. </span
-              ><span class="content">Access control resolution</span
+              <span class="secno">4.2.2. </span
+              ><span class="content">Access Control resolution</span
               ><a class="self-link" href="#access-control-resolution"></a>
             </h4>
             <p>
-              The set of policies mandating access over a resource and its
+              The set of policies controlling access over a resource and its
               associated access control resource can be reduced respectively via
               the <code>acp:accessControl/acp:apply</code> and
               <code>acp:accessControl/acp:access</code> property paths.
@@ -1679,7 +1633,7 @@
               id="granted-access-modes"
             >
               <span class="secno">4.3.2. </span
-              ><span class="content">Granted access modes</span
+              ><span class="content">Granted Access Modes</span
               ><a class="self-link" href="#granted-access-modes"></a>
             </h4>
             <p>
@@ -1832,7 +1786,7 @@
           >
             <h4 class="heading settled" data-level="4.4.1" id="agent-matcher">
               <span class="secno">4.4.1. </span
-              ><span class="content">Agent matcher</span
+              ><span class="content">Agent Matcher</span
               ><a class="self-link" href="#agent-matcher"></a>
             </h4>
             <p id="acp-agent-matcher">
@@ -1969,7 +1923,7 @@
             ></section>
             <h4 class="heading settled" data-level="4.4.3" id="issuer-matcher">
               <span class="secno">4.4.3. </span
-              ><span class="content">Issuer matcher</span
+              ><span class="content">Issuer Matcher</span
               ><a class="self-link" href="#issuer-matcher"></a>
             </h4>
             <p id="acp-issuer-matcher">
@@ -2019,7 +1973,7 @@
             ></section>
             <h4 class="heading settled" data-level="4.4.4" id="time-matcher">
               <span class="secno">4.4.4. </span
-              ><span class="content">Time matcher</span
+              ><span class="content">Time Matcher</span
               ><a class="self-link" href="#time-matcher"></a>
             </h4>
             <p id="acp-time-matcher">
@@ -2045,7 +1999,7 @@
               id="verifiable-credentials-matcher"
             >
               <span class="secno">4.4.5. </span
-              ><span class="content">Verifiable credentials matcher</span
+              ><span class="content">Verifiable Credentials Matcher</span
               ><a class="self-link" href="#verifiable-credentials-matcher"></a>
             </h4>
             <p id="acp-verifiable-credentials-matcher">
@@ -2139,31 +2093,6 @@
             Contained resources can inherit ACP access controls via the
             <code>acp:memberAccessControl</code> predicate.
           </p>
-          <dl>
-            <dt id="acp-member-access-control">
-              <code>acp:memberAccessControl</code>
-            </dt>
-            <dd about="acp:memberAccessControl" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >An
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">memberAccessControl</span> is an
-                access control that mandates access to the resources contained
-                by the resource whose access control resource references member
-                access controls. The
-                <code>acp:memberAccessControl</code> predicate has a range of
-                <code property="rdfs:range" resource="acp:AccessControl"
-                  >acp:AccessControl</code
-                >
-                and a domain of
-                <code
-                  property="rdfs:domain"
-                  resource="acp:AccessControlResource"
-                  >acp:AccessControlResource</code
-                >.</span
-              >
-            </dd>
-          </dl>
           <p>
             The following example authorization graph denotes that resource
             contained by resource X will have access control B and C among the
@@ -2245,12 +2174,12 @@
         </section>
         <h2 class="heading settled" data-level="5" id="access-grant-graph">
           <span class="secno">5. </span
-          ><span class="content">Access grant graph</span
+          ><span class="content">Access Grant Graph</span
           ><a class="self-link" href="#access-grant-graph"></a>
         </h2>
         <p>
-          This section introduces the ACP terms used to describe the context in
-          which set of access modes have been granted.
+          This section introduces the ACP terms used to grant access to
+          resources.
         </p>
 
         <section
@@ -2261,7 +2190,7 @@
         >
           <h3 class="heading settled" data-level="5.1" id="access-modes-grant">
             <span class="secno">5.1. </span
-            ><span class="content">Access modes grant</span
+            ><span class="content">Access Modes Grant</span
             ><a class="self-link" href="#access-modes-grant"></a>
           </h3>
           <dl>
@@ -2494,7 +2423,7 @@
             id="access-control-resource-editing"
           >
             <span class="secno">6.3. </span
-            ><span class="content">Access control resource editing</span
+            ><span class="content">Access Control Resource editing</span
             ><a class="self-link" href="#access-control-resource-editing"></a>
           </h3>
           <p>
@@ -2532,7 +2461,7 @@
             id="access-control-resource-discovery"
           >
             <span class="secno">6.4. </span
-            ><span class="content">Access control resource discovery</span
+            ><span class="content">Access Control Resource discovery</span
             ><a class="self-link" href="#access-control-resource-discovery"></a>
           </h3>
           <p>
