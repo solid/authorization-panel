@@ -28,20 +28,20 @@ acp:Context
 
 acp:AccessControlResource
     a rdfs:Class ;
-    rdfs:label "Access control resource"@en ;
+    rdfs:label "Access Control Resource"@en ;
     rdfs:comment "Instances of the Access Control Resource (ACR) class connect resources to their Access Controls."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessControl
     a rdfs:Class ;
-    rdfs:label "Access control"@en ;
-    rdfs:comment "Instances of the Access Control class connect Access Control Resources to their Policies. "@en ;
+    rdfs:label "Access Control"@en ;
+    rdfs:comment "Instances of the Access Control class connect Access Control Resources to their Policies."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:Policy
     a rdfs:Class ;
     rdfs:label "Access Policy"@en ;
-    rdfs:comment "An ACP Policy defines a set of allowed and denied access modes respectively via the acp:allow and acp:deny predicates as well as the conditions for its satisfaction via the acp:allOf, acp:anyOf and acp:noneOf predicates which link it to ACP Matchers."@en ;
+    rdfs:comment "Instances of the Policy class connect Access Controls to allowed and denied Access Modes as well as sets of Matchers describing instances of resource access."@en ;
     rdfs:comment "In ACP, a policy MUST be considered satisfied if and only if: It references at least one matcher via a condition; and, At least one matcher it references matches the given context; and, All the conditions it defines are satisfied. Given that the acp:noneOf condition excludes matches, a policy without a satisfied allOf or anyOf condition is never satisfied."@en ;
     rdfs:comment "An access mode MUST be granted over a resource if and only if in the set of policies mandating access over it: A satisfied policy allows it; and No satisfied policy denies it. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere."@en ;
     rdfs:isDefinedBy acp: .
@@ -54,13 +54,13 @@ acp:Matcher
 
 acp:AccessGrant
     a rdfs:Class ;
-    rdfs:label "Access grant"@en ;
+    rdfs:label "Access Grant"@en ;
     rdfs:comment "An ACP Access grant defines the set of access modes granted over a particular context."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessMode
     a rdfs:Class ;
-    rdfs:label "Access mode"@en ;
+    rdfs:label "Access Mode"@en ;
     rdfs:comment "The class of access modes that can be granted by an ACP server. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere. For example, it could use the access modes defined by the ACL ontology: acl:Read; acl:Write; and acl:Append. Access modes can be defined to fit the specific needs of an application. An ACP server MUST advertise the access modes it supports by responding to HTTP OPTIONS requests over ACP access control resources including a Link header with the rel value of http://www.w3.org/ns/solid/acp#mode and the full URI of an access mode as link target [RFC8288]. An ACP server MUST produce one such Link header for each access mode it supports."@en ;
     rdfs:isDefinedBy acp: .
 
@@ -68,28 +68,33 @@ acp:AccessMode
 ####################
 #   Properties
 ####################
-acp:accessControlResource
-    a rdf:Property, owl:FunctionalProperty ;
-    owl:inverseOf acp:resource ;
-    rdfs:label "accessControlResource"@en ;
-    rdfs:comment "The ACP accessControlResource predicate links a resource to the ACP Access control resource which mandates access over it. acp:accessControlResource has a range of acp:AccessControlResource and a domain of rdfs:Resource. Access over a resource is only ever mandated by one ACP Access control resource; inversely, an ACP Access control resource only ever mandates access over one resource. The one-to-one cardinality of acp:accessControlResource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:accessControlResource predicate is the inverse of acp:resource."@en ;
-    rdfs:isDefinedBy acp: ;
-    rdfs:domain rdfs:Resource ;
-    rdfs:range acp:AccessControlResource .
-
 acp:resource
-    a rdf:Property, owl:InverseFunctionalProperty ;
+    a rdf:Property ;
     owl:inverseOf acp:accessControlResource ;
     rdfs:label "resource"@en ;
-    rdfs:comment "The ACP resource predicate links an ACP Access control resource to the resource over which it mandates access. acp:resource has a range of rdfs:Resource and a domain of acp:AccessControlResource. An ACP Access control resource only ever mandates access over one resource and inversely a resource only ever has one ACP Access control resource mandating access over it. The one-to-one cardinality of acp:resource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:resource predicate is the inverse of acp:accessControlResource."@en ;
+    rdfs:comment "The resource property connects ACRs to resources they control. It is the inverse of acp:accessControlResource."@en ;
     rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:AccessControlResource ;
-    rdfs:range rdfs:Resource .
+    rdfs:domain acp:AccessControlResource .
+
+acp:accessControlResource
+    a rdf:Property ;
+    owl:inverseOf acp:resource ;
+    rdfs:label "access control resource"@en ;
+    rdfs:comment "The access control resource property connects resources to ACRs controlling access to them. It is the inverse of acp:resource."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:range acp:AccessControlResource .
 
 acp:accessControl
     a rdf:Property ;
-    rdfs:label "accessControl"@en ;
-    rdfs:comment "The ACP accessControl predicate defines the set of access controls that mandate access over a resource and its associated access control resource, it has a range of acp:AccessControl and a domain of acp:AccessControlResource."@en ;
+    rdfs:label "access control"@en ;
+    rdfs:comment "The access control property connects ACRs to access controls."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:AccessControlResource ;
+    rdfs:range acp:AccessControl .
+
+acp:memberAccessControl
+    rdfs:label "member access control"@en ;
+    rdfs:comment "The member access control property connects ACRs of member resources to access controls."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:AccessControlResource ;
     rdfs:range acp:AccessControl .
@@ -97,7 +102,7 @@ acp:accessControl
 acp:apply
     a rdf:Property ;
     rdfs:label "apply"@en ;
-    rdfs:comment "The ACP apply predicate defines the set of policies that mandate access over resources, it has a range of acp:Policy and a domain of acp:AccessControl."@en ;
+    rdfs:comment "The apply property connects Access Controls to the Policies they apply to resources."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:AccessControl ;
     rdfs:range acp:Policy .
@@ -105,39 +110,15 @@ acp:apply
 acp:access
     a rdf:Property ;
     rdfs:label "access"@en ;
-    rdfs:comment "The ACP access predicate defines the set of policies that mandate access over access control resources, it has a range of acp:Policy and a domain of acp:AccessControl."@en ;
+    rdfs:comment "The access property connects Access Controls to the Policies they apply to ACRs."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:AccessControl ;
     rdfs:range acp:Policy .
 
-acp:allOf
-    a rdf:Property ;
-    rdfs:label "allOf"@en ;
-    rdfs:comment "The ACP allOf predicate defines the set of matchers that MUST be satisfied for a policy to be satisfied, it has a range of acp:Matcher and a domain of acp:Policy."@en ;
-    rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:Policy ;
-    rdfs:range acp:Matcher .
-
-acp:anyOf
-    a rdf:Property ;
-    rdfs:label "anyOf"@en ;
-    rdfs:comment "The ACP anyOf predicate defines the set of matchers among which at least one MUST be satisfied in order for a policy to be satisfied, it has a range of acp:Matcher and a domain of acp:Policy."@en ;
-    rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:Policy ;
-    rdfs:range acp:Matcher .
-
-acp:noneOf
-    a rdf:Property ;
-    rdfs:label "noneOf"@en ;
-    rdfs:comment "The ACP noneOf predicate defines the set of matchers among which none MUST be satisfied in order for a policy to be satisfied, it has a range of acp:Matcher and a domain of acp:Policy."@en ;
-    rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:Policy ;
-    rdfs:range acp:Matcher .
-
 acp:allow
     a rdf:Property ;
     rdfs:label "allow"@en ;
-    rdfs:comment "The ACP allow predicate defines the set of access modes allowed by a policy if satisfied, it has a range of acp:AccessMode and a domain of acp:Policy."@en ;
+    rdfs:comment "The allow property connects Policies to the Access Modes they allow if satisfied."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:Policy ;
     rdfs:range acp:AccessMode .
@@ -145,10 +126,34 @@ acp:allow
 acp:deny
     a rdf:Property ;
     rdfs:label "deny"@en ;
-    rdfs:comment "The ACP deny predicate defines the set of access modes denied by a policy if satisfied, it has a range of acp:AccessMode and a domain of acp:Policy."@en ;
+    rdfs:comment "The deny property connects Policies to the Access Modes they deny if satisfied."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:Policy ;
     rdfs:range acp:AccessMode .
+
+acp:allOf
+    a rdf:Property ;
+    rdfs:label "all of"@en ;
+    rdfs:comment "The all of property connects Policies to the set of Matchers that must all match a resource access description for the policy to be satisfied."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:Matcher .
+
+acp:anyOf
+    a rdf:Property ;
+    rdfs:label "any of"@en ;
+    rdfs:comment "The any of property connects Policies to the set of Matchers any of which must match a resource access description for the policy to be satisfied."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:Matcher .
+
+acp:noneOf
+    a rdf:Property ;
+    rdfs:label "none of"@en ;
+    rdfs:comment "The none of property connects Policies to the set of Matchers none of which must match a resource access description for the policy to be satisfied."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:domain acp:Policy ;
+    rdfs:range acp:Matcher .
 
 acp:attribute
     a rdf:Property ;
@@ -234,13 +239,6 @@ acp:grant
     rdfs:isDefinedBy acp: ;
     rdfs:domain rdfs:Resource ;
     rdfs:range acp:AccessMode .
-
-acp:memberAccessControl
-    rdfs:label "memberAccessControl"@en ;
-    rdfs:comment "An ACP memberAccessControl is an access control that mandates access to the resources contained by the resource whose access control resource references member access controls. The acp:memberAccessControl predicate has a range of acp:AccessControl and a domain of acp:AccessControlResource."@en ;
-    rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:AccessControlResource ;
-    rdfs:range acp:AccessControl .
 
 
 ########################
