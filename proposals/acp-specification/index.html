@@ -1183,7 +1183,7 @@
             </p>
 
             <pre
-              id="context-example-context-graph"
+              id="example-context-graph-0"
               class="example example-context-graph"
             >
   []
@@ -1200,7 +1200,7 @@
             </p>
 
             <pre
-              id="context-attributes-example-context-graph"
+              id="example-context-graph-1"
               class="example example-context-graph"
             >
   ex:contextA
@@ -1209,6 +1209,22 @@
     acp:owner ex:Bob ;
     acp:creator ex:Alice ;
     acp:client ex:ClientApplicationY ;
+    acp:issuer ex:IdentityProviderZ .
+</pre
+            >
+
+            <p>
+              The following example context graph denotes instances of resource
+              access where client application X or client application Y are used
+              and identity is asserted by identity provider Z.
+            </p>
+
+            <pre
+              id="example-context-graph-2"
+              class="example example-context-graph"
+            >
+  []
+    acp:client ex:ClientApplicationX, ex:ClientApplicationY ;
     acp:issuer ex:IdentityProviderZ .
 </pre
             >
@@ -1229,11 +1245,10 @@
             ><span class="content">Context extensibility</span
             ><a class="self-link" href="#context-extensibility"></a>
           </h3>
-          <p>
-            Context graphs can be extended to provide the information required
-            for describing instances of resource access via sub-properties of
-            <code>acp:attribute</code> in order to fit the specific requirements
-            of applications.
+          <p about="acp:attribute" property="rdfs:comment">
+            Sub-properties of <code>acp:attribute</code> can be created to fit
+            the specific resource access description requirements of
+            applications.
           </p>
 
           <section
