@@ -408,14 +408,6 @@
                   >
                 </li>
               </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#access-control-resolution" class="tocxref"
-                    ><span class="secno">4.2.2</span>Access Control
-                    resolution</a
-                  >
-                </li>
-              </ol>
             </li>
           </ol>
           <ol class="toc">
@@ -425,15 +417,15 @@
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#policy-satisfaction" class="tocxref"
-                    ><span class="secno">4.3.1</span>Policy satisfaction</a
+                  <a href="#example-policy" class="tocxref"
+                    ><span class="secno">4.3.1</span>Example Policy</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#granted-access-modes" class="tocxref"
-                    ><span class="secno">4.3.2</span>Granted Access Modes</a
+                  <a href="#policy-satisfaction" class="tocxref"
+                    ><span class="secno">4.3.2</span>Policy satisfaction</a
                   >
                 </li>
               </ol>
@@ -511,7 +503,7 @@
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#access-modes-extensibility" class="tocxref"
+              <a href="#access-grant-extensibility" class="tocxref"
                 ><span class="secno">5.2</span>Access modes extensibility</a
               >
             </li>
@@ -1182,10 +1174,7 @@
               access over resource X initiated by Bob.
             </p>
 
-            <pre
-              id="example-context-graph-0"
-              class="example example-context-graph"
-            >
+            <pre id="example-context-0" class="example example-context-graph">
   []
     a acp:Context ;
     acp:agent ex:Bob .
@@ -1199,10 +1188,7 @@
               the owner of resource X, and Alice is the creator of resource X.
             </p>
 
-            <pre
-              id="example-context-graph-1"
-              class="example example-context-graph"
-            >
+            <pre id="example-context-1" class="example example-context-graph">
   ex:contextA
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
@@ -1219,10 +1205,7 @@
               and identity is asserted by identity provider Z.
             </p>
 
-            <pre
-              id="example-context-graph-2"
-              class="example example-context-graph"
-            >
+            <pre id="example-context-2" class="example example-context-graph">
   []
     acp:client ex:ClientApplicationX, ex:ClientApplicationY ;
     acp:issuer ex:IdentityProviderZ .
@@ -1392,7 +1375,7 @@
             </p>
 
             <pre
-              id="access-control-resource-example-authorization-graph"
+              id="example-access-control-resource-0"
               class="example example-authorization-graph"
             >
   ex:accessControlResourceA
@@ -1427,7 +1410,7 @@
             <dd about="acp:AccessControl" property="rdfs:comment">
               Instances of the
               <span property="rdfs:label">Access Control</span> class connect
-              Access Controls to their Policies.
+              Access Control Resources to their Policies.
             </dd>
 
             <dt
@@ -1446,7 +1429,7 @@
               >
               to the
               <span property="rdfs:range" resource="acp:Policy">Policies</span>
-              they apply to Resources.
+              they apply to resources.
             </dd>
 
             <dt
@@ -1489,8 +1472,9 @@
               resource X is controlled by Policy C while access to ACR A is
               controlled by Policy D.
             </p>
+
             <pre
-              id="resource-access-example-authorization-graph"
+              id="example-access-control-0"
               class="example example-authorization-graph"
             >
   ex:accessControlResourceA
@@ -1502,34 +1486,13 @@
 </pre
             >
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-access-control"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="4.2.2"
-              id="access-control-resolution"
-            >
-              <span class="secno">4.2.2. </span
-              ><span class="content">Access Control resolution</span
-              ><a class="self-link" href="#access-control-resolution"></a>
-            </h4>
             <p>
-              The set of policies controlling access over a resource and its
-              associated access control resource can be reduced respectively via
-              the <code>acp:accessControl/acp:apply</code> and
-              <code>acp:accessControl/acp:access</code> property paths.
+              The following two example authorization graphs mean that access to
+              resource X is controlled by Policy D and Policy E.
             </p>
-            <p>
-              In other words, the following example two authorization graphs are
-              equivalent and denote that policies D and E will mandate access
-              over resource X:
-            </p>
+
             <pre
-              id="access-control-resolution-example-authorization-graph-1"
+              id="example-access-control-1"
               class="example example-authorization-graph"
             >
   ex:accessControlResourceA
@@ -1543,11 +1506,12 @@
     acp:apply ex:policyE .
 </pre
             >
+
             <pre
-              id="access-control-resolution-example-authorization-graph-2"
+              id="example-access-control-2"
               class="example example-authorization-graph"
             >
-  ex:accessControlResourceA
+  []
     acp:resource ex:resourceX ;
     acp:accessControl ex:accessControlF .
 
@@ -1559,7 +1523,7 @@
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":access-control-resolution"
+              resource=":example-access-control"
               property="bibo:hasPart"
             ></section>
           </section>
@@ -1567,21 +1531,112 @@
             <span class="secno">4.3. </span><span class="content">Policy</span
             ><a class="self-link" href="#policy"></a>
           </h3>
-          <p>Policies are reusable units of access control in ACP.</p>
           <dl>
-            <dt id="acp-policy"><code>acp:Policy</code></dt>
-            <dd about="acp:Policy" typeof="rdfs:Class">
-              <span property="rdfs:comment"
-                >An
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">Policy</span> defines a set of
-                allowed and denied access modes respectively via the
-                <code>acp:allow</code> and <code>acp:deny</code> predicates as
-                well as the conditions for its satisfaction via the
-                <code>acp:allOf</code>, <code>acp:anyOf</code> and
-                <code>acp:noneOf</code> predicates which link it to ACP
-                Matchers.</span
+            <dt
+              id="acp-policy"
+              about="acp:Policy"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:Policy</code>
+            </dt>
+            <dd about="acp:Policy" property="rdfs:comment">
+              Instances of the <span property="rdfs:label">Policy</span> class
+              connect Access Controls to allowed and denied Access Modes as well
+              as sets of Matchers describing instances of resource access.
+            </dd>
+
+            <dt
+              id="acp-allow"
+              about="acp:allow"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:allow</code>
+            </dt>
+            <dd about="acp:allow" property="rdfs:comment">
+              The <span property="rdfs:label">allow</span> property connects
+              <span property="rdfs:domain" resource="acp:Policy">Policies</span>
+              to the
+              <span property="rdfs:range" resource="acp:AccessMode"
+                >Access Modes</span
               >
+              they allow if satisfied.
+            </dd>
+
+            <dt
+              id="acp-deny"
+              about="acp:deny"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:deny</code>
+            </dt>
+            <dd about="acp:deny" property="rdfs:comment">
+              The <span property="rdfs:label">deny</span> property connects
+              <span property="rdfs:domain" resource="acp:Policy">Policies</span>
+              to the
+              <span property="rdfs:range" resource="acp:AccessMode"
+                >Access Modes</span
+              >
+              they deny if satisfied.
+            </dd>
+
+            <dt
+              id="acp-allOf"
+              about="acp:allOf"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:allOf</code>
+            </dt>
+            <dd about="acp:allOf" property="rdfs:comment">
+              The <span property="rdfs:label">all of</span> property connects
+              <span property="rdfs:domain" resource="acp:Policy">Policies</span>
+              to the set of
+              <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
+              that must all match a resource access description for the policy
+              to be satisfied.
+            </dd>
+
+            <dt
+              id="acp-anyOf"
+              about="acp:anyOf"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:anyOf</code>
+            </dt>
+            <dd about="acp:anyOf" property="rdfs:comment">
+              The <span property="rdfs:label">any of</span> property connects
+              <span property="rdfs:domain" resource="acp:Policy">Policies</span>
+              to the set of
+              <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
+              any of which must match a resource access description for the
+              policy to be satisfied.
+            </dd>
+
+            <dt
+              id="acp-noneOf"
+              about="acp:noneOf"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:noneOf</code>
+            </dt>
+            <dd about="acp:noneOf" property="rdfs:comment">
+              The <span property="rdfs:label">none of</span> property connects
+              <span property="rdfs:domain" resource="acp:Policy">Policies</span>
+              to the set of
+              <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
+              none of which must match a resource access description for the
+              policy to be satisfied.
             </dd>
           </dl>
 
@@ -1591,78 +1646,90 @@
             resource=":policy"
             property="bibo:hasPart"
           >
+            <h4 class="heading settled" data-level="4.3.1" id="example-policy">
+              <span class="secno">4.3.1. </span
+              ><span class="content">Example Policy</span
+              ><a class="self-link" href="#example-policy"></a>
+            </h4>
+            <p>
+              The following example authorization graph means that Policy A will
+              allow Read for instances of resource access satisfying both
+              Matcher B and Matcher C.
+            </p>
+
+            <pre
+              id="example-policy-0"
+              class="example example-authorization-graph"
+            >
+  ex:policyA
+    acp:allow acl:Read ;
+    acp:allOf ex:matcherB, ex:matcherC .
+</pre
+            >
+
+            <p>
+              The following example authorization graph means that a Policy will
+              deny Write for instances of resource access satisfying either
+              Matcher B or Matcher C.
+            </p>
+
+            <pre
+              id="example-policy-1"
+              class="example example-authorization-graph"
+            >
+  []
+    acp:deny acl:Write ;
+    acp:anyOf ex:matcherB, ex:matcherC .
+</pre
+            >
+
+            <p>
+              The following example authorization graph means that Reading and
+              Writing resource X will be allowed for instances of resource
+              access satisfying Matcher A and not Matcher B.
+            </p>
+
+            <pre
+              id="example-policy-2"
+              class="example example-authorization-graph"
+            >
+  [
+    acp:resource ex:resourceX ;
+    acp:accessControl [
+      acp:apply [
+        acp:allow acl:Read, acl:Write ;
+        acp:anyOf ex:matcherA ;
+        acp:noneOf ex:matcherB ;
+      ] ;
+    ] ;
+  ] .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":example-policy"
+              property="bibo:hasPart"
+            ></section>
             <h4
               class="heading settled"
-              data-level="4.3.1"
+              data-level="4.3.2"
               id="policy-satisfaction"
             >
-              <span class="secno">4.3.1. </span
+              <span class="secno">4.3.2. </span
               ><span class="content">Policy satisfaction</span
               ><a class="self-link" href="#policy-satisfaction"></a>
             </h4>
             <p>
-              In ACP, policies are satisfied via the <code>acp:allOf</code>,
+              Policies are satisfied via the <code>acp:allOf</code>,
               <code>acp:anyOf</code> and <code>acp:noneOf</code> predicates
               which act respectively as intersection, union and exclusion
               operators.
             </p>
-            <dl>
-              <dt id="acp-allof"><code>acp:allOf</code></dt>
-              <dd about="acp:allOf" typeof="rdf:Property">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">allOf</span> predicate defines the
-                  set of matchers that MUST be satisfied for a policy to be
-                  satisfied, it has a range of
-                  <code property="rdfs:range" resource="acp:Matcher"
-                    >acp:Matcher</code
-                  >
-                  and a domain of
-                  <code property="rdfs:domain" resource="acp:Policy"
-                    >acp:Policy</code
-                  >.</span
-                >
-              </dd>
-              <dt id="acp-anyOf"><code>acp:anyOf</code></dt>
-              <dd about="acp:anyOf" typeof="rdf:Property">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">anyOf</span> predicate defines the
-                  set of matchers among which at least one MUST be satisfied in
-                  order for a policy to be satisfied, it has a range of
-                  <code property="rdfs:range" resource="acp:Matcher"
-                    >acp:Matcher</code
-                  >
-                  and a domain of
-                  <code property="rdfs:domain" resource="acp:Policy"
-                    >acp:Policy</code
-                  >.</span
-                >
-              </dd>
-              <dt id="acp-noneOf"><code>acp:noneOf</code></dt>
-              <dd about="acp:noneOf" typeof="rdf:Property">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">noneOf</span> predicate defines
-                  the set of matchers among which none MUST be satisfied in
-                  order for a policy to be satisfied, it has a range of
-                  <code property="rdfs:range" resource="acp:Matcher"
-                    >acp:Matcher</code
-                  >
-                  and a domain of
-                  <code property="rdfs:domain" resource="acp:Policy"
-                    >acp:Policy</code
-                  >.</span
-                >
-              </dd>
-            </dl>
+
             <div about="acp:Policy" property="rdfs:comment">
-              <p>
-                In ACP, a policy MUST be considered satisfied if and only if:
-              </p>
+              <p>A policy MUST be considered satisfied if and only if:</p>
               <ul>
                 <li>It references at least one matcher via a condition; and</li>
                 <li>
@@ -1677,13 +1744,15 @@
                 is never satisfied.
               </p>
             </div>
+
             <p>
               The following example authorization graph denotes that policy A
               will be satisfied if both matcher B and C are satisfied and either
-              matcher D or E are satisfied and matcher F is not satified:
+              matcher D or E are satisfied and matcher F is not satified.
             </p>
+
             <pre
-              id="policy-satisfaction-example-authorization-graph"
+              id="example-policy-satisfaction-0"
               class="example example-authorization-graph"
             >
   ex:policyA
@@ -1693,61 +1762,6 @@
 </pre
             >
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":policy-satisfaction"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="4.3.2"
-              id="granted-access-modes"
-            >
-              <span class="secno">4.3.2. </span
-              ><span class="content">Granted Access Modes</span
-              ><a class="self-link" href="#granted-access-modes"></a>
-            </h4>
-            <p>
-              In ACP, access modes are granted via the
-              <code>acp:allow</code> and <code>acp:deny</code> predicates.
-            </p>
-            <dl>
-              <dt id="acp-allow"><code>acp:allow</code></dt>
-              <dd about="acp:allow" typeof="rdf:Property">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">allow</span> predicate defines the
-                  set of access modes allowed by a policy if satisfied, it has a
-                  range of
-                  <code property="rdfs:range" resource="acp:AccessMode"
-                    >acp:AccessMode</code
-                  >
-                  and a domain of
-                  <code property="rdfs:domain" resource="acp:Policy"
-                    >acp:Policy</code
-                  >.</span
-                >
-              </dd>
-              <dt id="acp-deny"><code>acp:deny</code></dt>
-              <dd about="acp:deny" typeof="rdf:Property">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">deny</span> predicate defines the
-                  set of access modes denied by a policy if satisfied, it has a
-                  range of
-                  <code property="rdfs:range" resource="acp:AccessMode"
-                    >acp:AccessMode</code
-                  >
-                  and a domain of
-                  <code property="rdfs:domain" resource="acp:Policy"
-                    >acp:Policy</code
-                  >.</span
-                >
-              </dd>
-            </dl>
             <div about="acp:Policy" property="rdfs:comment">
               <p>
                 An access mode MUST be granted over a resource if and only if in
@@ -1764,26 +1778,12 @@
                 defined <code>acl:Read</code>; <code>acl:Write</code>; and
                 <code>acl:Append</code>. Access modes can be defined to fit the
                 specific needs of an application, see also:
-                <a href="#access-modes-extensibility"
-                  >Access Mode Extensibility</a
+                <a href="#access-grant-extensibility"
+                  >Access Grant Extensibility</a
                 >.
               </p>
             </div>
-            <p>
-              The following example authorization graph denotes that policy A
-              will allow access modes <code>acl:Read</code> and
-              <code>acl:Append</code> and deny access mode
-              <code>acp:Write</code> if it is satisfied:
-            </p>
-            <pre
-              id="granted-access-modes-example-authorization-graph-1"
-              class="example example-authorization-graph"
-            >
-  ex:policyA
-    acp:allow acl:Read, acl:Append ;
-    acp:deny acl:Write .
-</pre
-            >
+
             <p>
               The following example authorization graph denotes that access
               control A, assuming that both policy B and C are satisfied will
@@ -1792,8 +1792,9 @@
               <code>acl:Write</code> even though policy B allows it because
               policy C denies it.
             </p>
+
             <pre
-              id="granted-access-modes-example-authorization-graph-2"
+              id="example-policy-satisfaction-1"
               class="example example-authorization-graph"
             >
   ex:accessControlA
@@ -1810,7 +1811,7 @@
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":granted-access-modes"
+              resource=":policy-satisfaction"
               property="bibo:hasPart"
             ></section>
           </section>
@@ -2337,11 +2338,11 @@
           <h3
             class="heading settled"
             data-level="5.2"
-            id="access-modes-extensibility"
+            id="access-grant-extensibility"
           >
             <span class="secno">5.2. </span
             ><span class="content">Access modes extensibility</span
-            ><a class="self-link" href="#access-modes-extensibility"></a>
+            ><a class="self-link" href="#access-grant-extensibility"></a>
           </h3>
           <p>
             There are no standard access modes defined by ACP. Instead, one
@@ -2371,7 +2372,7 @@
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-modes-extensibility"
+            resource=":access-grant-extensibility"
             property="bibo:hasPart"
           ></section>
         </section>
