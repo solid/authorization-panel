@@ -141,7 +141,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-04-27">2022-04-27</time>
+        <time property="dc:issued" datetime="2022-04-28">2022-04-28</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -359,19 +359,19 @@
               <a href="#context" class="tocxref"
                 ><span class="secno">3.1</span>Context</a
               >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#context-attributes" class="tocxref"
-                ><span class="secno">3.2</span>Context attributes</a
-              >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#example-context" class="tocxref"
+                    ><span class="secno">3.1.1</span>Example Context</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
               <a href="#context-extensibility" class="tocxref"
-                ><span class="secno">3.3</span>Context extensibility</a
+                ><span class="secno">3.2</span>Context extensibility</a
               >
             </li>
           </ol>
@@ -969,185 +969,241 @@
             ><a class="self-link" href="#context"></a>
           </h3>
           <dl>
-            <dt id="acp-Context"><code>acp:Context</code></dt>
-            <dd about="acp:Context" typeof="rdfs:Class">
-              <span property="rdfs:comment"
-                >An
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">Context</span> describes instances
-                of resource access.</span
+            <dt
+              id="acp-Context"
+              about="acp:Context"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:Context</code>
+            </dt>
+            <dd about="acp:Context" property="rdfs:comment">
+              Instances of the <span property="rdfs:label">Context</span> class
+              describe instances of resource access.
+            </dd>
+
+            <dt
+              id="acp-attribute"
+              about="acp:attribute"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:attribute</code>
+            </dt>
+            <dd
+              about="acp:attribute"
+              about="acp:attribute"
+              property="rdfs:comment"
+            >
+              The <span property="rdfs:label">attribute</span> properties
+              defined by ACP describe
+              <span property="rdfs:domain" resource="acp:Context"
+                >instances</span
               >
+              of
+              <span property="rdfs:range" resource="rdfs:Resource"
+                >resource</span
+              >
+              access.
+            </dd>
+
+            <dt
+              id="acp-target"
+              about="acp:target"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:target</code>
+            </dt>
+            <dd about="acp:target" typeof="rdfs:comment">
+              The <span property="rdfs:label">target</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes requested resources.
+            </dd>
+
+            <dt
+              id="acp-mode"
+              about="acp:mode"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:mode</code>
+            </dt>
+            <dd about="acp:mode" typeof="rdfs:comment">
+              The <span property="rdfs:label">mode</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes requested modes of access.
+            </dd>
+
+            <dt
+              id="acp-agent"
+              about="acp:agent"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:agent</code>
+            </dt>
+            <dd about="acp:agent" typeof="rdfs:comment">
+              The <span property="rdfs:label">agent</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes agents initiating requests.
+            </dd>
+
+            <dt
+              id="acp-creator"
+              about="acp:creator"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:creator</code>
+            </dt>
+            <dd about="acp:creator" typeof="rdfs:comment">
+              The <span property="rdfs:label">creator</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes creators of requested resources.
+            </dd>
+
+            <dt
+              id="acp-owner"
+              about="acp:owner"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:owner</code>
+            </dt>
+            <dd about="acp:owner" typeof="rdfs:comment">
+              The <span property="rdfs:label">owner</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes owners of requested resources.
+            </dd>
+
+            <dt
+              id="acp-client"
+              about="acp:client"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:client</code>
+            </dt>
+            <dd about="acp:client" typeof="rdfs:comment">
+              The <span property="rdfs:label">client</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes client applications used to request resources.
+            </dd>
+
+            <dt
+              id="acp-issuer"
+              about="acp:issuer"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:issuer</code>
+            </dt>
+            <dd about="acp:issuer" typeof="rdfs:comment">
+              The <span property="rdfs:label">issuer</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes identity providers used to assert the identity of agents
+              requesting resources.
+            </dd>
+
+            <dt
+              id="acp-time"
+              about="acp:time"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:time</code>
+            </dt>
+            <dd about="acp:time" typeof="rdfs:comment">
+              The <span property="rdfs:label">time</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes times of resource access requests.
+            </dd>
+
+            <dt
+              id="acp-vc"
+              about="acp:vc"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:vc</code>
+            </dt>
+            <dd about="acp:vc" typeof="rdfs:comment">
+              The <span property="rdfs:label">vc</span>
+              <span property="rdfs:subPropertyOf" resource="acp:attribute"
+                >attribute</span
+              >
+              describes verifiable credentials presented as part of resource
+              access requests.
             </dd>
           </dl>
-          <p>
-            The following example context graph denotes instances of resource
-            access over resource X initiated by Bob:
-          </p>
-          <pre
-            id="context-example-context-graph"
-            class="example example-context-graph"
-          >
-  []
-    a acp:Context ;
-    acp:agent ex:Bob .
-</pre
-          >
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":context"
             property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="3.2" id="context-attributes">
-            <span class="secno">3.2. </span
-            ><span class="content">Context attributes</span
-            ><a class="self-link" href="#context-attributes"></a>
-          </h3>
-          <p>
-            Instances of resource access are described using RDFS sub-properties
-            of the ACP attribute predicate.
-          </p>
-          <dl>
-            <dt id="acp-attribute"><code>acp:attribute</code></dt>
-            <dd about="acp:attribute" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >An <span property="rdfs:label">attribute</span> describing
-                instances of resource access. The
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <code>acp:attribute</code> predicate has a range of
-                <code property="rdfs:range" resource="rdfs:Resource"
-                  >rdfs:Resource</code
-                >
-                and a domain of
-                <code property="rdfs:domain" resource="acp:Context"
-                  >acp:Context</code
-                >.</span
-              >
-            </dd>
-            <dt id="acp-target"><code>acp:target</code></dt>
-            <dd about="acp:target" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >A <span property="rdfs:label">target</span> resource subjected
-                to ACP access control.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              target is a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-            <dt id="acp-mode"><code>acp:mode</code></dt>
-            <dd about="acp:mode" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >A <span property="rdfs:label">mode</span> of access requested.
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                mode is a sub-property of
-                <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                  >acp:attribute</code
-                >.</span
-              >
-            </dd>
-            <dt id="acp-agent"><code>acp:agent</code></dt>
-            <dd about="acp:agent" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >An <span property="rdfs:label">agent</span> trying to access a
-                resource.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> agent
-              is a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-            <dt id="acp-creator"><code>acp:creator</code></dt>
-            <dd about="acp:creator" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >An agent credited as the
-                <span property="rdfs:label">creator</span> of a resource.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              creator is a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-            <dt id="acp-owner"><code>acp:owner</code></dt>
-            <dd about="acp:owner" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >An agent credited as the
-                <span property="rdfs:label">owner</span> of a resource.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> owner
-              is a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-            <dt id="acp-client"><code>acp:client</code></dt>
-            <dd about="acp:client" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >A <span property="rdfs:label">client</span> application used to
-                access a resource.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              client is a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-            <dt id="acp-issuer"><code>acp:issuer</code></dt>
-            <dd about="acp:issuer" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >An identity provider credited as the
-                <span property="rdfs:label">issuer</span> of the credentials
-                that asserted the identity of the agent trying to access a
-                resource.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-              issuer is a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-            <dt id="acp-time"><code>acp:time</code></dt>
-            <dd about="acp:time" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >A <span property="rdfs:label">time</span> at which a resource
-                is accessed.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> time
-              is a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-            <dt id="acp-vc"><code>acp:vc</code></dt>
-            <dd about="acp:vc" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >A <span property="rdfs:label">verifiable credential</span> that
-                is presented as part of a resource access request.</span
-              >
-              <span property="rdfs:isDefinedBy" resource="acp:">ACP</span> vc is
-              a sub-property of
-              <code property="rdfs:subPropertyOf" resource="acp:attribute"
-                >acp:attribute</code
-              >.
-            </dd>
-          </dl>
-          <p>
-            The following example context graph denotes that an instance of
-            resource access over resource X was initiated by Bob using client
-            application Y with his identity asserted by identity provider Z; it
-            also denotes that Bob is the owner of resource X and Alice is the
-            creator of resource X:
-          </p>
-          <pre
-            id="context-attributes-example-context-graph"
-            class="example example-context-graph"
           >
-  _:context
+            <h4 class="heading settled" data-level="3.1.1" id="example-context">
+              <span class="secno">3.1.1. </span
+              ><span class="content">Example Context</span
+              ><a class="self-link" href="#example-context"></a>
+            </h4>
+
+            <p>
+              The following example context graph denotes instances of resource
+              access over resource X initiated by Bob.
+            </p>
+
+            <pre
+              id="context-example-context-graph"
+              class="example example-context-graph"
+            >
+  []
     a acp:Context ;
+    acp:agent ex:Bob .
+</pre
+            >
+
+            <p>
+              The following example context graph denotes instances of resource
+              access over resource X initiated by Bob using client application Y
+              where Bob's identity is asserted by identity provider Z, Bob is
+              the owner of resource X, and Alice is the creator of resource X.
+            </p>
+
+            <pre
+              id="context-attributes-example-context-graph"
+              class="example example-context-graph"
+            >
+  ex:contextA
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
     acp:owner ex:Bob ;
@@ -1155,28 +1211,29 @@
     acp:client ex:ClientApplicationY ;
     acp:issuer ex:IdentityProviderZ .
 </pre
-          >
+            >
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":context-attributes"
-            property="bibo:hasPart"
-          ></section>
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":example-context"
+              property="bibo:hasPart"
+            ></section>
+          </section>
           <h3
             class="heading settled"
-            data-level="3.3"
+            data-level="3.2"
             id="context-extensibility"
           >
-            <span class="secno">3.3. </span
+            <span class="secno">3.2. </span
             ><span class="content">Context extensibility</span
             ><a class="self-link" href="#context-extensibility"></a>
           </h3>
           <p>
-            ACP context graphs can be extended to provide the information
-            required for describing attributes of resource access instances via
-            new sub-properties of <code>acp:attribute</code> in order to fit the
-            specific requirements of applications.
+            Context graphs can be extended to provide the information required
+            for describing instances of resource access via sub-properties of
+            <code>acp:attribute</code> in order to fit the specific requirements
+            of applications.
           </p>
 
           <section
