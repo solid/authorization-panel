@@ -9,9 +9,9 @@ prefix vann: <http://purl.org/vocab/vann/>
 <http://www.w3.org/ns/solid/acp#>
     a owl:Ontology ;
     rdfs:label "Access Control Policy Language (ACP)"@en ;
-    rdfs:comment "The Access Control Policy Language (ACP) is a language for defining sets of conditions mandating access permissions over resources."@en ;
+    rdfs:comment "The Access Control Policy Language (ACP) is a language for describing, controlling and granting access to resources."@en ;
     rdfs:isDefinedBy acp: ;
-    dc:issued "2021-08-19"^^xsd:date ;
+    dc:issued "2022-04-28"^^xsd:date ;
     vann:preferredNamespacePrefix "vann" ;
     vann:preferredNamespaceUri "http://www.w3.org/ns/solid/acp#"^^xsd:anyURI .
 
@@ -22,24 +22,24 @@ prefix vann: <http://purl.org/vocab/vann/>
 acp:Context
     a rdfs:Class ;
     rdfs:label "Context"@en ;
-    rdfs:comment "An ACP Context describes instances of resource access."@en ;
+    rdfs:comment "Instances of the Context class describe instances of resource access."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessControlResource
     a rdfs:Class ;
-    rdfs:label "Access Control Resource"@en ;
+    rdfs:label "Access control resource"@en ;
     rdfs:comment "Instances of the Access Control Resource (ACR) class connect resources to their Access Controls."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessControl
     a rdfs:Class ;
-    rdfs:label "Access Control"@en ;
-    rdfs:comment "Instances of the Access Control class connect Access Controls to their Policies."@en ;
+    rdfs:label "Access control"@en ;
+    rdfs:comment "Instances of the Access Control class connect Access Control Resources to their Policies. "@en ;
     rdfs:isDefinedBy acp: .
 
 acp:Policy
     a rdfs:Class ;
-    rdfs:label "Policy"@en ;
+    rdfs:label "Access Policy"@en ;
     rdfs:comment "An ACP Policy defines a set of allowed and denied access modes respectively via the acp:allow and acp:deny predicates as well as the conditions for its satisfaction via the acp:allOf, acp:anyOf and acp:noneOf predicates which link it to ACP Matchers."@en ;
     rdfs:comment "In ACP, a policy MUST be considered satisfied if and only if: It references at least one matcher via a condition; and, At least one matcher it references matches the given context; and, All the conditions it defines are satisfied. Given that the acp:noneOf condition excludes matches, a policy without a satisfied allOf or anyOf condition is never satisfied."@en ;
     rdfs:comment "An access mode MUST be granted over a resource if and only if in the set of policies mandating access over it: A satisfied policy allows it; and No satisfied policy denies it. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere."@en ;
@@ -53,13 +53,13 @@ acp:Matcher
 
 acp:AccessGrant
     a rdfs:Class ;
-    rdfs:label "Access Grant"@en ;
+    rdfs:label "Access grant"@en ;
     rdfs:comment "An ACP Access grant defines the set of access modes granted over a particular context."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessMode
     a rdfs:Class ;
-    rdfs:label "Access Mode"@en ;
+    rdfs:label "Access mode"@en ;
     rdfs:comment "The class of access modes that can be granted by an ACP server. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere. For example, it could use the access modes defined by the ACL ontology: acl:Read; acl:Write; and acl:Append. Access modes can be defined to fit the specific needs of an application. An ACP server MUST advertise the access modes it supports by responding to HTTP OPTIONS requests over ACP access control resources including a Link header with the rel value of http://www.w3.org/ns/solid/acp#mode and the full URI of an access mode as link target [RFC8288]. An ACP server MUST produce one such Link header for each access mode it supports."@en ;
     rdfs:isDefinedBy acp: .
 
@@ -68,7 +68,7 @@ acp:AccessMode
 #   Properties
 ####################
 acp:accessControlResource
-    a rdf:Property ;
+    a rdf:Property, owl:FunctionalProperty ;
     owl:inverseOf acp:resource ;
     rdfs:label "accessControlResource"@en ;
     rdfs:comment "The ACP accessControlResource predicate links a resource to the ACP Access control resource which mandates access over it. acp:accessControlResource has a range of acp:AccessControlResource and a domain of rdfs:Resource. Access over a resource is only ever mandated by one ACP Access control resource; inversely, an ACP Access control resource only ever mandates access over one resource. The one-to-one cardinality of acp:accessControlResource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:accessControlResource predicate is the inverse of acp:resource."@en ;
@@ -77,7 +77,7 @@ acp:accessControlResource
     rdfs:range acp:AccessControlResource .
 
 acp:resource
-    a rdf:Property ;
+    a rdf:Property, owl:InverseFunctionalProperty ;
     owl:inverseOf acp:accessControlResource ;
     rdfs:label "resource"@en ;
     rdfs:comment "The ACP resource predicate links an ACP Access control resource to the resource over which it mandates access. acp:resource has a range of rdfs:Resource and a domain of acp:AccessControlResource. An ACP Access control resource only ever mandates access over one resource and inversely a resource only ever has one ACP Access control resource mandating access over it. The one-to-one cardinality of acp:resource is denoted by it being an owl:FunctionalProperty & owl:InverseFunctionalProperty. The acp:resource predicate is the inverse of acp:accessControlResource."@en ;
@@ -152,7 +152,7 @@ acp:deny
 acp:attribute
     a rdf:Property ;
     rdfs:label "attribute"@en ;
-    rdfs:comment "An attribute describing instances of resource access. The ACP acp:attribute predicate has a range of rdfs:Resource and a domain of acp:Context."@en ;
+    rdfs:comment "The attribute properties defined by ACP describe instances of resource access."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:Context ;
     rdfs:range rdfs:Resource .
@@ -160,75 +160,75 @@ acp:attribute
 acp:target
     a rdf:Property ;
     rdfs:label "target"@en ;
-    rdfs:comment "A target resource subjected to ACP access control. ACP target is a sub property of acp:attribute."@en ;
+    rdfs:comment "The target attribute describes requested resources."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:mode
     rdfs:label "mode"@en ;
-    rdfs:comment "A mode of access requested. ACP mode is a sub property of acp:attribute."@en ;
+    rdfs:comment "The mode attribute describes requested modes of access."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:agent
     a rdf:Property ;
     rdfs:label "agent"@en ;
-    rdfs:comment "An agent trying to access a resource. ACP agent is a sub property of acp:attribute."@en ;
+    rdfs:comment "The agent attribute describes agents initiating requests."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:creator
     a rdf:Property ;
     rdfs:label "creator"@en ;
-    rdfs:comment "An agent credited as the creator of a resource. ACP creator is a sub property of acp:attribute."@en ;
+    rdfs:comment "The creator attribute describes creators of requested resources."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:owner
     a rdf:Property ;
     rdfs:label "owner"@en ;
-    rdfs:comment "An agent credited as the owner of a resource. ACP owner is a sub property of acp:attribute. "@en ;
+    rdfs:comment "The owner attribute describes owners of requested resources."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:client
     a rdf:Property ;
     rdfs:label "client"@en ;
-    rdfs:comment "A client application used to access a resource. ACP client is a sub property of acp:attribute."@en ;
+    rdfs:comment "The client attribute describes client applications used to request resources."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:issuer
     a rdf:Property ;
     rdfs:label "issuer"@en ;
-    rdfs:comment "An identity provider credited as the issuer of the credentials that asserted the identity of the agent trying to access a resource. ACP issuer is a sub property of acp:attribute."@en ;
+    rdfs:comment "The issuer attribute describes identity providers used to assert the identity of agents requesting resources."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:time
     a rdf:Property ;
     rdfs:label "time"@en ;
-    rdfs:comment "A time at which a resource is accessed. ACP time is a sub property of acp:attribute."@en ;
+    rdfs:comment "The time attribute describes times of resource access requests."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:vc
     a rdf:Property ;
     rdfs:label "vc"@en ;
-    rdfs:comment "A verifiable credential that is presented as part of a resource access request. ACP vc is a sub property of acp:attribute."@en ;
+    rdfs:comment "The vc attribute describes verifiable credentials presented as part of resource access requests."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
 acp:context
     rdfs:label "context"@en ;
-    rdfs:comment "The ACP context predicate defines the context for which a set of access modes has been granted for resource access, it has a range of acp:Context and a domain of acp:AccessGrant."@en ;
+    rdfs:comment "The ACP context property defines the context for which a set of access modes has been granted for resource access, it has a range of acp:Context and a domain of acp:AccessGrant."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:AccessGrant ;
     rdfs:range acp:Context .
 
 acp:grant
     rdfs:label "grant"@en ;
-    rdfs:comment "The ACP grant predicate defines the set of granted access modes for resource access, it has a range of acp:AccessMode and a domain of rdfs:Resource."@en ;
+    rdfs:comment "The ACP grant property defines the set of granted access modes for resource access, it has a range of acp:AccessMode and a domain of rdfs:Resource."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain rdfs:Resource ;
     rdfs:range acp:AccessMode .
