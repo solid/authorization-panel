@@ -55,14 +55,15 @@ acp:Matcher
 acp:AccessGrant
     a rdfs:Class ;
     rdfs:label "Access Grant"@en ;
-    rdfs:comment "An ACP Access grant defines the set of access modes granted over a particular context."@en ;
+    rdfs:comment "Instances of the Access Grant class define sets of Access Modes granted in particular Contexts."@en ;
     rdfs:isDefinedBy acp: .
 
 acp:AccessMode
     a rdfs:Class ;
     rdfs:label "Access Mode"@en ;
-    rdfs:comment "The class of access modes that can be granted by an ACP server. ACP doesn't define its own access modes, instead it reuses access modes defined elsewhere. For example, it could use the access modes defined by the ACL ontology: acl:Read; acl:Write; and acl:Append. Access modes can be defined to fit the specific needs of an application. An ACP server MUST advertise the access modes it supports by responding to HTTP OPTIONS requests over ACP access control resources including a Link header with the rel value of http://www.w3.org/ns/solid/acp#mode and the full URI of an access mode as link target [RFC8288]. An ACP server MUST produce one such Link header for each access mode it supports."@en ;
-    rdfs:isDefinedBy acp: .
+    rdfs:comment "The ACP specification does not define Access Modes. Instead, any Access Mode granted is an instance of the Access Mode class. Access Modes and their granularity can be tailored to the needs of an application. Access Modes defined in other vocabularies (for example ACL) can also be used."@en ;
+    rdfs:isDefinedBy acp: ;
+    rdfs:seeAlso <http://www.w3.org/ns/auth/acl#Access> .
 
 
 ####################
@@ -161,8 +162,7 @@ acp:attribute
     rdfs:comment "The attribute properties defined by ACP describe instances of resource access."@en ;
     rdfs:comment "Sub-properties of acp:attribute can be created to fit the specific resource access description requirements of applications."@en ;
     rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:Context ;
-    rdfs:range rdfs:Resource .
+    rdfs:domain acp:Context .
 
 acp:target
     a rdf:Property ;
@@ -228,16 +228,16 @@ acp:vc
 
 acp:context
     rdfs:label "context"@en ;
-    rdfs:comment "The ACP context property defines the context for which a set of access modes has been granted for resource access, it has a range of acp:Context and a domain of acp:AccessGrant."@en ;
+    rdfs:comment "The context property connects Access Grants to the Contexts in which they're given."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:domain acp:AccessGrant ;
     rdfs:range acp:Context .
 
 acp:grant
     rdfs:label "grant"@en ;
-    rdfs:comment "The ACP grant property defines the set of granted access modes for resource access, it has a range of acp:AccessMode and a domain of rdfs:Resource."@en ;
+    rdfs:comment "The grant property connects Access Grants to the Access Modes they grant."@en ;
     rdfs:isDefinedBy acp: ;
-    rdfs:domain rdfs:Resource ;
+    rdfs:domain acp:AccessGrant ;
     rdfs:range acp:AccessMode .
 
 

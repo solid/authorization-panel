@@ -373,6 +373,14 @@
               <a href="#context-extensibility" class="tocxref"
                 ><span class="secno">3.2</span>Context extensibility</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#example-context-extension" class="tocxref"
+                    ><span class="secno">3.2.1</span>Example Context
+                    extension</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
@@ -496,16 +504,30 @@
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#access-modes-grant" class="tocxref"
-                ><span class="secno">5.1</span>Access Modes Grant</a
+              <a href="#access-grant" class="tocxref"
+                ><span class="secno">5.1</span>Access Grant</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#example-access-grant" class="tocxref"
+                    ><span class="secno">5.1.1</span>Example Access Grant</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#access-grant-extensibility" class="tocxref"
-                ><span class="secno">5.2</span>Access modes extensibility</a
+              <a href="#access-mode-extensibility" class="tocxref"
+                ><span class="secno">5.2</span>Access Mode extensibility</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#example-access-mode" class="tocxref"
+                    ><span class="secno">5.2.1</span>Example Access Mode</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
@@ -582,6 +604,9 @@
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-resource"
               ><dfn id="rdf-resource">resource</dfn></a
             >,
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-property"
+              ><dfn id="rdf-property">property</dfn></a
+            >,
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-vocabulary"
               ><dfn id="rdf-vocabulary">RDF vocabulary</dfn></a
             >,
@@ -606,7 +631,7 @@
             of an RDF graph,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term"
               ><dfn id="rdf-term">RDF term</dfn></a
-            >, and
+            >,
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-subject"
               ><dfn id="rdf-subject">subject</dfn></a
             >,
@@ -744,15 +769,15 @@
               attributes of resource access instances. Those attributes can be
               matched to sets of conditions defined in the form of an
               <a href="#terminology-authorization-graph">authorization graph</a>
-              in order to determine access modes granted over resources.
+              in order to determine Access Modes granted over resources.
             </dd>
             <dt id="terminology-authorization-graph">Authorization graph</dt>
             <dd>
               <a href="#authorization-graph">Authorization graphs</a>
-              authoritatively define the conditions for granting access modes
-              over resources through Access controls, Policies and context
-              Matchers. The result of applying an authorization graph to a
-              described instance of resource access is an
+              authoritatively define the conditions for granting Access Modes
+              over resources through Access Controls, Policies and Matchers. The
+              result of applying an authorization graph to a described instance
+              of resource access is an
               <a href="#terminology-access-grant-graph">access grant graph</a>.
             </dd>
             <dt id="terminology-access-grant-graph">Access grant graph</dt>
@@ -811,9 +836,9 @@
             could be translated as:
             <em
               >"Access to resource X is mandated by one Access Control that
-              applies one Policy which allows access mode acl:Read when the
-              agent matcher is satisfied that Alice or Bob are the agent trying
-              to access resource X."</em
+              applies one Policy which allows access mode
+              <code>acl:Read</code> when the agent matcher is satisfied that
+              Alice or Bob are the agent trying to access resource X."</em
             >.
           </p>
 
@@ -848,12 +873,12 @@
             which defines access to resource X to the previous example context
             graph which describes an instance of access to target resource X.
             Bob is matched as the context agent and since it defines no further
-            restrictions, the policy allowing acl:Read is satisfied. The
-            following access grant graph could be read as:
+            restrictions, the policy allowing <code>acl:Read</code> is
+            satisfied. The following access grant graph could be read as:
             <em
-              >"The access mode acl:Read is granted to Bob whom requested access
-              to resource X using client application Y and whose identity was
-              asserted by identity provider Z."</em
+              >"The access mode <code>acl:Read</code> is granted to Bob whom
+              requested access to resource X using client application Y and
+              whose identity was asserted by identity provider Z."</em
             >.
           </p>
 
@@ -1239,7 +1264,44 @@
             typeof="bibo:Chapter"
             resource=":context-extensibility"
             property="bibo:hasPart"
-          ></section>
+          >
+            <h4
+              class="heading settled"
+              data-level="3.2.1"
+              id="example-context-extension"
+            >
+              <span class="secno">3.2.1. </span
+              ><span class="content">Example Context extension</span
+              ><a class="self-link" href="#example-context-extension"></a>
+            </h4>
+            <p>
+              Let's imagine a property <code>ex:tag</code> defined as a an
+              <code>rdfs:subPropertyOf acp:attribute</code> that would describe
+              tags applied to requested resources. If such a property was
+              defined, then the following example context graph would denote
+              instances of resource access over resource X initiated by Bob
+              where resource X was tagged <code>ex:Music</code> and
+              <code>ex:FavouriteRecord</code>.
+            </p>
+
+            <pre
+              id="example-context-extensibility-0"
+              class="example example-context-graph"
+            >
+  ex:contextA
+    acp:agent ex:Bob ;
+    acp:target ex:resourceX ;
+    ex:tag ex:Music, ex:FavouriteRecord .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":example-context-extension"
+              property="bibo:hasPart"
+            ></section>
+          </section>
         </section>
         <h2 class="heading settled" data-level="4" id="authorization-graph">
           <span class="secno">4. </span
@@ -1819,29 +1881,33 @@
             <span class="secno">4.4. </span><span class="content">Matcher</span
             ><a class="self-link" href="#matcher"></a>
           </h3>
-          <p>Matchers are reusable units of access control in ACP.</p>
           <dl>
-            <dt id="acp-matcher"><code>acp:Matcher</code></dt>
-            <dd about="acp:Matcher" typeof="rdfs:Class">
-              <span property="rdfs:comment"
-                >An
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">Matcher</span> defines a set of
-                resource access attributes that need to be matched in order for
-                it to be satisfied. Specific types of ACP Matchers exist for
-                each resource access attribute and a matcher can have multiple
-                types.</span
-              >
+            <dt
+              id="acp-matcher"
+              about="acp:Matcher"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:Matcher</code>
+            </dt>
+            <dd about="acp:Matcher" property="rdfs:comment">
+              Instances of the <span property="rdfs:label">Matcher</span> class
+              define the instances of resource access satisfying them. Each
+              resource access attribute defined must be matched for a Matcher to
+              be satisfied.
             </dd>
           </dl>
+
           <p>
-            The following example authorization graph denotes that matcher A
-            will be satisfied when matched against a context graph where either
-            Alice or Bob are the agent and their identity has been asserted by
-            identity provider B:
+            The following example authorization graph means that matcher A is
+            satisfied only if either Alice or Bob are the agent requesting
+            resource access and their identity was asserted by Identity Provider
+            B.
           </p>
+
           <pre
-            id="matcher-example-authorization-graph"
+            id="example-matcher-0"
             class="example example-authorization-graph"
           >
   ex:matcherA
@@ -2261,120 +2327,183 @@
           resource=":access-grant-graph"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="5.1" id="access-modes-grant">
+          <h3 class="heading settled" data-level="5.1" id="access-grant">
             <span class="secno">5.1. </span
-            ><span class="content">Access Modes Grant</span
-            ><a class="self-link" href="#access-modes-grant"></a>
+            ><span class="content">Access Grant</span
+            ><a class="self-link" href="#access-grant"></a>
           </h3>
           <dl>
-            <dt id="acp-AccessGrant"><code>acp:AccessGrant</code></dt>
-            <dd about="acp:AccessGrant" typeof="rdfs:Class">
-              <span property="rdfs:comment"
-                >An
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">Access grant</span> defines the set
-                of access modes granted over a particular context.</span
-              >
+            <dt
+              id="acp-access-grant"
+              about="acp:AccessGrant"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:AccessGrant</code>
+            </dt>
+            <dd about="acp:AccessGrant" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Access Grant</span> class define sets
+              of Access Modes granted in particular Contexts.
             </dd>
-            <dt id="acp-context"><code>acp:context</code></dt>
-            <dd about="acp:context" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >The
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">context</span> predicate defines the
-                context for which a set of access modes has been granted for
-                resource access, it has a range of
-                <code property="rdfs:range" resource="acp:Context"
-                  >acp:Context</code
-                >
-                and a domain of
-                <code property="rdfs:domain" resource="acp:AccessGrant"
-                  >acp:AccessGrant</code
-                >.</span
+
+            <dt
+              id="acp-context"
+              about="acp:context"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:context</code>
+            </dt>
+            <dd about="acp:context" property="rdfs:comment">
+              The <span property="rdfs:label">context</span> property connects
+              <span property="rdfs:domain" resource="acp:AccessGrant"
+                >Access Grants</span
               >
+              to the
+              <span property="rdfs:range" resource="acp:Context">Contexts</span>
+              in which they're given.
             </dd>
-            <dt id="acp-grant"><code>acp:grant</code></dt>
-            <dd about="acp:grant" typeof="rdf:Property">
-              <span property="rdfs:comment"
-                >The
-                <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                <span property="rdfs:label">grant</span> predicate defines the
-                set of granted access modes for resource access, it has a range
-                of
-                <code property="rdfs:range" resource="acp:AccessMode"
-                  >acp:AccessMode</code
-                >
-                and a domain of
-                <code property="rdfs:domain" resource="rdfs:Resource"
-                  >rdfs:Resource</code
-                >.</span
+
+            <dt
+              id="acp-grant"
+              about="acp:grant"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdf:Property"
+            >
+              <code>acp:grant</code>
+            </dt>
+            <dd about="acp:grant" property="rdfs:comment">
+              The <span property="rdfs:label">grant</span> property connects
+              <span property="rdfs:domain" resource="acp:AccessGrant"
+                >Access Grants</span
               >
+              to the
+              <span property="rdfs:range" resource="acp:AccessMode"
+                >Access Modes</span
+              >
+              they grant.
             </dd>
           </dl>
-          <p>
-            The following example access grant graph denotes that access modes
-            <code>acl:Read</code> and <code>acl:Write</code> have been granted
-            to Bob for accessing resource X:
-          </p>
-          <pre
-            id="access-modes-grant-example-access-grant-graph"
-            class="example example-access-grant-graph"
-          >
-  _:grant1
-    acp:context [
-      acp:agent ex:Bob ;
-      acp:target ex:resourceX ;
-    ] ;
-    acp:grant acl:Read, acl:Write .
-</pre
-          >
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-modes-grant"
+            resource=":access-grant"
             property="bibo:hasPart"
-          ></section>
+          >
+            <h4
+              class="heading settled"
+              data-level="5.1.1"
+              id="example-access-grant"
+            >
+              <span class="secno">5.1.1. </span
+              ><span class="content">Example Access Grant</span
+              ><a class="self-link" href="#example-access-grant"></a>
+            </h4>
+            <p>
+              The following example access grant graph means that Access Modes
+              <code>acl:Read</code> and <code>acl:Write</code> have been granted
+              to Bob for accessing resource X.
+            </p>
+
+            <pre
+              id="example-access-grant-0"
+              class="example example-access-grant-graph"
+            >
+  []
+    acp:grant acl:Read, acl:Write ;
+    acp:context [
+      acp:agent ex:Bob ;
+      acp:target ex:resourceX ;
+    ] .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":example-access-grant"
+              property="bibo:hasPart"
+            ></section>
+          </section>
           <h3
             class="heading settled"
             data-level="5.2"
-            id="access-grant-extensibility"
+            id="access-mode-extensibility"
           >
             <span class="secno">5.2. </span
-            ><span class="content">Access modes extensibility</span
-            ><a class="self-link" href="#access-grant-extensibility"></a>
+            ><span class="content">Access Mode extensibility</span
+            ><a class="self-link" href="#access-mode-extensibility"></a>
           </h3>
-          <p>
-            There are no standard access modes defined by ACP. Instead, one
-            might tailor the modes and their granularity to the needs of an
-            application.
-          </p>
-          <p>
-            For example, one might use the standard access modes defined in the
-            ACL ontology as well as define more specific access modes. The
-            following example access modes grant will grant access modes
-            <code>acl:Read</code> and <code>ex:Delete</code> over resource X to
-            Bob:
-          </p>
-          <pre
-            id="access-modes-extensibility-example-access-grant-graph"
-            class="example example-access-grant-graph"
-          >
-  _:grant1
-    acp:context [
-      acp:agent ex:Bob ;
-      acp:target ex:resourceX ;
-    ] ;
-    acp:grant acl:Read, ex:Delete .
-</pre
-          >
+          <dl>
+            <dt
+              id="acp-access-mode"
+              about="acp:AccessMode"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:AccessMode</code>
+            </dt>
+            <dd about="acp:AccessMode" property="rdfs:comment">
+              The ACP specification does not define Access Modes. Instead, any
+              Access Mode granted is an instance of the
+              <span property="rdfs:label">Access Mode</span> class. Access Modes
+              and their granularity can be tailored to the needs of an
+              application. Access Modes defined in other vocabularies (<span
+                property="rdfs:seeAlso"
+                >for example ACL</span
+              >) can also be used.
+            </dd>
+          </dl>
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-grant-extensibility"
+            resource=":access-mode-extensibility"
             property="bibo:hasPart"
-          ></section>
+          >
+            <h4
+              class="heading settled"
+              data-level="5.2.1"
+              id="example-access-mode"
+            >
+              <span class="secno">5.2.1. </span
+              ><span class="content">Example Access Mode</span
+              ><a class="self-link" href="#example-access-mode"></a>
+            </h4>
+            <p>
+              The following example access grant graph means that
+              <code>acl:Read</code> and <code>ex:Delete</code> are Access Modes;
+              furthermore, it means that <code>acl:Read</code> and
+              <code>ex:Delete</code> have been granted to Bob for accessing
+              resource X.
+            </p>
+
+            <pre
+              id="example-access-mode-0"
+              class="example example-access-grant-graph"
+            >
+  []
+    acp:grant acl:Read, ex:Delete ;
+    acp:context [
+      acp:agent ex:Bob ;
+      acp:target ex:resourceX ;
+    ] .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":example-access-mode"
+              property="bibo:hasPart"
+            ></section>
+          </section>
         </section>
         <h2 class="heading settled" data-level="6" id="server-implementation">
           <span class="secno">6. </span
