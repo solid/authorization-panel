@@ -446,37 +446,8 @@
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#agent-matcher" class="tocxref"
-                    ><span class="secno">4.4.1</span>Agent Matcher</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#client-matcher" class="tocxref"
-                    ><span class="secno">4.4.2</span>Client matcher</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#issuer-matcher" class="tocxref"
-                    ><span class="secno">4.4.3</span>Issuer Matcher</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#time-matcher" class="tocxref"
-                    ><span class="secno">4.4.4</span>Time Matcher</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#verifiable-credentials-matcher" class="tocxref"
-                    ><span class="secno">4.4.5</span>Verifiable Credentials
-                    Matcher</a
+                  <a href="#example-matcher" class="tocxref"
+                    ><span class="secno">4.4.1</span>Example Matcher</a
                   >
                 </li>
               </ol>
@@ -487,13 +458,14 @@
               <a href="#matcher-extensibility" class="tocxref"
                 ><span class="secno">4.5</span>Matcher extensibility</a
               >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#inheritance" class="tocxref"
-                ><span class="secno">4.6</span>Inheritance</a
-              >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#example-matcher-extension" class="tocxref"
+                    ><span class="secno">4.5.1</span>Example Matcher
+                    extension</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
@@ -1286,9 +1258,10 @@
             </p>
 
             <pre id="example-context-2" class="example example-context-graph">
-  []
+  [
     acp:client ex:ClientApplicationX, ex:ClientApplicationY ;
-    acp:issuer ex:IdentityProviderZ .
+    acp:issuer ex:IdentityProviderZ ;
+  ] .
 </pre
             >
 
@@ -1516,7 +1489,7 @@
           </h3>
           <dl>
             <dt
-              id="acp-access-control"
+              id="acp-access-control-class"
               about="acp:AccessControl"
               property="rdfs:isDefinedBy"
               resource="acp:"
@@ -1949,28 +1922,187 @@
             <dd about="acp:Matcher" property="rdfs:comment">
               Instances of the <span property="rdfs:label">Matcher</span> class
               define the instances of resource access satisfying them. Each
-              resource access attribute defined must be matched for a Matcher to
+              resource access attribute defined MUST be matched for a Matcher to
               be satisfied.
             </dd>
+
+            <dt
+              id="acp-agent-matcher"
+              about="acp:AgentMatcher"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:AgentMatcher</code>
+            </dt>
+            <dd about="acp:AgentMatcher" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Agent Matcher</span> class define a
+              set of agents, one of which MUST be matched for an instance of
+              resource access to satisfy the matcher.
+            </dd>
+
+            <dt
+              id="acp-public-agent"
+              about="acp:PublicAgent"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:PublicAgent</code>
+            </dt>
+            <dd about="acp:PublicAgent" property="rdfs:comment">
+              The <span property="rdfs:label">Public Agent</span> named
+              individual can be used in an Agent Matcher to signify that any
+              agent, defined or not, MUST satisfy the Agent Matcher.
+            </dd>
+
+            <dt
+              id="acp-authenticated-agent"
+              about="acp:AuthenticatedAgent"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:AuthenticatedAgent</code>
+            </dt>
+            <dd about="acp:AuthenticatedAgent" property="rdfs:comment">
+              The <span property="rdfs:label">Authenticated Agent</span> named
+              individual can be used in an Agent Matcher to signify that any
+              authenticated agent MUST satisfy the Agent Matcher.
+            </dd>
+
+            <dt
+              id="acp-creator-agent"
+              about="acp:CreatorAgent"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:CreatorAgent</code>
+            </dt>
+            <dd about="acp:CreatorAgent" property="rdfs:comment">
+              The <span property="rdfs:label">Creator Agent</span> named
+              individual can be used in an Agent Matcher to signify that any
+              authenticated agent that created the requested access controlled
+              resource MUST satisfy the Agent Matcher.
+            </dd>
+
+            <dt
+              id="acp-owner-agent"
+              about="acp:OwnerAgent"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:OwnerAgent</code>
+            </dt>
+            <dd about="acp:OwnerAgent" property="rdfs:comment">
+              The <span property="rdfs:label">Owner Agent</span> named
+              individual can be used in an Agent Matcher to signify that any
+              authenticated agent that owns the requested access controlled
+              resource MUST satisfy the Agent Matcher.
+            </dd>
+
+            <dt
+              id="acp-client-matcher"
+              about="acp:ClientMatcher"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:ClientMatcher</code>
+            </dt>
+            <dd about="acp:ClientMatcher" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Client Matcher</span> class define a
+              set of clients, one of which MUST be matched for an instance of
+              resource access to satisfy the matcher.
+            </dd>
+
+            <dt
+              id="acp-public-client"
+              about="acp:PublicClient"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:PublicClient</code>
+            </dt>
+            <dd about="acp:PublicClient" property="rdfs:comment">
+              The <span property="rdfs:label">Public Client</span> named
+              individual can be used in a Client Matcher to signify that any
+              client, defined or not, MUST satisfy the Client Matcher.
+            </dd>
+
+            <dt
+              id="acp-issuer-matcher"
+              about="acp:IssuerMatcher"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:IssuerMatcher</code>
+            </dt>
+            <dd about="acp:IssuerMatcher" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Issuer Matcher</span> class define a
+              set of issuers, one of which MUST be matched for an instance of
+              resource access to satisfy the matcher.
+            </dd>
+
+            <dt
+              id="acp-public-issuer"
+              about="acp:PublicIssuer"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:PublicIssuer</code>
+            </dt>
+            <dd about="acp:PublicIssuer" property="rdfs:comment">
+              The <span property="rdfs:label">Public Issuer</span> named
+              individual can be used in an Issuer Matcher to signify that any
+              issuer, defined or not, MUST satisfy the Issuer Matcher.
+            </dd>
+
+            <dt
+              id="acp-time-matcher"
+              about="acp:TimeMatcher"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:TimeMatcher</code>
+            </dt>
+            <dd about="acp:TimeMatcher" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Time Matcher</span> class define a
+              range of time that MUST be matched for an instance of resource
+              access to satisfy the matcher.
+            </dd>
+
+            <dt
+              id="acp-vc-matcher"
+              about="acp:VerifiableCredentialsMatcher"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:VerifiableCredentialsMatcher</code>
+            </dt>
+            <dd about="acp:TimeMatcher" property="rdfs:comment">
+              Instances of the
+              <span property="rdfs:label">Verifiable Credentials Matcher</span>
+              class defines a set of types of
+              <a href="https://www.w3.org/TR/vc-data-model/"
+                ><dfn id="verifiable-credentials"
+                  >Verifiable Credentials</dfn
+                ></a
+              >, one of which MUST be matched for an instance of resource access
+              to satisfy the matcher.
+            </dd>
           </dl>
-
-          <p>
-            The following example authorization graph means that matcher A is
-            satisfied only if either Alice or Bob are the agent requesting
-            resource access and their identity was asserted by Identity Provider
-            B.
-          </p>
-
-          <pre
-            id="example-matcher-0"
-            class="example example-authorization-graph"
-          >
-  ex:matcherA
-    a acp:Matcher, acp:AgentMatcher, acp:IssuerMatcher ;
-    acp:agent ex:Bob, ex:Alice ;
-    acp:issuer ex:IdentityProviderB .
-</pre
-          >
 
           <section
             datatype="rdf:HTML"
@@ -1978,81 +2110,19 @@
             resource=":matcher"
             property="bibo:hasPart"
           >
-            <h4 class="heading settled" data-level="4.4.1" id="agent-matcher">
+            <h4 class="heading settled" data-level="4.4.1" id="example-matcher">
               <span class="secno">4.4.1. </span
-              ><span class="content">Agent Matcher</span
-              ><a class="self-link" href="#agent-matcher"></a>
+              ><span class="content">Example Matcher</span
+              ><a class="self-link" href="#example-matcher"></a>
             </h4>
-            <p id="acp-agent-matcher">
-              <span about="acp:AgentMatcher" typeof="rdfs:Class"
-                ><span property="rdfs:comment"
-                  >The ACP
-                  <span property="rdfs:label">Agent matcher</span> relies on the
-                  <a href="#acp-agent"><code>acp:agent</code></a> predicate and
-                  the following named individuals to define sets of matching
-                  agents.</span
-                ></span
-              >
-            </p>
-            <dl>
-              <dt id="acp-public-agent"><code>acp:PublicAgent</code></dt>
-              <dd about="acp:PublicAgent" typeof="owl:NamedIndividual">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">Public Agent</span> matches all
-                  contexts. In an authorization graph, the ACP Public Agent can
-                  be used as the object in a triple where the subject is a
-                  matcher and the predicate is <code>acp:agent</code>.</span
-                >
-              </dd>
-              <dt id="acp-authenticated-agent">
-                <code>acp:AuthenticatedAgent</code>
-              </dt>
-              <dd about="acp:AuthenticatedAgent" typeof="owl:NamedIndividual">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">Authenticated Agent</span> matches
-                  all contexts where an agent is defined. In an authorization
-                  graph, the ACP Authenticated Agent can be used as the object
-                  in a triple where the subject is a matcher and the predicate
-                  is <code>acp:agent</code>.</span
-                >
-              </dd>
-              <dt id="acp-creator-agent"><code>acp:CreatorAgent</code></dt>
-              <dd about="acp:CreatorAgent" typeof="owl:NamedIndividual">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">Creator Agent</span> matches all
-                  contexts where the creator matches the defined agent. In an
-                  authorization graph, the ACP Creator Agent can be used as the
-                  object in a triple where the subject is a matcher and the
-                  predicate is <code>acp:agent</code>.</span
-                >
-              </dd>
-              <dt id="acp-owner-agent"><code>acp:OwnerAgent</code></dt>
-              <dd about="acp:OwnerAgent" typeof="owl:NamedIndividual">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">Owner Agent</span> matches all
-                  contexts where the owner matches the defined agent. In an
-                  authorization graph, the ACP Owner Agent can be used as the
-                  object in a triple where the subject is a matcher and the
-                  predicate is <code>acp:agent</code>.</span
-                >
-              </dd>
-            </dl>
             <p>
-              The following example authorization graph denotes that matcher A
-              will be satisfied when matched against a context graph where
-              either Alice or the owner of the resource being accessed are the
-              agent:
+              The following example authorization graph means that Agent Matcher
+              A will be satisfied when either Alice or the owner of the access
+              controlled resource are requesting access.
             </p>
+
             <pre
-              id="agent-matcher-example-authorization-graph"
+              id="example-matcher-0"
               class="example example-authorization-graph"
             >
   ex:matcherA
@@ -2060,98 +2130,33 @@
 </pre
             >
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":agent-matcher"
-              property="bibo:hasPart"
-            ></section>
-            <h4 class="heading settled" data-level="4.4.2" id="client-matcher">
-              <span class="secno">4.4.2. </span
-              ><span class="content">Client matcher</span
-              ><a class="self-link" href="#client-matcher"></a>
-            </h4>
-            <p id="acp-client-matcher">
-              <span about="acp:ClientMatcher" typeof="rdfs:Class"
-                ><span property="rdfs:comment"
-                  >The ACP
-                  <span property="rdfs:label">Client matcher</span> relies on
-                  the
-                  <a href="#acp-client"><code>acp:client</code></a> predicate to
-                  define sets of matching clients.</span
-                ></span
-              >
-            </p>
-            <dl>
-              <dt id="acp-public-client"><code>acp:PublicClient</code></dt>
-              <dd about="acp:PublicClient" typeof="owl:NamedIndividual">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">Public Client</span> matches all
-                  clients. In an authorization graph, the ACP Public Client can
-                  be used as the object in a triple where the subject is a
-                  matcher and the predicate is <code>acp:client</code>.</span
-                >
-              </dd>
-            </dl>
             <p>
-              The following example authorization graph denotes that matcher A
-              will be satisfied when matched against a context graph where the
-              client used to access a resource is client B:
+              The following example authorization graph means that the defined
+              Client Matcher will be satisfied when matched against a context
+              graph where the client used to access the access controlled
+              resource is client B.
             </p>
+
             <pre
-              id="client-matcher-example-authorization-graph"
+              id="example-matcher-1"
               class="example example-authorization-graph"
             >
-  ex:matcherA
-    acp:client ex:clientB .
+  [
+    acp:client ex:clientB ;
+  ] .
 </pre
             >
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":client-matcher"
-              property="bibo:hasPart"
-            ></section>
-            <h4 class="heading settled" data-level="4.4.3" id="issuer-matcher">
-              <span class="secno">4.4.3. </span
-              ><span class="content">Issuer Matcher</span
-              ><a class="self-link" href="#issuer-matcher"></a>
-            </h4>
-            <p id="acp-issuer-matcher">
-              <span about="acp:IssuerMatcher" typeof="rdfs:Class"
-                ><span property="rdfs:comment"
-                  >The ACP
-                  <span property="rdfs:label">Issuer matcher</span> relies on
-                  the
-                  <a href="#acp-issuer"><code>acp:issuer</code></a> predicate to
-                  define sets of matching issuers.</span
-                ></span
-              >
-            </p>
-            <dl>
-              <dt id="acp-public-issuer"><code>acp:PublicIssuer</code></dt>
-              <dd about="acp:PublicIssuer" typeof="owl:NamedIndividual">
-                <span property="rdfs:comment"
-                  >The
-                  <span property="rdfs:isDefinedBy" resource="acp:">ACP</span>
-                  <span property="rdfs:label">Public Issuer</span> matches all
-                  issuers. In an authorization graph, the ACP Public Issuer can
-                  be used as the object in a triple where the subject is a
-                  matcher and the predicate is <code>acp:issuer</code>.</span
-                >
-              </dd>
-            </dl>
             <p>
-              The following example authorization graph denotes that matcher A
-              will be satisfied when matched against a context graph where the
-              identity provider used to assert the identity of the agent is
-              issuer B:
+              The following example authorization graph means that Issuer
+              Matcher A will be satisfied when matched against a context graph
+              where the identity provider used to assert the identity of the
+              agent requesting access to the access controlled resource is
+              issuer B.
             </p>
+
             <pre
-              id="issuer-matcher-example-authorization-graph"
+              id="example-matcher-2"
               class="example example-authorization-graph"
             >
   ex:matcherA
@@ -2159,76 +2164,65 @@
 </pre
             >
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":issuer-matcher"
-              property="bibo:hasPart"
-            ></section>
-            <h4 class="heading settled" data-level="4.4.4" id="time-matcher">
-              <span class="secno">4.4.4. </span
-              ><span class="content">Time Matcher</span
-              ><a class="self-link" href="#time-matcher"></a>
-            </h4>
-            <p id="acp-time-matcher">
-              <span about="acp:TimeMatcher" typeof="rdfs:Class"
-                ><span property="rdfs:comment"
-                  >The ACP
-                  <span property="rdfs:label">Time matcher</span> relies on the
-                  <a href="#acp-time"><code>acp:time</code></a> predicate to
-                  define ranges of matching times.</span
-                ></span
-              >
+            <p>
+              The following example authorization graph means that the defined
+              Verifiable Credentials (VC) Matcher A will be satisfied when
+              matched against a context graph where one of the presented
+              verifiable credentials is an instance of credential B, is valid
+              and has been issued to the agent requesting the resource.
             </p>
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":time-matcher"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="4.4.5"
-              id="verifiable-credentials-matcher"
-            >
-              <span class="secno">4.4.5. </span
-              ><span class="content">Verifiable Credentials Matcher</span
-              ><a class="self-link" href="#verifiable-credentials-matcher"></a>
-            </h4>
-            <p id="acp-verifiable-credentials-matcher">
-              <span about="acp:VerifiableCredentialsMatcher" typeof="rdfs:Class"
-                ><span property="rdfs:comment"
-                  >The ACP
-                  <span property="rdfs:label"
-                    >Verifiable credentials matcher</span
-                  >
-                  relies on the
-                  <a href="#acp-vc"><code>acp:vc</code></a> predicate to define
-                  sets of matching verifiable credentials.</span
-                ></span
-              >
-            </p>
-            <p>
-              The following example authorization graph denotes that matcher A
-              will be satisfied when matched against a context graph where one
-              of the presented verifiable credentials is an instance of
-              credential B and has been issued to the agent requesting the
-              resource:
-            </p>
             <pre
-              id="verifiable-credentials-matcher-example-authorization-graph"
+              id="example-matcher-3"
+              class="example example-authorization-graph"
+            >
+  []
+    acp:vc ex:credentialB .
+</pre
+            >
+
+            <p>
+              The following example authorization graph means that matcher A
+              will be satisfied only if either Alice or Bob are the agent
+              requesting resource access and their identity was asserted by
+              Identity Provider B.
+            </p>
+
+            <pre
+              id="example-matcher-4"
               class="example example-authorization-graph"
             >
   ex:matcherA
-    acp:vc ex:credentialB .
+    a acp:Matcher, acp:AgentMatcher, acp:IssuerMatcher ;
+    acp:agent ex:Bob, ex:Alice ;
+    acp:issuer ex:IdentityProviderB .
+</pre
+            >
+
+            <p>
+              The following example authorization graph means that the defined
+              matcher will be satisfied only if Alice, whose identity is
+              asserted by Identity Provider B, is the agent requesting resource
+              access and is doing so presenting a VC that is a verified instance
+              of credential A issued to Alice.
+            </p>
+
+            <pre
+              id="example-matcher-4"
+              class="example example-authorization-graph"
+            >
+  [
+    acp:agent ex:Alice ;
+    acp:issuer ex:IdentityProviderB ;
+    acp:vc ex:credentialA ;
+  ] .
 </pre
             >
 
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":verifiable-credentials-matcher"
+              resource=":example-matcher"
               property="bibo:hasPart"
             ></section>
           </section>
@@ -2241,130 +2235,61 @@
             ><span class="content">Matcher extensibility</span
             ><a class="self-link" href="#matcher-extensibility"></a>
           </h3>
-          <p>
-            In order to extend the set of conditions enforceable for resource
-            access, new matchers can be created. A new matcher should apply to
-            new context attributes in order to maintain consistency and
-            portability of authorization graphs across ACP resolution engines.
-            However, refining the behaviour of standard matchers to the needs of
-            a particular system is possible.
+          <p about="acp:Matcher" property="rdfs:comment">
+            All sub-properties of acp:attribute correspond implicitly to their
+            own type of matcher. In other words, any attribute used as a
+            matching attribute MUST be matched either via IRI or literal term
+            equality or via more complex algorithms defined to fit the specific
+            requirements of applications. Sub-properties of acp:attribute can be
+            created to fit the specific resource access control requirements of
+            applications.
           </p>
-          <p>
-            A new context attribute could be, for example, created to control
-            resource access based on resource tags. This could be achieved by
-            creating a new context attribute <code>acp:tag</code> and designing
-            the corresponding tag matching algorithm as an extension to ACP. The
-            context graph passed to an ACP system supporting this new kind of
-            matcher would then need to include the requested resource tags in
-            order to get successful matches.
-          </p>
-          <p>
-            The following example authorization graph would then denote that
-            matcher A will be satisfied when matched against a context graph
-            where one of the requested resource's tags is tag B:
-          </p>
-          <pre
-            id="matcher-extensibility-example-authorization-graph"
-            class="example example-authorization-graph"
-          >
-  ex:matcherA
-    acp:tag ex:tagB .
-</pre
-          >
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":matcher-extensibility"
             property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="4.6" id="inheritance">
-            <span class="secno">4.6. </span
-            ><span class="content">Inheritance</span
-            ><a class="self-link" href="#inheritance"></a>
-          </h3>
-          <p>
-            Contained resources can inherit ACP access controls via the
-            <code>acp:memberAccessControl</code> predicate.
-          </p>
-          <p>
-            The following example authorization graph denotes that resource
-            contained by resource X will have access control B and C among the
-            access controls mandating control over them:
-          </p>
-          <pre
-            id="inheritance-example-authorization-graph-1"
-            class="example example-authorization-graph"
           >
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:memberAccessControl ex:accessControlB, ex:accessControlC .
+            <h4
+              class="heading settled"
+              data-level="4.5.1"
+              id="example-matcher-extension"
+            >
+              <span class="secno">4.5.1. </span
+              ><span class="content">Example Matcher extension</span
+              ><a class="self-link" href="#example-matcher-extension"></a>
+            </h4>
+            <p>
+              Given the property ex:tag previously defined in the
+              <a href="#example-context-extension">example context extension</a>
+              as a an <code>rdfs:subPropertyOf acp:attribute</code> that
+              describes tags applied to requested resources, the following
+              example context graph would mean that Policy 1 allows Read and is
+              satisfied by instances of resource access initiated over a
+              resource that was tagged <code>ex:FavouriteRecord</code> or
+              <code>ex:Wishlist</code>.
+            </p>
+
+            <pre
+              id="example-matcher-extension-0"
+              class="example example-authorization-graph"
+            >
+  ex:policy1
+    acp:allow acl:Read ;
+    acp:anyOf [
+      ex:tag ex:FavouriteRecord, ex:Wishlist ;
+    ] .
 </pre
-          >
-          <p>
-            In other words, as illustrated in the following example
-            authorization graph, if the resource X contained resource Y and
-            resource Y was access controlled by access control resource D, then
-            access control resource D would inherit access control B and C on
-            top of other access controls mandating access over resource Y, in
-            this case access control E:
-          </p>
-          <pre
-            id="inheritance-example-authorization-graph-2"
-            class="example example-authorization-graph"
-          >
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:memberAccessControl ex:accessControlB, ex:accessControlC .
+            >
 
-  ex:resourceX
-    ldp:contains ex:resourceY  .
-
-  ex:accessControlResourceD
-    acp:resource ex:resourceY ;
-    acp:memberAccessControl ex:accessControlB, ex:accessControlC ;
-    acp:accessControl ex:accessControlB, ex:accessControlC, ex:accessControlE .
-</pre
-          >
-          <p>
-            Furthermore, as illustrated in the following example authorization
-            graph, member access controls are inherited all the way down the
-            containment hierarchy, so if resource Y contained resources, they
-            would also inherit access controls B and C, but not access control E
-            that is not a member access control and specific to resource Y:
-          </p>
-          <pre
-            id="inheritance-example-authorization-graph-3"
-            class="example example-authorization-graph"
-          >
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:memberAccessControl ex:accessControlB, ex:accessControlC .
-
-  ex:resourceX
-    ldp:contains ex:resourceY .
-
-  ex:accessControlResourceD
-    acp:resource ex:resourceY ;
-    acp:memberAccessControl ex:accessControlB, ex:accessControlC ;
-    acp:accessControl ex:accessControlB, ex:accessControlC, ex:accessControlE .
-
-  ex:resourceY
-    ldp:contains ex:resourceZ .
-
-  ex:accessControlResourceF
-    acp:resource ex:resourceY ;
-    acp:memberAccessControl ex:accessControlB, ex:accessControlC ;
-    acp:accessControl ex:accessControlB, ex:accessControlC .
-</pre
-          >
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":inheritance"
-            property="bibo:hasPart"
-          ></section>
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":example-matcher-extension"
+              property="bibo:hasPart"
+            ></section>
+          </section>
         </section>
         <h2 class="heading settled" data-level="5" id="access-grant-graph">
           <span class="secno">5. </span
