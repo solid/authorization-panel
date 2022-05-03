@@ -650,15 +650,21 @@
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-object"
               ><dfn id="rdf-object">object</dfn></a
             >
-            of RDF triples, and
-            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-datatype"
-              ><dfn id="datatype">datatype</dfn></a
+            of RDF triples,
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-datatype"
+              ><dfn id="rdf-datatype">datatype</dfn></a
+            >, and
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-iri-equality"
+              ><dfn id="rdf-iri-eqality">IRI</dfn></a
+            >
+            and
+            <a
+              href="https://www.w3.org/TR/rdf11-concepts/#dfn-literal-term-equality"
+              ><dfn id="rdf-literal-term-eqality">literal term equality</dfn></a
             >
             as defined in RDF 1.1 Concepts and Abstract Syntax
             <cite
-              ><a class="bibref" href="#bib-rdf11-concepts"
-                >RDF11 CONCEPTS</a
-              ></cite
+              ><a class="bibref" href="#rdf11-concepts">RDF11 CONCEPTS</a></cite
             >.
           </p>
 
@@ -771,6 +777,8 @@
             ><span class="content">ACP terminology</span
             ><a class="self-link" href="#acp-terminology"></a>
           </h3>
+          <p><em>This section is non-normative.</em></p>
+
           <dl>
             <dt id="terminology-context-graph">Context graph</dt>
             <dd>
@@ -813,7 +821,9 @@
           <p>
             Throughout this document, color-coded boxes contain the RDF
             representation of example context graphs, authorization graphs, and
-            access grant graphs serialized in Turtle.
+            access grant graphs serialized in Turtle. Those graphs use a mix of
+            IRIs and blank nodes where applicable to better show the range of
+            possible representations.
           </p>
 
           <p>
@@ -960,11 +970,47 @@
           are all sections explicitly marked non-normative. Everything else is
           normative.
         </p>
-        <p id="RFC2119-conformance">
-          The key words <em class="rfc2119">MAY</em>,
-          <em class="rfc2119">MUST</em>, <em class="rfc2119">MUST NOT</em>, and
-          <em class="rfc2119">SHOULD</em> are to be interpreted as described in
-          <cite><a class="bibref" href="#bib-rfc-2119">RFC 2119</a></cite
+
+        <p id="rfc2119-conformance">
+          The key words
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-1"
+            ><dfn id="rfc2119-must">MUST</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-2"
+            ><dfn id="rfc2119-must-not">MUST NOT</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-1"
+            ><dfn id="rfc2119-required">REQUIRED</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-1"
+            ><dfn id="rfc2119-shall">SHALL</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-2"
+            ><dfn id="rfc2119-shall-not">SHALL NOT</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-3"
+            ><dfn id="rfc2119-should">SHOULD</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-4"
+            ><dfn id="rfc2119-should-not">SHOULD NOT</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-3"
+            ><dfn id="rfc2119-recommended">RECOMMENDED</dfn></a
+          >,
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-5"
+            ><dfn id="rfc2119-may">MAY</dfn></a
+          >, and
+          <a href="https://datatracker.ietf.org/doc/html/rfc2119#section-5"
+            ><dfn id="rfc2119-optional">OPTIONAL</dfn></a
+          >, are to be interpreted as defined in
+          <cite><a class="bibref" href="#rfc2119">RFC 2119</a></cite
+          >.
+        </p>
+
+        <p>
+          Only UPPERCASE usage of the key words defined in RFC 2119 have special
+          meanings, as per
+          <cite><a class="bibref" href="#rfc8174">RFC 8174</a></cite
           >.
         </p>
 
