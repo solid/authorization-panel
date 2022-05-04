@@ -87,8 +87,7 @@
         border: 1px solid #999;
         margin-left: 0;
         margin-top: 1.5em;
-        padding: 0 2em;
-        padding: 1em;
+        padding: 2em;
       }
       .example::before {
         background: white;
@@ -96,8 +95,8 @@
         color: #666;
         display: block;
         font-family: sans-serif;
-        margin: -1em 0 0.4em -1em;
-        padding: 0.2em 1em;
+        margin: -2em 0 1em -2em;
+        padding: 0.2em 2em;
         text-transform: none;
         width: 16em;
       }
@@ -809,14 +808,14 @@
           </p>
 
           <pre id="example-context-graph" class="example example-context-graph">
-  # This box contains a context graph
-  # It describes an instance of resource access
+# This box contains a context graph
+# It describes an instance of resource access
 
-  []
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX ;
-    acp:client ex:ClientApplicationY ;
-    acp:issuer ex:IdentityProviderZ .
+[]
+  acp:agent ex:Bob ;
+  acp:target ex:resourceX ;
+  acp:client ex:ClientApplicationY ;
+  acp:issuer ex:IdentityProviderZ .
 </pre
           >
 
@@ -837,23 +836,23 @@
             id="example-authorization-graph"
             class="example example-authorization-graph"
           >
-  # This box contains an authorization graph
-  # It describes the conditions required for accessing a resource
+# This box contains an authorization graph
+# It describes the conditions required for accessing a resource
 
-  []
-    a acp:AccessControlResource ;
-    acp:resource ex:resourceX ;
-    acp:accessControl [
-      a acp:AccessControl ;
-      acp:apply [
-        a acp:Policy ;
-        acp:allow acl:Read ;
-        acp:anyOf [
-          a acp:AgentMatcher ;
-          acp:agent ex:Alice, ex:Bob ;
-        ]
+[]
+  a acp:AccessControlResource ;
+  acp:resource ex:resourceX ;
+  acp:accessControl [
+    a acp:AccessControl ;
+    acp:apply [
+      a acp:Policy ;
+      acp:allow acl:Read ;
+      acp:anyOf [
+        a acp:AgentMatcher ;
+        acp:agent ex:Alice, ex:Bob ;
       ]
-    ] .
+    ]
+  ] .
 </pre
           >
 
@@ -877,17 +876,17 @@
             id="example-access-grant-graph"
             class="example example-access-grant-graph"
           >
-  # This box contains an access grant graph
-  # It describes in context the granted access over a resource
+# This box contains an access grant graph
+# It describes in context the granted access over a resource
 
-  []
-    acp:grant acl:Read ;
-    acp:context [
-      acp:agent ex:Bob ;
-      acp:target ex:resourceX ;
-      acp:client ex:ClientApplicationY ;
-      acp:issuer ex:IdentityProviderZ ;
-    ] .
+[]
+  acp:grant acl:Read ;
+  acp:context [
+    acp:agent ex:Bob ;
+    acp:target ex:resourceX ;
+    acp:client ex:ClientApplicationY ;
+    acp:issuer ex:IdentityProviderZ ;
+  ] .
 </pre
           >
 
@@ -1227,9 +1226,9 @@
             </p>
 
             <pre id="example-context-0" class="example example-context-graph">
-  []
-    a acp:Context ;
-    acp:agent ex:Bob .
+[]
+  a acp:Context ;
+  acp:agent ex:Bob .
 </pre
             >
 
@@ -1241,13 +1240,13 @@
             </p>
 
             <pre id="example-context-1" class="example example-context-graph">
-  ex:contextA
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX ;
-    acp:owner ex:Bob ;
-    acp:creator ex:Alice ;
-    acp:client ex:ClientApplicationY ;
-    acp:issuer ex:IdentityProviderZ .
+ex:contextA
+  acp:agent ex:Bob ;
+  acp:target ex:resourceX ;
+  acp:owner ex:Bob ;
+  acp:creator ex:Alice ;
+  acp:client ex:ClientApplicationY ;
+  acp:issuer ex:IdentityProviderZ .
 </pre
             >
 
@@ -1258,10 +1257,10 @@
             </p>
 
             <pre id="example-context-2" class="example example-context-graph">
-  [
-    acp:client ex:ClientApplicationX, ex:ClientApplicationY ;
-    acp:issuer ex:IdentityProviderZ ;
-  ] .
+[
+  acp:client ex:ClientApplicationX, ex:ClientApplicationY ;
+  acp:issuer ex:IdentityProviderZ ;
+] .
 </pre
             >
 
@@ -1316,10 +1315,10 @@
               id="example-context-extensibility-0"
               class="example example-context-graph"
             >
-  ex:contextA
-    acp:agent ex:Bob ;
-    acp:target ex:resourceX ;
-    ex:tag ex:Music, ex:FavouriteRecord .
+ex:contextA
+  acp:agent ex:Bob ;
+  acp:target ex:resourceX ;
+  ex:tag ex:Music, ex:FavouriteRecord .
 </pre
             >
 
@@ -1468,10 +1467,10 @@
               id="example-access-control-resource-0"
               class="example example-authorization-graph"
             >
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlB, ex:accessControlC ;
-    acp:memberAccessControl ex:accessControlD .
+ex:accessControlResourceA
+  acp:resource ex:resourceX ;
+  acp:accessControl ex:accessControlB, ex:accessControlC ;
+  acp:memberAccessControl ex:accessControlD .
 </pre
             >
 
@@ -1567,12 +1566,12 @@
               id="example-access-control-0"
               class="example example-authorization-graph"
             >
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:accessControl [
-      acp:apply ex:policyC ;
-      acp:access ex:policyD ;
-    ] .
+ex:accessControlResourceA
+  acp:resource ex:resourceX ;
+  acp:accessControl [
+    acp:apply ex:policyC ;
+    acp:access ex:policyD ;
+  ] .
 </pre
             >
 
@@ -1585,15 +1584,15 @@
               id="example-access-control-1"
               class="example example-authorization-graph"
             >
-  ex:accessControlResourceA
-    acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlB, ex:accessControlC .
+ex:accessControlResourceA
+  acp:resource ex:resourceX ;
+  acp:accessControl ex:accessControlB, ex:accessControlC .
 
-  ex:accessControlB
-    acp:apply ex:policyD .
+ex:accessControlB
+  acp:apply ex:policyD .
 
-  ex:accessControlC
-    acp:apply ex:policyE .
+ex:accessControlC
+  acp:apply ex:policyE .
 </pre
             >
 
@@ -1601,12 +1600,12 @@
               id="example-access-control-2"
               class="example example-authorization-graph"
             >
-  []
-    acp:resource ex:resourceX ;
-    acp:accessControl ex:accessControlF .
+[]
+  acp:resource ex:resourceX ;
+  acp:accessControl ex:accessControlF .
 
-  ex:accessControlF
-    acp:apply ex:policyD, ex:policyE .
+ex:accessControlF
+  acp:apply ex:policyD, ex:policyE .
 </pre
             >
 
@@ -1751,9 +1750,9 @@
               id="example-policy-0"
               class="example example-authorization-graph"
             >
-  ex:policyA
-    acp:allow acl:Read ;
-    acp:allOf ex:matcherB, ex:matcherC .
+ex:policyA
+  acp:allow acl:Read ;
+  acp:allOf ex:matcherB, ex:matcherC .
 </pre
             >
 
@@ -1767,9 +1766,9 @@
               id="example-policy-1"
               class="example example-authorization-graph"
             >
-  []
-    acp:deny acl:Write ;
-    acp:anyOf ex:matcherB, ex:matcherC .
+[]
+  acp:deny acl:Write ;
+  acp:anyOf ex:matcherB, ex:matcherC .
 </pre
             >
 
@@ -1783,16 +1782,16 @@
               id="example-policy-2"
               class="example example-authorization-graph"
             >
-  [
-    acp:resource ex:resourceX ;
-    acp:accessControl [
-      acp:apply [
-        acp:allow acl:Read, acl:Write ;
-        acp:anyOf ex:matcherA ;
-        acp:noneOf ex:matcherB ;
-      ] ;
+[
+  acp:resource ex:resourceX ;
+  acp:accessControl [
+    acp:apply [
+      acp:allow acl:Read, acl:Write ;
+      acp:anyOf ex:matcherA ;
+      acp:noneOf ex:matcherB ;
     ] ;
-  ] .
+  ] ;
+] .
 </pre
             >
 
@@ -1845,10 +1844,10 @@
               id="example-policy-satisfaction-0"
               class="example example-authorization-graph"
             >
-  ex:policyA
-    acp:allOf ex:matcherB, ex:matcherC ;
-    acp:anyOf ex:matcherD, matcherE ;
-    acp:noneOf ex:matcherF .
+ex:policyA
+  acp:allOf ex:matcherB, ex:matcherC ;
+  acp:anyOf ex:matcherD, matcherE ;
+  acp:noneOf ex:matcherF .
 </pre
             >
 
@@ -1887,14 +1886,14 @@
               id="example-policy-satisfaction-1"
               class="example example-authorization-graph"
             >
-  ex:accessControlA
-    acp:apply ex:policyB, ex:policyC .
+ex:accessControlA
+  acp:apply ex:policyB, ex:policyC .
 
-  ex:policyB
-    acp:allow acl:Read, acl:Write .
+ex:policyB
+  acp:allow acl:Read, acl:Write .
 
-  ex:policyC
-    acp:deny acl:Write .
+ex:policyC
+  acp:deny acl:Write .
 </pre
             >
 
@@ -2125,8 +2124,8 @@
               id="example-matcher-0"
               class="example example-authorization-graph"
             >
-  ex:matcherA
-    acp:agent ex:Alice, acp:OwnerAgent .
+ex:matcherA
+  acp:agent ex:Alice, acp:OwnerAgent .
 </pre
             >
 
@@ -2141,9 +2140,9 @@
               id="example-matcher-1"
               class="example example-authorization-graph"
             >
-  [
-    acp:client ex:clientB ;
-  ] .
+[
+  acp:client ex:clientB ;
+] .
 </pre
             >
 
@@ -2159,8 +2158,8 @@
               id="example-matcher-2"
               class="example example-authorization-graph"
             >
-  ex:matcherA
-    acp:issuer ex:issuerB .
+ex:matcherA
+  acp:issuer ex:issuerB .
 </pre
             >
 
@@ -2176,8 +2175,8 @@
               id="example-matcher-3"
               class="example example-authorization-graph"
             >
-  []
-    acp:vc ex:credentialB .
+[]
+  acp:vc ex:credentialB .
 </pre
             >
 
@@ -2192,10 +2191,10 @@
               id="example-matcher-4"
               class="example example-authorization-graph"
             >
-  ex:matcherA
-    a acp:Matcher, acp:AgentMatcher, acp:IssuerMatcher ;
-    acp:agent ex:Bob, ex:Alice ;
-    acp:issuer ex:IdentityProviderB .
+ex:matcherA
+  a acp:Matcher, acp:AgentMatcher, acp:IssuerMatcher ;
+  acp:agent ex:Bob, ex:Alice ;
+  acp:issuer ex:IdentityProviderB .
 </pre
             >
 
@@ -2211,11 +2210,11 @@
               id="example-matcher-4"
               class="example example-authorization-graph"
             >
-  [
-    acp:agent ex:Alice ;
-    acp:issuer ex:IdentityProviderB ;
-    acp:vc ex:credentialA ;
-  ] .
+[
+  acp:agent ex:Alice ;
+  acp:issuer ex:IdentityProviderB ;
+  acp:vc ex:credentialA ;
+] .
 </pre
             >
 
@@ -2275,11 +2274,11 @@
               id="example-matcher-extension-0"
               class="example example-authorization-graph"
             >
-  ex:policy1
-    acp:allow acl:Read ;
-    acp:anyOf [
-      ex:tag ex:FavouriteRecord, ex:Wishlist ;
-    ] .
+ex:policy1
+  acp:allow acl:Read ;
+  acp:anyOf [
+    ex:tag ex:FavouriteRecord, ex:Wishlist ;
+  ] .
 </pre
             >
 
@@ -2394,12 +2393,12 @@
               id="example-access-grant-0"
               class="example example-access-grant-graph"
             >
-  []
-    acp:grant acl:Read, acl:Write ;
-    acp:context [
-      acp:agent ex:Bob ;
-      acp:target ex:resourceX ;
-    ] .
+[]
+  acp:grant acl:Read, acl:Write ;
+  acp:context [
+    acp:agent ex:Bob ;
+    acp:target ex:resourceX ;
+  ] .
 </pre
             >
 
@@ -2468,12 +2467,12 @@
               id="example-access-mode-0"
               class="example example-access-grant-graph"
             >
-  []
-    acp:grant acl:Read, ex:Delete ;
-    acp:context [
-      acp:agent ex:Bob ;
-      acp:target ex:resourceX ;
-    ] .
+[]
+  acp:grant acl:Read, ex:Delete ;
+  acp:context [
+    acp:agent ex:Bob ;
+    acp:target ex:resourceX ;
+  ] .
 </pre
             >
 
