@@ -1415,7 +1415,7 @@
               >
               to
               <span property="rdfs:range" resource="acp:AccessControl"
-                >access controls</span
+                >Access Controls</span
               >.
             </dd>
 
@@ -1437,7 +1437,7 @@
               >
               of member resources to
               <span property="rdfs:range" resource="acp:AccessControl"
-                >access controls</span
+                >Access Controls</span
               >.
             </dd>
           </dl>
@@ -1689,7 +1689,7 @@
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
               to the set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
-              that must all match a resource access description for the policy
+              that MUST all match a resource access description for the Policy
               to be satisfied.
             </dd>
 
@@ -1707,8 +1707,8 @@
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
               to the set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
-              any of which must match a resource access description for the
-              policy to be satisfied.
+              any of which MUST match a resource access description for the
+              Policy to be satisfied.
             </dd>
 
             <dt
@@ -1725,8 +1725,8 @@
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
               to the set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
-              none of which must match a resource access description for the
-              policy to be satisfied.
+              none of which MUST match a resource access description for the
+              Policy to be satisfied.
             </dd>
           </dl>
 
@@ -1939,7 +1939,7 @@
               Instances of the
               <span property="rdfs:label">Agent Matcher</span> class define a
               set of agents, one of which MUST be matched for an instance of
-              resource access to satisfy the matcher.
+              resource access to satisfy the Matcher.
             </dd>
 
             <dt
@@ -2017,7 +2017,7 @@
               Instances of the
               <span property="rdfs:label">Client Matcher</span> class define a
               set of clients, one of which MUST be matched for an instance of
-              resource access to satisfy the matcher.
+              resource access to satisfy the Matcher.
             </dd>
 
             <dt
@@ -2048,7 +2048,7 @@
               Instances of the
               <span property="rdfs:label">Issuer Matcher</span> class define a
               set of issuers, one of which MUST be matched for an instance of
-              resource access to satisfy the matcher.
+              resource access to satisfy the Matcher.
             </dd>
 
             <dt
@@ -2079,7 +2079,7 @@
               Instances of the
               <span property="rdfs:label">Time Matcher</span> class define a
               range of time that MUST be matched for an instance of resource
-              access to satisfy the matcher.
+              access to satisfy the Matcher.
             </dd>
 
             <dt
@@ -2100,7 +2100,7 @@
                   >Verifiable Credentials</dfn
                 ></a
               >, one of which MUST be matched for an instance of resource access
-              to satisfy the matcher.
+              to satisfy the Matcher.
             </dd>
           </dl>
 
@@ -2236,13 +2236,13 @@
             ><a class="self-link" href="#matcher-extensibility"></a>
           </h3>
           <p about="acp:Matcher" property="rdfs:comment">
-            All sub-properties of acp:attribute correspond implicitly to their
-            own type of matcher. In other words, any attribute used as a
-            matching attribute MUST be matched either via IRI or literal term
-            equality or via more complex algorithms defined to fit the specific
-            requirements of applications. Sub-properties of acp:attribute can be
-            created to fit the specific resource access control requirements of
-            applications.
+            All sub-properties of <code>acp:attribute</code> correspond
+            implicitly to their own type of Matcher. In other words, any
+            attribute used as a matching attribute MUST be matched either via
+            IRI or literal term equality or via more complex algorithms defined
+            to fit the specific requirements of applications. Sub-properties of
+            <code>acp:attribute</code> can be created to fit the specific
+            resource access control requirements of applications.
           </p>
 
           <section
@@ -2261,10 +2261,10 @@
               ><a class="self-link" href="#example-matcher-extension"></a>
             </h4>
             <p>
-              Given the property ex:tag previously defined in the
+              Given the property <code>ex:tag</code> previously defined in the
               <a href="#example-context-extension">example context extension</a>
               as a an <code>rdfs:subPropertyOf acp:attribute</code> that
-              describes tags applied to requested resources, the following
+              describes tags applied to requested resources; the following
               example context graph would mean that Policy 1 allows Read and is
               satisfied by instances of resource access initiated over a
               resource that was tagged <code>ex:FavouriteRecord</code> or
