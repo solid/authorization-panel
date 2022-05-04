@@ -2485,13 +2485,19 @@ ex:policy1
 
           <p>
             The set of Policies controlling access to a resource MUST contain
-            all Policies that are linked to a resource via the property chain
+            all Policies that are linked to a resource via the
+            <a href="https://www.w3.org/TR/sparql11-query/#propertypaths"
+              ><dfn id="sparql-property-path">property path</dfn></a
+            >
             <code>acp:accessControlResource/acp:accessControl/acp:apply</code>.
           </p>
 
           <p>
             The set of Policies controlling access to an ACR MUST contain all
-            Policies that are linked to an ACR via the property chain
+            Policies that are linked to an ACR via the
+            <a href="https://www.w3.org/TR/sparql11-query/#propertypaths"
+              ><dfn id="sparql-property-path">property path</dfn></a
+            >
             <code>acp:accessControl/acp:access</code>.
           </p>
 
