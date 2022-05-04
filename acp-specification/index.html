@@ -505,6 +505,13 @@
               <a href="#grant-access-algorithm" class="tocxref"
                 ><span class="secno">6.1</span>Grant Access algorithm</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#granting-access-example" class="tocxref"
+                    ><span class="secno">6.1.1</span>Granting access example</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
@@ -512,6 +519,14 @@
               <a href="#satisfy-policy-algorithm" class="tocxref"
                 ><span class="secno">6.2</span>Satisfy Policy algorithm</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#satisfying-policy-example" class="tocxref"
+                    ><span class="secno">6.2.1</span>Satisfying Policy
+                    example</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
@@ -2431,41 +2446,62 @@ ex:policy1
           </h3>
           <div about="acp:Policy" property="rdfs:comment">
             <p>
-              An access mode MUST be granted over a resource if and only if in
-              the set of policies mandating access over it:
+              An Access Mode MUST be granted over a resource if and only if in
+              the set of Policies controlling access to it:
             </p>
             <ul>
-              <li>A satisfied policy allows it; and</li>
-              <li>No satisfied policy denies it.</li>
+              <li>A satisfied policy allows the Access Mode; and</li>
+              <li>No satisfied policy denies the Access Mode.</li>
             </ul>
-            <p>
-              ACP doesn't define its own access modes, instead it reuses access
-              modes defined elsewhere. For example, it could use the
-              <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a> defined
-              <code>acl:Read</code>; <code>acl:Write</code>; and
-              <code>acl:Append</code>. Access modes can be defined to fit the
-              specific needs of an application, see also:
-              <a href="#access-grant-extensibility"
-                >Access Grant Extensibility</a
-              >.
-            </p>
           </div>
 
-          <p>
-            The following example authorization graph denotes that access
-            control A, assuming that both policy B and C are satisfied will
-            grant access mode <code>acl:Read</code> over the resource it
-            mandates control over and will not grant access mode
-            <code>acl:Write</code> even though policy B allows it because policy
-            C denies it.
-          </p>
-
-          <pre
-            id="example-policy-satisfaction-1"
-            class="example example-authorization-graph"
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":grant-access-algorithm"
+            property="bibo:hasPart"
           >
-ex:accessControlA
-  acp:apply ex:policyB, ex:policyC .
+            <h4
+              class="heading settled"
+              data-level="6.1.1"
+              id="granting-access-example"
+            >
+              <span class="secno">6.1.1. </span
+              ><span class="content">Granting access example</span
+              ><a class="self-link" href="#granting-access-example"></a>
+            </h4>
+            <p>
+              The following example authorization graph means that access to
+              resource X is controlled by Policy B and Policy C. Depending on
+              the satisfaction of Policies B and C, different access modes will
+              be granted.
+            </p>
+            <ul>
+              <li>
+                If only Policy B is satisfied, then Access Modes
+                <code>acl:Read</code> and <code>acl:Write</code> will be
+                granted.
+              </li>
+              <li>
+                If both Policy B and Policy C are satisfied, then only Access
+                Mode <code>acl:Read</code> will be granted.
+              </li>
+              <li>
+                If only Policy C is satisfied, then no Access Mode will be
+                granted.
+              </li>
+            </ul>
+
+            <pre
+              id="granting-access-example-0"
+              class="example example-authorization-graph"
+            >
+[
+  acp:resource ex:X ;
+  acp:accessControl [
+    acp:apply ex:policyB, ex:policyC ;
+  ]
+] .
 
 ex:policyB
   acp:allow acl:Read, acl:Write .
@@ -2473,14 +2509,15 @@ ex:policyB
 ex:policyC
   acp:deny acl:Write .
 </pre
-          >
+            >
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":grant-access-algorithm"
-            property="bibo:hasPart"
-          ></section>
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":granting-access-example"
+              property="bibo:hasPart"
+            ></section>
+          </section>
           <h3
             class="heading settled"
             data-level="6.2"
@@ -2497,45 +2534,94 @@ ex:policyC
           </p>
 
           <div about="acp:Policy" property="rdfs:comment">
-            <p>A policy MUST be considered satisfied if and only if:</p>
+            <p>A Policy MUST be considered satisfied if and only if:</p>
             <ul>
-              <li>It references at least one matcher via a condition; and</li>
               <li>
-                At least one matcher it references matches the given context;
-                and
+                It references at least one Matcher via a
+                <code>acp:allOf</code> or <code>acp:anyOf</code> property; and
               </li>
-              <li>All the conditions it defines are satisfied.</li>
+              <li>
+                At least one Matcher it references matches the given resource
+                access description; and
+              </li>
+              <li>
+                The <code>acp:allOf</code>, <code>acp:anyOf</code> and
+                <code>acp:noneOf</code> of conditions it defines are satisfied.
+              </li>
             </ul>
-            <p>
-              Given that the <code>acp:noneOf</code> condition excludes matches,
-              a policy without a satisfied allOf or anyOf condition is never
-              satisfied.
-            </p>
           </div>
 
           <p>
-            The following example authorization graph denotes that policy A will
-            be satisfied if both matcher B and C are satisfied and either
-            matcher D or E are satisfied and matcher F is not satified.
+            Given that the <code>acp:noneOf</code> condition excludes matches, a
+            policy without a satisfied <code>acp:allOf</code> or
+            <code>acp:anyOf</code> condition is never satisfied.
           </p>
-
-          <pre
-            id="example-policy-satisfaction-0"
-            class="example example-authorization-graph"
-          >
-ex:policyA
-  acp:allOf ex:matcherB, ex:matcherC ;
-  acp:anyOf ex:matcherD, matcherE ;
-  acp:noneOf ex:matcherF .
-</pre
-          >
 
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":satisfy-policy-algorithm"
             property="bibo:hasPart"
-          ></section>
+          >
+            <h4
+              class="heading settled"
+              data-level="6.2.1"
+              id="satisfying-policy-example"
+            >
+              <span class="secno">6.2.1. </span
+              ><span class="content">Satisfying Policy example</span
+              ><a class="self-link" href="#satisfying-policy-example"></a>
+            </h4>
+            <p>
+              The following example authorization graph means that access to
+              resource X is controlled by Policy A. Depending on the
+              satisfaction of Matchers B, C, D, E and F, Policy A will be
+              satisfied or not.
+            </p>
+            <ul>
+              <li>
+                If either Matcher B or Matcher C are not satisfied, then Policy
+                A will not be satisfied.
+              </li>
+              <li>
+                If both Matcher D and Matcher E are not satisfied, then Policy A
+                will not be satisfied.
+              </li>
+              <li>
+                If Matcher F is satisfied, then Policy A will not be satisfied.
+              </li>
+              <li>
+                If both Matcher B and Matcher C are satisfied, and, either
+                Matcher D or Matcher E are satisfied, and, Matcher F is not
+                satisfied, then Policy A will be satisfied.
+              </li>
+            </ul>
+
+            <pre
+              id="satisfying-policy-example-0"
+              class="example example-authorization-graph"
+            >
+[
+  acp:resource ex:X ;
+  acp:accessControl [
+    acp:apply ex:policyA ;
+  ]
+] .
+
+ex:policyA
+  acp:allOf ex:matcherB, ex:matcherC ;
+  acp:anyOf ex:matcherD, matcherE ;
+  acp:noneOf ex:matcherF .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":satisfying-policy-example"
+              property="bibo:hasPart"
+            ></section>
+          </section>
           <h3
             class="heading settled"
             data-level="6.3"
