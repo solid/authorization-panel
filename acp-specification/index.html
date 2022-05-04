@@ -140,7 +140,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-05-03">2022-05-03</time>
+        <time property="dc:issued" datetime="2022-05-04">2022-05-04</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -502,13 +502,14 @@
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#grant-access-algorithm" class="tocxref"
-                ><span class="secno">6.1</span>Grant Access algorithm</a
+              <a href="#determining-effective-policies" class="tocxref"
+                ><span class="secno">6.1</span>Determining effective Policies</a
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#granting-access-example" class="tocxref"
-                    ><span class="secno">6.1.1</span>Granting access example</a
+                  <a href="#determining-effective-policies" class="tocxref"
+                    ><span class="secno">6.1.1</span>Determining effective
+                    Policies example</a
                   >
                 </li>
               </ol>
@@ -516,13 +517,13 @@
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#satisfy-policy-algorithm" class="tocxref"
-                ><span class="secno">6.2</span>Satisfy Policy algorithm</a
+              <a href="#granting-access-modes" class="tocxref"
+                ><span class="secno">6.2</span>Granting Access Modes</a
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#satisfying-policy-example" class="tocxref"
-                    ><span class="secno">6.2.1</span>Satisfying Policy
+                  <a href="#granting-access-modes-example" class="tocxref"
+                    ><span class="secno">6.2.1</span>Granting Access Modes
                     example</a
                   >
                 </li>
@@ -531,9 +532,32 @@
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#satisfy-matcher-algorithm" class="tocxref"
-                ><span class="secno">6.3</span>Satisfy Matcher algorithm</a
+              <a href="#satisfying-policy" class="tocxref"
+                ><span class="secno">6.3</span>Satisfying Policy</a
               >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#satisfying-policy-example" class="tocxref"
+                    ><span class="secno">6.3.1</span>Satisfying Policy
+                    example</a
+                  >
+                </li>
+              </ol>
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#satisfying-matcher" class="tocxref"
+                ><span class="secno">6.4</span>Satisfying Matcher</a
+              >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#satisfying-matcher-example" class="tocxref"
+                    ><span class="secno">6.4.1</span>Satisfying Matcher
+                    example</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
@@ -2425,8 +2449,8 @@ ex:policy1
           ><a class="self-link" href="#access-control-resolution"></a>
         </h2>
         <p>
-          This section introduces the ACP algorithms for resolving permissions
-          to access controlled resources.
+          This section introduces the ACP access control resolution algorithm
+          for resolving permissions to access controlled resources.
         </p>
 
         <section
@@ -2438,11 +2462,104 @@ ex:policy1
           <h3
             class="heading settled"
             data-level="6.1"
-            id="grant-access-algorithm"
+            id="determining-effective-policies"
           >
             <span class="secno">6.1. </span
-            ><span class="content">Grant Access algorithm</span
-            ><a class="self-link" href="#grant-access-algorithm"></a>
+            ><span class="content">Determining effective Policies</span
+            ><a class="self-link" href="#determining-effective-policies"></a>
+          </h3>
+          <p>
+            Both the <code>acp:resource</code> property and its inverse
+            <code>acp:accessControlResource</code> MUST be taken into account in
+            determining the Access Control Resources controlling access to
+            resources.
+          </p>
+
+          <p>
+            All Access Controls controlling member resources access via the
+            <code>acp:memberAccessControl</code> property MUST be included in
+            the set of Access Controls linked as
+            <code>acp:accessControl</code> in the effective authorization graph
+            of a resource.
+          </p>
+
+          <p>
+            The set of Policies controlling access to a resource MUST contain
+            all Policies that are linked to a resource via the property chain
+            <code>acp:accessControlResource/acp:accessControl/acp:apply</code>.
+          </p>
+
+          <p>
+            The set of Policies controlling access to an ACR MUST contain all
+            Policies that are linked to an ACR via the property chain
+            <code>acp:accessControl/acp:access</code>.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":determining-effective-policies"
+            property="bibo:hasPart"
+          >
+            <h4
+              class="heading settled"
+              data-level="6.1.1"
+              id="determining-effective-policies"
+            >
+              <span class="secno">6.1.1. </span
+              ><span class="content"
+                >Determining effective Policies example</span
+              ><a class="self-link" href="#determining-effective-policies"></a>
+            </h4>
+            <p>
+              The following example authorization graph means that access to
+              resource X is controlled by both Access Controls B and C, access
+              to resource X is therefore controlled by Policy E and Policy D.
+              Furthermore, access to Access Control Resource A is also
+              controlled by Access Controls B and C, and therefore, access to
+              Access Control Resource A is controlled by Policy H. The member
+              Access Controls are not taken into account at this level, however
+              ACRs of resource X's members will include Access Control D and
+              therefore Policy G and I in their effective authorization graph.
+            </p>
+
+            <pre
+              id="determining-effective-policies-example-0"
+              class="example example-authorization-graph"
+            >
+  ex:accessControlResourceA
+    acp:resource ex:X ;
+    acp:accessControl ex:accessControlB, ex:accessControlC ;
+    acp:memberAccessControl ex:accessControlD .
+
+  ex:accessControlB
+    acp:apply ex:PolicyE .
+
+  ex:accessControlC
+    acp:apply ex:PolicyF ;
+    acp:access ex:PolicyH .
+
+  ex:accessControlD
+    acp:apply ex:PolicyG ;
+    acp:access ex:PolicyI .
+</pre
+            >
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":determining-effective-policies"
+              property="bibo:hasPart"
+            ></section>
+          </section>
+          <h3
+            class="heading settled"
+            data-level="6.2"
+            id="granting-access-modes"
+          >
+            <span class="secno">6.2. </span
+            ><span class="content">Granting Access Modes</span
+            ><a class="self-link" href="#granting-access-modes"></a>
           </h3>
           <div about="acp:Policy" property="rdfs:comment">
             <p>
@@ -2458,17 +2575,17 @@ ex:policy1
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":grant-access-algorithm"
+            resource=":granting-access-modes"
             property="bibo:hasPart"
           >
             <h4
               class="heading settled"
-              data-level="6.1.1"
-              id="granting-access-example"
+              data-level="6.2.1"
+              id="granting-access-modes-example"
             >
-              <span class="secno">6.1.1. </span
-              ><span class="content">Granting access example</span
-              ><a class="self-link" href="#granting-access-example"></a>
+              <span class="secno">6.2.1. </span
+              ><span class="content">Granting Access Modes example</span
+              ><a class="self-link" href="#granting-access-modes-example"></a>
             </h4>
             <p>
               The following example authorization graph means that access to
@@ -2514,18 +2631,14 @@ ex:policyC
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
-              resource=":granting-access-example"
+              resource=":granting-access-modes-example"
               property="bibo:hasPart"
             ></section>
           </section>
-          <h3
-            class="heading settled"
-            data-level="6.2"
-            id="satisfy-policy-algorithm"
-          >
-            <span class="secno">6.2. </span
-            ><span class="content">Satisfy Policy algorithm</span
-            ><a class="self-link" href="#satisfy-policy-algorithm"></a>
+          <h3 class="heading settled" data-level="6.3" id="satisfying-policy">
+            <span class="secno">6.3. </span
+            ><span class="content">Satisfying Policy</span
+            ><a class="self-link" href="#satisfying-policy"></a>
           </h3>
           <p>
             Policies are satisfied via the <code>acp:allOf</code>,
@@ -2560,15 +2673,15 @@ ex:policyC
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":satisfy-policy-algorithm"
+            resource=":satisfying-policy"
             property="bibo:hasPart"
           >
             <h4
               class="heading settled"
-              data-level="6.2.1"
+              data-level="6.3.1"
               id="satisfying-policy-example"
             >
-              <span class="secno">6.2.1. </span
+              <span class="secno">6.3.1. </span
               ><span class="content">Satisfying Policy example</span
               ><a class="self-link" href="#satisfying-policy-example"></a>
             </h4>
@@ -2622,14 +2735,10 @@ ex:policyA
               property="bibo:hasPart"
             ></section>
           </section>
-          <h3
-            class="heading settled"
-            data-level="6.3"
-            id="satisfy-matcher-algorithm"
-          >
-            <span class="secno">6.3. </span
-            ><span class="content">Satisfy Matcher algorithm</span
-            ><a class="self-link" href="#satisfy-matcher-algorithm"></a>
+          <h3 class="heading settled" data-level="6.4" id="satisfying-matcher">
+            <span class="secno">6.4. </span
+            ><span class="content">Satisfying Matcher</span
+            ><a class="self-link" href="#satisfying-matcher"></a>
           </h3>
           <p>
             The default operation of matching is based on
@@ -2650,9 +2759,26 @@ ex:policyA
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":satisfy-matcher-algorithm"
+            resource=":satisfying-matcher"
             property="bibo:hasPart"
-          ></section>
+          >
+            <h4
+              class="heading settled"
+              data-level="6.4.1"
+              id="satisfying-matcher-example"
+            >
+              <span class="secno">6.4.1. </span
+              ><span class="content">Satisfying Matcher example</span
+              ><a class="self-link" href="#satisfying-matcher-example"></a>
+            </h4>
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":satisfying-matcher-example"
+              property="bibo:hasPart"
+            ></section>
+          </section>
         </section>
         <h2 class="heading settled" data-level="7" id="server-implementation">
           <span class="secno">7. </span
