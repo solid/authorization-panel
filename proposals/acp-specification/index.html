@@ -429,13 +429,6 @@
                   >
                 </li>
               </ol>
-              <ol class="toc">
-                <li class="tocline">
-                  <a href="#policy-satisfaction" class="tocxref"
-                    ><span class="secno">4.3.2</span>Policy satisfaction</a
-                  >
-                </li>
-              </ol>
             </li>
           </ol>
           <ol class="toc">
@@ -504,36 +497,61 @@
         </li>
 
         <li class="tocline">
+          <a href="#access-control-resolution" class="tocxref"
+            ><span class="secno">6</span>Access Control resolution</a
+          >
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#grant-access-algorithm" class="tocxref"
+                ><span class="secno">6.1</span>Grant Access algorithm</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#satisfy-policy-algorithm" class="tocxref"
+                ><span class="secno">6.2</span>Satisfy Policy algorithm</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#satisfy-matcher-algorithm" class="tocxref"
+                ><span class="secno">6.3</span>Satisfy Matcher algorithm</a
+              >
+            </li>
+          </ol>
+        </li>
+
+        <li class="tocline">
           <a href="#server-implementation" class="tocxref"
-            ><span class="secno">6</span>Server implementation</a
+            ><span class="secno">7</span>Server implementation</a
           >
           <ol class="toc">
             <li class="tocline">
               <a href="#capabilities-discovery" class="tocxref"
-                ><span class="secno">6.1</span>Capabilities discovery</a
+                ><span class="secno">7.1</span>Capabilities discovery</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#acr-discovery" class="tocxref"
+                ><span class="secno">7.2</span>ACR discovery</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#acr-editing" class="tocxref"
+                ><span class="secno">7.3</span>ACR editing</a
               >
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
               <a href="#resource-management" class="tocxref"
-                ><span class="secno">6.2</span>Resource management</a
-              >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#access-control-resource-editing" class="tocxref"
-                ><span class="secno">6.3</span>Access Control Resource
-                editing</a
-              >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#access-control-resource-discovery" class="tocxref"
-                ><span class="secno">6.4</span>Access Control Resource
-                discovery</a
+                ><span class="secno">7.4</span>Resource management</a
               >
             </li>
           </ol>
@@ -1801,108 +1819,6 @@ ex:policyA
               resource=":example-policy"
               property="bibo:hasPart"
             ></section>
-            <h4
-              class="heading settled"
-              data-level="4.3.2"
-              id="policy-satisfaction"
-            >
-              <span class="secno">4.3.2. </span
-              ><span class="content">Policy satisfaction</span
-              ><a class="self-link" href="#policy-satisfaction"></a>
-            </h4>
-            <p>
-              Policies are satisfied via the <code>acp:allOf</code>,
-              <code>acp:anyOf</code> and <code>acp:noneOf</code> predicates
-              which act respectively as intersection, union and exclusion
-              operators.
-            </p>
-
-            <div about="acp:Policy" property="rdfs:comment">
-              <p>A policy MUST be considered satisfied if and only if:</p>
-              <ul>
-                <li>It references at least one matcher via a condition; and</li>
-                <li>
-                  At least one matcher it references matches the given context;
-                  and
-                </li>
-                <li>All the conditions it defines are satisfied.</li>
-              </ul>
-              <p>
-                Given that the <code>acp:noneOf</code> condition excludes
-                matches, a policy without a satisfied allOf or anyOf condition
-                is never satisfied.
-              </p>
-            </div>
-
-            <p>
-              The following example authorization graph denotes that policy A
-              will be satisfied if both matcher B and C are satisfied and either
-              matcher D or E are satisfied and matcher F is not satified.
-            </p>
-
-            <pre
-              id="example-policy-satisfaction-0"
-              class="example example-authorization-graph"
-            >
-ex:policyA
-  acp:allOf ex:matcherB, ex:matcherC ;
-  acp:anyOf ex:matcherD, matcherE ;
-  acp:noneOf ex:matcherF .
-</pre
-            >
-
-            <div about="acp:Policy" property="rdfs:comment">
-              <p>
-                An access mode MUST be granted over a resource if and only if in
-                the set of policies mandating access over it:
-              </p>
-              <ul>
-                <li>A satisfied policy allows it; and</li>
-                <li>No satisfied policy denies it.</li>
-              </ul>
-              <p>
-                ACP doesn't define its own access modes, instead it reuses
-                access modes defined elsewhere. For example, it could use the
-                <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a>
-                defined <code>acl:Read</code>; <code>acl:Write</code>; and
-                <code>acl:Append</code>. Access modes can be defined to fit the
-                specific needs of an application, see also:
-                <a href="#access-grant-extensibility"
-                  >Access Grant Extensibility</a
-                >.
-              </p>
-            </div>
-
-            <p>
-              The following example authorization graph denotes that access
-              control A, assuming that both policy B and C are satisfied will
-              grant access mode <code>acl:Read</code> over the resource it
-              mandates control over and will not grant access mode
-              <code>acl:Write</code> even though policy B allows it because
-              policy C denies it.
-            </p>
-
-            <pre
-              id="example-policy-satisfaction-1"
-              class="example example-authorization-graph"
-            >
-ex:accessControlA
-  acp:apply ex:policyB, ex:policyC .
-
-ex:policyB
-  acp:allow acl:Read, acl:Write .
-
-ex:policyC
-  acp:deny acl:Write .
-</pre
-            >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":policy-satisfaction"
-              property="bibo:hasPart"
-            ></section>
           </section>
           <h3 class="heading settled" data-level="4.4" id="matcher">
             <span class="secno">4.4. </span><span class="content">Matcher</span
@@ -2484,15 +2400,182 @@ ex:policy1
             ></section>
           </section>
         </section>
-        <h2 class="heading settled" data-level="6" id="server-implementation">
+        <h2
+          class="heading settled"
+          data-level="6"
+          id="access-control-resolution"
+        >
           <span class="secno">6. </span
+          ><span class="content">Access Control resolution</span
+          ><a class="self-link" href="#access-control-resolution"></a>
+        </h2>
+        <p>
+          This section introduces the ACP algorithms for resolving permissions
+          to access controlled resources.
+        </p>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":access-control-resolution"
+          property="bibo:hasPart"
+        >
+          <h3
+            class="heading settled"
+            data-level="6.1"
+            id="grant-access-algorithm"
+          >
+            <span class="secno">6.1. </span
+            ><span class="content">Grant Access algorithm</span
+            ><a class="self-link" href="#grant-access-algorithm"></a>
+          </h3>
+          <div about="acp:Policy" property="rdfs:comment">
+            <p>
+              An access mode MUST be granted over a resource if and only if in
+              the set of policies mandating access over it:
+            </p>
+            <ul>
+              <li>A satisfied policy allows it; and</li>
+              <li>No satisfied policy denies it.</li>
+            </ul>
+            <p>
+              ACP doesn't define its own access modes, instead it reuses access
+              modes defined elsewhere. For example, it could use the
+              <a href="http://www.w3.org/ns/auth/acl#">ACL ontology</a> defined
+              <code>acl:Read</code>; <code>acl:Write</code>; and
+              <code>acl:Append</code>. Access modes can be defined to fit the
+              specific needs of an application, see also:
+              <a href="#access-grant-extensibility"
+                >Access Grant Extensibility</a
+              >.
+            </p>
+          </div>
+
+          <p>
+            The following example authorization graph denotes that access
+            control A, assuming that both policy B and C are satisfied will
+            grant access mode <code>acl:Read</code> over the resource it
+            mandates control over and will not grant access mode
+            <code>acl:Write</code> even though policy B allows it because policy
+            C denies it.
+          </p>
+
+          <pre
+            id="example-policy-satisfaction-1"
+            class="example example-authorization-graph"
+          >
+ex:accessControlA
+  acp:apply ex:policyB, ex:policyC .
+
+ex:policyB
+  acp:allow acl:Read, acl:Write .
+
+ex:policyC
+  acp:deny acl:Write .
+</pre
+          >
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":grant-access-algorithm"
+            property="bibo:hasPart"
+          ></section>
+          <h3
+            class="heading settled"
+            data-level="6.2"
+            id="satisfy-policy-algorithm"
+          >
+            <span class="secno">6.2. </span
+            ><span class="content">Satisfy Policy algorithm</span
+            ><a class="self-link" href="#satisfy-policy-algorithm"></a>
+          </h3>
+          <p>
+            Policies are satisfied via the <code>acp:allOf</code>,
+            <code>acp:anyOf</code> and <code>acp:noneOf</code> properties which
+            act respectively as intersection, union and exclusion operators.
+          </p>
+
+          <div about="acp:Policy" property="rdfs:comment">
+            <p>A policy MUST be considered satisfied if and only if:</p>
+            <ul>
+              <li>It references at least one matcher via a condition; and</li>
+              <li>
+                At least one matcher it references matches the given context;
+                and
+              </li>
+              <li>All the conditions it defines are satisfied.</li>
+            </ul>
+            <p>
+              Given that the <code>acp:noneOf</code> condition excludes matches,
+              a policy without a satisfied allOf or anyOf condition is never
+              satisfied.
+            </p>
+          </div>
+
+          <p>
+            The following example authorization graph denotes that policy A will
+            be satisfied if both matcher B and C are satisfied and either
+            matcher D or E are satisfied and matcher F is not satified.
+          </p>
+
+          <pre
+            id="example-policy-satisfaction-0"
+            class="example example-authorization-graph"
+          >
+ex:policyA
+  acp:allOf ex:matcherB, ex:matcherC ;
+  acp:anyOf ex:matcherD, matcherE ;
+  acp:noneOf ex:matcherF .
+</pre
+          >
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":satisfy-policy-algorithm"
+            property="bibo:hasPart"
+          ></section>
+          <h3
+            class="heading settled"
+            data-level="6.3"
+            id="satisfy-matcher-algorithm"
+          >
+            <span class="secno">6.3. </span
+            ><span class="content">Satisfy Matcher algorithm</span
+            ><a class="self-link" href="#satisfy-matcher-algorithm"></a>
+          </h3>
+          <p>
+            The default operation of matching is based on
+            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-iri-equality"
+              ><dfn id="rdf-iri-eqality">IRI</dfn></a
+            >
+            and
+            <a
+              href="https://www.w3.org/TR/rdf11-concepts/#dfn-literal-term-equality"
+              ><dfn id="rdf-literal-term-eqality">literal term equality</dfn></a
+            >
+            as defined in the RDF 1.1 Concepts and Abstract Syntax
+            <cite
+              ><a class="bibref" href="#rdf11-concepts">RDF11 CONCEPTS</a></cite
+            >.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":satisfy-matcher-algorithm"
+            property="bibo:hasPart"
+          ></section>
+        </section>
+        <h2 class="heading settled" data-level="7" id="server-implementation">
+          <span class="secno">7. </span
           ><span class="content">Server implementation</span
           ><a class="self-link" href="#server-implementation"></a>
         </h2>
         <p>
-          This section introduces how servers must advertise capabilities,
-          manage resources, restrict editing of access control resources and
-          enable access control resource discovery.
+          This section introduces how servers must advertise capabilities and
+          ACRs, manage the lifecycle of resources, and restrict editing of ACRs.
         </p>
 
         <section
@@ -2503,10 +2586,10 @@ ex:policy1
         >
           <h3
             class="heading settled"
-            data-level="6.1"
+            data-level="7.1"
             id="capabilities-discovery"
           >
-            <span class="secno">6.1. </span
+            <span class="secno">7.1. </span
             ><span class="content">Capabilities discovery</span
             ><a class="self-link" href="#capabilities-discovery"></a>
           </h3>
@@ -2514,6 +2597,7 @@ ex:policy1
             When a server wants to enable applications to discover its ACP
             capabilities, it MUST do so via link headers.
           </p>
+
           <p>
             The server MUST advertise the access modes it supports by responding
             to HTTP OPTIONS requests over ACP access control resources including
@@ -2522,6 +2606,7 @@ ex:policy1
             of an access mode as link target [RFC8288]. The server MUST produce
             one such Link header for each access mode it supports.
           </p>
+
           <p>
             For example, if a server supports the ACL read, write and append
             access modes, it should advertise it by responding to HTTP OPTIONS
@@ -2534,6 +2619,7 @@ ex:policy1
             it explicit which set of access modes are understood and relevant
             when editing ACP policies.
           </p>
+
           <p>
             The server MUST advertise the request attributes it supports by
             responding to HTTP OPTIONS requests over ACP access control
@@ -2542,6 +2628,7 @@ ex:policy1
             URI of an acp attribute as link target [RFC8288]. The server MUST
             produce one such Link header for each request attribute it supports.
           </p>
+
           <p>
             For example, if a server supports the ACP agent, client and issuer
             request attributes, it should advertise it by responding to HTTP
@@ -2562,88 +2649,10 @@ ex:policy1
             resource=":capabilities-discovery"
             property="bibo:hasPart"
           ></section>
-          <h3 class="heading settled" data-level="6.2" id="resource-management">
-            <span class="secno">6.2. </span
-            ><span class="content">Resource management</span
-            ><a class="self-link" href="#resource-management"></a>
-          </h3>
-          <p>Access control resources MUST be server managed.</p>
-          <p>
-            There is a one to one relationship between an access control
-            resource and the resource it mandates access permissions over.
-            Therefore, when a resource is created or deleted, the access control
-            resource corresponding to it SHOULD be created or deleted
-            accordingly.
-          </p>
-          <p>
-            Access controls, policies and matchers can all be kept in separate
-            resources that have their own access control resource mandating
-            access permissions over them.
-          </p>
-          <p>
-            As long as an access control, a policy or a matcher is referenced by
-            an access control resource, it SHOULD not be deleted. However, if
-            such consistency cannot be enforced and an access control, a policy
-            or a matcher ceased to be accessible, then access permissions
-            resolution should fail to its default behaviour of only granting
-            read and write access to the failing access control resource to its
-            owner(s); read and write access should not be implicitly granted to
-            a resource whose access control resolution fails, even to owners of
-            that resource.
-          </p>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":resource-management"
-            property="bibo:hasPart"
-          ></section>
-          <h3
-            class="heading settled"
-            data-level="6.3"
-            id="access-control-resource-editing"
-          >
-            <span class="secno">6.3. </span
-            ><span class="content">Access Control Resource editing</span
-            ><a class="self-link" href="#access-control-resource-editing"></a>
-          </h3>
-          <p>
-            The owner of a storage is implicitly considered an owner of all the
-            resources in the URI space corresponding to storage.
-          </p>
-          <p>
-            An owner of a resource is implicitly considered an owner of its
-            associated access control resource.
-          </p>
-          <p>
-            An owner of an access control resource implicitly has full read and
-            write access over it.
-          </p>
-          <p>
-            To add an access control to or remove an access control from an
-            access control resource, agents that are not owners of that access
-            control resource need read and write access to both the access
-            control resource itself and to the resource where said access
-            control is defined. In other words, access controls defined as part
-            of a separate resource can be protected from unwanted edits in and
-            out of access control resources by setting adequate permissions in
-            their own access control resource.
-          </p>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":access-control-resource-editing"
-            property="bibo:hasPart"
-          ></section>
-          <h3
-            class="heading settled"
-            data-level="6.4"
-            id="access-control-resource-discovery"
-          >
-            <span class="secno">6.4. </span
-            ><span class="content">Access Control Resource discovery</span
-            ><a class="self-link" href="#access-control-resource-discovery"></a>
+          <h3 class="heading settled" data-level="7.2" id="acr-discovery">
+            <span class="secno">7.2. </span
+            ><span class="content">ACR discovery</span
+            ><a class="self-link" href="#acr-discovery"></a>
           </h3>
           <p>
             When a server wants to enable applications to discover the ACP
@@ -2668,7 +2677,78 @@ ex:policy1
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-control-resource-discovery"
+            resource=":acr-discovery"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="7.3" id="acr-editing">
+            <span class="secno">7.3. </span
+            ><span class="content">ACR editing</span
+            ><a class="self-link" href="#acr-editing"></a>
+          </h3>
+          <p>
+            The owner of a storage is implicitly considered an owner of all the
+            resources in the URI space corresponding to the storage.
+          </p>
+
+          <p>
+            An owner of a resource is implicitly considered an owner of its
+            associated Access Control Resource.
+          </p>
+
+          <p>
+            An owner of an Access Control Resource implicitly has full read and
+            write access over it.
+          </p>
+
+          <p>
+            To add or remove an Access Control from an ACR, agents that are not
+            owners of said ACR need read and write access to both the ACR itself
+            and to the resource where said Access Control is defined. In other
+            words, Access Controls defined as part of a separate resource can be
+            protected from unwanted edits in and out of ACRs by setting adequate
+            permissions in their own ACR.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":acr-editing"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="7.4" id="resource-management">
+            <span class="secno">7.4. </span
+            ><span class="content">Resource management</span
+            ><a class="self-link" href="#resource-management"></a>
+          </h3>
+          <p>Access Control Resources MUST be server managed.</p>
+
+          <p>
+            There is a one to one relationship between a resource and its
+            authoritative source of access control. Therefore, when resources
+            are created or deleted, the corresponding ACRs MUST be created or
+            deleted accordingly.
+          </p>
+
+          <p>
+            Access Controls, Policies and Matchers MAY all be access controlled
+            via their own ACR.
+          </p>
+
+          <p>
+            As long as an Access Control, a Policy or a Matcher is referenced by
+            an ACR, it MUST not be deleted. However, if such consistency failed
+            to be enforced or if an Access Control, a Policy or a Matcher is not
+            accessible for any other reason, then access permissions resolution
+            MUST fail to its default behaviour of only granting read and write
+            access to the invalid ACR to its owners; read and write access MUST
+            not be implicitly granted to a resource whose access control
+            resolution fails, even to owners of that resource.
+          </p>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":resource-management"
             property="bibo:hasPart"
           ></section>
         </section>
