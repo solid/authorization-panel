@@ -140,7 +140,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-05-04">2022-05-04</time>
+        <time property="dc:issued" datetime="2022-05-05">2022-05-05</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -1745,7 +1745,8 @@ ex:accessControlF
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
               to the set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
-              all of which MUST must be satisfied for the Policy to be satisfied.
+              all of which MUST must be satisfied for the Policy to be
+              satisfied.
             </dd>
 
             <dt
@@ -1762,7 +1763,8 @@ ex:accessControlF
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
               to the set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
-              at least one of which MUST be satisfied for the Policy to be satisfied.
+              at least one of which MUST be satisfied for the Policy to be
+              satisfied.
             </dd>
 
             <dt
@@ -1872,25 +1874,18 @@ ex:policyA
             </dt>
             <dd about="acp:Matcher" property="rdfs:comment">
               Instances of the <span property="rdfs:label">Matcher</span> class
-              define the instances of resource access satisfying them. Each
-              resource access attribute defined MUST be matched for a Matcher to
-              be satisfied.
+              are descriptions of matching resource access Contexts. To satisfy
+              a Matcher, every described resource access attribute must match
+              the resource access Context.
             </dd>
 
-            <dt
-              id="acp-agent-matcher"
-              about="acp:AgentMatcher"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdfs:Class"
-            >
-              <code>acp:AgentMatcher</code>
+            <dt id="acp-agent-matcher">
+              <a href="#acp-agent"><code>acp:agent</code></a>
             </dt>
-            <dd about="acp:AgentMatcher" property="rdfs:comment">
-              Instances of the
-              <span property="rdfs:label">Agent Matcher</span> class define a
-              set of agents, one of which MUST be matched for an instance of
-              resource access to satisfy the Matcher.
+            <dd about="acp:agent" property="rdfs:comment">
+              The agent attribute used in a Matcher defines a set of agents, at
+              least one of which MUST match the resource access Context for the
+              agent restriction to be satisfied.
             </dd>
 
             <dt
@@ -1898,14 +1893,14 @@ ex:policyA
               about="acp:PublicAgent"
               property="rdfs:isDefinedBy"
               resource="acp:"
-              typeof="owl:NamedIndividual"
+              typeof="owl:NamedIndividual acp:AlwaysSatisfiedRestriction"
             >
               <code>acp:PublicAgent</code>
             </dt>
             <dd about="acp:PublicAgent" property="rdfs:comment">
               The <span property="rdfs:label">Public Agent</span> named
-              individual can be used in an Agent Matcher to signify that any
-              agent, defined or not, MUST satisfy the Agent Matcher.
+              individual used in an agent restriction means that the restriction
+              is always satisfied.
             </dd>
 
             <dt
@@ -1919,8 +1914,8 @@ ex:policyA
             </dt>
             <dd about="acp:AuthenticatedAgent" property="rdfs:comment">
               The <span property="rdfs:label">Authenticated Agent</span> named
-              individual can be used in an Agent Matcher to signify that any
-              authenticated agent MUST satisfy the Agent Matcher.
+              individual used in an agent restriction means that any agent in
+              the Context satisfies the restriction.
             </dd>
 
             <dt
@@ -1934,9 +1929,9 @@ ex:policyA
             </dt>
             <dd about="acp:CreatorAgent" property="rdfs:comment">
               The <span property="rdfs:label">Creator Agent</span> named
-              individual can be used in an Agent Matcher to signify that any
-              authenticated agent that created the requested access controlled
-              resource MUST satisfy the Agent Matcher.
+              individual used in an agent restriction means that the restriction
+              is satisfied if the Context contains an agent that is also a
+              creator.
             </dd>
 
             <dt
@@ -1950,25 +1945,18 @@ ex:policyA
             </dt>
             <dd about="acp:OwnerAgent" property="rdfs:comment">
               The <span property="rdfs:label">Owner Agent</span> named
-              individual can be used in an Agent Matcher to signify that any
-              authenticated agent that owns the requested access controlled
-              resource MUST satisfy the Agent Matcher.
+              individual used in an agent restriction means that the restriction
+              is satisfied if the Context contains an agent that is also an
+              owner.
             </dd>
 
-            <dt
-              id="acp-client-matcher"
-              about="acp:ClientMatcher"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdfs:Class"
-            >
-              <code>acp:ClientMatcher</code>
+            <dt id="acp-client-matcher">
+              <a href="#acp-client"><code>acp:client</code></a>
             </dt>
-            <dd about="acp:ClientMatcher" property="rdfs:comment">
-              Instances of the
-              <span property="rdfs:label">Client Matcher</span> class define a
-              set of clients, one of which MUST be matched for an instance of
-              resource access to satisfy the Matcher.
+            <dd about="acp:client" property="rdfs:comment">
+              The client attribute used in a Matcher defines a set of clients,
+              at least one of which MUST match the resource access Context for
+              the client restriction to be satisfied.
             </dd>
 
             <dt
@@ -1976,30 +1964,23 @@ ex:policyA
               about="acp:PublicClient"
               property="rdfs:isDefinedBy"
               resource="acp:"
-              typeof="owl:NamedIndividual"
+              typeof="owl:NamedIndividual acp:AlwaysSatisfiedRestriction"
             >
               <code>acp:PublicClient</code>
             </dt>
             <dd about="acp:PublicClient" property="rdfs:comment">
               The <span property="rdfs:label">Public Client</span> named
-              individual can be used in a Client Matcher to signify that any
-              client, defined or not, MUST satisfy the Client Matcher.
+              individual used in a client restriction means that the restriction
+              is always satisfied.
             </dd>
 
-            <dt
-              id="acp-issuer-matcher"
-              about="acp:IssuerMatcher"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdfs:Class"
-            >
-              <code>acp:IssuerMatcher</code>
+            <dt id="acp-issuer-matcher">
+              <a href="#acp-issuer"><code>acp:issuer</code></a>
             </dt>
-            <dd about="acp:IssuerMatcher" property="rdfs:comment">
-              Instances of the
-              <span property="rdfs:label">Issuer Matcher</span> class define a
-              set of issuers, one of which MUST be matched for an instance of
-              resource access to satisfy the Matcher.
+            <dd about="acp:issuer" property="rdfs:comment">
+              The issuer attribute used in a Matcher defines a set of issuers,
+              at least one of which MUST match the resource access Context for
+              the issuer restriction to be satisfied.
             </dd>
 
             <dt
@@ -2007,51 +1988,55 @@ ex:policyA
               about="acp:PublicIssuer"
               property="rdfs:isDefinedBy"
               resource="acp:"
-              typeof="owl:NamedIndividual"
+              typeof="owl:NamedIndividual acp:AlwaysSatisfiedRestriction"
             >
               <code>acp:PublicIssuer</code>
             </dt>
             <dd about="acp:PublicIssuer" property="rdfs:comment">
               The <span property="rdfs:label">Public Issuer</span> named
-              individual can be used in an Issuer Matcher to signify that any
-              issuer, defined or not, MUST satisfy the Issuer Matcher.
+              individual used in an issuer restriction means that the
+              restriction is always satisfied.
             </dd>
 
-            <dt
-              id="acp-time-matcher"
-              about="acp:TimeMatcher"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdfs:Class"
-            >
-              <code>acp:TimeMatcher</code>
+            <dt id="acp-time-matcher">
+              <a href="#acp-time"><code>acp:time</code></a>
             </dt>
-            <dd about="acp:TimeMatcher" property="rdfs:comment">
-              Instances of the
-              <span property="rdfs:label">Time Matcher</span> class define a
-              range of time that MUST be matched for an instance of resource
-              access to satisfy the Matcher.
+            <dd about="acp:time" property="rdfs:comment">
+              The time attribute used in a Matcher defines a set of times, at
+              least one of which MUST match the resource access Context for the
+              time restriction is satisfied.
             </dd>
 
-            <dt
-              id="acp-vc-matcher"
-              about="acp:VerifiableCredentialsMatcher"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdfs:Class"
-            >
-              <code>acp:VerifiableCredentialsMatcher</code>
+            <dt id="acp-vc-matcher">
+              <a href="#acp-vc"><code>acp:vc</code></a>
             </dt>
-            <dd about="acp:TimeMatcher" property="rdfs:comment">
-              Instances of the
-              <span property="rdfs:label">Verifiable Credentials Matcher</span>
-              class defines a set of types of
+            <dd about="acp:vc" property="rdfs:comment">
+              The vc attribute used in a Matcher defines a set of types of
               <a href="https://www.w3.org/TR/vc-data-model/"
                 ><dfn id="verifiable-credentials"
                   >Verifiable Credentials</dfn
                 ></a
-              >, one of which MUST be matched for an instance of resource access
-              to satisfy the Matcher.
+              >
+              (VC), at least one of which MUST match the resource access Context
+              for the vc restriction to be satisfied.
+            </dd>
+
+            <dt
+              id="acp-always-satisfied-restriction"
+              about="acp:AlwaysSatisfiedRestriction"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="rdfs:Class"
+            >
+              <code>acp:AlwaysSatisfiedRestriction</code>
+            </dt>
+            <dd about="acp:AlwaysSatisfiedRestriction" property="rdfs:comment">
+              Defined instances of the
+              <span property="rdfs:label">Always Satisfied Restriction</span>
+              class are used in Matcher restrictions to indicate that the
+              restriction is always satisfied. The default behaviour of a
+              Matcher is to not be satisfied, so this is the only way to make a
+              Matcher always satisfied.
             </dd>
           </dl>
 
@@ -2170,6 +2155,35 @@ ex:matcherA
 </pre
             >
 
+            <p>
+              The following example authorization graph means that Policy A
+              denies Read and Write access to all clients but client C and
+              policy B allows read to all clients. If Policy A and B control
+              access to a resource, then anyone using client C will have access
+              to the resource.
+            </p>
+
+            <pre
+              id="example-matcher-5"
+              class="example example-authorization-graph"
+            >
+ex:policyA
+  acp:deny acl:Read, acl:Write ;
+  acp:anyOf [
+    acp:client acp:PublicClient ;
+  ] ,
+  acp:noneOf [
+    acp:client ex:clientC
+  ] .
+
+ex:policyB
+  acp:allow acl:Read ;
+  acp:anyOf [
+    acp:client:PublicClient ;
+  ] .
+</pre
+            >
+
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
@@ -2188,12 +2202,10 @@ ex:matcherA
           </h3>
           <p about="acp:Matcher" property="rdfs:comment">
             All sub-properties of <code>acp:attribute</code> correspond
-            implicitly to their own type of Matcher. In other words, any
-            attribute used as a matching attribute MUST be matched either via
-            IRI or literal term equality or via more complex algorithms defined
-            to fit the specific requirements of applications. Sub-properties of
-            <code>acp:attribute</code> can be created to fit the specific
-            resource access control requirements of applications.
+            implicitly to their own type of Matcher restriction. If applications
+            support additional sub-properties of
+            <code>acp:attribute</code> other than the ones defined by ACP, then,
+            they MUST also implement corresponding matching algorithms.
           </p>
 
           <section
@@ -2381,8 +2393,8 @@ ex:policy1
               <code>acp:AccessMode</code>
             </dt>
             <dd about="acp:AccessMode" property="rdfs:comment">
-              The ACP specification does not define Access Modes. Instead, any
-              Access Mode granted is an instance of the
+              The ACP specification does not define specific Access Modes.
+              Instead, any Access Mode granted is an instance of the
               <span property="rdfs:label">Access Mode</span> class. Access Modes
               and their granularity can be tailored to the needs of an
               application. Access Modes defined in other vocabularies (<span
