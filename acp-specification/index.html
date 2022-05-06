@@ -596,6 +596,28 @@
             </li>
           </ol>
         </li>
+
+        <li class="tocline">
+          <a href="#acknowledgements" class="tocxref">Acknowledgements</a>
+        </li>
+
+        <li class="tocline">
+          <a href="#references" class="tocxref">References</a>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#normative-references" class="tocxref"
+                >Normative references</a
+              >
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#informative-references" class="tocxref"
+                >Informative references</a
+              >
+            </li>
+          </ol>
+        </li>
       </ol>
     </nav>
     <main>
@@ -613,8 +635,8 @@
           This section introduces ACP with an overview of key terminology, an
           explanation of the conventions used in this document, example graphs
           to illustrate basic concepts of resource access description and
-          validation, and a diagram representing the main elements of the ACP
-          data model.
+          validation, a diagram representing the main elements of the ACP data
+          model, and a non-normative RDF representation of the ACP ontology.
         </p>
 
         <section
@@ -2977,6 +2999,94 @@ ex:policyA
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
             resource=":resource-management"
+            property="bibo:hasPart"
+          ></section>
+        </section>
+        <h2 class="heading settled" data-level="" id="acknowledgements">
+          <span class="content">Acknowledgements</span
+          ><a class="self-link" href="#acknowledgements"></a>
+        </h2>
+        <p><em>This section is non-normative.</em></p>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":acknowledgements"
+          property="bibo:hasPart"
+        ></section>
+        <h2 class="heading settled" data-level="" id="references">
+          <span class="content">References</span
+          ><a class="self-link" href="#references"></a>
+        </h2>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":references"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading settled" data-level="" id="normative-references">
+            <span class="content">Normative references</span
+            ><a class="self-link" href="#normative-references"></a>
+          </h3>
+          <dl resource="">
+            <dt id="rdf11-concepts">[RDF11-CONCEPTS]</dt>
+            <dd>
+              <a
+                href="https://www.w3.org/TR/rdf11-concepts/"
+                rel="cito:citesAsAuthority"
+                ><cite>RDF 1.1 Concepts and Abstract Syntax</cite></a
+              >. Richard Cyganiak; David Wood; Markus Lanthaler. W3C. 25
+              February 2014. W3C Recommendation. URL:
+              <a href="https://www.w3.org/TR/rdf11-concepts/"
+                >https://www.w3.org/TR/rdf11-concepts/</a
+              >.
+            </dd>
+            <dt id="rfc2119">[RFC2119]</dt>
+            <dd>
+              <a
+                href="https://www.rfc-editor.org/info/rfc2119"
+                rel="cito:citesAsAuthority"
+                ><cite
+                  >Key words for use in RFCs to Indicate Requirement
+                  Levels</cite
+                ></a
+              >. S. Bradner. IETF. March 1997. Best Current Practice. URL:
+              <a href="https://datatracker.ietf.org/doc/html/rfc2119"
+                >https://datatracker.ietf.org/doc/html/rfc2119</a
+              >.
+            </dd>
+            <dt id="rfc8174">[RFC8174]</dt>
+            <dd>
+              <a
+                href="https://www.rfc-editor.org/info/rfc8174"
+                rel="cito:citesAsAuthority"
+                ><cite
+                  >Ambiguity of Uppercase vs Lowercase in RFC 2119 Key
+                  Words</cite
+                ></a
+              >. B. Leiba. IETF. May 2017. Best Current Practice. URL:
+              <a href="https://datatracker.ietf.org/doc/html/rfc8174"
+                >https://datatracker.ietf.org/doc/html/rfc8174</a
+              >
+            </dd>
+          </dl>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":normative-references"
+            property="bibo:hasPart"
+          ></section>
+          <h3 class="heading settled" data-level="" id="informative-references">
+            <span class="content">Informative references</span
+            ><a class="self-link" href="#informative-references"></a>
+          </h3>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":informative-references"
             property="bibo:hasPart"
           ></section>
         </section>
