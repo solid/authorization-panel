@@ -575,6 +575,14 @@
                   >
                 </li>
               </ol>
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#satisfying-matcher-pseudocode" class="tocxref"
+                    ><span class="secno">6.4.2</span>Satisfying Matcher
+                    pseudocode</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
         </li>
@@ -2101,6 +2109,7 @@ ex:policyA
               class="example example-authorization-graph"
             >
 ex:matcherA
+  a acp:Matcher ;
   acp:agent ex:Alice, acp:OwnerAgent .
 </pre
             >
@@ -2117,6 +2126,7 @@ ex:matcherA
               class="example example-authorization-graph"
             >
 [
+  a acp:Matcher ;
   acp:client ex:clientB ;
 ] .
 </pre
@@ -2135,6 +2145,7 @@ ex:matcherA
               class="example example-authorization-graph"
             >
 ex:matcherA
+  a acp:Matcher ;
   acp:issuer ex:issuerB .
 </pre
             >
@@ -2152,6 +2163,7 @@ ex:matcherA
               class="example example-authorization-graph"
             >
 []
+  a acp:Matcher ;
   acp:vc ex:credentialB .
 </pre
             >
@@ -2168,7 +2180,7 @@ ex:matcherA
               class="example example-authorization-graph"
             >
 ex:matcherA
-  a acp:Matcher, acp:AgentMatcher, acp:IssuerMatcher ;
+  a acp:Matcher ;
   acp:agent ex:Bob, ex:Alice ;
   acp:issuer ex:IdentityProviderB .
 </pre
@@ -2187,6 +2199,7 @@ ex:matcherA
               class="example example-authorization-graph"
             >
 [
+  a acp:Matcher ;
   acp:agent ex:Alice ;
   acp:issuer ex:IdentityProviderB ;
   acp:vc ex:credentialA ;
@@ -2906,6 +2919,22 @@ function isSatisfiedPolicy(policy, context) {
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
               resource=":satisfying-matcher-example"
+              property="bibo:hasPart"
+            ></section>
+            <h4
+              class="heading settled"
+              data-level="6.4.2"
+              id="satisfying-matcher-pseudocode"
+            >
+              <span class="secno">6.4.2. </span
+              ><span class="content">Satisfying Matcher pseudocode</span
+              ><a class="self-link" href="#satisfying-matcher-pseudocode"></a>
+            </h4>
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":satisfying-matcher-pseudocode"
               property="bibo:hasPart"
             ></section>
           </section>
