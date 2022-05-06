@@ -2720,6 +2720,28 @@ ex:policyC
               ></a>
             </h4>
 
+            <pre>
+function grantAccessModes(policies, context) {
+    const allow = new Set, deny = new Set
+
+    // Gather allowed and denied access modes from satisfied policies
+    for (const policy of policies)
+        if (isSatisfiedPolicy(policy, context)) {
+            for (const mode of policy.allow)
+                allow.add(mode)
+
+            for (const mode of policy.deny)
+                deny.add(mode)
+        }
+
+    // Deny overrules allow.
+    for (const mode of deny)
+        allow.delete(mode)
+
+    return allow
+}
+</pre>
+
             <section
               datatype="rdf:HTML"
               typeof="bibo:Chapter"
