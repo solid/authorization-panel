@@ -529,6 +529,14 @@
                   >
                 </li>
               </ol>
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#granting-access-modes-pseudocode" class="tocxref"
+                    ><span class="secno">6.2.2</span>Granting Access Modes
+                    pseudocode</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
           <ol class="toc">
@@ -1025,9 +1033,9 @@
           ><a class="self-link" href="#conformance"></a>
         </h2>
         <p>
-          All assertions, diagrams, examples, and notes are non-normative, as
-          are all sections explicitly marked non-normative. Everything else is
-          normative.
+          All assertions, diagrams, examples, pseudocode and notes are
+          non-normative, as are all sections explicitly marked non-normative.
+          Everything else is normative.
         </p>
 
         <p id="rfc2119-conformance">
@@ -2686,6 +2694,25 @@ ex:policyC
               resource=":granting-access-modes-example"
               property="bibo:hasPart"
             ></section>
+            <h4
+              class="heading settled"
+              data-level="6.2.2"
+              id="granting-access-modes-pseudocode"
+            >
+              <span class="secno">6.2.2. </span
+              ><span class="content">Granting Access Modes pseudocode</span
+              ><a
+                class="self-link"
+                href="#granting-access-modes-pseudocode"
+              ></a>
+            </h4>
+
+            <section
+              datatype="rdf:HTML"
+              typeof="bibo:Chapter"
+              resource=":granting-access-modes-pseudocode"
+              property="bibo:hasPart"
+            ></section>
           </section>
           <h3 class="heading settled" data-level="6.3" id="satisfying-policy">
             <span class="secno">6.3. </span
@@ -2795,8 +2822,6 @@ ex:policyA
               ><span class="content">Satisfying Policy pseudocode</span
               ><a class="self-link" href="#satisfying-policy-pseudocode"></a>
             </h4>
-            <p><em>This section is non-normative.</em></p>
-
             <pre>
 function isSatisfiedPolicy(policy, context) {
     // If any 'none of' matcher is satisfied then the policy is not satisfied.
