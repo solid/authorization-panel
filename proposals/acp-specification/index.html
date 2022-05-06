@@ -2838,25 +2838,19 @@ ex:policyA
             <pre>
 function isSatisfiedPolicy(policy, context) {
     // If any 'none of' matcher is satisfied then the policy is not satisfied.
-    for (const matcher of policy.noneOf) {
-        if (isSatisfiedMatcher(matcher, context)) {
+    for (const matcher of policy.noneOf)
+        if (isSatisfiedMatcher(matcher, context))
             return false
-        }
-    }
 
     // If any 'all of' matcher is not satisfied then the policy is not satisfied.
-    for (const matcher of policy.allOf) {
-        if (!isSatisfiedMatcher(matcher, context)) {
+    for (const matcher of policy.allOf)
+        if (!isSatisfiedMatcher(matcher, context))
             return false
-        }
-    }
 
     // If any 'any of' matcher is satisfied then the policy is satisfied.
-    for (const matcher of policy.anyOf) {
-        if (isSatisfiedMatcher(matcher, context)) {
+    for (const matcher of policy.anyOf)
+        if (isSatisfiedMatcher(matcher, context))
             return true
-        }
-    }
 
     // At this point there are
     // - no satisfied 'none of' matchers,
