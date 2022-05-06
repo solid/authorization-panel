@@ -2795,11 +2795,40 @@ ex:policyA
               ><span class="content">Satisfying Policy pseudocode</span
               ><a class="self-link" href="#satisfying-policy-pseudocode"></a>
             </h4>
-            <p></p>
+            <p><em>This section is non-normative.</em></p>
 
             <pre>
 function isSatisfiedPolicy(policy, context) {
+    // If any 'none of' matcher is satisfied then the policy is not satisfied.
+    for (const matcher of policy.noneOf) {
+        if (isSatisfiedMatcher(matcher, context)) {
+            return false
+        }
+    }
 
+    // If any 'all of' matcher is not satisfied then the policy is not satisfied.
+    for (const matcher of policy.allOf) {
+        if (!isSatisfiedMatcher(matcher, context)) {
+            return false
+        }
+    }
+
+    // If any 'any of' matcher is satisfied then the policy is satisfied.
+    for (const matcher of policy.anyOf) {
+        if (isSatisfiedMatcher(matcher, context)) {
+            return true
+        }
+    }
+
+    // At this point there are
+    // - no satisfied 'none of' matchers,
+    // - no unsatisfied 'all of' matchers and
+    // - no satisfied 'any of' matchers.
+
+    // Hence, the policy is satisfied if it has
+    // - an 'all of' condition and
+    // - no 'any of' condition.
+    return policy.allOf.size !== 0 && policy.anyOf === 0
 }
 </pre
             >
