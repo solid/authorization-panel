@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html
   about="https://solidproject.org/TR/acp#"
+  prefix="
+    rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+    rdfs: http://www.w3.org/2000/01/rdf-schema#
+    owl: http://www.w3.org/2002/07/owl#
+    xsd: http://www.w3.org/2001/XMLSchema#
+    acp: http://www.w3.org/ns/solid/acp#
+    dc: http://purl.org/dc/terms/
+    doap: http://usefulinc.com/ns/doap#
+    bibo: http://purl.org/ontology/bibo/
+    cito: http://purl.org/spar/cito/
+    schema: http://schema.org/
+    vann: http://purl.org/vocab/vann/"
   dir="ltr"
-  typeof="doap:Specification schema:Article"
-  prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# acp: http://www.w3.org/ns/solid/acp# dc: http://purl.org/dc/terms/ doap: http://usefulinc.com/ns/doap# bibo: http://purl.org/ontology/bibo/ cito: http://purl.org/spar/cito/ schema: http://schema.org/ vann: http://purl.org/vocab/vann/ "
   lang="en"
 >
   <head>
@@ -807,7 +817,7 @@
 
           <pre id="example-context-graph" class="example example-context-graph">
 # This box contains a context graph
-# It describes an instance of resource access
+# It describes an instance of resource access&nbsp;&nbsp;
 
 []
   acp:agent ex:Bob ;
@@ -835,7 +845,7 @@
             class="example example-authorization-graph"
           >
 # This box contains an authorization graph
-# It describes the conditions required for accessing a resource
+# It describes the conditions required for accessing a resource&nbsp;&nbsp;
 
 []
   a acp:AccessControlResource ;
@@ -875,7 +885,7 @@
             class="example example-access-grant-graph"
           >
 # This box contains an access grant graph
-# It describes in context the granted access over a resource
+# It describes in context the granted access over a resource&nbsp;&nbsp;
 
 []
   acp:grant acl:Read ;
@@ -1226,7 +1236,7 @@
             <pre id="example-context-0" class="example example-context-graph">
 []
   a acp:Context ;
-  acp:agent ex:Bob .
+  acp:agent ex:Bob .&nbsp;&nbsp;
 </pre
             >
 
@@ -1243,7 +1253,7 @@ ex:contextA
   acp:target ex:resourceX ;
   acp:owner ex:Bob ;
   acp:creator ex:Alice ;
-  acp:client ex:ClientApplicationY ;
+  acp:client ex:ClientApplicationY ;&nbsp;&nbsp;
   acp:issuer ex:IdentityProviderZ .
 </pre
             >
@@ -1256,7 +1266,7 @@ ex:contextA
 
             <pre id="example-context-2" class="example example-context-graph">
 [
-  acp:client ex:ClientApplicationX, ex:ClientApplicationY ;
+  acp:client ex:ClientApplicationX, ex:ClientApplicationY ;&nbsp;&nbsp;
   acp:issuer ex:IdentityProviderZ ;
 ] .
 </pre
@@ -1316,7 +1326,7 @@ ex:contextA
 ex:contextA
   acp:agent ex:Bob ;
   acp:target ex:resourceX ;
-  ex:tag ex:Music, ex:FavouriteRecord .
+  ex:tag ex:Music, ex:FavouriteRecord .&nbsp;&nbsp;
 </pre
             >
 
@@ -1467,7 +1477,7 @@ ex:contextA
             >
 ex:accessControlResourceA
   acp:resource ex:resourceX ;
-  acp:accessControl ex:accessControlB, ex:accessControlC ;
+  acp:accessControl ex:accessControlB, ex:accessControlC ;&nbsp;&nbsp;
   acp:memberAccessControl ex:accessControlD .
 </pre
             >
@@ -1565,7 +1575,7 @@ ex:accessControlResourceA
               class="example example-authorization-graph"
             >
 ex:accessControlResourceA
-  acp:resource ex:resourceX ;
+  acp:resource ex:resourceX ;&nbsp;&nbsp;
   acp:accessControl [
     acp:apply ex:policyC ;
     acp:access ex:policyD ;
@@ -1584,7 +1594,7 @@ ex:accessControlResourceA
             >
 ex:accessControlResourceA
   acp:resource ex:resourceX ;
-  acp:accessControl ex:accessControlB, ex:accessControlC .
+  acp:accessControl ex:accessControlB, ex:accessControlC .&nbsp;&nbsp;
 
 ex:accessControlB
   acp:apply ex:policyD .
@@ -1600,7 +1610,7 @@ ex:accessControlC
             >
 []
   acp:resource ex:resourceX ;
-  acp:accessControl ex:accessControlF .
+  acp:accessControl ex:accessControlF .&nbsp;&nbsp;
 
 ex:accessControlF
   acp:apply ex:policyD, ex:policyE .
@@ -1749,7 +1759,7 @@ ex:accessControlF
             >
 ex:policyA
   acp:allow acl:Read ;
-  acp:allOf ex:matcherB, ex:matcherC .
+  acp:allOf ex:matcherB, ex:matcherC .&nbsp;&nbsp;
 </pre
             >
 
@@ -1765,7 +1775,7 @@ ex:policyA
             >
 []
   acp:deny acl:Write ;
-  acp:anyOf ex:matcherB, ex:matcherC .
+  acp:anyOf ex:matcherB, ex:matcherC .&nbsp;&nbsp;
 </pre
             >
 
@@ -1783,7 +1793,7 @@ ex:policyA
   acp:resource ex:resourceX ;
   acp:accessControl [
     acp:apply [
-      acp:allow acl:Read, acl:Write ;
+      acp:allow acl:Read, acl:Write ;&nbsp;&nbsp;
       acp:anyOf ex:matcherA ;
       acp:noneOf ex:matcherB ;
     ] ;
@@ -2004,7 +2014,7 @@ ex:policyA
             >
 ex:matcherA
   a acp:Matcher ;
-  acp:agent ex:Alice, acp:OwnerAgent .
+  acp:agent ex:Alice, acp:OwnerAgent .&nbsp;&nbsp;
 </pre
             >
 
@@ -2021,7 +2031,7 @@ ex:matcherA
             >
 [
   a acp:Matcher ;
-  acp:client ex:clientB ;
+  acp:client ex:clientB ;&nbsp;&nbsp;
 ] .
 </pre
             >
@@ -2040,7 +2050,7 @@ ex:matcherA
             >
 ex:matcherA
   a acp:Matcher ;
-  acp:issuer ex:issuerB .
+  acp:issuer ex:issuerB .&nbsp;&nbsp;
 </pre
             >
 
@@ -2058,7 +2068,7 @@ ex:matcherA
             >
 []
   a acp:Matcher ;
-  acp:vc ex:credentialB .
+  acp:vc ex:credentialB .&nbsp;&nbsp;
 </pre
             >
 
@@ -2076,7 +2086,7 @@ ex:matcherA
 ex:matcherA
   a acp:Matcher ;
   acp:agent ex:Bob, ex:Alice ;
-  acp:issuer ex:IdentityProviderB .
+  acp:issuer ex:IdentityProviderB .&nbsp;&nbsp;
 </pre
             >
 
@@ -2095,7 +2105,7 @@ ex:matcherA
 [
   a acp:Matcher ;
   acp:agent ex:Alice ;
-  acp:issuer ex:IdentityProviderB ;
+  acp:issuer ex:IdentityProviderB ;&nbsp;&nbsp;
   acp:vc ex:credentialA ;
 ] .
 </pre
@@ -2116,7 +2126,7 @@ ex:matcherA
 ex:policyA
   acp:deny acl:Read, acl:Write ;
   acp:anyOf [
-    acp:client acp:PublicClient ;
+    acp:client acp:PublicClient ;&nbsp;&nbsp;
   ] ,
   acp:noneOf [
     acp:client ex:clientC
@@ -2187,7 +2197,7 @@ ex:policyB
 ex:policy1
   acp:allow acl:Read ;
   acp:anyOf [
-    ex:tag ex:FavouriteRecord, ex:Wishlist ;
+    ex:tag ex:FavouriteRecord, ex:Wishlist ;&nbsp;&nbsp;
   ] .
 </pre
             >
@@ -2304,7 +2314,7 @@ ex:policy1
               class="example example-access-grant-graph"
             >
 []
-  acp:grant acl:Read, acl:Write ;
+  acp:grant acl:Read, acl:Write ;&nbsp;&nbsp;
   acp:context [
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
@@ -2491,7 +2501,7 @@ ex:policy1
             >
   ex:accessControlResourceA
     acp:resource ex:X ;
-    acp:accessControl ex:accessControlB, ex:accessControlC ;
+    acp:accessControl ex:accessControlB, ex:accessControlC ;&nbsp;&nbsp;
     acp:memberAccessControl ex:accessControlD .
 
   ex:accessControlB
@@ -2578,7 +2588,7 @@ ex:policy1
 [
   acp:resource ex:X ;
   acp:accessControl [
-    acp:apply ex:policyB, ex:policyC ;
+    acp:apply ex:policyB, ex:policyC ;&nbsp;&nbsp;
   ]
 ] .
 
@@ -2610,7 +2620,7 @@ ex:policyC
             ><code><span class="kd">function</span> <span class="nx">grantAccessModes</span><span class="p">(</span><span class="nx">policies</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">allow</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">,</span> <span class="nx">deny</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span>
 
-  <span class="c1">// Gather allowed and denied access modes from satisfied policies</span>
+  <span class="c1">// Gather allowed and denied access modes from satisfied policies</span>&nbsp;&nbsp;
   <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">policies</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">isSatisfiedPolicy</span><span class="p">(</span><span class="nx">policy</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span> <span class="p">{</span>
           <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">mode</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allow</span><span class="p">)</span>
@@ -2722,7 +2732,7 @@ ex:policyC
 ] .
 
 ex:policyA
-  acp:allOf ex:matcherB, ex:matcherC ;
+  acp:allOf ex:matcherB, ex:matcherC ;&nbsp;&nbsp;
   acp:anyOf ex:matcherD, matcherE ;
   acp:noneOf ex:matcherF .
 </pre
@@ -2751,7 +2761,7 @@ ex:policyA
       <span class="k">if</span> <span class="p">(</span><span class="nx">isSatisfiedMatcher</span><span class="p">(</span><span class="nx">matcher</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span>
           <span class="k">return</span> <span class="kc">false</span>
 
-  <span class="c1">// If any 'all of' matcher is not satisfied then the policy is not satisfied.</span>
+  <span class="c1">// If any 'all of' matcher is not satisfied then the policy is not satisfied.</span>&nbsp;&nbsp;
   <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">matcher</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allOf</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isSatisfiedMatcher</span><span class="p">(</span><span class="nx">matcher</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span>
           <span class="k">return</span> <span class="kc">false</span>
