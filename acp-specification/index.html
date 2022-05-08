@@ -130,59 +130,67 @@
         >.
       </p>
     </header>
-    <section>
+
+    <section
+      datatype="rdf:HTML"
+      typeof="bibo:Chapter"
+      resource=":abstract"
+      property="bibo:hasPart"
+    >
       <h2 id="abstract">Abstract</h2>
-      <div property="dc:abstract">
-        <p>
-          This document defines the
-          <span about="acp:" property="rdfs:label"
-            >Access Control Policy Language (ACP)</span
-          >.
-          <span about="acp:" typeof="owl:Ontology" property="rdfs:comment"
-            >ACP is a language for describing, controlling and granting access
-            to resources.</span
-          >
-        </p>
-      </div>
+      <p>
+        This document defines the
+        <span about="acp:" property="rdfs:label"
+          >Access Control Policy Language (ACP)</span
+        >.
+        <span about="acp:" typeof="owl:Ontology" property="rdfs:comment"
+          >ACP is a language for describing, controlling and granting access to
+          resources.</span
+        >
+      </p>
     </section>
 
-    <section>
-      <h2 id="status-of-this-document">Status of This Document</h2>
-      <div property="rdfs:comment">
-        <p>
-          This section describes the status of this document at the time of its
-          publication.
-        </p>
-        <p>
-          This document was published by the
-          <a href="https://www.w3.org/community/solid/"
-            >Solid Community Group</a
-          >
-          as an Editor’s Draft. The sections that have been incorporated have
-          been reviewed following the
-          <a href="https://github.com/solid/process">Solid process</a>. However,
-          the information in this document is still subject to change. You are
-          invited to
-          <a href="https://github.com/solid/specification/issues">contribute</a>
-          any feedback, comments, or questions you might have.
-        </p>
-        <p>
-          Publication as an Editor’s Draft does not imply endorsement by the W3C
-          Membership. This is a draft document and may be updated, replaced or
-          obsoleted by other documents at any time. It is inappropriate to cite
-          this document as other than work in progress.
-        </p>
-        <p>
-          This document was produced by a group operating under the
-          <a href="https://www.w3.org/community/about/agreements/cla/"
-            >W3C Community Contributor License Agreement (CLA)</a
-          >. A human-readable
-          <a href="https://www.w3.org/community/about/agreements/cla-deed/"
-            >summary</a
-          >
-          is available.
-        </p>
-      </div>
+    <section
+      datatype="rdf:HTML"
+      typeof="bibo:Chapter"
+      resource=":status-of-this-document"
+      property="bibo:hasPart"
+    >
+      <h2 id="status-of-this-document">Status of this document</h2>
+      <p>
+        This section describes the status of this document at the time of its
+        publication.
+      </p>
+
+      <p>
+        This document was published by the
+        <a href="https://www.w3.org/community/solid/">Solid Community Group</a>
+        as an Editor&#39;s Draft. The sections that have been incorporated have
+        been reviewed following the
+        <a href="https://github.com/solid/process">Solid process</a>. However,
+        the information in this document is still subject to change. You are
+        invited to
+        <a href="https://github.com/solid/specification/issues">contribute</a>
+        any feedback, comments, or questions you might have.
+      </p>
+
+      <p>
+        Publication as an Editor&#39;s Draft does not imply endorsement by the
+        W3C Membership. This is a draft document and may be updated, replaced or
+        obsoleted by other documents at any time. It is inappropriate to cite
+        this document as other than work in progress.
+      </p>
+
+      <p>
+        This document was produced by a group operating under the
+        <a href="https://www.w3.org/community/about/agreements/cla/"
+          >W3C Community Contributor License Agreement (CLA)</a
+        >. A human-readable
+        <a href="https://www.w3.org/community/about/agreements/cla-deed/"
+          >summary</a
+        >
+        is available.
+      </p>
     </section>
     <nav id="toc">
       <h2 id="table-of-contents" resource=":table-of-contents">
@@ -192,14 +200,13 @@
       </h2>
       <ol class="toc" role="directory">
         <li class="tocline">
-          <a class="tocxref" href="#abstract">Abstract</a>
+          <a href="#abstract" class="tocxref">Abstract</a>
         </li>
         <li class="tocline">
-          <a class="tocxref" href="#status-of-this-document"
-            >Status of This Document</a
+          <a href="#status-of-this-document" class="tocxref"
+            >Status of this document</a
           >
         </li>
-
         <li class="tocline">
           <a href="#introduction" class="tocxref"
             ><span class="secno">1</span>Introduction</a
@@ -248,13 +255,11 @@
             </li>
           </ol>
         </li>
-
         <li class="tocline">
           <a href="#conformance" class="tocxref"
             ><span class="secno">2</span>Conformance</a
           >
         </li>
-
         <li class="tocline">
           <a href="#context-graph" class="tocxref"
             ><span class="secno">3</span>Context Graph</a
@@ -289,7 +294,6 @@
             </li>
           </ol>
         </li>
-
         <li class="tocline">
           <a href="#authorization-graph" class="tocxref"
             ><span class="secno">4</span>Authorization Graph</a
@@ -367,7 +371,6 @@
             </li>
           </ol>
         </li>
-
         <li class="tocline">
           <a href="#access-grant-graph" class="tocxref"
             ><span class="secno">5</span>Access Grant Graph</a
@@ -401,7 +404,6 @@
             </li>
           </ol>
         </li>
-
         <li class="tocline">
           <a href="#access-control-resolution" class="tocxref"
             ><span class="secno">6</span>Access Control resolution</a
@@ -413,7 +415,7 @@
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#effective-policies" class="tocxref"
+                  <a href="#effective-policies-example" class="tocxref"
                     ><span class="secno">6.1.1</span>Effective Policies
                     example</a
                   >
@@ -490,7 +492,6 @@
             </li>
           </ol>
         </li>
-
         <li class="tocline">
           <a href="#server-implementation" class="tocxref"
             ><span class="secno">7</span>Server implementation</a
@@ -524,11 +525,9 @@
             </li>
           </ol>
         </li>
-
         <li class="tocline">
           <a href="#acknowledgements" class="tocxref">Acknowledgements</a>
         </li>
-
         <li class="tocline">
           <a href="#references" class="tocxref">References</a>
           <ol class="toc">
@@ -552,10 +551,10 @@
       <section
         datatype="rdf:HTML"
         typeof="bibo:Chapter"
-        resource=":"
+        resource=":introduction"
         property="bibo:hasPart"
       >
-        <h2 class="heading settled" data-level="1" id="introduction">
+        <h2 class="heading" id="introduction">
           <span class="secno">1. </span><span class="content">Introduction</span
           ><a class="self-link" href="#introduction"></a>
         </h2>
@@ -570,10 +569,10 @@
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":introduction"
+          resource=":rdf-terminology"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="1.1" id="rdf-terminology">
+          <h3 class="heading" id="rdf-terminology">
             <span class="secno">1.1. </span
             ><span class="content">RDF terminology</span
             ><a class="self-link" href="#rdf-terminology"></a>
@@ -646,14 +645,15 @@
               ><a class="bibref" href="#rdf11-concepts">RDF11 CONCEPTS</a></cite
             >.
           </p>
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":rdf-terminology"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="1.2" id="namespaces">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":namespaces"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="namespaces">
             <span class="secno">1.2. </span
             ><span class="content">RDF vocabularies and namespace IRIs</span
             ><a class="self-link" href="#namespaces"></a>
@@ -744,14 +744,15 @@
               </tr>
             </tbody>
           </table>
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":namespaces"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="1.3" id="acp-terminology">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":acp-terminology"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="acp-terminology">
             <span class="secno">1.3. </span
             ><span class="content">ACP terminology</span
             ><a class="self-link" href="#acp-terminology"></a>
@@ -783,14 +784,15 @@
               resource access instances.
             </dd>
           </dl>
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":acp-terminology"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="1.4" id="example-graphs">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":example-graphs"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="example-graphs">
             <span class="secno">1.4. </span
             ><span class="content">Example graphs</span
             ><a class="self-link" href="#example-graphs"></a>
@@ -897,14 +899,15 @@
   ] .
 </pre
           >
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":example-graphs"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="1.5" id="data-model">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":data-model"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="data-model">
             <span class="secno">1.5. </span
             ><span class="content">Data model</span
             ><a class="self-link" href="#data-model"></a>
@@ -916,14 +919,15 @@
             src="acp-data-model.svg"
             style="width: 100%"
           />
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":data-model"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="1.6" id="ontology">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":ontology"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="ontology">
             <span class="secno">1.6. </span><span class="content">Ontology</span
             ><a class="self-link" href="#ontology"></a>
           </h3>
@@ -932,15 +936,16 @@
             in a non-normative RDF representation of the
             <a href="./acp.ttl">ACP ontology serialized in turtle</a>.
           </p>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":ontology"
-            property="bibo:hasPart"
-          ></section>
         </section>
-        <h2 class="heading settled" data-level="2" id="conformance">
+      </section>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":conformance"
+        property="bibo:hasPart"
+      >
+        <h2 class="heading" id="conformance">
           <span class="secno">2. </span><span class="content">Conformance</span
           ><a class="self-link" href="#conformance"></a>
         </h2>
@@ -992,14 +997,15 @@
           <cite><a class="bibref" href="#rfc8174">RFC 8174</a></cite
           >.
         </p>
+      </section>
 
-        <section
-          datatype="rdf:HTML"
-          typeof="bibo:Chapter"
-          resource=":conformance"
-          property="bibo:hasPart"
-        ></section>
-        <h2 class="heading settled" data-level="3" id="context-graph">
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":context-graph"
+        property="bibo:hasPart"
+      >
+        <h2 class="heading" id="context-graph">
           <span class="secno">3. </span
           ><span class="content">Context Graph</span
           ><a class="self-link" href="#context-graph"></a>
@@ -1012,10 +1018,10 @@
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":context-graph"
+          resource=":context"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="3.1" id="context">
+          <h3 class="heading" id="context">
             <span class="secno">3.1. </span><span class="content">Context</span
             ><a class="self-link" href="#context"></a>
           </h3>
@@ -1043,11 +1049,7 @@
             >
               <code>acp:attribute</code>
             </dt>
-            <dd
-              about="acp:attribute"
-              about="acp:attribute"
-              property="rdfs:comment"
-            >
+            <dd about="acp:attribute" property="rdfs:comment">
               The <span property="rdfs:label">attribute</span> properties
               defined by ACP describe
               <span property="rdfs:domain" resource="acp:Context"
@@ -1219,10 +1221,10 @@
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":context"
+            resource=":example-context"
             property="bibo:hasPart"
           >
-            <h4 class="heading settled" data-level="3.1.1" id="example-context">
+            <h4 class="heading" id="example-context">
               <span class="secno">3.1.1. </span
               ><span class="content">Example Context</span
               ><a class="self-link" href="#example-context"></a>
@@ -1271,19 +1273,16 @@ ex:contextA
 ] .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-context"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3
-            class="heading settled"
-            data-level="3.2"
-            id="context-extensibility"
-          >
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":context-extensibility"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="context-extensibility">
             <span class="secno">3.2. </span
             ><span class="content">Context extensibility</span
             ><a class="self-link" href="#context-extensibility"></a>
@@ -1297,14 +1296,10 @@ ex:contextA
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":context-extensibility"
+            resource=":example-context-extension"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="3.2.1"
-              id="example-context-extension"
-            >
+            <h4 class="heading" id="example-context-extension">
               <span class="secno">3.2.1. </span
               ><span class="content">Example Context extension</span
               ><a class="self-link" href="#example-context-extension"></a>
@@ -1329,16 +1324,17 @@ ex:contextA
   ex:tag ex:Music, ex:FavouriteRecord .&nbsp;&nbsp;
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-context-extension"
-              property="bibo:hasPart"
-            ></section>
           </section>
         </section>
-        <h2 class="heading settled" data-level="4" id="authorization-graph">
+      </section>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":authorization-graph"
+        property="bibo:hasPart"
+      >
+        <h2 class="heading" id="authorization-graph">
           <span class="secno">4. </span
           ><span class="content">Authorization Graph</span
           ><a class="self-link" href="#authorization-graph"></a>
@@ -1351,14 +1347,10 @@ ex:contextA
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":authorization-graph"
+          resource=":access-control-resource"
           property="bibo:hasPart"
         >
-          <h3
-            class="heading settled"
-            data-level="4.1"
-            id="access-control-resource"
-          >
+          <h3 class="heading" id="access-control-resource">
             <span class="secno">4.1. </span
             ><span class="content">Access Control Resource</span
             ><a class="self-link" href="#access-control-resource"></a>
@@ -1452,14 +1444,10 @@ ex:contextA
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-control-resource"
+            resource=":example-access-control-resource"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="4.1.1"
-              id="example-access-control-resource"
-            >
+            <h4 class="heading" id="example-access-control-resource">
               <span class="secno">4.1.1. </span
               ><span class="content">Example Access Control Resource</span
               ><a class="self-link" href="#example-access-control-resource"></a>
@@ -1481,15 +1469,16 @@ ex:accessControlResourceA
   acp:memberAccessControl ex:accessControlD .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-access-control-resource"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3 class="heading settled" data-level="4.2" id="access-control">
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":access-control"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="access-control">
             <span class="secno">4.2. </span
             ><span class="content">Access Control</span
             ><a class="self-link" href="#access-control"></a>
@@ -1552,14 +1541,10 @@ ex:accessControlResourceA
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-control"
+            resource=":example-access-control"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="4.2.1"
-              id="example-access-control"
-            >
+            <h4 class="heading" id="example-access-control">
               <span class="secno">4.2.1. </span
               ><span class="content">Example Access Control</span
               ><a class="self-link" href="#example-access-control"></a>
@@ -1616,15 +1601,16 @@ ex:accessControlF
   acp:apply ex:policyD, ex:policyE .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-access-control"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3 class="heading settled" data-level="4.3" id="policy">
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":policy"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="policy">
             <span class="secno">4.3. </span><span class="content">Policy</span
             ><a class="self-link" href="#policy"></a>
           </h3>
@@ -1739,10 +1725,10 @@ ex:accessControlF
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":policy"
+            resource=":example-policy"
             property="bibo:hasPart"
           >
-            <h4 class="heading settled" data-level="4.3.1" id="example-policy">
+            <h4 class="heading" id="example-policy">
               <span class="secno">4.3.1. </span
               ><span class="content">Example Policy</span
               ><a class="self-link" href="#example-policy"></a>
@@ -1801,15 +1787,16 @@ ex:policyA
 ] .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-policy"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3 class="heading settled" data-level="4.4" id="matcher">
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":matcher"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="matcher">
             <span class="secno">4.4. </span><span class="content">Matcher</span
             ><a class="self-link" href="#matcher"></a>
           </h3>
@@ -1994,10 +1981,10 @@ ex:policyA
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":matcher"
+            resource=":example-matcher"
             property="bibo:hasPart"
           >
-            <h4 class="heading settled" data-level="4.4.1" id="example-matcher">
+            <h4 class="heading" id="example-matcher">
               <span class="secno">4.4.1. </span
               ><span class="content">Example Matcher</span
               ><a class="self-link" href="#example-matcher"></a>
@@ -2099,7 +2086,7 @@ ex:matcherA
             </p>
 
             <pre
-              id="example-matcher-4"
+              id="example-matcher-5"
               class="example example-authorization-graph"
             >
 [
@@ -2120,7 +2107,7 @@ ex:matcherA
             </p>
 
             <pre
-              id="example-matcher-5"
+              id="example-matcher-6"
               class="example example-authorization-graph"
             >
 ex:policyA
@@ -2139,19 +2126,16 @@ ex:policyB
   ] .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-matcher"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3
-            class="heading settled"
-            data-level="4.5"
-            id="matcher-extensibility"
-          >
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":matcher-extensibility"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="matcher-extensibility">
             <span class="secno">4.5. </span
             ><span class="content">Matcher extensibility</span
             ><a class="self-link" href="#matcher-extensibility"></a>
@@ -2167,14 +2151,10 @@ ex:policyB
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":matcher-extensibility"
+            resource=":example-matcher-extension"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="4.5.1"
-              id="example-matcher-extension"
-            >
+            <h4 class="heading" id="example-matcher-extension">
               <span class="secno">4.5.1. </span
               ><span class="content">Example Matcher extension</span
               ><a class="self-link" href="#example-matcher-extension"></a>
@@ -2201,16 +2181,17 @@ ex:policy1
   ] .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-matcher-extension"
-              property="bibo:hasPart"
-            ></section>
           </section>
         </section>
-        <h2 class="heading settled" data-level="5" id="access-grant-graph">
+      </section>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":access-grant-graph"
+        property="bibo:hasPart"
+      >
+        <h2 class="heading" id="access-grant-graph">
           <span class="secno">5. </span
           ><span class="content">Access Grant Graph</span
           ><a class="self-link" href="#access-grant-graph"></a>
@@ -2223,10 +2204,10 @@ ex:policy1
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":access-grant-graph"
+          resource=":access-grant"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="5.1" id="access-grant">
+          <h3 class="heading" id="access-grant">
             <span class="secno">5.1. </span
             ><span class="content">Access Grant</span
             ><a class="self-link" href="#access-grant"></a>
@@ -2291,14 +2272,10 @@ ex:policy1
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-grant"
+            resource=":example-access-grant"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="5.1.1"
-              id="example-access-grant"
-            >
+            <h4 class="heading" id="example-access-grant">
               <span class="secno">5.1.1. </span
               ><span class="content">Example Access Grant</span
               ><a class="self-link" href="#example-access-grant"></a>
@@ -2321,19 +2298,16 @@ ex:policy1
   ] .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-access-grant"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3
-            class="heading settled"
-            data-level="5.2"
-            id="access-mode-extensibility"
-          >
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":access-mode-extensibility"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="access-mode-extensibility">
             <span class="secno">5.2. </span
             ><span class="content">Access Mode extensibility</span
             ><a class="self-link" href="#access-mode-extensibility"></a>
@@ -2363,14 +2337,10 @@ ex:policy1
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":access-mode-extensibility"
+            resource=":example-access-mode"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="5.2.1"
-              id="example-access-mode"
-            >
+            <h4 class="heading" id="example-access-mode">
               <span class="secno">5.2.1. </span
               ><span class="content">Example Access Mode</span
               ><a class="self-link" href="#example-access-mode"></a>
@@ -2388,27 +2358,24 @@ ex:policy1
               class="example example-access-grant-graph"
             >
 []
-  acp:grant acl:Read, ex:Delete ;
+  acp:grant acl:Read, ex:Delete ;&nbsp;&nbsp;
   acp:context [
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
   ] .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":example-access-mode"
-              property="bibo:hasPart"
-            ></section>
           </section>
         </section>
-        <h2
-          class="heading settled"
-          data-level="6"
-          id="access-control-resolution"
-        >
+      </section>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":access-control-resolution"
+        property="bibo:hasPart"
+      >
+        <h2 class="heading" id="access-control-resolution">
           <span class="secno">6. </span
           ><span class="content">Access Control resolution</span
           ><a class="self-link" href="#access-control-resolution"></a>
@@ -2421,10 +2388,10 @@ ex:policy1
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":access-control-resolution"
+          resource=":effective-policies"
           property="bibo:hasPart"
         >
-          <h3 class="heading settled" data-level="6.1" id="effective-policies">
+          <h3 class="heading" id="effective-policies">
             <span class="secno">6.1. </span
             ><span class="content">Effective Policies</span
             ><a class="self-link" href="#effective-policies"></a>
@@ -2460,7 +2427,7 @@ ex:policy1
             The set of Policies controlling access to an ACR MUST contain all
             Policies that are linked to an ACR via the
             <a href="https://www.w3.org/TR/sparql11-query/#propertypaths"
-              ><dfn id="sparql-property-path">property path</dfn></a
+              ><dfn>property path</dfn></a
             >
             <code>acp:accessControl/acp:access</code>
             <cite
@@ -2471,17 +2438,13 @@ ex:policy1
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":effective-policies"
+            resource=":effective-policies-example"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="6.1.1"
-              id="effective-policies"
-            >
+            <h4 class="heading" id="effective-policies-example">
               <span class="secno">6.1.1. </span
               ><span class="content">Effective Policies example</span
-              ><a class="self-link" href="#effective-policies"></a>
+              ><a class="self-link" href="#effective-policies-example"></a>
             </h4>
             <p>
               The following example authorization graph means that access to
@@ -2516,19 +2479,16 @@ ex:policy1
     acp:access ex:PolicyI .
 </pre
             >
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":effective-policies"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3
-            class="heading settled"
-            data-level="6.2"
-            id="granted-access-modes"
-          >
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":granted-access-modes"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="granted-access-modes">
             <span class="secno">6.2. </span
             ><span class="content">Granted Access Modes</span
             ><a class="self-link" href="#granted-access-modes"></a>
@@ -2547,14 +2507,10 @@ ex:policy1
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":granted-access-modes"
+            resource=":granted-access-modes-example"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="6.2.1"
-              id="granted-access-modes-example"
-            >
+            <h4 class="heading" id="granted-access-modes-example">
               <span class="secno">6.2.1. </span
               ><span class="content">Granted Access Modes example</span
               ><a class="self-link" href="#granted-access-modes-example"></a>
@@ -2599,18 +2555,15 @@ ex:policyC
   acp:deny acl:Write .
 </pre
             >
+          </section>
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":granted-access-modes-example"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="6.2.2"
-              id="granted-access-modes-pseudocode"
-            >
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":granted-access-modes-pseudocode"
+            property="bibo:hasPart"
+          >
+            <h4 class="heading" id="granted-access-modes-pseudocode">
               <span class="secno">6.2.2. </span
               ><span class="content">Granted Access Modes pseudocode</span
               ><a class="self-link" href="#granted-access-modes-pseudocode"></a>
@@ -2637,15 +2590,16 @@ ex:policyC
   <span class="k">return</span> <span class="nx">allow</span>
 <span class="p">}</span>
 </code></pre>
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":granted-access-modes-pseudocode"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3 class="heading settled" data-level="6.3" id="satisfied-policy">
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":satisfied-policy"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="satisfied-policy">
             <span class="secno">6.3. </span
             ><span class="content">Satisfied Policy</span
             ><a class="self-link" href="#satisfied-policy"></a>
@@ -2683,14 +2637,10 @@ ex:policyC
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":satisfied-policy"
+            resource=":satisfied-policy-example"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="6.3.1"
-              id="satisfied-policy-example"
-            >
+            <h4 class="heading" id="satisfied-policy-example">
               <span class="secno">6.3.1. </span
               ><span class="content">Satisfied Policy example</span
               ><a class="self-link" href="#satisfied-policy-example"></a>
@@ -2737,18 +2687,15 @@ ex:policyA
   acp:noneOf ex:matcherF .
 </pre
             >
+          </section>
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":satisfied-policy-example"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="6.3.2"
-              id="satisfied-policy-pseudocode"
-            >
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":satisfied-policy-pseudocode"
+            property="bibo:hasPart"
+          >
+            <h4 class="heading" id="satisfied-policy-pseudocode">
               <span class="secno">6.3.2. </span
               ><span class="content">Satisfied Policy pseudocode</span
               ><a class="self-link" href="#satisfied-policy-pseudocode"></a>
@@ -2782,15 +2729,16 @@ ex:policyA
   <span class="k">return</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allOf</span><span class="p">.</span><span class="nx">size</span> <span class="o">!==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">anyOf</span><span class="p">.</span><span class="nx">size</span> <span class="o">===</span> <span class="mi">0</span>
 <span class="p">}</span>
 </code></pre>
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":satisfied-policy-pseudocode"
-              property="bibo:hasPart"
-            ></section>
           </section>
-          <h3 class="heading settled" data-level="6.4" id="satisfied-matcher">
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":satisfied-matcher"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="satisfied-matcher">
             <span class="secno">6.4. </span
             ><span class="content">Satisfied Matcher</span
             ><a class="self-link" href="#satisfied-matcher"></a>
@@ -2798,12 +2746,12 @@ ex:policyA
           <p>
             The default operation of matching is based on
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-iri-equality"
-              ><dfn id="rdf-iri-eqality">IRI</dfn></a
+              ><dfn>IRI</dfn></a
             >
             and
             <a
               href="https://www.w3.org/TR/rdf11-concepts/#dfn-literal-term-equality"
-              ><dfn id="rdf-literal-term-eqality">literal term equality</dfn></a
+              ><dfn>literal term equality</dfn></a
             >
             as defined in the RDF 1.1 Concepts and Abstract Syntax
             <cite
@@ -2814,44 +2762,38 @@ ex:policyA
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":satisfied-matcher"
+            resource=":satisfied-matcher-example"
             property="bibo:hasPart"
           >
-            <h4
-              class="heading settled"
-              data-level="6.4.1"
-              id="satisfied-matcher-example"
-            >
+            <h4 class="heading" id="satisfied-matcher-example">
               <span class="secno">6.4.1. </span
               ><span class="content">Satisfied Matcher example</span
               ><a class="self-link" href="#satisfied-matcher-example"></a>
             </h4>
+          </section>
 
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":satisfied-matcher-example"
-              property="bibo:hasPart"
-            ></section>
-            <h4
-              class="heading settled"
-              data-level="6.4.2"
-              id="satisfied-matcher-pseudocode"
-            >
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":satisfied-matcher-pseudocode"
+            property="bibo:hasPart"
+          >
+            <h4 class="heading" id="satisfied-matcher-pseudocode">
               <span class="secno">6.4.2. </span
               ><span class="content">Satisfied Matcher pseudocode</span
               ><a class="self-link" href="#satisfied-matcher-pseudocode"></a>
             </h4>
-
-            <section
-              datatype="rdf:HTML"
-              typeof="bibo:Chapter"
-              resource=":satisfied-matcher-pseudocode"
-              property="bibo:hasPart"
-            ></section>
           </section>
         </section>
-        <h2 class="heading settled" data-level="7" id="server-implementation">
+      </section>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":server-implementation"
+        property="bibo:hasPart"
+      >
+        <h2 class="heading" id="server-implementation">
           <span class="secno">7. </span
           ><span class="content">Server implementation</span
           ><a class="self-link" href="#server-implementation"></a>
@@ -2864,14 +2806,10 @@ ex:policyA
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":server-implementation"
+          resource=":capabilities-discovery"
           property="bibo:hasPart"
         >
-          <h3
-            class="heading settled"
-            data-level="7.1"
-            id="capabilities-discovery"
-          >
+          <h3 class="heading" id="capabilities-discovery">
             <span class="secno">7.1. </span
             ><span class="content">Capabilities discovery</span
             ><a class="self-link" href="#capabilities-discovery"></a>
@@ -2925,14 +2863,15 @@ ex:policyA
             it explicit which set of request attributes are understood and
             relevant when editing ACP matchers.
           </p>
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":capabilities-discovery"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="7.2" id="acr-discovery">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":acr-discovery"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="acr-discovery">
             <span class="secno">7.2. </span
             ><span class="content">ACR discovery</span
             ><a class="self-link" href="#acr-discovery"></a>
@@ -2956,14 +2895,15 @@ ex:policyA
             <code>rel</code> value of <code>type</code> and the
             <code>acp:AccessControlResource</code> URI as link target.
           </p>
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":acr-discovery"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="7.3" id="acr-editing">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":acr-editing"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="acr-editing">
             <span class="secno">7.3. </span
             ><span class="content">ACR editing</span
             ><a class="self-link" href="#acr-editing"></a>
@@ -2991,14 +2931,15 @@ ex:policyA
             protected from unwanted edits in and out of ACRs by setting adequate
             permissions in their own ACR.
           </p>
+        </section>
 
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":acr-editing"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="7.4" id="resource-management">
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
+          resource=":resource-management"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="resource-management">
             <span class="secno">7.4. </span
             ><span class="content">Resource management</span
             ><a class="self-link" href="#resource-management"></a>
@@ -3027,123 +2968,104 @@ ex:policyA
             not be implicitly granted to a resource whose access control
             resolution fails, even to owners of that resource.
           </p>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":resource-management"
-            property="bibo:hasPart"
-          ></section>
-        </section>
-        <h2 class="heading settled" data-level="" id="acknowledgements">
-          <span class="content">Acknowledgements</span
-          ><a class="self-link" href="#acknowledgements"></a>
-        </h2>
-        <p><em>This section is non-normative.</em></p>
-
-        <section
-          datatype="rdf:HTML"
-          typeof="bibo:Chapter"
-          resource=":acknowledgements"
-          property="bibo:hasPart"
-        ></section>
-        <h2 class="heading settled" data-level="" id="references">
-          <span class="content">References</span
-          ><a class="self-link" href="#references"></a>
-        </h2>
-
-        <section
-          datatype="rdf:HTML"
-          typeof="bibo:Chapter"
-          resource=":references"
-          property="bibo:hasPart"
-        >
-          <h3 class="heading settled" data-level="" id="normative-references">
-            <span class="content">Normative references</span
-            ><a class="self-link" href="#normative-references"></a>
-          </h3>
-          <dl resource="">
-            <dt id="rdf11-concepts">[RDF11-CONCEPTS]</dt>
-            <dd>
-              <a
-                href="https://www.w3.org/TR/rdf11-concepts/"
-                rel="cito:citesAsAuthority"
-                ><cite>RDF 1.1 Concepts and Abstract Syntax</cite></a
-              >. Richard Cyganiak; David Wood; Markus Lanthaler. W3C. 25
-              February 2014. W3C Recommendation. URL:
-              <a href="https://www.w3.org/TR/rdf11-concepts/"
-                >https://www.w3.org/TR/rdf11-concepts/</a
-              >.
-            </dd>
-            <dt id="rfc2119">[RFC2119]</dt>
-            <dd>
-              <a
-                href="https://www.rfc-editor.org/info/rfc2119"
-                rel="cito:citesAsAuthority"
-                ><cite
-                  >Key words for use in RFCs to Indicate Requirement
-                  Levels</cite
-                ></a
-              >. S. Bradner. IETF. March 1997. Best Current Practice. URL:
-              <a href="https://datatracker.ietf.org/doc/html/rfc2119"
-                >https://datatracker.ietf.org/doc/html/rfc2119</a
-              >.
-            </dd>
-            <dt id="rfc8174">[RFC8174]</dt>
-            <dd>
-              <a
-                href="https://www.rfc-editor.org/info/rfc8174"
-                rel="cito:citesAsAuthority"
-                ><cite
-                  >Ambiguity of Uppercase vs Lowercase in RFC 2119 Key
-                  Words</cite
-                ></a
-              >. B. Leiba. IETF. May 2017. Best Current Practice. URL:
-              <a href="https://datatracker.ietf.org/doc/html/rfc8174"
-                >https://datatracker.ietf.org/doc/html/rfc8174</a
-              >.
-            </dd>
-            <dt id="sparql11-query">[SPARQL11-QUERY]</dt>
-            <dd>
-              <a
-                href="https://www.w3.org/TR/sparql11-query/"
-                rel="cito:citesAsAuthority"
-                ><cite>SPARQL 1.1 Query</cite></a
-              >. Steve Harris; Andy Seaborne; Eric Prud'hommeaux. W3C. 21 March
-              2013. W3C Recommendation. URL:
-              <a href="https://www.w3.org/TR/sparql11-query/"
-                >https://www.w3.org/TR/sparql11-query/</a
-              >.
-            </dd>
-          </dl>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":normative-references"
-            property="bibo:hasPart"
-          ></section>
-          <h3 class="heading settled" data-level="" id="informative-references">
-            <span class="content">Informative references</span
-            ><a class="self-link" href="#informative-references"></a>
-          </h3>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
-            resource=":informative-references"
-            property="bibo:hasPart"
-          ></section>
         </section>
       </section>
     </main>
-    <p role="navigation" id="back-to-top">
-      <a href="#toc"><abbr title="Back to top">↑</abbr></a>
-    </p>
 
+    <section
+      datatype="rdf:HTML"
+      typeof="bibo:Chapter"
+      resource=":acknowledgements"
+      property="bibo:hasPart"
+    >
+      <h2 id="acknowledgements">Acknowledgements</h2>
+      <p><em>This section is non-normative.</em></p>
+    </section>
+
+    <section
+      datatype="rdf:HTML"
+      typeof="bibo:Chapter"
+      resource=":references"
+      property="bibo:hasPart"
+    >
+      <h2 id="references">References</h2>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":normative-references"
+        property="bibo:hasPart"
+      >
+        <h3 id="normative-references">Normative references</h3>
+        <dl resource="">
+          <dt id="rdf11-concepts">[RDF11-CONCEPTS]</dt>
+          <dd>
+            <a
+              href="https://www.w3.org/TR/rdf11-concepts/"
+              rel="cito:citesAsAuthority"
+              ><cite>RDF 1.1 Concepts and Abstract Syntax</cite></a
+            >. Richard Cyganiak; David Wood; Markus Lanthaler. W3C. 25 February
+            2014. W3C Recommendation. URL:
+            <a href="https://www.w3.org/TR/rdf11-concepts/"
+              >https://www.w3.org/TR/rdf11-concepts/</a
+            >.
+          </dd>
+          <dt id="rfc2119">[RFC2119]</dt>
+          <dd>
+            <a
+              href="https://www.rfc-editor.org/info/rfc2119"
+              rel="cito:citesAsAuthority"
+              ><cite
+                >Key words for use in RFCs to Indicate Requirement Levels</cite
+              ></a
+            >. S. Bradner. IETF. March 1997. Best Current Practice. URL:
+            <a href="https://datatracker.ietf.org/doc/html/rfc2119"
+              >https://datatracker.ietf.org/doc/html/rfc2119</a
+            >.
+          </dd>
+          <dt id="rfc8174">[RFC8174]</dt>
+          <dd>
+            <a
+              href="https://www.rfc-editor.org/info/rfc8174"
+              rel="cito:citesAsAuthority"
+              ><cite
+                >Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite
+              ></a
+            >. B. Leiba. IETF. May 2017. Best Current Practice. URL:
+            <a href="https://datatracker.ietf.org/doc/html/rfc8174"
+              >https://datatracker.ietf.org/doc/html/rfc8174</a
+            >.
+          </dd>
+          <dt id="sparql11-query">[SPARQL11-QUERY]</dt>
+          <dd>
+            <a
+              href="https://www.w3.org/TR/sparql11-query/"
+              rel="cito:citesAsAuthority"
+              ><cite>SPARQL 1.1 Query</cite></a
+            >. Steve Harris; Andy Seaborne; Eric Prud'hommeaux. W3C. 21 March
+            2013. W3C Recommendation. URL:
+            <a href="https://www.w3.org/TR/sparql11-query/"
+              >https://www.w3.org/TR/sparql11-query/</a
+            >.
+          </dd>
+        </dl>
+      </section>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":informative-references"
+        property="bibo:hasPart"
+      >
+        <h3 id="informative-references">Informative references</h3>
+      </section>
+    </section>
+    <p role="navigation" id="back-to-top">
+      <a href="#table-of-contents"><abbr title="Back to top">↑</abbr></a>
+    </p>
     <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
 
-    <script type="text/javascript">
+    <script>
       // <![CDATA[
       /* script-dfn-panel */
       document.body.addEventListener("click", function (e) {
