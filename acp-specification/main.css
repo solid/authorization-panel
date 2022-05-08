@@ -31,14 +31,13 @@ dd li {
 table {
   border-collapse: collapse;
   border-color: #000000;
-  margin: 16px;
 }
 
 td,
 th {
   border-width: 1px;
   border-style: solid;
-  padding: 5px;
+  padding: 0.4em 0.6em;
 }
 
 .bibref::before {
@@ -88,7 +87,7 @@ th {
   padding: 2em;
 }
 
-.example::before {
+.example::before, .pseudocode::before {
   background: white;
   border: 1px solid #bbb;
   color: #666;
@@ -97,20 +96,11 @@ th {
   margin: -2em 0 1em -2em;
   padding: 0.2em 2em;
   text-transform: none;
-  width: 16em;
+  width: 14em;
 }
 
 .pseudocode::before {
-  background: white;
-  border: 1px solid #bbb;
-  color: #666;
   content: "Example JavaScript code";
-  display: block;
-  font-family: sans-serif;
-  margin: -2em 0 1em -2em;
-  padding: 0.2em 2em;
-  text-transform: none;
-  width: 16em;
 }
 
 .example-context-graph {
