@@ -498,8 +498,8 @@
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#capabilities-discovery" class="tocxref"
-                ><span class="secno">7.1</span>Capabilities discovery</a
+              <a href="#capability-discovery" class="tocxref"
+                ><span class="secno">7.1</span>Capability discovery</a
               >
             </li>
           </ol>
@@ -662,12 +662,15 @@
             This document uses the following RDF vocabularies and corresponding
             namespace prefix bindings:
           </p>
+
           <table>
-            <tbody>
+            <thead>
               <tr>
                 <th>Prefix</th>
                 <th>Namespace</th>
               </tr>
+            </thead>
+            <tbody>
               <tr about="acp:">
                 <td>
                   <code property="vann:preferredNamespacePrefix">acp:</code>
@@ -2799,20 +2802,20 @@ ex:policyA
           ><a class="self-link" href="#server-implementation"></a>
         </h2>
         <p>
-          This section introduces how servers must advertise capabilities and
-          ACRs, manage the lifecycle of resources, and restrict editing of ACRs.
+          This section introduces ACP server capability and ACR discovery, as
+          well as ACR editing, and ACP resources lifecycle management.
         </p>
 
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":capabilities-discovery"
+          resource=":capability-discovery"
           property="bibo:hasPart"
         >
-          <h3 class="heading" id="capabilities-discovery">
+          <h3 class="heading" id="capability-discovery">
             <span class="secno">7.1. </span
-            ><span class="content">Capabilities discovery</span
-            ><a class="self-link" href="#capabilities-discovery"></a>
+            ><span class="content">Capability discovery</span
+            ><a class="self-link" href="#capability-discovery"></a>
           </h3>
           <p>
             When a server wants to enable applications to discover its ACP
