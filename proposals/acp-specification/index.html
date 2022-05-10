@@ -46,7 +46,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-05-06">2022-05-06</time>
+        <time property="dc:issued" datetime="2022-05-10">2022-05-10</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -2761,6 +2761,17 @@ ex:policyA
               ><a class="bibref" href="#rdf11-concepts">RDF11 CONCEPTS</a></cite
             >.
           </p>
+
+          <div about="acp:Matcher" property="rdfs:comment">
+            <p>A Matcher MUST be considered satisfied if and only if:</p>
+            <ul>
+              <li>It defines at least one matching attribute; and</li>
+              <li>
+                All the attributes defined find a match in the given resource
+                access description.
+              </li>
+            </ul>
+          </div>
 
           <section
             datatype="rdf:HTML"
