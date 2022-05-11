@@ -108,14 +108,6 @@ acp:apply
     rdfs:domain acp:AccessControl ;
     rdfs:range acp:Policy .
 
-acp:access
-    a rdf:Property ;
-    rdfs:label "access"@en ;
-    rdfs:comment "The access property connects Access Controls to the Policies they apply to ACRs."@en ;
-    rdfs:isDefinedBy acp: ;
-    rdfs:domain acp:AccessControl ;
-    rdfs:range acp:Policy .
-
 acp:allow
     a rdf:Property ;
     rdfs:label "allow"@en ;

@@ -1507,25 +1507,6 @@ ex:accessControlResourceA
               <span property="rdfs:range" resource="acp:Policy">Policies</span>
               they apply to resources.
             </dd>
-
-            <dt
-              id="acp-access"
-              about="acp:access"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdf:Property"
-            >
-              <code>acp:access</code>
-            </dt>
-            <dd about="acp:access" property="rdfs:comment">
-              The <span property="rdfs:label">access</span> property connects
-              <span property="rdfs:domain" resource="acp:AccessControl"
-                >Access Controls</span
-              >
-              to the
-              <span property="rdfs:range" resource="acp:Policy">Policies</span>
-              they apply to ACRs.
-            </dd>
           </dl>
 
           <section
@@ -1541,8 +1522,7 @@ ex:accessControlResourceA
             </h4>
             <p>
               The following example authorization graph means that access to
-              resource X is controlled by Policy C while access to ACR A is
-              controlled by Policy D.
+              resource X is controlled by Policy C.
             </p>
 
             <pre
@@ -1553,7 +1533,6 @@ ex:accessControlResourceA
   acp:resource ex:resourceX ;&nbsp;&nbsp;
   acp:accessControl [
     acp:apply ex:policyC ;
-    acp:access ex:policyD ;
   ] .
 </pre
             >
@@ -2413,18 +2392,6 @@ ex:policy1
             >.
           </p>
 
-          <p>
-            The set of Policies controlling access to an ACR MUST contain all
-            Policies that are linked to an ACR via the
-            <a href="https://www.w3.org/TR/sparql11-query/#propertypaths"
-              ><dfn>property path</dfn></a
-            >
-            <code>acp:accessControl/acp:access</code>
-            <cite
-              ><a class="bibref" href="#sparql11-query">SPARQL11 QUERY</a></cite
-            >.
-          </p>
-
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
@@ -2439,13 +2406,14 @@ ex:policy1
             <p>
               The following example authorization graph means that access to
               resource X is controlled by both Access Controls B and C, access
-              to resource X is therefore controlled by Policy E and Policy D.
-              Furthermore, access to Access Control Resource A is also
-              controlled by Access Controls B and C, and therefore, access to
-              Access Control Resource A is controlled by Policy H. The member
-              Access Controls are not taken into account at this level, however
-              ACRs of resource X's members will include Access Control D and
-              therefore Policy G and I in their effective authorization graph.
+              to resource X is therefore controlled by Policy E and Policy F.
+              The member Access Controls are not taken into account at this
+              level. Member Access Control D will be included in the effective
+              authorization graph of resource X's members' ACRs both as an
+              Access Control and a member Access Control. Therefore, Policy G
+              will be part of the set of effective Policies controlling access
+              to resource X's members and transitively to further members of
+              member resources.
             </p>
 
             <pre
@@ -2461,12 +2429,10 @@ ex:policy1
     acp:apply ex:PolicyE .
 
   ex:accessControlC
-    acp:apply ex:PolicyF ;
-    acp:access ex:PolicyH .
+    acp:apply ex:PolicyF .
 
   ex:accessControlD
-    acp:apply ex:PolicyG ;
-    acp:access ex:PolicyI .
+    acp:apply ex:PolicyG .
 </pre
             >
           </section>
