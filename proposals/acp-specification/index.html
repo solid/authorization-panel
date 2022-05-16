@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html
   about="https://solidproject.org/TR/acp#"
+  typeof="schema:Article doap:Specification"
   prefix="
-    rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-    rdfs: http://www.w3.org/2000/01/rdf-schema#
-    owl: http://www.w3.org/2002/07/owl#
-    xsd: http://www.w3.org/2001/XMLSchema#
-    acp: http://www.w3.org/ns/solid/acp#
-    dc: http://purl.org/dc/terms/
-    doap: http://usefulinc.com/ns/doap#
-    bibo: http://purl.org/ontology/bibo/
-    cito: http://purl.org/spar/cito/
-    schema: http://schema.org/
-    vann: http://purl.org/vocab/vann/"
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  owl: http://www.w3.org/2002/07/owl#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  acp: http://www.w3.org/ns/solid/acp#
+  dc: http://purl.org/dc/terms/
+  doap: http://usefulinc.com/ns/doap#
+  bibo: http://purl.org/ontology/bibo/
+  cito: http://purl.org/spar/cito/
+  schema: http://schema.org/
+  vann: http://purl.org/vocab/vann/"
   dir="ltr"
   lang="en"
 >
@@ -37,7 +38,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-05-10">2022-05-10</time>
+        <time property="dc:issued" datetime="2022-05-16">2022-05-16</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -405,6 +406,14 @@
                   <a href="#effective-policies-example" class="tocxref"
                     ><span class="secno">6.1.1</span>Effective Policies
                     example</a
+                  >
+                </li>
+              </ol>
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#effective-policies-pseudocode" class="tocxref"
+                    ><span class="secno">6.1.2</span>Effective Policies
+                    pseudocode</a
                   >
                 </li>
               </ol>
@@ -2436,6 +2445,19 @@ ex:policy1
 </pre
             >
           </section>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":effective-policies-pseudocode"
+            property="bibo:hasPart"
+          >
+            <h4 class="heading" id="effective-policies-pseudocode">
+              <span class="secno">6.1.2. </span
+              ><span class="content">Effective Policies pseudocode</span
+              ><a class="self-link" href="#effective-policies-pseudocode"></a>
+            </h4>
+          </section>
         </section>
 
         <section
@@ -2791,8 +2813,10 @@ ex:policyA
             to HTTP OPTIONS requests over ACP access control resources including
             a Link header with the rel value of
             <code>http://www.w3.org/ns/solid/acp#grant</code> and the full URI
-            of an access mode as link target [RFC8288]. The server MUST produce
-            one such Link header for each access mode it supports.
+            of an access mode as link target
+            <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
+            >. The server MUST produce one such Link header for each access mode
+            it supports.
           </p>
 
           <p>
@@ -2813,8 +2837,10 @@ ex:policyA
             responding to HTTP OPTIONS requests over ACP access control
             resources including a Link header with the rel value of
             <code>http://www.w3.org/ns/solid/acp#attribute</code> and the full
-            URI of an acp attribute as link target [RFC8288]. The server MUST
-            produce one such Link header for each request attribute it supports.
+            URI of an acp attribute as link target
+            <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
+            >. The server MUST produce one such Link header for each request
+            attribute it supports.
           </p>
 
           <p>
@@ -2850,7 +2876,9 @@ ex:policyA
             with that resource by responding to HTTP requests over the resource
             including a <code>Link</code> header with the <code>rel</code> value
             of <code>acl</code> (acl Link Relation) and the ACP access control
-            resource as the link target [RFC8288]. The same mechanism is used in
+            resource as the link target
+            <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
+            >. The same mechanism is used in
             <a
               href="https://solid.github.io/web-access-control-spec/#acl-resource-discovery"
               >Web Access Control resource discovery</a
@@ -3001,6 +3029,17 @@ ex:policyA
             >. B. Leiba. IETF. May 2017. Best Current Practice. URL:
             <a href="https://datatracker.ietf.org/doc/html/rfc8174"
               >https://datatracker.ietf.org/doc/html/rfc8174</a
+            >.
+          </dd>
+          <dt id="rfc8288">[RFC8288]</dt>
+          <dd>
+            <a
+              href="https://www.rfc-editor.org/info/rfc8288"
+              rel="cito:citesAsAuthority"
+              ><cite>Web Linking</cite></a
+            >. B. Leiba. IETF. October 2017. Proposed Standard. URL:
+            <a href="https://datatracker.ietf.org/doc/html/rfc8288"
+              >https://datatracker.ietf.org/doc/html/rfc8288</a
             >.
           </dd>
           <dt id="sparql11-query">[SPARQL11-QUERY]</dt>
