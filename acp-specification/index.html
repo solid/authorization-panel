@@ -136,7 +136,7 @@
           >Access Control Policy Language (ACP)</span
         >.
         <span about="acp:" typeof="owl:Ontology" property="rdfs:comment"
-          >ACP is a language for describing, controlling and granting access to
+          >ACP is a language for describing, controlling, and granting access to
           resources.</span
         >
       </p>
@@ -533,6 +533,13 @@
               >
             </li>
           </ol>
+          <ol class="toc">
+            <li class="tocline">
+              <a href="#informative-references" class="tocxref"
+                >Informative references</a
+              >
+            </li>
+          </ol>
         </li>
       </ol>
     </nav>
@@ -552,7 +559,7 @@
           explanation of the conventions used in this document, example graphs
           to illustrate basic concepts of resource access description and
           validation, a diagram representing the main elements of the ACP data
-          model, and a non-normative RDF representation of the ACP ontology.
+          model, and an RDF representation of the ACP ontology.
         </p>
 
         <section
@@ -752,28 +759,49 @@
           <p><em>This section is non-normative.</em></p>
 
           <dl>
-            <dt id="terminology-context-graph">Context graph</dt>
+            <dt id="acp-terminology-context-graph">Context graph</dt>
             <dd>
               <a href="#context-graph">Context graphs</a> describe the
-              attributes of resource access instances. Those attributes can be
-              matched to sets of conditions defined in the form of an
-              <a href="#terminology-authorization-graph">authorization graph</a>
+              attributes of resource access instances. An access request's
+              attributes can be matched to sets of conditions defined in the
+              form of an
+              <a href="#acp-terminology-authorization-graph"
+                >authorization graph</a
+              >
               in order to determine Access Modes granted over resources.
             </dd>
-            <dt id="terminology-authorization-graph">Authorization graph</dt>
+
+            <dt id="acp-terminology-authorization-graph">
+              Authorization graph
+            </dt>
             <dd>
               <a href="#authorization-graph">Authorization graphs</a>
               authoritatively define the conditions for granting Access Modes
               over resources through Access Controls, Policies and Matchers. The
               result of applying an authorization graph to a described instance
               of resource access is an
-              <a href="#terminology-access-grant-graph">access grant graph</a>.
+              <a href="#acp-terminology-access-grant-graph"
+                >access grant graph</a
+              >.
             </dd>
-            <dt id="terminology-access-grant-graph">Access grant graph</dt>
+
+            <dt id="acp-terminology-access-grant-graph">Access grant graph</dt>
             <dd>
               <a href="#access-grant-graph">Access grant graphs</a> describe
               sets of granted access modes over resources in the context of
-              resource access instances.
+              resource access requests. Access grants are the result of
+              <a href="#acp-terminology-access-control-resolution"
+                >access control resolution</a
+              >.
+            </dd>
+
+            <dt id="acp-terminology-access-control-resolution">
+              Access control resolution
+            </dt>
+            <dd>
+              <a href="#access-control-resolution">Access control resolution</a>
+              describes the algorithms used to apply an authorization graph to
+              an access request in order to obtain an access grant.
             </dd>
           </dl>
         </section>
@@ -794,18 +822,22 @@
           <p>
             Throughout this document, color-coded boxes contain the RDF
             representation of example context graphs, authorization graphs, and
-            access grant graphs serialized in Turtle. Those graphs use a mix of
-            IRIs and blank nodes where applicable to better show the range of
-            possible representations.
+            access grant graphs serialized in
+            <a href="https://www.w3.org/TR/turtle/"
+              ><dfn id="turtle-syntax">turtle syntax</dfn></a
+            >
+            <cite><a class="bibref" href="#turtle">TURTLE</a></cite
+            >. Those graphs use a mix of IRIs and blank nodes where applicable
+            to better show the range of possible representations.
           </p>
 
           <p>
             The following example
-            <a href="#terminology-context-graph">context graph</a> describes an
-            instance of resource access and could be translated as:
+            <a href="#acp-terminology-context-graph">context graph</a> describes
+            an instance of resource access and could be translated as:
             <em
-              >"Bob is trying to access resource X using client application Y
-              with his identity asserted by identity provider Z."</em
+              >"Bob is trying to read resource X using client application Y with
+              his identity asserted by identity provider Z."</em
             >.
           </p>
 
@@ -816,14 +848,17 @@
 []
   acp:agent ex:Bob ;
   acp:target ex:resourceX ;
-  acp:client ex:ClientApplicationY ;
-  acp:issuer ex:IdentityProviderZ .
+  acp:mode acl:Read ;
+  acp:client ex:clientApplicationY ;
+  acp:issuer ex:identityProviderZ .
 </pre
           >
 
           <p>
             The following example
-            <a href="#terminology-authorization-graph">authorization graph</a>
+            <a href="#acp-terminology-authorization-graph"
+              >authorization graph</a
+            >
             authoritatively defines the conditions of access to resource X and
             could be translated as:
             <em
@@ -850,7 +885,7 @@
       a acp:Policy ;
       acp:allow acl:Read ;
       acp:anyOf [
-        a acp:AgentMatcher ;
+        a acp:Matcher ;
         acp:agent ex:Alice, ex:Bob ;
       ]
     ]
@@ -860,16 +895,18 @@
 
           <p>
             The following example
-            <a href="#terminology-access-grant-graph">access grant graph</a> is
-            the result of applying the previous example authorization graph
-            which defines access to resource X to the previous example context
-            graph which describes an instance of access to target resource X.
-            Bob is matched as the context agent and since it defines no further
-            restrictions, the policy allowing <code>acl:Read</code> is
+            <a href="#acp-terminology-access-grant-graph">access grant graph</a>
+            is the result of
+            <a href="#acp-terminology-access-control-resolution">applying</a>
+            the previous example authorization graph which defines access to
+            resource X to the previous example context graph which describes a
+            read access request to target resource X. Bob is matched as the
+            context agent and since the policy allowing
+            <code>acl:Read</code> defines no further restrictions, it is
             satisfied. The following access grant graph could be read as:
             <em
               >"The access mode <code>acl:Read</code> is granted to Bob whom
-              requested access to resource X using client application Y and
+              requested read access to resource X using client application Y and
               whose identity was asserted by identity provider Z."</em
             >.
           </p>
@@ -886,6 +923,7 @@
   acp:context [
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
+    acp:mode acl:Read ;
     acp:client ex:ClientApplicationY ;
     acp:issuer ex:IdentityProviderZ ;
   ] .
@@ -1042,16 +1080,11 @@
               <code>acp:attribute</code>
             </dt>
             <dd about="acp:attribute" property="rdfs:comment">
-              The <span property="rdfs:label">attribute</span> properties
-              defined by ACP describe
+              Sub-properties of ACP
+              <span property="rdfs:label">attribute</span> are used to describe
               <span property="rdfs:domain" resource="acp:Context"
-                >instances</span
-              >
-              of
-              <span property="rdfs:range" resource="rdfs:Resource"
-                >resource</span
-              >
-              access.
+                >instances of resource access</span
+              >.
             </dd>
 
             <dt
@@ -1068,7 +1101,10 @@
               <span property="rdfs:subPropertyOf" resource="acp:attribute"
                 >attribute</span
               >
-              describes requested resources.
+              describes
+              <span property="rdfs:domain" resource="acp:AccessRequest"
+                >requested access controlled resources</span
+              >.
             </dd>
 
             <dt
@@ -1224,7 +1260,7 @@
 
             <p>
               The following example context graph denotes instances of resource
-              access over resource X initiated by Bob.
+              access initiated by Bob.
             </p>
 
             <pre id="example-context-0" class="example example-context-graph">
@@ -1235,20 +1271,20 @@
             >
 
             <p>
-              The following example context graph denotes instances of resource
-              access over resource X initiated by Bob using client application Y
-              where Bob's identity is asserted by identity provider Z, Bob is
-              the owner of resource X, and Alice is the creator of resource X.
+              The following example context graph means that Bob requests access
+              to resource X using client application Y and with his identity
+              asserted by identity provider Z; furthermore, resource X was
+              created by Alice and is owned by Bob.
             </p>
 
             <pre id="example-context-1" class="example example-context-graph">
 ex:contextA
-  acp:agent ex:Bob ;
   acp:target ex:resourceX ;
-  acp:owner ex:Bob ;
-  acp:creator ex:Alice ;
+  acp:agent ex:Bob ;
   acp:client ex:ClientApplicationY ;&nbsp;&nbsp;
-  acp:issuer ex:IdentityProviderZ .
+  acp:issuer ex:IdentityProviderZ ;
+  acp:owner ex:Bob ;
+  acp:creator ex:Alice .
 </pre
             >
 
@@ -1281,8 +1317,7 @@ ex:contextA
           </h3>
           <p about="acp:attribute" property="rdfs:comment">
             Sub-properties of <code>acp:attribute</code> can be created to fit
-            the specific resource access description requirements of
-            applications.
+            the specific access control requirements of applications.
           </p>
 
           <section
@@ -1311,8 +1346,8 @@ ex:contextA
               class="example example-context-graph"
             >
 ex:contextA
-  acp:agent ex:Bob ;
   acp:target ex:resourceX ;
+  acp:agent ex:Bob ;
   ex:tag ex:Music, ex:FavouriteRecord .&nbsp;&nbsp;
 </pre
             >
@@ -1349,7 +1384,7 @@ ex:contextA
           </h3>
           <dl>
             <dt
-              id="acp-access-control-resource"
+              id="acp-Access-Control-Resource"
               about="acp:AccessControlResource"
               property="rdfs:isDefinedBy"
               resource="acp:"
@@ -1448,7 +1483,9 @@ ex:contextA
               The following example authorization graph means that access to
               resource X is controlled by both Access Controls B and C;
               furthermore, access to members of resource X is controlled by
-              Access Control D.
+              Access Control D; furthermore, member control is transitive,
+              therefore, further members of member resources will also be
+              controlled by Access Control D.
             </p>
 
             <pre
@@ -1540,8 +1577,8 @@ ex:accessControlResourceA
             >
 
             <p>
-              The following two example authorization graphs mean that access to
-              resource X is controlled by Policy D and Policy E.
+              The following two example authorization graphs both mean that
+              access to resource X is controlled by Policy D and Policy E.
             </p>
 
             <pre
@@ -1651,10 +1688,9 @@ ex:accessControlF
             <dd about="acp:allOf" property="rdfs:comment">
               The <span property="rdfs:label">all of</span> property connects
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
-              to the set of
+              to a set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
-              all of which MUST must be satisfied for the Policy to be
-              satisfied.
+              all of which MUST be satisfied for the Policy to be satisfied.
             </dd>
 
             <dt
@@ -1669,7 +1705,7 @@ ex:accessControlF
             <dd about="acp:anyOf" property="rdfs:comment">
               The <span property="rdfs:label">any of</span> property connects
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
-              to the set of
+              to a set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
               at least one of which MUST be satisfied for the Policy to be
               satisfied.
@@ -1687,7 +1723,7 @@ ex:accessControlF
             <dd about="acp:noneOf" property="rdfs:comment">
               The <span property="rdfs:label">none of</span> property connects
               <span property="rdfs:domain" resource="acp:Policy">Policies</span>
-              to the set of
+              to a set of
               <span property="rdfs:range" resource="acp:Matcher">Matchers</span>
               all of which MUST NOT be satisfied for the Policy to be satisfied.
             </dd>
@@ -1706,8 +1742,8 @@ ex:accessControlF
             </h4>
             <p>
               The following example authorization graph means that Policy A will
-              allow Read for instances of resource access satisfying both
-              Matcher B and Matcher C.
+              allow <code>acl:Read</code> for instances of resource access
+              satisfying both Matcher B and Matcher C.
             </p>
 
             <pre
@@ -1722,8 +1758,8 @@ ex:policyA
 
             <p>
               The following example authorization graph means that a Policy will
-              deny Write for instances of resource access satisfying either
-              Matcher B or Matcher C.
+              deny <code>acl:Write</code> for instances of resource access
+              satisfying either Matcher B or Matcher C.
             </p>
 
             <pre
@@ -1737,8 +1773,8 @@ ex:policyA
             >
 
             <p>
-              The following example authorization graph means that Reading and
-              Writing resource X will be allowed for instances of resource
+              The following example authorization graph means that reading and
+              writing resource X will be allowed for instances of resource
               access satisfying Matcher A and not Matcher B.
             </p>
 
@@ -1783,9 +1819,7 @@ ex:policyA
             </dt>
             <dd about="acp:Matcher" property="rdfs:comment">
               Instances of the <span property="rdfs:label">Matcher</span> class
-              are descriptions of matching resource access Contexts. To satisfy
-              a Matcher, every described resource access attribute must match
-              the resource access Context.
+              are descriptions of matching resource access Contexts.
             </dd>
 
             <dt id="acp-agent-matcher">
@@ -1973,8 +2007,8 @@ ex:policyA
               ><a class="self-link" href="#example-matcher"></a>
             </h4>
             <p>
-              The following example authorization graph means that Agent Matcher
-              A will be satisfied when either Alice or the owner of the access
+              The following example authorization graph means that Matcher A
+              will be satisfied when either Alice or the owner of the access
               controlled resource are requesting access.
             </p>
 
@@ -1990,9 +2024,9 @@ ex:matcherA
 
             <p>
               The following example authorization graph means that the defined
-              Client Matcher will be satisfied when matched against a context
-              graph where the client used to access the access controlled
-              resource is client B.
+              Matcher will be satisfied when matched against a context graph
+              where the client used to access the access controlled resource is
+              client B.
             </p>
 
             <pre
@@ -2007,11 +2041,10 @@ ex:matcherA
             >
 
             <p>
-              The following example authorization graph means that Issuer
-              Matcher A will be satisfied when matched against a context graph
-              where the identity provider used to assert the identity of the
-              agent requesting access to the access controlled resource is
-              issuer B.
+              The following example authorization graph means that Matcher A
+              will be satisfied when matched against a context graph where the
+              identity provider used to assert the identity of the agent
+              requesting access to the access controlled resource is issuer B.
             </p>
 
             <pre
@@ -2026,10 +2059,9 @@ ex:matcherA
 
             <p>
               The following example authorization graph means that the defined
-              Verifiable Credentials (VC) Matcher A will be satisfied when
-              matched against a context graph where one of the presented
-              verifiable credentials is an instance of credential B, is valid
-              and has been issued to the agent requesting the resource.
+              Matcher will be satisfied when matched against a context graph
+              showing that a valid VC of type credential B has been presented by
+              the agent requesting access to the access controlled resource.
             </p>
 
             <pre
@@ -2064,8 +2096,8 @@ ex:matcherA
               The following example authorization graph means that the defined
               matcher will be satisfied only if Alice, whose identity is
               asserted by Identity Provider B, is the agent requesting resource
-              access and is doing so presenting a VC that is a verified instance
-              of credential A issued to Alice.
+              access and is doing so presenting a VC that is a valid instance of
+              credential A.
             </p>
 
             <pre
@@ -2124,11 +2156,9 @@ ex:policyB
             ><a class="self-link" href="#matcher-extensibility"></a>
           </h3>
           <p about="acp:Matcher" property="rdfs:comment">
-            All sub-properties of <code>acp:attribute</code> correspond
-            implicitly to their own type of Matcher restriction. If applications
-            support additional sub-properties of
-            <code>acp:attribute</code> other than the ones defined by ACP, then,
-            they MUST also implement corresponding matching algorithms.
+            ACP implementations supporting sub-properties of
+            <code>acp:attribute</code> other than the ones defined by ACP SHOULD
+            also define and implement corresponding matching algorithms.
           </p>
 
           <section
@@ -2310,10 +2340,11 @@ ex:policy1
               Instead, any Access Mode granted is an instance of the
               <span property="rdfs:label">Access Mode</span> class. Access Modes
               and their granularity can be tailored to the needs of an
-              application. Access Modes defined in other vocabularies (<span
-                property="rdfs:seeAlso"
-                >for example ACL</span
-              >) can also be used.
+              application and Access Modes defined in other vocabularies can
+              also be used (for example instances of
+              <a rel="rdfs:seeAlso" href="http://www.w3.org/ns/auth/acl#Access"
+                ><dfn>ACL Access</dfn></a
+              >).
             </dd>
           </dl>
 
@@ -2332,8 +2363,7 @@ ex:policy1
               The following example access grant graph means that
               <code>acl:Read</code> and <code>ex:Delete</code> are Access Modes;
               furthermore, it means that <code>acl:Read</code> and
-              <code>ex:Delete</code> have been granted to Bob for accessing
-              resource X.
+              <code>ex:Delete</code> have been granted to Bob over resource X.
             </p>
 
             <pre
@@ -2343,8 +2373,8 @@ ex:policy1
 []
   acp:grant acl:Read, ex:Delete ;&nbsp;&nbsp;
   acp:context [
-    acp:agent ex:Bob ;
     acp:target ex:resourceX ;
+    acp:agent ex:Bob ;
   ] .
 </pre
             >
@@ -2501,8 +2531,8 @@ ex:policy1
               the set of Policies controlling access to it:
             </p>
             <ul>
-              <li>A satisfied policy allows the Access Mode; and</li>
-              <li>No satisfied policy denies the Access Mode.</li>
+              <li>a satisfied policy allows the Access Mode; and,</li>
+              <li>no satisfied policy denies the Access Mode.</li>
             </ul>
           </div>
 
@@ -2616,15 +2646,15 @@ ex:policyC
             <p>A Policy MUST be considered satisfied if and only if:</p>
             <ul>
               <li>
-                It references at least one Matcher via a
-                <code>acp:allOf</code> or <code>acp:anyOf</code> property; and
+                it references at least one Matcher via a
+                <code>acp:allOf</code> or <code>acp:anyOf</code> property; and,
               </li>
               <li>
-                At least one Matcher it references matches the given resource
-                access description; and
+                at least one Matcher it references matches the given resource
+                access description; and,
               </li>
               <li>
-                The <code>acp:allOf</code>, <code>acp:anyOf</code> and
+                the <code>acp:allOf</code>, <code>acp:anyOf</code> and
                 <code>acp:noneOf</code> of conditions it defines are satisfied.
               </li>
             </ul>
@@ -2764,9 +2794,13 @@ ex:policyA
           <div about="acp:Matcher" property="rdfs:comment">
             <p>A Matcher MUST be considered satisfied if and only if:</p>
             <ul>
-              <li>It defines at least one matching attribute; and</li>
               <li>
-                All the attributes defined find a match in the given resource
+                it defines at least one matching
+                <a href="#acp-attribute"><dfn>attribute</dfn></a
+                >; and,
+              </li>
+              <li>
+                all the attributes defined find a match in the given resource
                 access description.
               </li>
             </ul>
@@ -2794,17 +2828,17 @@ ex:policyA
 
             <ul>
               <li>
-                If either Alice or Bob are the requesting agent described in the
+                either Alice or Bob are the requesting agent described in the
                 Access Request Context OR if the requesting agent is an Owner or
                 Creator described in the Access Request Context; and,
               </li>
               <li>
-                If client 1 is used by the requesting agent to access the
-                resource and therefore described as the client in the Access
-                Request Context; and,
+                client 1 is used by the requesting agent to access the resource
+                and therefore described as the client in the Access Request
+                Context; and,
               </li>
               <li>
-                If issuer 2 is used by the requesting agent to assert their
+                issuer 2 is used by the requesting agent to assert their
                 identity and therefore described as the issuer in the Access
                 Request Context.
               </li>
@@ -2813,16 +2847,7 @@ ex:policyA
             <p>Matcher B will be satisfied if:</p>
 
             <ul>
-              <li>
-                A <a href="#valid-vc"><dfn>valid VC</dfn></a> of
-                <a href="#vc-type"><dfn>type</dfn></a> "family member" is
-                presented
-                <cite
-                  ><a class="bibref" href="#vc-data-model"
-                    ><dfn>VC DATA MODEL</dfn></a
-                  ></cite
-                >.
-              </li>
+              <li>A valid VC of type "family member" is presented.</li>
             </ul>
 
             <pre
@@ -3102,6 +3127,7 @@ ex:matcherB
               >https://www.w3.org/TR/rdf11-concepts/</a
             >.
           </dd>
+
           <dt id="rfc2119">[RFC2119]</dt>
           <dd>
             <a
@@ -3115,6 +3141,7 @@ ex:matcherB
               >https://datatracker.ietf.org/doc/html/rfc2119</a
             >.
           </dd>
+
           <dt id="rfc8174">[RFC8174]</dt>
           <dd>
             <a
@@ -3128,6 +3155,7 @@ ex:matcherB
               >https://datatracker.ietf.org/doc/html/rfc8174</a
             >.
           </dd>
+
           <dt id="rfc8288">[RFC8288]</dt>
           <dd>
             <a
@@ -3139,6 +3167,7 @@ ex:matcherB
               >https://datatracker.ietf.org/doc/html/rfc8288</a
             >.
           </dd>
+
           <dt id="sparql11-query">[SPARQL11-QUERY]</dt>
           <dd>
             <a
@@ -3151,7 +3180,8 @@ ex:matcherB
               >https://www.w3.org/TR/sparql11-query/</a
             >.
           </dd>
-          <dt id="vc-data-model">[VC DATA MODEL]</dt>
+
+          <dt id="vc-data-model">[VC-DATA-MODEL]</dt>
           <dd>
             <a
               href="https://www.w3.org/TR/vc-data-model/"
@@ -3161,6 +3191,27 @@ ex:matcherB
             Zundel; Kyle Den Hartog. W3C. 3 March 2022. W3C Recommendation. URL:
             <a href="https://www.w3.org/TR/vc-data-model/"
               >https://www.w3.org/TR/vc-data-model/</a
+            >.
+          </dd>
+        </dl>
+      </section>
+
+      <section
+        datatype="rdf:HTML"
+        typeof="bibo:Chapter"
+        resource=":informative-references"
+        property="bibo:hasPart"
+      >
+        <h3 id="informative-references">Informative references</h3>
+        <dl>
+          <dt id="turtle">[RDF11-TURTLE]</dt>
+          <dd>
+            <a href="https://www.w3.org/TR/turtle/" rel="rdfs:seeAlso"
+              ><cite>RDF 1.1 Turtle</cite></a
+            >. Eric Prud'hommeaux; Gavin Carothers. W3C. 25 February 2014. W3C
+            Recommendation. URL:
+            <a href="https://www.w3.org/TR/turtle/"
+              >https://www.w3.org/TR/turtle/</a
             >.
           </dd>
         </dl>
