@@ -3,17 +3,17 @@
   about="https://solidproject.org/TR/acp#"
   typeof="schema:Article doap:Specification"
   prefix="
-  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-  rdfs: http://www.w3.org/2000/01/rdf-schema#
-  owl: http://www.w3.org/2002/07/owl#
-  xsd: http://www.w3.org/2001/XMLSchema#
   acp: http://www.w3.org/ns/solid/acp#
-  dc: http://purl.org/dc/terms/
-  doap: http://usefulinc.com/ns/doap#
   bibo: http://purl.org/ontology/bibo/
   cito: http://purl.org/spar/cito/
+  dc: http://purl.org/dc/terms/
+  doap: http://usefulinc.com/ns/doap#
+  owl: http://www.w3.org/2002/07/owl#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
   schema: http://schema.org/
-  vann: http://purl.org/vocab/vann/"
+  vann: http://purl.org/vocab/vann/
+  xsd: http://www.w3.org/2001/XMLSchema#"
   dir="ltr"
   lang="en"
 >
@@ -530,13 +530,6 @@
             <li class="tocline">
               <a href="#normative-references" class="tocxref"
                 >Normative references</a
-              >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#informative-references" class="tocxref"
-                >Informative references</a
               >
             </li>
           </ol>
@@ -1927,14 +1920,26 @@ ex:policyA
               <a href="#acp-vc"><code>acp:vc</code></a>
             </dt>
             <dd about="acp:vc" property="rdfs:comment">
-              The vc attribute used in a Matcher defines a set of types of
-              <a href="https://www.w3.org/TR/vc-data-model/"
+              The vc attribute used in a Matcher defines a set of
+              <a
+                rel="cito:citesAsAuthority"
+                href="https://www.w3.org/TR/vc-data-model/#dfn-type"
+                ><dfn id="vc-type">types</dfn></a
+              >
+              of
+              <a
+                rel="cito:citesAsAuthority"
+                href="https://www.w3.org/TR/vc-data-model/"
                 ><dfn id="verifiable-credentials"
                   >Verifiable Credentials</dfn
                 ></a
               >
-              (VC), at least one of which MUST match the resource access Context
-              for the vc restriction to be satisfied.
+              (VC), at least one of which MUST be
+              <a href="https://www.w3.org/TR/vc-data-model/#validation"
+                ><dfn id="valid-vc">valid</dfn></a
+              >
+              and match the resource access Context for the vc restriction to be
+              satisfied.
             </dd>
 
             <dt
@@ -2457,24 +2462,25 @@ ex:policy1
               ><span class="content">Effective Policies pseudocode</span
               ><a class="self-link" href="#effective-policies-pseudocode"></a>
             </h4>
-            <pre>
-function gatherEffectivePolicies(acr, ancestorAcrs) {
-    const policies = new Set
+            <pre
+              class="highlight pseudocode"
+            ><code><span class="kd">function</span> <span class="nx">gatherEffectivePolicies</span><span class="p">(</span><span class="nx">acr</span><span class="p">,</span> <span class="nx">ancestorAcrs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">policies</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span>
 
-    // Direct access controls of own ACR.
-    for (const accessControl of acr.accessControls)
-        for (const policy of accessControl.apply)
-            policies.add(policy)
+  <span class="c1">// Direct access controls of own ACR.</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">accessControl</span> <span class="k">of</span> <span class="nx">acr</span><span class="p">.</span><span class="nx">accessControls</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">accessControl</span><span class="p">.</span><span class="nx">apply</span><span class="p">)</span>
+          <span class="nx">policies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
 
-    // Member access controls of ancestor ACRs.
-    for (const acr of ancestorAcrs)
-        for (const accessControl of acr.memberAccessControls)
-            for (const policy of accessControl.apply)
-                policies.add(policy)
+  <span class="c1">// Member access controls of ancestor ACRs.</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">acr</span> <span class="k">of</span> <span class="nx">ancestorAcrs</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">accessControl</span> <span class="k">of</span> <span class="nx">acr</span><span class="p">.</span><span class="nx">memberAccessControls</span><span class="p">)</span>
+          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">accessControl</span><span class="p">.</span><span class="nx">apply</span><span class="p">)</span>
+              <span class="nx">policies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
 
-    return policies
-}
-</pre>
+  <span class="k">return</span> <span class="nx">policies</span>
+<span class="p">}</span>
+</code></pre>
           </section>
         </section>
 
@@ -2777,6 +2783,71 @@ ex:policyA
               ><span class="content">Satisfied Matcher example</span
               ><a class="self-link" href="#satisfied-matcher-example"></a>
             </h4>
+            <p>
+              The following example authorization graph means that access to
+              resource X is controlled by a Policy that will allow read if it is
+              satisfied and be satisfied if either matcher A or matcher B or
+              both are satisfied.
+            </p>
+
+            <p>Matcher A will be satisfied if:</p>
+
+            <ul>
+              <li>
+                If either Alice or Bob are the requesting agent described in the
+                Access Request Context OR if the requesting agent is an Owner or
+                Creator described in the Access Request Context; and,
+              </li>
+              <li>
+                If client 1 is used by the requesting agent to access the
+                resource and therefore described as the client in the Access
+                Request Context; and,
+              </li>
+              <li>
+                If issuer 2 is used by the requesting agent to assert their
+                identity and therefore described as the issuer in the Access
+                Request Context.
+              </li>
+            </ul>
+
+            <p>Matcher B will be satisfied if:</p>
+
+            <ul>
+              <li>
+                A <a href="#valid-vc"><dfn>valid VC</dfn></a> of
+                <a href="#vc-type"><dfn>type</dfn></a> "family member" is
+                presented
+                <cite
+                  ><a class="bibref" href="#vc-data-model"
+                    ><dfn>VC DATA MODEL</dfn></a
+                  ></cite
+                >.
+              </li>
+            </ul>
+
+            <pre
+              id="satisfied-matcher-example-0"
+              class="example example-authorization-graph"
+            >
+[
+  acp:resource ex:X ;
+  acp:accessControl [
+    acp:apply [
+      acp:allow acl:Read ;
+      acp:anyOf ex:matcherA, ex:matcherB ;
+    ]
+  ]
+] .
+
+ex:matcherA
+  acp:agent ex:Alice, ex:Bob, acp:CreatorAgent, acp:OwnerAgent ;&nbsp;&nbsp;
+  acp:client ex:client1 ;
+  acp:issuer ex:issuer2 .
+
+ex:matcherB
+  acp:vc ex:familyMember .
+</pre
+            >
           </section>
 
           <section
@@ -3018,7 +3089,7 @@ ex:policyA
         property="bibo:hasPart"
       >
         <h3 id="normative-references">Normative references</h3>
-        <dl resource="">
+        <dl>
           <dt id="rdf11-concepts">[RDF11-CONCEPTS]</dt>
           <dd>
             <a
@@ -3080,16 +3151,19 @@ ex:policyA
               >https://www.w3.org/TR/sparql11-query/</a
             >.
           </dd>
+          <dt id="vc-data-model">[VC DATA MODEL]</dt>
+          <dd>
+            <a
+              href="https://www.w3.org/TR/vc-data-model/"
+              rel="cito:citesAsAuthority"
+              ><cite>VC Data Model</cite></a
+            >. Manu Sporny; Grant Noble; Dave Longley; Daniel C. Burnett; Brent
+            Zundel; Kyle Den Hartog. W3C. 3 March 2022. W3C Recommendation. URL:
+            <a href="https://www.w3.org/TR/vc-data-model/"
+              >https://www.w3.org/TR/vc-data-model/</a
+            >.
+          </dd>
         </dl>
-      </section>
-
-      <section
-        datatype="rdf:HTML"
-        typeof="bibo:Chapter"
-        resource=":informative-references"
-        property="bibo:hasPart"
-      >
-        <h3 id="informative-references">Informative references</h3>
       </section>
     </section>
 
