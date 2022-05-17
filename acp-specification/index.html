@@ -2437,6 +2437,21 @@ ex:policy1
             ><span class="content">Resolved Access Control</span
             ><a class="self-link" href="#resolved-access-control"></a>
           </h3>
+          <p>
+            The Access Control Resources of access controlled resources and
+            their ancestors, that is, the resources they are member of, MUST be
+            gathered to resolve access control.
+          </p>
+
+          <p>
+            The resource access description Context MUST be passed to the Access
+            Control resolution algorithm.
+          </p>
+
+          <p>
+            Access Control resolution of resources without Access Control
+            Resources MUST grant no Access Modes.
+          </p>
 
           <section
             datatype="rdf:HTML"
@@ -2465,18 +2480,19 @@ ex:policy1
                 href="#resolved-access-control-pseudocode"
               ></a>
             </h4>
-            <pre>
-function resolveAccessControl(acr, ancestorAcrs, context) {
-    const effectivePolicies = gatherEffectivePolicies(acr, ancestorAcrs)
-    const allowedAccessModes = grantAccessModes(effectivePolicies, context)
-    const grantGraph = {
-        context,
-        grant: allowedAccessModes
-    }
+            <pre
+              class="highlight pseudocode"
+            ><code><span class="kd">function</span> <span class="nx">resolveAccessControl</span><span class="p">(</span><span class="nx">acr</span><span class="p">,</span> <span class="nx">ancestorAcrs</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">effectivePolicies</span> <span class="o">=</span> <span class="nx">gatherEffectivePolicies</span><span class="p">(</span><span class="nx">acr</span><span class="p">,</span> <span class="nx">ancestorAcrs</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">allowedAccessModes</span> <span class="o">=</span> <span class="nx">grantAccessModes</span><span class="p">(</span><span class="nx">effectivePolicies</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">grantGraph</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">context</span><span class="p">,</span>
+      <span class="na">grant</span><span class="p">:</span> <span class="nx">allowedAccessModes</span>
+  <span class="p">}</span>
 
-    return grantGraph
-}
-</pre>
+  <span class="k">return</span> <span class="nx">grantGraph</span>
+<span class="p">}</span>
+</code></pre>
           </section>
         </section>
 
@@ -3111,6 +3127,12 @@ ex:matcherB
             ><a class="self-link" href="#capability-discovery"></a>
           </h3>
           <p>
+            The resource server MUST have a trust relationship with the ACP
+            authorization server and consider the ACP server authoritative in
+            Access Control resolution.
+          </p>
+
+          <p>
             When a server wants to enable applications to discover its ACP
             capabilities, it MUST do so via link headers.
           </p>
@@ -3198,6 +3220,11 @@ ex:matcherB
             include a <code>Link</code> header with the <code>rel</code> value
             of <code>type</code> and the
             <code>acp:AccessControlResource</code> URI as link target.
+          </p>
+
+          <p>
+            ACP does not define membership, therefore, the resource server MUST
+            be considered authoritative in defining member resources relations.
           </p>
         </section>
 
