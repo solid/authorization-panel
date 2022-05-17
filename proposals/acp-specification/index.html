@@ -1232,23 +1232,9 @@
               describes identity providers used to assert the identity of agents
               requesting resources.
             </dd>
-
-            <dt
-              id="acp-time"
-              about="acp:time"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdf:Property"
-            >
-              <code>acp:time</code>
-            </dt>
-            <dd about="acp:time" typeof="rdfs:comment">
-              The <span property="rdfs:label">time</span>
-              <span property="rdfs:subPropertyOf" resource="acp:attribute"
-                >attribute</span
-              >
-              describes times of resource access requests.
-            </dd>
+            <!--
+  <dt id="acp-time" about="acp:time" property="rdfs:isDefinedBy" resource="acp:" typeof="rdf:Property"><code>acp:time</code></dt>
+  <dd about="acp:time" typeof="rdfs:comment">The <span property="rdfs:label">time</span> <span property="rdfs:subPropertyOf" resource="acp:attribute">attribute</span> describes times of resource access requests.</dd> -->
 
             <dt
               id="acp-vc"
@@ -1842,16 +1828,16 @@ ex:policyA
             </dt>
             <dd about="acp:Matcher" property="rdfs:comment">
               Instances of the <span property="rdfs:label">Matcher</span> class
-              are descriptions of matching resource access Contexts.
+              are descriptions of matching Contexts.
             </dd>
 
             <dt id="acp-agent-matcher">
               <a href="#acp-agent"><code>acp:agent</code></a>
             </dt>
             <dd about="acp:agent" property="rdfs:comment">
-              The agent attribute used in a Matcher defines a set of agents, at
-              least one of which MUST match the resource access Context for the
-              agent restriction to be satisfied.
+              In a Matcher, agent attributes define a set of agents, at least
+              one of which MUST match the Context for the Matcher to be
+              satisfied.
             </dd>
 
             <dt
@@ -1864,9 +1850,9 @@ ex:policyA
               <code>acp:PublicAgent</code>
             </dt>
             <dd about="acp:PublicAgent" property="rdfs:comment">
-              The <span property="rdfs:label">Public Agent</span> named
-              individual used in an agent restriction means that the restriction
-              is always satisfied.
+              In a Matcher, agent attributes using the
+              <span property="rdfs:label">Public Agent</span> named individual
+              MUST match all Contexts.
             </dd>
 
             <dt
@@ -1879,9 +1865,9 @@ ex:policyA
               <code>acp:AuthenticatedAgent</code>
             </dt>
             <dd about="acp:AuthenticatedAgent" property="rdfs:comment">
-              The <span property="rdfs:label">Authenticated Agent</span> named
-              individual used in an agent restriction means that any agent in
-              the Context satisfies the restriction.
+              In a Matcher, agent attributes using the
+              <span property="rdfs:label">Authenticated Agent</span> named
+              individual MUST match all Contexts that contain an agent.
             </dd>
 
             <dt
@@ -1894,10 +1880,10 @@ ex:policyA
               <code>acp:CreatorAgent</code>
             </dt>
             <dd about="acp:CreatorAgent" property="rdfs:comment">
-              The <span property="rdfs:label">Creator Agent</span> named
-              individual used in an agent restriction means that the restriction
-              is satisfied if the Context contains an agent that is also a
-              creator.
+              In a Matcher, agent attributes using the
+              <span property="rdfs:label">Creator Agent</span> named individual
+              MUST match all Contexts where a defined creator matches the
+              defined agent.
             </dd>
 
             <dt
@@ -1910,19 +1896,19 @@ ex:policyA
               <code>acp:OwnerAgent</code>
             </dt>
             <dd about="acp:OwnerAgent" property="rdfs:comment">
-              The <span property="rdfs:label">Owner Agent</span> named
-              individual used in an agent restriction means that the restriction
-              is satisfied if the Context contains an agent that is also an
-              owner.
+              In a Matcher, agent attributes using the
+              <span property="rdfs:label">Owner Agent</span> named individual
+              MUST match all Contexts where a defined owner matches the defined
+              agent.
             </dd>
 
             <dt id="acp-client-matcher">
               <a href="#acp-client"><code>acp:client</code></a>
             </dt>
             <dd about="acp:client" property="rdfs:comment">
-              The client attribute used in a Matcher defines a set of clients,
-              at least one of which MUST match the resource access Context for
-              the client restriction to be satisfied.
+              In a Matcher, client attributes define a set of clients, at least
+              one of which MUST match the Context for the Matcher to be
+              satisfied.
             </dd>
 
             <dt
@@ -1935,18 +1921,18 @@ ex:policyA
               <code>acp:PublicClient</code>
             </dt>
             <dd about="acp:PublicClient" property="rdfs:comment">
-              The <span property="rdfs:label">Public Client</span> named
-              individual used in a client restriction means that the restriction
-              is always satisfied.
+              In a Matcher, client attributes using the
+              <span property="rdfs:label">Public Client</span> named individual
+              MUST match all Contexts.
             </dd>
 
             <dt id="acp-issuer-matcher">
               <a href="#acp-issuer"><code>acp:issuer</code></a>
             </dt>
             <dd about="acp:issuer" property="rdfs:comment">
-              The issuer attribute used in a Matcher defines a set of issuers,
-              at least one of which MUST match the resource access Context for
-              the issuer restriction to be satisfied.
+              In a Matcher, issuer attributes define a set of issuers, at least
+              one of which MUST match the Context for the Matcher to be
+              satisfied.
             </dd>
 
             <dt
@@ -1959,25 +1945,19 @@ ex:policyA
               <code>acp:PublicIssuer</code>
             </dt>
             <dd about="acp:PublicIssuer" property="rdfs:comment">
-              The <span property="rdfs:label">Public Issuer</span> named
-              individual used in an issuer restriction means that the
-              restriction is always satisfied.
+              In a Matcher, issuer attributes using the
+              <span property="rdfs:label">Public Issuer</span> named individual
+              MUST match all Contexts.
             </dd>
-
-            <dt id="acp-time-matcher">
-              <a href="#acp-time"><code>acp:time</code></a>
-            </dt>
-            <dd about="acp:time" property="rdfs:comment">
-              The time attribute used in a Matcher defines a set of times, at
-              least one of which MUST match the resource access Context for the
-              time restriction to be satisfied.
-            </dd>
+            <!--
+  <dt id="acp-time-matcher"><a href="#acp-time"><code>acp:time</code></a></dt>
+  <dd about="acp:time" property="rdfs:comment">The time attribute used in a Matcher defines a set of times, at least one of which MUST match the resource access Context for the time restriction to be satisfied.</dd> -->
 
             <dt id="acp-vc-matcher">
               <a href="#acp-vc"><code>acp:vc</code></a>
             </dt>
             <dd about="acp:vc" property="rdfs:comment">
-              The vc attribute used in a Matcher defines a set of
+              In a Matcher, vc attributes define a set of
               <a
                 rel="cito:citesAsAuthority"
                 href="https://www.w3.org/TR/vc-data-model/#dfn-type"
@@ -1991,9 +1971,8 @@ ex:policyA
                   >Verifiable Credentials</dfn
                 ></a
               >
-              (VC), at least one of which MUST match the resource access Context
-              for the vc restriction to be satisfied. A VC type present in the
-              resource access Context must be a
+              (VC), at least one of which MUST match the Context for the Matcher
+              to be satisfied. A VC type present in the Context MUST be a
               <a href="https://www.w3.org/TR/vc-data-model/#validation"
                 ><dfn id="vc-validation">valid</dfn></a
               >
@@ -2438,19 +2417,8 @@ ex:policy1
             ><a class="self-link" href="#resolved-access-control"></a>
           </h3>
           <p>
-            The Access Control Resources of access controlled resources and
-            their ancestors, that is, the resources they are member of, MUST be
-            gathered to resolve access control.
-          </p>
-
-          <p>
-            The resource access description Context MUST be passed to the Access
-            Control resolution algorithm.
-          </p>
-
-          <p>
-            Access Control resolution of resources without Access Control
-            Resources MUST grant no Access Modes.
+            An ACP engine MUST grant exactly those Access Modes allowed by
+            Effective Policies.
           </p>
 
           <section
@@ -2508,31 +2476,21 @@ ex:policy1
             ><a class="self-link" href="#effective-policies"></a>
           </h3>
           <p>
-            Both the <code>acp:resource</code> property and its inverse
-            <code>acp:accessControlResource</code> MUST be taken into account in
-            determining the Access Control Resources controlling access to
-            resources.
+            Effective Policies are the Policies controlling access to a
+            resource.
           </p>
 
-          <p>
-            All Access Controls controlling member resources access via the
-            <code>acp:memberAccessControl</code> property MUST be included in
-            the set of Access Controls linked as
-            <code>acp:accessControl</code> in the effective authorization graph
-            of a resource.
-          </p>
+          <p>A Policy MUST control access to a resource if:</p>
 
-          <p>
-            The set of Policies controlling access to a resource MUST contain
-            all Policies that are linked to a resource via the
-            <a href="https://www.w3.org/TR/sparql11-query/#propertypaths"
-              ><dfn id="sparql-property-path">property path</dfn></a
-            >
-            <code>acp:accessControlResource/acp:accessControl/acp:apply</code>
-            <cite
-              ><a class="bibref" href="#sparql11-query">SPARQL11-QUERY</a></cite
-            >.
-          </p>
+          <ul>
+            <li>
+              it is applied by an Access Control of an ACR of the resource; or,
+            </li>
+            <li>
+              it is applied by a member Access Control of an ACR of an ancestor
+              of the resource.
+            </li>
+          </ul>
 
           <section
             datatype="rdf:HTML"
@@ -2625,8 +2583,8 @@ ex:policy1
           </h3>
           <div about="acp:Policy" property="rdfs:comment">
             <p>
-              An Access Mode MUST be granted over a resource if and only if in
-              the set of Policies controlling access to it:
+              An Access Mode MUST be granted if and only if in the set of
+              Effective Policies:
             </p>
             <ul>
               <li>a satisfied policy allows the Access Mode; and,</li>
@@ -2734,35 +2692,25 @@ ex:policyC
             ><span class="content">Satisfied Policy</span
             ><a class="self-link" href="#satisfied-policy"></a>
           </h3>
-          <p>
-            Policies are satisfied via the <code>acp:allOf</code>,
-            <code>acp:anyOf</code> and <code>acp:noneOf</code> properties which
-            act respectively as intersection, union and exclusion operators.
-          </p>
-
           <div about="acp:Policy" property="rdfs:comment">
-            <p>A Policy MUST be considered satisfied if and only if:</p>
+            <p>A Policy MUST be satisfied if and only if:</p>
             <ul>
               <li>
-                it references at least one Matcher via a
+                it references at least one Matcher via an
                 <code>acp:allOf</code> or <code>acp:anyOf</code> property; and,
               </li>
               <li>
-                at least one Matcher it references matches the given resource
-                access description; and,
+                all of its <code>acp:allOf</code> Matchers are satisfied; and,
               </li>
               <li>
-                the <code>acp:allOf</code>, <code>acp:anyOf</code> and
-                <code>acp:noneOf</code> of conditions it defines are satisfied.
+                at least one of its <code>acp:anyOf</code> Matchers is
+                satisfied; and,
+              </li>
+              <li>
+                none of its <code>acp:noneOf</code> Matchers are satisfied.
               </li>
             </ul>
           </div>
-
-          <p>
-            Given that the <code>acp:noneOf</code> condition excludes matches, a
-            policy without a satisfied <code>acp:allOf</code> or
-            <code>acp:anyOf</code> condition is never satisfied.
-          </p>
 
           <section
             datatype="rdf:HTML"
@@ -2873,35 +2821,33 @@ ex:policyA
             ><span class="content">Satisfied Matcher</span
             ><a class="self-link" href="#satisfied-matcher"></a>
           </h3>
-          <p>
-            The default operation of matching is based on
-            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-iri-equality"
-              ><dfn>IRI</dfn></a
-            >
-            and
-            <a
-              href="https://www.w3.org/TR/rdf11-concepts/#dfn-literal-term-equality"
-              ><dfn>literal term equality</dfn></a
-            >
-            as defined in the RDF 1.1 Concepts and Abstract Syntax
-            <cite
-              ><a class="bibref" href="#rdf11-concepts">RDF11 CONCEPTS</a></cite
-            >.
-          </p>
-
           <div about="acp:Matcher" property="rdfs:comment">
-            <p>A Matcher MUST be considered satisfied if and only if:</p>
+            <p>A Matcher MUST be satisfied if and only if:</p>
             <ul>
+              <li>it defines at least one attribute; and,</li>
               <li>
-                it defines at least one matching
-                <a href="#acp-attribute"><dfn>attribute</dfn></a
-                >; and,
-              </li>
-              <li>
-                all the attributes defined find a match in the given resource
-                access description.
+                at least one value of each defined attribute matches the
+                Context.
               </li>
             </ul>
+            <p>
+              ACP engines MUST match the context attributes defined by this
+              specification according to
+              <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-iri-equality"
+                ><dfn>IRI</dfn></a
+              >
+              and
+              <a
+                href="https://www.w3.org/TR/rdf11-concepts/#dfn-literal-term-equality"
+                ><dfn>literal term equality</dfn></a
+              >
+              as defined in the RDF 1.1 Concepts and Abstract Syntax
+              <cite
+                ><a class="bibref" href="#rdf11-concepts"
+                  >RDF11 CONCEPTS</a
+                ></cite
+              >.
+            </p>
           </div>
 
           <section
@@ -3133,8 +3079,8 @@ ex:matcherB
           </p>
 
           <p>
-            When a server wants to enable applications to discover its ACP
-            capabilities, it MUST do so via link headers.
+            A conforming ACP server MUST advertise its capabilities via link
+            headers.
           </p>
 
           <p>
@@ -3387,19 +3333,6 @@ ex:matcherB
             >. B. Leiba. IETF. October 2017. Proposed Standard. URL:
             <a href="https://datatracker.ietf.org/doc/html/rfc8288"
               >https://datatracker.ietf.org/doc/html/rfc8288</a
-            >.
-          </dd>
-
-          <dt id="sparql11-query">[SPARQL11-QUERY]</dt>
-          <dd>
-            <a
-              href="https://www.w3.org/TR/sparql11-query/"
-              rel="cito:citesAsAuthority"
-              ><cite>SPARQL 1.1 Query</cite></a
-            >. Steve Harris; Andy Seaborne; Eric Prud'hommeaux. W3C. 21 March
-            2013. W3C Recommendation. URL:
-            <a href="https://www.w3.org/TR/sparql11-query/"
-              >https://www.w3.org/TR/sparql11-query/</a
             >.
           </dd>
 
