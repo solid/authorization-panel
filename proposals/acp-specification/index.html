@@ -2471,7 +2471,7 @@ function resolveAccessControl(acr, ancestorAcrs, context) {
     const allowedAccessModes = grantAccessModes(effectivePolicies, context)
     const grantGraph = {
         context,
-        grant: modes
+        grant: allowedAccessModes
     }
 
     return grantGraph
