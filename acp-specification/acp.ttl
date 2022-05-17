@@ -232,7 +232,7 @@ acp:time
 acp:vc
     rdfs:label "vc"@en ;
     rdfs:comment "The vc attribute describes verifiable credentials presented as part of resource access requests."@en ;
-    rdfs:comment "The vc attribute used in a Matcher defines a set of types of Verifiable Credentials (VC), at least one of which MUST be valid and match the resource access Context for the vc restriction to be satisfied."@en ;
+    rdfs:comment "The vc attribute used in a Matcher defines a set of types of Verifiable Credentials (VC), at least one of which MUST match the resource access Context for the vc restriction to be satisfied. A VC type present in the resource access Context must be a valid VC presented as part of the resource access request."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute ;
     cito:citesAsAuthority <https://www.w3.org/TR/vc-data-model/>, <https://www.w3.org/TR/vc-data-model/#dfn-type> ;
