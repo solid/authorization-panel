@@ -2465,6 +2465,18 @@ ex:policy1
                 href="#resolved-access-control-pseudocode"
               ></a>
             </h4>
+            <pre>
+function resolveAccessControl(acr, ancestorAcrs, context) {
+    const effectivePolicies = gatherEffectivePolicies(acr, ancestorAcrs)
+    const allowedAccessModes = grantAccessModes(effectivePolicies, context)
+    const grantGraph = {
+        context,
+        grant: allowedAccessModes
+    }
+
+    return grantGraph
+}
+</pre>
           </section>
         </section>
 
