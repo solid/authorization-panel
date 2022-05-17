@@ -38,7 +38,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-05-16">2022-05-16</time>
+        <time property="dc:issued" datetime="2022-05-17">2022-05-17</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -2432,7 +2432,7 @@ ex:policy1
             >
             <code>acp:accessControlResource/acp:accessControl/acp:apply</code>
             <cite
-              ><a class="bibref" href="#sparql11-query">SPARQL11 QUERY</a></cite
+              ><a class="bibref" href="#sparql11-query">SPARQL11-QUERY</a></cite
             >.
           </p>
 
@@ -2847,7 +2847,7 @@ ex:policyA
             <p>Matcher B will be satisfied if:</p>
 
             <ul>
-              <li>A valid VC of type "family member" is presented.</li>
+              <li>a valid VC of type "Family Member" is presented.</li>
             </ul>
 
             <pre
@@ -2870,7 +2870,7 @@ ex:matcherA
   acp:issuer ex:issuer2 .
 
 ex:matcherB
-  acp:vc ex:familyMember .
+  acp:vc ex:FamilyMember .
 </pre
             >
           </section>
@@ -2923,33 +2923,35 @@ ex:matcherB
           </p>
 
           <p>
-            The server MUST advertise the access modes it supports by responding
-            to HTTP OPTIONS requests over ACP access control resources including
-            a Link header with the rel value of
+            The server MUST advertise the Access Modes it supports by responding
+            to HTTP OPTIONS requests over ACP Access Control Resources including
+            Link headers with the rel value of
             <code>http://www.w3.org/ns/solid/acp#grant</code> and the full URI
-            of an access mode as link target
+            of supported Access Modes as link target
             <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
-            >. The server MUST produce one such Link header for each access mode
+            >. The server MUST produce one such Link header for each Access Mode
             it supports.
           </p>
 
           <p>
-            For example, if a server supports the ACL read, write and append
-            access modes, it should advertise it by responding to HTTP OPTIONS
-            requests over ACP access control resources including three link
+            For example, if a server supports the <code>acl:Read</code>,
+            <code>acl:Write</code>, <code>acl:Append</code> and
+            <code>acl:Control</code> access modes, it should advertise it by
+            responding to HTTP OPTIONS requests over ACRs including four link
             headers with rel value of
             <code>http://www.w3.org/ns/solid/acp#grant</code> and respectively
             targets of <code>http://www.w3.org/ns/auth/acl#Read</code>,
-            <code>http://www.w3.org/ns/auth/acl#Write</code> and
-            <code>http://www.w3.org/ns/auth/acl#Append</code> in order to make
-            it explicit which set of access modes are understood and relevant
-            when editing ACP policies.
+            <code>http://www.w3.org/ns/auth/acl#Write</code>,
+            <code>http://www.w3.org/ns/auth/acl#Append</code>, and
+            <code>http://www.w3.org/ns/auth/acl#Control</code> in order to make
+            it explicit which Access Modes are understood and relevant when
+            editing ACP Policies.
           </p>
 
           <p>
-            The server MUST advertise the request attributes it supports by
-            responding to HTTP OPTIONS requests over ACP access control
-            resources including a Link header with the rel value of
+            The server MUST advertise the ACP attributes it supports by
+            responding to HTTP OPTIONS requests over ACRs including a Link
+            header with the rel value of
             <code>http://www.w3.org/ns/solid/acp#attribute</code> and the full
             URI of an acp attribute as link target
             <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
@@ -2960,12 +2962,11 @@ ex:matcherB
           <p>
             For example, if a server supports the ACP agent, client and issuer
             request attributes, it should advertise it by responding to HTTP
-            OPTIONS requests over ACP access control resources including three
-            link headers with rel value of
-            <code>http://www.w3.org/ns/solid/acp#attribute</code> and
+            OPTIONS requests over its ACRs including three link headers with rel
+            value of <code>http://www.w3.org/ns/solid/acp#attribute</code> and
             respectively targets of
             <code>http://www.w3.org/ns/solid/acp#agent</code>,
-            <code>http://www.w3.org/ns/solid/acp#client</code> and
+            <code>http://www.w3.org/ns/solid/acp#client</code>, and
             <code>http://www.w3.org/ns/solid/acp#issuer</code> in order to make
             it explicit which set of request attributes are understood and
             relevant when editing ACP matchers.
@@ -2984,24 +2985,25 @@ ex:matcherB
             ><a class="self-link" href="#acr-discovery"></a>
           </h3>
           <p>
-            When a server wants to enable applications to discover the ACP
-            access control resource associated with a given resource, the server
-            MUST advertise the ACP access control resource that is associated
-            with that resource by responding to HTTP requests over the resource
-            including a <code>Link</code> header with the <code>rel</code> value
-            of <code>acl</code> (acl Link Relation) and the ACP access control
+            When a server wants to enable applications to discover the ACR
+            associated with a given resource, it MUST advertise that relation by
+            responding to HTTP requests over the resource including a
+            <code>Link</code> header with the <code>rel</code> value of
+            <code>acl</code> (acl Link Relation) and the ACP access control
             resource as the link target
             <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
             >. The same mechanism is used in
-            <a
-              href="https://solid.github.io/web-access-control-spec/#acl-resource-discovery"
-              >Web Access Control resource discovery</a
+            <a href="https://solidproject.org/TR/wac#acl-resource-discovery"
+              >Web Access Control&apos;s ACL resource discovery</a
+            >
+            <cite><a class="bibref" href="#wac">WAC</a></cite
             >.
           </p>
+
           <p>
-            A server responding to an HTTP request over an ACP access control
-            resource MUST include a <code>Link</code> header with the
-            <code>rel</code> value of <code>type</code> and the
+            A server responding to an HTTP request targetting an ACR MUST
+            include a <code>Link</code> header with the <code>rel</code> value
+            of <code>type</code> and the
             <code>acp:AccessControlResource</code> URI as link target.
           </p>
         </section>
@@ -3023,13 +3025,13 @@ ex:matcherB
           </p>
 
           <p>
-            An owner of a resource is implicitly considered an owner of its
-            associated Access Control Resource.
+            Owners of resources are implicitly considered owners of associated
+            Access Control Resources.
           </p>
 
           <p>
-            An owner of an Access Control Resource implicitly has full read and
-            write access over it.
+            Owners Access Control Resources implicitly have full read and write
+            access over them.
           </p>
 
           <p>
@@ -3056,26 +3058,26 @@ ex:matcherB
           <p>Access Control Resources MUST be server managed.</p>
 
           <p>
-            There is a one to one relationship between a resource and its
-            authoritative source of access control. Therefore, when resources
-            are created or deleted, the corresponding ACRs MUST be created or
-            deleted accordingly.
+            Sources of Access Control statements are authoritative and MUST be
+            trusted.
           </p>
 
           <p>
-            Access Controls, Policies and Matchers MAY all be access controlled
-            via their own ACR.
+            Before granting any Access Modes over resources authoritatively
+            linked to an ACR, access control MUST be resolved successfully.
           </p>
 
           <p>
-            As long as an Access Control, a Policy or a Matcher is referenced by
-            an ACR, it MUST not be deleted. However, if such consistency failed
-            to be enforced or if an Access Control, a Policy or a Matcher is not
-            accessible for any other reason, then access permissions resolution
-            MUST fail to its default behaviour of only granting read and write
-            access to the invalid ACR to its owners; read and write access MUST
-            not be implicitly granted to a resource whose access control
-            resolution fails, even to owners of that resource.
+            Access Control Resources, Access Controls, Policies and Matchers MAY
+            all be access controlled via their own ACRs.
+          </p>
+
+          <p>
+            As long as Access Control Resources, Access Controls, Policies, and
+            Matchers are used to control access to at least one resource, they
+            MUST not be deleted. However, if such consistency fails to be
+            enforced or if any ACP element is not accessible for any other
+            reason, then access control resolution MUST fail.
           </p>
         </section>
       </section>
@@ -3212,6 +3214,17 @@ ex:matcherB
             Recommendation. URL:
             <a href="https://www.w3.org/TR/turtle/"
               >https://www.w3.org/TR/turtle/</a
+            >.
+          </dd>
+
+          <dt id="wac">[WAC]</dt>
+          <dd>
+            <a href="https://solidproject.org/TR/wac" rel="rdfs:seeAlso"
+              ><cite>Web Access Control</cite></a
+            >. Sarven Capadisli. W3C Solid Community Group. 11 July 2021. Draft.
+            URL:
+            <a href="https://solidproject.org/TR/wac"
+              >https://solidproject.org/TR/wac</a
             >.
           </dd>
         </dl>
