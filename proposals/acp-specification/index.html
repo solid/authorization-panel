@@ -398,13 +398,36 @@
           >
           <ol class="toc">
             <li class="tocline">
+              <a href="#resolved-access-control" class="tocxref"
+                ><span class="secno">6.1</span>Resolved Access Control</a
+              >
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#resolved-access-control-example" class="tocxref"
+                    ><span class="secno">6.1.1</span>Resolved Access Control
+                    example</a
+                  >
+                </li>
+              </ol>
+              <ol class="toc">
+                <li class="tocline">
+                  <a href="#resolved-access-control-pseudocode" class="tocxref"
+                    ><span class="secno">6.1.2</span>Resolved Access Control
+                    pseudocode</a
+                  >
+                </li>
+              </ol>
+            </li>
+          </ol>
+          <ol class="toc">
+            <li class="tocline">
               <a href="#effective-policies" class="tocxref"
-                ><span class="secno">6.1</span>Effective Policies</a
+                ><span class="secno">6.2</span>Effective Policies</a
               >
               <ol class="toc">
                 <li class="tocline">
                   <a href="#effective-policies-example" class="tocxref"
-                    ><span class="secno">6.1.1</span>Effective Policies
+                    ><span class="secno">6.2.1</span>Effective Policies
                     example</a
                   >
                 </li>
@@ -412,7 +435,7 @@
               <ol class="toc">
                 <li class="tocline">
                   <a href="#effective-policies-pseudocode" class="tocxref"
-                    ><span class="secno">6.1.2</span>Effective Policies
+                    ><span class="secno">6.2.2</span>Effective Policies
                     pseudocode</a
                   >
                 </li>
@@ -422,12 +445,12 @@
           <ol class="toc">
             <li class="tocline">
               <a href="#granted-access-modes" class="tocxref"
-                ><span class="secno">6.2</span>Granted Access Modes</a
+                ><span class="secno">6.3</span>Granted Access Modes</a
               >
               <ol class="toc">
                 <li class="tocline">
                   <a href="#granted-access-modes-example" class="tocxref"
-                    ><span class="secno">6.2.1</span>Granted Access Modes
+                    ><span class="secno">6.3.1</span>Granted Access Modes
                     example</a
                   >
                 </li>
@@ -435,7 +458,7 @@
               <ol class="toc">
                 <li class="tocline">
                   <a href="#granted-access-modes-pseudocode" class="tocxref"
-                    ><span class="secno">6.2.2</span>Granted Access Modes
+                    ><span class="secno">6.3.2</span>Granted Access Modes
                     pseudocode</a
                   >
                 </li>
@@ -445,19 +468,19 @@
           <ol class="toc">
             <li class="tocline">
               <a href="#satisfied-policy" class="tocxref"
-                ><span class="secno">6.3</span>Satisfied Policy</a
+                ><span class="secno">6.4</span>Satisfied Policy</a
               >
               <ol class="toc">
                 <li class="tocline">
                   <a href="#satisfied-policy-example" class="tocxref"
-                    ><span class="secno">6.3.1</span>Satisfied Policy example</a
+                    ><span class="secno">6.4.1</span>Satisfied Policy example</a
                   >
                 </li>
               </ol>
               <ol class="toc">
                 <li class="tocline">
                   <a href="#satisfied-policy-pseudocode" class="tocxref"
-                    ><span class="secno">6.3.2</span>Satisfied Policy
+                    ><span class="secno">6.4.2</span>Satisfied Policy
                     pseudocode</a
                   >
                 </li>
@@ -467,12 +490,12 @@
           <ol class="toc">
             <li class="tocline">
               <a href="#satisfied-matcher" class="tocxref"
-                ><span class="secno">6.4</span>Satisfied Matcher</a
+                ><span class="secno">6.5</span>Satisfied Matcher</a
               >
               <ol class="toc">
                 <li class="tocline">
                   <a href="#satisfied-matcher-example" class="tocxref"
-                    ><span class="secno">6.4.1</span>Satisfied Matcher
+                    ><span class="secno">6.5.1</span>Satisfied Matcher
                     example</a
                   >
                 </li>
@@ -480,7 +503,7 @@
               <ol class="toc">
                 <li class="tocline">
                   <a href="#satisfied-matcher-pseudocode" class="tocxref"
-                    ><span class="secno">6.4.2</span>Satisfied Matcher
+                    ><span class="secno">6.5.2</span>Satisfied Matcher
                     pseudocode</a
                   >
                 </li>
@@ -777,9 +800,9 @@
             <dd>
               <a href="#authorization-graph">Authorization graphs</a>
               authoritatively define the conditions for granting Access Modes
-              over resources through Access Controls, Policies and Matchers. The
-              result of applying an authorization graph to a described instance
-              of resource access is an
+              over resources through Access Control Resources, Access Controls,
+              Policies and Matchers. The result of applying an authorization
+              graph to a described instance of resource access is an
               <a href="#acp-terminology-access-grant-graph"
                 >access grant graph</a
               >.
@@ -800,8 +823,8 @@
             </dt>
             <dd>
               <a href="#access-control-resolution">Access control resolution</a>
-              describes the algorithms used to apply an authorization graph to
-              an access request in order to obtain an access grant.
+              describes the algorithm used to apply an authorization graph to an
+              access request in order to obtain an access grant.
             </dd>
           </dl>
         </section>
@@ -824,9 +847,9 @@
             representation of example context graphs, authorization graphs, and
             access grant graphs serialized in
             <a href="https://www.w3.org/TR/turtle/"
-              ><dfn id="turtle-syntax">turtle syntax</dfn></a
+              ><dfn id="turtle-syntax">turtle</dfn></a
             >
-            <cite><a class="bibref" href="#turtle">TURTLE</a></cite
+            <cite><a class="bibref" href="#turtle">RDF11-TURTLE</a></cite
             >. Those graphs use a mix of IRIs and blank nodes where applicable
             to better show the range of possible representations.
           </p>
@@ -846,8 +869,8 @@
 # It describes an instance of resource access&nbsp;&nbsp;
 
 []
-  acp:agent ex:Bob ;
   acp:target ex:resourceX ;
+  acp:agent ex:Bob ;
   acp:mode acl:Read ;
   acp:client ex:clientApplicationY ;
   acp:issuer ex:identityProviderZ .
@@ -1947,7 +1970,7 @@ ex:policyA
             <dd about="acp:time" property="rdfs:comment">
               The time attribute used in a Matcher defines a set of times, at
               least one of which MUST match the resource access Context for the
-              time restriction is satisfied.
+              time restriction to be satisfied.
             </dd>
 
             <dt id="acp-vc-matcher">
@@ -1968,12 +1991,17 @@ ex:policyA
                   >Verifiable Credentials</dfn
                 ></a
               >
-              (VC), at least one of which MUST be
+              (VC), at least one of which MUST match the resource access Context
+              for the vc restriction to be satisfied. A VC type present in the
+              resource access Context must be a
               <a href="https://www.w3.org/TR/vc-data-model/#validation"
-                ><dfn id="valid-vc">valid</dfn></a
+                ><dfn id="vc-validation">valid</dfn></a
               >
-              and match the resource access Context for the vc restriction to be
-              satisfied.
+              VC
+              <a href="https://www.w3.org/TR/vc-data-model/#presentations"
+                ><dfn id="vc-presentation">presented</dfn></a
+              >
+              as part of the resource access request.
             </dd>
 
             <dt
@@ -2401,11 +2429,53 @@ ex:policy1
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
+          resource=":resolved-access-control"
+          property="bibo:hasPart"
+        >
+          <h3 class="heading" id="resolved-access-control">
+            <span class="secno">6.1. </span
+            ><span class="content">Resolved Access Control</span
+            ><a class="self-link" href="#resolved-access-control"></a>
+          </h3>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":resolved-access-control-example"
+            property="bibo:hasPart"
+          >
+            <h4 class="heading" id="resolved-access-control-example">
+              <span class="secno">6.1.1. </span
+              ><span class="content">Resolved Access Control example</span
+              ><a class="self-link" href="#resolved-access-control-example"></a>
+            </h4>
+          </section>
+
+          <section
+            datatype="rdf:HTML"
+            typeof="bibo:Chapter"
+            resource=":resolved-access-control-pseudocode"
+            property="bibo:hasPart"
+          >
+            <h4 class="heading" id="resolved-access-control-pseudocode">
+              <span class="secno">6.1.2. </span
+              ><span class="content">Resolved Access Control pseudocode</span
+              ><a
+                class="self-link"
+                href="#resolved-access-control-pseudocode"
+              ></a>
+            </h4>
+          </section>
+        </section>
+
+        <section
+          datatype="rdf:HTML"
+          typeof="bibo:Chapter"
           resource=":effective-policies"
           property="bibo:hasPart"
         >
           <h3 class="heading" id="effective-policies">
-            <span class="secno">6.1. </span
+            <span class="secno">6.2. </span
             ><span class="content">Effective Policies</span
             ><a class="self-link" href="#effective-policies"></a>
           </h3>
@@ -2443,7 +2513,7 @@ ex:policy1
             property="bibo:hasPart"
           >
             <h4 class="heading" id="effective-policies-example">
-              <span class="secno">6.1.1. </span
+              <span class="secno">6.2.1. </span
               ><span class="content">Effective Policies example</span
               ><a class="self-link" href="#effective-policies-example"></a>
             </h4>
@@ -2488,27 +2558,27 @@ ex:policy1
             property="bibo:hasPart"
           >
             <h4 class="heading" id="effective-policies-pseudocode">
-              <span class="secno">6.1.2. </span
+              <span class="secno">6.2.2. </span
               ><span class="content">Effective Policies pseudocode</span
               ><a class="self-link" href="#effective-policies-pseudocode"></a>
             </h4>
             <pre
               class="highlight pseudocode"
             ><code><span class="kd">function</span> <span class="nx">gatherEffectivePolicies</span><span class="p">(</span><span class="nx">acr</span><span class="p">,</span> <span class="nx">ancestorAcrs</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">policies</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span>
+  <span class="kd">const</span> <span class="nx">effectivePolicies</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span>
 
   <span class="c1">// Direct access controls of own ACR.</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">accessControl</span> <span class="k">of</span> <span class="nx">acr</span><span class="p">.</span><span class="nx">accessControls</span><span class="p">)</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">accessControl</span><span class="p">.</span><span class="nx">apply</span><span class="p">)</span>
-          <span class="nx">policies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">accessControl</span><span class="p">.</span><span class="nx">appliedPolicies</span><span class="p">)</span>
+          <span class="nx">effectivePolicies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
 
   <span class="c1">// Member access controls of ancestor ACRs.</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">acr</span> <span class="k">of</span> <span class="nx">ancestorAcrs</span><span class="p">)</span>
       <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">accessControl</span> <span class="k">of</span> <span class="nx">acr</span><span class="p">.</span><span class="nx">memberAccessControls</span><span class="p">)</span>
-          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">accessControl</span><span class="p">.</span><span class="nx">apply</span><span class="p">)</span>
-              <span class="nx">policies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
+          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">accessControl</span><span class="p">.</span><span class="nx">appliedPolicies</span><span class="p">)</span>
+              <span class="nx">effectivePolicies</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">policy</span><span class="p">)</span>
 
-  <span class="k">return</span> <span class="nx">policies</span>
+  <span class="k">return</span> <span class="nx">effectivePolicies</span>
 <span class="p">}</span>
 </code></pre>
           </section>
@@ -2521,7 +2591,7 @@ ex:policy1
           property="bibo:hasPart"
         >
           <h3 class="heading" id="granted-access-modes">
-            <span class="secno">6.2. </span
+            <span class="secno">6.3. </span
             ><span class="content">Granted Access Modes</span
             ><a class="self-link" href="#granted-access-modes"></a>
           </h3>
@@ -2543,7 +2613,7 @@ ex:policy1
             property="bibo:hasPart"
           >
             <h4 class="heading" id="granted-access-modes-example">
-              <span class="secno">6.2.1. </span
+              <span class="secno">6.3.1. </span
               ><span class="content">Granted Access Modes example</span
               ><a class="self-link" href="#granted-access-modes-example"></a>
             </h4>
@@ -2596,30 +2666,30 @@ ex:policyC
             property="bibo:hasPart"
           >
             <h4 class="heading" id="granted-access-modes-pseudocode">
-              <span class="secno">6.2.2. </span
+              <span class="secno">6.3.2. </span
               ><span class="content">Granted Access Modes pseudocode</span
               ><a class="self-link" href="#granted-access-modes-pseudocode"></a>
             </h4>
             <pre
               class="highlight pseudocode"
             ><code><span class="kd">function</span> <span class="nx">grantAccessModes</span><span class="p">(</span><span class="nx">policies</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">allow</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">,</span> <span class="nx">deny</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span>
+  <span class="kd">const</span> <span class="nx">allowedAccessModes</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">,</span> <span class="nx">deniedAccessModes</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span>
 
-  <span class="c1">// Gather allowed and denied access modes from satisfied policies</span>&nbsp;&nbsp;
+  <span class="c1">// Gather allowed and denied access modes from satisfied policies</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">policy</span> <span class="k">of</span> <span class="nx">policies</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">isSatisfiedPolicy</span><span class="p">(</span><span class="nx">policy</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span> <span class="p">{</span>
-          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">mode</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allow</span><span class="p">)</span>
-              <span class="nx">allow</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">mode</span><span class="p">)</span>
+          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">mode</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allowedAccessModes</span><span class="p">)</span>
+              <span class="nx">allowedAccessModes</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">mode</span><span class="p">)</span>
 
-          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">mode</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">deny</span><span class="p">)</span>
-              <span class="nx">deny</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">mode</span><span class="p">)</span>
+          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">mode</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">deniedAccessModes</span><span class="p">)</span>
+              <span class="nx">deniedAccessModes</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">mode</span><span class="p">)</span>
       <span class="p">}</span>
 
   <span class="c1">// Deny overrules allow.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">mode</span> <span class="k">of</span> <span class="nx">deny</span><span class="p">)</span>
-      <span class="nx">allow</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">mode</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">mode</span> <span class="k">of</span> <span class="nx">deniedAccessModes</span><span class="p">)</span>
+      <span class="nx">allowedAccessModes</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">mode</span><span class="p">)</span>
 
-  <span class="k">return</span> <span class="nx">allow</span>
+  <span class="k">return</span> <span class="nx">allowedAccessModes</span>
 <span class="p">}</span>
 </code></pre>
           </section>
@@ -2632,7 +2702,7 @@ ex:policyC
           property="bibo:hasPart"
         >
           <h3 class="heading" id="satisfied-policy">
-            <span class="secno">6.3. </span
+            <span class="secno">6.4. </span
             ><span class="content">Satisfied Policy</span
             ><a class="self-link" href="#satisfied-policy"></a>
           </h3>
@@ -2673,7 +2743,7 @@ ex:policyC
             property="bibo:hasPart"
           >
             <h4 class="heading" id="satisfied-policy-example">
-              <span class="secno">6.3.1. </span
+              <span class="secno">6.4.1. </span
               ><span class="content">Satisfied Policy example</span
               ><a class="self-link" href="#satisfied-policy-example"></a>
             </h4>
@@ -2728,7 +2798,7 @@ ex:policyA
             property="bibo:hasPart"
           >
             <h4 class="heading" id="satisfied-policy-pseudocode">
-              <span class="secno">6.3.2. </span
+              <span class="secno">6.4.2. </span
               ><span class="content">Satisfied Policy pseudocode</span
               ><a class="self-link" href="#satisfied-policy-pseudocode"></a>
             </h4>
@@ -2736,17 +2806,17 @@ ex:policyA
               class="highlight pseudocode"
             ><code><span class="kd">function</span> <span class="nx">isSatisfiedPolicy</span><span class="p">(</span><span class="nx">policy</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// If any 'none of' matcher is satisfied then the policy is not satisfied.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">matcher</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">noneOf</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">matcher</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">noneOfMatchers</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">isSatisfiedMatcher</span><span class="p">(</span><span class="nx">matcher</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span>
           <span class="k">return</span> <span class="kc">false</span>
 
-  <span class="c1">// If any 'all of' matcher is not satisfied then the policy is not satisfied.</span>&nbsp;&nbsp;
-  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">matcher</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allOf</span><span class="p">)</span>
+  <span class="c1">// If any 'all of' matcher is not satisfied then the policy is not satisfied.</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">matcher</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allOfMatchers</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isSatisfiedMatcher</span><span class="p">(</span><span class="nx">matcher</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span>
           <span class="k">return</span> <span class="kc">false</span>
 
   <span class="c1">// If any 'any of' matcher is satisfied then the policy is satisfied.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">matcher</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">anyOf</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">matcher</span> <span class="k">of</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">anyOfMatchers</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">isSatisfiedMatcher</span><span class="p">(</span><span class="nx">matcher</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span>
           <span class="k">return</span> <span class="kc">true</span>
 
@@ -2758,7 +2828,7 @@ ex:policyA
   <span class="c1">// Hence, the policy is satisfied if it has</span>
   <span class="c1">// - an 'all of' condition and</span>
   <span class="c1">// - no 'any of' condition.</span>
-  <span class="k">return</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allOf</span><span class="p">.</span><span class="nx">size</span> <span class="o">!==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">anyOf</span><span class="p">.</span><span class="nx">size</span> <span class="o">===</span> <span class="mi">0</span>
+  <span class="k">return</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">allOfMatchers</span><span class="p">.</span><span class="nx">size</span> <span class="o">!==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">policy</span><span class="p">.</span><span class="nx">anyOfMatchers</span> <span class="o">===</span> <span class="mi">0</span>
 <span class="p">}</span>
 </code></pre>
           </section>
@@ -2771,7 +2841,7 @@ ex:policyA
           property="bibo:hasPart"
         >
           <h3 class="heading" id="satisfied-matcher">
-            <span class="secno">6.4. </span
+            <span class="secno">6.5. </span
             ><span class="content">Satisfied Matcher</span
             ><a class="self-link" href="#satisfied-matcher"></a>
           </h3>
@@ -2813,7 +2883,7 @@ ex:policyA
             property="bibo:hasPart"
           >
             <h4 class="heading" id="satisfied-matcher-example">
-              <span class="secno">6.4.1. </span
+              <span class="secno">6.5.1. </span
               ><span class="content">Satisfied Matcher example</span
               ><a class="self-link" href="#satisfied-matcher-example"></a>
             </h4>
@@ -2882,120 +2952,121 @@ ex:matcherB
             property="bibo:hasPart"
           >
             <h4 class="heading" id="satisfied-matcher-pseudocode">
-              <span class="secno">6.4.2. </span
+              <span class="secno">6.5.2. </span
               ><span class="content">Satisfied Matcher pseudocode</span
               ><a class="self-link" href="#satisfied-matcher-pseudocode"></a>
             </h4>
-            <pre>
-function isSatisfiedMatcher(matcher, context) {
-    // An empty matcher is never satisfied.
-    if (matcher.agents.size === 0 && matcher.clients.size === 0 && matcher.issuers.size === 0 && matcher.vcs.size === 0)
-        return false
+            <pre
+              class="highlight pseudocode"
+            ><code><span class="kd">function</span> <span class="nx">isSatisfiedMatcher</span><span class="p">(</span><span class="nx">matcher</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// An empty matcher is never satisfied.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">matcher</span><span class="p">.</span><span class="nx">agents</span><span class="p">.</span><span class="nx">size</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">matcher</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">size</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">matcher</span><span class="p">.</span><span class="nx">issuers</span><span class="p">.</span><span class="nx">size</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">matcher</span><span class="p">.</span><span class="nx">vcs</span><span class="p">.</span><span class="nx">size</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">false</span>
 
-    // For each attribute, if any values are defined, then at least one of them must match the context.
+  <span class="c1">// For each attribute, if any values are defined, then at least one of them must match the context.</span>
 
-    if (matcher.agents.size !== 0) {
-        let isMatch = false
+  <span class="k">if</span> <span class="p">(</span><span class="nx">matcher</span><span class="p">.</span><span class="nx">agents</span><span class="p">.</span><span class="nx">size</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">false</span>
 
-        for (const agent of matcher.agents)
-            if (agentMatches(agent, context)) {
-                isMatch = true
-                break
-            }
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">agent</span> <span class="k">of</span> <span class="nx">matcher</span><span class="p">.</span><span class="nx">agents</span><span class="p">)</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">agentMatches</span><span class="p">(</span><span class="nx">agent</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span> <span class="p">{</span>
+              <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">true</span>
+              <span class="k">break</span>
+          <span class="p">}</span>
 
-        if (!isMatch)
-            return false
-    }
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isMatch</span><span class="p">)</span>
+          <span class="k">return</span> <span class="kc">false</span>
+  <span class="p">}</span>
 
-    if (matcher.clients.size !== 0) {
-        let isMatch = false
+  <span class="k">if</span> <span class="p">(</span><span class="nx">matcher</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nx">size</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">false</span>
 
-        for (const client of matcher.clients)
-            if (clientMatches(client, context)) {
-                isMatch = true
-                break
-            }
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">client</span> <span class="k">of</span> <span class="nx">matcher</span><span class="p">.</span><span class="nx">clients</span><span class="p">)</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">clientMatches</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span> <span class="p">{</span>
+              <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">true</span>
+              <span class="k">break</span>
+          <span class="p">}</span>
 
-        if (!isMatch)
-            return false
-    }
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isMatch</span><span class="p">)</span>
+          <span class="k">return</span> <span class="kc">false</span>
+  <span class="p">}</span>
 
-    if (matcher.issuers.size !== 0) {
-        let isMatch = false
+  <span class="k">if</span> <span class="p">(</span><span class="nx">matcher</span><span class="p">.</span><span class="nx">issuers</span><span class="p">.</span><span class="nx">size</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">false</span>
 
-        for (const issuer of matcher.issuers)
-            if (issuerMatches(issuer, context)) {
-                isMatch = true
-                break
-            }
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">issuer</span> <span class="k">of</span> <span class="nx">matcher</span><span class="p">.</span><span class="nx">issuers</span><span class="p">)</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">issuerMatches</span><span class="p">(</span><span class="nx">issuer</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span> <span class="p">{</span>
+              <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">true</span>
+              <span class="k">break</span>
+          <span class="p">}</span>
 
-        if (!isMatch)
-            return false
-    }
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isMatch</span><span class="p">)</span>
+          <span class="k">return</span> <span class="kc">false</span>
+  <span class="p">}</span>
 
-    if (matcher.vcs.size !== 0) {
-        let isMatch = false
+  <span class="k">if</span> <span class="p">(</span><span class="nx">matcher</span><span class="p">.</span><span class="nx">vcs</span><span class="p">.</span><span class="nx">size</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">false</span>
 
-        for (const vc of matcher.vcs)
-            if (vcMatches(vc, context)) {
-                isMatch = true
-                break
-            }
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">vc</span> <span class="k">of</span> <span class="nx">matcher</span><span class="p">.</span><span class="nx">vcs</span><span class="p">)</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">vcMatches</span><span class="p">(</span><span class="nx">vc</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span> <span class="p">{</span>
+              <span class="nx">isMatch</span> <span class="o">=</span> <span class="kc">true</span>
+              <span class="k">break</span>
+          <span class="p">}</span>
 
-        if (!isMatch)
-            return false
-    }
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isMatch</span><span class="p">)</span>
+          <span class="k">return</span> <span class="kc">false</span>
+  <span class="p">}</span>
 
-    // At this point, the matcher is satisfied because
-    // - there was at least one defined attribute and
-    // - at least one value of each defined attribute matched the context.
-    return true
-}
+  <span class="c1">// At this point, the matcher is satisfied because</span>
+  <span class="c1">// - there was at least one defined attribute and</span>
+  <span class="c1">// - at least one value of each defined attribute matched the context.</span>
+  <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
 
-const publicAgent = "https://www.w3.org/ns/solid/acp#PublicAgent"
-const authenticatedAgent = "https://www.w3.org/ns/solid/acp#AuthenticatedAgent"
-const creatorAgent = "https://www.w3.org/ns/solid/acp#CreatorAgent"
-const ownerAgent = "https://www.w3.org/ns/solid/acp#OwnerAgent"
-function agentMatches(agent, context) {
-    if (agent === publicAgent)
-        return true
+<span class="kd">const</span> <span class="nx">publicAgent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#PublicAgent</span><span class="dl">"</span>
+<span class="kd">const</span> <span class="nx">authenticatedAgent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#AuthenticatedAgent</span><span class="dl">"</span>
+<span class="kd">const</span> <span class="nx">creatorAgent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#CreatorAgent</span><span class="dl">"</span>
+<span class="kd">const</span> <span class="nx">ownerAgent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#OwnerAgent</span><span class="dl">"</span>
+<span class="kd">function</span> <span class="nx">agentMatches</span><span class="p">(</span><span class="nx">agent</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">agent</span> <span class="o">===</span> <span class="nx">publicAgent</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
 
-    if (agent === authenticatedAgent && context.agent !== null)
-        return true
+  <span class="k">if</span> <span class="p">(</span><span class="nx">agent</span> <span class="o">===</span> <span class="nx">authenticatedAgent</span> <span class="o">&amp;&amp;</span> <span class="nx">context</span><span class="p">.</span><span class="nx">agent</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
 
-    if (agent === creatorAgent && context.creators.includes(context.agent))
-        return true
+  <span class="k">if</span> <span class="p">(</span><span class="nx">agent</span> <span class="o">===</span> <span class="nx">creatorAgent</span> <span class="o">&amp;&amp;</span> <span class="nx">context</span><span class="p">.</span><span class="nx">creators</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">agent</span><span class="p">))</span>
+      <span class="k">return</span> <span class="kc">true</span>
 
-    if (agent === ownerAgent && context.owners.includes(context.agent))
-        return true
+  <span class="k">if</span> <span class="p">(</span><span class="nx">agent</span> <span class="o">===</span> <span class="nx">ownerAgent</span> <span class="o">&amp;&amp;</span> <span class="nx">context</span><span class="p">.</span><span class="nx">owners</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">agent</span><span class="p">))</span>
+      <span class="k">return</span> <span class="kc">true</span>
 
-    if (agent === context.agent)
-        return true
-}
+  <span class="k">if</span> <span class="p">(</span><span class="nx">agent</span> <span class="o">===</span> <span class="nx">context</span><span class="p">.</span><span class="nx">agent</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
 
-const publicClient = "https://www.w3.org/ns/solid/acp#PublicClient"
-function clientMatches(client, context) {
-    if (client === publicClient)
-        return true
+<span class="kd">const</span> <span class="nx">publicClient</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#PublicClient</span><span class="dl">"</span>
+<span class="kd">function</span> <span class="nx">clientMatches</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">client</span> <span class="o">===</span> <span class="nx">publicClient</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
 
-    if (client === context.client)
-        return true
-}
+  <span class="k">if</span> <span class="p">(</span><span class="nx">client</span> <span class="o">===</span> <span class="nx">context</span><span class="p">.</span><span class="nx">client</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
 
-const publicIssuer = "https://www.w3.org/ns/solid/acp#PublicIssuer"
-function issuerMatches(issuer, context) {
-    if (issuer === publicIssuer)
-        return true
+<span class="kd">const</span> <span class="nx">publicIssuer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#PublicIssuer</span><span class="dl">"</span>
+<span class="kd">function</span> <span class="nx">issuerMatches</span><span class="p">(</span><span class="nx">issuer</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">issuer</span> <span class="o">===</span> <span class="nx">publicIssuer</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
 
-    if (issuer === context.issuer)
-        return true
-}
+  <span class="k">if</span> <span class="p">(</span><span class="nx">issuer</span> <span class="o">===</span> <span class="nx">context</span><span class="p">.</span><span class="nx">issuer</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
 
-function vcMatches(vc, context) {
-    if (context.vcs.includes(vc))
-        return true
-}
-</pre>
+<span class="kd">function</span> <span class="nx">vcMatches</span><span class="p">(</span><span class="nx">vc</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">vcs</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">vc</span><span class="p">))</span>
+      <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
           </section>
         </section>
       </section>
