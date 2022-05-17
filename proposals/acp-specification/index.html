@@ -2468,7 +2468,7 @@ ex:policy1
             <pre>
 function resolveAccessControl(acr, ancestorAcrs, context) {
     const effectivePolicies = gatherEffectivePolicies(acr, ancestorAcrs)
-    const modes = grantAccessModes(policies, context)
+    const allowedAccessModes = grantAccessModes(effectivePolicies, context)
     const grantGraph = {
         context,
         grant: modes
