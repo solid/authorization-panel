@@ -38,7 +38,7 @@
       <h1 property="dc:title">Access Control Policy (ACP)</h1>
       <h2>
         <span property="rdfs:comment">Solid Editor&#39;s Draft</span>
-        <time property="dc:issued" datetime="2022-05-17">2022-05-17</time>
+        <time property="dc:issued" datetime="2022-05-18">2022-05-18</time>
       </h2>
       <details open="">
         <summary>More details about this document</summary>
@@ -78,14 +78,16 @@
               >https:&#x2F;&#x2F;github.com&#x2F;solid&#x2F;authorization-panel&#x2F;issues</a
             >
           </dd>
-          <dt>Test suite</dt>
-          <dd>
-            <a href="#Currently_Missing">#Currently_Missing</a>
-          </dd>
-          <dt>Implementation reports</dt>
-          <dd>
-            <a href="#Currently_Missing">#Currently_Missing</a>
-          </dd>
+          <!--
+        <dt>Test suite</dt>
+        <dd>
+          <a href="#Currently_Missing">#Currently_Missing</a>
+        </dd>
+        <dt>Implementation reports</dt>
+        <dd>
+          <a href="#Currently_Missing">#Currently_Missing</a>
+        </dd>
+         -->
           <dt>Editors</dt>
           <dd>
             <ul>
@@ -403,16 +405,8 @@
               >
               <ol class="toc">
                 <li class="tocline">
-                  <a href="#resolved-access-control-example" class="tocxref"
-                    ><span class="secno">6.1.1</span>Resolved Access Control
-                    example</a
-                  >
-                </li>
-              </ol>
-              <ol class="toc">
-                <li class="tocline">
                   <a href="#resolved-access-control-pseudocode" class="tocxref"
-                    ><span class="secno">6.1.2</span>Resolved Access Control
+                    ><span class="secno">6.1.1</span>Resolved Access Control
                     pseudocode</a
                   >
                 </li>
@@ -517,29 +511,15 @@
           >
           <ol class="toc">
             <li class="tocline">
-              <a href="#capability-discovery" class="tocxref"
-                ><span class="secno">7.1</span>Capability discovery</a
+              <a href="#conforming-resource-server" class="tocxref"
+                ><span class="secno">7.1</span>Conforming resource server</a
               >
             </li>
           </ol>
           <ol class="toc">
             <li class="tocline">
-              <a href="#acr-discovery" class="tocxref"
-                ><span class="secno">7.2</span>ACR discovery</a
-              >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#acr-editing" class="tocxref"
-                ><span class="secno">7.3</span>ACR editing</a
-              >
-            </li>
-          </ol>
-          <ol class="toc">
-            <li class="tocline">
-              <a href="#resource-management" class="tocxref"
-                ><span class="secno">7.4</span>Resource management</a
+              <a href="#conforming-acp-server" class="tocxref"
+                ><span class="secno">7.2</span>Conforming ACP server</a
               >
             </li>
           </ol>
@@ -617,10 +597,7 @@
               ><dfn id="rdf-namespace-prefix">namespace prefix</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph"
-              ><dfn id="rdf-graph">RDF graph</dfn></a
-            >,
-            <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple"
-              ><dfn id="rdf-triple">RDF triple</dfn></a
+              ><dfn id="rdf-graph">graph</dfn></a
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-iri"
               ><dfn id="rdf-iri">IRI</dfn></a
@@ -633,26 +610,12 @@
             >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-node"
               ><dfn id="rdf-node">node</dfn></a
-            >
-            of an RDF graph,
+            >,
             <a href="http://www.w3.org/TR/rdf11-concepts/#dfn-rdf-term"
-              ><dfn id="rdf-term">RDF term</dfn></a
+              ><dfn id="rdf-term">term</dfn></a
             >,
-            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-subject"
-              ><dfn id="rdf-subject">subject</dfn></a
-            >,
-            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-predicate"
-              ><dfn id="rdf-predicate">predicate</dfn></a
-            >, and
-            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-object"
-              ><dfn id="rdf-object">object</dfn></a
-            >
-            of RDF triples,
-            <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-datatype"
-              ><dfn id="rdf-datatype">datatype</dfn></a
-            >, and
             <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-iri-equality"
-              ><dfn id="rdf-iri-eqality">IRI</dfn></a
+              ><dfn id="rdf-iri-eqality">IRI equality</dfn></a
             >
             and
             <a
@@ -811,7 +774,7 @@
             <dt id="acp-terminology-access-grant-graph">Access grant graph</dt>
             <dd>
               <a href="#access-grant-graph">Access grant graphs</a> describe
-              sets of granted access modes over resources in the context of
+              sets of Access Modes granted over resources in the context of
               resource access requests. Access grants are the result of
               <a href="#acp-terminology-access-control-resolution"
                 >access control resolution</a
@@ -823,8 +786,8 @@
             </dt>
             <dd>
               <a href="#access-control-resolution">Access control resolution</a>
-              describes the algorithm used to apply an authorization graph to an
-              access request in order to obtain an access grant.
+              describes the algorithm used to apply an authorization graph to a
+              context graph in order to obtain an access grant graph.
             </dd>
           </dl>
         </section>
@@ -860,7 +823,7 @@
             an instance of resource access and could be translated as:
             <em
               >"Bob is trying to read resource X using client application Y with
-              his identity asserted by identity provider Z."</em
+              their identity asserted by identity provider Z."</em
             >.
           </p>
 
@@ -882,13 +845,13 @@
             <a href="#acp-terminology-authorization-graph"
               >authorization graph</a
             >
-            authoritatively defines the conditions of access to resource X and
-            could be translated as:
+            defines the conditions of access to resource X and could be
+            translated as:
             <em
               >"Access to resource X is mandated by one Access Control that
               applies one Policy which allows access mode
-              <code>acl:Read</code> when the agent matcher is satisfied that
-              Alice or Bob are the agent trying to access resource X."</em
+              <code>acl:Read</code> when Alice or Bob are the agent trying to
+              access resource X."</em
             >.
           </p>
 
@@ -928,9 +891,9 @@
             <code>acl:Read</code> defines no further restrictions, it is
             satisfied. The following access grant graph could be read as:
             <em
-              >"The access mode <code>acl:Read</code> is granted to Bob whom
-              requested read access to resource X using client application Y and
-              whose identity was asserted by identity provider Z."</em
+              >"The access mode <code>acl:Read</code> is granted to Bob who
+              requested read access to resource X using client application Y
+              with their identity asserted by identity provider Z."</em
             >.
           </p>
 
@@ -1126,7 +1089,7 @@
               >
               describes
               <span property="rdfs:domain" resource="acp:AccessRequest"
-                >requested access controlled resources</span
+                >requested resources</span
               >.
             </dd>
 
@@ -1232,9 +1195,6 @@
               describes identity providers used to assert the identity of agents
               requesting resources.
             </dd>
-            <!--
-  <dt id="acp-time" about="acp:time" property="rdfs:isDefinedBy" resource="acp:" typeof="rdf:Property"><code>acp:time</code></dt>
-  <dd about="acp:time" typeof="rdfs:comment">The <span property="rdfs:label">time</span> <span property="rdfs:subPropertyOf" resource="acp:attribute">attribute</span> describes times of resource access requests.</dd> -->
 
             <dt
               id="acp-vc"
@@ -1250,8 +1210,8 @@
               <span property="rdfs:subPropertyOf" resource="acp:attribute"
                 >attribute</span
               >
-              describes verifiable credentials presented as part of resource
-              access requests.
+              describes types of Verifiable Credentials (VC) presented as part
+              of resource access requests.
             </dd>
           </dl>
 
@@ -1281,7 +1241,7 @@
 
             <p>
               The following example context graph means that Bob requests access
-              to resource X using client application Y and with his identity
+              to resource X using client application Y and with their identity
               asserted by identity provider Z; furthermore, resource X was
               created by Alice and is owned by Bob.
             </p>
@@ -1867,7 +1827,7 @@ ex:policyA
             <dd about="acp:AuthenticatedAgent" property="rdfs:comment">
               In a Matcher, agent attributes using the
               <span property="rdfs:label">Authenticated Agent</span> named
-              individual MUST match all Contexts that contain an agent.
+              individual MUST match Contexts that contain an agent.
             </dd>
 
             <dt
@@ -1882,8 +1842,8 @@ ex:policyA
             <dd about="acp:CreatorAgent" property="rdfs:comment">
               In a Matcher, agent attributes using the
               <span property="rdfs:label">Creator Agent</span> named individual
-              MUST match all Contexts where a defined creator matches the
-              defined agent.
+              MUST match Contexts where a defined creator matches the defined
+              agent.
             </dd>
 
             <dt
@@ -1898,7 +1858,7 @@ ex:policyA
             <dd about="acp:OwnerAgent" property="rdfs:comment">
               In a Matcher, agent attributes using the
               <span property="rdfs:label">Owner Agent</span> named individual
-              MUST match all Contexts where a defined owner matches the defined
+              MUST match Contexts where a defined owner matches the defined
               agent.
             </dd>
 
@@ -1949,9 +1909,6 @@ ex:policyA
               <span property="rdfs:label">Public Issuer</span> named individual
               MUST match all Contexts.
             </dd>
-            <!--
-  <dt id="acp-time-matcher"><a href="#acp-time"><code>acp:time</code></a></dt>
-  <dd about="acp:time" property="rdfs:comment">The time attribute used in a Matcher defines a set of times, at least one of which MUST match the resource access Context for the time restriction to be satisfied.</dd> -->
 
             <dt id="acp-vc-matcher">
               <a href="#acp-vc"><code>acp:vc</code></a>
@@ -2303,7 +2260,7 @@ ex:policy1
             <p>
               The following example access grant graph means that Access Modes
               <code>acl:Read</code> and <code>acl:Write</code> have been granted
-              to Bob for accessing resource X.
+              to Alice for accessing resource X.
             </p>
 
             <pre
@@ -2313,7 +2270,7 @@ ex:policy1
 []
   acp:grant acl:Read, acl:Write ;&nbsp;&nbsp;
   acp:context [
-    acp:agent ex:Bob ;
+    acp:agent ex:Alice ;
     acp:target ex:resourceX ;
   ] .
 </pre
@@ -2424,24 +2381,11 @@ ex:policy1
           <section
             datatype="rdf:HTML"
             typeof="bibo:Chapter"
-            resource=":resolved-access-control-example"
-            property="bibo:hasPart"
-          >
-            <h4 class="heading" id="resolved-access-control-example">
-              <span class="secno">6.1.1. </span
-              ><span class="content">Resolved Access Control example</span
-              ><a class="self-link" href="#resolved-access-control-example"></a>
-            </h4>
-          </section>
-
-          <section
-            datatype="rdf:HTML"
-            typeof="bibo:Chapter"
             resource=":resolved-access-control-pseudocode"
             property="bibo:hasPart"
           >
             <h4 class="heading" id="resolved-access-control-pseudocode">
-              <span class="secno">6.1.2. </span
+              <span class="secno">6.1.1. </span
               ><span class="content">Resolved Access Control pseudocode</span
               ><a
                 class="self-link"
@@ -2588,7 +2532,7 @@ ex:policy1
             </p>
             <ul>
               <li>a satisfied policy allows the Access Mode; and,</li>
-              <li>no satisfied policy denies the Access Mode.</li>
+              <li>no satisfied policy denies it.</li>
             </ul>
           </div>
 
@@ -2735,16 +2679,17 @@ ex:policyC
                 A will not be satisfied.
               </li>
               <li>
-                If both Matcher D and Matcher E are not satisfied, then Policy A
+                If neither Matcher D nor Matcher E are satisfied, then Policy A
                 will not be satisfied.
               </li>
               <li>
-                If Matcher F is satisfied, then Policy A will not be satisfied.
+                If either Matcher F or Matcher G is satisfied, then Policy A
+                will not be satisfied.
               </li>
               <li>
                 If both Matcher B and Matcher C are satisfied, and, either
-                Matcher D or Matcher E are satisfied, and, Matcher F is not
-                satisfied, then Policy A will be satisfied.
+                Matcher D or Matcher E are satisfied, and, Matcher F and Matcher
+                G are not satisfied, then Policy A will be satisfied.
               </li>
             </ul>
 
@@ -2762,7 +2707,7 @@ ex:policyC
 ex:policyA
   acp:allOf ex:matcherB, ex:matcherC ;&nbsp;&nbsp;
   acp:anyOf ex:matcherD, matcherE ;
-  acp:noneOf ex:matcherF .
+  acp:noneOf ex:matcherF, ex:matcherG .
 </pre
             >
           </section>
@@ -2832,21 +2777,7 @@ ex:policyA
             </ul>
             <p>
               ACP engines MUST match the context attributes defined by this
-              specification according to
-              <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-iri-equality"
-                ><dfn>IRI</dfn></a
-              >
-              and
-              <a
-                href="https://www.w3.org/TR/rdf11-concepts/#dfn-literal-term-equality"
-                ><dfn>literal term equality</dfn></a
-              >
-              as defined in the RDF 1.1 Concepts and Abstract Syntax
-              <cite
-                ><a class="bibref" href="#rdf11-concepts"
-                  >RDF11 CONCEPTS</a
-                ></cite
-              >.
+              specification according to IRI equality and literal term equality.
             </p>
           </div>
 
@@ -2872,19 +2803,13 @@ ex:policyA
 
             <ul>
               <li>
-                either Alice or Bob are the requesting agent described in the
-                Access Request Context OR if the requesting agent is an Owner or
-                Creator described in the Access Request Context; and,
+                either Alice or Bob are the requesting agent or if the
+                requesting agent is an owner or creator; and,
               </li>
-              <li>
-                client 1 is used by the requesting agent to access the resource
-                and therefore described as the client in the Access Request
-                Context; and,
-              </li>
+              <li>client 1 is used by the requesting agent; and,</li>
               <li>
                 issuer 2 is used by the requesting agent to assert their
-                identity and therefore described as the issuer in the Access
-                Request Context.
+                identity.
               </li>
             </ul>
 
@@ -3057,193 +2982,82 @@ ex:matcherB
           ><a class="self-link" href="#server-implementation"></a>
         </h2>
         <p>
-          This section introduces ACP server capability and ACR discovery, as
-          well as ACR editing, and ACP resources lifecycle management.
+          This section introduces conforming resource server and ACP server
+          requirements.
         </p>
 
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":capability-discovery"
+          resource=":conforming-resource-server"
           property="bibo:hasPart"
         >
-          <h3 class="heading" id="capability-discovery">
+          <h3 class="heading" id="conforming-resource-server">
             <span class="secno">7.1. </span
-            ><span class="content">Capability discovery</span
-            ><a class="self-link" href="#capability-discovery"></a>
+            ><span class="content">Conforming resource server</span
+            ><a class="self-link" href="#conforming-resource-server"></a>
           </h3>
           <p>
-            The resource server MUST have a trust relationship with the ACP
-            authorization server and consider the ACP server authoritative in
-            Access Control resolution.
+            Conforming resource servers MUST provide ACP servers with resource
+            access Contexts and MUST authorize resource access according to
+            grant graphs produced by a conforming ACP server.
           </p>
 
           <p>
-            A conforming ACP server MUST advertise its capabilities via link
-            headers.
-          </p>
-
-          <p>
-            The server MUST advertise the Access Modes it supports by responding
-            to HTTP OPTIONS requests over ACP Access Control Resources including
-            Link headers with the rel value of
-            <code>http://www.w3.org/ns/solid/acp#grant</code> and the full URI
-            of supported Access Modes as link target
+            When responding to requests targetting access controlled resources,
+            conforming resource servers MUST include a <code>Link</code> header
+            with the <code>rel</code> value of <code>acl</code> and controlled
+            resources&apos; ACRs as the link target
             <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
-            >. The server MUST produce one such Link header for each Access Mode
-            it supports.
-          </p>
-
-          <p>
-            For example, if a server supports the <code>acl:Read</code>,
-            <code>acl:Write</code>, <code>acl:Append</code> and
-            <code>acl:Control</code> access modes, it should advertise it by
-            responding to HTTP OPTIONS requests over ACRs including four link
-            headers with rel value of
-            <code>http://www.w3.org/ns/solid/acp#grant</code> and respectively
-            targets of <code>http://www.w3.org/ns/auth/acl#Read</code>,
-            <code>http://www.w3.org/ns/auth/acl#Write</code>,
-            <code>http://www.w3.org/ns/auth/acl#Append</code>, and
-            <code>http://www.w3.org/ns/auth/acl#Control</code> in order to make
-            it explicit which Access Modes are understood and relevant when
-            editing ACP Policies.
-          </p>
-
-          <p>
-            The server MUST advertise the ACP attributes it supports by
-            responding to HTTP OPTIONS requests over ACRs including a Link
-            header with the rel value of
-            <code>http://www.w3.org/ns/solid/acp#attribute</code> and the full
-            URI of an acp attribute as link target
-            <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
-            >. The server MUST produce one such Link header for each request
-            attribute it supports.
-          </p>
-
-          <p>
-            For example, if a server supports the ACP agent, client and issuer
-            request attributes, it should advertise it by responding to HTTP
-            OPTIONS requests over its ACRs including three link headers with rel
-            value of <code>http://www.w3.org/ns/solid/acp#attribute</code> and
-            respectively targets of
-            <code>http://www.w3.org/ns/solid/acp#agent</code>,
-            <code>http://www.w3.org/ns/solid/acp#client</code>, and
-            <code>http://www.w3.org/ns/solid/acp#issuer</code> in order to make
-            it explicit which set of request attributes are understood and
-            relevant when editing ACP matchers.
-          </p>
-        </section>
-
-        <section
-          datatype="rdf:HTML"
-          typeof="bibo:Chapter"
-          resource=":acr-discovery"
-          property="bibo:hasPart"
-        >
-          <h3 class="heading" id="acr-discovery">
-            <span class="secno">7.2. </span
-            ><span class="content">ACR discovery</span
-            ><a class="self-link" href="#acr-discovery"></a>
-          </h3>
-          <p>
-            When a server wants to enable applications to discover the ACR
-            associated with a given resource, it MUST advertise that relation by
-            responding to HTTP requests over the resource including a
-            <code>Link</code> header with the <code>rel</code> value of
-            <code>acl</code> (acl Link Relation) and the ACP access control
-            resource as the link target
-            <cite><a class="bibref" href="#rfc8288">RFC 8288</a></cite
-            >. The same mechanism is used in
-            <a href="https://solidproject.org/TR/wac#acl-resource-discovery"
-              >Web Access Control&apos;s ACL resource discovery</a
-            >
-            <cite><a class="bibref" href="#wac">WAC</a></cite
             >.
           </p>
 
           <p>
-            A server responding to an HTTP request targetting an ACR MUST
-            include a <code>Link</code> header with the <code>rel</code> value
-            of <code>type</code> and the
-            <code>acp:AccessControlResource</code> URI as link target.
-          </p>
-
-          <p>
-            ACP does not define membership, therefore, the resource server MUST
-            be considered authoritative in defining member resources relations.
+            Conforming resource servers MUST provide ACP servers with sufficient
+            resource membership information to resolve ancestor ACRs.
           </p>
         </section>
 
         <section
           datatype="rdf:HTML"
           typeof="bibo:Chapter"
-          resource=":acr-editing"
+          resource=":conforming-acp-server"
           property="bibo:hasPart"
         >
-          <h3 class="heading" id="acr-editing">
-            <span class="secno">7.3. </span
-            ><span class="content">ACR editing</span
-            ><a class="self-link" href="#acr-editing"></a>
+          <h3 class="heading" id="conforming-acp-server">
+            <span class="secno">7.2. </span
+            ><span class="content">Conforming ACP server</span
+            ><a class="self-link" href="#conforming-acp-server"></a>
           </h3>
           <p>
-            The owner of a storage is implicitly considered an owner of all the
-            resources in the URI space corresponding to the storage.
+            When responding to requests targetting an ACR, conforming ACP
+            servers MUST include a <code>Link</code> header with the
+            <code>rel</code> value of <code>type</code> and the
+            <code>http://www.w3.org/ns/solid/acp#AccessControlResource</code>
+            IRI as the link target.
           </p>
 
           <p>
-            Owners of resources are implicitly considered owners of associated
-            Access Control Resources.
+            When responding to OPTIONS requests targetting an ACR, conforming
+            ACP servers MUST include a <code>Link</code> header for each
+            supported Access Mode with the <code>rel</code> value of
+            <code>http://www.w3.org/ns/solid/acp#grant</code> and the full IRI
+            of the supported Access Mode as the link target.
           </p>
 
           <p>
-            Owners Access Control Resources implicitly have full read and write
-            access over them.
+            When responding to OPTIONS requests targetting an ACR, conforming
+            ACP servers MUST include a <code>Link</code> header for each
+            supported attribute with the <code>rel</code> value of
+            <code>http://www.w3.org/ns/solid/acp#attribute</code> and the full
+            IRI of the supported attribute as the link target.
           </p>
 
-          <p>
-            To add or remove an Access Control from an ACR, agents that are not
-            owners of said ACR need read and write access to both the ACR itself
-            and to the resource where said Access Control is defined. In other
-            words, Access Controls defined as part of a separate resource can be
-            protected from unwanted edits in and out of ACRs by setting adequate
-            permissions in their own ACR.
-          </p>
-        </section>
-
-        <section
-          datatype="rdf:HTML"
-          typeof="bibo:Chapter"
-          resource=":resource-management"
-          property="bibo:hasPart"
-        >
-          <h3 class="heading" id="resource-management">
-            <span class="secno">7.4. </span
-            ><span class="content">Resource management</span
-            ><a class="self-link" href="#resource-management"></a>
-          </h3>
-          <p>Access Control Resources MUST be server managed.</p>
+          <p>Conforming ACP engines MAY be conforming resource servers.</p>
 
           <p>
-            Sources of Access Control statements are authoritative and MUST be
-            trusted.
-          </p>
-
-          <p>
-            Before granting any Access Modes over resources authoritatively
-            linked to an ACR, access control MUST be resolved successfully.
-          </p>
-
-          <p>
-            Access Control Resources, Access Controls, Policies and Matchers MAY
-            all be access controlled via their own ACRs.
-          </p>
-
-          <p>
-            As long as Access Control Resources, Access Controls, Policies, and
-            Matchers are used to control access to at least one resource, they
-            MUST not be deleted. However, if such consistency fails to be
-            enforced or if any ACP element is not accessible for any other
-            reason, then access control resolution MUST fail.
+            The lifecycle of Access Control Resources SHOULD take into account
+            the lifecycle of resources they control access to.
           </p>
         </section>
       </section>
@@ -3257,6 +3071,11 @@ ex:matcherB
     >
       <h2 id="acknowledgements">Acknowledgements</h2>
       <p><em>This section is non-normative.</em></p>
+
+      <p>
+        Samu Lang provided a comprehensive review of the specification as well
+        as the pseudocode sections.
+      </p>
 
       <p>
         The Solid Community Group would like to thank the following individuals
@@ -3367,17 +3186,6 @@ ex:matcherB
             Recommendation. URL:
             <a href="https://www.w3.org/TR/turtle/"
               >https://www.w3.org/TR/turtle/</a
-            >.
-          </dd>
-
-          <dt id="wac">[WAC]</dt>
-          <dd>
-            <a href="https://solidproject.org/TR/wac" rel="rdfs:seeAlso"
-              ><cite>Web Access Control</cite></a
-            >. Sarven Capadisli. W3C Solid Community Group. 11 July 2021. Draft.
-            URL:
-            <a href="https://solidproject.org/TR/wac"
-              >https://solidproject.org/TR/wac</a
             >.
           </dd>
         </dl>
