@@ -9,7 +9,7 @@ prefix vann: <http://purl.org/vocab/vann/>
 <http://www.w3.org/ns/solid/acp#>
     a owl:Ontology ;
     rdfs:label "Access Control Policy Language (ACP)"@en ;
-    rdfs:comment "The Access Control Policy Language (ACP) is a language for describing, controlling and granting access to resources."@en ;
+    rdfs:comment "The Access Control Policy Language (ACP) is a language for describing, controlling, and granting access to resources."@en ;
     rdfs:isDefinedBy acp: ;
     rdfs:seeAlso <https://solid.github.io/authorization-panel/acp-specification/> ;
     cito:citesAsAuthority
