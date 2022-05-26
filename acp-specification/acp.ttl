@@ -19,7 +19,7 @@ prefix vann: <http://purl.org/vocab/vann/>
       <https://www.rfc-editor.org/info/rfc8288>,
       <https://www.w3.org/TR/vc-data-model/> ;
     dc:issued "2022-05-18"^^xsd:date ;
-    vann:preferredNamespacePrefix "vann" ;
+    vann:preferredNamespacePrefix "acp" ;
     vann:preferredNamespaceUri "http://www.w3.org/ns/solid/acp#"^^xsd:anyURI .
 
 
