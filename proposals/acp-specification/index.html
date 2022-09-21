@@ -822,8 +822,8 @@
             <a href="#acp-terminology-context-graph">context graph</a> describes
             an instance of resource access and could be translated as:
             <em
-              >"Bob is trying to read resource X using client application Y with
-              their identity asserted by identity provider Z."</em
+              >"Bob is trying to access resource X using client application Y
+              with their identity asserted by identity provider Z."</em
             >.
           </p>
 
@@ -834,7 +834,6 @@
 []
   acp:target ex:resourceX ;
   acp:agent ex:Bob ;
-  acp:mode acl:Read ;
   acp:client ex:clientApplicationY ;
   acp:issuer ex:identityProviderZ .
 </pre
@@ -892,8 +891,8 @@
             satisfied. The following access grant graph could be read as:
             <em
               >"The access mode <code>acl:Read</code> is granted to Bob who
-              requested read access to resource X using client application Y
-              with their identity asserted by identity provider Z."</em
+              requested access to resource X using client application Y with
+              their identity asserted by identity provider Z."</em
             >.
           </p>
 
@@ -909,7 +908,6 @@
   acp:context [
     acp:agent ex:Bob ;
     acp:target ex:resourceX ;
-    acp:mode acl:Read ;
     acp:client ex:ClientApplicationY ;
     acp:issuer ex:IdentityProviderZ ;
   ] .
@@ -1091,23 +1089,6 @@
               <span property="rdfs:domain" resource="acp:AccessRequest"
                 >requested resources</span
               >.
-            </dd>
-
-            <dt
-              id="acp-mode"
-              about="acp:mode"
-              property="rdfs:isDefinedBy"
-              resource="acp:"
-              typeof="rdf:Property"
-            >
-              <code>acp:mode</code>
-            </dt>
-            <dd about="acp:mode" typeof="rdfs:comment">
-              The <span property="rdfs:label">mode</span>
-              <span property="rdfs:subPropertyOf" resource="acp:attribute"
-                >attribute</span
-              >
-              describes requested modes of access.
             </dd>
 
             <dt
