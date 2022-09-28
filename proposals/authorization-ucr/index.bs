@@ -1331,6 +1331,21 @@ thus if it can be, for example, liked, bookmarked, archived by everyone.
 
 </div>
 
+### Distinguishing mediated from direct access ### {#uc-distinguish-mediated-access}
+
+A [=resource controller=] wishes to grant an [=agent=] [=access=] to a
+[=resource=]. The controller wishes to grant a different [=access mode=]
+depending on whether the agent accesses the resource via an [=application=] or
+directly. For example, in the case of mediated access via an application, the
+controller wishes to restrict the set of eligible applications. But the
+controller also wishes to allow direct access.
+
+<div class="assertion">
+
+* [[#req-distinguish-mediated-access]]
+
+</div>
+
 ## Delegation ## {#uc-delegation}
 
 ### Delegating subset of received access to another agent ### {#uc-delegation-subset}
@@ -1651,6 +1666,12 @@ or limiting access to a [=resource=] or [=collection=] by an [=agent=].
 
 <div class="assertion">
   Related use cases: [[#basic-authenticated]]
+</div>
+
+### The system shall allow distinguishing between mediated (via a third-party client application) and non-mediated access. ### {#req-distinguish-mediated-access}
+
+<div class="assertion">
+  Related use cases: [[#uc-distinguish-mediated-access]]
 </div>
 
 ## Access by capability ## {#req-capabilities}
