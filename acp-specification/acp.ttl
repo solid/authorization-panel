@@ -182,12 +182,6 @@ acp:target
     rdfs:isDefinedBy acp: ;
     rdfs:subPropertyOf acp:attribute .
 
-acp:mode
-    rdfs:label "mode"@en ;
-    rdfs:comment "The mode attribute describes requested modes of access."@en ;
-    rdfs:isDefinedBy acp: ;
-    rdfs:subPropertyOf acp:attribute .
-
 acp:agent
     rdfs:label "agent"@en ;
     rdfs:comment "The agent attribute describes agents initiating requests."@en ;
