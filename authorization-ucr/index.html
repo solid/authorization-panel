@@ -6,9 +6,9 @@
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version fdd5936bf, updated Tue May 24 14:57:39 2022 -0700" name="generator">
+  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/authorization-ucr/" rel="canonical">
-  <meta content="1e4d9b731fda12baa1fe496e560066de2dcff5d5" name="document-revision">
+  <meta content="179b1e3389211282416a27f70f69b155401e914d" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -489,7 +489,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Authorization in Solid</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-05-26">26 May 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-09-28">28 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -2061,7 +2061,7 @@ server</a> on the Web.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource-server">resource server</dfn> is a web server that provides an interface to
 make <a data-link-type="dfn" href="#resource" id="ref-for-resource①⓪①">resources</a> available to <a data-link-type="dfn" href="#agent" id="ref-for-agent②⑧">agents</a> and <a data-link-type="dfn" href="#application" id="ref-for-application④">applications</a>, with the
 ability to secure access to those <a data-link-type="dfn" href="#resource" id="ref-for-resource①⓪②">resources</a> through associated <a data-link-type="dfn" href="#authorization" id="ref-for-authorization⑨">authorizations</a>.</p>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource">resource</dfn> is the target of an HTTP request identified by a <a data-link-type="biblio" href="#biblio-uri">[URI]</a>, as defined in <a data-link-type="biblio" href="#biblio-rfc7231">[RFC7231]</a>.</p>
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="resource">resource</dfn> is the target of an HTTP request identified by a <a data-link-type="biblio" href="#biblio-uri">[URI]</a>, as defined in <a data-link-type="biblio" href="#biblio-rfc9110">[rfc9110]</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="collection">collection</dfn> is a <a data-link-type="dfn" href="#resource" id="ref-for-resource①⓪③">resource</a> that is representative of a set of
 other <a data-link-type="dfn" href="#resource" id="ref-for-resource①⓪④">resources</a>, which may include other <a data-link-type="dfn" href="#collection" id="ref-for-collection⑨⑨">collections</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="tag">tag</dfn> is a type of metadata associated with a <a data-link-type="dfn" href="#resource" id="ref-for-resource①⓪⑤">resource</a> for
@@ -2116,7 +2116,7 @@ collection.</p>
     and are set apart from the normative text
     with <code>class="note"</code>,
     like this: </p>
-   <p class="note" role="note">Note, this is an informative note. </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
@@ -2162,8 +2162,8 @@ collection.</p>
   <dl>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
-   <dt id="biblio-rfc7231">[RFC7231]
-   <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
+   <dt id="biblio-rfc9110">[RFC9110]
+   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://www.rfc-editor.org/rfc/rfc9110"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
