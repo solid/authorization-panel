@@ -1868,6 +1868,21 @@ ex:policyA
               MUST match all Contexts.
             </dd>
 
+            <dt
+              id="acp-authenticated-client"
+              about="acp:AuthenticatedClient"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:AuthenticatedClient</code>
+            </dt>
+            <dd about="acp:AuthenticatedClient" property="rdfs:comment">
+              In a Matcher, client attributes using the
+              <span property="rdfs:label">Authenticated Client</span> named
+              individual MUST match Contexts that contain a client.
+            </dd>
+
             <dt id="acp-issuer-matcher">
               <a href="#acp-issuer"><code>acp:issuer</code></a>
             </dt>
@@ -1890,6 +1905,21 @@ ex:policyA
               In a Matcher, issuer attributes using the
               <span property="rdfs:label">Public Issuer</span> named individual
               MUST match all Contexts.
+            </dd>
+
+            <dt
+              id="acp-authenticated-issuer"
+              about="acp:AuthenticatedIssuer"
+              property="rdfs:isDefinedBy"
+              resource="acp:"
+              typeof="owl:NamedIndividual"
+            >
+              <code>acp:AuthenticatedIssuer</code>
+            </dt>
+            <dd about="acp:AuthenticatedIssuer" property="rdfs:comment">
+              In a Matcher, issuer attributes using the
+              <span property="rdfs:label">Authenticated Issuer</span> named
+              individual MUST match Contexts that contain an issuer.
             </dd>
 
             <dt id="acp-vc-matcher">
@@ -2926,8 +2956,12 @@ ex:matcherB
 <span class="p">}</span>
 
 <span class="kd">const</span> <span class="nx">publicClient</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#PublicClient</span><span class="dl">"</span>
+<span class="kd">const</span> <span class="nx">authenticatedClient</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#AuthenticatedClient</span><span class="dl">"</span>
 <span class="kd">function</span> <span class="nx">clientMatches</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">client</span> <span class="o">===</span> <span class="nx">publicClient</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">client</span> <span class="o">===</span> <span class="nx">authenticatedClient</span> <span class="o">&amp;&amp;</span> <span class="nx">context</span><span class="p">.</span><span class="nx">client</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span>
       <span class="k">return</span> <span class="kc">true</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">client</span> <span class="o">===</span> <span class="nx">context</span><span class="p">.</span><span class="nx">client</span><span class="p">)</span>
@@ -2935,8 +2969,12 @@ ex:matcherB
 <span class="p">}</span>
 
 <span class="kd">const</span> <span class="nx">publicIssuer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#PublicIssuer</span><span class="dl">"</span>
+<span class="kd">const</span> <span class="nx">authenticatedIssuer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.w3.org/ns/solid/acp#AuthenticatedIssuer</span><span class="dl">"</span>
 <span class="kd">function</span> <span class="nx">issuerMatches</span><span class="p">(</span><span class="nx">issuer</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">issuer</span> <span class="o">===</span> <span class="nx">publicIssuer</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">true</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">issuer</span> <span class="o">===</span> <span class="nx">authenticatedIssuer</span> <span class="o">&amp;&amp;</span> <span class="nx">context</span><span class="p">.</span><span class="nx">issuer</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span>
       <span class="k">return</span> <span class="kc">true</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">issuer</span> <span class="o">===</span> <span class="nx">context</span><span class="p">.</span><span class="nx">issuer</span><span class="p">)</span>
