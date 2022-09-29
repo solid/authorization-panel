@@ -1,9 +1,9 @@
 prefix acp: <http://www.w3.org/ns/solid/acp#>
-prefix cito: <http://purl.org/spar/cito/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix cito: <http://purl.org/spar/cito/>
 prefix dc: <http://purl.org/dc/terms/>
 prefix vann: <http://purl.org/vocab/vann/>
 
@@ -272,8 +272,20 @@ acp:PublicClient
   rdfs:isDefinedBy acp: ;
   rdfs:label "Public Client"@en .
 
+acp:AuthenticatedClient
+  a owl:NamedIndividual ;
+  rdfs:comment "In a Matcher, client attributes using the Authenticated Client named individual MUST match Contexts that contain a client."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Authenticated Client"@en .
+
 acp:PublicIssuer
   a owl:NamedIndividual, acp:AlwaysSatisfiedRestriction ;
   rdfs:comment "In a Matcher, issuer attributes using the Public Issuer named individual MUST match all Contexts."@en ;
   rdfs:isDefinedBy acp: ;
   rdfs:label "Public Issuer"@en .
+
+acp:AuthenticatedIssuer
+  a owl:NamedIndividual ;
+  rdfs:comment "In a Matcher, issuer attributes using the Authenticated Issuer named individual MUST match Contexts that contain an issuer."@en ;
+  rdfs:isDefinedBy acp: ;
+  rdfs:label "Authenticated Issuer"@en .
