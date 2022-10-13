@@ -26,7 +26,9 @@ All contributors to any Work Items must be members of the Solid CG. It’s easy 
 
 Anyone can join the [Authorization Panel chat](https://gitter.im/solid/authorization-panel).
 
-Online panel meetings occur weekly on Wednesday, 14:00 UTC at https://meet.jit.si/solid-authorization. Meetings are transcribed and [published](https://github.com/solid/authorization-panel/tree/main/meetings/).
+Online panel meetings are currently paused [and their future is being discussed in PR#322](https://github.com/solid/authorization-panel/pull/322)
+
+Meetings are transcribed and [published](https://github.com/solid/authorization-panel/tree/main/meetings/).
 
 
 ## Code of Conduct
