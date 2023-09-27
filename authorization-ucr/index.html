@@ -5,10 +5,10 @@
   <title>Use Cases and Requirements for Authorization in Solid</title>
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 077497365, updated Thu Mar 2 15:15:29 2023 -0800" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://solid.github.io/authorization-panel/authorization-ucr/" rel="canonical">
-  <meta content="fe891bf4c403c74207e7e949e49f7ef974253a56" name="document-revision">
+  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
+  <meta content="c2ee60244da24783d85e04e75f02417f80accf13" name="document-revision">
 <style>
 
   table.collections thead tr {
@@ -51,7 +51,7 @@
 }
 
 </style>
-<style>/* style-autolinks */
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -112,8 +112,16 @@ pre .property::before, pre .property::after {
 [data-link-type=biblio] {
     white-space: pre;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
 </style>
-<style>/* style-colors */
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -222,157 +230,6 @@ pre .property::before, pre .property::after {
 
     --editedrec-bg: darkorange;
 }
-</style>
-<style>/* style-counters */
-body {
-    counter-reset: example figure issue;
-}
-.issue {
-    counter-increment: issue;
-}
-.issue:not(.no-marker)::before {
-    content: "Issue " counter(issue);
-}
-
-.example {
-    counter-increment: example;
-}
-.example:not(.no-marker)::before {
-    content: "Example " counter(example);
-}
-.invalid.example:not(.no-marker)::before,
-.illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
-}
-
-figcaption {
-    counter-increment: figure;
-}
-figcaption:not(.no-marker)::before {
-    content: "Figure " counter(figure) " ";
-}
-</style>
-<style>/* style-dfn-panel */
-:root {
-    --dfnpanel-bg: #ddd;
-    --dfnpanel-text: var(--text);
-}
-.dfn-panel {
-    position: absolute;
-    z-index: 35;
-    width: 20em;
-    min-width: min-content;
-    max-width: 300px;
-    height: auto;
-    max-height: 500px;
-    overflow: auto;
-    padding: 0.5em 0.75em;
-    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
-    background: var(--dfnpanel-bg);
-    color: var(--dfnpanel-text);
-    border: outset 0.2em;
-    white-space: normal; /* in case it's moved into a pre */
-}
-.dfn-panel:not(.on) { display: none; }
-.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
-.dfn-panel > b { display: block; }
-.dfn-panel a { color: var(--dfnpanel-text); }
-.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
-.dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
-.dfn-panel.activated {
-    display: inline-block;
-    position: fixed;
-    left: .5em;
-    bottom: 2em;
-    margin: 0 auto;
-    max-width: calc(100vw - 1.5em - .4em - .5em);
-    max-height: 30vh;
-}
-
-.dfn-paneled { cursor: pointer; }
-</style>
-<style>/* style-issues */
-a[href].issue-return {
-    float: right;
-    float: inline-end;
-    color: var(--issueheading-text);
-    font-weight: bold;
-    text-decoration: none;
-}
-</style>
-<style>/* style-md-lists */
-/* This is a weird hack for me not yet following the commonmark spec
-   regarding paragraph and lists. */
-[data-md] > :first-child {
-    margin-top: 0;
-}
-[data-md] > :last-child {
-    margin-bottom: 0;
-}
-</style>
-<style>/* style-selflinks */
-
-:root {
-    --selflink-text: white;
-    --selflink-bg: gray;
-    --selflink-hover-text: black;
-}
-.heading, .issue, .note, .example, li, dt {
-    position: relative;
-}
-a.self-link {
-    position: absolute;
-    top: 0;
-    left: calc(-1 * (3.5rem - 26px));
-    width: calc(3.5rem - 26px);
-    height: 2em;
-    text-align: center;
-    border: none;
-    transition: opacity .2s;
-    opacity: .5;
-}
-a.self-link:hover {
-    opacity: 1;
-}
-.heading > a.self-link {
-    font-size: 83%;
-}
-.example > a.self-link,
-.note > a.self-link,
-.issue > a.self-link {
-    /* These blocks are overflow:auto, so positioning outside
-       doesn't work. */
-    left: auto;
-    right: 0;
-}
-li > a.self-link {
-    left: calc(-1 * (3.5rem - 26px) - 2em);
-}
-dfn > a.self-link {
-    top: auto;
-    left: auto;
-    opacity: 0;
-    width: 1.5em;
-    height: 1.5em;
-    background: var(--selflink-bg);
-    color: var(--selflink-text);
-    font-style: normal;
-    transition: opacity .2s, background-color .2s, color .2s;
-}
-dfn:hover > a.self-link {
-    opacity: 1;
-}
-dfn > a.self-link:hover {
-    color: var(--selflink-hover-text);
-}
-
-a.self-link::before            { content: "¶"; }
-.heading > a.self-link::before { content: "§"; }
-dfn > a.self-link::before      { content: "#"; }
-</style>
-<style>/* style-darkmode */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -485,20 +342,173 @@ dfn > a.self-link::before      { content: "#"; }
        which is quite common in practice... */
     img { background: white; }
 }
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
 
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
 @media (prefers-color-scheme: dark) {
     :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
     }
 }
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
 </style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Use Cases and Requirements for Authorization in Solid</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-03-07">7 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-09-27">27 September 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -2139,20 +2149,22 @@ collection.</p>
     with <code>class="note"</code>,
     like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
+   <section>
+    <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
+    <p>Requirements phrased in the imperative as part of algorithms
     (such as "strip any leading space characters"
     or "return false and abort these steps")
     are to be interpreted with the meaning of the key word
     ("must", "should", "may", etc)
     used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
+    <p>Conformance requirements phrased as algorithms or specific steps
     can be implemented in any manner,
     so long as the end result is equivalent.
     In particular, the algorithms defined in this specification
     are intended to be easy to understand
     and are not intended to be performant.
     Implementers are encouraged to optimize. </p>
+   </section>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
@@ -2196,377 +2208,68 @@ collection.</p>
    <dt id="biblio-webid">[WEBID]
    <dd>Tim Berners-Lee; Henry Story; Andrei Sambra. <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/"><cite>WebID 1.0</cite></a>. URL: <a href="https://www.w3.org/2005/Incubator/webid/spec/identity/">https://www.w3.org/2005/Incubator/webid/spec/identity/</a>
   </dl>
-  <aside aria-labelledby="infopaneltitle-for-agent" class="dfn-panel" data-for="agent" id="infopanel-for-agent">
-   <span id="infopaneltitle-for-agent" style="display:none">Info about the 'agent' definition.</span><b><a href="#agent">#agent</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-agent">2.3.8. Adding new subjects to inherited permissions</a>
-    <li><a href="#ref-for-agent①">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-agent②">2.5.4. Distinguishing mediated from direct access</a>
-    <li><a href="#ref-for-agent③">3. Functional Requirements</a>
-    <li><a href="#ref-for-agent④">3.1.1. The system shall allow access to be limited based on the identity of the agent.</a>
-    <li><a href="#ref-for-agent⑤">3.1.2. The system shall allow access to be limited based on the identity of the agent, only when that identity is issued by a trusted identity provider.</a>
-    <li><a href="#ref-for-agent⑥">3.1.3. The system shall allow access to be limited to an agent based on the agent’s membership in a certain group of agents.</a> <a href="#ref-for-agent⑦">(2)</a> <a href="#ref-for-agent⑧">(3)</a>
-    <li><a href="#ref-for-agent⑨">3.1.4. The system shall allow access to be limited to an agent based on the client application in use by the agent.</a> <a href="#ref-for-agent①⓪">(2)</a>
-    <li><a href="#ref-for-agent①①">3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to.</a>
-    <li><a href="#ref-for-agent①②">3.1.6. The system shall allow access to be permitted for any unauthenticated or authenticated agent.</a>
-    <li><a href="#ref-for-agent①③">3.1.7. The system shall allow access to be limited to any authenticated agent.</a>
-    <li><a href="#ref-for-agent①④">3.2.1. The system shall allow access to be limited to an agent based on the agent’s possession of a certain verifiable credential or capability.</a> <a href="#ref-for-agent①⑤">(2)</a>
-    <li><a href="#ref-for-agent①⑥">3.3.3. The system shall provide the effective access permissions on a certain resource or collection as they relate to the agent making the request, in the request response.</a>
-    <li><a href="#ref-for-agent①⑦">3.3.8. The system shall allow for access to a resource or collection to be limited to the agent that created it.</a>
-    <li><a href="#ref-for-agent①⑧">3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-agent①⑨">3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-agent②⓪">3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-agent②①">3.5.5. The system shall allow for new resources to be added to a given collection if the agent has inherited create access from the parent collection that the given collection is a member of.</a>
-    <li><a href="#ref-for-agent②②">3.5.6. The system shall allow for resources to be deleted from a given collection if the agent has inherited delete access from the parent collection that the given collection is a member of.</a>
-    <li><a href="#ref-for-agent②③">3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-agent②④">3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-agent②⑤">3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.</a>
-    <li><a href="#ref-for-agent②⑥">4. Definitions</a> <a href="#ref-for-agent②⑦">(2)</a> <a href="#ref-for-agent②⑧">(3)</a> <a href="#ref-for-agent②⑨">(4)</a> <a href="#ref-for-agent③⓪">(5)</a> <a href="#ref-for-agent③①">(6)</a> <a href="#ref-for-agent③②">(7)</a> <a href="#ref-for-agent③③">(8)</a> <a href="#ref-for-agent③④">(9)</a> <a href="#ref-for-agent③⑤">(10)</a> <a href="#ref-for-agent③⑥">(11)</a> <a href="#ref-for-agent③⑦">(12)</a> <a href="#ref-for-agent③⑧">(13)</a> <a href="#ref-for-agent③⑨">(14)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-identity" class="dfn-panel" data-for="identity" id="infopanel-for-identity">
-   <span id="infopaneltitle-for-identity" style="display:none">Info about the 'identity' definition.</span><b><a href="#identity">#identity</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-identity">2. Use Cases</a>
-    <li><a href="#ref-for-identity①">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-identity②">2.10.3. Possession of a link</a>
-    <li><a href="#ref-for-identity③">3.1.1. The system shall allow access to be limited based on the identity of the agent.</a>
-    <li><a href="#ref-for-identity④">3.1.2. The system shall allow access to be limited based on the identity of the agent, only when that identity is issued by a trusted identity provider.</a>
-    <li><a href="#ref-for-identity⑤">4. Definitions</a> <a href="#ref-for-identity⑥">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-authenticated-agent" class="dfn-panel" data-for="authenticated-agent" id="infopanel-for-authenticated-agent">
-   <span id="infopaneltitle-for-authenticated-agent" style="display:none">Info about the 'authenticated agent' definition.</span><b><a href="#authenticated-agent">#authenticated-agent</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-authenticated-agent">2. Use Cases</a>
-    <li><a href="#ref-for-authenticated-agent①">2.8.1. Only trust certain issuers of identity</a>
-    <li><a href="#ref-for-authenticated-agent②">2.8.2. Block access to agents</a>
-    <li><a href="#ref-for-authenticated-agent③">4. Definitions</a> <a href="#ref-for-authenticated-agent④">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-application" class="dfn-panel" data-for="application" id="infopanel-for-application">
-   <span id="infopaneltitle-for-application" style="display:none">Info about the 'application' definition.</span><b><a href="#application">#application</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-application">2.3.8. Adding new subjects to inherited permissions</a>
-    <li><a href="#ref-for-application①">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-application②">2.5.4. Distinguishing mediated from direct access</a>
-    <li><a href="#ref-for-application③">3.1.4. The system shall allow access to be limited to an agent based on the client application in use by the agent.</a>
-    <li><a href="#ref-for-application④">3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to.</a>
-    <li><a href="#ref-for-application⑤">4. Definitions</a> <a href="#ref-for-application⑥">(2)</a> <a href="#ref-for-application⑦">(3)</a> <a href="#ref-for-application⑧">(4)</a> <a href="#ref-for-application⑨">(5)</a> <a href="#ref-for-application①⓪">(6)</a> <a href="#ref-for-application①①">(7)</a> <a href="#ref-for-application①②">(8)</a> <a href="#ref-for-application①③">(9)</a> <a href="#ref-for-application①④">(10)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-resource-controller" class="dfn-panel" data-for="resource-controller" id="infopanel-for-resource-controller">
-   <span id="infopaneltitle-for-resource-controller" style="display:none">Info about the 'resource controller' definition.</span><b><a href="#resource-controller">#resource-controller</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-resource-controller">2. Use Cases</a>
-    <li><a href="#ref-for-resource-controller①">2.1. Resource access</a>
-    <li><a href="#ref-for-resource-controller②">2.1.1. Change permissions</a>
-    <li><a href="#ref-for-resource-controller③">2.1.4.2. Danielle stores their own recommendation</a>
-    <li><a href="#ref-for-resource-controller④">2.2. Collection access</a>
-    <li><a href="#ref-for-resource-controller⑤">2.3. Collection resource inherited access</a>
-    <li><a href="#ref-for-resource-controller⑥">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-resource-controller⑦">2.4. Conditional access</a>
-    <li><a href="#ref-for-resource-controller⑧">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-resource-controller⑨">(2)</a>
-    <li><a href="#ref-for-resource-controller①⓪">2.5.4. Distinguishing mediated from direct access</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-resource-server" class="dfn-panel" data-for="resource-server" id="infopanel-for-resource-server">
-   <span id="infopaneltitle-for-resource-server" style="display:none">Info about the 'resource server' definition.</span><b><a href="#resource-server">#resource-server</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-resource-server">2.1. Resource access</a>
-    <li><a href="#ref-for-resource-server①">2.1.4.2. Danielle stores their own recommendation</a>
-    <li><a href="#ref-for-resource-server②">2.2. Collection access</a>
-    <li><a href="#ref-for-resource-server③">2.3. Collection resource inherited access</a>
-    <li><a href="#ref-for-resource-server④">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-resource-server⑤">2.4. Conditional access</a>
-    <li><a href="#ref-for-resource-server⑥">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-resource-server⑦">2.5.3. Application determining access privileges</a>
-    <li><a href="#ref-for-resource-server⑧">2.10.3. Possession of a link</a>
-    <li><a href="#ref-for-resource-server⑨">4. Definitions</a> <a href="#ref-for-resource-server①⓪">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-resource" class="dfn-panel" data-for="resource" id="infopanel-for-resource">
-   <span id="infopaneltitle-for-resource" style="display:none">Info about the 'resource' definition.</span><b><a href="#resource">#resource</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-resource">2.1. Resource access</a> <a href="#ref-for-resource①">(2)</a>
-    <li><a href="#ref-for-resource②">2.2. Collection access</a> <a href="#ref-for-resource③">(2)</a> <a href="#ref-for-resource④">(3)</a> <a href="#ref-for-resource⑤">(4)</a> <a href="#ref-for-resource⑥">(5)</a> <a href="#ref-for-resource⑦">(6)</a> <a href="#ref-for-resource⑧">(7)</a> <a href="#ref-for-resource⑨">(8)</a>
-    <li><a href="#ref-for-resource①⓪">2.2.1. Read-only access to a Collection</a>
-    <li><a href="#ref-for-resource①①">2.2.2. Read-write access to a Collection</a> <a href="#ref-for-resource①②">(2)</a>
-    <li><a href="#ref-for-resource①③">2.2.3. Read-create access to a Collection</a> <a href="#ref-for-resource①④">(2)</a> <a href="#ref-for-resource①⑤">(3)</a>
-    <li><a href="#ref-for-resource①⑥">2.2.4. Read-create-delete access to a Collection</a> <a href="#ref-for-resource①⑦">(2)</a> <a href="#ref-for-resource①⑧">(3)</a>
-    <li><a href="#ref-for-resource①⑨">2.2.5. Create-only access to a Collection</a> <a href="#ref-for-resource②⓪">(2)</a>
-    <li><a href="#ref-for-resource②①">2.2.6. Manage permissions for a Collection</a>
-    <li><a href="#ref-for-resource②②">2.3. Collection resource inherited access</a> <a href="#ref-for-resource②③">(2)</a> <a href="#ref-for-resource②④">(3)</a> <a href="#ref-for-resource②⑤">(4)</a> <a href="#ref-for-resource②⑥">(5)</a> <a href="#ref-for-resource②⑦">(6)</a> <a href="#ref-for-resource②⑧">(7)</a> <a href="#ref-for-resource②⑨">(8)</a> <a href="#ref-for-resource③⓪">(9)</a> <a href="#ref-for-resource③①">(10)</a>
-    <li><a href="#ref-for-resource③②">2.3.2. Read-create access to collection resources</a> <a href="#ref-for-resource③③">(2)</a>
-    <li><a href="#ref-for-resource③④">2.3.3. Manage a hierarchy of collection resources</a> <a href="#ref-for-resource③⑤">(2)</a> <a href="#ref-for-resource③⑥">(3)</a> <a href="#ref-for-resource③⑦">(4)</a> <a href="#ref-for-resource③⑧">(5)</a>
-    <li><a href="#ref-for-resource③⑨">2.3.5. Manage permissions for collection resources</a> <a href="#ref-for-resource④⓪">(2)</a>
-    <li><a href="#ref-for-resource④①">2.4. Conditional access</a> <a href="#ref-for-resource④②">(2)</a> <a href="#ref-for-resource④③">(3)</a> <a href="#ref-for-resource④④">(4)</a> <a href="#ref-for-resource④⑤">(5)</a> <a href="#ref-for-resource④⑥">(6)</a> <a href="#ref-for-resource④⑦">(7)</a> <a href="#ref-for-resource④⑧">(8)</a> <a href="#ref-for-resource④⑨">(9)</a>
-    <li><a href="#ref-for-resource⑤⓪">2.4.1. Conditional access by time</a>
-    <li><a href="#ref-for-resource⑤①">2.4.2. Conditional access by tag</a>
-    <li><a href="#ref-for-resource⑤②">2.4.3. Conditional access by relationship</a> <a href="#ref-for-resource⑤③">(2)</a> <a href="#ref-for-resource⑤④">(3)</a>
-    <li><a href="#ref-for-resource⑤⑤">2.4.4. Conditional access by filter</a> <a href="#ref-for-resource⑤⑥">(2)</a> <a href="#ref-for-resource⑤⑦">(3)</a>
-    <li><a href="#ref-for-resource⑤⑧">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-resource⑤⑨">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-resource⑥⓪">(2)</a> <a href="#ref-for-resource⑥①">(3)</a> <a href="#ref-for-resource⑥②">(4)</a>
-    <li><a href="#ref-for-resource⑥③">2.5.4. Distinguishing mediated from direct access</a>
-    <li><a href="#ref-for-resource⑥④">2.7.4. Limit information disclosure through URI</a> <a href="#ref-for-resource⑥⑤">(2)</a> <a href="#ref-for-resource⑥⑥">(3)</a>
-    <li><a href="#ref-for-resource⑥⑦">2.9. Validation</a>
-    <li><a href="#ref-for-resource⑥⑧">3. Functional Requirements</a>
-    <li><a href="#ref-for-resource⑥⑨">3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to.</a>
-    <li><a href="#ref-for-resource⑦⓪">3.2.2. The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given resource.</a>
-    <li><a href="#ref-for-resource⑦①">3.3.1. The system shall allow the ability to read the access permissions associated with a certain resource to be limited.</a>
-    <li><a href="#ref-for-resource⑦②">3.3.2. The system shall allow the ability to change the access permissions associated with a certain resource to be limited.</a>
-    <li><a href="#ref-for-resource⑦③">3.3.3. The system shall provide the effective access permissions on a certain resource or collection as they relate to the agent making the request, in the request response.</a>
-    <li><a href="#ref-for-resource⑦④">3.3.4. The system shall allow the ability to read a certain resource to be limited.</a>
-    <li><a href="#ref-for-resource⑦⑤">3.3.5. The system shall allow the ability to change any of the existing contents of a certain resource to be limited.</a>
-    <li><a href="#ref-for-resource⑦⑥">3.3.6. The system shall allow the ability to change existing data in a certain resource to be limited, such that only new data can be added to it.</a>
-    <li><a href="#ref-for-resource⑦⑦">3.3.7. The system shall limit the ability to delete a certain resource.</a>
-    <li><a href="#ref-for-resource⑦⑧">3.3.8. The system shall allow for access to a resource or collection to be limited to the agent that created it.</a>
-    <li><a href="#ref-for-resource⑦⑨">3.3.9. The system shall not rely on the URI structure to infer semantics about the type of resources.</a>
-    <li><a href="#ref-for-resource⑧⓪">3.4.3. The system shall allow the ability to create a resource in a certain collection to be limited.</a>
-    <li><a href="#ref-for-resource⑧①">3.4.4. The system shall limit the ability to delete a resource in a certain collection.</a>
-    <li><a href="#ref-for-resource⑧②">3.4.5. The system shall allow for the creator of a resource in a certain collection to be automatically granted access to the created resource.</a> <a href="#ref-for-resource⑧③">(2)</a>
-    <li><a href="#ref-for-resource⑧④">3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-resource⑧⑤">3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-resource⑧⑥">3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of.</a> <a href="#ref-for-resource⑧⑦">(2)</a> <a href="#ref-for-resource⑧⑧">(3)</a>
-    <li><a href="#ref-for-resource⑧⑨">3.5.9. The system shall allow for the default permissions of a newly created resource to be inherited from the parent collection the resource is a member of.</a> <a href="#ref-for-resource⑨⓪">(2)</a>
-    <li><a href="#ref-for-resource⑨①">3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-resource⑨②">3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-resource⑨③">3.6.1. The system shall allow the ability to limit access to a certain resource by a given start and/or end date and time.</a>
-    <li><a href="#ref-for-resource⑨④">3.6.2. The system shall allow the ability to limit access to a certain resource by a tag associated with that resource.</a>
-    <li><a href="#ref-for-resource⑨⑤">3.6.3. The system shall allow the ability to limit access to a certain resource based on the existence of a specific relationship with another resource.</a> <a href="#ref-for-resource⑨⑥">(2)</a>
-    <li><a href="#ref-for-resource⑨⑦">3.6.4. The system shall allow access to be limited to only a subset of data in a certain resource based on supplied filter criteria.</a>
-    <li><a href="#ref-for-resource⑨⑧">3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.</a>
-    <li><a href="#ref-for-resource⑨⑨">3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.</a>
-    <li><a href="#ref-for-resource①⓪⓪">3.6.7. The system shall allow the ability to read, create, or change access permissions for resources associated with a particular tag to be limited.</a>
-    <li><a href="#ref-for-resource①⓪①">4. Definitions</a> <a href="#ref-for-resource①⓪②">(2)</a> <a href="#ref-for-resource①⓪③">(3)</a> <a href="#ref-for-resource①⓪④">(4)</a> <a href="#ref-for-resource①⓪⑤">(5)</a> <a href="#ref-for-resource①⓪⑥">(6)</a> <a href="#ref-for-resource①⓪⑦">(7)</a> <a href="#ref-for-resource①⓪⑧">(8)</a> <a href="#ref-for-resource①⓪⑨">(9)</a> <a href="#ref-for-resource①①⓪">(10)</a> <a href="#ref-for-resource①①①">(11)</a> <a href="#ref-for-resource①①②">(12)</a> <a href="#ref-for-resource①①③">(13)</a> <a href="#ref-for-resource①①④">(14)</a> <a href="#ref-for-resource①①⑤">(15)</a> <a href="#ref-for-resource①①⑥">(16)</a> <a href="#ref-for-resource①①⑦">(17)</a> <a href="#ref-for-resource①①⑧">(18)</a> <a href="#ref-for-resource①①⑨">(19)</a> <a href="#ref-for-resource①②⓪">(20)</a> <a href="#ref-for-resource①②①">(21)</a> <a href="#ref-for-resource①②②">(22)</a> <a href="#ref-for-resource①②③">(23)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-collection" class="dfn-panel" data-for="collection" id="infopanel-for-collection">
-   <span id="infopaneltitle-for-collection" style="display:none">Info about the 'collection' definition.</span><b><a href="#collection">#collection</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-collection">2.2. Collection access</a> <a href="#ref-for-collection①">(2)</a> <a href="#ref-for-collection②">(3)</a> <a href="#ref-for-collection③">(4)</a> <a href="#ref-for-collection④">(5)</a> <a href="#ref-for-collection⑤">(6)</a> <a href="#ref-for-collection⑥">(7)</a> <a href="#ref-for-collection⑦">(8)</a> <a href="#ref-for-collection⑧">(9)</a> <a href="#ref-for-collection⑨">(10)</a>
-    <li><a href="#ref-for-collection①⓪">2.2.1. Read-only access to a Collection</a> <a href="#ref-for-collection①①">(2)</a> <a href="#ref-for-collection①②">(3)</a>
-    <li><a href="#ref-for-collection①③">2.2.2. Read-write access to a Collection</a> <a href="#ref-for-collection①④">(2)</a>
-    <li><a href="#ref-for-collection①⑤">2.2.3. Read-create access to a Collection</a> <a href="#ref-for-collection①⑥">(2)</a> <a href="#ref-for-collection①⑦">(3)</a>
-    <li><a href="#ref-for-collection①⑧">2.2.4. Read-create-delete access to a Collection</a> <a href="#ref-for-collection①⑨">(2)</a> <a href="#ref-for-collection②⓪">(3)</a> <a href="#ref-for-collection②①">(4)</a>
-    <li><a href="#ref-for-collection②②">2.2.5. Create-only access to a Collection</a> <a href="#ref-for-collection②③">(2)</a>
-    <li><a href="#ref-for-collection②④">2.3. Collection resource inherited access</a> <a href="#ref-for-collection②⑤">(2)</a> <a href="#ref-for-collection②⑥">(3)</a> <a href="#ref-for-collection②⑦">(4)</a> <a href="#ref-for-collection②⑧">(5)</a>
-    <li><a href="#ref-for-collection②⑨">2.3.1. Read-only access to collection resources</a> <a href="#ref-for-collection③⓪">(2)</a> <a href="#ref-for-collection③①">(3)</a> <a href="#ref-for-collection③②">(4)</a> <a href="#ref-for-collection③③">(5)</a> <a href="#ref-for-collection③④">(6)</a> <a href="#ref-for-collection③⑤">(7)</a>
-    <li><a href="#ref-for-collection③⑥">2.3.2. Read-create access to collection resources</a> <a href="#ref-for-collection③⑦">(2)</a>
-    <li><a href="#ref-for-collection③⑧">2.3.3. Manage a hierarchy of collection resources</a> <a href="#ref-for-collection③⑨">(2)</a> <a href="#ref-for-collection④⓪">(3)</a> <a href="#ref-for-collection④①">(4)</a>
-    <li><a href="#ref-for-collection④②">2.3.4. Create-append access to collection resources</a>
-    <li><a href="#ref-for-collection④③">2.3.5. Manage permissions for collection resources</a> <a href="#ref-for-collection④④">(2)</a>
-    <li><a href="#ref-for-collection④⑤">2.3.6. Default permissions on created resources</a> <a href="#ref-for-collection④⑥">(2)</a>
-    <li><a href="#ref-for-collection④⑦">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-collection④⑧">(2)</a> <a href="#ref-for-collection④⑨">(3)</a>
-    <li><a href="#ref-for-collection⑤⓪">2.3.9. Modifying inherited permissions for existing subjects</a>
-    <li><a href="#ref-for-collection⑤①">2.4. Conditional access</a> <a href="#ref-for-collection⑤②">(2)</a>
-    <li><a href="#ref-for-collection⑤③">2.4.1. Conditional access by time</a> <a href="#ref-for-collection⑤④">(2)</a> <a href="#ref-for-collection⑤⑤">(3)</a>
-    <li><a href="#ref-for-collection⑤⑥">2.4.2. Conditional access by tag</a> <a href="#ref-for-collection⑤⑦">(2)</a>
-    <li><a href="#ref-for-collection⑤⑧">2.4.3. Conditional access by relationship</a>
-    <li><a href="#ref-for-collection⑤⑨">2.4.5. Conditional control boundaries</a> <a href="#ref-for-collection⑥⓪">(2)</a>
-    <li><a href="#ref-for-collection⑥①">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-collection⑥②">(2)</a> <a href="#ref-for-collection⑥③">(3)</a> <a href="#ref-for-collection⑥④">(4)</a>
-    <li><a href="#ref-for-collection⑥⑤">2.7.4. Limit information disclosure through URI</a> <a href="#ref-for-collection⑥⑥">(2)</a> <a href="#ref-for-collection⑥⑦">(3)</a>
-    <li><a href="#ref-for-collection⑥⑧">3. Functional Requirements</a>
-    <li><a href="#ref-for-collection⑥⑨">3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to.</a>
-    <li><a href="#ref-for-collection⑦⓪">3.3.3. The system shall provide the effective access permissions on a certain resource or collection as they relate to the agent making the request, in the request response.</a>
-    <li><a href="#ref-for-collection⑦①">3.3.8. The system shall allow for access to a resource or collection to be limited to the agent that created it.</a>
-    <li><a href="#ref-for-collection⑦②">3.4.1. The system shall allow the ability to read a certain collection to be limited, exposing only the data from the collection resource itself, and a listing of its members, and excluding the contents of its members, or any metadata about them.</a> <a href="#ref-for-collection⑦③">(2)</a>
-    <li><a href="#ref-for-collection⑦④">3.4.2. The system shall allow the ability to change data specific to a certain collection to be limited, including only the data from the collection resource itself, and excluding any additions or subtractions from its list of members.</a> <a href="#ref-for-collection⑦⑤">(2)</a>
-    <li><a href="#ref-for-collection⑦⑥">3.4.3. The system shall allow the ability to create a resource in a certain collection to be limited.</a>
-    <li><a href="#ref-for-collection⑦⑦">3.4.4. The system shall limit the ability to delete a resource in a certain collection.</a>
-    <li><a href="#ref-for-collection⑦⑧">3.4.5. The system shall allow for the creator of a resource in a certain collection to be automatically granted access to the created resource.</a>
-    <li><a href="#ref-for-collection⑦⑨">3.4.6. The system shall allow the ability to read the access permissions associated with a certain collection to be limited.</a>
-    <li><a href="#ref-for-collection⑧⓪">3.4.7. The system shall allow the ability to change the access permissions directly associated with a certain collection to be limited.</a>
-    <li><a href="#ref-for-collection⑧①">3.5.1. The system shall allow for a certain collection to specify access permissions that are inherited by its members.</a>
-    <li><a href="#ref-for-collection⑧②">3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-collection⑧③">3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-collection⑧④">3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-collection⑧⑤">3.5.5. The system shall allow for new resources to be added to a given collection if the agent has inherited create access from the parent collection that the given collection is a member of.</a> <a href="#ref-for-collection⑧⑥">(2)</a> <a href="#ref-for-collection⑧⑦">(3)</a>
-    <li><a href="#ref-for-collection⑧⑧">3.5.6. The system shall allow for resources to be deleted from a given collection if the agent has inherited delete access from the parent collection that the given collection is a member of.</a> <a href="#ref-for-collection⑧⑨">(2)</a> <a href="#ref-for-collection⑨⓪">(3)</a>
-    <li><a href="#ref-for-collection⑨①">3.5.7. The system shall allow for the members of a certain collection to extend or augment the permissions inherited from the parent collection.</a> <a href="#ref-for-collection⑨②">(2)</a>
-    <li><a href="#ref-for-collection⑨③">3.5.8. The system shall allow for a certain collection to specify access permissions that are inherited by its members and cannot be augmented.</a>
-    <li><a href="#ref-for-collection⑨④">3.5.9. The system shall allow for the default permissions of a newly created resource to be inherited from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-collection⑨⑤">3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-collection⑨⑥">3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of.</a>
-    <li><a href="#ref-for-collection⑨⑦">3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.</a>
-    <li><a href="#ref-for-collection⑨⑧">3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited.</a>
-    <li><a href="#ref-for-collection⑨⑨">4. Definitions</a> <a href="#ref-for-collection①⓪⓪">(2)</a> <a href="#ref-for-collection①⓪①">(3)</a> <a href="#ref-for-collection①⓪②">(4)</a> <a href="#ref-for-collection①⓪③">(5)</a> <a href="#ref-for-collection①⓪④">(6)</a> <a href="#ref-for-collection①⓪⑤">(7)</a> <a href="#ref-for-collection①⓪⑥">(8)</a> <a href="#ref-for-collection①⓪⑦">(9)</a> <a href="#ref-for-collection①⓪⑧">(10)</a> <a href="#ref-for-collection①⓪⑨">(11)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-tag" class="dfn-panel" data-for="tag" id="infopanel-for-tag">
-   <span id="infopaneltitle-for-tag" style="display:none">Info about the 'tag' definition.</span><b><a href="#tag">#tag</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-tag">2.4.2. Conditional access by tag</a> <a href="#ref-for-tag①">(2)</a>
-    <li><a href="#ref-for-tag②">2.4.5. Conditional control boundaries</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-authorization" class="dfn-panel" data-for="authorization" id="infopanel-for-authorization">
-   <span id="infopaneltitle-for-authorization" style="display:none">Info about the 'authorization' definition.</span><b><a href="#authorization">#authorization</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-authorization">2.3.6. Default permissions on created resources</a>
-    <li><a href="#ref-for-authorization①">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization②">(2)</a>
-    <li><a href="#ref-for-authorization③">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-authorization④">2.5.1. Limiting access to trusted applications</a>
-    <li><a href="#ref-for-authorization⑤">2.7.2. Limiting access to other authorization conditions</a>
-    <li><a href="#ref-for-authorization⑥">2.9. Validation</a> <a href="#ref-for-authorization⑦">(2)</a>
-    <li><a href="#ref-for-authorization⑧">2.10.3. Possession of a link</a>
-    <li><a href="#ref-for-authorization⑨">4. Definitions</a> <a href="#ref-for-authorization①⓪">(2)</a> <a href="#ref-for-authorization①①">(3)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-authorization-group" class="dfn-panel" data-for="authorization-group" id="infopanel-for-authorization-group">
-   <span id="infopaneltitle-for-authorization-group" style="display:none">Info about the 'authorization group' definition.</span><b><a href="#authorization-group">#authorization-group</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-authorization-group">2.1.5. Append-only access</a>
-    <li><a href="#ref-for-authorization-group①">2.1.8. Group access</a> <a href="#ref-for-authorization-group②">(2)</a> <a href="#ref-for-authorization-group③">(3)</a> <a href="#ref-for-authorization-group④">(4)</a>
-    <li><a href="#ref-for-authorization-group⑤">2.3. Collection resource inherited access</a>
-    <li><a href="#ref-for-authorization-group⑥">2.3.1. Read-only access to collection resources</a> <a href="#ref-for-authorization-group⑦">(2)</a>
-    <li><a href="#ref-for-authorization-group⑧">2.3.2. Read-create access to collection resources</a>
-    <li><a href="#ref-for-authorization-group⑨">2.3.3. Manage a hierarchy of collection resources</a> <a href="#ref-for-authorization-group①⓪">(2)</a>
-    <li><a href="#ref-for-authorization-group①①">2.3.4. Create-append access to collection resources</a>
-    <li><a href="#ref-for-authorization-group①②">2.3.6. Default permissions on created resources</a>
-    <li><a href="#ref-for-authorization-group①③">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-authorization-group①④">(2)</a> <a href="#ref-for-authorization-group①⑤">(3)</a> <a href="#ref-for-authorization-group①⑥">(4)</a> <a href="#ref-for-authorization-group①⑦">(5)</a> <a href="#ref-for-authorization-group①⑧">(6)</a>
-    <li><a href="#ref-for-authorization-group①⑨">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-authorization-group②⓪">(2)</a> <a href="#ref-for-authorization-group②①">(3)</a>
-    <li><a href="#ref-for-authorization-group②②">2.4.5. Conditional control boundaries</a>
-    <li><a href="#ref-for-authorization-group②③">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-authorization-group②④">(2)</a>
-    <li><a href="#ref-for-authorization-group②⑤">4. Definitions</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-capability" class="dfn-panel" data-for="capability" id="infopanel-for-capability">
-   <span id="infopaneltitle-for-capability" style="display:none">Info about the 'capability' definition.</span><b><a href="#capability">#capability</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-capability">2.10.2. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-capability①">2.10.3. Possession of a link</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-access-mode" class="dfn-panel" data-for="access-mode" id="infopanel-for-access-mode">
-   <span id="infopaneltitle-for-access-mode" style="display:none">Info about the 'access mode' definition.</span><b><a href="#access-mode">#access-mode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-access-mode">2.5.4. Distinguishing mediated from direct access</a>
-    <li><a href="#ref-for-access-mode①">3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied.</a>
-    <li><a href="#ref-for-access-mode②">4. Definitions</a> <a href="#ref-for-access-mode③">(2)</a> <a href="#ref-for-access-mode④">(3)</a> <a href="#ref-for-access-mode⑤">(4)</a> <a href="#ref-for-access-mode⑥">(5)</a> <a href="#ref-for-access-mode⑦">(6)</a> <a href="#ref-for-access-mode⑧">(7)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-read-access" class="dfn-panel" data-for="read-access" id="infopanel-for-read-access">
-   <span id="infopaneltitle-for-read-access" style="display:none">Info about the 'Read access' definition.</span><b><a href="#read-access">#read-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-read-access">2.1.3. Read-write access</a>
-    <li><a href="#ref-for-read-access①">2.1.4.1. Alice stores Danielle’s recommendation</a>
-    <li><a href="#ref-for-read-access②">2.1.4.2. Danielle stores their own recommendation</a> <a href="#ref-for-read-access③">(2)</a>
-    <li><a href="#ref-for-read-access④">2.1.5. Append-only access</a>
-    <li><a href="#ref-for-read-access⑤">2.1.7. Read-only access</a>
-    <li><a href="#ref-for-read-access⑥">2.1.8. Group access</a>
-    <li><a href="#ref-for-read-access⑦">2.1.9. Public access</a>
-    <li><a href="#ref-for-read-access⑧">2.2.1. Read-only access to a Collection</a> <a href="#ref-for-read-access⑨">(2)</a>
-    <li><a href="#ref-for-read-access①⓪">2.2.2. Read-write access to a Collection</a>
-    <li><a href="#ref-for-read-access①①">2.2.3. Read-create access to a Collection</a>
-    <li><a href="#ref-for-read-access①②">2.2.4. Read-create-delete access to a Collection</a> <a href="#ref-for-read-access①③">(2)</a>
-    <li><a href="#ref-for-read-access①④">2.3.1. Read-only access to collection resources</a> <a href="#ref-for-read-access①⑤">(2)</a> <a href="#ref-for-read-access①⑥">(3)</a>
-    <li><a href="#ref-for-read-access①⑦">2.3.2. Read-create access to collection resources</a> <a href="#ref-for-read-access①⑧">(2)</a>
-    <li><a href="#ref-for-read-access①⑨">2.3.3. Manage a hierarchy of collection resources</a> <a href="#ref-for-read-access②⓪">(2)</a>
-    <li><a href="#ref-for-read-access②①">2.3.4. Create-append access to collection resources</a> <a href="#ref-for-read-access②②">(2)</a>
-    <li><a href="#ref-for-read-access②③">2.3.5. Manage permissions for collection resources</a> <a href="#ref-for-read-access②④">(2)</a>
-    <li><a href="#ref-for-read-access②⑤">2.3.8. Adding new subjects to inherited permissions</a> <a href="#ref-for-read-access②⑥">(2)</a> <a href="#ref-for-read-access②⑦">(3)</a> <a href="#ref-for-read-access②⑧">(4)</a>
-    <li><a href="#ref-for-read-access②⑨">2.3.9. Modifying inherited permissions for existing subjects</a> <a href="#ref-for-read-access③⓪">(2)</a> <a href="#ref-for-read-access③①">(3)</a>
-    <li><a href="#ref-for-read-access③②">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-read-access③③">2.4.1. Conditional access by time</a> <a href="#ref-for-read-access③④">(2)</a>
-    <li><a href="#ref-for-read-access③⑤">2.4.2. Conditional access by tag</a> <a href="#ref-for-read-access③⑥">(2)</a>
-    <li><a href="#ref-for-read-access③⑦">2.4.3. Conditional access by relationship</a>
-    <li><a href="#ref-for-read-access③⑧">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-read-access③⑨">(2)</a> <a href="#ref-for-read-access④⓪">(3)</a>
-    <li><a href="#ref-for-read-access④①">2.5.3. Application determining access privileges</a>
-    <li><a href="#ref-for-read-access④②">2.7.1. Limiting access to who else is permitted</a> <a href="#ref-for-read-access④③">(2)</a>
-    <li><a href="#ref-for-read-access④④">2.10.2. Possession of a verifiable credential</a>
-    <li><a href="#ref-for-read-access④⑤">2.10.3. Possession of a link</a>
-    <li><a href="#ref-for-read-access④⑥">3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of.</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-write-access" class="dfn-panel" data-for="write-access" id="infopanel-for-write-access">
-   <span id="infopaneltitle-for-write-access" style="display:none">Info about the 'Write access' definition.</span><b><a href="#write-access">#write-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-write-access">2.1.3. Read-write access</a>
-    <li><a href="#ref-for-write-access①">2.2.2. Read-write access to a Collection</a>
-    <li><a href="#ref-for-write-access②">2.3.2. Read-create access to collection resources</a>
-    <li><a href="#ref-for-write-access③">2.3.3. Manage a hierarchy of collection resources</a>
-    <li><a href="#ref-for-write-access④">2.3.6. Default permissions on created resources</a> <a href="#ref-for-write-access⑤">(2)</a>
-    <li><a href="#ref-for-write-access⑥">2.4.1. Conditional access by time</a>
-    <li><a href="#ref-for-write-access⑦">2.4.2. Conditional access by tag</a>
-    <li><a href="#ref-for-write-access⑧">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-write-access⑨">(2)</a> <a href="#ref-for-write-access①⓪">(3)</a>
-    <li><a href="#ref-for-write-access①①">2.5.3. Application determining access privileges</a>
-    <li><a href="#ref-for-write-access①②">3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of.</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-append-access" class="dfn-panel" data-for="append-access" id="infopanel-for-append-access">
-   <span id="infopaneltitle-for-append-access" style="display:none">Info about the 'Append access' definition.</span><b><a href="#append-access">#append-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-append-access">2.1.4.1. Alice stores Danielle’s recommendation</a>
-    <li><a href="#ref-for-append-access①">2.1.4.2. Danielle stores their own recommendation</a>
-    <li><a href="#ref-for-append-access②">2.1.5. Append-only access</a> <a href="#ref-for-append-access③">(2)</a>
-    <li><a href="#ref-for-append-access④">2.3.4. Create-append access to collection resources</a>
-    <li><a href="#ref-for-append-access⑤">2.3.6. Default permissions on created resources</a> <a href="#ref-for-append-access⑥">(2)</a>
-    <li><a href="#ref-for-append-access⑦">3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of.</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-create-access" class="dfn-panel" data-for="create-access" id="infopanel-for-create-access">
-   <span id="infopaneltitle-for-create-access" style="display:none">Info about the 'Create access' definition.</span><b><a href="#create-access">#create-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-create-access">2.2.3. Read-create access to a Collection</a>
-    <li><a href="#ref-for-create-access①">2.2.4. Read-create-delete access to a Collection</a>
-    <li><a href="#ref-for-create-access②">2.2.5. Create-only access to a Collection</a>
-    <li><a href="#ref-for-create-access③">2.3.2. Read-create access to collection resources</a>
-    <li><a href="#ref-for-create-access④">2.3.3. Manage a hierarchy of collection resources</a> <a href="#ref-for-create-access⑤">(2)</a>
-    <li><a href="#ref-for-create-access⑥">2.3.4. Create-append access to collection resources</a>
-    <li><a href="#ref-for-create-access⑦">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-create-access⑧">(2)</a> <a href="#ref-for-create-access⑨">(3)</a>
-    <li><a href="#ref-for-create-access①⓪">3.5.5. The system shall allow for new resources to be added to a given collection if the agent has inherited create access from the parent collection that the given collection is a member of.</a>
-    <li><a href="#ref-for-create-access①①">4. Definitions</a> <a href="#ref-for-create-access①②">(2)</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-delete-access" class="dfn-panel" data-for="delete-access" id="infopanel-for-delete-access">
-   <span id="infopaneltitle-for-delete-access" style="display:none">Info about the 'Delete access' definition.</span><b><a href="#delete-access">#delete-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-delete-access">2.2.4. Read-create-delete access to a Collection</a>
-    <li><a href="#ref-for-delete-access①">2.3.2. Read-create access to collection resources</a>
-    <li><a href="#ref-for-delete-access②">2.3.3. Manage a hierarchy of collection resources</a> <a href="#ref-for-delete-access③">(2)</a>
-    <li><a href="#ref-for-delete-access④">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-delete-access⑤">(2)</a> <a href="#ref-for-delete-access⑥">(3)</a>
-    <li><a href="#ref-for-delete-access⑦">3.5.6. The system shall allow for resources to be deleted from a given collection if the agent has inherited delete access from the parent collection that the given collection is a member of.</a>
-    <li><a href="#ref-for-delete-access⑧">4. Definitions</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-read-permission-access" class="dfn-panel" data-for="read-permission-access" id="infopanel-for-read-permission-access">
-   <span id="infopaneltitle-for-read-permission-access" style="display:none">Info about the 'Read permission access' definition.</span><b><a href="#read-permission-access">#read-permission-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-read-permission-access">2.2.6. Manage permissions for a Collection</a>
-    <li><a href="#ref-for-read-permission-access①">2.3.5. Manage permissions for collection resources</a>
-    <li><a href="#ref-for-read-permission-access②">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-read-permission-access③">2.4.5. Conditional control boundaries</a> <a href="#ref-for-read-permission-access④">(2)</a> <a href="#ref-for-read-permission-access⑤">(3)</a>
-    <li><a href="#ref-for-read-permission-access⑥">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-read-permission-access⑦">(2)</a> <a href="#ref-for-read-permission-access⑧">(3)</a>
-    <li><a href="#ref-for-read-permission-access⑨">3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of.</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-write-permission-access" class="dfn-panel" data-for="write-permission-access" id="infopanel-for-write-permission-access">
-   <span id="infopaneltitle-for-write-permission-access" style="display:none">Info about the 'Write permission access' definition.</span><b><a href="#write-permission-access">#write-permission-access</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-write-permission-access">2.2.6. Manage permissions for a Collection</a>
-    <li><a href="#ref-for-write-permission-access①">2.3.5. Manage permissions for collection resources</a>
-    <li><a href="#ref-for-write-permission-access②">2.3.10. Forcing inherited permissions</a>
-    <li><a href="#ref-for-write-permission-access③">2.4.5. Conditional control boundaries</a> <a href="#ref-for-write-permission-access④">(2)</a> <a href="#ref-for-write-permission-access⑤">(3)</a>
-    <li><a href="#ref-for-write-permission-access⑥">2.5.1. Limiting access to trusted applications</a> <a href="#ref-for-write-permission-access⑦">(2)</a> <a href="#ref-for-write-permission-access⑧">(3)</a>
-    <li><a href="#ref-for-write-permission-access⑨">3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of.</a>
-   </ul>
-  </aside>
-<script>/* script-dfn-panel */
+<script>/* Boilerplate: script-dfn-panel */
 "use strict";
 {
-    function queryAll(sel) {
-        return [].slice.call(document.querySelectorAll(sel));
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 
-    // Add popup behavior to all dfns to show the corresponding dfn-panel.
-    var dfns = document.querySelectorAll('.dfn-paneled');
-    for (let dfn of dfns) { insertDfnPopupAction(dfn); }
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
 
-    document.body.addEventListener("click", (e) => {
-        // If not handled already, just hide all dfn panels.
-        hideAllDfnPanels();
-    });
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
 
     function hideAllDfnPanels() {
         // Turn off any currently "on" or "activated" panels.
@@ -2616,49 +2319,264 @@ collection.</p>
         }
     }
 
-    function insertDfnPopupAction(dfn) {
+    function insertDfnPopupAction(dfn, dfnPanel) {
         // Find dfn panel
-        const dfnPanel = document.querySelector(`.dfn-panel[data-for='${dfn.id}']`);
-        if (dfnPanel) {
-            const panelWrapper = document.createElement('span');
-            panelWrapper.appendChild(dfnPanel);
-            panelWrapper.style.position = "relative";
-            panelWrapper.style.height = "0px";
-            dfn.insertAdjacentElement("afterend", panelWrapper);
-            dfn.setAttribute('role', 'button');
-            dfn.setAttribute('aria-expanded', 'false')
-            dfn.tabIndex = 0;
-            dfn.classList.add('has-dfn-panel');
-            dfn.addEventListener('click', (event) => {
-                showDfnPanel(dfnPanel, dfn);
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-            dfn.addEventListener('keypress', (event) => {
-                const kc = event.keyCode;
-                // 32->Space, 13->Enter
-                if(kc == 32 || kc == 13) {
-                    toggleDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            });
+                event.preventDefault();
+            }
+        });
 
-            dfnPanel.addEventListener('click', (event) => {
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
                 pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-
-            dfnPanel.addEventListener('keydown', (event) => {
-                if(event.keyCode == 27) { // Escape key
-                    hideDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            })
-
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + dfn.id + "']");
-        }
+                event.preventDefault();
+            }
+        })
     }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['agent'] = {"dfnID": "agent", "url": "#agent", "dfnText": "agent", "refSections": [{"refs": [{"id": "ref-for-agent"}], "title": "2.3.8. Adding new subjects to inherited permissions"}, {"refs": [{"id": "ref-for-agent\u2460"}], "title": "2.4.5. Conditional control boundaries"}, {"refs": [{"id": "ref-for-agent\u2461"}], "title": "2.5.4. Distinguishing mediated from direct access"}, {"refs": [{"id": "ref-for-agent\u2462"}], "title": "3. Functional Requirements"}, {"refs": [{"id": "ref-for-agent\u2463"}], "title": "3.1.1. The system shall allow access to be limited based on the identity of the agent."}, {"refs": [{"id": "ref-for-agent\u2464"}], "title": "3.1.2. The system shall allow access to be limited based on the identity of the agent, only when that identity is issued by a trusted identity provider."}, {"refs": [{"id": "ref-for-agent\u2465"}, {"id": "ref-for-agent\u2466"}, {"id": "ref-for-agent\u2467"}], "title": "3.1.3. The system shall allow access to be limited to an agent based on the agent\u2019s membership in a certain group of agents."}, {"refs": [{"id": "ref-for-agent\u2468"}, {"id": "ref-for-agent\u2460\u24ea"}], "title": "3.1.4. The system shall allow access to be limited to an agent based on the client application in use by the agent."}, {"refs": [{"id": "ref-for-agent\u2460\u2460"}], "title": "3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to."}, {"refs": [{"id": "ref-for-agent\u2460\u2461"}], "title": "3.1.6. The system shall allow access to be permitted for any unauthenticated or authenticated agent."}, {"refs": [{"id": "ref-for-agent\u2460\u2462"}], "title": "3.1.7. The system shall allow access to be limited to any authenticated agent."}, {"refs": [{"id": "ref-for-agent\u2460\u2463"}, {"id": "ref-for-agent\u2460\u2464"}], "title": "3.2.1. The system shall allow access to be limited to an agent based on the agent\u2019s possession of a certain verifiable credential or capability."}, {"refs": [{"id": "ref-for-agent\u2460\u2465"}], "title": "3.3.3. The system shall provide the effective access permissions on a certain resource or collection as they relate to the agent making the request, in the request response."}, {"refs": [{"id": "ref-for-agent\u2460\u2466"}], "title": "3.3.8. The system shall allow for access to a resource or collection to be limited to the agent that created it."}, {"refs": [{"id": "ref-for-agent\u2460\u2467"}], "title": "3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-agent\u2460\u2468"}], "title": "3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-agent\u2461\u24ea"}], "title": "3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-agent\u2461\u2460"}], "title": "3.5.5. The system shall allow for new resources to be added to a given collection if the agent has inherited create access from the parent collection that the given collection is a member of."}, {"refs": [{"id": "ref-for-agent\u2461\u2461"}], "title": "3.5.6. The system shall allow for resources to be deleted from a given collection if the agent has inherited delete access from the parent collection that the given collection is a member of."}, {"refs": [{"id": "ref-for-agent\u2461\u2462"}], "title": "3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-agent\u2461\u2463"}], "title": "3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-agent\u2461\u2464"}], "title": "3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited."}, {"refs": [{"id": "ref-for-agent\u2461\u2465"}, {"id": "ref-for-agent\u2461\u2466"}, {"id": "ref-for-agent\u2461\u2467"}, {"id": "ref-for-agent\u2461\u2468"}, {"id": "ref-for-agent\u2462\u24ea"}, {"id": "ref-for-agent\u2462\u2460"}, {"id": "ref-for-agent\u2462\u2461"}, {"id": "ref-for-agent\u2462\u2462"}, {"id": "ref-for-agent\u2462\u2463"}, {"id": "ref-for-agent\u2462\u2464"}, {"id": "ref-for-agent\u2462\u2465"}, {"id": "ref-for-agent\u2462\u2466"}, {"id": "ref-for-agent\u2462\u2467"}, {"id": "ref-for-agent\u2462\u2468"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['identity'] = {"dfnID": "identity", "url": "#identity", "dfnText": "identity", "refSections": [{"refs": [{"id": "ref-for-identity"}], "title": "2. Use Cases"}, {"refs": [{"id": "ref-for-identity\u2460"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-identity\u2461"}], "title": "2.10.3. Possession of a link"}, {"refs": [{"id": "ref-for-identity\u2462"}], "title": "3.1.1. The system shall allow access to be limited based on the identity of the agent."}, {"refs": [{"id": "ref-for-identity\u2463"}], "title": "3.1.2. The system shall allow access to be limited based on the identity of the agent, only when that identity is issued by a trusted identity provider."}, {"refs": [{"id": "ref-for-identity\u2464"}, {"id": "ref-for-identity\u2465"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['authenticated-agent'] = {"dfnID": "authenticated-agent", "url": "#authenticated-agent", "dfnText": "authenticated agent", "refSections": [{"refs": [{"id": "ref-for-authenticated-agent"}], "title": "2. Use Cases"}, {"refs": [{"id": "ref-for-authenticated-agent\u2460"}], "title": "2.8.1. Only trust certain issuers of identity"}, {"refs": [{"id": "ref-for-authenticated-agent\u2461"}], "title": "2.8.2. Block access to agents"}, {"refs": [{"id": "ref-for-authenticated-agent\u2462"}, {"id": "ref-for-authenticated-agent\u2463"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['application'] = {"dfnID": "application", "url": "#application", "dfnText": "application", "refSections": [{"refs": [{"id": "ref-for-application"}], "title": "2.3.8. Adding new subjects to inherited permissions"}, {"refs": [{"id": "ref-for-application\u2460"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-application\u2461"}], "title": "2.5.4. Distinguishing mediated from direct access"}, {"refs": [{"id": "ref-for-application\u2462"}], "title": "3.1.4. The system shall allow access to be limited to an agent based on the client application in use by the agent."}, {"refs": [{"id": "ref-for-application\u2463"}], "title": "3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to."}, {"refs": [{"id": "ref-for-application\u2464"}, {"id": "ref-for-application\u2465"}, {"id": "ref-for-application\u2466"}, {"id": "ref-for-application\u2467"}, {"id": "ref-for-application\u2468"}, {"id": "ref-for-application\u2460\u24ea"}, {"id": "ref-for-application\u2460\u2460"}, {"id": "ref-for-application\u2460\u2461"}, {"id": "ref-for-application\u2460\u2462"}, {"id": "ref-for-application\u2460\u2463"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['resource-controller'] = {"dfnID": "resource-controller", "url": "#resource-controller", "dfnText": "resource controller", "refSections": [{"refs": [{"id": "ref-for-resource-controller"}], "title": "2. Use Cases"}, {"refs": [{"id": "ref-for-resource-controller\u2460"}], "title": "2.1. Resource access"}, {"refs": [{"id": "ref-for-resource-controller\u2461"}], "title": "2.1.1. Change permissions"}, {"refs": [{"id": "ref-for-resource-controller\u2462"}], "title": "2.1.4.2. Danielle stores their own recommendation"}, {"refs": [{"id": "ref-for-resource-controller\u2463"}], "title": "2.2. Collection access"}, {"refs": [{"id": "ref-for-resource-controller\u2464"}], "title": "2.3. Collection resource inherited access"}, {"refs": [{"id": "ref-for-resource-controller\u2465"}], "title": "2.3.10. Forcing inherited permissions"}, {"refs": [{"id": "ref-for-resource-controller\u2466"}], "title": "2.4. Conditional access"}, {"refs": [{"id": "ref-for-resource-controller\u2467"}, {"id": "ref-for-resource-controller\u2468"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-resource-controller\u2460\u24ea"}], "title": "2.5.4. Distinguishing mediated from direct access"}], "external": false};
+window.dfnpanelData['resource-server'] = {"dfnID": "resource-server", "url": "#resource-server", "dfnText": "resource server", "refSections": [{"refs": [{"id": "ref-for-resource-server"}], "title": "2.1. Resource access"}, {"refs": [{"id": "ref-for-resource-server\u2460"}], "title": "2.1.4.2. Danielle stores their own recommendation"}, {"refs": [{"id": "ref-for-resource-server\u2461"}], "title": "2.2. Collection access"}, {"refs": [{"id": "ref-for-resource-server\u2462"}], "title": "2.3. Collection resource inherited access"}, {"refs": [{"id": "ref-for-resource-server\u2463"}], "title": "2.3.10. Forcing inherited permissions"}, {"refs": [{"id": "ref-for-resource-server\u2464"}], "title": "2.4. Conditional access"}, {"refs": [{"id": "ref-for-resource-server\u2465"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-resource-server\u2466"}], "title": "2.5.3. Application determining access privileges"}, {"refs": [{"id": "ref-for-resource-server\u2467"}], "title": "2.10.3. Possession of a link"}, {"refs": [{"id": "ref-for-resource-server\u2468"}, {"id": "ref-for-resource-server\u2460\u24ea"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['resource'] = {"dfnID": "resource", "url": "#resource", "dfnText": "resource", "refSections": [{"refs": [{"id": "ref-for-resource"}, {"id": "ref-for-resource\u2460"}], "title": "2.1. Resource access"}, {"refs": [{"id": "ref-for-resource\u2461"}, {"id": "ref-for-resource\u2462"}, {"id": "ref-for-resource\u2463"}, {"id": "ref-for-resource\u2464"}, {"id": "ref-for-resource\u2465"}, {"id": "ref-for-resource\u2466"}, {"id": "ref-for-resource\u2467"}, {"id": "ref-for-resource\u2468"}], "title": "2.2. Collection access"}, {"refs": [{"id": "ref-for-resource\u2460\u24ea"}], "title": "2.2.1. Read-only access to a Collection"}, {"refs": [{"id": "ref-for-resource\u2460\u2460"}, {"id": "ref-for-resource\u2460\u2461"}], "title": "2.2.2. Read-write access to a Collection"}, {"refs": [{"id": "ref-for-resource\u2460\u2462"}, {"id": "ref-for-resource\u2460\u2463"}, {"id": "ref-for-resource\u2460\u2464"}], "title": "2.2.3. Read-create access to a Collection"}, {"refs": [{"id": "ref-for-resource\u2460\u2465"}, {"id": "ref-for-resource\u2460\u2466"}, {"id": "ref-for-resource\u2460\u2467"}], "title": "2.2.4. Read-create-delete access to a Collection"}, {"refs": [{"id": "ref-for-resource\u2460\u2468"}, {"id": "ref-for-resource\u2461\u24ea"}], "title": "2.2.5. Create-only access to a Collection"}, {"refs": [{"id": "ref-for-resource\u2461\u2460"}], "title": "2.2.6. Manage permissions for a Collection"}, {"refs": [{"id": "ref-for-resource\u2461\u2461"}, {"id": "ref-for-resource\u2461\u2462"}, {"id": "ref-for-resource\u2461\u2463"}, {"id": "ref-for-resource\u2461\u2464"}, {"id": "ref-for-resource\u2461\u2465"}, {"id": "ref-for-resource\u2461\u2466"}, {"id": "ref-for-resource\u2461\u2467"}, {"id": "ref-for-resource\u2461\u2468"}, {"id": "ref-for-resource\u2462\u24ea"}, {"id": "ref-for-resource\u2462\u2460"}], "title": "2.3. Collection resource inherited access"}, {"refs": [{"id": "ref-for-resource\u2462\u2461"}, {"id": "ref-for-resource\u2462\u2462"}], "title": "2.3.2. Read-create access to collection resources"}, {"refs": [{"id": "ref-for-resource\u2462\u2463"}, {"id": "ref-for-resource\u2462\u2464"}, {"id": "ref-for-resource\u2462\u2465"}, {"id": "ref-for-resource\u2462\u2466"}, {"id": "ref-for-resource\u2462\u2467"}], "title": "2.3.3. Manage a hierarchy of collection resources"}, {"refs": [{"id": "ref-for-resource\u2462\u2468"}, {"id": "ref-for-resource\u2463\u24ea"}], "title": "2.3.5. Manage permissions for collection resources"}, {"refs": [{"id": "ref-for-resource\u2463\u2460"}, {"id": "ref-for-resource\u2463\u2461"}, {"id": "ref-for-resource\u2463\u2462"}, {"id": "ref-for-resource\u2463\u2463"}, {"id": "ref-for-resource\u2463\u2464"}, {"id": "ref-for-resource\u2463\u2465"}, {"id": "ref-for-resource\u2463\u2466"}, {"id": "ref-for-resource\u2463\u2467"}, {"id": "ref-for-resource\u2463\u2468"}], "title": "2.4. Conditional access"}, {"refs": [{"id": "ref-for-resource\u2464\u24ea"}], "title": "2.4.1. Conditional access by time"}, {"refs": [{"id": "ref-for-resource\u2464\u2460"}], "title": "2.4.2. Conditional access by tag"}, {"refs": [{"id": "ref-for-resource\u2464\u2461"}, {"id": "ref-for-resource\u2464\u2462"}, {"id": "ref-for-resource\u2464\u2463"}], "title": "2.4.3. Conditional access by relationship"}, {"refs": [{"id": "ref-for-resource\u2464\u2464"}, {"id": "ref-for-resource\u2464\u2465"}, {"id": "ref-for-resource\u2464\u2466"}], "title": "2.4.4. Conditional access by filter"}, {"refs": [{"id": "ref-for-resource\u2464\u2467"}], "title": "2.4.5. Conditional control boundaries"}, {"refs": [{"id": "ref-for-resource\u2464\u2468"}, {"id": "ref-for-resource\u2465\u24ea"}, {"id": "ref-for-resource\u2465\u2460"}, {"id": "ref-for-resource\u2465\u2461"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-resource\u2465\u2462"}], "title": "2.5.4. Distinguishing mediated from direct access"}, {"refs": [{"id": "ref-for-resource\u2465\u2463"}, {"id": "ref-for-resource\u2465\u2464"}, {"id": "ref-for-resource\u2465\u2465"}], "title": "2.7.4. Limit information disclosure through URI"}, {"refs": [{"id": "ref-for-resource\u2465\u2466"}], "title": "2.9. Validation"}, {"refs": [{"id": "ref-for-resource\u2465\u2467"}], "title": "3. Functional Requirements"}, {"refs": [{"id": "ref-for-resource\u2465\u2468"}], "title": "3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to."}, {"refs": [{"id": "ref-for-resource\u2466\u24ea"}], "title": "3.2.2. The system shall ensure that there are practical and efficient mechanisms available for the client to determine an appropriate credential to present for access to a given resource."}, {"refs": [{"id": "ref-for-resource\u2466\u2460"}], "title": "3.3.1. The system shall allow the ability to read the access permissions associated with a certain resource to be limited."}, {"refs": [{"id": "ref-for-resource\u2466\u2461"}], "title": "3.3.2. The system shall allow the ability to change the access permissions associated with a certain resource to be limited."}, {"refs": [{"id": "ref-for-resource\u2466\u2462"}], "title": "3.3.3. The system shall provide the effective access permissions on a certain resource or collection as they relate to the agent making the request, in the request response."}, {"refs": [{"id": "ref-for-resource\u2466\u2463"}], "title": "3.3.4. The system shall allow the ability to read a certain resource to be limited."}, {"refs": [{"id": "ref-for-resource\u2466\u2464"}], "title": "3.3.5. The system shall allow the ability to change any of the existing contents of a certain resource to be limited."}, {"refs": [{"id": "ref-for-resource\u2466\u2465"}], "title": "3.3.6. The system shall allow the ability to change existing data in a certain resource to be limited, such that only new data can be added to it."}, {"refs": [{"id": "ref-for-resource\u2466\u2466"}], "title": "3.3.7. The system shall limit the ability to delete a certain resource."}, {"refs": [{"id": "ref-for-resource\u2466\u2467"}], "title": "3.3.8. The system shall allow for access to a resource or collection to be limited to the agent that created it."}, {"refs": [{"id": "ref-for-resource\u2466\u2468"}], "title": "3.3.9. The system shall not rely on the URI structure to infer semantics about the type of resources."}, {"refs": [{"id": "ref-for-resource\u2467\u24ea"}], "title": "3.4.3. The system shall allow the ability to create a resource in a certain collection to be limited."}, {"refs": [{"id": "ref-for-resource\u2467\u2460"}], "title": "3.4.4. The system shall limit the ability to delete a resource in a certain collection."}, {"refs": [{"id": "ref-for-resource\u2467\u2461"}, {"id": "ref-for-resource\u2467\u2462"}], "title": "3.4.5. The system shall allow for the creator of a resource in a certain collection to be automatically granted access to the created resource."}, {"refs": [{"id": "ref-for-resource\u2467\u2463"}], "title": "3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-resource\u2467\u2464"}], "title": "3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-resource\u2467\u2465"}, {"id": "ref-for-resource\u2467\u2466"}, {"id": "ref-for-resource\u2467\u2467"}], "title": "3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-resource\u2467\u2468"}, {"id": "ref-for-resource\u2468\u24ea"}], "title": "3.5.9. The system shall allow for the default permissions of a newly created resource to be inherited from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-resource\u2468\u2460"}], "title": "3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-resource\u2468\u2461"}], "title": "3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-resource\u2468\u2462"}], "title": "3.6.1. The system shall allow the ability to limit access to a certain resource by a given start and/or end date and time."}, {"refs": [{"id": "ref-for-resource\u2468\u2463"}], "title": "3.6.2. The system shall allow the ability to limit access to a certain resource by a tag associated with that resource."}, {"refs": [{"id": "ref-for-resource\u2468\u2464"}, {"id": "ref-for-resource\u2468\u2465"}], "title": "3.6.3. The system shall allow the ability to limit access to a certain resource based on the existence of a specific relationship with another resource."}, {"refs": [{"id": "ref-for-resource\u2468\u2466"}], "title": "3.6.4. The system shall allow access to be limited to only a subset of data in a certain resource based on supplied filter criteria."}, {"refs": [{"id": "ref-for-resource\u2468\u2467"}], "title": "3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied."}, {"refs": [{"id": "ref-for-resource\u2468\u2468"}], "title": "3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited."}, {"refs": [{"id": "ref-for-resource\u2460\u24ea\u24ea"}], "title": "3.6.7. The system shall allow the ability to read, create, or change access permissions for resources associated with a particular tag to be limited."}, {"refs": [{"id": "ref-for-resource\u2460\u24ea\u2460"}, {"id": "ref-for-resource\u2460\u24ea\u2461"}, {"id": "ref-for-resource\u2460\u24ea\u2462"}, {"id": "ref-for-resource\u2460\u24ea\u2463"}, {"id": "ref-for-resource\u2460\u24ea\u2464"}, {"id": "ref-for-resource\u2460\u24ea\u2465"}, {"id": "ref-for-resource\u2460\u24ea\u2466"}, {"id": "ref-for-resource\u2460\u24ea\u2467"}, {"id": "ref-for-resource\u2460\u24ea\u2468"}, {"id": "ref-for-resource\u2460\u2460\u24ea"}, {"id": "ref-for-resource\u2460\u2460\u2460"}, {"id": "ref-for-resource\u2460\u2460\u2461"}, {"id": "ref-for-resource\u2460\u2460\u2462"}, {"id": "ref-for-resource\u2460\u2460\u2463"}, {"id": "ref-for-resource\u2460\u2460\u2464"}, {"id": "ref-for-resource\u2460\u2460\u2465"}, {"id": "ref-for-resource\u2460\u2460\u2466"}, {"id": "ref-for-resource\u2460\u2460\u2467"}, {"id": "ref-for-resource\u2460\u2460\u2468"}, {"id": "ref-for-resource\u2460\u2461\u24ea"}, {"id": "ref-for-resource\u2460\u2461\u2460"}, {"id": "ref-for-resource\u2460\u2461\u2461"}, {"id": "ref-for-resource\u2460\u2461\u2462"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['collection'] = {"dfnID": "collection", "url": "#collection", "dfnText": "collection", "refSections": [{"refs": [{"id": "ref-for-collection"}, {"id": "ref-for-collection\u2460"}, {"id": "ref-for-collection\u2461"}, {"id": "ref-for-collection\u2462"}, {"id": "ref-for-collection\u2463"}, {"id": "ref-for-collection\u2464"}, {"id": "ref-for-collection\u2465"}, {"id": "ref-for-collection\u2466"}, {"id": "ref-for-collection\u2467"}, {"id": "ref-for-collection\u2468"}], "title": "2.2. Collection access"}, {"refs": [{"id": "ref-for-collection\u2460\u24ea"}, {"id": "ref-for-collection\u2460\u2460"}, {"id": "ref-for-collection\u2460\u2461"}], "title": "2.2.1. Read-only access to a Collection"}, {"refs": [{"id": "ref-for-collection\u2460\u2462"}, {"id": "ref-for-collection\u2460\u2463"}], "title": "2.2.2. Read-write access to a Collection"}, {"refs": [{"id": "ref-for-collection\u2460\u2464"}, {"id": "ref-for-collection\u2460\u2465"}, {"id": "ref-for-collection\u2460\u2466"}], "title": "2.2.3. Read-create access to a Collection"}, {"refs": [{"id": "ref-for-collection\u2460\u2467"}, {"id": "ref-for-collection\u2460\u2468"}, {"id": "ref-for-collection\u2461\u24ea"}, {"id": "ref-for-collection\u2461\u2460"}], "title": "2.2.4. Read-create-delete access to a Collection"}, {"refs": [{"id": "ref-for-collection\u2461\u2461"}, {"id": "ref-for-collection\u2461\u2462"}], "title": "2.2.5. Create-only access to a Collection"}, {"refs": [{"id": "ref-for-collection\u2461\u2463"}, {"id": "ref-for-collection\u2461\u2464"}, {"id": "ref-for-collection\u2461\u2465"}, {"id": "ref-for-collection\u2461\u2466"}, {"id": "ref-for-collection\u2461\u2467"}], "title": "2.3. Collection resource inherited access"}, {"refs": [{"id": "ref-for-collection\u2461\u2468"}, {"id": "ref-for-collection\u2462\u24ea"}, {"id": "ref-for-collection\u2462\u2460"}, {"id": "ref-for-collection\u2462\u2461"}, {"id": "ref-for-collection\u2462\u2462"}, {"id": "ref-for-collection\u2462\u2463"}, {"id": "ref-for-collection\u2462\u2464"}], "title": "2.3.1. Read-only access to collection resources"}, {"refs": [{"id": "ref-for-collection\u2462\u2465"}, {"id": "ref-for-collection\u2462\u2466"}], "title": "2.3.2. Read-create access to collection resources"}, {"refs": [{"id": "ref-for-collection\u2462\u2467"}, {"id": "ref-for-collection\u2462\u2468"}, {"id": "ref-for-collection\u2463\u24ea"}, {"id": "ref-for-collection\u2463\u2460"}], "title": "2.3.3. Manage a hierarchy of collection resources"}, {"refs": [{"id": "ref-for-collection\u2463\u2461"}], "title": "2.3.4. Create-append access to collection resources"}, {"refs": [{"id": "ref-for-collection\u2463\u2462"}, {"id": "ref-for-collection\u2463\u2463"}], "title": "2.3.5. Manage permissions for collection resources"}, {"refs": [{"id": "ref-for-collection\u2463\u2464"}, {"id": "ref-for-collection\u2463\u2465"}], "title": "2.3.6. Default permissions on created resources"}, {"refs": [{"id": "ref-for-collection\u2463\u2466"}, {"id": "ref-for-collection\u2463\u2467"}, {"id": "ref-for-collection\u2463\u2468"}], "title": "2.3.8. Adding new subjects to inherited permissions"}, {"refs": [{"id": "ref-for-collection\u2464\u24ea"}], "title": "2.3.9. Modifying inherited permissions for existing subjects"}, {"refs": [{"id": "ref-for-collection\u2464\u2460"}, {"id": "ref-for-collection\u2464\u2461"}], "title": "2.4. Conditional access"}, {"refs": [{"id": "ref-for-collection\u2464\u2462"}, {"id": "ref-for-collection\u2464\u2463"}, {"id": "ref-for-collection\u2464\u2464"}], "title": "2.4.1. Conditional access by time"}, {"refs": [{"id": "ref-for-collection\u2464\u2465"}, {"id": "ref-for-collection\u2464\u2466"}], "title": "2.4.2. Conditional access by tag"}, {"refs": [{"id": "ref-for-collection\u2464\u2467"}], "title": "2.4.3. Conditional access by relationship"}, {"refs": [{"id": "ref-for-collection\u2464\u2468"}, {"id": "ref-for-collection\u2465\u24ea"}], "title": "2.4.5. Conditional control boundaries"}, {"refs": [{"id": "ref-for-collection\u2465\u2460"}, {"id": "ref-for-collection\u2465\u2461"}, {"id": "ref-for-collection\u2465\u2462"}, {"id": "ref-for-collection\u2465\u2463"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-collection\u2465\u2464"}, {"id": "ref-for-collection\u2465\u2465"}, {"id": "ref-for-collection\u2465\u2466"}], "title": "2.7.4. Limit information disclosure through URI"}, {"refs": [{"id": "ref-for-collection\u2465\u2467"}], "title": "3. Functional Requirements"}, {"refs": [{"id": "ref-for-collection\u2465\u2468"}], "title": "3.1.5. The system shall allow an agent to limit modes and/or conditions of access for a given client application in their use for a resource or collection that they have been granted access to."}, {"refs": [{"id": "ref-for-collection\u2466\u24ea"}], "title": "3.3.3. The system shall provide the effective access permissions on a certain resource or collection as they relate to the agent making the request, in the request response."}, {"refs": [{"id": "ref-for-collection\u2466\u2460"}], "title": "3.3.8. The system shall allow for access to a resource or collection to be limited to the agent that created it."}, {"refs": [{"id": "ref-for-collection\u2466\u2461"}, {"id": "ref-for-collection\u2466\u2462"}], "title": "3.4.1. The system shall allow the ability to read a certain collection to be limited, exposing only the data from the collection resource itself, and a listing of its members, and excluding the contents of its members, or any metadata about them."}, {"refs": [{"id": "ref-for-collection\u2466\u2463"}, {"id": "ref-for-collection\u2466\u2464"}], "title": "3.4.2. The system shall allow the ability to change data specific to a certain collection to be limited, including only the data from the collection resource itself, and excluding any additions or subtractions from its list of members."}, {"refs": [{"id": "ref-for-collection\u2466\u2465"}], "title": "3.4.3. The system shall allow the ability to create a resource in a certain collection to be limited."}, {"refs": [{"id": "ref-for-collection\u2466\u2466"}], "title": "3.4.4. The system shall limit the ability to delete a resource in a certain collection."}, {"refs": [{"id": "ref-for-collection\u2466\u2467"}], "title": "3.4.5. The system shall allow for the creator of a resource in a certain collection to be automatically granted access to the created resource."}, {"refs": [{"id": "ref-for-collection\u2466\u2468"}], "title": "3.4.6. The system shall allow the ability to read the access permissions associated with a certain collection to be limited."}, {"refs": [{"id": "ref-for-collection\u2467\u24ea"}], "title": "3.4.7. The system shall allow the ability to change the access permissions directly associated with a certain collection to be limited."}, {"refs": [{"id": "ref-for-collection\u2467\u2460"}], "title": "3.5.1. The system shall allow for a certain collection to specify access permissions that are inherited by its members."}, {"refs": [{"id": "ref-for-collection\u2467\u2461"}], "title": "3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-collection\u2467\u2462"}], "title": "3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-collection\u2467\u2463"}], "title": "3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-collection\u2467\u2464"}, {"id": "ref-for-collection\u2467\u2465"}, {"id": "ref-for-collection\u2467\u2466"}], "title": "3.5.5. The system shall allow for new resources to be added to a given collection if the agent has inherited create access from the parent collection that the given collection is a member of."}, {"refs": [{"id": "ref-for-collection\u2467\u2467"}, {"id": "ref-for-collection\u2467\u2468"}, {"id": "ref-for-collection\u2468\u24ea"}], "title": "3.5.6. The system shall allow for resources to be deleted from a given collection if the agent has inherited delete access from the parent collection that the given collection is a member of."}, {"refs": [{"id": "ref-for-collection\u2468\u2460"}, {"id": "ref-for-collection\u2468\u2461"}], "title": "3.5.7. The system shall allow for the members of a certain collection to extend or augment the permissions inherited from the parent collection."}, {"refs": [{"id": "ref-for-collection\u2468\u2462"}], "title": "3.5.8. The system shall allow for a certain collection to specify access permissions that are inherited by its members and cannot be augmented."}, {"refs": [{"id": "ref-for-collection\u2468\u2463"}], "title": "3.5.9. The system shall allow for the default permissions of a newly created resource to be inherited from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-collection\u2468\u2464"}], "title": "3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-collection\u2468\u2465"}], "title": "3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of."}, {"refs": [{"id": "ref-for-collection\u2468\u2466"}], "title": "3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied."}, {"refs": [{"id": "ref-for-collection\u2468\u2467"}], "title": "3.6.6. The system shall allow the ability to read, create, or change only those access permissions for a given resource or collection that apply to a specified group of agents to be limited."}, {"refs": [{"id": "ref-for-collection\u2468\u2468"}, {"id": "ref-for-collection\u2460\u24ea\u24ea"}, {"id": "ref-for-collection\u2460\u24ea\u2460"}, {"id": "ref-for-collection\u2460\u24ea\u2461"}, {"id": "ref-for-collection\u2460\u24ea\u2462"}, {"id": "ref-for-collection\u2460\u24ea\u2463"}, {"id": "ref-for-collection\u2460\u24ea\u2464"}, {"id": "ref-for-collection\u2460\u24ea\u2465"}, {"id": "ref-for-collection\u2460\u24ea\u2466"}, {"id": "ref-for-collection\u2460\u24ea\u2467"}, {"id": "ref-for-collection\u2460\u24ea\u2468"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['tag'] = {"dfnID": "tag", "url": "#tag", "dfnText": "tag", "refSections": [{"refs": [{"id": "ref-for-tag"}, {"id": "ref-for-tag\u2460"}], "title": "2.4.2. Conditional access by tag"}, {"refs": [{"id": "ref-for-tag\u2461"}], "title": "2.4.5. Conditional control boundaries"}], "external": false};
+window.dfnpanelData['authorization'] = {"dfnID": "authorization", "url": "#authorization", "dfnText": "authorization", "refSections": [{"refs": [{"id": "ref-for-authorization"}], "title": "2.3.6. Default permissions on created resources"}, {"refs": [{"id": "ref-for-authorization\u2460"}, {"id": "ref-for-authorization\u2461"}], "title": "2.3.8. Adding new subjects to inherited permissions"}, {"refs": [{"id": "ref-for-authorization\u2462"}], "title": "2.4.5. Conditional control boundaries"}, {"refs": [{"id": "ref-for-authorization\u2463"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-authorization\u2464"}], "title": "2.7.2. Limiting access to other authorization conditions"}, {"refs": [{"id": "ref-for-authorization\u2465"}, {"id": "ref-for-authorization\u2466"}], "title": "2.9. Validation"}, {"refs": [{"id": "ref-for-authorization\u2467"}], "title": "2.10.3. Possession of a link"}, {"refs": [{"id": "ref-for-authorization\u2468"}, {"id": "ref-for-authorization\u2460\u24ea"}, {"id": "ref-for-authorization\u2460\u2460"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['authorization-group'] = {"dfnID": "authorization-group", "url": "#authorization-group", "dfnText": "authorization group", "refSections": [{"refs": [{"id": "ref-for-authorization-group"}], "title": "2.1.5. Append-only access"}, {"refs": [{"id": "ref-for-authorization-group\u2460"}, {"id": "ref-for-authorization-group\u2461"}, {"id": "ref-for-authorization-group\u2462"}, {"id": "ref-for-authorization-group\u2463"}], "title": "2.1.8. Group access"}, {"refs": [{"id": "ref-for-authorization-group\u2464"}], "title": "2.3. Collection resource inherited access"}, {"refs": [{"id": "ref-for-authorization-group\u2465"}, {"id": "ref-for-authorization-group\u2466"}], "title": "2.3.1. Read-only access to collection resources"}, {"refs": [{"id": "ref-for-authorization-group\u2467"}], "title": "2.3.2. Read-create access to collection resources"}, {"refs": [{"id": "ref-for-authorization-group\u2468"}, {"id": "ref-for-authorization-group\u2460\u24ea"}], "title": "2.3.3. Manage a hierarchy of collection resources"}, {"refs": [{"id": "ref-for-authorization-group\u2460\u2460"}], "title": "2.3.4. Create-append access to collection resources"}, {"refs": [{"id": "ref-for-authorization-group\u2460\u2461"}], "title": "2.3.6. Default permissions on created resources"}, {"refs": [{"id": "ref-for-authorization-group\u2460\u2462"}, {"id": "ref-for-authorization-group\u2460\u2463"}, {"id": "ref-for-authorization-group\u2460\u2464"}, {"id": "ref-for-authorization-group\u2460\u2465"}, {"id": "ref-for-authorization-group\u2460\u2466"}, {"id": "ref-for-authorization-group\u2460\u2467"}], "title": "2.3.8. Adding new subjects to inherited permissions"}, {"refs": [{"id": "ref-for-authorization-group\u2460\u2468"}, {"id": "ref-for-authorization-group\u2461\u24ea"}, {"id": "ref-for-authorization-group\u2461\u2460"}], "title": "2.3.9. Modifying inherited permissions for existing subjects"}, {"refs": [{"id": "ref-for-authorization-group\u2461\u2461"}], "title": "2.4.5. Conditional control boundaries"}, {"refs": [{"id": "ref-for-authorization-group\u2461\u2462"}, {"id": "ref-for-authorization-group\u2461\u2463"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-authorization-group\u2461\u2464"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['capability'] = {"dfnID": "capability", "url": "#capability", "dfnText": "capability", "refSections": [{"refs": [{"id": "ref-for-capability"}], "title": "2.10.2. Possession of a verifiable credential"}, {"refs": [{"id": "ref-for-capability\u2460"}], "title": "2.10.3. Possession of a link"}], "external": false};
+window.dfnpanelData['access-mode'] = {"dfnID": "access-mode", "url": "#access-mode", "dfnText": "access mode", "refSections": [{"refs": [{"id": "ref-for-access-mode"}], "title": "2.5.4. Distinguishing mediated from direct access"}, {"refs": [{"id": "ref-for-access-mode\u2460"}], "title": "3.6.5. The system shall allow the access modes and/or conditions of a given access permission for a certain resource or collection to change after other specified conditions have been satisfied."}, {"refs": [{"id": "ref-for-access-mode\u2461"}, {"id": "ref-for-access-mode\u2462"}, {"id": "ref-for-access-mode\u2463"}, {"id": "ref-for-access-mode\u2464"}, {"id": "ref-for-access-mode\u2465"}, {"id": "ref-for-access-mode\u2466"}, {"id": "ref-for-access-mode\u2467"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['read-access'] = {"dfnID": "read-access", "url": "#read-access", "dfnText": "Read access", "refSections": [{"refs": [{"id": "ref-for-read-access"}], "title": "2.1.3. Read-write access"}, {"refs": [{"id": "ref-for-read-access\u2460"}], "title": "2.1.4.1. Alice stores Danielle\u2019s recommendation"}, {"refs": [{"id": "ref-for-read-access\u2461"}, {"id": "ref-for-read-access\u2462"}], "title": "2.1.4.2. Danielle stores their own recommendation"}, {"refs": [{"id": "ref-for-read-access\u2463"}], "title": "2.1.5. Append-only access"}, {"refs": [{"id": "ref-for-read-access\u2464"}], "title": "2.1.7. Read-only access"}, {"refs": [{"id": "ref-for-read-access\u2465"}], "title": "2.1.8. Group access"}, {"refs": [{"id": "ref-for-read-access\u2466"}], "title": "2.1.9. Public access"}, {"refs": [{"id": "ref-for-read-access\u2467"}, {"id": "ref-for-read-access\u2468"}], "title": "2.2.1. Read-only access to a Collection"}, {"refs": [{"id": "ref-for-read-access\u2460\u24ea"}], "title": "2.2.2. Read-write access to a Collection"}, {"refs": [{"id": "ref-for-read-access\u2460\u2460"}], "title": "2.2.3. Read-create access to a Collection"}, {"refs": [{"id": "ref-for-read-access\u2460\u2461"}, {"id": "ref-for-read-access\u2460\u2462"}], "title": "2.2.4. Read-create-delete access to a Collection"}, {"refs": [{"id": "ref-for-read-access\u2460\u2463"}, {"id": "ref-for-read-access\u2460\u2464"}, {"id": "ref-for-read-access\u2460\u2465"}], "title": "2.3.1. Read-only access to collection resources"}, {"refs": [{"id": "ref-for-read-access\u2460\u2466"}, {"id": "ref-for-read-access\u2460\u2467"}], "title": "2.3.2. Read-create access to collection resources"}, {"refs": [{"id": "ref-for-read-access\u2460\u2468"}, {"id": "ref-for-read-access\u2461\u24ea"}], "title": "2.3.3. Manage a hierarchy of collection resources"}, {"refs": [{"id": "ref-for-read-access\u2461\u2460"}, {"id": "ref-for-read-access\u2461\u2461"}], "title": "2.3.4. Create-append access to collection resources"}, {"refs": [{"id": "ref-for-read-access\u2461\u2462"}, {"id": "ref-for-read-access\u2461\u2463"}], "title": "2.3.5. Manage permissions for collection resources"}, {"refs": [{"id": "ref-for-read-access\u2461\u2464"}, {"id": "ref-for-read-access\u2461\u2465"}, {"id": "ref-for-read-access\u2461\u2466"}, {"id": "ref-for-read-access\u2461\u2467"}], "title": "2.3.8. Adding new subjects to inherited permissions"}, {"refs": [{"id": "ref-for-read-access\u2461\u2468"}, {"id": "ref-for-read-access\u2462\u24ea"}, {"id": "ref-for-read-access\u2462\u2460"}], "title": "2.3.9. Modifying inherited permissions for existing subjects"}, {"refs": [{"id": "ref-for-read-access\u2462\u2461"}], "title": "2.3.10. Forcing inherited permissions"}, {"refs": [{"id": "ref-for-read-access\u2462\u2462"}, {"id": "ref-for-read-access\u2462\u2463"}], "title": "2.4.1. Conditional access by time"}, {"refs": [{"id": "ref-for-read-access\u2462\u2464"}, {"id": "ref-for-read-access\u2462\u2465"}], "title": "2.4.2. Conditional access by tag"}, {"refs": [{"id": "ref-for-read-access\u2462\u2466"}], "title": "2.4.3. Conditional access by relationship"}, {"refs": [{"id": "ref-for-read-access\u2462\u2467"}, {"id": "ref-for-read-access\u2462\u2468"}, {"id": "ref-for-read-access\u2463\u24ea"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-read-access\u2463\u2460"}], "title": "2.5.3. Application determining access privileges"}, {"refs": [{"id": "ref-for-read-access\u2463\u2461"}, {"id": "ref-for-read-access\u2463\u2462"}], "title": "2.7.1. Limiting access to who else is permitted"}, {"refs": [{"id": "ref-for-read-access\u2463\u2463"}], "title": "2.10.2. Possession of a verifiable credential"}, {"refs": [{"id": "ref-for-read-access\u2463\u2464"}], "title": "2.10.3. Possession of a link"}, {"refs": [{"id": "ref-for-read-access\u2463\u2465"}], "title": "3.5.2. The system shall allow for a certain resource to be read if the agent has inherited read access from the parent collection the resource is a member of."}], "external": false};
+window.dfnpanelData['write-access'] = {"dfnID": "write-access", "url": "#write-access", "dfnText": "Write access", "refSections": [{"refs": [{"id": "ref-for-write-access"}], "title": "2.1.3. Read-write access"}, {"refs": [{"id": "ref-for-write-access\u2460"}], "title": "2.2.2. Read-write access to a Collection"}, {"refs": [{"id": "ref-for-write-access\u2461"}], "title": "2.3.2. Read-create access to collection resources"}, {"refs": [{"id": "ref-for-write-access\u2462"}], "title": "2.3.3. Manage a hierarchy of collection resources"}, {"refs": [{"id": "ref-for-write-access\u2463"}, {"id": "ref-for-write-access\u2464"}], "title": "2.3.6. Default permissions on created resources"}, {"refs": [{"id": "ref-for-write-access\u2465"}], "title": "2.4.1. Conditional access by time"}, {"refs": [{"id": "ref-for-write-access\u2466"}], "title": "2.4.2. Conditional access by tag"}, {"refs": [{"id": "ref-for-write-access\u2467"}, {"id": "ref-for-write-access\u2468"}, {"id": "ref-for-write-access\u2460\u24ea"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-write-access\u2460\u2460"}], "title": "2.5.3. Application determining access privileges"}, {"refs": [{"id": "ref-for-write-access\u2460\u2461"}], "title": "3.5.3. The system shall allow for a resource to be changed if the agent has inherited write access from the parent collection the resource is a member of."}], "external": false};
+window.dfnpanelData['append-access'] = {"dfnID": "append-access", "url": "#append-access", "dfnText": "Append access", "refSections": [{"refs": [{"id": "ref-for-append-access"}], "title": "2.1.4.1. Alice stores Danielle\u2019s recommendation"}, {"refs": [{"id": "ref-for-append-access\u2460"}], "title": "2.1.4.2. Danielle stores their own recommendation"}, {"refs": [{"id": "ref-for-append-access\u2461"}, {"id": "ref-for-append-access\u2462"}], "title": "2.1.5. Append-only access"}, {"refs": [{"id": "ref-for-append-access\u2463"}], "title": "2.3.4. Create-append access to collection resources"}, {"refs": [{"id": "ref-for-append-access\u2464"}, {"id": "ref-for-append-access\u2465"}], "title": "2.3.6. Default permissions on created resources"}, {"refs": [{"id": "ref-for-append-access\u2466"}], "title": "3.5.4. The system shall allow for new data to be added to a resource, without being able to change existing data in that resource, if the agent has inherited append access from the parent collection the resource is a member of."}], "external": false};
+window.dfnpanelData['create-access'] = {"dfnID": "create-access", "url": "#create-access", "dfnText": "Create access", "refSections": [{"refs": [{"id": "ref-for-create-access"}], "title": "2.2.3. Read-create access to a Collection"}, {"refs": [{"id": "ref-for-create-access\u2460"}], "title": "2.2.4. Read-create-delete access to a Collection"}, {"refs": [{"id": "ref-for-create-access\u2461"}], "title": "2.2.5. Create-only access to a Collection"}, {"refs": [{"id": "ref-for-create-access\u2462"}], "title": "2.3.2. Read-create access to collection resources"}, {"refs": [{"id": "ref-for-create-access\u2463"}, {"id": "ref-for-create-access\u2464"}], "title": "2.3.3. Manage a hierarchy of collection resources"}, {"refs": [{"id": "ref-for-create-access\u2465"}], "title": "2.3.4. Create-append access to collection resources"}, {"refs": [{"id": "ref-for-create-access\u2466"}, {"id": "ref-for-create-access\u2467"}, {"id": "ref-for-create-access\u2468"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-create-access\u2460\u24ea"}], "title": "3.5.5. The system shall allow for new resources to be added to a given collection if the agent has inherited create access from the parent collection that the given collection is a member of."}, {"refs": [{"id": "ref-for-create-access\u2460\u2460"}, {"id": "ref-for-create-access\u2460\u2461"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['delete-access'] = {"dfnID": "delete-access", "url": "#delete-access", "dfnText": "Delete access", "refSections": [{"refs": [{"id": "ref-for-delete-access"}], "title": "2.2.4. Read-create-delete access to a Collection"}, {"refs": [{"id": "ref-for-delete-access\u2460"}], "title": "2.3.2. Read-create access to collection resources"}, {"refs": [{"id": "ref-for-delete-access\u2461"}, {"id": "ref-for-delete-access\u2462"}], "title": "2.3.3. Manage a hierarchy of collection resources"}, {"refs": [{"id": "ref-for-delete-access\u2463"}, {"id": "ref-for-delete-access\u2464"}, {"id": "ref-for-delete-access\u2465"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-delete-access\u2466"}], "title": "3.5.6. The system shall allow for resources to be deleted from a given collection if the agent has inherited delete access from the parent collection that the given collection is a member of."}, {"refs": [{"id": "ref-for-delete-access\u2467"}], "title": "4. Definitions"}], "external": false};
+window.dfnpanelData['read-permission-access'] = {"dfnID": "read-permission-access", "url": "#read-permission-access", "dfnText": "Read permission access", "refSections": [{"refs": [{"id": "ref-for-read-permission-access"}], "title": "2.2.6. Manage permissions for a Collection"}, {"refs": [{"id": "ref-for-read-permission-access\u2460"}], "title": "2.3.5. Manage permissions for collection resources"}, {"refs": [{"id": "ref-for-read-permission-access\u2461"}], "title": "2.3.10. Forcing inherited permissions"}, {"refs": [{"id": "ref-for-read-permission-access\u2462"}, {"id": "ref-for-read-permission-access\u2463"}, {"id": "ref-for-read-permission-access\u2464"}], "title": "2.4.5. Conditional control boundaries"}, {"refs": [{"id": "ref-for-read-permission-access\u2465"}, {"id": "ref-for-read-permission-access\u2466"}, {"id": "ref-for-read-permission-access\u2467"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-read-permission-access\u2468"}], "title": "3.5.10. The system shall allow for the access permissions directly associated with a certain resource to be read if the agent has inherited read permission access from the parent collection the resource is a member of."}], "external": false};
+window.dfnpanelData['write-permission-access'] = {"dfnID": "write-permission-access", "url": "#write-permission-access", "dfnText": "Write permission access", "refSections": [{"refs": [{"id": "ref-for-write-permission-access"}], "title": "2.2.6. Manage permissions for a Collection"}, {"refs": [{"id": "ref-for-write-permission-access\u2460"}], "title": "2.3.5. Manage permissions for collection resources"}, {"refs": [{"id": "ref-for-write-permission-access\u2461"}], "title": "2.3.10. Forcing inherited permissions"}, {"refs": [{"id": "ref-for-write-permission-access\u2462"}, {"id": "ref-for-write-permission-access\u2463"}, {"id": "ref-for-write-permission-access\u2464"}], "title": "2.4.5. Conditional control boundaries"}, {"refs": [{"id": "ref-for-write-permission-access\u2465"}, {"id": "ref-for-write-permission-access\u2466"}, {"id": "ref-for-write-permission-access\u2467"}], "title": "2.5.1. Limiting access to trusted applications"}, {"refs": [{"id": "ref-for-write-permission-access\u2468"}], "title": "3.5.11. The system shall allow for the access permissions directly associated with a certain resource to be changed if the agent has inherited write permission access from the parent collection the resource is a member of."}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
 }
 </script>
