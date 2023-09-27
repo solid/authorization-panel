@@ -33,7 +33,7 @@ The work items of the Authorization Panel are discussed during the following [So
 
 Both meetings take place in the [solid-cg](https://meet.jit.si/solid-cg) Jitsi room. 
 
-Please refer to the Solid Community Group [calendar](https://www.w3.org/groups/cg/solid/calendar) and the Special Topic Meetings [schedule]([url](https://github.com/solid/specification/discussions/555)) for more information. Every meeting is also announced on [Gitter/Matrix](https://gitter.im/solid/specification), with a link to its agenda. 
+Please refer to the Solid Community Group [calendar](https://www.w3.org/groups/cg/solid/calendar) and the Special Topic Meetings [schedule]([url](https://github.com/solid/specification/discussions/555)) for more information. Every meeting is also announced on [Matrix][(https://gitter.im/solid/specification](https://matrix.to/#/#solid_specification:gitter.im)), with a link to its agenda. 
 
 
 ## Code of Conduct
