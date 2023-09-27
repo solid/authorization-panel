@@ -26,11 +26,14 @@ All contributors to any Work Items must be members of the Solid CG. It’s easy 
 
 Anyone can join the [Authorization Panel chat](https://gitter.im/solid/authorization-panel).
 
-Online panel meetings occur sporadically on Wednesday, 14:00 UTC at https://meet.jit.si/solid-authorization.
+The work items of the Authorization Panel are discussed during the following [Solid Community Group](https://github.com/solid/specification) meetings.
 
-The [time and focus](https://github.com/solid/authorization-panel/issues/325) of authorization meetings is currently being discussed.
+- **General meetings**: every _Wednesday_ from _14:00_ to _15:00_ UTC
+- **Special topic meetings**: tentative on _Tuesdays_ from _14:00_ to _16:00_ UTC
 
-Meetings are transcribed and [published](https://github.com/solid/authorization-panel/tree/main/meetings/).
+Both meetings take place in the [solid-cg](https://meet.jit.si/solid-cg) Jitsi room. 
+
+Please refer to the Solid Community Group [calendar](https://www.w3.org/groups/cg/solid/calendar) and the Special Topic Meetings [schedule]([url](https://github.com/solid/specification/discussions/555)) for more information. Every meeting is also announced on [Matrix][(https://gitter.im/solid/specification](https://matrix.to/#/#solid_specification:gitter.im)), with a link to its agenda. 
 
 
 ## Code of Conduct
