@@ -114,6 +114,7 @@ acp:accessControl
     rdfs:range acp:AccessControl .
 
 acp:memberAccessControl
+    a rdf:Property ;
     rdfs:label "member access control"@en ;
     rdfs:comment "The member access control property transitively connects ACRs of member resources to Access Controls."@en ;
     rdfs:isDefinedBy acp: ;
